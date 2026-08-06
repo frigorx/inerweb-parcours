@@ -1,0 +1,125 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>inerWeb Parcours — bêta à relire</title>
+<link rel="stylesheet" href="fonds-origine/moteur/charte-edu.css">
+<style>
+  .tete{background:var(--bleu);color:#fff;padding:28px 24px}
+  .tete h1{color:#fff;margin:0 0 8px;font-size:31px;line-height:1.2}
+  .tete .sous{margin:0;color:#cdd9e6;max-width:74ch;font-size:18px}
+  .tete b{color:var(--orange)}
+  .zone{max-width:940px;margin:24px auto;padding:0 22px 70px}
+
+  .avert{background:var(--ko-bg);border:1px solid #f0c9c2;border-left:5px solid var(--ko);
+    border-radius:var(--r);padding:16px 20px;margin-bottom:24px}
+  .avert .t{font-family:"Trebuchet MS",Calibri,Arial,sans-serif;font-weight:700;color:var(--ko);
+    text-transform:uppercase;letter-spacing:.4px;font-size:14px;margin-bottom:6px}
+  .avert .t::before{content:"⚑ "}
+  .avert p{margin:0;color:#8c2c20}
+
+  .carte{display:block;background:var(--carte);border:1px solid var(--ligne);border-radius:var(--r);
+    box-shadow:var(--ombre);padding:22px 24px;margin-bottom:16px;text-decoration:none;color:var(--txt);
+    border-left:5px solid var(--orange);transition:.12s}
+  .carte:hover{transform:translateX(3px);box-shadow:0 6px 18px rgba(27,58,99,.16)}
+  .carte h2{margin:0 0 6px;font-size:22px}
+  .carte p{margin:0;color:var(--mut)}
+  .carte.second{border-left-color:var(--bleu-clair)}
+
+  .chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:24px 0}
+  .chiffre{background:#fff;border:1px solid var(--ligne);border-radius:var(--r);padding:14px;text-align:center}
+  .chiffre b{display:block;font-family:"Trebuchet MS";font-size:27px;color:var(--bleu);line-height:1.1}
+  .chiffre span{font-size:13px;color:var(--mut)}
+  .chiffre.rouge b{color:var(--ko)}
+
+  h2.section{border-bottom:3px solid var(--orange);padding-bottom:6px;margin-top:34px}
+  .bloc{background:#fff;border:1px solid var(--ligne);border-left:4px solid var(--bleu);
+    border-radius:var(--r);padding:16px 20px;margin-top:16px}
+  .bloc h3{margin-top:0}
+  .bloc ul{margin:0;padding-left:22px}
+  .bloc li{margin:7px 0}
+  .pied{margin-top:34px;padding-top:16px;border-top:1px solid var(--ligne);
+    font-size:14px;color:var(--mut)}
+  @media(max-width:640px){
+    .tete{padding:20px 16px} .tete h1{font-size:25px} .zone{padding:0 14px 50px}
+    .carte{padding:18px 16px} .carte h2{font-size:19px}
+  }
+</style>
+
+<header class="tete">
+  <h1>inerWeb <b>Parcours</b></h1>
+  <p class="sous" style="font-size:20px;margin-bottom:10px">Habilitation fluides frigorigènes</p>
+  <p class="sous">Une refonte des supports en <b>capsules courtes</b> : un sujet, un fil de six
+  écrans, et à chaque notion voisine un <b>« Voulez-vous en savoir plus ? »</b> qu'on ouvre
+  si l'on veut. Voix de synthèse, lecture au clavier ou au doigt, police adaptée aux lecteurs
+  dyslexiques.</p>
+</header>
+
+<main class="zone">
+
+  <div class="avert">
+    <div class="t">Version bêta — contenu non validé</div>
+    <p>Ce contenu <b>n'a pas encore été relu par un frigoriste</b>. Il porte lui-même
+    <b>63 points signalés « À vérifier »</b>, en rouge, aux endroits où l'auteur attend l'avis
+    d'un professionnel — notamment sur tout ce qui est réglementaire et chiffré.
+    <b>Ne vous en servez pas comme référence pour une intervention réelle.</b></p>
+  </div>
+
+  <a class="carte" href="refonte/relire.html">
+    <h2>▶ Relire la bêta</h2>
+    <p>Les sept sujets, avec les encadrés rouges et le recueil d'avis. C'est le lien à ouvrir
+    pour relire : quatre boutons sous chaque écran, une remarque libre, et un relevé à
+    enregistrer et renvoyer à la fin.</p>
+  </a>
+
+  <a class="carte second" href="refonte/index.html">
+    <h2>Voir le produit tel que l'élève l'aura</h2>
+    <p>Le même contenu, sans une trace du dispositif de relecture.</p>
+  </a>
+
+  <div class="chiffres">
+    <div class="chiffre"><b>7</b><span>sujets</span></div>
+    <div class="chiffre"><b>92</b><span>écrans</span></div>
+    <div class="chiffre"><b>40</b><span>approfondissements</span></div>
+    <div class="chiffre"><b>184</b><span>narrations</span></div>
+    <div class="chiffre rouge"><b>63</b><span>points à vérifier</span></div>
+  </div>
+
+  <h2 class="section">Ce qu'on vous demande</h2>
+
+  <div class="bloc">
+    <ul>
+      <li><b>Les encadrés rouges « À vérifier »</b> — ce sont eux qui comptent le plus. Une
+      valeur, un seuil, une formulation, une règle : dites si c'est juste.</li>
+      <li><b>Votre avis en bas de chaque écran</b> — Juste · À corriger · Question ·
+      <b>Sensible</b>. Ce dernier sert à signaler ce qui pourrait mettre quelqu'un en danger,
+      ou ce qui ne doit pas sortir en l'état.</li>
+      <li><b>La zone de texte libre</b> — c'est elle qui nous apprend le plus.</li>
+      <li><b>À la fin : « Enregistrer mon relevé »</b>, en bas. Mettez votre nom, enregistrez
+      le fichier, renvoyez-le.</li>
+    </ul>
+    <p style="margin:12px 0 0;color:var(--mut);font-size:15px">Vos remarques restent
+    <b>sur votre machine</b> tant que vous n'envoyez pas le fichier : il n'y a aucun serveur,
+    rien n'est collecté. Vous pouvez vous arrêter et reprendre plus tard.</p>
+  </div>
+
+  <h2 class="section">Sur téléphone comme sur ordinateur</h2>
+  <div class="bloc">
+    <ul>
+      <li><b>Balayez horizontalement</b> pour passer d'un écran à l'autre, ou utilisez les
+      flèches du clavier.</li>
+      <li><b>La voix ne démarre jamais toute seule</b> : cliquez sur 🔊. Voix masculine ou
+      féminine, vitesse réglable — elle ne monte pas dans les aigus quand on accélère.</li>
+      <li><b>Le bouton « Aa »</b> agrandit le texte et propose une police adaptée aux
+      lecteurs dyslexiques.</li>
+    </ul>
+  </div>
+
+  <p class="pied">
+    Contenu pédagogique sous licence <b>CC BY-NC-SA 4.0</b> · moteur sous licence <b>MIT</b> ·
+    voir <a href="LICENCE.md">LICENCE.md</a>.<br>
+    Les planches animées et les schémas sont repris du pack
+    <a href="https://frigorx.github.io/pilote-fluides/">pilote-fluides</a>, qui reste en ligne
+    et n'est pas modifié par cette refonte.
+  </p>
+
+</main>

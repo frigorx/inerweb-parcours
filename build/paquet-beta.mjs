@@ -105,6 +105,7 @@ for (const genre of ["masculine", "feminine"]) {
 const scripts = FICHIERS.map((f) => '<script src="capsules/' + f + '"></script>').join("\n");
 
 writeFileSync(join(BETA, "index.html"), `<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Habilitation fluides — capsules (bêta)</title>
 <link rel="stylesheet" href="moteur/charte-edu.css">

@@ -1,0 +1,6 @@
+# Les robots peuvent passer : c'est nécessaire pour qu'ils LISENT la
+# consigne « noindex » posée sur chaque page. Un Disallow ici les
+# empêcherait de la lire, et l'adresse pourrait tout de même être
+# indexée — l'inverse du but recherché.
+User-agent: *
+Allow: /

@@ -1,14 +1,15 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Capsule — inerWeb</title>
+<title>Capsules habilitation fluides — relecture</title>
 <link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
 <link rel="stylesheet" href="moteur/capsule.css">
 
-<!-- Le lecteur. Le sujet joué est donné par ?sujet=… ; sans paramètre,
-     on joue le premier déclaré. Les capsules sont chargées en <script>
-     classique, jamais en module ES : la page doit s'ouvrir en double-clic,
-     sans serveur (file://). -->
+<!-- LA page à partager aux relecteurs. Elle diffère d'index.html par une
+     seule ligne : celle qui suit. Les narrations sont chargées depuis
+     voix/ à la demande — rien n'est téléchargé tant qu'on n'écoute pas. -->
+<script>window.RELECTURE = true;</script>
+
 <script src="moteur/capsule.js"></script>
 <script src="capsules/classes-de-securite.js"></script>
 <script src="capsules/controle-etancheite.js"></script>
@@ -17,6 +18,5 @@
 <script src="capsules/le-circuit.js"></script>
 <script src="capsules/lire-le-code.js"></script>
 <script src="capsules/tirage-au-vide.js"></script>
-
 <script src="../fonds-origine/moteur/lisibilite.js"></script>
-<script>jouerCapsule("");</script>
+<script>jouerAtelier("");</script>
