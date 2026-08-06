@@ -7,11 +7,12 @@
 #
 #  DEUX RÉGLAGES QUI ONT COÛTÉ CHER, À NE PAS RETIRER :
 #
-#  1. `timeout` sur l'étape de déploiement. Le site pèse une trentaine de
-#     mégaoctets (184 narrations), et la file d'attente de Pages met
-#     régulièrement plus que le délai par défaut de dix minutes. Les
-#     déploiements échouaient alors sur « Timeout reached » — sans que
-#     rien ne soit cassé dans le site.
+#  1. `timeout` sur l'étape de déploiement, porté au MAXIMUM autorisé —
+#     600 000 ms. Au-delà, GitHub ramène silencieusement à cette valeur :
+#     inutile d'écrire davantage. Le site pèse une trentaine de mégaoctets
+#     (184 narrations) et la file d'attente de Pages est parfois plus
+#     lente que ce délai ; les déploiements échouent alors sur « Timeout
+#     reached » sans que rien ne soit cassé dans le site.
 #
 #  2. Le ménage avant empaquetage. Les fichiers autonomes de relecture et
 #     les tutos d'origine ne servent pas au site : ils sont dans le dépôt
@@ -71,5 +72,6 @@ jobs:
         id: deploiement
         uses: actions/deploy-pages@v4
         with:
-          timeout: 1800000        # 30 min : la file d'attente de Pages est lente
+          timeout: 600000         # 10 min : c'est le MAXIMUM accepté, au-delà
+                                  # GitHub ramène silencieusement à cette valeur
           error_count: 20
