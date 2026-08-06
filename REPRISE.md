@@ -138,6 +138,14 @@ node build/inventaire.mjs
 
 ## 6. Le cap — tranché le 06/08/2026
 
+**⭐ 06/08 au soir — la commande s'élargit : un véritable SITE INTERNET.** Franck (dictée) :
+animations trop longues à recouper, ordre à repenser, électrovanne absente, KVP-KVL-KVR /
+détendeur électronique / sous-refroidissement / lecture de mano en préparation chez lui,
+tutos **vidéos filmées** à venir (pose-dépose manos, vannes de service), le tout « ne doit
+faire qu'un tout », mis en valeur pour l'autoapprentissage ET l'enseignant.
+**→ La proposition globale est écrite : `PROPOSITION-SITE.md`** (racine). Rien n'est engagé
+tant que Franck n'a pas tranché ses 6 décisions (§ 11 de la proposition).
+
 **Doctrine complète : `refonte/MODELE-CAPSULE.md`.** En résumé :
 
 - **Découpage en capsules.** L'accueil demande « Qu'est-ce que je veux réviser ? ». On choisit
@@ -216,11 +224,11 @@ commande — `node build/paquet-beta.mjs`.
 
 ### Ce qui reste en attente de F. Henninot
 
-1. **Le découpage** — ouvrir `DECOUPAGE-3-CAPSULES.html` : le partage fil / détours est-il
+1. **Le découpage** — ouvrir `MAQUETTE-BETA.html` : le partage fil / détours est-il
    le bon ? C'est ce qui commande les 61 pièces restantes.
 2. **La voix** — ouvrir `CAPSULE-AVEC-LA-VOIX.html`. Henri et Denise sont un choix par
    défaut, à confirmer ou à changer.
-3. **La justesse métier** — les trois capsules n'ont **jamais été relues par un frigoriste**.
+3. **La justesse métier** — les sept capsules n'ont **jamais été relues par un frigoriste**.
    Le contenu vient du fonds, mais il a été réécrit et complété.
 4. **Le tri du fonds** — `inventaire.html`, pièce par pièce.
 
