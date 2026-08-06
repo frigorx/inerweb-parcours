@@ -63,8 +63,27 @@ moment de la copie. C'est la référence à citer si l'on doit un jour prouver c
 
 ## 4. État de diffusion
 
-**Local uniquement.** Aucun dépôt distant, aucune publication.
-Doctrine [[feedback_diffusion_gelee]] : rien ne sort sans feu vert au cas par cas.
+**PUBLIÉ le 06/08/2026**, sur feu vert de F. Henninot, au titre de l'exception « écosystème
+habilitation fluides » de [[feedback_diffusion_gelee]].
+
+- Dépôt : <https://github.com/frigorx/inerweb-parcours> — **public**
+- Site : <https://frigorx.github.io/inerweb-parcours/>
+- **Lien à envoyer aux relecteurs** :
+  <https://frigorx.github.io/inerweb-parcours/refonte/relire.html>
+
+**Public mais NON RÉFÉRENCÉ** (choix de F. Henninot) : chaque page porte
+`<meta name="robots" content="noindex, nofollow">`, et `robots.txt` **laisse passer** les
+robots — c'est volontaire. Un `Disallow` les empêcherait de *lire* la consigne `noindex`, et
+l'adresse pourrait être indexée quand même : l'inverse du but recherché.
+
+**Pages se déploie par GitHub Actions** (`.github/workflows/pages.yml`), pas par le mode
+d'origine, qui échouait sans message exploitable. ⚠️ Le fichier de workflow **ne peut pas
+être poussé par git** (le jeton du push n'a pas le droit `workflow`) : il se modifie par
+l'API — `gh api -X PUT repos/frigorx/inerweb-parcours/contents/.github/workflows/pages.yml`.
+
+Le premier déploiement a demandé trois tentatives et une réinitialisation de la configuration
+Pages (`gh api -X DELETE …/pages` puis `POST … -f build_type=workflow`). Compter aussi
+**plusieurs minutes de 503** après un déploiement réussi : c'est normal, ce n'est pas un échec.
 
 ---
 
