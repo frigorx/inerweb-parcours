@@ -295,8 +295,12 @@ body{background:var(--fond)}
 .avance .jauge{height:100%; background:var(--orange); border-radius:999px; transition:width .25s}
 .avance .compte{white-space:nowrap; font-weight:700; color:var(--bleu)}
 
-/* ---- L'écran : une idée, et rien d'autre ------------------------- */
-.scene{max-width:860px; margin:22px auto; padding:0 18px 120px}
+/* ---- L'écran : une idée, et rien d'autre -------------------------
+   Le bas de page laisse la place aux barres fixes, sur leur hauteur
+   MESURÉE : sur un téléphone elles passent sur plusieurs lignes, et une
+   réserve en dur cacherait le dernier paragraphe. */
+.scene{max-width:860px; margin:22px auto;
+  padding:0 18px calc(var(--h-pied, 120px) + 28px)}
 
 .ecran{
   background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
@@ -395,6 +399,15 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 .voix .repli{font-size:12px; color:var(--attente); font-weight:700}
 .voix .et-voix{font-size:13px; font-weight:700; background:#eef3f9; color:var(--bleu);
   border-radius:999px; padding:4px 12px; white-space:nowrap}
+/* L'engrenage n'existe que sur téléphone : sur un écran large, replier
+   deux réglages derrière un bouton serait un clic pour rien.
+   `display:contents` fait disparaître le conteneur des réglages sans
+   masquer son contenu : les commandes restent sur UNE ligne, alors qu'une
+   boîte, même transparente, en imposait deux. */
+.voix .engrenage{display:none}
+.voix .reglages-voix{display:contents}
+/* Libellés longs sur grand écran, courts sur téléphone — le même bouton. */
+.court{display:none}
 
 /* ---- L'écran de fin ---------------------------------------------- */
 .retenir{background:var(--ok-bg); border:1px solid #b8e0cc; border-left:5px solid var(--ok);
@@ -503,8 +516,12 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 .barre-relecture button:hover{background:var(--orange); border-color:var(--orange); color:#fff}
 .barre-relecture button.fantome{background:transparent; color:#fff}
 .barre-relecture button.fantome:hover{background:#fff; color:var(--bleu); border-color:#fff}
-body.avec-relecture .commandes{bottom:46px}
-@media(max-width:640px){ body.avec-relecture .commandes{bottom:80px} }
+
+/* Les commandes se posent AU-DESSUS de la barre de relecture, sur sa
+   hauteur RÉELLE — mesurée par le moteur, jamais devinée. Une valeur en
+   dur marchait sur un écran large et recouvrait les commandes sur un
+   téléphone, où la barre passe sur trois lignes. */
+body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
 
 /* ---- Le relevé, quand on l'exporte -------------------------------- */
 .releve-fond{
@@ -526,6 +543,105 @@ body.avec-relecture .commandes{bottom:46px}
   border:2px solid var(--bleu); background:var(--bleu); color:#fff; font-weight:700;
 }
 .releve .actions-releve button.second{background:#fff; color:var(--bleu)}
+
+/* =====================================================================
+   TÉLÉPHONE ET TABLETTE
+   ---------------------------------------------------------------------
+   Le même produit sur les deux, sans version « mobile » séparée : une
+   seconde version, c'est une seconde à maintenir, et elle diverge.
+
+   Deux exigences qui commandent tout le reste :
+   · une cible tactile ne descend jamais sous 44 px de haut — en dessous,
+     on vise, on rate, et on abandonne ;
+   · les barres fixes du bas mangeaient 38 % de la hauteur d'un iPhone.
+     Elles se replient et le texte reste lisible.
+   ===================================================================== */
+@media (max-width: 760px) {
+
+  /* ---- On rend au texte la place prise par les marges ---- */
+  .scene{padding-left:12px; padding-right:12px; margin-top:14px}
+  .ecran .corps{padding:18px 16px}
+  .ecran h1{font-size:22px}
+  .ecran .texte{font-size:17px}
+  .plus, .a-verifier{margin-left:16px; margin-right:16px}
+  .avis{margin-left:16px; margin-right:16px}
+  .codes{margin-left:16px; margin-right:16px}
+  .visuel img{max-height:230px}
+
+  /* ---- Barre du haut : le titre passe à la ligne, il ne se coupe pas ---- */
+  .tete{padding:8px 12px; gap:8px}
+  .tete .sujet{font-size:15px; width:100%; order:3}
+  .tete a.retour{font-size:13px}
+  .avance{padding:6px 12px}
+
+  /* ---- Commandes : UNE ligne. Retour · Continuer · Écouter · ⚙ ----
+     Les réglages de voix se replient : on les touche une fois, pas à
+     chaque écran, et ils coûtaient une ligne entière en permanence. */
+  .commandes{padding:7px 10px; gap:6px}
+  .commandes button{min-height:44px; padding:10px 12px}
+  .commandes > button{flex:1 1 auto}
+  .commandes .spacer{display:none}
+  .voix{gap:6px; flex:1 1 auto; justify-content:flex-end}
+  .voix .ecouter{min-height:44px; min-width:52px; flex:0 0 auto; padding:10px 12px; font-size:18px}
+  .commandes > button[data-agir="prec"]{flex:0 0 auto; min-width:52px}
+  .commandes .suite, .commandes .revenir{flex:1 1 auto}
+  .voix .engrenage{display:inline-block; min-height:44px; min-width:44px; font-size:19px; padding:0 10px}
+  .voix .reglages-voix{display:none}
+  .voix.ouvert .reglages-voix{
+    display:flex; align-items:center; gap:8px;
+    width:100%; order:9; padding-top:7px; margin-top:5px; border-top:1px solid var(--ligne);
+  }
+  .voix select{min-height:44px; flex:1 1 auto}
+  .voix input[type=range]{width:auto; flex:1 1 auto; min-width:80px; height:44px}
+
+  /* ---- Le bouton « Rejouer » d'une planche : attrapable au doigt ---- */
+  .porte-visuel .rejouer{min-height:40px; padding:8px 14px; font-size:14px}
+
+  /* ---- Relecture : UNE ligne aussi. Le compte, puis les deux boutons.
+     Le rappel « X écrans à vérifier sur Y » est une information de
+     cadrage : elle a sa place sur l'accueil et dans le LISEZ-MOI, pas
+     en permanence sur un écran de téléphone. ---- */
+  .barre-relecture{padding:6px 10px; gap:6px; font-size:12px; flex-wrap:nowrap}
+  .barre-relecture .spacer{display:none}
+  .barre-relecture #compte-relecture{flex:1 1 auto; min-width:0}
+  .barre-relecture > span:not(#compte-relecture){display:none}
+  .barre-relecture button{min-height:44px; padding:6px 12px; white-space:nowrap; flex:0 0 auto}
+  .long{display:none}
+  .court{display:inline}
+  .avis .choix-relecture button{min-height:44px; flex:1 1 44%}
+  .avis textarea{min-height:80px; font-size:16px}   /* 16px : évite le zoom automatique iOS */
+
+  /* ---- Le mot expliqué : une vraie cible, pas un mot souligné ---- */
+  .mot{padding:2px 0; display:inline-block; min-height:28px}
+
+  /* ---- Accueil ---- */
+  .accueil-tete{padding:20px 16px}
+  .accueil-tete h1{font-size:24px}
+  .accueil-tete p{font-size:16px}
+  .sujets{padding:0 12px 40px; gap:12px; grid-template-columns:1fr}
+  .sujet-carte{padding:16px 16px}
+  .sujet-carte h2{font-size:18px}
+
+  /* ---- Le relevé, en plein écran plutôt qu'en fenêtre ---- */
+  .releve-fond{padding:0}
+  .releve{border-radius:0; max-height:100vh; padding:18px 16px}
+  .releve textarea{min-height:200px}
+  .releve .actions-releve button{min-height:44px; flex:1 1 auto}
+}
+
+/* Très petits écrans (360 px) : on abrège ce qui peut l'être. */
+@media (max-width: 400px) {
+  .commandes button{font-size:15px; padding:10px 12px}
+  .voix .vitesse-val{min-width:40px; font-size:13px}
+  .barre-relecture{font-size:12px}
+  .ecran h1{font-size:20px}
+}
+
+/* Tablette : la grille de l'accueil tient à deux colonnes, le reste
+   se comporte comme sur un écran d'ordinateur. */
+@media (min-width: 761px) and (max-width: 1024px) {
+  .sujets{grid-template-columns:repeat(2, 1fr)}
+}
 
 /* ---- Papier : la couleur reste, les surfaces partent ------------- */
 @media print{
@@ -782,14 +898,20 @@ body.avec-relecture .commandes{bottom:46px}
     h += "</article></main>";
 
     /* Les commandes */
+    /* Sur téléphone, seuls les libellés SECONDAIRES s'abrègent. L'action
+       principale — « Continuer » — reste en toutes lettres : c'est celle
+       qu'on cherche des yeux, et une flèche seule se confond avec l'autre. */
     h += '<div class="commandes">'
-      + '<button type="button" data-agir="prec"' + (this.i === 0 && !detour ? " disabled" : "") + ">← Retour</button>";
+      + '<button type="button" data-agir="prec"' + (this.i === 0 && !detour ? " disabled" : "") + ">"
+      + '<span class="long">← Retour</span><span class="court">←</span></button>';
     if (detour && dernier) {
-      h += '<button class="revenir" type="button" data-agir="revenir">↩ Revenir au fil</button>';
+      h += '<button class="revenir" type="button" data-agir="revenir">'
+        + '<span class="long">↩ Revenir au fil</span><span class="court">↩ Au fil</span></button>';
     } else if (!dernier) {
       h += '<button class="suite" type="button" data-agir="suiv">Continuer →</button>';
     } else if (this.integre) {
-      h += '<button class="suite" type="button" data-agir="accueil">Choisir un autre sujet →</button>';
+      h += '<button class="suite" type="button" data-agir="accueil">'
+        + '<span class="long">Choisir un autre sujet →</span><span class="court">Autre sujet →</span></button>';
     } else {
       h += '<a class="retour-accueil" href="index.html"><button class="suite" type="button">Choisir un autre sujet →</button></a>';
     }
@@ -801,8 +923,30 @@ body.avec-relecture .commandes{bottom:46px}
        changement d'écran. */
     this.zone().innerHTML = h;
     this.brancher();
+    mesurerPied();
     if (parler !== false && this.autorise) this.lire();
   };
+
+  /* Les barres du bas sont fixes et leur hauteur change avec la largeur de
+     l'écran : sur un téléphone elles passent sur deux ou trois lignes. On
+     les MESURE et on pose le résultat en variable CSS, plutôt que de
+     réserver une hauteur en dur qui serait fausse la moitié du temps. */
+  function mesurerPied() {
+    var cmd = document.querySelector(".commandes");
+    var rel = document.getElementById("barre-relecture");
+    var hRel = rel ? Math.ceil(rel.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--h-relecture", hRel + "px");
+    /* getBoundingClientRect force le recalcul de mise en page : la hauteur
+       lue juste après tient donc déjà compte du décalage qu'on vient de
+       poser. Pas besoin d'attendre une image. */
+    var hCmd = cmd ? Math.ceil(cmd.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--h-pied", (hRel + hCmd) + "px");
+  }
+
+  window.addEventListener("resize", mesurerPied);
+  window.addEventListener("orientationchange", function () {
+    setTimeout(mesurerPied, 120);   /* la rotation n'est pas finie au moment de l'événement */
+  });
 
   Lecteur.prototype.zone = function () {
     var z = document.getElementById("capsule");
@@ -819,8 +963,16 @@ body.avec-relecture .commandes{bottom:46px}
        proposer le choix afficherait un bouton qui ne peut pas tenir sa
        promesse. On annonce alors simplement quelle voix parle. */
     var embarque = !!(window.SONS_EMBARQUES && window.SONS_EMBARQUES[this.c.id]);
-    return '<div class="voix">'
-      + '<button class="ecouter" type="button" data-agir="ecouter">🔊 Écouter</button>'
+    /* Sur téléphone, le choix de voix et le curseur de vitesse se replient
+       derrière l'engrenage : à l'écran, l'essentiel est « Écouter ». On les
+       règle une fois, pas à chaque écran. Sur ordinateur, tout est visible
+       d'emblée — c'est le même HTML, seule la feuille de style diffère. */
+    return '<div class="voix' + (this.reglagesOuverts ? " ouvert" : "") + '">'
+      + '<button class="ecouter" type="button" data-agir="ecouter">'
+      + '<span class="long">🔊 Écouter</span><span class="court">🔊</span></button>'
+      + '<button class="engrenage" type="button" data-agir="reglages-voix"'
+      + ' aria-label="réglages de la voix" title="voix et vitesse">⚙</button>'
+      + '<span class="reglages-voix">'
       + (embarque
         ? '<span class="et-voix">voix ' + esc(window.SONS_EMBARQUES.nom || "Henri") + "</span>"
         : '<select data-agir="genre" aria-label="voix">'
@@ -830,6 +982,7 @@ body.avec-relecture .commandes{bottom:46px}
       + '<input type="range" data-agir="vitesse" min="0.6" max="1.6" step="0.05" value="'
       + reglages.vitesse + '" aria-label="vitesse de lecture">'
       + '<span class="vitesse-val">' + reglages.vitesse.toFixed(2).replace(".", ",") + " ×</span>"
+      + "</span>"
       + (this.repli ? '<span class="repli" title="Le fichier audio manque : la page parle avec la voix du navigateur">voix de secours</span>' : "")
       + "</div>";
   };
@@ -971,6 +1124,13 @@ body.avec-relecture .commandes{bottom:46px}
       var b = ev.target.closest("[data-agir]");
       if (!b) return;
       if (b.dataset.agir === "releve") { montrerReleve(); return; }
+      if (b.dataset.agir === "reglages-voix") {
+        var d = b.closest(".voix");
+        d.classList.toggle("ouvert");
+        window.__lecteur.reglagesOuverts = d.classList.contains("ouvert");
+        mesurerPied();
+        return;
+      }
       if (b.dataset.agir === "sans-relecture" || b.dataset.agir === "avec-relecture") {
         /* Va-et-vient entre le produit nu — ce que l'élève verra — et la
            bêta annotée. Les avis déjà donnés restent : on ne perd rien en
@@ -1037,6 +1197,30 @@ body.avec-relecture .commandes{bottom:46px}
       if (document.hidden) self.taire();
     });
     window.addEventListener("pagehide", function () { self.taire(); });
+
+    /* Balayage horizontal : on avance au doigt comme au bouton. Deux
+       garde-fous — le geste doit être franchement horizontal (sinon on
+       déclencherait en faisant défiler la page), et il est ignoré sur les
+       champs où le doigt sert à autre chose (curseur de vitesse, zone de
+       remarque du relecteur). */
+    var tx = 0, ty = 0, tv = false;
+    document.body.addEventListener("touchstart", function (ev) {
+      if (ev.touches.length !== 1) { tv = false; return; }
+      if (ev.target.closest("input, textarea, select, .avis")) { tv = false; return; }
+      tx = ev.touches[0].clientX;
+      ty = ev.touches[0].clientY;
+      tv = true;
+    }, { passive: true });
+
+    document.body.addEventListener("touchend", function (ev) {
+      if (!tv) return;
+      tv = false;
+      var dx = ev.changedTouches[0].clientX - tx;
+      var dy = ev.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) < 70 || Math.abs(dy) > 45) return;   /* pas assez franc */
+      self.taire();
+      if (dx < 0) self.suivant(); else self.precedent();
+    }, { passive: true });
 
     /* Clavier : on avance au clavier comme on avance au clic. */
     document.onkeydown = function (ev) {
@@ -1199,11 +1383,14 @@ body.avec-relecture .commandes{bottom:46px}
       + '<span class="spacer"></span>'
       + '<span>' + inv.aVerifier + " écran" + (inv.aVerifier > 1 ? "s" : "")
       + ' <b>à vérifier</b> sur ' + inv.ecrans + "</span>"
-      + '<button type="button" data-agir="releve">↧ Enregistrer mon relevé</button>'
-      + '<button type="button" class="fantome" data-agir="sans-relecture">Voir sans les annotations</button>';
+      + '<button type="button" data-agir="releve">'
+      + '<span class="long">↧ Enregistrer mon relevé</span><span class="court">↧ Relevé</span></button>'
+      + '<button type="button" class="fantome" data-agir="sans-relecture">'
+      + '<span class="long">Voir sans les annotations</span><span class="court">👁 Nu</span></button>';
     document.body.appendChild(d);
     document.body.classList.add("avec-relecture");
     majBarreRelecture();
+    mesurerPied();
   }
 
   function majBarreRelecture() {

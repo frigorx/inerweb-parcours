@@ -231,14 +231,20 @@
     h += "</article></main>";
 
     /* Les commandes */
+    /* Sur téléphone, seuls les libellés SECONDAIRES s'abrègent. L'action
+       principale — « Continuer » — reste en toutes lettres : c'est celle
+       qu'on cherche des yeux, et une flèche seule se confond avec l'autre. */
     h += '<div class="commandes">'
-      + '<button type="button" data-agir="prec"' + (this.i === 0 && !detour ? " disabled" : "") + ">← Retour</button>";
+      + '<button type="button" data-agir="prec"' + (this.i === 0 && !detour ? " disabled" : "") + ">"
+      + '<span class="long">← Retour</span><span class="court">←</span></button>';
     if (detour && dernier) {
-      h += '<button class="revenir" type="button" data-agir="revenir">↩ Revenir au fil</button>';
+      h += '<button class="revenir" type="button" data-agir="revenir">'
+        + '<span class="long">↩ Revenir au fil</span><span class="court">↩ Au fil</span></button>';
     } else if (!dernier) {
       h += '<button class="suite" type="button" data-agir="suiv">Continuer →</button>';
     } else if (this.integre) {
-      h += '<button class="suite" type="button" data-agir="accueil">Choisir un autre sujet →</button>';
+      h += '<button class="suite" type="button" data-agir="accueil">'
+        + '<span class="long">Choisir un autre sujet →</span><span class="court">Autre sujet →</span></button>';
     } else {
       h += '<a class="retour-accueil" href="index.html"><button class="suite" type="button">Choisir un autre sujet →</button></a>';
     }
@@ -250,8 +256,30 @@
        changement d'écran. */
     this.zone().innerHTML = h;
     this.brancher();
+    mesurerPied();
     if (parler !== false && this.autorise) this.lire();
   };
+
+  /* Les barres du bas sont fixes et leur hauteur change avec la largeur de
+     l'écran : sur un téléphone elles passent sur deux ou trois lignes. On
+     les MESURE et on pose le résultat en variable CSS, plutôt que de
+     réserver une hauteur en dur qui serait fausse la moitié du temps. */
+  function mesurerPied() {
+    var cmd = document.querySelector(".commandes");
+    var rel = document.getElementById("barre-relecture");
+    var hRel = rel ? Math.ceil(rel.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--h-relecture", hRel + "px");
+    /* getBoundingClientRect force le recalcul de mise en page : la hauteur
+       lue juste après tient donc déjà compte du décalage qu'on vient de
+       poser. Pas besoin d'attendre une image. */
+    var hCmd = cmd ? Math.ceil(cmd.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--h-pied", (hRel + hCmd) + "px");
+  }
+
+  window.addEventListener("resize", mesurerPied);
+  window.addEventListener("orientationchange", function () {
+    setTimeout(mesurerPied, 120);   /* la rotation n'est pas finie au moment de l'événement */
+  });
 
   Lecteur.prototype.zone = function () {
     var z = document.getElementById("capsule");
@@ -268,8 +296,16 @@
        proposer le choix afficherait un bouton qui ne peut pas tenir sa
        promesse. On annonce alors simplement quelle voix parle. */
     var embarque = !!(window.SONS_EMBARQUES && window.SONS_EMBARQUES[this.c.id]);
-    return '<div class="voix">'
-      + '<button class="ecouter" type="button" data-agir="ecouter">🔊 Écouter</button>'
+    /* Sur téléphone, le choix de voix et le curseur de vitesse se replient
+       derrière l'engrenage : à l'écran, l'essentiel est « Écouter ». On les
+       règle une fois, pas à chaque écran. Sur ordinateur, tout est visible
+       d'emblée — c'est le même HTML, seule la feuille de style diffère. */
+    return '<div class="voix' + (this.reglagesOuverts ? " ouvert" : "") + '">'
+      + '<button class="ecouter" type="button" data-agir="ecouter">'
+      + '<span class="long">🔊 Écouter</span><span class="court">🔊</span></button>'
+      + '<button class="engrenage" type="button" data-agir="reglages-voix"'
+      + ' aria-label="réglages de la voix" title="voix et vitesse">⚙</button>'
+      + '<span class="reglages-voix">'
       + (embarque
         ? '<span class="et-voix">voix ' + esc(window.SONS_EMBARQUES.nom || "Henri") + "</span>"
         : '<select data-agir="genre" aria-label="voix">'
@@ -279,6 +315,7 @@
       + '<input type="range" data-agir="vitesse" min="0.6" max="1.6" step="0.05" value="'
       + reglages.vitesse + '" aria-label="vitesse de lecture">'
       + '<span class="vitesse-val">' + reglages.vitesse.toFixed(2).replace(".", ",") + " ×</span>"
+      + "</span>"
       + (this.repli ? '<span class="repli" title="Le fichier audio manque : la page parle avec la voix du navigateur">voix de secours</span>' : "")
       + "</div>";
   };
@@ -420,6 +457,13 @@
       var b = ev.target.closest("[data-agir]");
       if (!b) return;
       if (b.dataset.agir === "releve") { montrerReleve(); return; }
+      if (b.dataset.agir === "reglages-voix") {
+        var d = b.closest(".voix");
+        d.classList.toggle("ouvert");
+        window.__lecteur.reglagesOuverts = d.classList.contains("ouvert");
+        mesurerPied();
+        return;
+      }
       if (b.dataset.agir === "sans-relecture" || b.dataset.agir === "avec-relecture") {
         /* Va-et-vient entre le produit nu — ce que l'élève verra — et la
            bêta annotée. Les avis déjà donnés restent : on ne perd rien en
@@ -486,6 +530,30 @@
       if (document.hidden) self.taire();
     });
     window.addEventListener("pagehide", function () { self.taire(); });
+
+    /* Balayage horizontal : on avance au doigt comme au bouton. Deux
+       garde-fous — le geste doit être franchement horizontal (sinon on
+       déclencherait en faisant défiler la page), et il est ignoré sur les
+       champs où le doigt sert à autre chose (curseur de vitesse, zone de
+       remarque du relecteur). */
+    var tx = 0, ty = 0, tv = false;
+    document.body.addEventListener("touchstart", function (ev) {
+      if (ev.touches.length !== 1) { tv = false; return; }
+      if (ev.target.closest("input, textarea, select, .avis")) { tv = false; return; }
+      tx = ev.touches[0].clientX;
+      ty = ev.touches[0].clientY;
+      tv = true;
+    }, { passive: true });
+
+    document.body.addEventListener("touchend", function (ev) {
+      if (!tv) return;
+      tv = false;
+      var dx = ev.changedTouches[0].clientX - tx;
+      var dy = ev.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) < 70 || Math.abs(dy) > 45) return;   /* pas assez franc */
+      self.taire();
+      if (dx < 0) self.suivant(); else self.precedent();
+    }, { passive: true });
 
     /* Clavier : on avance au clavier comme on avance au clic. */
     document.onkeydown = function (ev) {
@@ -648,11 +716,14 @@
       + '<span class="spacer"></span>'
       + '<span>' + inv.aVerifier + " écran" + (inv.aVerifier > 1 ? "s" : "")
       + ' <b>à vérifier</b> sur ' + inv.ecrans + "</span>"
-      + '<button type="button" data-agir="releve">↧ Enregistrer mon relevé</button>'
-      + '<button type="button" class="fantome" data-agir="sans-relecture">Voir sans les annotations</button>';
+      + '<button type="button" data-agir="releve">'
+      + '<span class="long">↧ Enregistrer mon relevé</span><span class="court">↧ Relevé</span></button>'
+      + '<button type="button" class="fantome" data-agir="sans-relecture">'
+      + '<span class="long">Voir sans les annotations</span><span class="court">👁 Nu</span></button>';
     document.body.appendChild(d);
     document.body.classList.add("avec-relecture");
     majBarreRelecture();
+    mesurerPied();
   }
 
   function majBarreRelecture() {
