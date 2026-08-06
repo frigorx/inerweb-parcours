@@ -30,9 +30,10 @@ CAPSULE({
   minutes: 6,
   suppose: null,
 
-  /* Passe à true le jour où les MP3 sont fabriqués (voir voix/fabriquer.py).
-     Tant que c'est false, la page parle avec la voix du navigateur et le dit. */
-  voixFabriquee: false,
+  /* Passe à true le jour où les MP3 sont fabriqués (voir voix/fabriquer.mjs).
+     Tant que c'est false, la page parle avec la voix du navigateur et le dit.
+     Fabriquée le 06/08/2026 : Henri (masculine) et Denise (féminine). */
+  voixFabriquee: true,
 
   fil: [
     {

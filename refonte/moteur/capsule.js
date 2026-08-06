@@ -64,9 +64,10 @@
   /* -------------------------------------------------------------------
      LE LECTEUR
      ------------------------------------------------------------------- */
-  function Lecteur(capsule, racine) {
+  function Lecteur(capsule, racine, integre) {
     this.c = capsule;
     this.racine = racine;
+    this.integre = !!integre;   /* accueil dans la même page, pas index.html */
     this.i = 0;                 /* où l'on en est dans le fil courant   */
     this.fil = capsule.fil;     /* le fil affiché (principal ou détour)  */
     this.pile = [];             /* d'où l'on vient, cran par cran        */
@@ -151,7 +152,9 @@
 
     /* Barre du haut */
     h += '<header class="tete">'
-      + '<a class="retour" href="index.html">← Choisir un autre sujet</a>'
+      + (this.integre
+        ? '<a class="retour" href="#" data-agir="accueil">← Choisir un autre sujet</a>'
+        : '<a class="retour" href="index.html">← Choisir un autre sujet</a>')
       + '<span class="sujet">' + esc(this.c.titre) + "</span>"
       + '<span class="spacer"></span>'
       + '<span class="niveau">' + esc(this.c.niveau || "découverte") + "</span>"
@@ -220,6 +223,8 @@
       h += '<button class="revenir" type="button" data-agir="revenir">↩ Revenir au fil</button>';
     } else if (!dernier) {
       h += '<button class="suite" type="button" data-agir="suiv">Continuer →</button>';
+    } else if (this.integre) {
+      h += '<button class="suite" type="button" data-agir="accueil">Choisir un autre sujet →</button>';
     } else {
       h += '<a class="retour-accueil" href="index.html"><button class="suite" type="button">Choisir un autre sujet →</button></a>';
     }
@@ -245,12 +250,18 @@
   };
 
   Lecteur.prototype.commandesVoix = function () {
+    /* Dans la version « un seul fichier », une seule voix est embarquée :
+       proposer le choix afficherait un bouton qui ne peut pas tenir sa
+       promesse. On annonce alors simplement quelle voix parle. */
+    var embarque = !!(window.SONS_EMBARQUES && window.SONS_EMBARQUES[this.c.id]);
     return '<div class="voix">'
       + '<button class="ecouter" type="button" data-agir="ecouter">🔊 Écouter</button>'
-      + '<select data-agir="genre" aria-label="voix">'
-      + '<option value="h"' + (reglages.voix === "h" ? " selected" : "") + ">voix masculine</option>"
-      + '<option value="f"' + (reglages.voix === "f" ? " selected" : "") + ">voix féminine</option>"
-      + "</select>"
+      + (embarque
+        ? '<span class="et-voix">voix ' + esc(window.SONS_EMBARQUES.nom || "Henri") + "</span>"
+        : '<select data-agir="genre" aria-label="voix">'
+          + '<option value="h"' + (reglages.voix === "h" ? " selected" : "") + ">voix masculine</option>"
+          + '<option value="f"' + (reglages.voix === "f" ? " selected" : "") + ">voix féminine</option>"
+          + "</select>")
       + '<input type="range" data-agir="vitesse" min="0.6" max="1.6" step="0.05" value="'
       + reglages.vitesse + '" aria-label="vitesse de lecture">'
       + '<span class="vitesse-val">' + reglages.vitesse.toFixed(2).replace(".", ",") + " ×</span>"
@@ -275,9 +286,20 @@
        vrai défaut. */
     if (!this.c.voixFabriquee) { this.parlerAvecLeNavigateur(texte); return; }
 
-    var dossier = this.racine + "voix/" + (reglages.voix === "f" ? "feminine" : "masculine")
-      + "/" + this.c.id + "/";
-    var a = new Audio(dossier + e.id + ".mp3");
+    /* Deux provenances possibles pour le son, dans cet ordre :
+       1. SONS_EMBARQUES — la version « un seul fichier », où les narrations
+          sont dans la page elle-même. C'est ce qui permet de tester sur un
+          téléphone sans rien installer ni télécharger à côté.
+       2. le dossier voix/ — la forme de production, un MP3 par écran. */
+    var source = null;
+    if (window.SONS_EMBARQUES && window.SONS_EMBARQUES[this.c.id]) {
+      source = window.SONS_EMBARQUES[this.c.id][e.id] || null;
+    }
+    if (!source) {
+      source = this.racine + "voix/" + (reglages.voix === "f" ? "feminine" : "masculine")
+        + "/" + this.c.id + "/" + e.id + ".mp3";
+    }
+    var a = new Audio(source);
     a.preservesPitch = true;      /* accélérer sans monter dans les aigus */
     a.playbackRate = reglages.vitesse;
     this.audio = a;
@@ -337,7 +359,28 @@
      · brancher — les commandes recréées à chaque peinture (le choix de
        voix, le curseur de vitesse), qui n'existent plus après un innerHTML. */
   Lecteur.prototype.brancherUneFois = function () {
-    var self = this;
+    /* UNE seule fois pour toute la PAGE, pas une fois par lecteur : avec
+       l'accueil intégré, on crée un lecteur neuf à chaque sujet ouvert, et
+       un écouteur par lecteur finirait par compter un clic autant de fois
+       qu'on a changé de sujet. Les écouteurs s'adressent donc au lecteur
+       COURANT, désigné par window.__lecteur. */
+    window.__lecteur = this;
+    if (window.__capsuleBranchee) return;
+    window.__capsuleBranchee = true;
+
+    var self = { };
+    Object.defineProperty(self, "taire", { get: function () { return window.__lecteur.taire.bind(window.__lecteur); } });
+    Object.defineProperty(self, "suivant", { get: function () { return window.__lecteur.suivant.bind(window.__lecteur); } });
+    Object.defineProperty(self, "precedent", { get: function () { return window.__lecteur.precedent.bind(window.__lecteur); } });
+    Object.defineProperty(self, "revenir", { get: function () { return window.__lecteur.revenir.bind(window.__lecteur); } });
+    Object.defineProperty(self, "lire", { get: function () { return window.__lecteur.lire.bind(window.__lecteur); } });
+    Object.defineProperty(self, "ouvrirDetour", { get: function () { return window.__lecteur.ouvrirDetour.bind(window.__lecteur); } });
+    Object.defineProperty(self, "dansDetour", { get: function () { return window.__lecteur.dansDetour.bind(window.__lecteur); } });
+    Object.defineProperty(self, "audio", { get: function () { return window.__lecteur.audio; } });
+    Object.defineProperty(self, "autorise", {
+      get: function () { return window.__lecteur.autorise; },
+      set: function (v) { window.__lecteur.autorise = v; },
+    });
 
     document.body.addEventListener("click", function (ev) {
       var d = ev.target.closest("[data-detour]");
@@ -348,6 +391,12 @@
 
       var b = ev.target.closest("[data-agir]");
       if (!b) return;
+      if (b.dataset.agir === "accueil") {
+        ev.preventDefault();
+        self.taire();
+        if (window.__retourAccueil) window.__retourAccueil();
+        return;
+      }
       switch (b.dataset.agir) {
         case "suiv":    self.taire(); self.suivant(); break;
         case "prec":    self.taire(); self.precedent(); break;
@@ -444,6 +493,83 @@
   /* -------------------------------------------------------------------
      DÉMARRAGE
      ------------------------------------------------------------------- */
+  /* -------------------------------------------------------------------
+     L'ACCUEIL, DANS LE MÊME MOTEUR
+     « Qu'est-ce que je veux réviser ? » n'a pas besoin d'être une page à
+     part. Le garder ici permet à la version « un seul fichier » de passer
+     d'un sujet à l'autre — et évite d'écrire deux fois la même liste.
+     ------------------------------------------------------------------- */
+  function peindreAccueil(racine) {
+    var ids = Object.keys(window.CAPSULES);
+    var h = '<header class="accueil-tete"><h1>Qu\'est-ce que je veux réviser ?</h1>'
+      + "<p>Un sujet, <b>un seul</b>. Cinq à sept écrans, pas davantage. Et à chaque fois "
+      + "qu'une notion voisine apparaît, on vous propose d'en <b>savoir plus</b> — vous ouvrez "
+      + "si vous voulez, le fil ne s'allonge pas si vous ne voulez pas.</p></header>"
+      + '<main class="sujets">';
+
+    h += ids.map(function (id) {
+      var c = window.CAPSULES[id];
+      var nd = c.detours ? Object.keys(c.detours).length : 0;
+      var niv = (c.niveau || "découverte").replace(/é/g, "e").replace(/è/g, "e");
+      return '<a class="sujet-carte" href="#" data-sujet="' + esc(id) + '">'
+        + "<h2>" + esc(c.titre) + "</h2>"
+        + '<p class="q">' + esc(c.question || "") + "</p>"
+        + '<div class="pied">'
+        + '<span class="et ' + esc(niv) + '">' + esc(c.niveau || "découverte") + "</span>"
+        + '<span class="et">' + c.fil.length + " écrans</span>"
+        + (c.minutes ? '<span class="et">' + c.minutes + " min</span>" : "")
+        + (nd ? '<span class="et">+ ' + nd + " en savoir plus</span>" : "")
+        + (c.suppose ? '<span class="suppose">après « ' + esc(c.suppose) + " »</span>" : "")
+        + "</div></a>";
+    }).join("");
+
+    h += "</main>";
+
+    var z = document.getElementById("capsule");
+    if (!z) {
+      z = document.createElement("div");
+      z.id = "capsule";
+      document.body.appendChild(z);
+    }
+    document.body.classList.remove("dans-detour");
+    z.innerHTML = h;
+
+    /* Une seule fois : on revient à l'accueil autant de fois qu'on veut,
+       et un écouteur par retour ouvrirait le sujet en double. */
+    if (!window.__accueilBranche) {
+      window.__accueilBranche = true;
+      document.body.addEventListener("click", function (ev) {
+        var a = ev.target.closest("[data-sujet]");
+        if (!a) return;
+        ev.preventDefault();
+        var c = window.CAPSULES[a.dataset.sujet];
+        if (c) new Lecteur(c, racine, true).demarrer();
+      });
+    }
+  }
+
+  /* Un atelier complet dans une seule page : la liste, puis les capsules,
+     et le retour à la liste. C'est la forme utilisée par le fichier
+     autonome, et elle vaut aussi en production. */
+  window.jouerAtelier = function (racine) {
+    if (!document.body) {
+      document.addEventListener("DOMContentLoaded", function () { window.jouerAtelier(racine); });
+      return;
+    }
+    racine = racine || "";
+    window.__retourAccueil = function () { peindreAccueil(racine); };
+    var ids = Object.keys(window.CAPSULES);
+    var id = new URLSearchParams(location.search).get("sujet");
+    var c = id ? window.CAPSULES[id] : null;
+
+    /* Un accueil qui ne propose qu'un seul sujet est un écran perdu :
+       on ouvre directement. */
+    if (!c && ids.length === 1) c = window.CAPSULES[ids[0]];
+
+    if (c) new Lecteur(c, racine, ids.length > 1).demarrer();
+    else peindreAccueil(racine);
+  };
+
   window.jouerCapsule = function (racine) {
     /* Les pages n'ont pas de <body> écrit : tant que le document n'est pas
        prêt, document.body est null. On attend plutôt que de planter. */

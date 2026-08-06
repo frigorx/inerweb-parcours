@@ -118,21 +118,35 @@ node build/inventaire.mjs
 | `refonte/index.html` | l'accueil « Qu'est-ce que je veux réviser ? » |
 | `refonte/capsule.html` | le lecteur (`?sujet=…`) |
 | `refonte/moteur/capsule.js` · `capsule.css` | **le** moteur et **la** charte, uniques |
-| `refonte/capsules/lire-le-code.js` | **la capsule pilote** — 6 écrans de fil, 7 détours, 12 écrans d'approfondissement |
-| `refonte/voix/choisir-la-voix.html` | les 4 voix neuronales à écouter, avec le curseur de vitesse |
-| `refonte/voix/fabriquer.mjs` | fabrique les MP3 des deux voix. **Pas encore lancé** |
+| `refonte/capsules/*.js` | **3 capsules** — voir le tableau ci-dessous |
+| `refonte/voix/fabriquer.mjs` | fabrique les MP3. **Lancé le 06/08** : 96 fichiers, 17 Mo |
+| `ECOUTER-LES-VOIX.html` | les 4 voix neuronales, **son inclus dans la page** |
+| `DECOUPAGE-3-CAPSULES.html` | **les 3 capsules en un seul fichier**, sans son (257 Ko) |
+| `CAPSULE-AVEC-LA-VOIX.html` | une capsule **avec ses 18 narrations dedans** (3,9 Mo) |
+
+### Les capsules produites
+
+| Sujet | Niveau | Fil | Détours | Écrans | Voix |
+|---|---|---|---|---|---|
+| Lire le code d'un fluide | découverte | 6 | 7 | 18 | ✅ |
+| A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 | ✅ |
+| Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 | ✅ |
+
+**Voix retenues** : **Henri** (masculine) et **Denise** (féminine), voix neuronales `edge-tts`.
+Elles se changent **à un seul endroit** : la constante `VOIX` de `refonte/voix/fabriquer.mjs`.
+Les fichiers vivent dans `refonte/voix/masculine|feminine/<capsule>/<ecran>.mp3`.
 
 Une capsule est **un fichier de données** : on ajoute un sujet ou un détour sans écrire
 une ligne de JavaScript.
 
 ### Ce qui reste en attente de F. Henninot
 
-1. **Le modèle** — juger la capsule pilote : le découpage fil / détours est-il le bon ?
-2. **Les voix** — écouter `refonte/voix/choisir-la-voix.html` et désigner **une masculine**
-   et **une féminine**.
-3. **Le feu vert de fabrication** — `fabriquer.mjs` envoie le texte des narrations à Microsoft
-   (c'est là que se fait la synthèse). Textes de cours déjà publics, mais **rien n'est envoyé
-   sans accord**.
+1. **Le découpage** — ouvrir `DECOUPAGE-3-CAPSULES.html` : le partage fil / détours est-il
+   le bon ? C'est ce qui commande les 61 pièces restantes.
+2. **La voix** — ouvrir `CAPSULE-AVEC-LA-VOIX.html`. Henri et Denise sont un choix par
+   défaut, à confirmer ou à changer.
+3. **La justesse métier** — les trois capsules n'ont **jamais été relues par un frigoriste**.
+   Le contenu vient du fonds, mais il a été réécrit et complété.
 4. **Le tri du fonds** — `inventaire.html`, pièce par pièce.
 
 ---

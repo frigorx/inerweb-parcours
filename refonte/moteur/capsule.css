@@ -145,6 +145,8 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 .voix .vitesse-val{font-family:Consolas,monospace; font-weight:700; color:var(--orange);
   min-width:46px; text-align:right}
 .voix .repli{font-size:12px; color:var(--attente); font-weight:700}
+.voix .et-voix{font-size:13px; font-weight:700; background:#eef3f9; color:var(--bleu);
+  border-radius:999px; padding:4px 12px; white-space:nowrap}
 
 /* ---- L'écran de fin ---------------------------------------------- */
 .retenir{background:var(--ok-bg); border:1px solid #b8e0cc; border-left:5px solid var(--ok);
