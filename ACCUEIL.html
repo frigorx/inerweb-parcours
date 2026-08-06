@@ -1,0 +1,73 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier animations — par où commencer</title>
+<link rel="stylesheet" href="fonds-origine/moteur/charte-edu.css">
+<style>
+  .tete{background:var(--bleu);color:#fff;padding:26px 24px}
+  .tete h1{color:#fff;margin:0 0 8px;font-size:30px}
+  .tete p{margin:0;color:#cdd9e6;max-width:74ch;font-size:17px}
+  .tete b{color:var(--orange)}
+  .zone{max-width:960px;margin:24px auto;padding:0 22px 70px}
+  .carte{
+    display:block; background:var(--carte); border:1px solid var(--ligne);
+    border-radius:var(--r); box-shadow:var(--ombre); padding:20px 24px; margin-bottom:16px;
+    text-decoration:none; color:var(--txt); border-left:5px solid var(--orange); transition:.12s;
+  }
+  .carte:hover{transform:translateX(3px); box-shadow:0 6px 18px rgba(27,58,99,.16)}
+  .carte h2{margin:0 0 6px; font-size:21px}
+  .carte p{margin:0; color:var(--mut)}
+  .carte .num{
+    display:inline-block; background:var(--orange); color:#fff; font-weight:700;
+    border-radius:999px; width:26px; height:26px; line-height:26px; text-align:center;
+    margin-right:10px; font-size:15px;
+  }
+  .carte.gele{border-left-color:var(--mut)}
+  .carte.gele .num{background:var(--mut)}
+  .note{background:#fff;border:1px solid var(--ligne);border-left:4px solid var(--bleu);
+    border-radius:var(--r);padding:16px 20px;margin-top:24px}
+  .note h3{margin-top:0}
+  .note code{background:#eef3f9;padding:2px 6px;border-radius:4px;font-size:14px}
+</style>
+
+<header class="tete">
+  <h1>Atelier animations</h1>
+  <p>La zone de travail pour refondre les planches animées et les tutos guidés
+  <b>sans toucher à ce qui tourne déjà</b>. Trois choses à regarder, dans cet ordre.</p>
+</header>
+
+<main class="zone">
+
+  <a class="carte" href="refonte/index.html">
+    <h2><span class="num">1</span>La capsule pilote</h2>
+    <p>« Lire le code d'un fluide » — le nouveau modèle en fonctionnement : un fil de
+    6 écrans, et 7 détours « Voulez-vous en savoir plus ? ». <b>C'est ce qu'il faut juger
+    en premier</b> : le découpage commande tout le reste.</p>
+  </a>
+
+  <a class="carte" href="refonte/voix/choisir-la-voix.html">
+    <h2><span class="num">2</span>Choisir la voix</h2>
+    <p>Quatre voix neuronales françaises sur la même phrase, avec le curseur de vitesse.
+    Une masculine, une féminine à désigner.</p>
+  </a>
+
+  <a class="carte" href="inventaire.html">
+    <h2><span class="num">3</span>Trier le fonds</h2>
+    <p>Les 44 planches animées et les 20 tutos existants, chacun jouable sur place, avec
+    trois boutons : garder / refondre / abandonner. L'export devient le cahier des charges.</p>
+  </a>
+
+  <a class="carte gele" href="fonds-origine/packs/fluides/res/frise-vivante/frise-vivante.html">
+    <h2><span class="num">◆</span>Le fonds d'origine, intact</h2>
+    <p>La copie gelée, telle qu'elle tourne aujourd'hui. Rien n'y est modifié —
+    c'est le témoin auquel on compare. (Exemple : la frise vivante.)</p>
+  </a>
+
+  <div class="note">
+    <h3>Si une page reste vide ou refuse de s'ouvrir</h3>
+    <p>Fermez tout et double-cliquez sur <code>LANCER.cmd</code>, à la racine de
+    <code>C:\git\atelier-animations</code>. Il démarre un petit serveur local et ouvre
+    cette page dans votre navigateur — certaines protections de Windows bloquent les pages
+    ouvertes directement depuis un fichier.</p>
+  </div>
+
+</main>
