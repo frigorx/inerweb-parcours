@@ -1,11 +1,22 @@
 # =====================================================================
 #  Publication du site sur GitHub Pages
 #  ---------------------------------------------------------------------
-#  Déploiement STATIQUE : le dépôt est publié tel quel, sans passer par
-#  Jekyll. C'est voulu — le site est du HTML, du CSS et du JavaScript
-#  écrits à la main, il n'y a rien à transformer. Le mode d'origine
-#  (« legacy ») échouait sans message exploitable ; celui-ci donne un
-#  journal lisible quand quelque chose casse.
+#  Déploiement STATIQUE : le site est du HTML, du CSS et du JavaScript
+#  écrits à la main, il n'y a rien à transformer — on ne passe donc pas
+#  par Jekyll.
+#
+#  DEUX RÉGLAGES QUI ONT COÛTÉ CHER, À NE PAS RETIRER :
+#
+#  1. `timeout` sur l'étape de déploiement. Le site pèse une trentaine de
+#     mégaoctets (184 narrations), et la file d'attente de Pages met
+#     régulièrement plus que le délai par défaut de dix minutes. Les
+#     déploiements échouaient alors sur « Timeout reached » — sans que
+#     rien ne soit cassé dans le site.
+#
+#  2. Le ménage avant empaquetage. Les fichiers autonomes de relecture et
+#     les tutos d'origine ne servent pas au site : ils sont dans le dépôt
+#     pour être téléchargés, pas pour être servis. Les écarter allège
+#     l'artefact de plusieurs mégaoctets et raccourcit d'autant l'attente.
 # =====================================================================
 name: Publier le site
 
@@ -33,6 +44,21 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
+      - name: Écarter ce qui n'est pas servi par le site
+        run: |
+          # Fichiers autonomes : ils vivent dans le dépôt pour être
+          # téléchargés, le site n'en a pas besoin.
+          rm -f MAQUETTE-BETA.html CAPSULE-AVEC-LA-VOIX.html ECOUTER-LES-VOIX.html
+          rm -f ACCUEIL.html inventaire.html
+          # Le fonds d'origine : seuls les schémas et le moteur sont
+          # utilisés par les capsules. Les tutos, sons d'ambiance et
+          # photos restent dans le dépôt, hors du site.
+          find fonds-origine/packs/fluides/res -mindepth 1 -maxdepth 1 \
+               -type d ! -name svg -exec rm -rf {} +
+          rm -rf refonte/voix/echantillons
+          echo "Poids du site à publier :"
+          du -sh . --exclude=.git
+
       - name: Préparer Pages
         uses: actions/configure-pages@v5
 
@@ -44,3 +70,6 @@ jobs:
       - name: Déployer
         id: deploiement
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000        # 30 min : la file d'attente de Pages est lente
+          error_count: 20
