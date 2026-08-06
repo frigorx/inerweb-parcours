@@ -9,6 +9,11 @@
      on joue le premier déclaré. Les capsules sont chargées en <script>
      classique, jamais en module ES : la page doit s'ouvrir en double-clic,
      sans serveur (file://). -->
+<script>
+/* &projection=1 (espace enseignant) : texte grossi pour le vidéoprojecteur. */
+if (new URLSearchParams(location.search).has("projection"))
+  document.documentElement.className += " projection";
+</script>
 <script src="moteur/capsule.js"></script>
 <script src="capsules/classes-de-securite.js"></script>
 <script src="capsules/controle-etancheite.js"></script>

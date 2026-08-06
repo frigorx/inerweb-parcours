@@ -1,0 +1,86 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Je suis le parcours — Les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<!-- Le parcours guidé : les six paliers de paliers.js, dans l'ordre.
+     L'ordre PROPOSE, il n'impose jamais — tout reste cliquable.
+     « Vu » se calcule depuis les écrans mémorisés par le lecteur
+     (capsule_vus_<id>) : rien de nominatif, rien ne sort du navigateur. -->
+
+<header class="accueil-tete">
+  <p class="ariane"><a href="../index.html">← Accueil</a></p>
+  <h1>Je suis le parcours</h1>
+  <p>Six paliers, du premier contact jusqu'à l'examen. L'ordre est <b>proposé, jamais
+  imposé</b> : chacun sait ce qu'il vient chercher. Ce que vous avez déjà parcouru est
+  marqué — sur cette machine seulement, rien n'est collecté.</p>
+</header>
+
+<main class="zone-paliers" id="paliers"></main>
+
+<script src="moteur/capsule.js"></script>
+<script src="capsules/classes-de-securite.js"></script>
+<script src="capsules/controle-etancheite.js"></script>
+<script src="capsules/la-recuperation.js"></script>
+<script src="capsules/la-surchauffe.js"></script>
+<script src="capsules/le-circuit.js"></script>
+<script src="capsules/lire-le-code.js"></script>
+<script src="capsules/tirage-au-vide.js"></script>
+<script src="moteur/paliers.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  function lireVus(id) {
+    try { return new Set(JSON.parse(localStorage.getItem("capsule_vus_" + id) || "[]")); }
+    catch (e) { return new Set(); }
+  }
+  /* vu = tout le fil principal parcouru ; en cours = au moins un écran. */
+  function etatDe(c) {
+    var vus = lireVus(c.id);
+    if (!vus.size) return "";
+    var tout = c.fil.every(function (e) { return vus.has(e.id); });
+    return tout ? "vu" : "encours";
+  }
+
+  var h = window.PALIERS.map(function (p, i) {
+    var faits = 0, total = 0;
+    var lignes = p.entrees.map(function (e) {
+      if (e.sujet) {
+        var c = window.CAPSULES[e.sujet];
+        if (!c) return '<div class="entree avenir"><h3>' + esc(e.sujet) + '</h3><p class="note">capsule introuvable</p></div>';
+        total++;
+        var etat = etatDe(c);
+        if (etat === "vu") faits++;
+        return '<a class="entree faite-' + etat + '" href="capsule.html?sujet=' + esc(c.id) + '">'
+          + "<h3>" + esc(c.titre) + "</h3>"
+          + '<div class="pied">'
+          + (etat === "vu" ? '<span class="et vu">✔ vu</span>'
+            : etat === "encours" ? '<span class="et encours">◐ en cours</span>' : "")
+          + '<span class="et">' + c.fil.length + " écrans</span>"
+          + (c.minutes ? '<span class="et">' + c.minutes + " min</span>" : "")
+          + "</div></a>";
+      }
+      return '<div class="entree avenir">'
+        + "<h3>⏳ " + esc(e.avenir) + "</h3>"
+        + (e.note ? '<p class="note">' + esc(e.note) + "</p>" : "")
+        + "</div>";
+    }).join("");
+
+    return '<section class="palier">'
+      + '<h2><span class="num">' + (i + 1) + "</span> " + esc(p.titre)
+      + (total ? '<span class="compte">' + faits + " / " + total + "</span>" : "")
+      + "</h2>"
+      + '<p class="pour">' + esc(p.pour) + "</p>"
+      + '<div class="entrees">' + lignes + "</div>"
+      + "</section>";
+  }).join("");
+
+  document.getElementById("paliers").innerHTML = h;
+})();
+</script>

@@ -1,0 +1,115 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Espace enseignant — Les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<!-- La troisième porte : ce qui rend le site utile EN SALLE.
+     Projeter une capsule, montrer une planche en grand, donner le lien
+     à réviser. Rien ici n'est secret — tout le site est côté élève. -->
+
+<header class="accueil-tete">
+  <p class="ariane"><a href="../index.html">← Accueil</a></p>
+  <h1>Espace enseignant</h1>
+  <p>Projeter, illustrer, donner à réviser. Tout fonctionne <b>hors ligne</b> : le dossier
+  du site se copie sur une clé et s'ouvre en double-clic, sans installation.</p>
+</header>
+
+<main class="zone-paliers">
+
+  <section class="palier">
+    <h2>Projeter une capsule</h2>
+    <p class="pour">Le lien « projeter » ouvre la capsule avec un texte grossi pour le
+    vidéoprojecteur. Passez en plein écran (<b>F11</b>), avancez aux <b>flèches du
+    clavier</b> — et ouvrez un détour si la classe accroche.</p>
+    <div class="entrees" id="projection"></div>
+  </section>
+
+  <section class="palier">
+    <h2>Illustrer un cours</h2>
+    <div class="entrees">
+      <a class="entree" href="planches.html">
+        <h3>🖼 Les planches animées</h3>
+        <p class="note">Toutes les planches du fonds, par famille — chacune se rejoue,
+        s'ouvre en grand, se télécharge (SVG). Utilisables dans n'importe quel cours.</p>
+        <div class="pied"><span class="et" id="nb-planches"></span></div>
+      </a>
+      <a class="entree" href="videos.html">
+        <h3>🎬 Les tutos vidéo</h3>
+        <p class="note">Les gestes filmés : pose et dépose des manomètres, vannes de
+        service… La galerie est prête, les tournages arrivent.</p>
+        <div class="pied"><span class="et" id="nb-videos"></span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="palier">
+    <h2>Donner à réviser</h2>
+    <p class="pour">Deux adresses à écrire au tableau ou à mettre dans le cahier de textes —
+    l'élève choisit son sujet, ou suit le parcours dans l'ordre :</p>
+    <div class="entrees">
+      <a class="entree" href="index.html"><h3>Qu'est-ce que je veux réviser ?</h3>
+        <p class="note">L'accès direct par sujet — pour réviser une notion précise.</p></a>
+      <a class="entree" href="parcours.html"><h3>Je suis le parcours</h3>
+        <p class="note">Les six paliers dans l'ordre — pour découvrir ou préparer l'examen.</p></a>
+    </div>
+    <p class="pour" style="margin-top:12px">Ce que l'élève a « vu » reste <b>dans son
+    navigateur</b> : aucun compte, aucun serveur, rien de nominatif — conforme au principe
+    du site.</p>
+  </section>
+
+  <section class="palier">
+    <h2>Relecture et fabrique</h2>
+    <p class="pour">Les outils du chantier — sans intérêt pour les élèves :</p>
+    <div class="entrees">
+      <a class="entree" href="relire.html"><h3>Relire la bêta</h3>
+        <p class="note">Les capsules avec les encadrés « À vérifier » et le recueil d'avis.</p></a>
+      <a class="entree" href="../inventaire.html"><h3>L'inventaire du fonds</h3>
+        <p class="note">Les 64 pièces d'origine, à trier : garder · refondre · abandonner.</p></a>
+    </div>
+  </section>
+
+  <p class="pied-page">Contenu sous licence <b>CC BY-NC-SA 4.0</b> (réutilisation non
+  commerciale libre avec attribution) · moteur sous licence <b>MIT</b> ·
+  <a href="../LICENCE.md">le détail</a>.</p>
+
+</main>
+
+<script src="moteur/capsule.js"></script>
+<script src="capsules/classes-de-securite.js"></script>
+<script src="capsules/controle-etancheite.js"></script>
+<script src="capsules/la-recuperation.js"></script>
+<script src="capsules/la-surchauffe.js"></script>
+<script src="capsules/le-circuit.js"></script>
+<script src="capsules/lire-le-code.js"></script>
+<script src="capsules/tirage-au-vide.js"></script>
+<script src="moteur/planches-data.js"></script>
+<script src="moteur/videos-data.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  /* Les capsules dans l'ordre déclaré (champ ordre), comme à l'accueil. */
+  var ids = Object.keys(window.CAPSULES).sort(function (a, b) {
+    return (window.CAPSULES[a].ordre || 99) - (window.CAPSULES[b].ordre || 99);
+  });
+  document.getElementById("projection").innerHTML = ids.map(function (id) {
+    var c = window.CAPSULES[id];
+    return '<a class="entree" href="capsule.html?sujet=' + esc(id) + '&projection=1">'
+      + "<h3>▶ " + esc(c.titre) + "</h3>"
+      + '<div class="pied">'
+      + '<span class="et">' + esc(c.niveau || "découverte") + "</span>"
+      + '<span class="et">' + c.fil.length + " écrans</span>"
+      + (c.minutes ? '<span class="et">' + c.minutes + " min</span>" : "")
+      + "</div></a>";
+  }).join("");
+
+  document.getElementById("nb-planches").textContent = window.PLANCHES.length + " planches";
+  document.getElementById("nb-videos").textContent =
+    window.VIDEOS.length ? window.VIDEOS.length + " vidéos" : "à venir";
+})();
+</script>

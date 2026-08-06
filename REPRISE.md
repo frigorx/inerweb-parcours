@@ -166,6 +166,11 @@ tant que Franck n'a pas tranché ses 6 décisions (§ 11 de la proposition).
 
 | | |
 |---|---|
+| `index.html` (racine) | **l'accueil du SITE à trois portes** (réviser · parcours · enseignant) — lot 2, 06/08 soir |
+| `refonte/parcours.html` | **le parcours guidé en 6 paliers** (`moteur/paliers.js`), « vu / en cours » lu depuis les écrans mémorisés par le lecteur — rien ne sort du navigateur |
+| `refonte/enseignant.html` | **l'espace enseignant** : projeter (`capsule.html?…&projection=1`, texte grossi d'un tiers), planches, vidéos, liens à donner, outils de relecture |
+| `refonte/planches.html` | **les 44 planches en grand** par famille — rejouer · ouvrir seule · télécharger ; données `moteur/planches-data.js` générées par `build/planches.mjs` (à relancer après tout ajout au fonds) |
+| `refonte/videos.html` + `video.html` | **la galerie et le lecteur des tutos vidéo** (gabarit prêt, registre vide) ; règles et format d'entrée documentés dans `moteur/videos-data.js` |
 | `refonte/index.html` | l'accueil « Qu'est-ce que je veux réviser ? » |
 | `refonte/capsule.html` | le lecteur (`?sujet=…`) |
 | `refonte/moteur/capsule.js` · `capsule.css` | **le** moteur et **la** charte, uniques |

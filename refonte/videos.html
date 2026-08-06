@@ -1,0 +1,60 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les tutos vidéo — Les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<!-- La galerie des gestes filmés. Le registre vit dans
+     moteur/videos-data.js ; tant qu'il est vide, la page annonce ce qui
+     vient et affiche les règles du gabarit (PROPOSITION-SITE.md § 6). -->
+
+<header class="accueil-tete">
+  <p class="ariane"><a href="enseignant.html">← Espace enseignant</a></p>
+  <h1>Les tutos vidéo</h1>
+  <p>Les gestes filmés, la vraie main sur le vrai matériel — chaque vidéo arrive <b>après</b>
+  la capsule qui la prépare : la vidéo montre, la capsule explique.</p>
+</header>
+
+<main class="zone-paliers" id="galerie"></main>
+
+<script src="moteur/videos-data.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  var zone = document.getElementById("galerie");
+
+  if (!window.VIDEOS.length) {
+    zone.innerHTML =
+      '<div class="vide-cadre">'
+      + "<h2>Aucune vidéo pour l'instant — elles arrivent</h2>"
+      + "<p>Les premiers tournages prévus : <b>la pose et la dépose des manomètres</b>, "
+      + "<b>les vannes de service</b>. La page est prête à les recevoir.</p>"
+      + "</div>"
+      + '<section class="palier"><h2>Les règles du gabarit</h2>'
+      + '<ul class="regles">'
+      + "<li><b>Sous-titres obligatoires</b> — aucune information portée par le son seul "
+      + "(ateliers bruyants, lecteurs FLE et DYS).</li>"
+      + "<li><b>MP4 (H.264), 720p</b> suffit — moins de <b>100 Mo</b> par fichier.</li>"
+      + "<li>Chaque vidéo <b>s'accroche à une capsule</b> : le geste filmé arrive après "
+      + "les écrans qui le préparent.</li>"
+      + "<li>Déclaration dans <code>moteur/videos-data.js</code>, fichiers dans "
+      + "<code>videos/</code> — le gabarit d'entrée est documenté dans le fichier.</li>"
+      + "</ul></section>";
+    return;
+  }
+
+  zone.innerHTML = '<div class="entrees">' + window.VIDEOS.map(function (v) {
+    return '<a class="entree" href="video.html?id=' + esc(v.id) + '">'
+      + "<h3>🎬 " + esc(v.titre) + "</h3>"
+      + '<div class="pied">'
+      + (v.minutes ? '<span class="et">' + v.minutes + " min</span>" : "")
+      + (v.chapitres ? '<span class="et">' + v.chapitres.length + " chapitres</span>" : "")
+      + "</div></a>";
+  }).join("") + "</div>";
+})();
+</script>

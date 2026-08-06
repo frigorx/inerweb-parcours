@@ -1,0 +1,75 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tuto vidéo — Les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<!-- Le lecteur vidéo : ?id=… cherche dans moteur/videos-data.js.
+     Sous-titres affichés par défaut ; chapitres cliquables ; lien vers
+     la capsule qui prépare le geste. -->
+
+<header class="accueil-tete">
+  <p class="ariane"><a href="videos.html">← Les tutos vidéo</a></p>
+  <h1 id="titre">Tuto vidéo</h1>
+</header>
+
+<main class="zone-paliers" id="lecteur"></main>
+
+<script src="moteur/videos-data.js"></script>
+<script src="capsules/classes-de-securite.js"></script>
+<script src="capsules/controle-etancheite.js"></script>
+<script src="capsules/la-recuperation.js"></script>
+<script src="capsules/la-surchauffe.js"></script>
+<script src="capsules/le-circuit.js"></script>
+<script src="capsules/lire-le-code.js"></script>
+<script src="capsules/tirage-au-vide.js"></script>
+<script src="moteur/capsule.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  var zone = document.getElementById("lecteur");
+  var id = new URLSearchParams(location.search).get("id");
+  var v = window.VIDEOS.filter(function (x) { return x.id === id; })[0];
+
+  if (!v) {
+    zone.innerHTML = '<div class="vide-cadre"><h2>Vidéo introuvable</h2>'
+      + '<p>Revenir à <a href="videos.html">la galerie</a>.</p></div>';
+    return;
+  }
+  document.getElementById("titre").textContent = v.titre;
+  document.title = v.titre + " — Les parcours du froid";
+
+  var capsule = v.capsule && window.CAPSULES ? window.CAPSULES[v.capsule] : null;
+  zone.innerHTML =
+    '<div class="video-cadre"><video controls preload="metadata" crossorigin="anonymous">'
+    + '<source src="' + esc(v.fichier) + '" type="video/mp4">'
+    + '<track default kind="subtitles" srclang="fr" label="Sous-titres" src="' + esc(v.sousTitres) + '">'
+    + "</video></div>"
+    + (v.chapitres && v.chapitres.length
+      ? '<section class="palier"><h2>Chapitres</h2><div class="chapitres">'
+        + v.chapitres.map(function (c) {
+            var mn = Math.floor(c.t / 60), sc = ("0" + (c.t % 60)).slice(-2);
+            return '<button type="button" data-t="' + c.t + '">'
+              + '<span class="temps">' + mn + ":" + sc + "</span> " + esc(c.titre) + "</button>";
+          }).join("") + "</div></section>"
+      : "")
+    + (capsule
+      ? '<a class="entree" href="capsule.html?sujet=' + esc(capsule.id) + '">'
+        + "<h3>📖 Avant le geste : « " + esc(capsule.titre) + " »</h3>"
+        + '<p class="note">La capsule qui explique ce que la vidéo montre.</p></a>'
+      : "");
+
+  zone.addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-t]");
+    if (!b) return;
+    var video = zone.querySelector("video");
+    video.currentTime = parseInt(b.getAttribute("data-t"), 10);
+    video.play();
+  });
+})();
+</script>

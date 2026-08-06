@@ -1,0 +1,66 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les planches animées — Les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<!-- Les 44 planches du fonds, en grand : chacune se rejoue, s'ouvre
+     seule dans un onglet, et se télécharge (SVG). Pour illustrer
+     n'importe quel cours, même hors de ce site. Données générées par
+     build/planches.mjs — relancer après tout ajout au fonds. -->
+
+<header class="accueil-tete">
+  <p class="ariane"><a href="enseignant.html">← Espace enseignant</a></p>
+  <h1>Les planches animées</h1>
+  <p>Toutes les planches du fonds, rangées par famille. Chacune se <b>rejoue</b> d'un clic,
+  s'ouvre <b>en grand</b> dans son propre onglet (pour le vidéoprojecteur), et se
+  <b>télécharge</b> — l'animation est écrite dans le fichier, rien d'autre à installer.</p>
+</header>
+
+<main class="zone-paliers" id="planches"></main>
+
+<script src="moteur/planches-data.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+
+  var h = window.PLANCHES_FAMILLES.map(function (fam) {
+    var lot = window.PLANCHES.filter(function (p) { return p.famille === fam; });
+    if (!lot.length) return "";
+    var cartes = lot.map(function (p) {
+      return '<figure class="planche-carte" id="pl-' + esc(p.id) + '">'
+        + '<div class="vue"><img src="' + esc(p.chemin) + '" alt="' + esc(p.titre) + '" loading="lazy"></div>'
+        + "<figcaption>"
+        + "<h3>" + esc(p.titre) + "</h3>"
+        + '<div class="planche-actions">'
+        + '<button type="button" class="rejouer">↻ Rejouer</button>'
+        + '<a href="' + esc(p.chemin) + '" target="_blank" rel="noopener">En grand ↗</a>'
+        + '<a href="' + esc(p.chemin) + '" download="' + esc(p.id) + '.svg">Télécharger</a>'
+        + '<span class="et">' + p.ko + " Ko</span>"
+        + "</div></figcaption></figure>";
+    }).join("");
+    return '<section class="palier">'
+      + "<h2>" + esc(fam[0].toUpperCase() + fam.slice(1)) + '<span class="compte">' + lot.length + "</span></h2>"
+      + '<div class="planches-grille">' + cartes + "</div></section>";
+  }).join("");
+
+  var zone = document.getElementById("planches");
+  zone.innerHTML = h;
+
+  /* Rejouer = recharger l'image : l'animation repart du début. */
+  zone.addEventListener("click", function (ev) {
+    var b = ev.target.closest("button.rejouer");
+    if (!b) return;
+    var img = b.closest(".planche-carte").querySelector("img");
+    var src = img.getAttribute("src");
+    img.setAttribute("src", "");
+    /* Deux temps, sinon le navigateur ne voit pas de changement. */
+    requestAnimationFrame(function () { img.setAttribute("src", src); });
+  });
+})();
+</script>
