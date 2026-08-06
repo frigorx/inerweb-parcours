@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qu'est-ce que je veux réviser ? — inerWeb</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/capsule.css">
+
+<header class="accueil-tete">
+  <h1>Qu'est-ce que je veux réviser ?</h1>
+  <p>Un sujet, <b>un seul</b>. Cinq à sept écrans, pas davantage. Et à chaque fois qu'une
+  notion voisine apparaît, on vous propose d'en <b>savoir plus</b> — vous ouvrez si vous
+  voulez, le fil ne s'allonge pas si vous ne voulez pas.</p>
+</header>
+
+<main class="sujets" id="sujets"></main>
+
+<script src="moteur/capsule.js"></script>
+<script src="capsules/lire-le-code.js"></script>
+<script src="../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  var zone = document.getElementById("sujets");
+  var ids = Object.keys(window.CAPSULES);
+
+  var h = ids.map(function (id) {
+    var c = window.CAPSULES[id];
+    /* Combien de détours : c'est ce que le sujet offre EN PLUS du fil.
+       On l'affiche, parce que c'est ce qui distingue une capsule d'une
+       diapositive — et parce que ça se compte, ça ne se déclare pas. */
+    var nDetours = c.detours ? Object.keys(c.detours).length : 0;
+    var niv = (c.niveau || "découverte").replace("é", "e").replace("è", "e");
+    return '<a class="sujet-carte" href="capsule.html?sujet=' + esc(id) + '">'
+      + "<h2>" + esc(c.titre) + "</h2>"
+      + '<p class="q">' + esc(c.question || "") + "</p>"
+      + '<div class="pied">'
+      + '<span class="et ' + esc(niv) + '">' + esc(c.niveau || "découverte") + "</span>"
+      + '<span class="et">' + c.fil.length + " écrans</span>"
+      + (c.minutes ? '<span class="et">' + c.minutes + " min</span>" : "")
+      + (nDetours ? '<span class="et">+ ' + nDetours + " en savoir plus</span>" : "")
+      + (c.suppose ? '<span class="suppose">après « ' + esc(c.suppose) + " »</span>" : "")
+      + "</div></a>";
+  }).join("");
+
+  zone.innerHTML = h || '<p>Aucun sujet déclaré pour l\'instant.</p>';
+})();
+</script>

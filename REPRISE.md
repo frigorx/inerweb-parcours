@@ -93,19 +93,47 @@ node build/inventaire.mjs
 
 ---
 
-## 6. Ce qui n'est pas encore décidé
+## 6. Le cap — tranché le 06/08/2026
 
-**Le cap de la refonte.** Ce qui est monté ici, c'est l'atelier et la table de tri —
-pas la direction. Les deux questions ouvertes :
+**Doctrine complète : `refonte/MODELE-CAPSULE.md`.** En résumé :
 
-- **Ce qu'on refait** — la forme (charte, lisibilité, rythme des animations) ? le fond
-  (justesse technique, ce que la planche enseigne) ? la mécanique (uniformiser 20 tutos
-  écrits chacun à sa manière, en un socle commun) ?
-- **Le public visé** — le même qu'aujourd'hui (stagiaires habilitation fluides A1/A2/D/E),
-  ou un public élargi (élèves CAP/Bac Pro, FLE/DYS) ? Ce choix change tout le reste :
-  la densité du texte, le débit, le vocabulaire.
+- **Découpage en capsules.** L'accueil demande « Qu'est-ce que je veux réviser ? ». On choisit
+  **un** sujet, qui se déroule en **un fil court** (5 à 7 écrans, une idée par écran).
+- **« Voulez-vous en savoir plus ? »** À chaque notion connexe, un insert propose le détour —
+  dans l'esprit du *« Would you like to know more? »* de **Starship Troopers**. Qui veut, ouvre ;
+  qui ne veut pas, continue, et **le fil ne s'allonge pas**. Retour exactement où l'on était.
+  Un détour peut avoir ses propres détours : c'est ce qui permet **d'intercaler plus tard
+  d'autres notions** sans toucher au fil.
+- **Les quatre volets** demandés : la forme, le fond, la mécanique, le parcours.
+- **Public élargi** : stagiaires habilitation **et** élèves CAP/Bac Pro (donc FLE/DYS).
+- **Une voix unique fabriquée**, masculine ou féminine au choix du lecteur, vitesse réglable
+  de 0,6 × à 1,6 ×.
+- **Une seule charte** pour tout l'ensemble : `refonte/moteur/capsule.css`. Zéro feuille de
+  style par capsule.
 
-À trancher avec F. Henninot **avant** d'écrire la première ligne de refonte.
+### Ce qui est construit
+
+| | |
+|---|---|
+| `refonte/index.html` | l'accueil « Qu'est-ce que je veux réviser ? » |
+| `refonte/capsule.html` | le lecteur (`?sujet=…`) |
+| `refonte/moteur/capsule.js` · `capsule.css` | **le** moteur et **la** charte, uniques |
+| `refonte/capsules/lire-le-code.js` | **la capsule pilote** — 6 écrans de fil, 7 détours, 12 écrans d'approfondissement |
+| `refonte/voix/choisir-la-voix.html` | les 4 voix neuronales à écouter, avec le curseur de vitesse |
+| `refonte/voix/fabriquer.mjs` | fabrique les MP3 des deux voix. **Pas encore lancé** |
+
+Une capsule est **un fichier de données** : on ajoute un sujet ou un détour sans écrire
+une ligne de JavaScript.
+
+### Ce qui reste en attente de F. Henninot
+
+1. **Le modèle** — juger la capsule pilote : le découpage fil / détours est-il le bon ?
+2. **Les voix** — écouter `refonte/voix/choisir-la-voix.html` et désigner **une masculine**
+   et **une féminine**.
+3. **Le feu vert de fabrication** — `fabriquer.mjs` envoie le texte des narrations à Microsoft
+   (c'est là que se fait la synthèse). Textes de cours déjà publics, mais **rien n'est envoyé
+   sans accord**.
+4. **Le tri du fonds** — `inventaire.html`, pièce par pièce.
 
 ---
 

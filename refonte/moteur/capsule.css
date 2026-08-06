@@ -1,0 +1,191 @@
+/* =====================================================================
+   capsule.css — LA feuille de style de tout l'ensemble
+   ---------------------------------------------------------------------
+   Une seule charte pour toutes les capsules. Aujourd'hui, les vingt tutos
+   du fonds ont chacun leur styles.css : vingt interprétations de la même
+   charte, qui divergent un peu plus à chaque tuto ajouté.
+
+   RÈGLE : une capsule n'a JAMAIS de feuille à elle. Si une capsule a
+   besoin d'un style qui n'est pas ici, c'est qu'il manque un composant
+   au moteur — on l'ajoute ici, pour tout le monde.
+
+   Repose sur la charte inerWeb (variables de charte-edu.css) :
+   bleu #1B3A63 · orange #FF6B35 · fonds clairs, jamais de thème sombre.
+   La couleur ne porte jamais seule : couleur + trait + mot.
+   ===================================================================== */
+
+:root{
+  --detour:#6b4fa8;            /* le violet des détours : une couleur à eux,   */
+  --detour-bg:#f2eefb;         /* pour qu'on sache toujours si l'on est dans   */
+  --detour-ligne:#d9cdf0;      /* le fil ou à côté                             */
+}
+
+body{background:var(--fond)}
+
+/* ---- Barre du haut : où je suis, et les commandes ---------------- */
+.tete{
+  position:sticky; top:0; z-index:10;
+  background:var(--bleu); color:#fff;
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:10px 18px;
+}
+.tete a.retour{color:#cdd9e6; text-decoration:none; font-size:14px; white-space:nowrap}
+.tete a.retour:hover{color:#fff; text-decoration:underline}
+.tete .sujet{font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700; font-size:16px}
+.tete .spacer{flex:1}
+.tete .niveau{
+  font-size:12px; font-weight:700; background:#fff; color:var(--bleu);
+  border:2px solid var(--orange); border-radius:999px; padding:3px 11px; white-space:nowrap;
+}
+
+/* ---- Avancement : le fil principal SEUL --------------------------
+   Les détours ne comptent pas dans la barre. Faire reculer la barre
+   parce qu'on est curieux, c'est punir la curiosité.                 */
+.avance{background:#fff; border-bottom:1px solid var(--ligne); padding:8px 18px;
+  display:flex; align-items:center; gap:12px; font-size:13px; color:var(--mut)}
+.avance .rail{flex:1; height:8px; background:#e7edf4; border-radius:999px; overflow:hidden}
+.avance .jauge{height:100%; background:var(--orange); border-radius:999px; transition:width .25s}
+.avance .compte{white-space:nowrap; font-weight:700; color:var(--bleu)}
+
+/* ---- L'écran : une idée, et rien d'autre ------------------------- */
+.scene{max-width:860px; margin:22px auto; padding:0 18px 120px}
+
+.ecran{
+  background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
+  box-shadow:var(--ombre); overflow:hidden;
+}
+.ecran .corps{padding:24px 28px}
+.ecran h1{margin:0 0 14px; font-size:26px; line-height:1.25}
+.ecran .texte{font-size:18px; line-height:1.65; margin:0}
+.ecran .texte p{margin:0 0 12px}
+.ecran .texte p:last-child{margin-bottom:0}
+
+/* Le visuel : planche animée du fonds, ou dessin propre à l'écran */
+.visuel{background:#f7fafd; border-bottom:1px solid var(--ligne);
+  display:flex; align-items:center; justify-content:center; padding:14px}
+.visuel img{max-width:100%; max-height:330px; display:block}
+.visuel .rejouer{
+  position:absolute; margin:0; font:inherit; font-size:13px; padding:4px 10px;
+  border:2px solid var(--ligne); border-radius:8px; background:#fff; color:var(--bleu);
+  cursor:pointer; align-self:flex-start;
+}
+.porte-visuel{position:relative; display:flex; flex-direction:column}
+.porte-visuel .rejouer{position:absolute; top:10px; right:10px}
+.porte-visuel .rejouer:hover{border-color:var(--orange)}
+
+/* Le mot difficile, expliqué là où il tombe — jamais dans un glossaire
+   à la fin, que personne n'ouvre. */
+.mot{
+  border-bottom:2px dotted var(--orange); cursor:help; font-weight:700; color:var(--bleu);
+  background:none; border-top:0; border-left:0; border-right:0; font:inherit; padding:0;
+}
+.mot:hover, .mot:focus{background:var(--orange-clair); outline:none}
+.explique{
+  display:block; margin:10px 0; padding:10px 14px; font-size:16px;
+  background:var(--orange-clair); border-left:4px solid var(--orange); border-radius:8px;
+}
+.explique b{color:#a8410f}
+
+/* ---- L'insert « Voulez-vous en savoir plus ? » -------------------- */
+.plus{margin:22px 28px 0; padding-top:16px; border-top:2px dashed var(--detour-ligne)}
+.plus > .t{
+  font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700;
+  color:var(--detour); font-size:16px; margin-bottom:10px;
+}
+.plus > .t::before{content:"▸ "}
+.plus .liste{display:flex; flex-direction:column; gap:8px}
+.plus button{
+  text-align:left; font:inherit; font-size:16px; cursor:pointer;
+  padding:12px 16px; background:var(--detour-bg); color:var(--txt);
+  border:2px solid var(--detour-ligne); border-radius:10px; transition:.12s;
+}
+.plus button:hover{border-color:var(--detour); background:#ece5f8}
+.plus button .fleche{color:var(--detour); font-weight:700; margin-right:8px}
+.plus button .vu{float:right; color:var(--ok); font-size:14px; font-weight:700}
+
+/* ---- Quand on EST dans un détour : le décor change ---------------
+   Sans signal net, on ne sait plus si l'on est dans le fil ou à côté. */
+body.dans-detour .tete{background:var(--detour)}
+body.dans-detour .avance{background:var(--detour-bg)}
+body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid var(--detour)}
+.fil-ariane{
+  padding:10px 18px; background:var(--detour-bg); border-bottom:1px solid var(--detour-ligne);
+  font-size:14px; color:var(--detour); font-weight:700;
+}
+.fil-ariane .petit{font-weight:400; color:var(--mut)}
+
+/* ---- Les commandes du bas ---------------------------------------- */
+.commandes{
+  position:fixed; left:0; right:0; bottom:0; z-index:10;
+  background:#fff; border-top:1px solid var(--ligne);
+  box-shadow:0 -2px 12px rgba(27,58,99,.09);
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:10px 18px;
+}
+.commandes button{
+  font:inherit; font-size:16px; cursor:pointer; padding:9px 18px; border-radius:10px;
+  border:2px solid var(--ligne); background:#fff; color:var(--bleu); transition:.12s;
+}
+.commandes button:hover:not(:disabled){border-color:var(--orange)}
+.commandes button:disabled{opacity:.4; cursor:default}
+.commandes .suite{background:var(--bleu); color:#fff; border-color:var(--bleu); font-weight:700}
+.commandes .suite:hover{background:var(--bleu-clair); border-color:var(--bleu-clair)}
+.commandes .revenir{background:var(--detour); color:#fff; border-color:var(--detour); font-weight:700}
+.commandes .revenir:hover{background:#5b3f95; border-color:#5b3f95}
+.commandes .spacer{flex:1}
+
+/* ---- La voix ------------------------------------------------------ */
+.voix{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:14px}
+.voix .ecouter{white-space:nowrap}
+.voix .ecouter.parle{background:var(--ok-bg); border-color:var(--ok); color:var(--ok)}
+.voix select, .voix input[type=range]{font:inherit; font-size:14px}
+.voix select{padding:6px 9px; border:2px solid var(--ligne); border-radius:8px;
+  background:#fff; color:var(--txt)}
+.voix input[type=range]{width:110px; accent-color:var(--orange)}
+.voix .vitesse-val{font-family:Consolas,monospace; font-weight:700; color:var(--orange);
+  min-width:46px; text-align:right}
+.voix .repli{font-size:12px; color:var(--attente); font-weight:700}
+
+/* ---- L'écran de fin ---------------------------------------------- */
+.retenir{background:var(--ok-bg); border:1px solid #b8e0cc; border-left:5px solid var(--ok);
+  border-radius:var(--r); padding:18px 24px; margin-top:18px}
+.retenir h2{margin:0 0 10px; color:var(--ok); font-size:20px}
+.retenir ul{margin:0; padding-left:22px; font-size:17px}
+.retenir li{margin:8px 0}
+
+/* ---- Les codes du référentiel ------------------------------------ */
+.codes{margin:14px 28px 0; font-size:12px; color:var(--mut)}
+.codes .c{display:inline-block; background:#eef3f9; color:var(--bleu); font-weight:700;
+  border-radius:999px; padding:2px 9px; margin-right:5px; font-family:Consolas,monospace}
+.codes .hors{background:#f4f0e6; color:var(--attente)}
+
+/* ---- Accueil « Qu'est-ce que je veux réviser ? » ------------------ */
+.accueil-tete{background:var(--bleu); color:#fff; padding:26px 24px 30px}
+.accueil-tete h1{color:#fff; margin:0 0 8px; font-size:30px}
+.accueil-tete p{margin:0; color:#cdd9e6; max-width:70ch; font-size:17px}
+.accueil-tete b{color:var(--orange)}
+.sujets{max-width:1080px; margin:24px auto; padding:0 22px 70px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:18px}
+.sujet-carte{
+  background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
+  box-shadow:var(--ombre); padding:20px 22px; display:flex; flex-direction:column; gap:10px;
+  text-decoration:none; color:var(--txt); border-top:5px solid var(--orange); transition:.12s;
+}
+.sujet-carte:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(27,58,99,.16)}
+.sujet-carte h2{margin:0; font-size:20px; line-height:1.3}
+.sujet-carte .q{margin:0; color:var(--mut); font-size:15px; font-style:italic}
+.sujet-carte .pied{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+  font-size:12px; font-weight:700}
+.sujet-carte .et{background:#eef3f9; color:var(--bleu); border-radius:999px; padding:3px 10px}
+.sujet-carte .et.decouverte{background:var(--ok-bg); color:var(--ok)}
+.sujet-carte .et.metier{background:var(--orange-clair); color:#a8410f}
+.sujet-carte .et.examen{background:#e6f0ff; color:#1d4a8f}
+.sujet-carte .suppose{font-size:13px; color:var(--mut); font-weight:400; font-style:italic}
+
+/* ---- Papier : la couleur reste, les surfaces partent ------------- */
+@media print{
+  .tete, .commandes, .avance, .plus button, .rejouer{display:none !important}
+  .ecran{box-shadow:none; border:1px solid #999; page-break-inside:avoid}
+  .visuel{background:none}
+  body{background:#fff}
+}

@@ -1,0 +1,142 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Choisir la voix — atelier animations</title>
+<link rel="stylesheet" href="../../fonds-origine/moteur/charte-edu.css">
+<style>
+  .entete{background:var(--bleu);color:#fff;padding:20px 24px}
+  .entete h1{color:#fff;margin:0 0 6px;font-size:24px}
+  .entete p{margin:0;color:#cdd9e6;max-width:78ch}
+  .entete b{color:var(--orange)}
+  .zone{max-width:900px;margin:24px auto;padding:0 24px 80px}
+  .phrase{background:#fff;border:1px solid var(--ligne);border-left:4px solid var(--orange);
+    border-radius:var(--r);padding:14px 18px;margin-bottom:22px}
+  .phrase .t{font-weight:700;color:var(--bleu);margin-bottom:6px}
+  .phrase p{margin:0;font-style:italic;color:var(--mut)}
+  .reglage{position:sticky;top:0;z-index:5;background:#fff;border:1px solid var(--ligne);
+    border-radius:var(--r);box-shadow:var(--ombre);padding:14px 18px;margin-bottom:20px;
+    display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .reglage label{font-weight:700;color:var(--bleu)}
+  .reglage input[type=range]{flex:1;min-width:200px;accent-color:var(--orange)}
+  .reglage .val{font-weight:700;color:var(--orange);min-width:52px;text-align:right;
+    font-family:Consolas,monospace}
+  .reglage .aide{font-size:13px;color:var(--mut);width:100%;margin:0}
+  h2{border-bottom:3px solid var(--orange);padding-bottom:6px;margin-top:30px}
+  .voix{background:#fff;border:1px solid var(--ligne);border-radius:var(--r);
+    box-shadow:var(--ombre);padding:16px 18px;margin-bottom:14px}
+  .voix .haut{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .voix h3{margin:0;font-size:19px}
+  .voix .genre{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px}
+  .genre.h{background:#e6f0ff;color:#1d4a8f}
+  .genre.f{background:var(--orange-clair);color:#a8410f}
+  .voix .code{font-size:12px;color:var(--mut);font-family:Consolas,monospace}
+  .voix p{margin:8px 0 10px;color:var(--mut);font-size:14px}
+  .voix audio{width:100%}
+  .bilan{background:#fff;border:1px solid var(--ligne);border-radius:var(--r);
+    padding:16px 20px;margin-top:26px;border-left:4px solid var(--bleu)}
+  .bilan h3{margin-top:0}
+  .bilan ul{margin:0;padding-left:22px}
+  .bilan li{margin:6px 0}
+</style>
+
+<header class="entete">
+  <h1>Choisir la voix des capsules</h1>
+  <p>Quatre voix <b>neuronales</b> françaises, toutes gratuites et sans clé d'interface payante.
+  Même phrase pour les quatre, avec les mots techniques dedans — c'est là qu'une voix se juge.
+  Écoutez, tranchez : <b>une masculine et une féminine</b>, et ce sera la voix de tout l'ensemble.</p>
+</header>
+
+<main class="zone">
+
+  <div class="phrase">
+    <div class="t">La phrase lue</div>
+    <p>« Sur la bouteille, vous lisez R cent trente-quatre a. Le R signifie réfrigérant.
+    Les trois chiffres décrivent la molécule : un atome de carbone, deux atomes d'hydrogène,
+    quatre atomes de fluor. La lettre a, à la fin, n'est pas un détail. Elle désigne l'isomère.
+    Voulez-vous en savoir plus ? »</p>
+  </div>
+
+  <div class="reglage">
+    <label for="vit">Vitesse</label>
+    <input type="range" id="vit" min="0.6" max="1.6" step="0.05" value="1">
+    <span class="val" id="valv">1,00 ×</span>
+    <p class="aide">Le réglage agit sur les quatre lecteurs en même temps. La hauteur de la voix
+    est conservée : à 1,4 × elle parle plus vite, elle ne devient pas aiguë. C'est ce curseur
+    que le stagiaire ou l'élève aura, et son choix sera retenu d'une capsule à l'autre.</p>
+  </div>
+
+  <h2>Voix masculines</h2>
+
+  <section class="voix">
+    <div class="haut"><h3>Henri</h3><span class="genre h">masculine</span>
+      <span class="code">fr-FR-HenriNeural</span></div>
+    <p>Posée, articulée, un peu grave. La plus proche d'un formateur qui explique au tableau.</p>
+    <audio controls preload="none" src="echantillons/fr-FR-HenriNeural.mp3"></audio>
+  </section>
+
+  <section class="voix">
+    <div class="haut"><h3>Rémy</h3><span class="genre h">masculine</span>
+      <span class="code">fr-FR-RemyMultilingualNeural</span></div>
+    <p>Plus jeune, débit plus vif. Tient aussi les mots étrangers sans accent bizarre
+    (utile pour « <i>glide</i> », « <i>low GWP</i> »).</p>
+    <audio controls preload="none" src="echantillons/fr-FR-RemyMultilingualNeural.mp3"></audio>
+  </section>
+
+  <h2>Voix féminines</h2>
+
+  <section class="voix">
+    <div class="haut"><h3>Denise</h3><span class="genre f">féminine</span>
+      <span class="code">fr-FR-DeniseNeural</span></div>
+    <p>Claire et neutre, très bonne tenue sur les nombres et les sigles.</p>
+    <audio controls preload="none" src="echantillons/fr-FR-DeniseNeural.mp3"></audio>
+  </section>
+
+  <section class="voix">
+    <div class="haut"><h3>Vivienne</h3><span class="genre f">féminine</span>
+      <span class="code">fr-FR-VivienneMultilingualNeural</span></div>
+    <p>Plus chaleureuse, intonation plus marquée. Tient aussi les mots étrangers.</p>
+    <audio controls preload="none" src="echantillons/fr-FR-VivienneMultilingualNeural.mp3"></audio>
+  </section>
+
+  <div class="bilan">
+    <h3>Ce que ce choix engage</h3>
+    <ul>
+      <li><b>Les fichiers sont fabriqués une fois</b>, à l'atelier, et rangés à côté de la capsule.
+      À la lecture, la page joue un MP3 : même qualité sur tous les postes, sans Internet,
+      sans dépendre du navigateur. Aujourd'hui la seule voix française du poste est
+      <i>Hortense</i> — c'est elle qui plafonne la qualité, et c'est ce plafond qu'on retire.</li>
+      <li><b>Une seule voix pour tout l'ensemble</b> : c'est ainsi que la voix devient
+      « harmonisée ». Le choix masculin / féminin reste offert au lecteur, mais les deux
+      versions disent exactement le même texte.</li>
+      <li><b>La vitesse reste au lecteur</b>, entre 0,6 × et 1,6 ×, retenue d'une capsule à l'autre.</li>
+      <li><b>Coût : zéro.</b> Aucune clé d'interface payante, conformément à la décision prise
+      pour Hermès.</li>
+      <li><b>À savoir avant de lancer la fabrication</b> : la synthèse se fait chez Microsoft,
+      donc le texte des narrations lui est envoyé au moment de la fabrication. Ce sont des textes
+      de cours, déjà publics sur le dépôt <i>pilote-fluides</i> — mais c'est vous qui donnez le
+      feu vert, et rien n'est envoyé tant que vous ne l'avez pas donné.</li>
+    </ul>
+  </div>
+
+</main>
+
+<script src="../../fonds-origine/moteur/lisibilite.js"></script>
+<script>
+  var vit = document.getElementById("vit");
+  var val = document.getElementById("valv");
+  vit.addEventListener("input", function () {
+    var v = parseFloat(vit.value);
+    val.textContent = v.toFixed(2).replace(".", ",") + " ×";
+    document.querySelectorAll("audio").forEach(function (a) {
+      /* preservesPitch : on accélère le débit sans monter la voix dans les aigus.
+         Sans lui, 1,4 × donne un dessin animé, pas un formateur. */
+      a.preservesPitch = true;
+      a.playbackRate = v;
+    });
+  });
+  /* Une seule voix à la fois : sinon on compare deux voix qui parlent ensemble. */
+  document.querySelectorAll("audio").forEach(function (a) {
+    a.addEventListener("play", function () {
+      document.querySelectorAll("audio").forEach(function (b) { if (b !== a) b.pause(); });
+    });
+  });
+</script>
