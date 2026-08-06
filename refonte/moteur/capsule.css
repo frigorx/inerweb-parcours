@@ -184,6 +184,101 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 .sujet-carte .et.examen{background:#e6f0ff; color:#1d4a8f}
 .sujet-carte .suppose{font-size:13px; color:var(--mut); font-weight:400; font-style:italic}
 
+/* =====================================================================
+   MODE RELECTURE — n'existe que dans la bêta remise aux relecteurs
+   ---------------------------------------------------------------------
+   Deux choses distinctes, à ne pas confondre :
+   · « À VÉRIFIER » (rouge) — ce que NOUS signalons : une valeur, un seuil,
+     une affirmation réglementaire dont l'auteur veut la confirmation d'un
+     professionnel. C'est écrit dans la capsule, pas généré.
+   · l'avis du relecteur (bas d'écran) — ce que LUI nous dit.
+   La couleur ne porte jamais seule : rouge + trait épais + le mot
+   « À VÉRIFIER » en toutes lettres.
+   ===================================================================== */
+.a-verifier{
+  margin:16px 28px 0; padding:12px 16px; border-radius:8px;
+  background:var(--ko-bg); border-left:5px solid var(--ko); color:#8c2c20;
+}
+.a-verifier .t{
+  font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700; color:var(--ko);
+  font-size:14px; letter-spacing:.4px; margin-bottom:6px; text-transform:uppercase;
+}
+.a-verifier .t::before{content:"⚑ "}
+.a-verifier ul{margin:0; padding-left:20px; font-size:16px}
+.a-verifier li{margin:4px 0}
+
+/* Le compte des points à vérifier, dans la barre du haut */
+.tete .compte-verif{
+  font-size:12px; font-weight:700; background:var(--ko); color:#fff;
+  border-radius:999px; padding:3px 11px; white-space:nowrap;
+}
+
+/* ---- L'avis du relecteur, en bas de chaque écran ------------------ */
+.avis{
+  margin:18px 28px 22px; background:#fff; border:2px dashed var(--ligne);
+  border-radius:var(--r); padding:14px 16px;
+}
+.avis .q{
+  font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700;
+  color:var(--bleu); margin:0 0 10px; font-size:16px;
+}
+.avis .choix-relecture{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+.avis .choix-relecture button{
+  font:inherit; font-size:15px; cursor:pointer; padding:8px 14px; border-radius:10px;
+  border:2px solid var(--ligne); background:#fff; color:var(--mut); transition:.12s;
+}
+.avis .choix-relecture button:hover{border-color:var(--bleu-clair); color:var(--txt)}
+.avis button[aria-pressed="true"][data-avis="juste"]{background:var(--ok-bg); color:var(--ok); border-color:var(--ok)}
+.avis button[aria-pressed="true"][data-avis="corriger"]{background:var(--orange-clair); color:#a8410f; border-color:var(--orange)}
+.avis button[aria-pressed="true"][data-avis="question"]{background:#e6f0ff; color:#1d4a8f; border-color:#1d4a8f}
+.avis button[aria-pressed="true"][data-avis="sensible"]{background:var(--ko-bg); color:var(--ko); border-color:var(--ko)}
+.avis textarea{
+  width:100%; min-height:62px; font:inherit; font-size:15px; padding:9px 12px;
+  border:1px solid var(--ligne); border-radius:8px; background:#fbfdff; color:var(--txt);
+  resize:vertical;
+}
+.avis .ou{font-size:13px; color:var(--mut); margin:8px 0 0}
+
+/* ---- La barre du relecteur, tout en bas de l'écran ---------------- */
+.barre-relecture{
+  position:fixed; left:0; right:0; bottom:0; z-index:12;
+  background:var(--bleu); color:#fff;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:8px 16px; font-size:14px;
+}
+.barre-relecture b{color:var(--orange)}
+.barre-relecture .spacer{flex:1}
+.barre-relecture button{
+  font:inherit; font-size:14px; cursor:pointer; padding:6px 13px; border-radius:8px;
+  border:2px solid #fff; background:#fff; color:var(--bleu); font-weight:700;
+}
+.barre-relecture button:hover{background:var(--orange); border-color:var(--orange); color:#fff}
+.barre-relecture button.fantome{background:transparent; color:#fff}
+.barre-relecture button.fantome:hover{background:#fff; color:var(--bleu); border-color:#fff}
+body.avec-relecture .commandes{bottom:46px}
+@media(max-width:640px){ body.avec-relecture .commandes{bottom:80px} }
+
+/* ---- Le relevé, quand on l'exporte -------------------------------- */
+.releve-fond{
+  position:fixed; inset:0; z-index:20; background:rgba(27,58,99,.55);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.releve{
+  background:#fff; border-radius:var(--r); max-width:760px; width:100%;
+  max-height:86vh; overflow:auto; padding:22px 26px; box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+.releve h2{margin-top:0}
+.releve textarea{
+  width:100%; min-height:260px; font-family:Consolas,monospace; font-size:13px;
+  border:1px solid var(--ligne); border-radius:8px; padding:10px; background:#fbfdff; color:var(--txt);
+}
+.releve .actions-releve{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.releve .actions-releve button{
+  font:inherit; font-size:15px; cursor:pointer; padding:9px 16px; border-radius:10px;
+  border:2px solid var(--bleu); background:var(--bleu); color:#fff; font-weight:700;
+}
+.releve .actions-releve button.second{background:#fff; color:var(--bleu)}
+
 /* ---- Papier : la couleur reste, les surfaces partent ------------- */
 @media print{
   .tete, .commandes, .avance, .plus button, .rejouer{display:none !important}

@@ -17,6 +17,7 @@
    ===================================================================== */
 CAPSULE({
   id: "tirage-au-vide",
+  ordre: 5,
   titre: "Le tirage au vide : pourquoi, et jusqu'où",
   question: "« J'ai tiré une heure » — est-ce que ça veut dire quelque chose ?",
   niveau: "métier",
@@ -40,6 +41,9 @@ CAPSULE({
 
     {
       id: "02-l-eau",
+      verifier: [
+        "**Bouchon de glace au détendeur** et **formation d'acides par réaction eau + huile**. Les deux mécanismes sont-ils bien présentés ?",
+      ],
       titre: "L'eau : elle gèle d'un côté, elle ronge de l'autre.",
       texte: [
         "Au **détendeur**, l'eau restante rencontre le point le plus froid du circuit. Elle **gèle** et forme un bouchon. La machine se met à fonctionner par à-coups, puis plus du tout.",
@@ -53,6 +57,9 @@ CAPSULE({
 
     {
       id: "03-l-air",
+      verifier: [
+        "**L'air s'accumule en haut du condenseur** et fait monter la HP. Formulation à valider.",
+      ],
       titre: "L'air : il ne se condense pas. Il encombre.",
       texte: [
         "L'air est un **[[incondensable|un gaz qui ne se liquéfie pas dans les conditions de la machine. Il traverse tout le circuit sans jamais changer d'état]]**.",
@@ -80,6 +87,10 @@ CAPSULE({
 
     {
       id: "05-la-valeur",
+      verifier: [
+        "🔴 **CIBLE : sous 500 microns.** Certains ateliers exigent 250. Quelle valeur retenez-vous pour la formation ?",
+        "**Tirer par les deux côtés (HP et BP)** — à confirmer comme règle générale.",
+      ],
       titre: "Ce n'est pas une durée. C'est une valeur mesurée.",
       texte: [
         "« J'ai tiré une heure » ne prouve rien : une heure sur un circuit qui fuit donne un circuit qui fuit.",
@@ -94,6 +105,9 @@ CAPSULE({
 
     {
       id: "06-remontee",
+      verifier: [
+        "🔴 **La lecture du test de remontée** : rien ne bouge = bon · palier = humidité · montée continue = fuite. C'est le cœur de la capsule.",
+      ],
       titre: "Le vrai contrôle : on arrête la pompe et on regarde.",
       texte: [
         "Une fois la valeur atteinte, **on isole la pompe** et on laisse le circuit tranquille.",
@@ -134,6 +148,9 @@ CAPSULE({
         },
         {
           id: "d-huile-2",
+          verifier: [
+            "**Hydrolyse des huiles POE produisant des acides organiques**, et la conduite à tenir après un moteur claqué (déshydrateur, rinçage). À valider.",
+          ],
           titre: "Eau + huile = acide. Et l'acide ne s'en va plus.",
           texte: [
             "L'eau et l'huile POE réagissent : c'est une **[[hydrolyse|la molécule d'huile est coupée par l'eau. La réaction est lente et ne s'inverse pas]]**, et elle produit des **acides organiques**.",
@@ -152,6 +169,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-unites-1",
+          verifier: [
+            "**Conversions : 1 torr = 1000 microns · 1 mbar ≈ 750 microns · atmosphère = 760 000 microns.** À vérifier.",
+          ],
           titre: "Trois échelles, une seule idée : on descend vers zéro.",
           texte: [
             "**1 torr = 1 mmHg = 1000 microns.** Le micron est simplement un millième de torr : on l'utilise parce que le vide utile se joue **dans les décimales du torr**.",
@@ -170,6 +190,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-bp-1",
+          verifier: [
+            "**« Toute la zone utile, de 5000 à 250 microns, se situe après la butée du manomètre BP. »** À confirmer.",
+          ],
           titre: "Parce que tout le vide utile tient dans l'épaisseur de son aiguille.",
           texte: [
             "Le manomètre basse pression du manifold descend jusqu'à **−1 bar**, et là il est **au bout de sa course**.",
@@ -188,6 +211,10 @@ CAPSULE({
       ecrans: [
         {
           id: "d-duree-1",
+          verifier: [
+            "**« Quinze à vingt minutes » sur une petite installation propre.** Ordre de grandeur à confirmer ou à retirer.",
+            "**Réchauffer doucement les zones basses** pour aider l'évaporation. Pratique à valider.",
+          ],
           titre: "La bonne réponse : jusqu'à la valeur, puis on vérifie.",
           texte: [
             "La durée **dépend de tout** : longueur des lignes, volume, température de l'atelier, débit de la pompe, section des flexibles, quantité d'eau présente.",
@@ -223,6 +250,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-compresseur-1",
+          verifier: [
+            "🔴 **Les deux raisons de ne jamais tirer au vide avec le compresseur** : refroidissement par le fluide, et amorçage d'arc sous vide. Explication à valider.",
+          ],
           titre: "Non. Jamais. Et voici les deux raisons.",
           texte: [
             "**Première raison, électrique.** Le moteur d'un compresseur hermétique est **refroidi par le fluide** qui le traverse. Sous vide, il n'y a plus rien pour le refroidir : il chauffe et le bobinage claque.",
@@ -240,6 +270,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-azote-1",
+          verifier: [
+            "**Les trois emplois de l'azote** : brasage sous azote, balayage, épreuve d'étanchéité. Faut-il donner ici une pression d'épreuve ?",
+          ],
           titre: "L'azote travaille avant le vide, pas à sa place.",
           planche: "../fonds-origine/packs/fluides/res/svg/balayage-azote.svg",
           texte: [

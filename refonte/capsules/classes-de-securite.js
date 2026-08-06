@@ -18,6 +18,7 @@
    ===================================================================== */
 CAPSULE({
   id: "classes-de-securite",
+  ordre: 3,
   titre: "A1, A2L, A3 : lire l'étiquette",
   question: "Deux caractères sur la bouteille — que disent-ils vraiment ?",
   niveau: "métier",
@@ -55,6 +56,9 @@ CAPSULE({
 
     {
       id: "03-le-chiffre",
+      verifier: [
+        "Les quatre niveaux **1 / 2L / 2 / 3** et leur libellé. À confirmer.",
+      ],
       titre: "Le chiffre : 1, 2L, 2 ou 3. C'est le feu.",
       texte: [
         "**1** — **pas de propagation de flamme** dans l'air. Le fluide ne brûle pas.",
@@ -69,6 +73,9 @@ CAPSULE({
 
     {
       id: "04-on-lit",
+      verifier: [
+        "Les classes citées : **R-134a A1 · R-744 A1 · R-32 A2L · R-717 B2L**. À vérifier une par une.",
+      ],
       titre: "On lit ensemble.",
       texte: [
         "**R-134a = A1** — peu toxique, ne brûle pas. Le fluide « tranquille ».",
@@ -83,6 +90,9 @@ CAPSULE({
 
     {
       id: "05-le-piege",
+      verifier: [
+        "🔴 **R-290 = A3 et R-600a = A3.** Point central de la capsule.",
+      ],
       titre: "Le piège : le R-290 n'est PAS A2L. Il est A3.",
       texte: [
         "Le **R-290, c'est du propane**. Le même gaz que la bouteille de camping.",
@@ -153,6 +163,9 @@ CAPSULE({
         },
         {
           id: "d-tox-2",
+          verifier: [
+            "🔴 **Décomposition thermique produisant de l'acide fluorhydrique**, et la règle « on ne braze jamais sur un circuit sous fluide ». Formulation à valider.",
+          ],
           titre: "Et à la chaleur, un fluide « A » devient autre chose.",
           texte: [
             "Chauffé par une flamme ou une surface très chaude, un fluide fluoré **se décompose**.",
@@ -170,6 +183,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-2l-1",
+          verifier: [
+            "**Vitesse de propagation de flamme inférieure à 10 cm/s** pour la classe 2L. Valeur à confirmer.",
+          ],
           titre: "La flamme avance lentement. Voilà tout ce que dit le L.",
           texte: [
             "Un fluide **2L** a une **vitesse de propagation de flamme inférieure à 10 cm par seconde**. C'est la définition, et c'est une mesure.",
@@ -200,6 +216,9 @@ CAPSULE({
         },
         {
           id: "d-lie-2",
+          verifier: [
+            "**« Sur un fluide A3, on ne branche ni ne débranche rien d'électrique dans le local »** — formulation absolue. Trop raide, ou juste ?",
+          ],
           titre: "D'où vient le danger : une fuite traverse la fourchette.",
           texte: [
             "Au moment de la fuite, la concentration part de zéro et **monte**. Elle **traverse forcément la zone dangereuse**.",
@@ -218,6 +237,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-charge-1",
+          verifier: [
+            "🔴 **Le calcul de charge limite** : masse rapportée au volume du local, comparée à un seuil d'asphyxie (A1) ou à une **fraction de la LIE** (inflammables). Méthode à valider — faut-il donner les valeurs chiffrées ?",
+          ],
           titre: "Parce que la question est : « et si tout sortait d'un coup ? »",
           planche: "../fonds-origine/packs/fluides/res/svg/charge-limite-local.svg",
           texte: [
@@ -237,6 +259,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-co2-1",
+          verifier: [
+            "**Givre carbonique à −78 °C** et l'idée que le CO₂ est **asphyxiant à plus faible concentration** que les autres. À confirmer.",
+          ],
           titre: "A1 ne dit rien de la pression. Et le CO₂ travaille très haut.",
           texte: [
             "Le **R-744** ne brûle pas et n'est pas très toxique : d'où le **A1**.",
@@ -255,6 +280,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-nh3-1",
+          verifier: [
+            "**Ammoniac : B2L, plus léger que l'air, odeur perceptible bien avant le seuil de danger.** À confirmer.",
+          ],
           titre: "Toxique et inflammable — mais il prévient.",
           texte: [
             "Le **R-717** est le seul fluide courant classé **B** : sa toxicité est réelle, et à faible concentration.",
@@ -274,6 +302,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-a3-1",
+          verifier: [
+            "🔴 **« Un détecteur pour fluides fluorés ne voit pas le R-290. »** Affirmation forte — exacte pour tous les types de détecteurs ?",
+          ],
           titre: "Aucune source d'allumage. Aucune, pas « le moins possible ».",
           planche: "../fonds-origine/packs/fluides/res/svg/secu-flamme.svg",
           texte: [

@@ -101,7 +101,7 @@ function sonsEmbarques(id, genre) {
 /* ---------------------------------------------------------------------
    5. Assembler
    --------------------------------------------------------------------- */
-function page({ ids, bandeau, avecSon }) {
+function page({ ids, bandeau, avecSon, relecture }) {
   let blocSons = "";
   if (avecSon) {
     const r = sonsEmbarques(avecSon, "masculine");
@@ -128,7 +128,7 @@ ${lire("refonte/moteur/capsule.css")}
 <body>
 
 <div class="bandeau-relecture"><p>${bandeau.texte}</p></div>
-
+${relecture ? "<script>window.RELECTURE = true;<\\/script>".replace("<\\/", "</") : ""}
 <script>
 ${enLigne(lire("refonte/moteur/capsule.js"))}
 </script>
@@ -149,17 +149,20 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 
 const SORTIES = [
   {
-    nom: "DECOUPAGE-3-CAPSULES.html",
+    nom: "MAQUETTE-BETA.html",
     ids: Object.keys(CAPSULES),
     avecSon: null,
+    relecture: true,
     bandeau: {
-      titre: "Le découpage en capsules — 3 sujets à relire",
-      texte: "<b>Version de relecture du découpage — tout est dans ce seul fichier.</b> "
-        + "Choisissez un sujet. Chaque fil fait <b>6 écrans</b>, pas plus. À chaque notion voisine, "
-        + "l'encadré violet <b>« Voulez-vous en savoir plus ? »</b> ouvre un détour et vous ramène "
-        + "ensuite exactement où vous étiez. La barre d'avancement ne recule jamais quand vous êtes "
-        + "curieux. <b>Ici la voix est celle du navigateur</b> — mauvaise, c'est normal : ce fichier "
-        + "sert à juger le découpage. Pour entendre la vraie voix, ouvrez "
+      titre: "Maquette bêta — les capsules à relire",
+      texte: "<b>Maquette complète, tout est dans ce seul fichier.</b> "
+        + "Chaque fil fait <b>6 écrans</b>. À chaque notion voisine, l'encadré violet "
+        + "<b>« Voulez-vous en savoir plus ? »</b> ouvre un détour et vous ramène ensuite "
+        + "exactement où vous étiez. Les <b>encadrés rouges « À vérifier »</b> sont les points "
+        + "où l'auteur attend l'avis d'un professionnel ; en bas de chaque écran, quatre boutons "
+        + "recueillent le vôtre, et la barre du bas enregistre votre relevé. "
+        + "<b>La voix est ici celle du navigateur</b> — mauvaise, c'est normal, ce fichier est "
+        + "allégé pour le téléphone. La vraie voix est dans le dossier <b>BETA</b> et dans "
         + "<b>CAPSULE-AVEC-LA-VOIX.html</b>.",
     },
   },

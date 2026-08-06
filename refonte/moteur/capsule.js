@@ -86,6 +86,7 @@
   Lecteur.prototype.demarrer = function () {
     document.title = this.c.titre + " — inerWeb";
     this.brancherUneFois();
+    if (window.RELECTURE && !document.getElementById("barre-relecture")) barreRelecture();
     this.peindre();
   };
 
@@ -157,6 +158,8 @@
         : '<a class="retour" href="index.html">← Choisir un autre sujet</a>')
       + '<span class="sujet">' + esc(this.c.titre) + "</span>"
       + '<span class="spacer"></span>'
+      + (window.RELECTURE && e.verifier && e.verifier.length
+        ? '<span class="compte-verif">' + e.verifier.length + " à vérifier</span>" : "")
       + '<span class="niveau">' + esc(this.c.niveau || "découverte") + "</span>"
       + "</header>";
 
@@ -204,6 +207,17 @@
           + "</button>";
       });
       h += "</div></div>";
+    }
+
+    /* ---- MODE RELECTURE : ce que NOUS signalons, puis ce que le
+       relecteur nous dit. Les deux blocs n'existent que dans la bêta. ---- */
+    if (window.RELECTURE) {
+      if (e.verifier && e.verifier.length) {
+        h += '<div class="a-verifier"><div class="t">À vérifier</div><ul>'
+          + e.verifier.map(function (v) { return "<li>" + rendreLigne(v) + "</li>"; }).join("")
+          + "</ul></div>";
+      }
+      h += blocAvis(this.c.id + "/" + e.id);
     }
 
     /* Les codes du référentiel tenus par cet écran */
@@ -389,8 +403,47 @@
       var m = ev.target.closest(".mot");
       if (m) { montrerMot(m); return; }
 
+      /* Mode relecture : l'avis du relecteur sur l'écran courant. */
+      var av = ev.target.closest("[data-avis]");
+      if (av) {
+        var cle = av.closest(".avis").dataset.cle;
+        var deja = av.getAttribute("aria-pressed") === "true";
+        noterAvis(cle, "avis", deja ? "" : av.dataset.avis);
+        var freres = av.closest(".choix-relecture").querySelectorAll("[data-avis]");
+        for (var i = 0; i < freres.length; i++) {
+          freres[i].setAttribute("aria-pressed",
+            String(!deja && freres[i] === av));
+        }
+        return;
+      }
+
       var b = ev.target.closest("[data-agir]");
       if (!b) return;
+      if (b.dataset.agir === "releve") { montrerReleve(); return; }
+      if (b.dataset.agir === "sans-relecture" || b.dataset.agir === "avec-relecture") {
+        /* Va-et-vient entre le produit nu — ce que l'élève verra — et la
+           bêta annotée. Les avis déjà donnés restent : on ne perd rien en
+           basculant, et l'on peut basculer autant de fois qu'on veut. */
+        window.RELECTURE = b.dataset.agir === "avec-relecture";
+        var barre = document.getElementById("barre-relecture");
+        if (barre) barre.remove();
+        if (window.RELECTURE) {
+          barreRelecture();
+        } else {
+          var mini = document.createElement("div");
+          mini.className = "barre-relecture";
+          mini.id = "barre-relecture";
+          mini.innerHTML = "<span>Vous voyez le produit <b>tel que l'élève l'aura</b> — "
+            + "sans un mot du dispositif de relecture.</span>"
+            + '<span class="spacer"></span>'
+            + '<button type="button" data-agir="avec-relecture">↩ Revenir au mode relecture</button>';
+          document.body.appendChild(mini);
+          document.body.classList.add("avec-relecture");
+        }
+        if (window.__lecteur && window.__lecteur.fil) window.__lecteur.peindre(false);
+        else if (window.__retourAccueil) window.__retourAccueil();
+        return;
+      }
       if (b.dataset.agir === "accueil") {
         ev.preventDefault();
         self.taire();
@@ -418,6 +471,13 @@
           break;
         }
       }
+    });
+
+    /* La remarque écrite du relecteur, gardée à la frappe : personne ne
+       doit perdre trois lignes parce qu'il a cliqué « Continuer ». */
+    document.body.addEventListener("input", function (ev) {
+      if (!ev.target.classList.contains("note-avis")) return;
+      noterAvis(ev.target.closest(".avis").dataset.cle, "note", ev.target.value);
     });
 
     /* Onglet caché, page quittée : on se tait. Sinon une voix continue de
@@ -462,14 +522,18 @@
      ------------------------------------------------------------------- */
   function rendreTexte(texte, mots) {
     var lignes = Array.isArray(texte) ? texte : [texte];
-    return lignes.map(function (l) {
-      var s = esc(l).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (_, mot, exp) {
+    return lignes.map(function (l) { return "<p>" + rendreLigne(l, mots) + "</p>"; }).join("");
+  }
+
+  /* La même mise en forme, mais sans paragraphe autour : pour un élément
+     de liste, où un <p> casserait la puce. */
+  function rendreLigne(l, mots) {
+    return esc(l)
+      .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (_, mot, exp) {
         var e = exp || (mots && mots[mot]) || "";
         return '<button class="mot" type="button" data-explique="' + esc(e) + '">' + esc(mot) + "</button>";
-      });
-      s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-      return "<p>" + s + "</p>";
-    }).join("");
+      })
+      .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   }
 
   function textePlat(texte) {
@@ -493,6 +557,200 @@
   /* -------------------------------------------------------------------
      DÉMARRAGE
      ------------------------------------------------------------------- */
+  /* =====================================================================
+     MODE RELECTURE
+     ---------------------------------------------------------------------
+     Activé par `window.RELECTURE = true`, et par rien d'autre : le produit
+     normal ne porte pas une ligne de ce dispositif.
+
+     Dix relecteurs, dix postes, aucun serveur (rien ne sort d'ici). Chacun
+     annote sur sa machine, puis enregistre son relevé dans un fichier
+     texte qu'il renvoie. C'est rustique et c'est le seul moyen de ne
+     dépendre de rien.
+     ===================================================================== */
+  var CLE_RELECTURE = "capsule_relecture";
+
+  function lireAvis() {
+    try { return JSON.parse(localStorage.getItem(CLE_RELECTURE) || "{}"); }
+    catch (e) { return {}; }
+  }
+  function ecrireAvis(a) {
+    try { localStorage.setItem(CLE_RELECTURE, JSON.stringify(a)); } catch (e) {}
+  }
+
+  var LIBELLES = {
+    juste: "✔ Juste",
+    corriger: "✎ À corriger",
+    question: "？ Question",
+    sensible: "⚠ Sensible",
+  };
+
+  function blocAvis(cle) {
+    var tout = lireAvis();
+    var d = tout[cle] || {};
+    var h = '<div class="avis" data-cle="' + esc(cle) + '">'
+      + '<p class="q">Cet écran vous paraît-il juste ?</p>'
+      + '<div class="choix-relecture">';
+    for (var k in LIBELLES) {
+      h += '<button type="button" data-avis="' + k + '" aria-pressed="'
+        + (d.avis === k ? "true" : "false") + '">' + LIBELLES[k] + "</button>";
+    }
+    h += "</div>"
+      + '<textarea class="note-avis" placeholder="Ce qui est faux, ce qui manque, ce qu\'il faut dire autrement…"'
+      + ' aria-label="votre remarque sur cet écran">' + esc(d.note || "") + "</textarea>"
+      + '<p class="ou">Votre remarque est gardée sur <b>votre</b> machine. Rien ne part ailleurs. '
+      + "Le bouton <b>« Enregistrer mon relevé »</b>, en bas, produit le fichier à renvoyer.</p>"
+      + "</div>";
+    return h;
+  }
+
+  function noterAvis(cle, champ, valeur) {
+    var tout = lireAvis();
+    tout[cle] = tout[cle] || {};
+    tout[cle][champ] = valeur;
+    if (!tout[cle].avis && !tout[cle].note) delete tout[cle];
+    ecrireAvis(tout);
+    majBarreRelecture();
+  }
+
+  function comptesRelecture() {
+    var tout = lireAvis();
+    var c = { juste: 0, corriger: 0, question: 0, sensible: 0, notes: 0, total: 0 };
+    for (var k in tout) {
+      if (k.charAt(0) === "_") continue;
+      if (tout[k].avis) { c[tout[k].avis]++; c.total++; }
+      if (tout[k].note) c.notes++;
+    }
+    return c;
+  }
+
+  /* Combien d'écrans en tout, et combien portent un « À VÉRIFIER » ? On les
+     compte, on ne les déclare pas : un chiffre saisi à la main se périme. */
+  function inventaireEcrans() {
+    var n = 0, verif = 0;
+    for (var id in window.CAPSULES) {
+      var c = window.CAPSULES[id];
+      var tous = c.fil.slice();
+      for (var d in c.detours || {}) tous = tous.concat(c.detours[d].ecrans);
+      n += tous.length;
+      verif += tous.filter(function (e) { return e.verifier && e.verifier.length; }).length;
+    }
+    return { ecrans: n, aVerifier: verif };
+  }
+
+  function barreRelecture() {
+    var inv = inventaireEcrans();
+    var d = document.createElement("div");
+    d.className = "barre-relecture";
+    d.id = "barre-relecture";
+    d.innerHTML =
+      '<span id="compte-relecture"></span>'
+      + '<span class="spacer"></span>'
+      + '<span>' + inv.aVerifier + " écran" + (inv.aVerifier > 1 ? "s" : "")
+      + ' <b>à vérifier</b> sur ' + inv.ecrans + "</span>"
+      + '<button type="button" data-agir="releve">↧ Enregistrer mon relevé</button>'
+      + '<button type="button" class="fantome" data-agir="sans-relecture">Voir sans les annotations</button>';
+    document.body.appendChild(d);
+    document.body.classList.add("avec-relecture");
+    majBarreRelecture();
+  }
+
+  function majBarreRelecture() {
+    var z = document.getElementById("compte-relecture");
+    if (!z) return;
+    var c = comptesRelecture();
+    z.innerHTML = c.total === 0
+      ? "Aucun avis donné pour l'instant"
+      : "<b>" + c.total + "</b> avis · " + c.juste + " juste · " + c.corriger
+        + " à corriger · " + c.question + " question · " + c.sensible + " sensible";
+  }
+
+  function releveMarkdown() {
+    var tout = lireAvis();
+    var nom = tout.__nom || "";
+    var lignes = ["# Relevé de relecture — capsules inerWeb", ""];
+    if (nom) lignes.push("**Relecteur : " + nom + "**", "");
+    var c = comptesRelecture();
+    lignes.push("Avis donnés : **" + c.total + "** — " + c.juste + " juste · " + c.corriger
+      + " à corriger · " + c.question + " question · " + c.sensible + " sensible.", "");
+
+    for (var id in window.CAPSULES) {
+      var cap = window.CAPSULES[id];
+      var tous = cap.fil.map(function (e) { return { e: e, ou: "fil" }; });
+      for (var d in cap.detours || {}) {
+        (function (dd) {
+          cap.detours[dd].ecrans.forEach(function (e) {
+            tous.push({ e: e, ou: "détour « " + cap.detours[dd].question + " »" });
+          });
+        })(d);
+      }
+      var pris = tous.filter(function (x) { return tout[id + "/" + x.e.id]; });
+      if (!pris.length) continue;
+      lignes.push("## " + cap.titre, "");
+      pris.forEach(function (x) {
+        var a = tout[id + "/" + x.e.id];
+        lignes.push("### " + (LIBELLES[a.avis] || "(sans avis)") + " — " + x.e.titre);
+        lignes.push("*" + x.ou + " · `" + id + "/" + x.e.id + "`*");
+        if (x.e.verifier && x.e.verifier.length) {
+          lignes.push("", "Points signalés par l'auteur :");
+          x.e.verifier.forEach(function (v) { lignes.push("- " + v.replace(/\*\*/g, "")); });
+        }
+        if (a.note) lignes.push("", "> " + a.note.split("\n").join("\n> "));
+        lignes.push("");
+      });
+    }
+    if (c.total === 0) lignes.push("_Aucun avis n'a encore été donné._");
+    return lignes.join("\n");
+  }
+
+  function montrerReleve() {
+    var tout = lireAvis();
+    var fond = document.createElement("div");
+    fond.className = "releve-fond";
+    fond.innerHTML = '<div class="releve">'
+      + "<h2>Votre relevé de relecture</h2>"
+      + '<p>Mettez votre nom, puis enregistrez le fichier et renvoyez-le. '
+      + "Vous pouvez aussi tout sélectionner et le coller dans un message.</p>"
+      + '<p><input type="text" id="nom-relecteur" placeholder="votre nom" '
+      + 'style="font:inherit;padding:8px 12px;border:2px solid #d6dee7;border-radius:8px;width:260px" '
+      + 'value="' + esc(tout.__nom || "") + '"></p>'
+      + '<textarea id="texte-releve" readonly></textarea>'
+      + '<div class="actions-releve">'
+      + '<button type="button" data-agir="telecharger">↧ Enregistrer le fichier</button>'
+      + '<button type="button" class="second" data-agir="copier">Tout sélectionner</button>'
+      + '<button type="button" class="second" data-agir="fermer-releve">Fermer</button>'
+      + "</div></div>";
+    document.body.appendChild(fond);
+
+    var zone = fond.querySelector("#texte-releve");
+    var champNom = fond.querySelector("#nom-relecteur");
+    var refaire = function () { zone.value = releveMarkdown(); };
+    refaire();
+
+    champNom.addEventListener("input", function () {
+      var t = lireAvis();
+      t.__nom = champNom.value;
+      ecrireAvis(t);
+      refaire();
+    });
+
+    fond.addEventListener("click", function (ev) {
+      var b = ev.target.closest("[data-agir]");
+      if (!b) { if (ev.target === fond) fond.remove(); return; }
+      if (b.dataset.agir === "fermer-releve") fond.remove();
+      if (b.dataset.agir === "copier") { zone.select(); }
+      if (b.dataset.agir === "telecharger") {
+        var t = lireAvis();
+        var qui = (t.__nom || "relecteur").replace(/[^\w\- ]+/g, "").replace(/\s+/g, "-");
+        var lien = document.createElement("a");
+        lien.href = URL.createObjectURL(new Blob([zone.value], { type: "text/markdown;charset=utf-8" }));
+        lien.download = "relecture-" + qui + ".md";
+        lien.click();
+        URL.revokeObjectURL(lien.href);
+      }
+    });
+  }
+
   /* -------------------------------------------------------------------
      L'ACCUEIL, DANS LE MÊME MOTEUR
      « Qu'est-ce que je veux réviser ? » n'a pas besoin d'être une page à
@@ -500,7 +758,18 @@
      d'un sujet à l'autre — et évite d'écrire deux fois la même liste.
      ------------------------------------------------------------------- */
   function peindreAccueil(racine) {
-    var ids = Object.keys(window.CAPSULES);
+    /* Ordre PÉDAGOGIQUE, déclaré par chaque capsule. Sans lui, la liste
+       sort dans l'ordre alphabétique des fichiers et l'on propose les
+       classes de sécurité avant d'avoir montré un circuit. */
+    var ids = Object.keys(window.CAPSULES).sort(function (a, b) {
+      var oa = window.CAPSULES[a].ordre, ob = window.CAPSULES[b].ordre;
+      if (oa == null && ob == null) return a.localeCompare(b, "fr");
+      if (oa == null) return 1;
+      if (ob == null) return -1;
+      return oa - ob;
+    });
+
+    if (window.RELECTURE && !document.getElementById("barre-relecture")) barreRelecture();
     var h = '<header class="accueil-tete"><h1>Qu\'est-ce que je veux réviser ?</h1>'
       + "<p>Un sujet, <b>un seul</b>. Cinq à sept écrans, pas davantage. Et à chaque fois "
       + "qu'une notion voisine apparaît, on vous propose d'en <b>savoir plus</b> — vous ouvrez "

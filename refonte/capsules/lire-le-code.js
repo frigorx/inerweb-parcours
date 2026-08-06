@@ -24,6 +24,7 @@
    ===================================================================== */
 CAPSULE({
   id: "lire-le-code",
+  ordre: 2,
   titre: "Lire le code d'un fluide",
   question: "R-22, R-134a, R-404A : que veulent dire ces chiffres ?",
   niveau: "découverte",
@@ -64,6 +65,9 @@ CAPSULE({
 
     {
       id: "03-la-regle",
+      verifier: [
+        "La règle **+1 sur la première case, −1 sur la deuxième, la troisième telle quelle**. Formulation à valider : est-ce ainsi que vous l'enseignez ?",
+      ],
       titre: "La règle : plus un, moins un, tel quel.",
       texte: [
         "Les chiffres ne comptent pas directement les atomes. Il y a un décalage, et il faut le connaître.",
@@ -91,6 +95,9 @@ CAPSULE({
 
     {
       id: "05-verif-r134a",
+      verifier: [
+        "**R-134a = 2 carbones, 2 hydrogènes, 4 fluors, aucun chlore.** À confirmer.",
+      ],
       titre: "On vérifie : R-134a.",
       texte: [
         "Trois chiffres déjà là : **1 · 3 · 4**.",
@@ -179,6 +186,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-chlore-1",
+          verifier: [
+            "Le chlore **déduit des places restantes** sur les carbones. La méthode par comptage de places vous paraît-elle plus claire que la formule ?",
+          ],
           titre: "Le chlore ne se lit pas : il se déduit.",
           texte: [
             "Aucune case ne donne le chlore. Il occupe simplement **les places qui restent**.",
@@ -219,6 +229,10 @@ CAPSULE({
         },
         {
           id: "d-lettre-2",
+          verifier: [
+            "**L'isomère le plus équilibré ne porte pas de lettre**, les suivants prennent a puis b. Règle exacte à confirmer.",
+            "**« Deux isomères n'ont pas les mêmes pressions ni les mêmes températures »** — formulation à valider.",
+          ],
           titre: "La lettre marque le déséquilibre.",
           texte: [
             "Le plus **équilibré** ne porte pas de lettre : c'est R-134.",
@@ -237,6 +251,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-melange-1",
+          verifier: [
+            "**Le R-404A contient trois fluides.** À confirmer, ainsi que l'idée que la majuscule finale désigne une variante de proportions.",
+          ],
           titre: "Parce qu'il n'y a pas une molécule, mais plusieurs.",
           texte: [
             "Dans une bouteille de R-404A, il y a **trois** fluides différents mélangés.",
@@ -266,6 +283,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-glide-1",
+          verifier: [
+            "🔴 **POINT CENTRAL — surchauffe lue sur la ROSÉE, sous-refroidissement sur la BULLE.** C'est l'affirmation la plus lourde de conséquence de toute la capsule.",
+          ],
           titre: "La température n'est plus un point. C'est une plage.",
           texte: [
             "Avec un corps pur, une pression donne **une** température. Avec un zéotrope, elle en donne **deux** : au début et à la fin du changement d'état.",
@@ -277,6 +297,10 @@ CAPSULE({
         },
         {
           id: "d-glide-2",
+          verifier: [
+            "🔴 **« Un mélange zéotrope se charge en phase liquide »** — donné ici comme règle absolue.",
+            "**« Même après une fuite, on ne complète pas : on récupère et on recharge. »** Est-ce la règle que vous appliquez, ou tolérez-vous l'appoint dans certains cas ?",
+          ],
           titre: "Et surtout : on charge en phase liquide.",
           texte: [
             "Si vous chargez un zéotrope **en phase vapeur**, vous ne prenez pas le mélange : vous prenez surtout le composant le plus volatil.",
@@ -294,6 +318,9 @@ CAPSULE({
       ecrans: [
         {
           id: "d-familles-1",
+          verifier: [
+            "Les quatre familles et leur statut réglementaire (**HCFC interdits, HFC en réduction programmée**). Formulation à valider.",
+          ],
           titre: "Quatre familles, et une histoire d'interdictions.",
           planche: "../fonds-origine/packs/fluides/res/svg/familles-fluides.svg",
           texte: [
