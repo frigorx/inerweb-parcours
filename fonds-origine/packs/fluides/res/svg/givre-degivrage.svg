@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+     aria-label="Animation en cycle. Un évaporateur à ailettes vu de face, avec son ventilateur, son bac de condensats et son écoulement. L'air traverse d'abord la batterie régulièrement. Puis le givre s'épaissit sur les ailettes : les flèches d'air ralentissent et se raréfient, l'échange chute, la température ne descend plus, la surchauffe se dérègle. Le dégivrage fait ensuite fondre le givre, l'eau tombe au bac et part à l'écoulement, l'air repart normalement. Un écoulement bouché refait du givre.">
+  <title>Le givre étouffe l'échange — le dégivrage le libère</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .fin { fill:none; stroke:#7fa9c9; stroke-width:1.6; }
+    .air { fill:none; stroke:#7fa9c9; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .arf { fill:none; stroke:#8aa0b4; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .fx  { animation: defile 1.15s linear infinite; }
+    .fxl { animation: defile 3.6s linear infinite; }
+    .gt  { animation: chute 1.3s linear infinite; }
+    @keyframes defile { 0% { transform:translateX(0); opacity:0 } 15% { opacity:1 }
+                        78% { opacity:1 } 100% { transform:translateX(68px); opacity:0 } }
+    @keyframes chute  { 0% { transform:translateY(0); opacity:0 } 25% { opacity:1 }
+                        100% { transform:translateY(16px); opacity:0 } }
+    /* Les éléments animés PORTENT le contenu : on ne peut pas les masquer à
+       l'impression. On neutralise donc les animations elles-mêmes, et les
+       valeurs de base — réglées sur l'état ENSEIGNÉ : batterie givrée, air
+       ralenti, échange effondré — laissent une image juste et immobile.
+       Conditionné à `print`, JAMAIS à `prefers-reduced-motion` : cette
+       condition-là supprimait la démonstration à l'écran sur toute machine aux
+       effets d'animation Windows désactivés. */
+    @media print { animate, animateTransform { display: none; }
+                   .fx, .fxl, .gt { animation: none; } }
+  </style>
+
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Le givre sur l'évaporateur : l'échange s'étouffe, le dégivrage le libère</text>
+
+  <!-- ================= L'ÉVAPORATEUR ================= -->
+  <g transform="translate(30,52)">
+    <rect x="0" y="0" width="580" height="300" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="18" y="26">Évaporateur à ailettes, vu de face</text>
+
+    <!-- batterie : cadre, ailettes, tubes -->
+    <rect class="p" x="118" y="52" width="200" height="140" fill="#ffffff"/>
+    <path class="fin" d="M126,58 V186 M138,58 V186 M150,58 V186 M162,58 V186 M174,58 V186 M186,58 V186 M198,58 V186 M210,58 V186 M222,58 V186 M234,58 V186 M246,58 V186 M258,58 V186 M270,58 V186 M282,58 V186 M294,58 V186 M306,58 V186"/>
+    <path class="p" d="M130,76 H294 a23,23 0 0 1 0,46 H142 a23,23 0 0 0 0,46 H294"/>
+
+    <!-- LA COUCHE DE GIVRE. Valeur de base = givre installé, jamais batterie
+         propre : sans animation, une batterie propre ferait croire à une
+         installation saine. -->
+    <rect x="118" y="52" width="168" height="140" fill="#e8eef4" stroke="#7fa9c9" stroke-width="1.5" opacity="0.95">
+      <animate attributeName="width" values="6;6;168;168;6;6"
+               keyTimes="0;0.25;0.4167;0.70;0.8333;1" dur="12s" repeatCount="indefinite"/>
+    </rect>
+    <text class="st" x="196" y="106" text-anchor="middle" opacity="1" style="font-size:16px">
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;0.30;0.40;0.70;0.78;1" dur="12s" repeatCount="indefinite"/>
+      GIVRE
+    </text>
+
+    <!-- ventilateur : il tourne en permanence, même quand l'air ne passe plus -->
+    <g transform="translate(400,122)">
+      <circle class="p" cx="0" cy="0" r="42" fill="#ffffff"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360"
+                          dur="2.6s" repeatCount="indefinite"/>
+        <ellipse cx="0" cy="-19" rx="7.5" ry="16" fill="#7fa9c9"/>
+        <ellipse cx="0" cy="-19" rx="7.5" ry="16" fill="#7fa9c9" transform="rotate(120)"/>
+        <ellipse cx="0" cy="-19" rx="7.5" ry="16" fill="#7fa9c9" transform="rotate(240)"/>
+        <circle cx="0" cy="0" r="7" fill="#1b3a63"/>
+      </g>
+    </g>
+    <text class="lg" x="400" y="182" text-anchor="middle">ventilateur</text>
+
+    <!-- AIR RAPIDE : batterie propre, l'air traverse -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="1;1;0;0;0;1;1"
+               keyTimes="0;0.25;0.34;0.70;0.80;0.875;1" dur="12s" repeatCount="indefinite"/>
+      <path class="air fx" d="M30,88 h18 m-7,-6 l7,6 -7,6"/>
+      <path class="air fx" style="animation-delay:.2s" d="M30,122 h18 m-7,-6 l7,6 -7,6"/>
+      <path class="air fx" style="animation-delay:.4s" d="M30,156 h18 m-7,-6 l7,6 -7,6"/>
+      <path class="air fx" style="animation-delay:.1s" d="M452,88 h18 m-7,-6 l7,6 -7,6"/>
+      <path class="air fx" style="animation-delay:.3s" d="M452,122 h18 m-7,-6 l7,6 -7,6"/>
+      <path class="air fx" style="animation-delay:.5s" d="M452,156 h18 m-7,-6 l7,6 -7,6"/>
+    </g>
+
+    <!-- AIR RALENTI : le givre a bouché le passage -->
+    <g opacity="1">
+      <animate attributeName="opacity" values="0;0;1;1;0;0;0"
+               keyTimes="0;0.30;0.40;0.72;0.80;0.875;1" dur="12s" repeatCount="indefinite"/>
+      <path class="arf fxl" d="M34,122 h12 m-5,-5 l5,5 -5,5"/>
+      <path class="arf fxl" style="animation-delay:1.8s" d="M456,122 h12 m-5,-5 l5,5 -5,5"/>
+    </g>
+
+    <text class="lg" x="30" y="68">air du local</text>
+    <text class="lg" x="452" y="68">air soufflé</text>
+
+    <!-- bac de condensats et écoulement -->
+    <path class="p" d="M96,204 v14 h248 v-14"/>
+    <text class="lg" x="100" y="240">bac de condensats</text>
+    <path class="p" d="M344,218 h16 v20 a13,13 0 0 0 26,0 v-16 h50"/>
+    <text class="lg" x="396" y="206">écoulement</text>
+
+    <!-- L'EAU DE DÉGIVRAGE : elle tombe au bac, puis part au siphon -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;0.69;0.72;0.82;0.855;1" dur="12s" repeatCount="indefinite"/>
+      <ellipse class="gt" cx="150" cy="196" rx="3.4" ry="5" fill="#7fa9c9"/>
+      <ellipse class="gt" style="animation-delay:.32s" cx="196" cy="196" rx="3.4" ry="5" fill="#7fa9c9"/>
+      <ellipse class="gt" style="animation-delay:.64s" cx="242" cy="196" rx="3.4" ry="5" fill="#7fa9c9"/>
+      <ellipse class="gt" style="animation-delay:.16s" cx="288" cy="196" rx="3.4" ry="5" fill="#7fa9c9"/>
+      <ellipse class="gt" style="animation-delay:.5s" cx="360" cy="222" rx="3.4" ry="5" fill="#7fa9c9"/>
+      <path class="air" d="M398,222 h22 m-8,-6 l8,6 -8,6"/>
+    </g>
+
+    <text class="bad" x="352" y="270">Écoulement bouché :</text>
+    <text class="lg" x="352" y="288">le givre revient.</text>
+
+    <!-- légende de phase : trois textes, un seul visible à la fois -->
+    <text class="st" x="18" y="288" opacity="0" style="font-size:16px">
+      <animate attributeName="opacity" values="1;1;0;0;1;1"
+               keyTimes="0;0.25;0.30;0.82;0.875;1" dur="12s" repeatCount="indefinite"/>
+      l'air traverse : l'échange se fait
+    </text>
+    <text class="bad" x="18" y="288" opacity="1" style="font-size:16px">
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;0.28;0.36;0.70;0.74;1" dur="12s" repeatCount="indefinite"/>
+      le givre s'installe : l'air ne passe plus
+    </text>
+    <text class="st" x="18" y="288" opacity="0" style="font-size:16px;fill:#ff6b35">
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;0.70;0.73;0.83;0.86;1" dur="12s" repeatCount="indefinite"/>
+      dégivrage : le givre fond, l'eau part au bac
+    </text>
+  </g>
+
+  <!-- ================= CE QUE ÇA CHANGE ================= -->
+  <g transform="translate(630,52)">
+    <rect x="0" y="0" width="240" height="300" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="18" y="30">Ce que le givre provoque</text>
+
+    <!-- échelle sans graduation chiffrée : on montre un sens, pas une valeur -->
+    <rect x="22" y="56" width="42" height="170" rx="4" fill="#ffffff" stroke="#c9d4de" stroke-width="1.5"/>
+    <rect x="26" y="170" width="34" height="52" fill="#7fa9c9">
+      <animate attributeName="y" values="60;60;170;170;60;60"
+               keyTimes="0;0.27;0.44;0.72;0.82;1" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="162;162;52;52;162;162"
+               keyTimes="0;0.27;0.44;0.72;0.82;1" dur="12s" repeatCount="indefinite"/>
+    </rect>
+    <text class="st" x="43" y="248" text-anchor="middle" style="font-size:12.5px">échange</text>
+
+    <g opacity="1">
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;0.36;0.46;0.72;0.80;1" dur="12s" repeatCount="indefinite"/>
+      <circle cx="72" cy="83" r="4" fill="#c9451a"/>
+      <text class="bad" x="84" y="88">L'échange chute</text>
+      <circle cx="72" cy="117" r="4" fill="#c9451a"/>
+      <text class="lg" x="84" y="122">La température ne</text>
+      <text class="lg" x="84" y="140">descend plus</text>
+      <circle cx="72" cy="171" r="4" fill="#c9451a"/>
+      <text class="lg" x="84" y="176">La surchauffe se</text>
+      <text class="lg" x="84" y="194">dérègle</text>
+    </g>
+
+    <line x1="18" y1="262" x2="222" y2="262" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="18" y="286" style="fill:#c9451a">Le givre isole la batterie.</text>
+  </g>
+
+  <!-- ================= CE QUI SE VÉRIFIE ================= -->
+  <g>
+    <rect x="30" y="372" width="840" height="78" rx="8" fill="#eef7f1" stroke="#a8ccb4" stroke-width="1.5"/>
+    <text class="st" x="52" y="416">Ce qui se vérifie</text>
+    <circle cx="186" cy="397" r="4" fill="#1b3a63"/>
+    <text class="lg" x="200" y="402">l'état des ailettes : propres, non écrasées</text>
+    <circle cx="186" cy="425" r="4" fill="#1b3a63"/>
+    <text class="lg" x="200" y="430">l'écoulement libre : bac, siphon, tuyau</text>
+    <circle cx="534" cy="397" r="4" fill="#1b3a63"/>
+    <text class="lg" x="548" y="402">le sens et le débit d'air : ventilateur, filtre</text>
+    <circle cx="534" cy="425" r="4" fill="#1b3a63"/>
+    <text class="lg" x="548" y="430">fin de dégivrage : selon la fiche constructeur</text>
+  </g>
+</svg>

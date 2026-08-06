@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Découverte interactive et racontée de la relation pression-température, de l’ébullition sous vide au glissement des fluides zéotropes.">
+  <title>La pression choisit la température | Habilitation Fluide</title>
+  <link rel="stylesheet" href="../chaleur-interactive/styles.css?v=20260731-sujet3">
+  <link rel="stylesheet" href="styles.css?v=20260731-sujet3">
+</head>
+<body>
+<main class="experience pressure-experience" id="experience">
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#module">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span><strong>Habilitation Fluide</strong><small>Pression & température</small></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="pill" id="voice-toggle" type="button" aria-pressed="true">🔊 Voix active</button>
+      <button class="pill" id="refs-toggle" type="button" aria-expanded="false">Repères</button>
+    </div>
+  </header>
+
+  <section class="hero pressure-hero" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p class="eyebrow">SUJET 3 · PRESSION, SATURATION ET GLISSEMENT</p>
+      <h1 id="page-title">Faire bouillir de l’eau sans feu.<br><span>Et si la pression choisissait la température&nbsp;?</span></h1>
+      <p>Dans le chapitre précédent, la chaleur latente dessinait un palier. Ici, vous allez découvrir ce qui règle sa hauteur&nbsp;: la pression. Une cloche à vide nous conduira jusqu’à l’évaporateur, au condenseur, aux tables de saturation et aux fluides zéotropes.</p>
+      <a class="chapter-back" href="../chaleur-circuit-interactif/index.html">← Revoir le tome 2 · transferts de chaleur</a>
+      <button class="start" id="start" type="button">Entrer sous la cloche <span aria-hidden="true">▶</span></button>
+      <small class="duration">13 étapes racontées · environ 18 minutes · manipulations, grandes courbes et défi final</small>
+      <div class="learning-goals" aria-label="À la fin de cette découverte">
+        <span><b>1</b> Relier pression et température de saturation</span>
+        <span><b>2</b> Expliquer les deux côtés du circuit</span>
+        <span><b>3</b> Distinguer bulle, rosée et glissement</span>
+      </div>
+    </div>
+    <div class="pressure-hero-art" aria-hidden="true">
+      <div class="hero-gauge"><i></i><b>vide</b></div>
+      <div class="hero-bell">
+        <div class="hero-water"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="hero-pump"><i></i><span></span></div>
+      <div class="vacuum-lines"><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="module-shell" id="module" aria-label="Cours interactif sur la relation pression-température">
+    <nav class="stepper" id="stepper" aria-label="Progression du module"></nav>
+
+    <article class="lesson-card" aria-live="polite">
+      <div class="lesson-top">
+        <div>
+          <p class="eyebrow" id="kicker"></p>
+          <h2 id="title"></h2>
+        </div>
+        <div class="voice-controls">
+          <button class="exit-course" id="exit-course" type="button" aria-label="Quitter le mode plein écran">Quitter</button>
+          <label class="voice-choice-control">
+            <span>Voix</span>
+            <select id="voice-choice" aria-label="Choisir la voix française">
+              <option value="">Voix française automatique</option>
+            </select>
+          </label>
+          <div class="speed" aria-label="Vitesse de lecture">
+            <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+            <span id="speed-value">0,95×</span>
+            <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+          </div>
+          <button class="listen" id="listen" type="button"><span aria-hidden="true">▶</span><b> Écouter</b></button>
+        </div>
+      </div>
+
+      <p class="lesson-text" id="lesson-text"></p>
+      <section class="interactive-zone pressure-zone" id="zone"></section>
+
+      <div class="lesson-footer">
+        <button class="nav subtle" id="prev" type="button">← Retour</button>
+        <span id="status"></span>
+        <button class="nav" id="next" type="button">Continuer →</button>
+      </div>
+      <p class="speech-warning" id="speech-warning" role="status" hidden>La voix de synthèse n’est pas disponible dans ce navigateur. Tous les textes restent accessibles à l’écran.</p>
+    </article>
+  </section>
+
+  <section class="final-message">
+    <p>À RETENIR</p>
+    <h2>La pression ne fabrique pas le froid.<br><span>Elle choisit la température du changement d’état.</span></h2>
+    <div class="pillars pressure-pillars" aria-label="Résumé">
+      <span>Pression plus basse</span><i>→</i><strong>saturation plus basse</strong>
+      <span>Pression plus haute</span><i>→</i><strong>saturation plus haute</strong>
+    </div>
+    <div class="next-brick">
+      <small>BRIQUE SUIVANTE</small>
+      <strong>Mesurer la surchauffe et le sous-refroidissement</strong>
+      <span>La pression donne la température de saturation. La sonde donne la température réelle. Le sujet 4 réunit ces deux mesures pour calculer les écarts en kelvins.</span>
+      <a class="next-tool" href="../surchauffe-sous-refroidissement-interactif/index.html">Continuer vers le sujet 4 →</a>
+    </div>
+  </section>
+
+  <aside class="refs" id="refs" hidden>
+    <p class="eyebrow">REPÈRES SCIENTIFIQUES ET MÉTIER</p>
+    <h2>Le modèle utilisé dans cette expérience</h2>
+    <ul>
+      <li>Les valeurs de saturation de l’eau sont arrondies à partir de la formulation de référence IAPWS. Elles servent à comprendre la forme de la relation, pas à étalonner un appareil.</li>
+      <li>Un liquide bout quand sa pression de vapeur atteint la pression qui s’exerce sur lui. Réduire cette pression abaisse donc sa température d’ébullition.</li>
+      <li>Sans chauffage extérieur, une vaporisation reste consommatrice d’énergie : l’eau fournit elle-même une partie de la chaleur latente et se refroidit.</li>
+      <li>Pour un fluide pur, à une pression donnée, évaporation et condensation se produisent à la même température de saturation.</li>
+      <li>Pour un mélange zéotrope, la pression peut rester constante alors que la température change pendant la transformation : c’est le glissement.</li>
+      <li>En vaporisation : première bulle au point de bulle, dernière goutte au point de rosée. En condensation, on parcourt ces limites en sens inverse.</li>
+      <li>La surchauffe se calcule avec la température de rosée ; le sous-refroidissement avec la température de bulle.</li>
+      <li>Le manomètre de service indique généralement une pression relative. Les tables peuvent demander une pression absolue : toujours vérifier l’unité et la référence du document utilisé.</li>
+    </ul>
+    <p class="source-links">
+      Sources :
+      <a href="https://iapws.org/documents/release/Supp-sat" target="_blank" rel="noreferrer">IAPWS · saturation de l’eau</a>,
+      <a href="https://www.chemours.com/en/-/media/files/freon/temperature-glide-freon-mp-hp-407c-refrigerant-blends.pdf" target="_blank" rel="noreferrer">Chemours · temperature glide</a>,
+      <a href="https://www.danfoss.com/en/service-and-support/downloads/dcs/ref-tools/" target="_blank" rel="noreferrer">Danfoss · Ref Tools</a>.
+    </p>
+  </aside>
+
+  <footer>
+    <span>Habilitation Fluide · Auto-formation interactive</span>
+    <button id="restart" type="button">Recommencer</button>
+  </footer>
+</main>
+<script src="../outils/fluides-data.js"></script>
+<script src="app.js?v=20260731-sujet3"></script>
+</body>
+</html>

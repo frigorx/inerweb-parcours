@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+     aria-label="Animation du double accident en espace clos. Dans un local dont la porte est restée fermée, le gaz remplit le volume par le bas et la nappe monte au-dessus du bas de l'escalier. Un technicien descend, ne sent rien, et perd connaissance dans la nappe. Un collègue le voit au sol, descend le secourir sans protection, et s'effondre à son tour : deux victimes au lieu d'une. La règle : devant une personne au sol, on alerte, on ventile, on fait venir les secours, et on ne descend pas. Avant d'entrer : ventiler, mesurer l'air, jamais seul.">
+  <title>Espace clos : pourquoi il y a deux victimes</title>
+  <style>
+    .h  { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg { font:400 15px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .al { font:700 17px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .v  { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    /* Le dessin AU REPOS est déjà l'image finale : nappe haute, deux personnes au
+       sol, règle affichée. L'animation ne fait que RACONTER comment on y arrive.
+       À L'IMPRESSION, où rien ne s'anime, on retire les éléments mobiles et il
+       reste l'image finale, exacte et lisible.
+       Cette règle était autrefois conditionnée à `prefers-reduced-motion`, et
+       c'était une faute : sur une machine où les effets d'animation de Windows
+       sont désactivés (cas courant, et cas de la machine de F. Henninot), le
+       navigateur annonce « moins d'animations » et la planche se figeait — le
+       lecteur voyait deux personnes au sol sans jamais voir pourquoi. Ici
+       l'animation N'EST PAS décorative : elle porte la démonstration, donc elle
+       joue toujours à l'écran. */
+    @media print {
+      .mobile { display: none; }
+      .final  { opacity: 1 !important; }
+    }
+  </style>
+
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text class="h" x="30" y="34">Pourquoi ces accidents font presque toujours deux victimes</text>
+
+  <!-- ===================== LE LOCAL ===================== -->
+  <path class="p" d="M140,90 h660 v290"/>
+  <line class="p" x1="120" y1="380" x2="820" y2="380"/>
+  <rect x="106" y="118" width="34" height="74" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.4"/>
+  <circle cx="114" cy="156" r="3" fill="#1b3a63"/>
+  <text class="lg" x="54" y="112">entrée</text>
+  <path class="p" d="M140,192 h44 v38 h44 v38 h44 v38 h44 v38 h44 v36"/>
+
+  <!-- ===================== LA NAPPE ===================== -->
+  <!-- valeurs de base = état FINAL ; l'animation part du sol et monte jusqu'à elles -->
+  <rect x="142" y="250" width="656" height="130" fill="#7fa9c9" opacity="0.8">
+    <animate attributeName="y" values="374;250" dur="5s" begin="0.4s" fill="freeze"/>
+    <animate attributeName="height" values="6;130" dur="5s" begin="0.4s" fill="freeze"/>
+  </rect>
+  <line x1="142" y1="250" x2="798" y2="250" stroke="#3f7fae" stroke-width="2.5">
+    <animate attributeName="y1" values="374;250" dur="5s" begin="0.4s" fill="freeze"/>
+    <animate attributeName="y2" values="374;250" dur="5s" begin="0.4s" fill="freeze"/>
+  </line>
+  <text class="lg" x="470" y="322">le gaz remplit par le bas — invisible, inodore</text>
+
+  <!-- ============ VICTIME 1 : elle descend (élément mobile) ============
+       UNE SEULE animation par attribut. Deux <animate fill="freeze"> sur le
+       même « opacity » se superposent, et le navigateur peut garder la
+       PREMIÈRE : le personnage ne disparaissait alors jamais, et restait
+       debout au milieu des deux victimes au sol. Corrigé le 27/07 après
+       constat de F. Henninot (« je vois 2 cadavres avec le gars qui monte »). -->
+  <g class="mobile" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.099;0.914;1"
+             dur="4.05s" begin="5.4s" fill="freeze"/>
+    <g transform="translate(126,192)">
+      <animateTransform attributeName="transform" type="translate"
+        values="126,192; 170,230; 214,268; 258,306; 302,344; 330,380"
+        keyTimes="0;0.2;0.4;0.6;0.8;1" dur="3.4s" begin="5.6s" fill="freeze"/>
+      <circle class="v" cx="0" cy="-58" r="15"/>
+      <path class="v" d="M0,-43 v30 M0,-34 l-17,11 M0,-34 l17,11 M0,-13 l-12,13 M0,-13 l12,13"/>
+    </g>
+  </g>
+
+  <!-- ============ VICTIME 1 : au sol (état final) ============ -->
+  <g class="final" opacity="0" transform="translate(330,374)">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="9.3s" fill="freeze"/>
+    <circle class="v" cx="0" cy="-14" r="15"/>
+    <path class="v" d="M15,-10 h56 M26,-18 l14,-14 M50,-4 l16,10"/>
+  </g>
+
+  <!-- il ne sent rien -->
+  <g class="mobile" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.8;1" dur="3s" begin="7.2s" fill="remove"/>
+    <text class="al" x="404" y="286">il ne sent rien</text>
+  </g>
+
+  <!-- ============ VICTIME 2 : le sauveteur descend ============ -->
+  <g class="mobile" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.116;0.899;1"
+             dur="3.45s" begin="11.6s" fill="freeze"/>
+    <g transform="translate(126,192)">
+      <animateTransform attributeName="transform" type="translate"
+        values="126,192; 170,230; 214,268; 250,306; 240,344; 232,380"
+        keyTimes="0;0.2;0.4;0.6;0.8;1" dur="2.8s" begin="11.8s" fill="freeze"/>
+      <circle class="v" cx="0" cy="-58" r="15"/>
+      <path class="v" d="M0,-43 v30 M0,-34 l-17,11 M0,-34 l17,11 M0,-13 l-12,13 M0,-13 l12,13"/>
+    </g>
+  </g>
+
+  <!-- ============ VICTIME 2 : au sol (état final) ============ -->
+  <g class="final" opacity="0" transform="translate(232,374)">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="14.9s" fill="freeze"/>
+    <circle class="v" cx="0" cy="-14" r="15"/>
+    <path class="v" d="M-15,-10 h-52 M-26,-18 l-14,-14 M-48,-4 l-16,10"/>
+  </g>
+
+  <!-- il descend le chercher -->
+  <g class="mobile" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.75;1" dur="2.6s" begin="11.9s" fill="remove"/>
+    <text class="al" x="404" y="228">il descend le chercher</text>
+    <text class="lg" x="404" y="252">sans protection, sans ventiler</text>
+  </g>
+
+  <!-- ===================== LE COMPTEUR ===================== -->
+  <text class="al mobile" x="648" y="196" opacity="0" style="font-size:21px">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.088;0.947;1"
+             dur="5.7s" begin="10.2s" fill="freeze"/>
+    1 victime
+  </text>
+  <text class="al final" x="648" y="196" opacity="0" style="font-size:25px">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="15.9s" fill="freeze"/>
+    2 victimes
+  </text>
+
+  <!-- ===================== LA RÈGLE ===================== -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.9s" begin="16.3s" fill="freeze"/>
+    <rect x="30" y="406" width="840" height="52" rx="9" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="2"/>
+    <text class="al" x="50" y="428">Devant une personne au sol :</text>
+    <text class="lg" x="278" y="428">on alerte, on ventile, on fait venir les secours.</text>
+    <text class="al" x="50" y="450" style="font-size:19px">ON NE DESCEND PAS.</text>
+    <text class="lg" x="278" y="450">Avant d'entrer : ventiler, mesurer l'air, jamais seul.</text>
+  </g>
+</svg>

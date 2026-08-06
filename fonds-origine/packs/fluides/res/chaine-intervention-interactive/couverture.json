@@ -1,0 +1,14 @@
+{
+  "cours": "chaine-intervention-interactive",
+  "titre": "La chaîne de l’intervention — manifold, vide et ordre des vannes",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "ecrans": 25,
+  "codes": {
+    "3.03": ["pompe-role", "montage-vide", "controle-vide", "isoler-avant-arret", "controle-isoler"],
+    "3.04": ["but-vide", "courbes-vide", "controle-vide", "isoler-avant-arret", "controle-isoler"],
+    "4.05": ["lire-manifold", "lecture-continue", "controle-manifold"],
+    "5.01": ["vannes-fermees", "raccorder-bp-hp", "flexible-central", "chasser-air", "controle-raccordement", "fermer-stabiliser", "residu-flexible", "controle-deconnexion", "chaine-complete"],
+    "5.02": ["cylindre-phases", "controle-deconnexion"]
+  },
+  "hors_referentiel": ["trois-gestes", "consigner-avant", "mauvais-ordre", "deux-reperes", "bilan"]
+}

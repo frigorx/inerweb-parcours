@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14.0 -301.0 140 310" overflow="visible"><line x1="65" y1="-224" x2="55" y2="-214" stroke="#000" stroke-width="1"/>
+<rect x="0" y="-85" width="120" height="85" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="-15" x2="120" y2="-15" stroke="#000" stroke-width="1"/>
+<line x1="60" y1="-244" x2="60" y2="-240" stroke="#000" stroke-width="1"/>
+<polyline points="60,-257 60,-260 55,-280" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="65" y1="-218" x2="55" y2="-208" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="-45" x2="120" y2="-45" stroke="#000" stroke-width="1"/>
+<line x1="60" y1="-240" x2="60" y2="-176" stroke="#000" stroke-width="1"/>
+<path d="M 60.00 -244.50 A 4.00 2.50 0 0 0 60.00 -249.50" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="-65" x2="120" y2="-65" stroke="#000" stroke-width="1"/>
+<line x1="60" y1="-252" x2="60" y2="-250" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="-170" x2="120" y2="-170" stroke="#0a0" stroke-width="1" stroke-dasharray="4,2"/>
+<line x1="60" y1="-253" x2="64" y2="-253" stroke="#000" stroke-width="1"/>
+<ellipse cx="65.0" cy="-224.0" rx="1.0" ry="1.0" fill="black" stroke="#000" stroke-width="1"/>
+<line x1="64" y1="-257" x2="64" y2="-253" stroke="#000" stroke-width="1"/>
+<line x1="60" y1="-257" x2="64" y2="-257" stroke="#000" stroke-width="1"/>
+<line x1="27" y1="-139.38" x2="27" y2="-120.63" stroke="#000" stroke-width="1"/>
+<path d="M 77.00 -110.00 A 50.00 10.00 0 0 0 27.00 -120.00" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="60" y1="-290" x2="60" y2="-280" stroke="#000" stroke-width="1"/>
+<path d="M 27.00 -140.00 A 50.00 10.00 0 0 0 77.00 -150.00" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="62" y1="-282" x2="58" y2="-278" stroke="#000" stroke-width="1"/>
+<line x1="58" y1="-282" x2="62" y2="-278" stroke="#000" stroke-width="1"/>
+<line x1="77" y1="-149.8" x2="77" y2="-110.2" stroke="#000" stroke-width="1"/>
+<line x1="57" y1="-270" x2="50" y2="-270" stroke="#000" stroke-width="0.5" stroke-dasharray="4,2"/>
+<line x1="60" y1="-175.19" x2="60" y2="-142.81" stroke="#000" stroke-width="1"/>
+<line x1="31" y1="-139.23" x2="31" y2="-120.77" stroke="#000" stroke-width="1"/>
+<line x1="50" y1="-270" x2="50" y2="-247" stroke="#000" stroke-width="0.5" stroke-dasharray="4,2"/>
+<line x1="35" y1="-139.39" x2="35" y2="-120.61" stroke="#000" stroke-width="1"/>
+<line x1="50" y1="-247" x2="64" y2="-247" stroke="#000" stroke-width="0.5" stroke-dasharray="4,2"/>
+<line x1="50" y1="-255" x2="64" y2="-255" stroke="#000" stroke-width="0.5" stroke-dasharray="4,2"/>
+<line x1="82.25" y1="-130" x2="102.75" y2="-130" stroke="#000" stroke-width="1" stroke-dasharray="1,2"/>
+<line x1="82" y1="-140" x2="104" y2="-148" stroke="#000" stroke-width="1" stroke-dasharray="1,2"/>
+<line x1="82" y1="-120" x2="103" y2="-114" stroke="#000" stroke-width="1" stroke-dasharray="1,2"/>
+<line x1="82" y1="-135" x2="103" y2="-138" stroke="#000" stroke-width="1" stroke-dasharray="1,2"/>
+<line x1="82" y1="-125" x2="103" y2="-121" stroke="#000" stroke-width="1" stroke-dasharray="1,2"/>
+<ellipse cx="60.0" cy="-170.0" rx="2.0" ry="2.0" fill="black" stroke="#000" stroke-width="1"/>
+<circle cx="60" cy="-290" r="1.5" fill="#000"/>
+<text x="29" y="-37.0" font-family="sans-serif" font-size="7.0" fill="#555">10</text>
+<text x="-2" y="-56.0" font-family="sans-serif" font-size="7.0" fill="#555">Local</text>
+<text x="58" y="-18" font-family="sans-serif" font-size="5.0" fill="#333">kA C</text>
+<text x="66" y="-32" font-family="sans-serif" font-size="7.0" fill="#333">A</text>
+<text x="58" y="-2" font-family="sans-serif" font-size="5.0" fill="#333">mm²</text>
+<text x="30" y="-23.5" font-family="sans-serif" font-size="5.0" fill="#555">4.5</text>
+<text x="28" y="-8.5" font-family="sans-serif" font-size="5.0" fill="#555">3 G1.5</text>
+<text x="-2" y="-74.5" font-family="sans-serif" font-size="7.0" fill="#555">Alarme</text></svg>

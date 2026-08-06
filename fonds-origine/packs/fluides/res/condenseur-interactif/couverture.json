@@ -1,0 +1,53 @@
+{
+  "cours": "condenseur-interactif",
+  "titre": "Condenseur — installer, régler, vérifier",
+  "reference": "arrêté du 21 novembre 2025",
+  "ecrans": 24,
+  "codes": {
+    "7.02": [
+      "materiel-accessible",
+      "regulateur-role",
+      "regulateur-vs-pressostat",
+      "reglage-constructeur",
+      "quiz-regulation"
+    ],
+    "7.03": [
+      "implantation-air",
+      "fixation-vibrations",
+      "materiel-accessible",
+      "quiz-installation"
+    ],
+    "7.05": [
+      "batterie-reelle",
+      "consignation-inspection",
+      "conduites",
+      "quiz-diagnostic"
+    ],
+    "7.07": [
+      "encrassement-progressif",
+      "ventilation-coupee",
+      "lien-haute-pression",
+      "demarrer-mesurer",
+      "mesures-conditions",
+      "nettoyer-remesurer",
+      "quiz-diagnostic"
+    ],
+    "7.09": [
+      "rapport-observations",
+      "rapport-risque",
+      "quiz-rapport"
+    ],
+    "7.10": [
+      "encrassement-progressif",
+      "ventilation-coupee",
+      "lien-haute-pression",
+      "nettoyer-remesurer",
+      "quiz-diagnostic",
+      "quiz-efficacite"
+    ]
+  },
+  "hors_referentiel": [
+    "condenseur-role",
+    "bilan"
+  ]
+}

@@ -1,0 +1,327 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1020" role="img"
+     aria-label="Le poste de récupération vu en entier : la croix du frigoriste (détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas) complétée par les quatre organes de la ligne liquide — bouteille liquide, filtre déshydrateur, voyant liquide, électrovanne — puis les deux vannes de service (liquide et aspiration) reliées par flexibles bleu et rouge à un manifold deux voies, dont le flexible central jaune part vers une station de récupération puis une bouteille sur balance. Une bouteille d'azote est représentée à part, isolée, car elle sert à l'épreuve de pression après l'intervention, pas pendant la récupération. En bas, quatre encarts : la bouteille d'azote isolée, la chronologie de la purge finale, la convention poignée-alignée ouverte / poignée-perpendiculaire fermée avec le code couleur des trois flexibles, et la légende des quatre organes numérotés.">
+  <title>Le poste de récupération : circuit complet et manifold branché</title>
+  <desc>Configuration illustrée : récupération en cours, vannes du trajet ouvertes. Symboles issus de la bibliothèque inerWeb (bibliotheque-symboles) ; gabarit manifold repris de manifold-lecture.svg ; bouteille d'azote reprise de epreuve-azote.svg ; bouteille sur balance reprise de recuperation.svg. Brouillon en attente de relecture métier.</desc>
+
+  <style>
+    .t    { font:700 20px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st   { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm   { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .k    { font:700 12.5px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .num  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+    .organe { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .pos    { font:700 11px Calibri,Segoe UI,sans-serif; fill:#8494a4; letter-spacing:1.5px; }
+    .sym  { stroke:#33475b; stroke-width:1.4; fill:none; }
+    .trait{ fill:none; stroke:#33475b; stroke-width:2.2; }
+    .fine { fill:none; stroke:#33475b; stroke-width:1; stroke-dasharray:3 5; }
+    .pt   { fill:#33475b; }
+    .hp   { fill:none; stroke:#ff6b35; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+    .bp   { fill:none; stroke:#1b3a63; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+    .box  { fill:#fff; stroke:#33475b; stroke-width:2.2; }
+    .card { fill:#f7fafc; stroke:#c9d4de; stroke-width:1.5; }
+    .badge{ fill:#1b3a63; }
+    .flux { fill:none; stroke:#ffffff; stroke-opacity:.9; stroke-width:2.4; stroke-linecap:round;
+            stroke-dasharray:0.1 16; animation:flux 1.2s linear infinite; }
+    @keyframes flux { to { stroke-dashoffset:-16.1; } }
+    .helice{ transform-box:fill-box; transform-origin:center; animation:spin 1.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @media print { .flux, .helice { animation:none; } }
+    .tk { fill:none; stroke:#8aa0b4; stroke-width:1.4; }
+  </style>
+
+  <defs>
+    <path id="cad2" class="tk" d="M-38.1,22 L-26.9,15.5 M-44,0 L-36,0 M-38.1,-22 L-26.9,-15.5 M-22,-38.1 L-18,-31.2 M0,-44 L0,-31 M22,-38.1 L18,-31.2 M38.1,-22 L26.9,-15.5 M44,0 L36,0 M38.1,22 L26.9,15.5"/>
+    <!-- vanne : poignée ALIGNÉE au tuyau = OUVERTE ; PERPENDICULAIRE = FERMÉE -->
+    <g id="vanne-o">
+      <polygon points="0,0 -9,-5 -9,5 0,0 9,-5 9,5 0,0" fill="#fff" class="sym"/>
+      <line x1="-16" y1="0" x2="16" y2="0" stroke="#1b3a63" stroke-width="3.4" stroke-linecap="round"/>
+      <circle r="2.6" class="pt"/>
+    </g>
+    <g id="vanne-f">
+      <polygon points="0,0 -9,-5 -9,5 0,0 9,-5 9,5 0,0" fill="#fff" class="sym"/>
+      <line x1="0" y1="-16" x2="0" y2="16" stroke="#c9451a" stroke-width="3.4" stroke-linecap="round"/>
+      <circle r="2.6" class="pt"/>
+    </g>
+  </defs>
+
+  <rect width="1600" height="1020" fill="#ffffff"/>
+  <text class="t" x="36" y="34">Le poste de récupération : circuit complet et manifold branché</text>
+  <text class="lg" x="36" y="54">Configuration illustrée : récupération en cours — les vannes du trajet du fluide sont ouvertes.</text>
+
+  <!-- ======================= CROIX DU FRIGORISTE ======================= -->
+
+  <!-- refoulement : compresseur → condenseur — HP vapeur chaude -->
+  <path class="hp" d="M 700 365 L 700 110 L 540 110"/>
+  <path class="flux" d="M 700 365 L 700 110 L 540 110"/>
+  <!-- ligne liquide : condenseur → accessoires → détendeur — HP liquide -->
+  <path class="hp" d="M 320 110 L 320 230 L 140 230 L 140 368"/>
+  <path class="flux" d="M 320 110 L 320 230 L 140 230 L 140 368"/>
+  <!-- sortie détendeur → évaporateur — BP diphasique -->
+  <path class="bp" d="M 140 426 L 140 660 L 320 660"/>
+  <path class="flux" d="M 140 426 L 140 660 L 320 660"/>
+  <!-- aspiration : évaporateur → compresseur — BP vapeur surchauffée -->
+  <path class="bp" d="M 540 660 L 700 660 L 700 441"/>
+  <path class="flux" d="M 540 660 L 700 660 L 700 441"/>
+
+  <!-- CONDENSEUR (HAUT) -->
+  <g transform="translate(430,110)">
+    <rect x="-110" y="-38" width="220" height="76" rx="4" fill="#fff" stroke="#33475b" stroke-width="2.2"/>
+    <path class="fine" d="M -72 -38 L -72 38 M -36 -38 L -36 38 M 0 -38 L 0 38 M 36 -38 L 36 38 M 72 -38 L 72 38"/>
+    <path class="trait" d="M -110 -22 L 88 -22 A 11 11 0 0 1 88 0 L -88 0 A 11 11 0 0 0 -88 22 L 110 22"/>
+    <circle class="pt" cx="-110" cy="0" r="3.5"/><circle class="pt" cx="110" cy="0" r="3.5"/>
+  </g>
+  <g transform="translate(430,46) scale(1.4)" stroke="#33475b" stroke-width="1.5" fill="none">
+    <circle cx="0" cy="0" r="15" fill="#fff"/>
+    <g class="helice">
+      <path d="M -6 -7 A 6 6 0 0 1 0 -1"/><path d="M -1 0 A 6 6 0 0 1 -7 -6"/>
+      <path d="M -7 6 A 6 6 0 0 1 -1 0"/><path d="M 0 1 A 6 6 0 0 1 -6 7"/>
+    </g>
+    <ellipse cx="4.5" cy="0" rx="4.5" ry="2.5"/>
+    <path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+  </g>
+  <text class="pos" x="430" y="172" text-anchor="middle">HAUT</text>
+  <text class="organe" x="430" y="192" text-anchor="middle">CONDENSEUR</text>
+
+  <!-- COMPRESSEUR (DROITE) -->
+  <g transform="translate(700,400) rotate(-90) scale(2.2)" stroke="#33475b" stroke-width="1.1" fill="none">
+    <circle cx="0" cy="0" r="15" fill="#fff"/>
+    <path d="M -15 0 L -16 0 M 15 0 L 16 0"/><path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+  </g>
+  <text class="pos" x="748" y="376">DROITE</text>
+  <text class="organe" x="748" y="400">COMPRESSEUR</text>
+
+  <!-- DÉTENDEUR (GAUCHE) -->
+  <g transform="translate(140,400) rotate(-90) scale(2.4)" stroke="#33475b" stroke-width="1.1" fill="none">
+    <circle cx="0" cy="-12" r="5.83" fill="#fff"/><path d="M 0 -18 L 0 -20"/>
+    <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0" fill="#fff"/>
+    <path d="M 0 0 L 0 -6 M 10 0 L 11 0 M -10 0 L -11 0"/>
+  </g>
+  <text class="pos" x="92" y="376" text-anchor="end">GAUCHE</text>
+  <text class="organe" x="92" y="400" text-anchor="end">DÉTENDEUR</text>
+
+  <!-- ÉVAPORATEUR (BAS) -->
+  <g transform="translate(430,660)">
+    <rect x="-110" y="-38" width="220" height="76" rx="4" fill="#fff" stroke="#33475b" stroke-width="2.2"/>
+    <path class="fine" d="M -72 -38 L -72 38 M -36 -38 L -36 38 M 0 -38 L 0 38 M 36 -38 L 36 38 M 72 -38 L 72 38"/>
+    <path class="trait" d="M -110 -22 L 88 -22 A 11 11 0 0 1 88 0 L -88 0 A 11 11 0 0 0 -88 22 L 110 22"/>
+    <circle class="pt" cx="-110" cy="0" r="3.5"/><circle class="pt" cx="110" cy="0" r="3.5"/>
+  </g>
+  <text class="pos" x="430" y="722" text-anchor="middle">BAS</text>
+  <text class="organe" x="430" y="742" text-anchor="middle">ÉVAPORATEUR</text>
+
+  <!-- ======================= LES 4 ORGANES DE LA LIGNE LIQUIDE ======================= -->
+  <!-- ① bouteille liquide -->
+  <g transform="translate(300,230) rotate(90) scale(1.1)" class="sym">
+    <rect x="-18" y="-20" width="36" height="48" fill="#fff"/>
+    <line x1="-14" y1="16" x2="-14" y2="24"/><line x1="-7" y1="16" x2="-7" y2="24"/>
+    <line x1="0" y1="16" x2="0" y2="24"/><line x1="7" y1="16" x2="7" y2="24"/><line x1="14" y1="16" x2="14" y2="24"/>
+    <line x1="-19" y1="20" x2="19" y2="20"/>
+  </g>
+  <!-- ② filtre déshydrateur -->
+  <g transform="translate(255,230) scale(1.4)" class="sym">
+    <line x1="-5" y1="-4.2" x2="-5" y2="1.2"/><line x1="6" y1="0.5" x2="9.75" y2="0.5"/><line x1="2" y1="-0.5" x2="2" y2="4.5"/>
+    <rect x="-15.75" y="-5" width="21.75" height="10" fill="#fff"/>
+    <line x1="-19.5" y1="0.5" x2="-15.75" y2="0.5"/><line x1="-12" y1="-0.4" x2="-12" y2="4.4"/>
+  </g>
+  <!-- ③ voyant liquide -->
+  <g transform="translate(210,230) scale(1.4)" class="sym">
+    <line x1="21.7" y1="0" x2="27.65" y2="0"/>
+    <rect x="-0.7" y="-5.8" width="22.75" height="11.8" fill="#fff"/>
+    <ellipse cx="10.7" cy="0.1" rx="6.1" ry="5.9" fill="#fff"/>
+    <line x1="-7.7" y1="0" x2="-0.7" y2="0"/>
+  </g>
+  <!-- ④ électrovanne -->
+  <g transform="translate(165,230) scale(1.4)" class="sym">
+    <line x1="-3" y1="-13" x2="3" y2="-9"/>
+    <path d="M 3 -7 A 3 3 0 0 1 -3 -7"/><line x1="-3" y1="-8" x2="-3" y2="-15"/>
+    <path d="M -3 -15 A 3 3 0 0 1 3 -15"/><line x1="3" y1="-8" x2="3" y2="-15"/>
+    <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0" fill="#fff"/>
+    <line x1="0" y1="0" x2="0" y2="-4"/><line x1="10" y1="0" x2="11" y2="0"/><line x1="-10" y1="0" x2="-11" y2="0"/>
+  </g>
+  <!-- badges numérotés -->
+  <g class="num" text-anchor="middle">
+    <circle class="badge" cx="300" cy="203" r="12"/><text x="300" y="208">1</text>
+    <circle class="badge" cx="255" cy="203" r="12"/><text x="255" y="208">2</text>
+    <circle class="badge" cx="210" cy="203" r="12"/><text x="210" y="208">3</text>
+    <circle class="badge" cx="165" cy="203" r="12"/><text x="165" y="208">4</text>
+  </g>
+
+  <!-- ======================= VANNES DE SERVICE ======================= -->
+  <path class="hp" d="M 140 300 L 60 300"/>
+  <use href="#vanne-o" x="100" y="300"/>
+  <text class="sm" x="60" y="286" text-anchor="middle">vanne service</text>
+  <text class="k"  x="60" y="330" text-anchor="middle">LIQUIDE (HP)</text>
+
+  <path class="bp" d="M 620 660 L 620 760"/>
+  <use href="#vanne-o" x="620" y="720" transform="rotate(90,620,720)"/>
+  <text class="sm" x="676" y="724">vanne service</text>
+  <text class="k"  x="676" y="742">ASPIRATION (BP)</text>
+
+  <!-- hoses de service vers le manifold : contournent par le bas, deux niveaux -->
+  <path class="bp" d="M 620 760 L 898 760 L 898 470" style="stroke-width:5"/>
+  <use href="#vanne-o" x="60" y="810" transform="rotate(90,60,810)"/>
+  <path class="hp" d="M 60 300 L 60 810 L 1444 810 L 1444 470" style="stroke-width:5"/>
+
+  <!-- ======================= MANIFOLD (repris de manifold-lecture.svg) ======================= -->
+  <g transform="translate(850,90)">
+    <rect x="26" y="50" width="590" height="380" rx="8" class="card"/>
+    <text class="st" x="176" y="80" text-anchor="middle">BASSE PRESSION</text>
+    <text class="st" x="466" y="80" text-anchor="middle" style="fill:#c9451a">HAUTE PRESSION</text>
+
+    <rect x="168" y="196" width="16" height="66" fill="#e8eef4" stroke="#1b3a63" stroke-width="2"/>
+    <rect x="458" y="196" width="16" height="66" fill="#e8eef4" stroke="#c9451a" stroke-width="2"/>
+
+    <rect x="126" y="258" width="390" height="56" rx="10" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.6"/>
+    <path fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"
+          d="M160,320 L160,286 L212,286 M247,286 L395,286 M321,286 L321,320 M430,286 L482,286 L482,320"/>
+
+    <path fill="none" stroke="#1b3a63" stroke-width="2.6" stroke-linecap="round" d="M149,310 v20 M171,310 v20"/>
+    <path fill="none" stroke="#4a5b6e" stroke-width="2.6" stroke-linecap="round" d="M310,310 v20 M332,310 v20"/>
+    <path fill="none" stroke="#c9451a" stroke-width="2.6" stroke-linecap="round" d="M471,310 v20 M493,310 v20"/>
+
+    <!-- flexibles : bleu (BP → vanne aspiration), jaune (centre → station), rouge (HP → vanne liquide) -->
+    <path fill="none" stroke="#1b3a63" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"
+          d="M160,328 C160,358 128,378 92,380 L48,380"/>
+    <path fill="none" stroke="#e0a800" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"
+          d="M321,328 L321,380"/>
+    <path fill="none" stroke="#c9451a" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"
+          d="M482,328 C482,358 514,378 550,380 L594,380"/>
+
+    <!-- trajet du fluide, les deux côtés ouverts (récupération) -->
+    <path fill="none" stroke="#ff6b35" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="14 12"
+          d="M48,380 L92,380 C128,378 160,358 160,328 L160,286 L321,286 L321,380">
+      <animate attributeName="stroke-dashoffset" values="0;-26" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <path fill="none" stroke="#ff6b35" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="14 12"
+          d="M594,380 L550,380 C514,378 482,358 482,328 L482,286 L321,286 L321,380">
+      <animate attributeName="stroke-dashoffset" values="0;-26" dur="1s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- vannes du manifold, OUVERTES (poignée alignée sur la galerie) -->
+    <g transform="translate(230,286) rotate(50)">
+      <circle r="21" fill="none" stroke="#1b3a63" stroke-width="3"/>
+      <line x1="0" y1="0" x2="0" y2="-16" stroke="#1b3a63" stroke-width="4.5" stroke-linecap="round"/>
+      <circle r="4.5" fill="#1b3a63"/>
+    </g>
+    <g transform="translate(412,286) rotate(-50)">
+      <circle r="21" fill="none" stroke="#c9451a" stroke-width="3"/>
+      <line x1="0" y1="0" x2="0" y2="-16" stroke="#c9451a" stroke-width="4.5" stroke-linecap="round"/>
+      <circle r="4.5" fill="#c9451a"/>
+    </g>
+    <text class="lg" x="230" y="250" text-anchor="middle">vanne BP — <tspan style="font-weight:700;fill:#ff6b35">OUVERTE</tspan></text>
+    <text class="lg" x="412" y="250" text-anchor="middle">vanne HP — <tspan style="font-weight:700;fill:#ff6b35">OUVERTE</tspan></text>
+
+    <!-- manomètres -->
+    <g transform="translate(176,150)">
+      <circle r="58" fill="#ffffff" stroke="#1b3a63" stroke-width="3.2"/>
+      <circle r="49" fill="none" stroke="#c9d4de" stroke-width="1.2"/>
+      <use href="#cad2"/>
+      <path transform="rotate(-30)" d="M0,10 L-3.5,0 L0,-40 L3.5,0 Z" fill="#1b3a63"/>
+      <circle r="6" fill="#1b3a63"/>
+      <text class="st" y="36" text-anchor="middle">BP</text>
+    </g>
+    <g transform="translate(466,150)">
+      <circle r="58" fill="#ffffff" stroke="#c9451a" stroke-width="3.2"/>
+      <circle r="49" fill="none" stroke="#c9d4de" stroke-width="1.2"/>
+      <use href="#cad2"/>
+      <path transform="rotate(35)" d="M0,10 L-3.5,0 L0,-40 L3.5,0 Z" fill="#c9451a"/>
+      <circle r="6" fill="#c9451a"/>
+      <text class="st" y="36" text-anchor="middle" style="fill:#c9451a">HP</text>
+    </g>
+    <text class="st" x="321" y="345" text-anchor="middle">MANIFOLD 2 VOIES</text>
+    <text class="sm" x="321" y="404" text-anchor="middle">flexible central : vers la station de récupération</text>
+  </g>
+
+  <!-- ======================= STATION DE RÉCUPÉRATION ======================= -->
+  <path fill="none" stroke="#e0a800" stroke-width="6.5" stroke-linecap="round" d="M 1171 470 L 1171 540"/>
+  <g transform="translate(1091,540)">
+    <rect class="box" width="160" height="80" rx="8"/>
+    <g transform="translate(80,40) scale(1.6)" class="sym" style="stroke-width:1.1">
+      <circle cx="0" cy="0" r="15" fill="#fff"/>
+      <path d="M -15 0 L -16 0 M 15 0 L 16 0"/><path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+    </g>
+    <text class="st" x="80" y="70" text-anchor="middle">Station de récupération</text>
+  </g>
+
+  <!-- ======================= BOUTEILLE SUR BALANCE ======================= -->
+  <path fill="none" stroke="#e0a800" stroke-width="6.5" stroke-linecap="round" d="M 1171 620 L 1171 660"/>
+  <g transform="translate(1091,660)">
+    <use href="#vanne-o" x="80" y="14"/>
+    <rect class="box" x="48" y="30" width="64" height="90" rx="14"/>
+    <path class="sym" d="M 70 30 L 70 18 M 90 30 L 90 18 M 62 18 L 98 18"/>
+    <rect x="52" y="66" width="56" height="50" rx="9" fill="#c6d3df"/>
+    <path d="M 48 62 L 112 62" stroke="#c9451a" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect class="box" x="30" y="124" width="100" height="18" rx="4"/>
+    <rect class="box" x="142" y="122" width="46" height="22" rx="4"/>
+    <path class="sym" d="M 130 133 L 142 133"/>
+    <text class="st" x="105" y="166" text-anchor="middle">Bouteille sur balance</text>
+    <text class="sm" x="105" y="182" text-anchor="middle">jamais &gt; 80 % — voir pesee-charge.svg</text>
+  </g>
+
+  <!-- ======================= BAS DE PAGE : 4 ENCARTS ======================= -->
+
+  <!-- Encart 1 : azote, isolée -->
+  <g transform="translate(30,860)">
+    <rect width="370" height="150" rx="8" class="card" stroke-dasharray="6 4"/>
+    <text class="st" x="16" y="26">Bouteille d'azote — étape ULTÉRIEURE</text>
+    <g transform="translate(56,50)">
+      <rect class="box" x="0" y="18" width="56" height="82" rx="12" fill="#eef3f8"/>
+      <path class="sym" d="M 20 18 L 20 6 M 36 18 L 36 6 M 12 6 L 44 6"/>
+      <text class="st" x="28" y="66" text-anchor="middle">N₂</text>
+      <g transform="translate(28,-2)" class="sym">
+        <circle cx="-10" cy="-4" r="7" fill="#fff"/><circle cx="8" cy="-4" r="7" fill="#fff"/>
+        <path d="M -10 -4 L -7 -9 M 8 -4 L 11 -9"/>
+      </g>
+    </g>
+    <text class="lg" x="132" y="60">Épreuve de pression après</text>
+    <text class="lg" x="132" y="78">réparation, azote sec seul</text>
+    <text class="lg" x="132" y="96">(voir epreuve-azote.svg).</text>
+    <text class="k"  x="132" y="120">NON raccordée pendant</text>
+    <text class="k"  x="132" y="136">la récupération.</text>
+  </g>
+
+  <!-- Encart 2 : purge finale -->
+  <g transform="translate(420,860)">
+    <rect width="370" height="150" rx="8" class="card"/>
+    <text class="st" x="16" y="26">Dernière étape : la purge</text>
+    <text class="sm" x="16" y="48">1. Fermer côté circuit, puis côté appareil.</text>
+    <text class="sm" x="16" y="66">2. Laisser la pression se stabiliser (lire le manomètre).</text>
+    <text class="sm" x="16" y="84">3. Desserrer lentement, par petites touches.</text>
+    <text class="sm" x="16" y="102">4. Le récupérateur aspire le fluide resté dans les flexibles</text>
+    <text class="k"  x="16" y="118">   — jamais à l'air libre.</text>
+    <text class="sm" x="16" y="136">5. Déconnecter quand la pression est retombée, peser la</text>
+    <text class="sm" x="16" y="150">bouteille pleine et consigner l'écart au registre.</text>
+  </g>
+
+  <!-- Encart 3 : convention vannes + couleurs -->
+  <g transform="translate(810,860)">
+    <rect width="370" height="150" rx="8" class="card"/>
+    <text class="st" x="16" y="26">Lire une vanne, lire un flexible</text>
+    <use href="#vanne-o" x="34" y="52"/>
+    <text class="sm" x="56" y="56">poignée ALIGNÉE = OUVERTE</text>
+    <use href="#vanne-f" x="34" y="76"/>
+    <text class="sm" x="56" y="80">poignée PERPENDICULAIRE = FERMÉE</text>
+    <line x1="24" y1="98" x2="356" y2="98" stroke="#c9d4de" stroke-width="1.5"/>
+    <line x1="30" y1="116" x2="54" y2="116" stroke="#1b3a63" stroke-width="6" stroke-linecap="round"/>
+    <text class="sm" x="62" y="120">bleu — BP / aspiration</text>
+    <line x1="30" y1="134" x2="54" y2="134" stroke="#e0a800" stroke-width="6" stroke-linecap="round"/>
+    <text class="sm" x="62" y="138">jaune — voie centrale / récupérateur</text>
+    <line x1="200" y1="116" x2="224" y2="116" stroke="#c9451a" stroke-width="6" stroke-linecap="round"/>
+    <text class="sm" x="232" y="120">rouge — HP / liquide</text>
+  </g>
+
+  <!-- Encart 4 : légende des 4 organes -->
+  <g transform="translate(1200,860)">
+    <rect width="370" height="150" rx="8" class="card"/>
+    <text class="st" x="16" y="26">Les 4 organes de la ligne liquide</text>
+    <circle class="badge" cx="26" cy="46" r="10"/><text class="num" x="26" y="50" text-anchor="middle">1</text>
+    <text class="sm" x="42" y="50">Bouteille liquide — réserve HP</text>
+    <circle class="badge" cx="26" cy="70" r="10"/><text class="num" x="26" y="74" text-anchor="middle">2</text>
+    <text class="sm" x="42" y="74">Filtre déshydrateur — retient l'humidité</text>
+    <circle class="badge" cx="26" cy="94" r="10"/><text class="num" x="26" y="98" text-anchor="middle">3</text>
+    <text class="sm" x="42" y="98">Voyant liquide — état du fluide</text>
+    <circle class="badge" cx="26" cy="118" r="10"/><text class="num" x="26" y="122" text-anchor="middle">4</text>
+    <text class="sm" x="42" y="122">Électrovanne — coupe l'alimentation liquide</text>
+  </g>
+</svg>

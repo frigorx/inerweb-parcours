@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" role="img"
+     aria-label="Projection de fluide au débranchement d'un flexible. Le liquide sous pression jaillit dans l'axe du raccord et gèle la peau au contact ; la zone dangereuse est celle qui prolonge le raccord. Trois règles : gants et lunettes avant de commencer, lecture du manomètre vanne fermée pour vérifier que la pression est nulle, et desserrage progressif en se tenant hors de l'axe. En cas de projection, rincer sans frotter et consulter : la conduite à tenir figure sur la fiche de données de sécurité du fluide.">
+  <title>Projection de liquide : rester hors de l'axe</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    @media print {
+      .final  { opacity: 1 !important; }
+      .mobile { display: none; }
+    }
+  </style>
+
+  <rect width="900" height="310" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Un reste de liquide sous pression jaillit dans l'axe du raccord</text>
+
+  <g transform="translate(30,52)">
+    <rect x="0" y="0" width="560" height="180" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+
+    <!-- tuyauterie + raccord -->
+    <rect class="p" x="20" y="78" width="150" height="20" rx="4"/>
+    <rect class="p" x="170" y="72" width="26" height="32" rx="3"/>
+    <text class="lg" x="183" y="122" text-anchor="middle">raccord</text>
+
+    <!-- le jet part : le cône s'ouvre -->
+    <path d="M196,88 L330,58 L330,118 Z" fill="#c9451a" opacity="0">
+      <animate attributeName="opacity" values="0;0.18" dur="0.5s" begin="2.6s" fill="freeze"/>
+    </path>
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.4s" begin="2.6s" fill="freeze"/>
+      <path class="acc" d="M198,88 h56 m-12,-6 l12,6 -12,6"/>
+      <path class="acc" d="M206,78 l40,-10" opacity="0.7"/>
+      <path class="acc" d="M206,98 l40,10" opacity="0.7"/>
+      <text class="bad" x="300" y="86">jet de liquide</text>
+      <text class="lg"  x="300" y="106">souvent invisible</text>
+    </g>
+
+    <!-- la silhouette DANS l'axe : elle apparaît, elle est en danger, elle s'écarte -->
+    <g class="mobile" opacity="0">
+      <!-- une seule animation par attribut : deux <animate fill="freeze"> sur
+           « opacity » se superposent et la silhouette ne s'effaçait pas -->
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.114;0.857;1"
+               dur="3.5s" begin="0.6s" fill="freeze"/>
+      <g transform="translate(340,60)">
+        <animateTransform attributeName="transform" type="translate"
+          values="340,60; 340,60; 470,60" keyTimes="0;0.7;1" dur="1.6s" begin="3.2s" fill="freeze"/>
+        <circle class="acc" cx="0" cy="0" r="14"/>
+        <path class="acc" d="M0,14 v34 M0,22 l-18,12 M0,22 l18,12 M0,48 l-13,26 M0,48 l13,26"/>
+      </g>
+    </g>
+    <text class="bad mobile" x="300" y="150" opacity="0" style="font-size:13.5px">
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.7;1" dur="2.4s" begin="1.4s" fill="remove"/>
+      ✗ ne jamais se placer ici
+    </text>
+
+    <!-- la personne, hors axe : état final -->
+    <g class="final" opacity="0" transform="translate(470,60)">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.4s" fill="freeze"/>
+      <circle class="p" cx="0" cy="0" r="14"/>
+      <path class="p" d="M0,14 v34 M0,22 l-18,12 M0,22 l18,12 M0,48 l-13,26 M0,48 l13,26"/>
+      <rect class="p" x="-11" y="-5" width="9" height="7" rx="2"/>
+      <rect class="p" x="2" y="-5" width="9" height="7" rx="2"/>
+      <line class="p" x1="-2" y1="-2" x2="2" y2="-2"/>
+    </g>
+    <text class="st final" x="470" y="152" text-anchor="middle" opacity="0" style="fill:#2f7a4f">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.6s" fill="freeze"/>
+      ✓ hors de l'axe
+    </text>
+  </g>
+
+  <!-- manomètre : l'aiguille retombe à zéro -->
+  <g transform="translate(628,64)">
+    <rect x="0" y="0" width="242" height="156" rx="8" fill="#eef6f1" stroke="#a9cdb8" stroke-width="1.5"/>
+    <g transform="translate(58,30)">
+      <circle class="p" cx="30" cy="30" r="28"/>
+      <circle cx="30" cy="30" r="3" fill="#1b3a63"/>
+      <line class="p" x1="30" y1="30" x2="8" y2="20">
+        <animate attributeName="x2" values="50;8" dur="1.4s" begin="5.2s" fill="freeze"/>
+        <animate attributeName="y2" values="12;20" dur="1.4s" begin="5.2s" fill="freeze"/>
+      </line>
+      <text x="8" y="52" style="font:700 12px Calibri;fill:#1b3a63">0</text>
+    </g>
+    <text class="st" x="121" y="112" text-anchor="middle">Pression nulle,</text>
+    <text class="st" x="121" y="132" text-anchor="middle">vanne fermée</text>
+  </g>
+
+  <!-- règles -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="6.4s" fill="freeze"/>
+    <rect x="30" y="246" width="840" height="46" rx="8" fill="#ffffff" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="50" y="266">Dans l'ordre :</text>
+    <text class="lg" x="145" y="266">gants et lunettes AVANT de commencer · lire le manomètre, vanne fermée · desserrer progressivement, jamais d'un coup</text>
+    <text class="lg" x="50" y="286">En cas de projection sur la peau ou les yeux : rincer sans frotter et consulter — la conduite à tenir exacte est sur la <tspan style="font-weight:700">FDS du fluide</tspan>.</text>
+  </g>
+</svg>

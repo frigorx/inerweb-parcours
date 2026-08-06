@@ -1,0 +1,25 @@
+{
+  "cours": "pression-temperature-interactive",
+  "titre": "Pression et température — la relation de saturation",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g1b"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. Deux codes, et le second est celui",
+    "qui compte à l'épreuve : 1.03 demande d'utiliser les tables et graphiques ET de les",
+    "interpréter dans le cadre d'un contrôle d'étanchéité INDIRECT. Le cours fait manœuvrer",
+    "un manomètre et lire la saturation correspondante ; l'usage en méthode indirecte est",
+    "enseigné par les fiches g4b et par le cours `etancheite-interactive`."
+  ],
+
+  "codes": {
+    "1.02": "thermodynamique élémentaire : ce que veulent dire saturation, bulle, rosée, surchauffe (température réelle − rosée) et sous-refroidissement",
+    "1.03": "utiliser et interpréter tables et graphiques : à chaque pression sa température de saturation, lecture au manomètre (0,199 bar → environ 60 °C ; 2,0 bar absolus → −10 °C), palier du corps pur contre rampe du zéotrope, unité et référence de pression toujours précisées"
+  },
+
+  "appui": {},
+
+  "hors_referentiel": [
+    "l'expérience d'ouverture (faire bouillir de l'eau à 25 °C en abaissant la pression) : c'est la mise en situation qui rend la notion visible"
+  ]
+}

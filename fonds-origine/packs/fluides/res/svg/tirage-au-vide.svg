@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img"
+     aria-label="Graphique du niveau de vide en fonction du temps, sans graduation chiffrée : atmosphère en haut, vide poussé en bas. Trois courbes se tracent l'une après l'autre : en vert le bon tirage, descente régulière puis palier bas et stable une fois la pompe isolée ; en orange l'humidité résiduelle, la descente s'aplatit et stagne à mi-hauteur ; en rouge la fuite, le vide est atteint puis la courbe remonte dès que la pompe est isolée. À gauche, le montage : pompe à vide, vanne d'isolement, vacuomètre au plus près du circuit.">
+  <title>Le tirage au vide : la courbe qui descend, le palier, et la remontée qui accuse</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .an  { font:700 12.5px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .cl  { font:700 13.5px Calibri,Segoe UI,sans-serif; }
+    .bx  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .axe { fill:none; stroke:#1b3a63; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .pipe{ fill:none; stroke:#1b3a63; stroke-width:5; stroke-linecap:round; }
+    .org { stroke:#1b3a63; stroke-width:2.2; stroke-linejoin:round; }
+    .courbe { fill:none; stroke-width:3.4; stroke-dasharray:700; stroke-linecap:round; stroke-linejoin:round; }
+    /* Narration. Valeurs de base = ÉTAT FINAL (dashoffset 0 = courbe entière) ;
+       seule l'opacité retient chaque courbe avant son tour, et le filet la force
+       à 1 quand rien ne s'exécute. Filet conditionné à `print`, JAMAIS à
+       prefers-reduced-motion : cette condition supprimait la démonstration. */
+    @media print { .final { opacity: 1 !important; } }
+  </style>
+
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text class="t" x="26" y="34">Le tirage au vide : la courbe qui descend, le palier, et la remontée qui accuse</text>
+
+  <!-- MONTAGE -->
+  <g>
+    <rect x="26" y="54" width="196" height="300" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="44" y="78">Le montage</text>
+
+    <rect class="org" x="110" y="94" width="96" height="46" rx="5" fill="#f3f7fb"/>
+    <text class="bx" x="158" y="123" text-anchor="middle">circuit</text>
+
+    <path class="pipe" d="M158,140 V254 M158,170 H110"/>
+
+    <!-- vacuomètre, du côté du circuit -->
+    <circle class="org" cx="92" cy="170" r="18" fill="#ffffff"/>
+    <path fill="none" stroke="#8aa0b4" stroke-width="1.4" d="M81,161 A14,14 0 0 1 103,161"/>
+    <path fill="none" stroke="#1b3a63" stroke-width="2.4" stroke-linecap="round" d="M92,170 L83,162"/>
+    <text class="sm" x="92" y="203" text-anchor="middle">vacuomètre</text>
+
+    <!-- vanne d'isolement -->
+    <path class="org" fill="#ffffff" d="M146,204 H170 L158,216 Z M146,228 H170 L158,216 Z"/>
+    <path class="axe" d="M158,216 H186 M186,209 v14"/>
+    <text class="sm" x="142" y="226" text-anchor="end">vanne d'isolement</text>
+
+    <rect class="org" x="110" y="254" width="96" height="52" rx="5" fill="#f3f7fb"/>
+    <text class="bx" x="158" y="279" text-anchor="middle">pompe</text>
+    <text class="bx" x="158" y="297" text-anchor="middle">à vide</text>
+
+    <text class="sm" x="38" y="330">Le manomètre du manifold</text>
+    <text class="sm" x="38" y="346">ne suffit pas pour lire le vide.</text>
+  </g>
+
+  <!-- GRAPHIQUE -->
+  <g>
+    <rect x="232" y="54" width="444" height="300" rx="8" fill="#ffffff" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="252" y="78">Le vide en fonction du temps</text>
+
+    <rect x="500" y="104" width="104" height="200" fill="#f3f7fb"/>
+    <line x1="328" y1="112" x2="604" y2="112" stroke="#c9d4de" stroke-width="1.4" stroke-dasharray="5 5"/>
+
+    <!-- axes, sans aucune graduation chiffrée -->
+    <path class="axe" d="M328,100 V304 H618 M611,298 l7,6 -7,6"/>
+    <text class="sm" x="322" y="116" text-anchor="end">atmosphère</text>
+    <text class="sm" x="322" y="300" text-anchor="end">vide poussé</text>
+    <text class="sm" x="624" y="309">temps</text>
+    <text class="sm" x="414" y="323" text-anchor="middle">tirage au vide</text>
+    <text class="sm" x="552" y="323" text-anchor="middle">contrôle</text>
+
+    <!-- instant où l'on isole -->
+    <line x1="500" y1="100" x2="500" y2="304" stroke="#8aa0b4" stroke-width="1.8" stroke-dasharray="6 5"/>
+    <text class="an" x="506" y="92">vanne fermée, pompe arrêtée</text>
+
+    <!-- le bon tirage : la descente la plus franche, le palier le plus bas -->
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>
+      <path class="courbe" stroke="#1e6b40" stroke-dashoffset="0"
+            d="M332,112 C354,172 382,232 420,258 C440,271 452,278 468,278 L604,278">
+        <animate attributeName="stroke-dashoffset" values="700;0" dur="2.4s" begin="0.8s" fill="freeze"/>
+      </path>
+    </g>
+    <text class="cl final" x="610" y="282" fill="#1e6b40" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.4s" begin="3.3s" fill="freeze"/>
+      bon
+    </text>
+
+    <!-- l'humidité résiduelle : la descente s'aplatit tôt et stagne à mi-hauteur -->
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="5.5s" fill="freeze"/>
+      <path class="courbe" stroke="#ff6b35" stroke-dashoffset="0"
+            d="M332,112 C356,140 384,170 420,188 C440,197 452,200 468,200 L604,200">
+        <animate attributeName="stroke-dashoffset" values="700;0" dur="2.4s" begin="5.5s" fill="freeze"/>
+      </path>
+    </g>
+    <text class="cl final" x="610" y="204" fill="#ff6b35" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.4s" begin="8s" fill="freeze"/>
+      humidité
+    </text>
+
+    <!-- la fuite : le coude est SUR la ligne d'isolement, jamais avant. -->
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="10.2s" fill="freeze"/>
+      <path class="courbe" stroke="#c9451a" stroke-dashoffset="0"
+            d="M332,112 C358,158 386,208 424,234 C444,247 456,252 472,252 L500,252 C526,252 548,214 604,152">
+        <animate attributeName="stroke-dashoffset" values="700;0" dur="3s" begin="10.2s" fill="freeze"/>
+      </path>
+    </g>
+    <text class="cl final" x="610" y="156" fill="#c9451a" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.4s" begin="13.3s" fill="freeze"/>
+      fuite
+    </text>
+  </g>
+
+  <!-- LIRE LE PALIER -->
+  <g>
+    <rect x="686" y="54" width="188" height="300" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="704" y="80">Lire le palier</text>
+
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.5s" fill="freeze"/>
+      <circle cx="708" cy="108" r="5" fill="#1e6b40"/>
+      <text class="sm" x="724" y="112">Palier bas et stable</text>
+      <text class="sm" x="724" y="130">→ tirage correct</text>
+    </g>
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.2s" fill="freeze"/>
+      <circle cx="708" cy="164" r="5" fill="#ff6b35"/>
+      <text class="sm" x="724" y="168">Palier à mi-hauteur</text>
+      <text class="sm" x="724" y="186">→ humidité résiduelle</text>
+    </g>
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="13.5s" fill="freeze"/>
+      <circle cx="708" cy="220" r="5" fill="#c9451a"/>
+      <text class="sm" x="724" y="224">Le vide remonte après</text>
+      <text class="sm" x="724" y="242">l'isolement → fuite</text>
+    </g>
+
+    <line x1="704" y1="268" x2="856" y2="268" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="sm" x="704" y="290">Aucune valeur cible ici :</text>
+    <text class="sm" x="704" y="308">le vide à atteindre et la</text>
+    <text class="sm" x="704" y="326">durée selon le constructeur.</text>
+  </g>
+
+  <text class="lg" x="26" y="382">Le vacuomètre se monte au plus près du circuit, jamais sur la pompe — et il se lit circuit isolé, pompe arrêtée.</text>
+  <text class="lg" x="26" y="404">Fermer la vanne côté circuit <tspan style="font-weight:700;fill:#c9451a">avant</tspan> d'arrêter la pompe : sinon l'huile de la pompe peut être aspirée vers le circuit.</text>
+  <text class="lg" x="26" y="426">Une remontée du vide signale d'abord une fuite ; elle peut aussi venir d'une humidité résiduelle.</text>
+</svg>

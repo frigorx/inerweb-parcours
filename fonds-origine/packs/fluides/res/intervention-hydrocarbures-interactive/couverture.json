@@ -1,0 +1,60 @@
+{
+  "cours": "intervention-hydrocarbures-interactive",
+  "titre": "Intervenir sur un circuit hydrocarbure",
+  "reference": "arrêté du 21 novembre 2025",
+  "ecrans": 27,
+  "codes": {
+    "12.07": [
+      "point-arret",
+      "fil-rouge",
+      "avant-ouverture",
+      "embranchement-ouverture",
+      "deposer-composant",
+      "refermer-circuit",
+      "quiz-ordre"
+    ],
+    "12.08": [
+      "fil-rouge",
+      "montage-azote",
+      "epreuve-procedure",
+      "embranchement-epreuve",
+      "conclusion-epreuve",
+      "quiz-ordre",
+      "quiz-epreuve"
+    ],
+    "12.09": [
+      "fil-rouge",
+      "montage-vide",
+      "essai-vide",
+      "embranchement-vide",
+      "quiz-ordre",
+      "quiz-vide"
+    ],
+    "12.10": [
+      "fil-rouge",
+      "identifier-charge",
+      "peser-charge",
+      "embranchement-charge",
+      "quiz-ordre",
+      "quiz-charge"
+    ],
+    "12.11": [
+      "fil-rouge",
+      "methode-directe",
+      "detecteur-adapte",
+      "embranchement-fuite",
+      "quiz-ordre",
+      "quiz-rapport"
+    ],
+    "12.12": [
+      "fil-rouge",
+      "rapport-intervention",
+      "quiz-ordre",
+      "quiz-rapport"
+    ]
+  },
+  "hors_referentiel": [
+    "relais-mission-290",
+    "bilan"
+  ]
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img"
+     aria-label="Comparaison du PRP de quatre fluides : le CO2 vaut 1, le R-32 675, le R-410A 2088, le R-404A 3922.">
+  <title>Un kilogramme n'égale pas un kilogramme</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .l   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .v   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .s   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .barre { animation:pousse 1.4s ease-out both; transform-origin:150px 0; }
+    @keyframes pousse { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+    @media print { .barre { animation:none; } }
+  </style>
+
+  <rect width="900" height="330" fill="#ffffff"/>
+
+  <text class="t" x="40" y="38">1 kg de fluide n'égale pas 1 kg d'un autre</text>
+  <text class="s" x="40" y="60">PRP : effet de serre d'1 kg de fluide, comparé à 1 kg de CO₂ (l'étalon, PRP = 1).</text>
+
+  <!-- échelle : 3922 → 660 px -->
+  <!-- CO₂ -->
+  <text class="l" x="140" y="106" text-anchor="end">CO₂</text>
+  <rect class="barre" x="150" y="92" width="2" height="20" rx="1" fill="#2e8b57"/>
+  <text class="s" x="162" y="106"><tspan style="font-weight:700;fill:#2e8b57">1</tspan> — l'étalon… et un vrai fluide (R-744)</text>
+
+  <!-- R-32 -->
+  <text class="l" x="140" y="156" text-anchor="end">R-32</text>
+  <rect class="barre" x="150" y="142" width="114" height="20" rx="3" fill="#1b3a63" style="animation-delay:.15s"/>
+  <text class="v" x="274" y="156" style="fill:#1b3a63">675</text>
+
+  <!-- R-410A -->
+  <text class="l" x="140" y="206" text-anchor="end">R-410A</text>
+  <rect class="barre" x="150" y="192" width="351" height="20" rx="3" fill="#5a7ba6" style="animation-delay:.3s"/>
+  <text class="v" x="511" y="206" style="fill:#1b3a63">2088</text>
+
+  <!-- R-404A -->
+  <text class="l" x="140" y="256" text-anchor="end">R-404A</text>
+  <rect class="barre" x="150" y="242" width="660" height="20" rx="3" fill="#ff6b35" style="animation-delay:.45s"/>
+  <text class="v" x="820" y="256">3922</text>
+
+  <text class="s" x="40" y="302">Conséquence : fuir 1 kg de R-404A ≈ relâcher <tspan style="font-weight:700;fill:#c9451a">3,9 tonnes</tspan> équivalent CO₂.</text>
+  <text class="s" x="40" y="320">Valeurs indicatives (Mission F-GAZ) — en intervention, le PRP se lit sur la fiche du fluide.</text>
+</svg>

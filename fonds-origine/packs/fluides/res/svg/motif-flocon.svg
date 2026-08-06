@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Motif de fond du support de projection — flocon dendritique à six branches.
+       Dessin vectoriel, aucune image générative. Il se pose en filigrane très
+       faible (5 %) : il habille le fond crème sans jamais entrer en concurrence
+       avec le texte projeté. Ne pas monter l'opacité : au-delà de 8 % le contraste
+       de lecture en salle commence à souffrir. -->
+  <defs>
+    <g id="branche" fill="none" stroke="#1b3a63" stroke-width="3.4" stroke-linecap="round">
+      <path d="M0,0 V-80"/>
+      <path d="M0,-30 l-17,-17 M0,-30 l17,-17"/>
+      <path d="M0,-52 l-13,-13 M0,-52 l13,-13"/>
+      <path d="M0,-70 l-9,-9 M0,-70 l9,-9"/>
+    </g>
+  </defs>
+  <g transform="translate(100,100)">
+    <use href="#branche"/>
+    <use href="#branche" transform="rotate(60)"/>
+    <use href="#branche" transform="rotate(120)"/>
+    <use href="#branche" transform="rotate(180)"/>
+    <use href="#branche" transform="rotate(240)"/>
+    <use href="#branche" transform="rotate(300)"/>
+    <circle r="8" fill="none" stroke="#1b3a63" stroke-width="3.4"/>
+  </g>
+</svg>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Découverte interactive et racontée : du glaçon à la casserole, puis de la vapeur liquéfiée à l’installation frigorifique.">
+  <title>Du glaçon au circuit frigorifique | Habilitation Fluide</title>
+  <link rel="stylesheet" href="styles.css?v=20260729-culture-graphique">
+  <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+<body>
+<main class="experience" id="experience">
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#module">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span><strong>Habilitation Fluide</strong><small>Du glaçon au circuit</small></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="pill" id="voice-toggle" type="button" aria-pressed="true">🔊 Voix active</button>
+      <button class="pill" id="refs-toggle" type="button" aria-expanded="false">Repères</button>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p class="eyebrow">DÉCOUVERTE FROID & CLIMATISATION · NIVEAU ZÉRO</p>
+      <h1 id="page-title">Un glaçon fond.<br><span>La courbe raconte où va l’énergie.</span></h1>
+      <p>On part de gestes connus pour construire une première culture scientifique. Avant les formules, vous apprendrez à lire des axes, suivre un point et reconnaître les pentes et les paliers d’une courbe que le frigoriste retrouvera toute sa carrière.</p>
+      <button class="start" id="start" type="button">Commencer la découverte <span aria-hidden="true">▶</span></button>
+      <small class="duration">12 étapes racontées · environ 15 minutes · une courbe fil rouge, des manipulations et un défi final</small>
+      <div class="learning-goals" aria-label="À la fin de cette découverte">
+        <span><b>1</b> Lire axes, pentes et paliers</span>
+        <span><b>2</b> Expliquer sensible et latente</span>
+        <span><b>3</b> Relier la courbe au circuit frigorifique</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="heat-rings"><i></i><i></i><i></i></div>
+      <div class="hero-vessel">
+        <div class="hero-vapor"><i></i><i></i><i></i></div>
+        <div class="hero-liquid"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="hero-thermometer"><span></span></div>
+      <div class="hero-flame">chaleur</div>
+      <div class="hero-curve" aria-label="Miniature de la courbe température énergie avec deux paliers">
+        <small>COURBE T° / ÉNERGIE</small>
+        <span class="hero-axis-y"></span><span class="hero-axis-x"></span>
+        <i class="hero-segment one"></i><i class="hero-segment two"></i><i class="hero-segment three"></i><i class="hero-segment four"></i><i class="hero-segment five"></i>
+        <b class="hero-zero">0 °C</b><b class="hero-hundred">100 °C</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="module-shell" id="module" aria-label="Cours interactif sur la chaleur">
+    <nav class="stepper" id="stepper" aria-label="Progression du module"></nav>
+
+    <article class="lesson-card" aria-live="polite">
+      <div class="lesson-top">
+        <div>
+          <p class="eyebrow" id="kicker"></p>
+          <h2 id="title"></h2>
+        </div>
+        <div class="voice-controls">
+          <div class="speed" aria-label="Vitesse de lecture">
+            <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+            <span id="speed-value">0,95×</span>
+            <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+          </div>
+          <button class="listen" id="listen" type="button"><span aria-hidden="true">▶</span><b> Écouter</b></button>
+        </div>
+      </div>
+
+      <p class="lesson-text" id="lesson-text"></p>
+      <section class="interactive-zone" id="zone"></section>
+
+      <div class="lesson-footer">
+        <button class="nav subtle" id="prev" type="button">← Retour</button>
+        <span id="status"></span>
+        <button class="nav" id="next" type="button">Continuer →</button>
+      </div>
+      <p class="speech-warning" id="speech-warning" role="status" hidden>La voix de synthèse n’est pas disponible dans ce navigateur. Tous les textes restent accessibles à l’écran.</p>
+    </article>
+  </section>
+
+  <section class="final-message">
+    <p>À RETENIR</p>
+    <h2>Le thermomètre montre un indice.<br><span>Le frigoriste suit le voyage complet de l’énergie.</span></h2>
+    <div class="pillars" aria-label="Résumé">
+      <span>Température qui change</span><i>=</i><strong>chaleur sensible</strong>
+      <span>État qui change</span><i>=</i><strong>chaleur latente</strong>
+    </div>
+    <a class="next-brick next-brick-link" href="../pression-temperature-interactive/index.html">
+      <small>BRIQUE SUIVANTE</small>
+      <strong>Pourquoi la pression change-t-elle la température d’ébullition ?</strong>
+      <span>Entrez sous une cloche à vide, faites bouillir de l’eau sans flamme, puis découvrez la saturation et le glissement des fluides zéotropes.</span>
+      <b>Commencer le chapitre pression–température →</b>
+    </a>
+  </section>
+
+  <aside class="refs" id="refs" hidden>
+    <p class="eyebrow">REPÈRES DE COURS</p>
+    <h2>Le modèle utilisé dans cette expérience</h2>
+    <ul>
+      <li><strong>Température</strong> et <strong>quantité d’énergie</strong> ne sont pas la même chose : une grande quantité de matière demande davantage d’énergie pour obtenir la même évolution.</li>
+      <li>Chaleur sensible : <strong>Q = m × c × ΔT</strong>. Chaleur latente : <strong>Q = m × L</strong>. La masse intervient dans les deux cas.</li>
+      <li>La fusion du glaçon et l’ébullition de l’eau montrent la même idée : de l’énergie peut être transférée sans hausse de température pendant un changement d’état.</li>
+      <li>Sur les courbes température–énergie, une pente correspond à la chaleur sensible ; une partie plate correspond à la chaleur latente du changement d’état.</li>
+      <li>Le modèle du palier correspond à un <strong>corps pur dans des conditions maintenues</strong>. Les mélanges zéotropes seront abordés plus tard avec leur glissement de température.</li>
+      <li>Pour liquéfier une vapeur, il faut lui retirer de l’énergie. Dans le condenseur, l’air ou l’eau extérieurs emportent cette énergie.</li>
+      <li>Bilan énergétique de l’installation : <strong>Qcond = Qévap + Wcomp</strong>. Le condenseur rejette l’énergie prise au local et celle fournie au compresseur.</li>
+      <li>Après évaporation complète, chauffer encore la vapeur pose la brique de la <strong>surchauffe</strong>. Après liquéfaction complète, refroidir encore le liquide pose celle du <strong>sous-refroidissement</strong>.</li>
+      <li>La relation pression–température est volontairement gardée pour le module suivant.</li>
+    </ul>
+  </aside>
+
+  <footer>
+    <span>Habilitation Fluide · Auto-formation interactive</span>
+    <button id="restart" type="button">Recommencer</button>
+  </footer>
+</main>
+<script src="app.js?v=20260729-culture-graphique"></script>
+<!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

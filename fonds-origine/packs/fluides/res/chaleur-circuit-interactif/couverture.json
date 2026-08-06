@@ -1,0 +1,27 @@
+{
+  "cours": "chaleur-circuit-interactif",
+  "titre": "La chaleur dans le circuit — grandeurs, transformations, puissance",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g1a"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup : ce cours existait sans couverture.",
+    "Elle est établie sur ce que les écrans ENSEIGNENT, pas sur les codes que porte la",
+    "fiche d'accroche — les deux se recoupent ici, ce n'est pas toujours le cas.",
+    "Les écrans n'ont pas d'identifiant stable dans le code : la déclaration porte donc",
+    "sur le cours entier et non écran par écran. Tant que ces identifiants n'existent",
+    "pas, `?extrait=` ne peut pas fonctionner sur ce cours."
+  ],
+
+  "codes": {
+    "1.01": "unités de température, pression, masse, énergie et puissance — l'écran « trois grandeurs » les distingue, celui du débit massique les met en jeu",
+    "1.02": "thermodynamique élémentaire : chaleur sensible (Q = m × c × ΔT), chaleur latente, source chaude et source froide",
+    "1.04": "fonction des composants et transformation qu'ils imposent au fluide : évaporateur (effet frigorifique), condenseur (rejet), compresseur, détendeur"
+  },
+
+  "appui": {},
+
+  "hors_referentiel": [
+    "le quiz de fin, qui vérifie les notions ci-dessus sans en ajouter"
+  ]
+}

@@ -1,0 +1,107 @@
+TOME 3 — TECHNOLOGIE DES ORGANES FRIGORIFIQUES
+==============================================
+
+SOUS-TITRE
+----------
+Reconnaître, situer et comprendre chaque composant du circuit frigorifique.
+
+CONTENU
+-------
+- 16 dossiers technologiques.
+- 7 ecrans fixes par dossier, soit 112 ecrans pedagogiques.
+  L'ecran 6 « Ou ca fuit » a ete ajoute le 03/08/2026 : les codes 6.01, 7.01,
+  8.01, 9.01 et 1.05 exigent le principe de fonctionnement ET les risques de
+  fuite associes. Il est adressable par ?ecran=6.
+- 16 mini-questions de mémorisation.
+- 3 révisions guidées reliées aux séances 17, 18 et 19.
+- 18 vues réalistes isolées.
+- 22 symboles copiés depuis la bibliothèque SVG inerWeb.
+- Animations internes réalisées en HTML/CSS, limitées à l’organe étudié.
+
+LES SIX ÉCRANS
+--------------
+1. Reconnaître : vue isolée et symbole de la bibliothèque.
+2. Fonction professionnelle complète.
+3. Entrée, sortie, connexions et état du fluide frigorigène.
+4. Fonctionnement interne animé avec explication textuelle complète.
+5. Emplacement habituel sur la Croix du Frigoriste et montage.
+6. Mini-question de mémorisation avec correction expliquée.
+
+DOSSIERS
+--------
+1. Compresseurs : piston, scroll, vis et rotatif.
+2. Condenseurs à air et à eau.
+3. Évaporateurs à air et à eau.
+4. Détendeur thermostatique à égalisation interne et externe.
+5. Détendeur électronique.
+6. Tube capillaire.
+7. Réservoir liquide.
+8. Filtre déshydrateur.
+9. Voyant liquide.
+10. Électrovanne.
+11. Clapet anti-retour et vannes de service.
+12. Bouteille anti-coup de liquide.
+13. Séparateur d’huile.
+14. Pressostats HP et BP.
+15. Sondes de température et capteurs de pression.
+16. Régulateurs de pression et organes de sécurité.
+
+RÉVISIONS
+---------
+- index.html?revision=17 : compresseur, bouteille anti-coup, séparateur d’huile,
+  pressostats.
+- index.html?revision=18 : condenseur, évaporateur, capteurs, régulation et
+  sécurité.
+- index.html?revision=19 : détente et accessoires de ligne liquide.
+
+VOIX ET ACCESSIBILITÉ
+---------------------
+- Aucune voix ne démarre au chargement.
+- La voix lit uniquement le texte visible de l’écran.
+- Vitesses : 0,75 · 0,85 · 0,95 · 1,00 · 1,10 · 1,25.
+- Clé locale de vitesse : inerweb-tome3-voice-rate.
+- Clé locale de progression : inerweb-tome3-acquis-v1.
+- Clé locale de lisibilité : inerweb-tome3-large-text.
+- Tout fonctionne sans voix, sans stockage et sans réseau.
+- Flèches gauche/droite : changer d’écran. Échap : quitter le dossier.
+- Les états correct et incorrect emploient mot, symbole et style de trait en
+  plus de la couleur.
+
+PROJECTION
+----------
+Un écran pédagogique tient dans 100dvh sans défilement. Les styles prévoient :
+- 1024 × 768 ;
+- 1366 × 768 ;
+- 390 × 844 ;
+- 360 × 640.
+
+IMPRESSION
+----------
+impression.css supprime fonds, ombres, commandes et animations. Les titres et
+filets gardent leur couleur, le corps devient noir, les marges sont de 15 mm.
+
+LIMITES SIGNALÉES SANS INVENTION
+--------------------------------
+La bibliothèque inerWeb ne contient pas encore de symbole validé pour :
+- la bouteille anti-coup de liquide ;
+- la vanne de service précise ;
+- le capteur électronique de pression ;
+- chaque famille de régulateur de pression.
+
+Le module affiche « symbole à valider » ou emploie seulement le symbole voisin
+réellement disponible, nommé sans ambiguïté. Aucun symbole manquant n’a été
+inventé.
+
+FICHIERS
+--------
+- index.html : structure de l’application.
+- styles.css : charte, projection et animations internes.
+- impression.css : sortie papier sobre.
+- app.js : source éditoriale des 16 dossiers, navigation, voix et questions.
+- symboles/ : copies exactes des SVG validés.
+- images-organes/ : vues isolées de reconnaissance.
+- SOURCES-ASSETS.md : provenance et prompts des images.
+- SOURCES-TECHNIQUES.md : documentations fabricants utilisées pour la
+  vérification ciblée du contenu.
+
+Version : Tome 3 v1 — 31 juillet 2026

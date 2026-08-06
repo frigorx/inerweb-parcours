@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 320" role="img"
+     aria-label="Deux documents à ne pas confondre. L'attestation d'aptitude concerne la personne : c'est le technicien qui la détient, elle prouve qu'il sait faire, et sans elle il ne peut pas intervenir. L'attestation de capacité concerne l'entreprise : elle prouve que la société dispose du personnel, de l'outillage et des procédures. Il faut les deux : une entreprise capable n'autorise pas un technicien sans aptitude, et un technicien apte ne peut pas travailler pour une entreprise sans capacité.">
+  <title>Aptitude et capacité : la personne et l'entreprise</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+
+  <rect width="880" height="320" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Deux documents que tout le monde confond</text>
+
+  <!-- APTITUDE -->
+  <g transform="translate(30,54)">
+    <rect x="0" y="0" width="380" height="184" rx="8" fill="#eef6f1" stroke="#a9cdb8" stroke-width="1.5"/>
+    <!-- personne -->
+    <g transform="translate(48,52)">
+      <circle class="p" cx="0" cy="0" r="16"/>
+      <path class="p" d="M0,16 v34 M0,24 l-18,12 M0,24 l18,12 M0,50 l-13,26 M0,50 l13,26"/>
+    </g>
+    <text class="st" x="110" y="46">Attestation d'APTITUDE</text>
+    <text class="lg" x="110" y="70">Elle concerne <tspan style="font-weight:700">la personne</tspan>.</text>
+    <text class="lg" x="110" y="92">C'est vous qui la détenez.</text>
+    <text class="lg" x="110" y="114">Elle prouve que vous <tspan style="font-weight:700">savez faire</tspan>.</text>
+    <text class="lg" x="30" y="158">Sans elle, vous ne pouvez pas intervenir — même dans une</text>
+    <text class="lg" x="30" y="176">entreprise en règle.</text>
+  </g>
+
+  <!-- CAPACITÉ -->
+  <g transform="translate(470,54)">
+    <rect x="0" y="0" width="380" height="184" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <!-- bâtiment -->
+    <g transform="translate(34,30)">
+      <path class="p" d="M0,66 v-42 l22,-16 22,16 v42 z"/>
+      <rect class="p" x="10" y="34" width="12" height="12"/>
+      <rect class="p" x="26" y="34" width="12" height="12"/>
+      <rect class="p" x="16" y="52" width="14" height="14"/>
+    </g>
+    <text class="st" x="110" y="46">Attestation de CAPACITÉ</text>
+    <text class="lg" x="110" y="70">Elle concerne <tspan style="font-weight:700">l'entreprise</tspan>.</text>
+    <text class="lg" x="110" y="92">C'est la société qui la détient.</text>
+    <text class="lg" x="110" y="114">Personnel, outillage, procédures.</text>
+    <text class="lg" x="30" y="158">Sans elle, l'entreprise ne peut pas exercer — même avec des</text>
+    <text class="lg" x="30" y="176">techniciens tous attestés.</text>
+  </g>
+
+  <!-- lien -->
+  <g transform="translate(415,140)">
+    <circle cx="12" cy="0" r="17" fill="#1b3a63"/>
+    <text x="12" y="6" text-anchor="middle" style="font:700 17px Calibri;fill:#fff">+</text>
+  </g>
+
+  <!-- bandeau -->
+  <rect x="30" y="256" width="820" height="46" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+  <text x="48" y="278" style="font:700 14.5px Calibri;fill:#c9451a">Il faut les DEUX, et l'une ne remplace jamais l'autre.</text>
+  <text class="lg" x="48" y="296">C'est la confusion la plus fréquente du métier : « mon patron a la capacité, donc je peux y aller » est faux.</text>
+</svg>

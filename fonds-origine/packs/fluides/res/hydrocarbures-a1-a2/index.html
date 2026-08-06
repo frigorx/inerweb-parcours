@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Mission interactive A1/A2 : pourquoi le R-290, risques d’inflammation, analyse de zone, calcul documenté, outillage hydrocarbures et conduite à tenir.">
+  <title>Mission 290 — travailler en sécurité | Pilote Fluides</title>
+  <link rel="stylesheet" href="styles.css?v=20260801-5">
+  <link rel="stylesheet" href="impression.css?v=20260801-5" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-title">Aller au contenu de l’étape</a>
+
+  <header class="appbar">
+    <a class="brand" href="index.html" aria-label="Revenir au sommaire du module">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span><strong>inerWeb Édu</strong><small>Pilote Fluides · Mission 290</small></span>
+    </a>
+    <div class="appbar-actions">
+      <span class="mode-badge" id="mode-badge">Mission complète</span>
+      <button class="small-button" id="home-button" type="button" hidden>Sommaire</button>
+      <button class="small-button exit-button" id="exit-button" type="button" hidden>Quitter</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="home" id="home" aria-labelledby="home-title">
+      <div class="home-copy">
+        <p class="eyebrow">HABILITATION FLUIDES A1/A2 · MISSION PROFESSIONNELLE</p>
+        <h1 id="home-title">Mission 290<br><span>autoriser ou suspendre</span></h1>
+        <p class="home-intro">Pourquoi utilise-t-on du propane ? Quels risques change-t-il ? Analysez une vraie situation, calculez une exigence documentée et préparez le poste adapté.</p>
+        <div class="home-actions">
+          <button class="primary-button" id="start-button" type="button">Prendre la mission <span aria-hidden="true">→</span></button>
+          <span>28 écrans · 1 cas continu · 5 décisions finales</span>
+        </div>
+      </div>
+
+      <figure class="home-visual hydro-visual">
+        <img src="../bibliotheque/illu-g12b.webp" alt="Illustration d’un technicien devant un équipement frigorifique, avec un extincteur à proximité.">
+        <div class="home-visual-badge"><b>R-290</b><span>Préparer · vérifier · décider</span></div>
+        <figcaption>R-290 : un atout climatique, un risque A3 à maîtriser.</figcaption>
+      </figure>
+
+      <nav class="dossier-grid" id="dossier-grid" aria-label="Ouvrir directement un dossier"></nav>
+
+      <p class="home-note"><strong>Frontière pédagogique :</strong> cette mission prépare la zone et l’outillage. Le geste sur le circuit est enseigné ensuite dans g12b, en atelier encadré.</p>
+    </section>
+
+    <section class="course-shell" id="course-shell" hidden aria-label="Mission interactive sur le travail en sécurité avec le R-290">
+      <aside class="course-rail">
+        <div class="rail-heading">
+          <span id="rail-mode">PARCOURS</span>
+          <strong id="rail-progress">1 / 28</strong>
+        </div>
+        <nav class="stepper" id="stepper" aria-label="Progression par dossier"></nav>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <p id="progress-copy">Début du parcours</p>
+      </aside>
+
+      <article class="lesson-card" aria-labelledby="lesson-title">
+        <header class="lesson-header">
+          <div class="lesson-heading">
+            <p class="eyebrow" id="lesson-kicker"></p>
+            <h2 id="lesson-title" tabindex="-1"></h2>
+          </div>
+          <div class="lesson-tools" aria-label="Outils de l’étape">
+            <button class="tool-button" id="copy-link" type="button" aria-label="Copier le lien de cet écran"><span aria-hidden="true">🔗</span><span class="tool-label">Copier le lien</span></button>
+            <div class="speed-control" aria-label="Vitesse de la voix">
+              <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+              <span id="speed-value">0,95×</span>
+              <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+            </div>
+            <button class="tool-button voice-button" id="listen" type="button"><span aria-hidden="true">▶</span> <span>Écouter</span></button>
+            <button class="tool-button" id="stop-voice" type="button" aria-label="Arrêter la voix" disabled><span aria-hidden="true">■</span><span class="tool-label">Arrêter</span></button>
+          </div>
+        </header>
+
+        <div class="lesson-content">
+          <div class="lesson-copy">
+            <figure class="screen-visual" id="screen-visual" aria-hidden="true"></figure>
+            <div class="lesson-copy-text">
+              <p id="lesson-text"></p>
+              <p class="action-prompt" id="action-prompt"></p>
+            </div>
+          </div>
+          <section class="activity-zone" id="activity-zone" aria-label="Activité de l’étape"></section>
+        </div>
+
+        <footer class="lesson-footer">
+          <button class="nav-button secondary" id="prev-button" type="button">← Précédent</button>
+          <div class="reference-box" id="reference-box"></div>
+          <button class="nav-button" id="next-button" type="button">Suivant →</button>
+        </footer>
+        <p class="status-message" id="status-message" role="status" aria-live="polite"></p>
+      </article>
+    </section>
+
+    <section class="print-book" id="print-book" aria-label="Version imprimable du module"></section>
+  </main>
+
+  <script src="app.js?v=20260801-5"></script>
+  <script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

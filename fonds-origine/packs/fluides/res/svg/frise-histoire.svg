@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img"
+     aria-label="Frise chronologique : CFC dans les années 1930, découverte du trou d'ozone en 1985, protocole de Montréal 1987, Kyoto 1997, accord de Paris 2015, amendement de Kigali 2016, F-Gas III 2024. Deux fils : ozone puis climat.">
+  <title>Quarante ans d'histoire — de l'ozone au climat</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .an  { font:700 15px 'Trebuchet MS',Calibri,sans-serif; fill:#1b3a63; }
+    .ev  { font:700 13.5px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .s   { font:400 12.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .fil { font:700 12.5px Calibri,Segoe UI,sans-serif; }
+    .tige{ stroke:#c9d4de; stroke-width:1.2; }
+  </style>
+
+  <rect width="900" height="560" fill="#ffffff"/>
+
+  <text class="t" x="40" y="34">Quarante ans d'histoire : le problème a changé deux fois</text>
+
+  <!-- ===== les deux fils, en bandeau haut ===== -->
+  <g transform="translate(0,58)">
+    <text class="fil" x="40" y="4" fill="#2f5689">FIL OZONE</text>
+    <path d="M 124 0 L 600 0" stroke="#2f5689" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 600 0 L 686 0" stroke="#2f5689" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+    <text class="s" x="696" y="4" fill="#2f5689">la couche se répare ✓</text>
+
+    <text class="fil" x="40" y="30" fill="#c9451a">FIL CLIMAT</text>
+    <path d="M 124 26 L 856 26" stroke="#ff6b35" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- ===== axe du temps ===== -->
+  <path d="M 40 300 L 866 300" stroke="#8494a4" stroke-width="2.5"/>
+
+  <!-- ============ événements AU-DESSUS ============ -->
+  <!-- 1930s -->
+  <g transform="translate(112,300)">
+    <circle r="7" fill="#2f5689"/>
+    <path class="tige" d="M 0 -7 L 0 -58"/>
+    <text class="ev" y="-68" text-anchor="middle">Les CFC, fluides « miracle »</text>
+    <text class="s"  y="-52" text-anchor="middle">stables, ni toxiques, ni inflammables</text>
+  </g>
+  <!-- 1987 -->
+  <g transform="translate(390,300)">
+    <circle r="9" fill="#1b3a63"/>
+    <path class="tige" d="M 0 -9 L 0 -58"/>
+    <text class="ev" y="-84" text-anchor="middle">Protocole de MONTRÉAL</text>
+    <text class="s"  y="-68" text-anchor="middle">sortie des CFC puis des HCFC —</text>
+    <text class="s"  y="-52" text-anchor="middle">le grand succès environnemental</text>
+  </g>
+  <!-- 2015 -->
+  <g transform="translate(668,300)">
+    <circle r="7" fill="#ff6b35"/>
+    <path class="tige" d="M 0 -7 L 0 -58"/>
+    <text class="ev" y="-68" text-anchor="middle">Accord de PARIS</text>
+    <text class="s"  y="-52" text-anchor="middle">limiter le réchauffement à +1,5 °C</text>
+  </g>
+
+  <!-- ============ événements EN DESSOUS ============ -->
+  <!-- 1985 -->
+  <g transform="translate(252,300)">
+    <circle r="7" fill="#2f5689"/>
+    <path class="tige" d="M 0 7 L 0 52"/>
+    <text class="ev" y="72" text-anchor="middle">Le trou dans la couche d'ozone</text>
+    <text class="s"  y="88" text-anchor="middle">au-dessus de l'Antarctique — le chlore accuse</text>
+  </g>
+  <!-- 1997 -->
+  <g transform="translate(530,300)">
+    <circle r="7" fill="#ff6b35"/>
+    <path class="tige" d="M 0 7 L 0 52"/>
+    <text class="ev" y="72" text-anchor="middle">Protocole de KYOTO</text>
+    <text class="s"  y="88" text-anchor="middle">6 gaz à effet de serre, dont les HFC</text>
+  </g>
+  <!-- 2016 -->
+  <g transform="translate(806,300)">
+    <circle r="9" fill="#c9451a"/>
+    <path class="tige" d="M 0 9 L 0 52"/>
+    <text class="ev" y="72" text-anchor="end" x="46">Amendement de KIGALI</text>
+    <text class="s"  y="88" text-anchor="end" x="46">les HFC entrent… dans Montréal !</text>
+  </g>
+
+  <!-- ============ années sur l'axe ============ -->
+  <text class="an" x="112" y="332" text-anchor="middle">années 1930</text>
+  <text class="an" x="252" y="332" text-anchor="middle">1985</text>
+  <text class="an" x="390" y="332" text-anchor="middle">1987</text>
+  <text class="an" x="530" y="332" text-anchor="middle">1997</text>
+  <text class="an" x="668" y="332" text-anchor="middle">2015</text>
+  <text class="an" x="806" y="332" text-anchor="middle">2016</text>
+
+  <!-- ============ F-Gas III, en encadré à droite ============ -->
+  <g transform="translate(866,182)">
+    <rect x="-172" y="-34" width="172" height="60" rx="9" fill="#fff3e8" stroke="#ffc7ad" stroke-width="1.5"/>
+    <text class="ev" x="-86" y="-14" text-anchor="middle" fill="#c9451a">2024 · F-Gas III</text>
+    <text class="s"  x="-86" y="2"  text-anchor="middle">règlement UE 2024/573</text>
+    <text class="s"  x="-86" y="18" text-anchor="middle">phase-down, quotas, interdictions</text>
+  </g>
+
+  <!-- ============ morale ============ -->
+  <g transform="translate(450,470)">
+    <rect x="-400" y="-30" width="800" height="66" rx="10" fill="#f5f8fb" stroke="#d7e0e8" stroke-width="1.5"/>
+    <text class="ev" y="-4" text-anchor="middle">Montréal a réglé l'ozone en interdisant le chlore… et les HFC de remplacement ont créé le problème climat.</text>
+    <text class="s"  y="20" text-anchor="middle">C'est pour ça qu'un frigoriste manipule aujourd'hui des fluides sous quotas : chaque kilo relâché compte.</text>
+  </g>
+</svg>

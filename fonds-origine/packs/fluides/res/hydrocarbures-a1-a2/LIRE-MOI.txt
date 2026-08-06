@@ -1,0 +1,137 @@
+MISSION 290 — AUTORISER OU SUSPENDRE
+====================================
+
+Module interactif autonome pour la fiche g12.
+Racine travaillée : C:\git\pilote-fluides
+
+INTENTION PÉDAGOGIQUE
+---------------------
+
+Le module ne refait pas le cours complet sur la classification des fluides. Le
+R-290 reste le cas continu, mais l’écran de rappel l’inscrit dans la famille des
+hydrocarbures A3 courants : R-290, R-600, R-600a, R-1270… La liste n’est pas à
+réciter : la plaque et la FDS identifient le fluide et sa classe avant chaque
+intervention. L’élève suit ensuite une armoire R-290 de 153 g et réunit les
+preuves permettant d’autoriser le travail ou de le suspendre.
+
+LE PARCOURS
+-----------
+
+- 28 écrans courts, sans défilement, dans 6 dossiers : Comprendre, Voir le
+  risque, Analyser la zone, Équiper le poste, Conduite à tenir et Contrôle.
+- Pourquoi le R-290 : origine du propane, retour depuis les années 1990, faible
+  impact climatique direct, bonnes propriétés thermodynamiques et interdiction
+  de convertir au jugé une machine non conçue pour un fluide inflammable.
+- Risques : scénario animé fuite → mélange gaz-air → ignition, comparaison
+  visuelle de trois mélanges, descente des hydrocarbures cités vers les points
+  bas, distinction inflammation/asphyxie et conduite immédiate en cas d’alarme.
+- Garde-fou : A3 décrit une forte inflammabilité, pas une densité. Le
+  comportement dans l’air de tout autre fluide se vérifie dans sa FDS. De même,
+  la lettre A signifie une toxicité propre plus faible, jamais « air respirable ».
+- Mission terrain : lecture du dossier, calcul documenté d’une surface minimale,
+  inspection de six dangers, corrections observables et décision GO/STOP.
+- Outillage : liste réglementaire, preuve de compatibilité, tri de dix objets et
+  choix du montage de la pompe à vide.
+- Conduite : vérifications avant ouverture, récupération puis azote, distinction
+  entre rejet de pompe à vide et fluide à récupérer, charge exacte à la balance.
+- Contrôle final de 5 questions. Seuil pédagogique : 4/5. Le résultat n’est ni
+  une attestation ni une autorisation d’intervention.
+
+TRAITEMENT VISUEL ET LISIBILITÉ
+-------------------------------
+
+- Refonte graphique du 1er août 2026 : titres, consignes, réponses et états
+  agrandis ; les gros boutons ne contiennent plus de micro-texte.
+- Chaque écran associe le message à un pictogramme métier de la bibliothèque
+  inerWeb ; les dossiers et l’outillage disposent eux aussi d’un repère visuel.
+- Le sommaire emploie l’illustration locale validée illu-g12b.webp. Aucun faux
+  équipement technique n’a été généré pour cette refonte.
+- Progression numérotée et cartes plus chaleureuses, avec une version téléphone
+  volontairement simplifiée pour préserver la taille des caractères.
+- Reprise pédagogique après captures formateur : les écrans abstraits ont été
+  remplacés par des scènes de cause à effet, des gestes à déclencher et des
+  états visibles ; les mots métier arrivent après la compréhension de l’image.
+- Recette complète : 28/28 écrans sans défilement à 1024×768, 1280×720,
+  1366×768, 390×844 et 360×640.
+
+ARTICULATION AVEC LES AUTRES RESSOURCES
+---------------------------------------
+
+Le cours complet « Classes et sécurité » conserve l’enseignement de la matrice
+A/B et 1/2L/2/3. La fiche g12 reste la ressource de lecture ; ce module remplace
+sa projection linéaire par une situation de décision.
+
+La fiche g12b « Intervenir sur un circuit hydrocarbure » n’est PAS remplacée.
+Le présent module prépare la zone et le poste et fixe les principes de sécurité.
+Il n’enseigne pas les gestes d’ouverture, de brasage, d’épreuve, de vide ou de
+recharge : ceux-ci restent en atelier encadré dans g12b.
+
+COUVERTURE DU RÉFÉRENTIEL
+-------------------------
+
+Codes traités : 12.01 · 12.02 · 12.03 · 12.04 · 12.05 · 12.06 · 12.13 · 12.14.
+Le détail écran par écran est dans couverture.json.
+
+CALCUL DOCUMENTÉ, PAS FORMULE UNIVERSELLE
+-----------------------------------------
+
+L’écran de calcul reprend un exemple publié par Danfoss pour un appareil
+commercial autonome relevant de l’IEC 60335-2-89 :
+
+  0,153 kg ÷ [2,2 m × (0,25 × 0,038 kg/m³)] = 7,3 m²
+
+L’écran affiche son périmètre avant, pendant et après le calcul. Cette formule
+n’est pas réutilisable automatiquement pour un autre appareil, une autre
+application ou une autre édition normative. La plaque, la notice, la norme
+applicable et l’analyse de risques restent prioritaires.
+
+« À L’AIR » : DISTINCTION DE SÉCURITÉ
+-------------------------------------
+
+Le module ne prescrit jamais de relâcher le fluide frigorigène. Il distingue :
+
+- le fluide du circuit, à récupérer avec une station et une bouteille adaptées ;
+- le refoulement de la pompe à vide, conduit vers l’air extérieur lorsque la
+  documentation et la procédure applicables le prévoient.
+
+ADRESSAGE
+---------
+
+index.html
+  Ouvre le sommaire complet.
+
+index.html?dossier=mission
+  Ouvre le premier écran du dossier « Analyser la zone ».
+
+index.html?dossier=mission&ecran=4
+  Ouvre l’inspection de la zone.
+
+index.html?extrait=tri-outillage
+  Ouvre uniquement cet écran.
+
+index.html?extrait=triangle-inflammation,conduite-fuite,quiz-risque
+  Ouvre ces écrans dans l’ordre demandé.
+
+Chaque écran propose « Copier le lien ». L’adresse emploie l’identifiant stable.
+
+VOIX, STOCKAGE ET HORS LIGNE
+----------------------------
+
+- Aucune voix et aucun son au chargement.
+- La voix française démarre seulement après « Écouter ».
+- Vitesses : 0,80 · 0,95 · 1,10 · 1,25 ; défaut 0,95.
+- Clé locale du module : hydrocarbures-voice-rate.
+- Lisibilité commune : pilote_lisibilite.
+- Aucun nom, score, rapport ou donnée personnelle n’est stocké ni transmis.
+- Le module reste complet sans voix, sans stockage et sans réseau.
+
+IMPRESSION ET LIMITES
+---------------------
+
+impression.css produit un livret de 28 écrans avec explications, consignes,
+questions, corrections et codes. Les commandes et aplats sont supprimés ; le
+papier est blanc et le texte noir.
+
+Le module ne crée aucun zonage ATEX automatique et ne fournit aucune procédure
+de brasage. Les moyens réels viennent de la norme, de la FDS, de la notice, de
+l’analyse de risques et des procédures de l’entreprise.

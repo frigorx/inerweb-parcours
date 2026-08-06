@@ -1,0 +1,28 @@
+{
+  "cours": "nomenclature-interactive",
+  "titre": "Décrypter le code d’un fluide — nomenclature R-xyz",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I · règle ASHRAE 34",
+  "appelé_depuis": ["g1c"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. Attention à ne pas confondre le",
+    "SUJET du cours et le code qu'il tient : décoder R-134a n'est demandé par aucun code",
+    "du référentiel. Ce que le référentiel demande (1.06), c'est de connaître le",
+    "comportement des fluides de substitution — et c'est la seconde moitié du cours,",
+    "celle des mélanges, qui le tient : zéotrope contre azéotrope, glissement,",
+    "fractionnement, et ce que cela change à l'intervention."
+  ],
+
+  "codes": {
+    "1.06": "comportement spécifique et déviances des fluides de substitution : séries 400 (zéotropes) et 500 (azéotropes), glissement de température, fractionnement et sa conséquence sur la manière d'intervenir, isomères (R-134 / R-134a)"
+  },
+
+  "appui": {
+    "1.07": "les séries 600 et 700 sont situées et nommées comme contenant des fluides naturels ; leurs caractéristiques propres (hydrocarbures, CO₂, NH₃) sont enseignées par les fiches dédiées, pas ici"
+  },
+
+  "hors_referentiel": [
+    "la construction de la molécule et la règle du +90 : c'est la méthode de décodage, utile en atelier, exigée par aucun code",
+    "le mini-jeu final de 12 questions (seuil 9/12)"
+  ]
+}

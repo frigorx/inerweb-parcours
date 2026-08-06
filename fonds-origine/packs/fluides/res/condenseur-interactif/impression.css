@@ -1,0 +1,7 @@
+@page{size:A4;margin:15mm}
+html,body{background:#fff!important;color:#000!important;font:11pt/1.45 Calibri,"Segoe UI",Arial,sans-serif!important;overflow:visible!important;height:auto!important}
+.appbar,.home,.course-shell,.skip-link,#inerweb-lisibilite{display:none!important}
+.print-book{display:block!important}.print-title{border-bottom:2pt solid #1b3a63;margin-bottom:10mm}.print-title h1{font:700 22pt "Trebuchet MS",Calibri,Arial,sans-serif;color:#1b3a63;margin:0}.print-title p{margin:3mm 0}
+.print-screen{break-inside:avoid-page;border:1pt solid #1b3a63;border-radius:0;margin:0 0 7mm;padding:5mm;background:#fff!important;box-shadow:none!important}.print-screen h2{font:700 16pt "Trebuchet MS",Calibri,Arial,sans-serif;color:#1b3a63;margin:0 0 3mm}.print-screen h3{font:700 12pt "Trebuchet MS",Calibri,Arial,sans-serif;color:#1b3a63;margin:4mm 0 2mm}.print-screen p{margin:2mm 0}.print-codes{border-top:1pt solid #1b3a63;margin-top:4mm;padding-top:2mm;color:#1b3a63;font-weight:700}.print-answer{border-left:3pt dashed #c9451a;padding-left:3mm;margin-top:3mm}.print-answer strong{color:#c9451a}
+a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;word-break:break-all}
+*,*::before,*::after{background-image:none!important;text-shadow:none!important;box-shadow:none!important;animation:none!important;transition:none!important}

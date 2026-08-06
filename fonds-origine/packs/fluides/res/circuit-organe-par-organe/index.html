@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Module d’auto-formation interactif sur le compresseur, le condenseur, le détendeur et l’évaporateur d’un circuit frigorifique.">
+  <title>Le circuit, organe par organe | Habilitation Fluide</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+<body>
+  <svg class="symbol-library" aria-hidden="true">
+    <defs>
+      <symbol id="sym-compresseur-general" viewBox="-24.0 -20.0 50 40" overflow="visible">
+        <circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+        <circle cx="-16" cy="0" r="1.5" fill="#000"/>
+        <circle cx="16" cy="0" r="1.5" fill="#000"/>
+        <circle cx="-10" cy="10" r="1.5" fill="#000"/>
+        <circle cx="2" cy="11" r="1.5" fill="#000"/>
+        <circle cx="2" cy="11" r="1.5" fill="#000"/>
+        <circle cx="-10" cy="-10" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-compresseur-scroll" viewBox="-24.0 -20.0 50 40" overflow="visible">
+        <circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 4.50 A 4.50 4.50 0 0 1 -0.00 -4.50" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 -2.50 A 3.50 3.50 0 0 1 0.00 4.50" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 2.50 A 2.50 2.50 0 0 1 -0.00 -2.50" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 -0.50 A 1.50 1.50 0 0 1 0.00 2.50" fill="none" stroke="#000" stroke-width="1"/>
+        <circle cx="-16" cy="0" r="1.5" fill="#000"/>
+        <circle cx="16" cy="0" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-compresseur-piston" viewBox="-24.0 -20.0 50 40" overflow="visible">
+        <circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+        <line x1="-4" y1="0" x2="5" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-5" y1="-5" x2="-5" y2="5" stroke="#000" stroke-width="1"/>
+        <circle cx="-16" cy="0" r="1.5" fill="#000"/>
+        <circle cx="16" cy="0" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-compresseur-vis" viewBox="-24.0 -20.0 50 40" overflow="visible">
+        <circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+        <polyline points="0,-5 5,0 0,5" fill="none" stroke="#000" stroke-width="1"/>
+        <polyline points="-4,-5 1,0 -4,5" fill="none" stroke="#000" stroke-width="1"/>
+        <circle cx="-16" cy="0" r="1.5" fill="#000"/>
+        <circle cx="16" cy="0" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-echangeur-air" viewBox="-25.0 -25.0 60 60" overflow="visible">
+        <rect x="-18" y="-20" width="36" height="48" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-14" y1="16" x2="-14" y2="24" stroke="#000" stroke-width="1"/>
+        <line x1="7" y1="16" x2="7" y2="24" stroke="#000" stroke-width="1"/>
+        <line x1="14" y1="16" x2="14" y2="24" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="16" x2="-7" y2="24" stroke="#000" stroke-width="1"/>
+        <line x1="0" y1="16" x2="0" y2="24" stroke="#000" stroke-width="1"/>
+        <line x1="-19" y1="20" x2="19" y2="20" stroke="#000" stroke-width="1"/>
+        <circle cx="0.0" cy="-2.0" r="15.0" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="7" y1="-15" x2="13" y2="5" stroke="#000" stroke-width="1"/>
+        <path d="M -1.00 -2.00 A 1.00 1.00 0 0 1 0.00 -1.00" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-7" y1="-15" x2="-13" y2="5" stroke="#000" stroke-width="1"/>
+        <path d="M 6.00 5.00 A 6.00 6.00 0 0 1 0.00 -1.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -7.00 4.00 A 6.00 6.00 0 0 1 -1.00 -2.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 -1.00 A 6.00 6.00 0 0 1 -6.00 5.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -6.00 5.00 A 1.00 1.00 0 0 1 -7.00 4.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 1.00 -2.00 A 6.00 6.00 0 0 1 7.00 4.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 0.00 -1.00 A 1.00 1.00 0 0 1 1.00 -2.00" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 7.00 4.00 A 1.00 1.00 0 0 1 6.00 5.00" fill="none" stroke="#000" stroke-width="1"/>
+        <ellipse cx="0.0" cy="-7.0" rx="2.5" ry="4.5" fill="none" stroke="#000" stroke-width="1"/>
+        <circle cx="-19" cy="20" r="1.5" fill="#000"/>
+        <circle cx="19" cy="20" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-detendeur-thermo" viewBox="-19.0 -28.0 40 40" overflow="visible">
+        <circle cx="0.0" cy="-12.00005" r="5.83095" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="0" y1="-18" x2="0" y2="-20" stroke="#000" stroke-width="1"/>
+        <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0 0,0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="-6" stroke="#000" stroke-width="1"/>
+        <line x1="10" y1="0" x2="11" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-10" y1="0" x2="-11" y2="0" stroke="#000" stroke-width="1"/>
+        <circle cx="0" cy="-20" r="1.5" fill="#000"/>
+        <circle cx="11" cy="0" r="1.5" fill="#000"/>
+        <circle cx="-11" cy="0" r="1.5" fill="#000"/>
+        <text x="-5" y="-9.66667" font-family="sans-serif" font-size="6" fill="#333">TC</text>
+      </symbol>
+      <symbol id="sym-detendeur-electronique" viewBox="-19.0 -21.0 40 30" overflow="visible">
+        <circle cx="0.0" cy="-12.00005" r="5.83095" fill="white" stroke="#000" stroke-width="1"/>
+        <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0 0,0" fill="white" stroke="#000" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="-6" stroke="#000" stroke-width="1"/>
+        <line x1="10" y1="0" x2="11" y2="0" stroke="#000" stroke-width="1"/>
+        <line x1="-10" y1="0" x2="-11" y2="0" stroke="#000" stroke-width="1"/>
+        <circle cx="11" cy="0" r="1.5" fill="#000"/>
+        <circle cx="-11" cy="0" r="1.5" fill="#000"/>
+        <text x="-3.5" y="-11" font-family="sans-serif" font-size="6" fill="#333">TCE</text>
+      </symbol>
+      <symbol id="sym-tube-capillaire" viewBox="-26.0 -11.0 50 20" overflow="visible">
+        <path d="M -14.00 -2.30 A 3.00 2.90 0 0 1 -8.00 -2.30" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 11.00 -1.00 A 1.00 1.00 0 0 1 10.00 -2.00" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="11.7474" y1="-1" x2="17.2737" y2="-1" stroke="#000" stroke-width="1"/>
+        <path d="M 4.00 -2.30 A 3.00 2.90 0 0 1 10.00 -2.30" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 2.00 -1.40 A 1.50 3.60 0 0 1 -1.00 -1.40" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -3.00 -1.40 A 1.50 3.60 0 0 1 -6.00 -1.40" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-21.2526" y1="-1" x2="-15.7263" y2="-1" stroke="#000" stroke-width="1"/>
+        <path d="M -6.00 -2.30 A 4.00 2.90 0 0 1 2.00 -2.30" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -8.00 -1.40 A 1.50 3.60 0 0 1 -11.00 -1.40" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -11.00 -2.30 A 4.00 2.90 0 0 1 -3.00 -2.30" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M 7.00 -1.40 A 1.50 3.60 0 0 1 4.00 -1.40" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -1.00 -2.30 A 4.00 2.90 0 0 1 7.00 -2.30" fill="none" stroke="#000" stroke-width="1"/>
+        <path d="M -14.00 -2.00 A 1.00 1.00 0 0 1 -15.00 -1.00" fill="none" stroke="#000" stroke-width="1"/>
+        <circle cx="-22" cy="-1" r="1.5" fill="#000"/>
+        <circle cx="18" cy="-1" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-filtre-deshydrateur" viewBox="-25.0 -10.0 40 20" overflow="visible">
+        <line x1="-5" y1="-4.22727" x2="-5" y2="1.22727" stroke="#000" stroke-width="1"/>
+        <line x1="6" y1="0.494709" x2="9.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+        <line x1="2" y1="-0.454545" x2="2" y2="4.45455" stroke="#000" stroke-width="1"/>
+        <rect x="-15.75" y="-5.01058" width="21.75" height="10.0106" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-19.5" y1="0.494709" x2="-15.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+        <line x1="-12" y1="-0.414828" x2="-12" y2="4.41483" stroke="#000" stroke-width="1"/>
+        <circle cx="9.75" cy="0.494709" r="1.5" fill="#000"/>
+        <circle cx="-19.5" cy="0.494709" r="1.5" fill="#000"/>
+      </symbol>
+      <symbol id="sym-voyant-liquide" viewBox="-15.0 -10.0 50 20" overflow="visible">
+        <line x1="21.7269" y1="-0.0538826" x2="27.65" y2="-0.0538826" stroke="#000" stroke-width="1"/>
+        <rect x="-0.7" y="-5.79239" width="22.75" height="11.7924" fill="none" stroke="#000" stroke-width="1"/>
+        <ellipse cx="10.7" cy="0.1" rx="6.1" ry="5.9" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-7.7" y1="-0.0538826" x2="-0.7" y2="-0.0538826" stroke="#000" stroke-width="1"/>
+        <circle cx="27.3" cy="-0.0538826" r="1.5" fill="#000"/>
+        <circle cx="-7.7" cy="-0.0538826" r="1.5" fill="#000"/>
+        <text x="8" y="3" font-family="sans-serif" font-size="6" fill="#333">V</text>
+      </symbol>
+      <symbol id="sym-pressostat-hp" viewBox="-14.0 -23.0 30 30" overflow="visible">
+        <rect x="-10" y="-17.8855" width="22.1" height="9.44275" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="0.2" y1="-8.44275" x2="0.2" y2="-0.348964" stroke="#000" stroke-width="1"/>
+        <circle cx="0" cy="0" r="1.5" fill="#000"/>
+        <text x="-6" y="-11" font-family="sans-serif" font-size="6" fill="#333">PA</text>
+      </symbol>
+      <symbol id="sym-pressostat-bp" viewBox="-14.0 -23.0 30 30" overflow="visible">
+        <rect x="-9" y="-17.4863" width="18.85" height="9.24314" fill="none" stroke="#000" stroke-width="1"/>
+        <line x1="-0.3" y1="-8.24314" x2="-0.3" y2="-0.320448" stroke="#000" stroke-width="1"/>
+        <circle cx="0" cy="0" r="1.5" fill="#000"/>
+        <text x="-6" y="-12" font-family="sans-serif" font-size="6" fill="#333">PB</text>
+      </symbol>
+      <symbol id="sym-sonde-temperature" viewBox="-30.0 -14.0 60 40" overflow="visible">
+        <line x1="-20" y1="0" x2="20" y2="0" stroke="#000" stroke-width="1"/>
+        <rect x="-10" y="-5" width="20" height="10" fill="white" stroke="#000" stroke-width="1"/>
+        <polyline points="-10,10 -5,10 5,-10 10,-10" fill="none" stroke="#000" stroke-width="1"/>
+        <circle cx="-20" cy="0" r="1.5" fill="#000"/>
+        <circle cx="20" cy="0" r="1.5" fill="#000"/>
+        <text x="-10" y="22.5" font-family="sans-serif" font-size="9.0" fill="#555">S_</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="#accueil" aria-label="Retour au début">
+      <span class="brand-mark" aria-hidden="true">HF</span>
+      <span><strong>Habilitation Fluide</strong><small>inerWeb Pilote · Auto-formation</small></span>
+    </a>
+    <div class="topbar-tools">
+      <span class="time-badge">≈ 25 min</span>
+      <button class="quiet-button" id="restart-top" type="button">Recommencer</button>
+    </div>
+  </header>
+
+  <main id="accueil">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">MISSION · LE CAISSON TECHNIQUE</p>
+        <h1 id="page-title">Le circuit,<br><span>organe par organe</span></h1>
+        <p class="hero-lead">À l’épreuve, un seul organe sera tiré au sort. Votre mission : savoir expliquer les quatre.</p>
+        <div class="goal-row" aria-label="Objectifs du module">
+          <span><b>1</b> Les placer</span>
+          <span><b>2</b> Expliquer leur rôle</span>
+          <span><b>3</b> Suivre le fluide et la chaleur</span>
+        </div>
+        <button class="primary-button hero-start" id="start-course" type="button">Ouvrir le caisson <span aria-hidden="true">→</span></button>
+      </div>
+      <figure class="hero-visual hero-schematic">
+        <div class="hero-cross" role="img" aria-label="Croix du frigoriste : condenseur à air en haut, compresseur à droite, détendeur à gauche et évaporateur en bas">
+          <div class="hero-organ hero-organ-top">
+            <svg aria-hidden="true"><use href="#sym-echangeur-air"></use></svg>
+            <b>CONDENSEUR</b><small>EN HAUT</small>
+          </div>
+          <div class="hero-organ hero-organ-left">
+            <svg aria-hidden="true"><use href="#sym-detendeur-thermo"></use></svg>
+            <b>DÉTENDEUR</b><small>À GAUCHE</small>
+          </div>
+          <div class="hero-cross-center"><span>LA CROIX</span><b>4 organes</b></div>
+          <div class="hero-organ hero-organ-right">
+            <svg aria-hidden="true"><use href="#sym-compresseur-general"></use></svg>
+            <b>COMPRESSEUR</b><small>À DROITE</small>
+          </div>
+          <div class="hero-organ hero-organ-bottom">
+            <svg aria-hidden="true"><use href="#sym-echangeur-air"></use></svg>
+            <b>ÉVAPORATEUR</b><small>EN BAS</small>
+          </div>
+        </div>
+        <figcaption>
+          <span class="status-dot" aria-hidden="true"></span>
+          Tracés issus de la bibliothèque de symboles inerWeb
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="memory-strip" aria-label="La croix du frigoriste">
+      <div><span>↑</span><b>En haut</b><strong>Condenseur</strong></div>
+      <div><span>←</span><b>À gauche</b><strong>Détendeur</strong></div>
+      <div><span>→</span><b>À droite</b><strong>Compresseur</strong></div>
+      <div><span>↓</span><b>En bas</b><strong>Évaporateur</strong></div>
+    </section>
+
+    <section class="course-shell" id="module" aria-label="Parcours pédagogique interactif">
+      <div class="course-head">
+        <div>
+          <p class="eyebrow">VOTRE PARCOURS</p>
+          <h2>12 slides courtes</h2>
+        </div>
+        <div class="course-progress" aria-label="Progression">
+          <span id="progress-label">Étape 1 sur 9</span>
+          <div class="progress-track"><i id="progress-bar"></i></div>
+        </div>
+      </div>
+
+      <nav class="stepper" id="stepper" aria-label="Étapes du module"></nav>
+
+      <article class="lesson-card" aria-live="polite">
+        <header class="lesson-heading">
+          <div>
+            <p class="eyebrow" id="lesson-kicker"></p>
+            <h2 id="lesson-title"></h2>
+            <p class="lesson-intro" id="lesson-intro"></p>
+          </div>
+          <div class="speech-panel" aria-label="Narration">
+            <div class="speech-buttons">
+              <button class="listen-button" id="listen" type="button">Écouter</button>
+              <button class="pause-button" id="pause" type="button" disabled>Pause</button>
+            </div>
+            <div class="rate-control" aria-label="Vitesse de la voix">
+              <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+              <span id="rate-label">0,95×</span>
+              <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="lesson-zone" id="lesson-zone"></div>
+        <p class="speech-warning" id="speech-warning" role="status" hidden>La synthèse vocale n’est pas disponible. Tout le contenu reste lisible à l’écran.</p>
+
+        <footer class="lesson-nav">
+          <button class="back-button" id="previous" type="button">← Retour</button>
+          <span id="step-count">1 / 9</span>
+          <button class="primary-button" id="next" type="button">Continuer →</button>
+        </footer>
+      </article>
+    </section>
+
+    <section class="tech-library" id="dossiers" aria-labelledby="dossiers-title">
+      <header class="library-heading">
+        <div>
+          <p class="eyebrow">BIBLIOTHÈQUE TECHNOLOGIQUE</p>
+          <h2 id="dossiers-title">Un dossier par élément</h2>
+          <p>Chaque dossier associe une vue réaliste isolée, le symbole normalisé et plusieurs fiches de cours. Aucun assemblage frigorifique complet n’est représenté.</p>
+        </div>
+        <div class="library-rule">
+          <b>RÈGLE DE REPRÉSENTATION</b>
+          <span>Un organe à la fois</span>
+          <span>Pas de tuyauterie inventée</span>
+          <span>Symbole SVG fourni</span>
+        </div>
+      </header>
+
+      <nav class="dossier-list" id="dossier-list" aria-label="Choisir un dossier technologique"></nav>
+      <article class="dossier-view" id="dossier-view" aria-live="polite"></article>
+    </section>
+
+    <section class="takeaway" aria-labelledby="takeaway-title">
+      <p class="eyebrow">À RÉPÉTER JUSQU’À MAÎTRISE</p>
+      <h2 id="takeaway-title">Quatre définitions métier à connaître par cœur.</h2>
+      <div class="takeaway-grid">
+        <div><span class="takeaway-number">1</span><b>Aspirer · comprimer · refouler · faire circuler</b><small>Compresseur · vapeur BP → vapeur HP</small></div>
+        <div><span class="takeaway-number">2</span><b>Liquéfier par échange de chaleur</b><small>Condenseur · vapeur HP → liquide HP</small></div>
+        <div><span class="takeaway-number">3</span><b>Faire chuter la pression et doser le débit massique</b><small>Détendeur · liquide HP → mélange BP</small></div>
+        <div><span class="takeaway-number">4</span><b>Évaporer par échange de chaleur</b><small>Évaporateur · mélange BP → vapeur BP</small></div>
+      </div>
+      <button class="quiet-button" id="restart-bottom" type="button">Reprendre depuis le début</button>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>Habilitation Fluide · inerWeb Pilote</span>
+    <span>Thème clair · Symboles métier fournis</span>
+  </footer>
+
+  <script src="app.js"></script>
+<!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

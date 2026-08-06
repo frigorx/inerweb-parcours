@@ -1,0 +1,71 @@
+HABILITATION FLUIDE · TOME 4
+BILAN THERMIQUE ET PERFORMANCE ÉNERGÉTIQUE
+
+Point d’entrée :
+  index.html
+
+Contenu :
+  - 16 étapes interactives sans défilement en mode cours ;
+  - première étape refondue autour d’une chambre froide 3D réaliste ;
+  - quatre grosses briques interactives pour repérer parois, air, produits et usages internes ;
+  - bilan thermique d’une chambre froide ;
+  - paroi multicouche interactive : épaisseur, lambda, R, U = 1/R et transmission ;
+  - produits, changement d’état, air et charges internes ;
+  - climatisation en chauffage et en refroidissement ;
+  - puissances sensible, latente et totale ;
+  - COP, EER, SCOP et SEER ;
+  - reproduction officielle de l’étiquette européenne 626/2011 publiée par la
+    Commission européenne, avec ses repères 1 à 11, sa vraie carte, le SEER,
+    le SCOP, les classes A+++ à D, les trois saisons et les deux bruits ;
+  - estimation de la consommation électrique ;
+  - défi de 10 questions, validation à partir de 8/10 ;
+  - narration française facultative, choix de la voix et vitesse réglable.
+
+Les valeurs proposées dans les calculateurs constituent des cas fictifs
+d’entraînement. Elles doivent être remplacées par les données validées du projet.
+
+Le module fonctionne hors ligne pour tout le cours. Les quatre liens de sources
+(deux institutionnels, deux techniques) sont des compléments facultatifs et ne
+conditionnent aucun contenu.
+
+Visuel de la première étape :
+  assets/chambre-froide-3d.jpg
+  - rendu 3D d’ambiance généré avec l’outil d’image OpenAI le 1er août 2026 ;
+  - 1 400 × 788 px, JPEG local de 121 Ko ;
+  - aucune donnée technique, flèche ou étiquette n’est intégrée à l’image ;
+  - les quatre apports et leurs explications restent des éléments HTML/JavaScript
+    contrôlés, lisibles et utilisables sans l’image.
+
+Visuel de la septième étape :
+  assets/batiment-clim-3d.jpg
+  - rendu 3D d’ambiance généré avec l’outil d’image OpenAI le 1er août 2026 ;
+  - 1 400 × 788 px, JPEG local de 135 Ko ;
+  - maison en coupe avec split mural et groupe extérieur, sans texte ni flèche ;
+  - les flux été/hiver et leurs légendes sont superposés en HTML/CSS et animés.
+
+Visuel réglementaire de la quatorzième étape :
+  assets/etiquette-climatiseur-ue-officielle.png
+  - fichier PNG local de 579 × 811 px ;
+  - visuel officiel annoté de la Commission européenne, téléchargé le
+    1er août 2026 depuis :
+    https://energy-efficient-products.ec.europa.eu/sites/default/files/styles/embed_large/public/2024-08/air-conditioner-energy-label-with-numbers_0.png?itok=0z0GthPE
+  - page d’origine :
+    https://energy-efficient-products.ec.europa.eu/product-list/air-conditioners-and-comfort-fans_en
+  - structure réglementaire : annexe III du règlement délégué (UE) n° 626/2011,
+    version consolidée au 30 septembre 2023 ;
+  - l’image n’est ni redessinée, ni recolorée, ni déformée. Les explications en
+    gros caractères sont des éléments HTML placés à côté du document.
+
+La troisième étape emploie des valeurs fictives de matériaux. Rsi = 0,13 et
+Rse = 0,04 m²·K/W sont signalées comme valeurs d’exercice d’un mur vertical,
+à adapter à la méthode ou à la norme demandée.
+
+La reprise pédagogique v4 explicite les ambiguïtés relevées lors d’une lecture
+de débutant : conversion des mm en m, signe Σ, rôle de Rsi/Rse, sens de U,
+formule de chaleur latente, facteur de temps 24 h / heures disponibles, sens de
+UA et de 0,34, lecture du SHR, différence entre exercice conceptuel et calcul
+réglementaire du SCOP/SEER, et statut du kWh/an imprimé sur l’étiquette.
+
+La reprise de lisibilité du 1er août 2026 fixe un plancher de 13 px pour les
+contenus secondaires projetés à 1 024 × 768 et de 10 px sur 360 × 640. Les titres,
+consignes, valeurs et libellés principaux sont plus grands que ces planchers.

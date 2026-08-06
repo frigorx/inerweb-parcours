@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Froid Clim Académie - cours interactifs</title>
+  <meta name="description" content="Cours interactifs et ludiques pour former aux bases du froid, de la climatisation et des fluides frigorigènes.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="kicker">Froid & climatisation</p>
+      <h1>Académie interactive du froid</h1>
+    </div>
+    <nav aria-label="Navigation rapide">
+      <a href="#modules">Modules</a>
+      <a href="#simulateur">Simulateur</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker">Pour professeur de froid et climatisation</p>
+        <h2 id="hero-title">Faire manipuler les savoirs avant de les faire retenir.</h2>
+        <p>
+          Une base de site pour animer les cours : cycle frigorifique, pressions,
+          surchauffe, sous-refroidissement, diagnostic et fluides. Chaque notion
+          devient une action, un réglage ou un défi.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#simulateur">Lancer le cycle</a>
+          <a class="button" href="#modules">Voir le parcours</a>
+        </div>
+      </div>
+      <div class="cycle-card" aria-label="Animation simplifiée du cycle frigorifique">
+        <canvas id="cycleCanvas" width="720" height="520"></canvas>
+        <div class="legend">
+          <span><i class="hot"></i> Haute pression</span>
+          <span><i class="cold"></i> Basse pression</span>
+          <span><i class="mix"></i> Détente</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules" class="section">
+      <div class="section-head">
+        <p class="kicker">Parcours progressif</p>
+        <h2>Modules prêts à transformer en cours</h2>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <section id="simulateur" class="section simulator">
+      <div class="section-head">
+        <p class="kicker">Manipulation</p>
+        <h2>Simulateur de cycle frigorifique</h2>
+      </div>
+      <div class="sim-layout">
+        <div class="panel">
+          <label for="evapTemp">Température d'évaporation</label>
+          <div class="control-row">
+            <input id="evapTemp" type="range" min="-30" max="15" value="-8">
+            <output id="evapOut">-8 °C</output>
+          </div>
+          <label for="condTemp">Température de condensation</label>
+          <div class="control-row">
+            <input id="condTemp" type="range" min="25" max="65" value="42">
+            <output id="condOut">42 °C</output>
+          </div>
+          <label for="superheat">Surchauffe</label>
+          <div class="control-row">
+            <input id="superheat" type="range" min="0" max="20" value="7">
+            <output id="superheatOut">7 K</output>
+          </div>
+          <label for="subcool">Sous-refroidissement</label>
+          <div class="control-row">
+            <input id="subcool" type="range" min="0" max="18" value="5">
+            <output id="subcoolOut">5 K</output>
+          </div>
+        </div>
+        <div class="panel readings">
+          <div>
+            <span>Basse pression estimée</span>
+            <strong id="bpValue">3.4 bar</strong>
+          </div>
+          <div>
+            <span>Haute pression estimée</span>
+            <strong id="hpValue">14.3 bar</strong>
+          </div>
+          <div>
+            <span>Risque pédagogique</span>
+            <strong id="riskValue">Réglage cohérent</strong>
+          </div>
+          <p id="simExplain">
+            Le détendeur alimente correctement l'évaporateur. Les élèves peuvent
+            relier les valeurs aux symptômes terrain.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="atelier" class="section">
+      <div class="section-head">
+        <p class="kicker">Diagnostic ludique</p>
+        <h2>Atelier panne : trouver la cause probable</h2>
+      </div>
+      <div class="diagnostic">
+        <div class="case-card">
+          <p class="case-label">Cas n° <span id="caseNumber">1</span></p>
+          <h3 id="caseTitle">Charge insuffisante</h3>
+          <ul id="caseSymptoms"></ul>
+          <button class="button primary" id="nextCase" type="button">Autre panne</button>
+        </div>
+        <div class="choices" id="diagnosticChoices"></div>
+      </div>
+    </section>
+
+    <section id="quiz" class="section quiz">
+      <div class="section-head">
+        <p class="kicker">Évaluation automatique</p>
+        <h2>Quiz flash de fin de séance</h2>
+      </div>
+      <div class="quiz-card">
+        <div class="score">
+          <span>Score</span>
+          <strong id="scoreValue">0 / 0</strong>
+        </div>
+        <h3 id="questionText"></h3>
+        <div id="answerList" class="answer-list"></div>
+        <button class="button" id="resetQuiz" type="button">Recommencer</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Base pédagogique inspirée de l'esprit inerWeb Fluide : rigueur métier,
+      séparation formation/officiel, activités manipulables et exploitables en classe.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+<!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

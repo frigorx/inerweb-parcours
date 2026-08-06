@@ -1,0 +1,27 @@
+@import url("../condenseur-interactif/styles.css?v=20260802-2");
+
+:root{--mission:#c9451a;--mission-soft:#fff0e8}
+.brand-mark{background:var(--orange-dark)}
+.home h1 span{color:var(--orange-dark)}
+.dossier-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.route{width:100%;display:grid;align-content:center;gap:10px}
+.route-line{display:flex;align-items:stretch;justify-content:center;gap:5px;flex-wrap:wrap}
+.route-node{display:grid;place-items:center;min-width:92px;min-height:62px;padding:8px;border:2px solid var(--navy);border-radius:13px;background:var(--paper);color:var(--navy);font-weight:800;text-align:center}
+.route-node.safe{border:4px double var(--ok);background:var(--ok-bg)}
+.route-node.stop{border:3px dashed var(--bad);background:var(--bad-bg);color:var(--bad)}
+.route-arrow{align-self:center;color:var(--orange-dark);font-size:22px;font-weight:900}
+.branch-panel{width:100%;height:100%;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:9px;align-content:center}
+.branch-context{padding:8px 11px;border-left:5px solid var(--navy);background:#eef5fc;border-radius:0 10px 10px 0;color:var(--navy);font-weight:800}
+.branch-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;align-content:center}
+.branch-choice{border:2px solid var(--line);border-radius:14px;background:var(--paper);padding:12px;text-align:left;color:var(--ink);cursor:pointer}
+.branch-choice strong{display:block;color:var(--navy);font:800 17px "Trebuchet MS",Calibri,sans-serif}.branch-choice small{display:block;color:var(--muted);margin-top:5px}
+.branch-choice.correct{border:4px double var(--ok);background:var(--ok-bg)}.branch-choice.wrong{border:3px dashed var(--bad);background:var(--bad-bg)}
+.consequence{min-height:72px;padding:10px 12px;border:3px dashed var(--bad);border-radius:12px;background:var(--bad-bg);color:#75241b}
+.consequence.good{border:4px double var(--ok);background:var(--ok-bg);color:#175d3e}.consequence strong{display:block;font-size:16px}
+.return-safe{margin-top:7px;border:0;border-radius:999px;background:var(--navy);color:#fff;padding:8px 12px;font-weight:800;cursor:pointer}
+.tool-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;width:100%}.tool-card{border:2px solid var(--line);border-radius:12px;background:var(--paper);padding:8px;text-align:center;color:var(--navy);font-weight:800}.tool-card img{display:block;width:54px;height:54px;object-fit:contain;margin:0 auto 5px}
+.evidence{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.evidence-card{border:2px solid var(--line);border-radius:12px;background:var(--paper);padding:10px}.evidence-card strong{display:block;color:var(--navy)}
+.branch-count{display:inline-block;padding:5px 9px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);font-weight:800}
+@media(max-width:900px){.dossier-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.dossier-grid{grid-template-columns:repeat(2,1fr)}.branch-panel{gap:4px}.branch-context{font-size:9px;padding:5px}.branch-choices{gap:4px}.branch-choice{padding:6px;border-radius:8px}.branch-choice strong{font-size:11px}.branch-choice small{font-size:9px}.consequence{min-height:44px;padding:5px;font-size:9px}.consequence strong{font-size:10px}.return-safe{font-size:9px;padding:5px 8px}.route-node{min-width:58px;min-height:40px;padding:4px;font-size:8px}.route-arrow{font-size:13px}.tool-strip{gap:3px}.tool-card{font-size:8px;padding:4px}.tool-card img{width:32px;height:32px}.evidence{gap:4px}.evidence-card{padding:5px;font-size:9px}}
+@media(min-width:901px){.home{padding-block:14px 10px}}

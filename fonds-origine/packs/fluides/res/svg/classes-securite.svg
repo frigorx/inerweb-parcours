@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 420" role="img"
+     aria-label="Matrice complète des classes de sécurité NF EN 378 : toxicité en lignes (A faible, B plus élevée), inflammabilité en colonnes (1 aucune flamme, 2L faible et lente, 2 inflammable, 3 très inflammable). A1 : CO2, dangers pression et anoxie. A2L : R-32 et R-1234yf. A2 : R-152a. A3 : R-290. B1 : R-123. B2L : ammoniac. B2 et B3 : aucun fluide courant du parc français.">
+  <title>Classes de sécurité NF EN 378 — les huit cases</title>
+
+  <style>
+    .t  { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .h  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .cl { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .fl { font:700 16px Calibri,Segoe UI,sans-serif; fill:#33475b; }
+    .s  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .cell { stroke:#c9d4de; stroke-width:1.5; rx:8; }
+  </style>
+
+  <rect width="1040" height="420" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">La classe du fluide commande tout le reste</text>
+  <text class="s" x="40" y="58">EPI, matériel électrique, détection, charge admissible dans le local : tout part de là (NF EN 378).</text>
+
+  <!-- en-têtes colonnes : inflammabilité -->
+  <text class="h" x="320" y="102" text-anchor="middle">1 — aucune flamme</text>
+  <text class="h" x="516" y="102" text-anchor="middle">2L — faible, lente</text>
+  <text class="h" x="712" y="102" text-anchor="middle">2 — inflammable</text>
+  <text class="h" x="908" y="102" text-anchor="middle">3 — forte</text>
+  <text class="s" x="995" y="80" text-anchor="end">inflammabilité →</text>
+
+  <!-- en-têtes lignes : toxicité -->
+  <text class="h" x="120" y="180" text-anchor="middle">A</text>
+  <text class="s" x="120" y="200" text-anchor="middle">faible toxicité</text>
+  <text class="h" x="120" y="295" text-anchor="middle">B</text>
+  <text class="s" x="120" y="315" text-anchor="middle">toxicité élevée</text>
+  <text class="s" x="45" y="130">toxicité ↓</text>
+
+  <!-- ligne A -->
+  <rect class="cell" x="230" y="120" width="180" height="110" fill="#e9f5ee"/>
+  <text class="cl" x="320" y="160" text-anchor="middle">A1</text>
+  <text class="fl" x="320" y="190" text-anchor="middle">CO₂ (R-744)</text>
+  <text class="s"  x="320" y="212" text-anchor="middle">pression, anoxie</text>
+
+  <rect class="cell" x="426" y="120" width="180" height="110" fill="#fdf3e4"/>
+  <text class="cl" x="516" y="160" text-anchor="middle">A2L</text>
+  <text class="fl" x="516" y="190" text-anchor="middle">R-32 · R-1234yf</text>
+  <text class="s"  x="516" y="212" text-anchor="middle">ventilation, outillage</text>
+
+  <rect class="cell" x="622" y="120" width="180" height="110" fill="#fdeada"/>
+  <text class="cl" x="712" y="160" text-anchor="middle">A2</text>
+  <text class="fl" x="712" y="190" text-anchor="middle">R-152a</text>
+  <text class="s"  x="712" y="212" text-anchor="middle">peu courant en froid</text>
+
+  <rect class="cell" x="818" y="120" width="180" height="110" fill="#fbe7e0"/>
+  <text class="cl" x="908" y="160" text-anchor="middle">A3</text>
+  <text class="fl" x="908" y="190" text-anchor="middle">R-290 (propane)</text>
+  <text class="s"  x="908" y="212" text-anchor="middle">charge limitée</text>
+
+  <!-- ligne B -->
+  <rect class="cell" x="230" y="245" width="180" height="110" fill="#f3eef7"/>
+  <text class="cl" x="320" y="285" text-anchor="middle">B1</text>
+  <text class="fl" x="320" y="315" text-anchor="middle">R-123</text>
+  <text class="s"  x="320" y="337" text-anchor="middle">plus en neuf</text>
+
+  <rect class="cell" x="426" y="245" width="180" height="110" fill="#efe6f3"/>
+  <text class="cl" x="516" y="285" text-anchor="middle">B2L</text>
+  <text class="fl" x="516" y="315" text-anchor="middle">NH₃ (R-717)</text>
+  <text class="s"  x="516" y="337" text-anchor="middle">les deux : cat. C</text>
+
+  <rect class="cell" x="622" y="245" width="180" height="110" fill="#f2f5f8"/>
+  <text class="cl" x="712" y="285" text-anchor="middle" style="fill:#8a99a8">B2</text>
+  <text class="s"  x="712" y="315" text-anchor="middle">aucun fluide</text>
+  <text class="s"  x="712" y="335" text-anchor="middle">courant</text>
+
+  <rect class="cell" x="818" y="245" width="180" height="110" fill="#f2f5f8"/>
+  <text class="cl" x="908" y="285" text-anchor="middle" style="fill:#8a99a8">B3</text>
+  <text class="s"  x="908" y="315" text-anchor="middle">aucun fluide</text>
+  <text class="s"  x="908" y="335" text-anchor="middle">courant</text>
+
+  <!-- légende -->
+  <text class="s" x="40" y="380">Huit cases : deux axes croisés. B2 et B3 existent dans la norme, mais aucun fluide du parc français ne s'y trouve — retenez la logique de la case, pas un exemple.</text>
+
+  <!-- le piège -->
+  <g transform="translate(40,406)">
+    <text class="fl" x="0" y="0" style="fill:#c9451a">⚠ Le piège de l'année :</text>
+    <text class="s" x="175" y="0">le R-290 est <tspan style="font-weight:700;fill:#c9451a">A3</tspan>, pas A2L — tout hydrocarbure est très inflammable.</text>
+  </g>
+</svg>

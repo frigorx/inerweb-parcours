@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cours interactif : comprendre la désignation des fluides frigorigènes.">
+    <title>Décrypter le code d’un fluide | Habilitation Fluide</title>
+    <link rel="stylesheet" href="nomenclature.css">
+    <link rel="stylesheet" href="molecule-animations.css">
+    <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+  <body>
+    <main class="experience theme-decouverte" id="experience">
+      <div class="ambient" aria-hidden="true"><span class="orb orb-one"></span><span class="orb orb-two"></span><span class="orb orb-three"></span></div>
+      <header class="topbar">
+        <a class="brand" href="#module"><span class="brand-mark" aria-hidden="true">F</span><span><strong>Habilitation Fluide</strong><small>Décrypter un fluide</small></span></a>
+        <div class="topbar-actions"><button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true"><span aria-hidden="true">♪</span><b>Ambiance active</b></button><button class="source-toggle" id="source-toggle" type="button" aria-expanded="false">Repères</button></div>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy"><p class="eyebrow">Un code, une composition</p><h1 id="page-title">Les chiffres <span>racontent</span> les atomes.</h1><p class="hero-intro">R‑22, R‑134a, R‑404A… À quoi correspondent vraiment ces chiffres ? Laissez le cours vous guider, étape par étape.</p><button class="start-button" id="start-button" type="button">Lancer le cours <span aria-hidden="true">▶</span></button></div>
+        <div class="code-sculpture" aria-hidden="true"><div class="code-halo"></div><div class="big-code"><span>R</span><b>‑134</b><i>a</i></div><p>2 carbones · 2 hydrogènes · 4 fluors<br>0 chlore</p></div>
+      </section>
+
+      <section class="module-shell" id="module" aria-label="Cours interactif de nomenclature">
+        <nav class="stepper" id="stepper" aria-label="Progression du module"></nav>
+        <article class="lesson-card" aria-live="polite">
+          <div class="lesson-top"><div><p class="eyebrow" id="lesson-kicker"></p><h2 id="lesson-title"></h2></div><button class="listen-button" id="listen-button" type="button"><span aria-hidden="true">▶</span><b> Écouter</b></button></div>
+          <p class="lesson-text" id="lesson-text"></p>
+          <section class="interactive-zone" id="interactive-zone"></section>
+          <div class="lesson-footer"><button class="nav-button subtle" id="previous-button" type="button">← Retour</button><span id="step-status"></span><button class="nav-button" id="next-button" type="button">Continuer →</button></div>
+        </article>
+        <p class="speech-warning" id="speech-warning" role="status" hidden>La voix de synthèse n’est pas disponible dans ce navigateur. Les textes restent accessibles.</p>
+      </section>
+
+      <section class="final-message"><p>À retenir</p><h2>Le code donne un repère. <span>La fiche de données de sécurité donne les règles.</span></h2><div class="final-pillars"><span>Identifier</span><i>+</i><span>Vérifier</span><i>+</i><span>Travailler en sécurité</span><i>=</i><strong>Professionnel</strong></div></section>
+      <aside class="sources-panel" id="sources-panel" hidden><div><p class="eyebrow">Repères de cours</p><h2>Ce qu’il faut retenir</h2></div><ul><li>La règle <strong>R‑xyz</strong> sert à décoder les halocarbures saturés, pas les mélanges.</li><li>Pour R‑xyz : C = x + 1, H = y − 1, F = z, puis Cl est calculé avec les liaisons restantes.</li><li><strong>0xx / 1xx / 2xx</strong> : familles du méthane, de l’éthane et du propane. Pour un composé cyclique, le <strong>C placé devant</strong> est indispensable, par exemple R‑C318 ; « 300 » n’est pas à lui seul le nom d’une famille équivalente aux séries 400 ou 500.</li><li><strong>400</strong> : mélanges zéotropiques. <strong>500</strong> : mélanges azéotropiques. <strong>600</strong> : organiques divers. <strong>700</strong> : inorganiques. <strong>1000+</strong> : organiques insaturés.</li><li>Une lettre finale minuscule distingue un isomère ; une majuscule distingue une composition de mélange.</li><li>R‑407A, B et C contiennent les mêmes composants R‑32 / R‑125 / R‑134a avec des pourcentages différents.</li><li>Les naturels ne forment pas une série unique : R‑50, R‑170, R‑290, R‑600a, R‑717, R‑718, R‑744 ou R‑1270 appartiennent à plusieurs tranches.</li><li>Avant toute intervention : étiquette équipement, fiche de données de sécurité et documentation fabricant.</li></ul></aside>
+      <footer><span>Habilitation Fluide · Ressource pédagogique interactive</span><button id="restart-button" type="button">Recommencer</button></footer>
+    </main>
+    <script src="nomenclature.js"></script>
+  <!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

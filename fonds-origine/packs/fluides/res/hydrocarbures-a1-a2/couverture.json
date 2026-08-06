@@ -1,0 +1,72 @@
+{
+  "module": "hydrocarbures-a1-a2",
+  "titre": "Mission 290 — autoriser ou suspendre",
+  "reference": "arrêté du 21 novembre 2025",
+  "ecrans": 28,
+  "codes": {
+    "12.01": [
+      "rappel-a3",
+      "dossier-machine",
+      "charge-exacte"
+    ],
+    "12.02": [
+      "points-bas",
+      "liste-outillage",
+      "preuve-compatibilite",
+      "tri-outillage",
+      "poste-pompe",
+      "vide-et-air-exterieur",
+      "quiz-risque",
+      "quiz-outillage"
+    ],
+    "12.03": [
+      "dossier-machine",
+      "calcul-surface",
+      "choisir-zone",
+      "quiz-surface"
+    ],
+    "12.04": [
+      "mission-290",
+      "triangle-inflammation",
+      "nuage-inflammable",
+      "points-bas",
+      "conduite-fuite",
+      "choisir-zone",
+      "inspection-zone",
+      "corriger-zone",
+      "decision-chantier",
+      "avant-ouvrir",
+      "quiz-risque",
+      "quiz-surface"
+    ],
+    "12.05": [
+      "corriger-zone",
+      "decision-chantier",
+      "liste-outillage",
+      "tri-outillage",
+      "poste-pompe",
+      "avant-ouvrir",
+      "quiz-outillage"
+    ],
+    "12.06": [
+      "recuperer-puis-azote",
+      "vide-et-air-exterieur",
+      "quiz-sequence"
+    ],
+    "12.13": [
+      "conduite-fuite",
+      "inspection-zone",
+      "corriger-zone",
+      "decision-chantier"
+    ],
+    "12.14": [
+      "pourquoi-r290",
+      "charge-exacte",
+      "quiz-pourquoi"
+    ]
+  },
+  "hors_referentiel": [
+    "origine-propane",
+    "bilan"
+  ]
+}

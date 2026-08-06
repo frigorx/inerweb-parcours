@@ -1,0 +1,45 @@
+LA CHAÎNE DE L’INTERVENTION
+
+Cours interactif commun aux fiches p1, p3 et p5.
+25 écrans, 6 dossiers, 5 codes distincts et 5 contrôles.
+
+POURQUOI CINQ CODES ET NON SIX
+  Les trois fiches déclarent six occurrences de codes : p1 en porte deux, p3
+  deux et p5 deux. Le code 5.01 apparaît toutefois dans p1 et p5. Le parcours
+  couvre donc exactement cinq codes officiels distincts : 3.03, 3.04, 4.05,
+  5.01 et 5.02. Aucun code n’a été ajouté pour gonfler le total.
+
+CE QUE LE COURS FAIT
+  Il relie le manifold, le tirage au vide et la déconnexion dans un seul ordre :
+  reconnaître, fermer, raccorder, ouvrir le chemin utile, tirer au vide, isoler,
+  arrêter, observer la stabilité, desserrer lentement et récupérer le résidu.
+  Cinq contrôles obligent à décider et montrent la conséquence d’un mauvais
+  choix avant de laisser poursuivre.
+
+PARTI PRIS VISUEL
+  Trois illustrations métier structurent l’accueil et les dossiers. Les schémas
+  manifold-lecture.svg, tirage-au-vide.svg et ordre-vannes.svg montrent les
+  raccordements, les courbes et la chronologie. Des vannes, flexibles, cadrans,
+  cylindres et séquences sont manipulables. Tout reste local et hors ligne.
+
+ACCESSIBILITÉ
+  Le bouton Suivant est placé en haut de la carte, sous le titre. À 100 %, le
+  cours tient sur un écran de projection sans défilement. Au-dessus de 100 %,
+  le document peut défiler verticalement et la barre Précédent/Suivant reste
+  collée en haut : le texte et les images restent accessibles jusqu’en bas.
+
+LIMITES DE SÉCURITÉ
+  Le cours ne fixe aucune valeur cible de vide, durée, pression ou quantité.
+  Il ne remplace ni la notice, ni la procédure de l’organisme, ni le geste réel
+  encadré. L’air contenu dans une ligne est chassé selon la procédure validée,
+  avec un minimum d’émissions ; aucun rejet volontaire de réfrigérant n’est
+  présenté comme une méthode.
+
+ADRESSAGE
+  index.html?dossier=manifold
+  index.html?dossier=vide&ecran=2
+  index.html?extrait=isoler-avant-arret,mauvais-ordre
+
+DONNÉES ET RÉSEAU
+  Aucune donnée personnelle. Seule la préférence de vitesse vocale peut être
+  conservée localement ; le cours reste complet sans stockage, voix ni réseau.

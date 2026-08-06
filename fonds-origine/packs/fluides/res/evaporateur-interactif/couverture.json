@@ -1,0 +1,63 @@
+{
+  "module": "evaporateur-interactif",
+  "titre": "Évaporateur — installer, régler, vérifier",
+  "reference": "arrêté du 21 novembre 2025",
+  "ecrans": 26,
+  "codes": {
+    "8.02": [
+      "regulateur-role",
+      "reglage-constructeur",
+      "quiz-regulation"
+    ],
+    "8.03": [
+      "securite-avant",
+      "mise-en-service",
+      "quiz-installation"
+    ],
+    "8.04": [
+      "securite-avant",
+      "regulateur-vs-pressostat",
+      "reglage-constructeur",
+      "mise-en-service",
+      "quiz-regulation",
+      "quiz-installation"
+    ],
+    "8.06": [
+      "conduit-air-chaud",
+      "inspection-conduit",
+      "quiz-degivrage"
+    ],
+    "8.07": [
+      "regulateur-role",
+      "regulateur-vs-pressostat",
+      "reglage-constructeur",
+      "quiz-regulation"
+    ],
+    "8.10": [
+      "releve-normal",
+      "conduit-air-chaud",
+      "inspection-conduit",
+      "interpretation-releve",
+      "rapport-etat",
+      "quiz-rapport"
+    ],
+    "8.11": [
+      "givre-debit-air",
+      "diagnostic-givre",
+      "releve-normal",
+      "degivrage-role",
+      "minuterie-reglage",
+      "egouttement-reprise",
+      "inspection-surface",
+      "interpretation-releve",
+      "quiz-givre"
+    ]
+  },
+  "hors_referentiel": [
+    "evaporateur-role",
+    "batterie-reelle",
+    "givre-naissance",
+    "degivrage-methodes",
+    "bilan"
+  ]
+}

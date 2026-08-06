@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Auto-formation interactive sur les bouteilles de transfert et de récupération des fluides frigorigènes.">
+<title>Mission Bouteilles | Habilitation Fluide</title>
+<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+<body>
+<main class="experience theme-blue" id="experience">
+  <div class="ambient" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+  <header class="topbar">
+    <a class="brand" href="#module"><span class="brand-mark">F</span><span><strong>Habilitation Fluide</strong><small>Mission Bouteilles</small></span></a>
+    <div class="topbar-actions"><button id="voice-toggle" class="pill" type="button">🔊 Voix active</button><button id="refs-toggle" class="pill" type="button">Repères</button></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy"><p class="eyebrow">AUTO-FORMATION · CONTENANTS</p><h1>Voir, comprendre, <span>agir en sécurité.</span></h1><p>Des bouteilles dessinées, des vannes, du liquide qui bouge, un manomètre qui monte et des décisions à prendre : ici, on apprend en regardant et en manipulant.</p><button id="start" class="start" type="button">Lancer la mission <span>▶</span></button></div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="bottle big"><div class="cap"></div><div class="neck"></div><div class="body"><div class="liquid"></div><div class="vapor"></div></div><div class="foot"></div></div>
+      <div class="tag"><b>RECOVERY</b><span>R-???</span><small>TW · WC · PS</small></div>
+    </div>
+  </section>
+
+  <section class="module-shell" id="module">
+    <nav id="stepper" class="stepper" aria-label="Progression"></nav>
+    <article class="lesson-card" aria-live="polite">
+      <div class="lesson-top">
+        <div><p id="kicker" class="eyebrow"></p><h2 id="title"></h2></div>
+        <div class="voice-controls"><div class="speed"><button id="slower">−</button><span id="speed-value">0,95×</span><button id="faster">+</button></div><button id="listen" class="listen">▶ <b>Écouter</b></button></div>
+      </div>
+      <p id="text" class="lesson-text"></p>
+      <section id="zone" class="interactive-zone"></section>
+      <div class="lesson-footer"><button id="prev" class="nav subtle">← Retour</button><span id="status"></span><button id="next" class="nav">Continuer →</button></div>
+    </article>
+  </section>
+
+  <section class="final-message"><p>À RETENIR</p><h2>La sécurité commence <span>avant</span> d’ouvrir les vannes.</h2><div class="pillars"><span>Identifier</span><i>+</i><span>Peser</span><i>+</i><span>Surveiller</span><i>=</i><strong>Professionnel</strong></div></section>
+
+  <aside id="refs" class="refs" hidden><p class="eyebrow">REPÈRES FORMATEUR</p><h2>Points de vigilance</h2><ul><li>Une bouteille de récupération est dédiée au fluide récupéré et doit être identifiée ; éviter les mélanges et contaminations.</li><li>La masse de fluide se détermine par pesée : masse brute − tare.</li><li>Le remplissage maximal ne se déduit pas d’un simple « 80 % du poids » : il dépend du volume en eau, du fluide, de sa densité et des indications du fabricant.</li><li>Le volume libre au-dessus du liquide permet la dilatation. Un surremplissage peut provoquer une hausse très rapide de pression lorsque la température augmente.</li><li>Pour les A2L, employer du matériel et des emballages adaptés ; les bouteilles dédiées sont couramment repérées par une ogive rouge et un raccord à pas à gauche.</li><li>La soupape ou le dispositif de sécurité est un dernier recours : il ne remplace jamais la pesée et le respect du remplissage autorisé.</li></ul></aside>
+  <footer><span>Habilitation Fluide · Auto-formation interactive</span><button id="restart">Recommencer</button></footer>
+</main>
+<script src="app.js"></script>
+<!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body></html>

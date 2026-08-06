@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img"
+     aria-label="Le double accident en espace clos, en trois temps. 1 : dans un local fermé, le gaz remplit le volume par le bas, rien ne se voit ni ne se sent. 2 : le technicien descend et perd connaissance dans la nappe de gaz. 3 : un collègue descend le secourir sans protection et devient la seconde victime. La règle : ventiler, mesurer, jamais seul, et devant une personne au sol, alerter sans descendre.">
+  <title>Espace clos, version statique (non utilisée — remplacée par s1-double-accident.svg)</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .n   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#33475b; }
+    .rg  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .mur { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linejoin:round; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .pm  { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+
+  <rect width="900" height="380" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Pourquoi ces accidents font presque toujours DEUX victimes</text>
+
+  <!-- ===== 1 ===== -->
+  <g transform="translate(30,56)">
+    <rect x="0" y="0" width="250" height="180" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <!-- local en coupe -->
+    <path class="mur" d="M30,24 v130 h190 v-130"/>
+    <line class="mur" x1="20" y1="154" x2="230" y2="154"/>
+    <!-- porte fermée -->
+    <rect x="196" y="86" width="24" height="68" fill="#e8eef4" stroke="#1b3a63" stroke-width="2"/>
+    <circle cx="202" cy="120" r="2.5" fill="#1b3a63"/>
+    <!-- nappe de gaz -->
+    <rect x="32" y="112" width="162" height="42" fill="#9fc0d9" opacity="0.75"/>
+    <path d="M32,112 q20,-7 40,0 t40,0 t40,0 t42,0" fill="none" stroke="#5b8fb5" stroke-width="2"/>
+    <text x="113" y="140" text-anchor="middle" style="font:700 13px Calibri;fill:#1b3a63">le gaz s'accumule</text>
+    <!-- numéro -->
+    <circle cx="24" cy="18" r="13" fill="#1b3a63"/>
+    <text class="n" x="24" y="23" text-anchor="middle">1</text>
+  </g>
+  <text class="lg" x="155" y="258" text-anchor="middle">Porte fermée depuis des heures.</text>
+  <text class="lg" x="155" y="276" text-anchor="middle">Rien ne se voit, rien ne se sent.</text>
+
+  <!-- ===== 2 ===== -->
+  <g transform="translate(325,56)">
+    <rect x="0" y="0" width="250" height="180" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <path class="mur" d="M30,24 v130 h190 v-130"/>
+    <line class="mur" x1="20" y1="154" x2="230" y2="154"/>
+    <rect x="196" y="86" width="24" height="68" fill="#fff" stroke="#1b3a63" stroke-width="2"/>
+    <rect x="32" y="112" width="162" height="42" fill="#9fc0d9" opacity="0.75"/>
+    <path d="M32,112 q20,-7 40,0 t40,0 t40,0 t42,0" fill="none" stroke="#5b8fb5" stroke-width="2"/>
+    <!-- technicien au sol -->
+    <g transform="translate(70,126)">
+      <circle class="pm" cx="0" cy="10" r="8"/>
+      <path class="pm" d="M8,14 h34 M14,10 l10,-8 M26,18 l12,6"/>
+    </g>
+    <text x="150" y="60" text-anchor="middle" style="font:700 13px Calibri;fill:#c9451a">aucune alerte</text>
+    <path class="pm" d="M150,68 v14 m-6,-6 l6,6 6,-6"/>
+    <circle cx="24" cy="18" r="13" fill="#1b3a63"/>
+    <text class="n" x="24" y="23" text-anchor="middle">2</text>
+  </g>
+  <text class="lg" x="450" y="258" text-anchor="middle">Il entre. Il perd connaissance</text>
+  <text class="lg" x="450" y="276" text-anchor="middle">en quelques instants.</text>
+
+  <!-- ===== 3 ===== -->
+  <g transform="translate(620,56)">
+    <rect x="0" y="0" width="250" height="180" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <path class="mur" d="M30,24 v130 h190 v-130"/>
+    <line class="mur" x1="20" y1="154" x2="230" y2="154"/>
+    <rect x="196" y="86" width="24" height="68" fill="#fff" stroke="#1b3a63" stroke-width="2"/>
+    <rect x="32" y="112" width="162" height="42" fill="#9fc0d9" opacity="0.75"/>
+    <path d="M32,112 q20,-7 40,0 t40,0 t40,0 t42,0" fill="none" stroke="#5b8fb5" stroke-width="2"/>
+    <!-- première victime -->
+    <g transform="translate(60,126)">
+      <circle class="pm" cx="0" cy="10" r="8"/>
+      <path class="pm" d="M8,14 h34 M14,10 l10,-8 M26,18 l12,6"/>
+    </g>
+    <!-- sauveteur qui descend -->
+    <g transform="translate(140,96)">
+      <circle class="pm" cx="0" cy="0" r="8"/>
+      <path class="pm" d="M0,8 v20 M0,14 l-12,8 M0,14 l14,4 M0,28 l-9,16 M0,28 l10,15"/>
+    </g>
+    <path class="pm" d="M132,86 l-30,26 m0,0 l3,-11 m-3,11 l11,-2"/>
+    <circle cx="24" cy="18" r="13" fill="#c9451a"/>
+    <text class="n" x="24" y="23" text-anchor="middle">3</text>
+  </g>
+  <text class="rg" x="745" y="258" text-anchor="middle">Le collègue descend le chercher.</text>
+  <text class="rg" x="745" y="276" text-anchor="middle">Il entre dans la même nappe.</text>
+
+  <!-- règle -->
+  <rect x="30" y="298" width="840" height="56" rx="8" fill="#eef6f1" stroke="#a9cdb8" stroke-width="1.5"/>
+  <text x="50" y="322" style="font:700 15px Calibri;fill:#1b3a63">AVANT d'entrer :</text>
+  <text class="lg" x="160" y="322">ventiler · mesurer l'air · ne jamais y aller seul</text>
+  <text x="50" y="344" style="font:700 15px Calibri;fill:#c9451a">Si quelqu'un est au sol :</text>
+  <text class="lg" x="205" y="344">alerter, ventiler, faire venir les secours — <tspan style="font-weight:700;fill:#c9451a">ne pas descendre</tspan></text>
+</svg>

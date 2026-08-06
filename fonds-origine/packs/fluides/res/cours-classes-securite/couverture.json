@@ -1,0 +1,27 @@
+{
+  "cours": "cours-classes-securite",
+  "titre": "Les classes de sécurité — deux lettres, deux dangers",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I · classes NF EN 378 / ASHRAE 34",
+  "appelé_depuis": ["cl1"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. La fiche cl1 porte 1.08 et 11.03.",
+    "Seul 1.08 est tenu ici. 11.03 demande de connaître « les réglementations et les normes",
+    "de sécurité applicables pour l'utilisation, le stockage et le transport » : le cours",
+    "cite NF EN 378 une seule fois et n'enseigne ni le stockage ni le transport. Il reste",
+    "donc en appui — c'est la fiche qui porte ce code."
+  ],
+
+  "codes": {
+    "1.08": "combustibilité et propagation de flamme (triangle du feu, LIE/LSE, point éclair), classes 1/2L/2/3 et lettre de toxicité A ou B, cas particulier A2L, restriction de charge et précautions qui en découlent (identifier, supprimer l'ignition, ventiler et détecter, choisir l'outillage, respecter la charge)"
+  },
+
+  "appui": {
+    "11.03": "les précautions d'utilisation des fluides inflammables sont là ; les règles de stockage et de transport, non"
+  },
+
+  "hors_referentiel": [
+    "le risque d'auto-inflammation par compression d'air aspiré : c'est un rappel de sécurité de chantier, il n'est demandé par aucun code",
+    "la fiche ressource des classes usuelles et le contrôle final sur 10 points"
+  ]
+}

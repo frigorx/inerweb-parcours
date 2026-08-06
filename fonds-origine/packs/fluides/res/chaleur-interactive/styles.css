@@ -1,0 +1,730 @@
+:root{
+  --navy:#10233c;
+  --navy-700:#1b3a63;
+  --blue:#3d7fca;
+  --blue-soft:#84b7ec;
+  --orange:#ff6b35;
+  --orange-dark:#c9451a;
+  --green:#4fb887;
+  --red:#d94747;
+  --cream:#f7f1e7;
+  --paper:#fffdf8;
+  --ink:#10233c;
+  --muted:#637285;
+  --line:rgba(27,58,99,.16);
+  --shadow:0 25px 65px rgba(18,36,54,.18);
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Calibri,"Segoe UI",Aptos,system-ui,sans-serif}
+button,a,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(255,107,53,.45);outline-offset:3px}
+
+.experience{
+  --scene:var(--blue);
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(circle at 78% 7%,rgba(61,127,202,.09),transparent 29rem),var(--cream);
+}
+.ambient{position:absolute;inset:0 0 auto;height:48rem;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;opacity:.34;animation:drift 16s ease-in-out infinite alternate}
+.orb-one{width:24rem;height:24rem;top:4rem;right:-7rem;border:1px solid rgba(27,58,99,.14)}
+.orb-two{width:15rem;height:15rem;top:10rem;right:8rem;border:1px dashed rgba(255,107,53,.28);animation-delay:-5s}
+.orb-three{width:6rem;height:6rem;top:29rem;left:8%;background:rgba(79,184,135,.12);animation-delay:-9s}
+@keyframes drift{to{transform:translate(1rem,1.3rem) rotate(9deg)}}
+
+.topbar,.hero,.module-shell,.final-message,.refs,footer{
+  position:relative;
+  z-index:1;
+  width:min(1180px,calc(100% - 40px));
+  margin-inline:auto;
+}
+.topbar{min-height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy-700)}
+.brand-mark{
+  display:grid;place-items:center;width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(27,58,99,.3);
+  background:linear-gradient(145deg,rgba(61,127,202,.18),rgba(255,107,53,.14));
+  font:italic 25px "Trebuchet MS",Calibri,sans-serif;
+}
+.brand span:last-child{display:grid}
+.brand strong{font-size:14px;letter-spacing:.04em}
+.brand small{color:var(--muted);font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.topbar-actions{display:flex;gap:8px}
+.pill,.listen{
+  min-height:40px;border:1px solid var(--line);border-radius:999px;color:var(--navy-700);
+  background:rgba(27,58,99,.03);padding:0 15px;
+}
+
+.hero{
+  min-height:500px;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);
+  align-items:center;padding:54px 0 80px;
+}
+.eyebrow{margin:0 0 16px;color:var(--orange);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.hero h1,.lesson-top h2,.final-message h2,.refs h2{font-family:"Trebuchet MS",Calibri,Arial,sans-serif;font-weight:500;letter-spacing:-.015em}
+.hero h1{max-width:800px;margin:0;font-size:clamp(50px,6.5vw,86px);line-height:.96}
+.hero h1 span,.final-message h2 span{color:var(--orange);font-style:italic}
+.hero-copy>p:not(.eyebrow){max-width:650px;margin:27px 0 0;color:var(--muted);font-size:18px;line-height:1.65}
+.start,.nav{
+  border:0;border-radius:999px;background:var(--scene);color:white;padding:14px 20px;
+  font-weight:800;box-shadow:0 12px 25px rgba(0,0,0,.17);
+}
+.start{margin-top:28px}
+.start:hover,.nav:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.duration{display:block;margin-top:12px;color:var(--muted)}
+.learning-goals{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.learning-goals span{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+  background:rgba(255,255,255,.58);padding:7px 11px;color:#40526a;font-size:12px;font-weight:700;
+}
+.learning-goals b{display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:var(--navy-700);color:#fff;font-size:10px}
+
+.hero-art{height:360px;position:relative;display:grid;place-items:center}
+.hero-vessel{
+  position:absolute;left:62px;top:42px;width:170px;height:230px;border:4px solid rgba(27,58,99,.58);
+  border-top:0;border-radius:0 0 38px 38px;background:rgba(255,255,255,.58);overflow:hidden;
+  box-shadow:inset 0 0 0 9px rgba(255,255,255,.32),0 22px 45px rgba(16,35,60,.14);
+}
+.hero-vessel::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:rgba(27,58,99,.58)}
+.hero-liquid{position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(#7ec0ef,#3d7fca)}
+.hero-liquid i,.hero-vapor i{position:absolute;border-radius:50%;background:#fff;opacity:.62}
+.hero-liquid i{width:13px;height:13px;animation:bubble 2.8s ease-in infinite}
+.hero-liquid i:nth-child(1){left:18%;bottom:12%;animation-delay:-.4s}
+.hero-liquid i:nth-child(2){left:42%;bottom:3%;animation-delay:-1.5s}
+.hero-liquid i:nth-child(3){left:67%;bottom:19%;animation-delay:-2.2s}
+.hero-liquid i:nth-child(4){left:82%;bottom:5%;animation-delay:-.9s}
+.hero-vapor{position:absolute;inset:0 0 45%}
+.hero-vapor i{width:9px;height:9px;background:var(--blue);animation:float 4s ease-in-out infinite alternate}
+.hero-vapor i:nth-child(1){left:25%;top:27%}
+.hero-vapor i:nth-child(2){left:55%;top:16%;animation-delay:-1.3s}
+.hero-vapor i:nth-child(3){left:76%;top:42%;animation-delay:-2.1s}
+@keyframes bubble{to{transform:translateY(-120px) scale(.35);opacity:0}}
+@keyframes float{to{transform:translate(13px,-8px)}}
+.hero-thermometer{position:absolute;left:22px;top:70px;width:28px;height:205px;border:3px solid var(--navy-700);border-radius:15px;background:#fff}
+.hero-thermometer::after{content:"";position:absolute;left:-9px;bottom:-12px;width:40px;height:40px;border-radius:50%;background:var(--orange);border:3px solid var(--navy-700)}
+.hero-thermometer span{position:absolute;left:8px;right:8px;bottom:10px;height:68%;border-radius:8px;background:var(--orange)}
+.hero-flame{
+  position:absolute;left:103px;bottom:27px;width:90px;height:75px;display:grid;place-items:end center;
+  color:var(--orange-dark);font-size:11px;font-weight:800;text-transform:uppercase;
+}
+.hero-flame::before{
+  content:"";position:absolute;left:27px;top:4px;width:38px;height:52px;border-radius:70% 25% 65% 35%;
+  transform:rotate(45deg);background:linear-gradient(135deg,#ffd166,var(--orange));
+}
+.heat-rings{position:absolute;inset:0}
+.heat-rings i{position:absolute;left:110px;bottom:62px;width:76px;height:76px;border:1px solid rgba(255,107,53,.3);border-radius:50%;animation:heat-ring 2.6s linear infinite}
+.heat-rings i:nth-child(2){animation-delay:.85s}.heat-rings i:nth-child(3){animation-delay:1.7s}
+@keyframes heat-ring{to{transform:scale(3.6);opacity:0}}
+.hero-curve{
+  position:absolute;right:-12px;top:42px;z-index:6;width:190px;height:145px;border:1px solid rgba(27,58,99,.16);
+  border-radius:17px;background:rgba(255,255,255,.94);box-shadow:0 15px 34px rgba(16,35,60,.14);
+}
+.hero-curve small{position:absolute;left:14px;top:10px;color:var(--navy-700);font-size:9px;font-weight:900;letter-spacing:.08em}
+.hero-axis-y,.hero-axis-x{position:absolute;display:block;background:var(--navy-700)}
+.hero-axis-y{left:20px;top:31px;width:2px;height:94px}.hero-axis-x{left:20px;bottom:20px;width:155px;height:2px}
+.hero-segment{position:absolute;display:block;height:4px;border-radius:999px;background:var(--orange);transform-origin:left center}
+.hero-segment.one{left:29px;top:111px;width:27px;transform:rotate(-34deg)}
+.hero-segment.two{left:51px;top:96px;width:31px}
+.hero-segment.three{left:82px;top:96px;width:40px;transform:rotate(-42deg)}
+.hero-segment.four{left:112px;top:69px;width:38px}
+.hero-segment.five{left:150px;top:69px;width:29px;transform:rotate(-42deg)}
+.hero-zero,.hero-hundred{position:absolute;color:var(--orange-dark);font-size:8px}
+.hero-zero{left:54px;top:101px}.hero-hundred{left:113px;top:74px}
+
+.module-shell{display:grid;grid-template-columns:205px minmax(0,1fr);gap:26px;padding-bottom:90px}
+.stepper{
+  align-self:start;display:grid;gap:7px;padding:14px;border-radius:22px;
+  background:rgba(27,58,99,.05);border:1px solid var(--line);
+}
+.stepper button{display:flex;align-items:center;gap:11px;border:0;border-radius:13px;background:transparent;color:var(--muted);padding:11px;text-align:left}
+.stepper button b{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:rgba(27,58,99,.06);font-size:11px}
+.stepper button.active{background:rgba(27,58,99,.08);color:var(--ink)}
+.stepper button.active b{background:var(--scene);color:#fff}
+.stepper button.done b{background:var(--green);color:#fff}
+.lesson-card{background:var(--paper);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,42px)}
+.lesson-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.lesson-top h2{margin:0;font-size:clamp(34px,4vw,52px);line-height:1.02}
+.lesson-text{max-width:850px;color:var(--muted);font-size:18px;line-height:1.65}
+.voice-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.listen{background:var(--navy);color:#fff;white-space:nowrap}
+.speed{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.speed button{border:0;background:transparent;width:36px;height:39px;color:var(--ink);font-weight:800}
+.speed span{min-width:56px;text-align:center;font-size:13px;font-weight:800}
+.interactive-zone{
+  min-height:370px;margin-top:28px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);
+  border-radius:22px;background:#f8f6ef;overflow:hidden;
+}
+.lesson-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
+.nav{margin:0;box-shadow:none}.nav.subtle{background:#e8edf2;color:var(--ink)}.nav:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#status{color:var(--muted);font-size:13px;font-weight:700;text-align:center}
+.speech-warning{margin:16px 0 0;color:var(--orange-dark);font-weight:700}
+
+.question-box{display:grid;place-items:center;min-height:310px;text-align:center}
+.question-box h3{max-width:720px;margin:0 0 22px;font:500 clamp(26px,4vw,40px)/1.08 "Trebuchet MS",Calibri,sans-serif}
+.answer-grid{width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.answer-card,.quiz-option{
+  border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);padding:16px;
+  text-align:left;font-weight:700;transition:.18s;
+}
+.answer-card:hover,.quiz-option:hover{transform:translateY(-2px);border-color:rgba(61,127,202,.55)}
+.answer-card.good,.quiz-option.good{border-color:var(--green);background:#edf8f2;box-shadow:0 0 0 3px rgba(79,184,135,.14)}
+.answer-card.bad,.quiz-option.bad{border-color:var(--red);background:#fdeeee}
+.feedback{min-height:28px;margin:18px 0 0;font-weight:700;color:#40526a}
+
+.heat-lab{display:grid;grid-template-columns:minmax(320px,1.3fr) minmax(250px,.7fr);gap:24px;align-items:stretch}
+.chart-card,.state-card,.machine-card,.pressure-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.chart-wrap{position:relative}
+.heat-chart{width:100%;height:auto;display:block;overflow:visible}
+.axis{fill:none;stroke:var(--navy-700);stroke-width:2.5;stroke-linecap:round}
+.guide{stroke:#a7b6c5;stroke-width:1.5;stroke-dasharray:5 5}
+.curve{fill:none;stroke:var(--orange);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.zone-liquid{fill:#e6f1f9}.zone-mix{fill:#fde4da}.zone-vapor{fill:#eef3f7}
+.chart-label{font:700 12px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.chart-small{font:600 10px "Segoe UI",sans-serif;fill:#637285}
+.marker{fill:var(--orange);stroke:#fff;stroke-width:4;filter:drop-shadow(0 3px 4px rgba(0,0,0,.2))}
+.marker-line{stroke:var(--orange);stroke-width:2;stroke-dasharray:4 4}
+.lab-control{margin-top:13px}
+.lab-control label{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-weight:700}
+.lab-control label b{color:var(--orange-dark)}
+input[type="range"]{width:100%;accent-color:var(--orange);margin:12px 0}
+.state-card{display:grid;align-content:center;text-align:center}
+.state-badge{display:inline-flex;justify-self:center;border-radius:999px;background:#e8f1f8;color:var(--blue);padding:6px 11px;font-size:12px;font-weight:800;text-transform:uppercase}
+.state-card h3{margin:14px 0 8px;font:500 31px "Trebuchet MS",Calibri,sans-serif}
+.state-card p{margin:0;color:var(--muted);line-height:1.5}
+.thermo-readout{margin:18px auto 0;width:115px;padding:12px;border-radius:15px;background:#f3f6f8}
+.thermo-readout b{display:block;color:var(--orange-dark);font-size:27px}
+.phase-meter{height:14px;margin:18px 0 8px;border-radius:999px;overflow:hidden;background:#e5ebef}
+.phase-meter span{display:block;height:100%;width:var(--phase,0%);background:linear-gradient(90deg,var(--blue),var(--orange));transition:width .25s}
+.phase-caption{font-size:12px;color:var(--muted)}
+
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.concept-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;overflow:hidden}
+.concept-card::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--card,var(--blue))}
+.concept-card span{display:inline-flex;border-radius:999px;padding:5px 9px;background:#eef4fb;color:var(--card,var(--blue));font-size:11px;font-weight:800}
+.concept-card h3{margin:14px 0 8px;font:500 30px "Trebuchet MS",Calibri,sans-serif}
+.concept-card p{color:var(--muted);line-height:1.55}
+.concept-card strong{color:var(--card,var(--blue))}
+.energy-row{display:flex;align-items:center;gap:10px;margin-top:18px}
+.energy-row i{flex:1;height:9px;border-radius:999px;background:#edf0f2}
+.energy-row i.on{background:var(--card,var(--blue))}
+
+.boundary-lab{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.boundary{
+  position:relative;border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px;
+  min-height:245px;display:grid;align-content:start;
+}
+.boundary b{color:var(--orange-dark);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.boundary h3{margin:10px 0;font:500 27px "Trebuchet MS",Calibri,sans-serif}
+.boundary p{margin:0;color:var(--muted);line-height:1.5}
+.particle-box{height:86px;margin-top:16px;border-radius:14px;background:#edf5fa;position:relative;overflow:hidden}
+.particle-box i{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--blue)}
+.particle-box i:nth-child(1){left:18%;bottom:14px}.particle-box i:nth-child(2){left:37%;bottom:18px}.particle-box i:nth-child(3){left:56%;bottom:13px}.particle-box i:nth-child(4){left:74%;bottom:19px}
+.boundary.bubble .particle-box i:nth-child(4){bottom:54px;background:var(--orange)}
+.boundary.mixed .particle-box i:nth-child(2){bottom:56px;background:var(--orange)}
+.boundary.mixed .particle-box i:nth-child(4){bottom:66px;background:var(--orange)}
+.boundary.dew .particle-box i{bottom:55px;background:var(--orange)}
+.boundary.dew .particle-box i:nth-child(1){bottom:17px;background:var(--blue)}
+
+.machine-toggle{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.machine-toggle button{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:10px 15px;font-weight:800}
+.machine-toggle button.active{background:var(--navy-700);color:#fff}
+.machine-scene{display:grid;grid-template-columns:1fr 110px 1fr;gap:18px;align-items:center}
+.machine-card{text-align:center;min-height:250px;display:grid;align-content:center}
+.machine-card.active{box-shadow:0 0 0 4px rgba(255,107,53,.16);border-color:var(--orange)}
+.coil{width:150px;height:70px;margin:0 auto 18px;border:6px solid var(--blue);border-left-color:transparent;border-right-color:transparent;border-radius:50%;position:relative}
+.coil::after{content:"";position:absolute;inset:11px -7px;border:6px solid var(--blue);border-left-color:transparent;border-right-color:transparent;border-radius:50%}
+.machine-card.cond .coil,.machine-card.cond .coil::after{border-top-color:var(--orange);border-bottom-color:var(--orange)}
+.machine-card h3{margin:0 0 8px;font:500 29px "Trebuchet MS",Calibri,sans-serif}
+.machine-card p{margin:0;color:var(--muted);line-height:1.5}
+.heat-arrow{display:grid;place-items:center;text-align:center;color:var(--orange-dark);font-weight:800}
+.heat-arrow b{font-size:42px}.heat-arrow.reverse b{transform:rotate(180deg)}
+
+.pressure-lab{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+.pressure-card h3{margin:0 0 8px;font:500 28px "Trebuchet MS",Calibri,sans-serif}
+.pressure-card p{color:var(--muted);line-height:1.5}
+.mini-chart{position:relative;height:210px;border-left:3px solid var(--navy-700);border-bottom:3px solid var(--navy-700);margin:12px 14px 4px 35px}
+.mini-chart::before{content:"température";position:absolute;right:calc(100% + 8px);top:0;color:var(--muted);font-size:11px;writing-mode:vertical-rl;transform:rotate(180deg)}
+.plateau-line{position:absolute;left:15%;right:9%;bottom:var(--level,50%);height:4px;background:var(--orange);transition:bottom .35s}
+.plateau-line::before{content:"";position:absolute;right:100%;bottom:0;width:34%;height:4px;background:var(--orange);transform-origin:right;transform:rotate(-32deg)}
+.plateau-line::after{content:"";position:absolute;left:100%;bottom:0;width:28%;height:4px;background:var(--orange);transform-origin:left;transform:rotate(-32deg)}
+.pressure-value{display:inline-flex;border-radius:999px;padding:7px 12px;background:#e8f1f8;color:var(--navy-700);font-weight:800}
+.pressure-note{border-left:5px solid var(--orange);background:#fff5ef;border-radius:0 14px 14px 0;padding:15px;margin-top:18px;color:#68402c;line-height:1.5}
+.simulation-note{margin:8px 2px 0;color:var(--muted);font-size:11px;text-align:right}
+
+.quiz-wrap{display:grid;gap:17px}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.quiz-head span{border-radius:999px;background:#fff;padding:7px 12px;color:var(--muted);font-weight:700}
+.quiz-progress{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
+.quiz-progress i{height:7px;border-radius:999px;background:#dce4ea}
+.quiz-progress i.done{background:var(--green)}.quiz-progress i.current{background:var(--blue)}
+.quiz-question{margin:0;font-size:24px;font-weight:800}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-feedback{min-height:54px;margin:0;color:#40526a;font-weight:700;line-height:1.5}
+.quiz-result{text-align:center;padding:30px}
+.quiz-result b{display:block;font:500 78px "Trebuchet MS",Calibri,sans-serif;color:var(--blue)}
+.quiz-result h3{margin:0;font:500 35px "Trebuchet MS",Calibri,sans-serif}
+.quiz-result p{max-width:640px;margin:14px auto 22px;color:var(--muted);line-height:1.55}
+.quiz-result .result-rule{display:inline-flex;margin:0 auto 20px;border-radius:999px;background:#eef5fa;padding:8px 13px;color:var(--navy-700);font-size:12px;font-weight:800}
+.interactive-zone.quiz-zone{min-height:330px;background:linear-gradient(145deg,#f8f6ef,#eef5fa)}
+
+.graph-lesson{display:grid;grid-template-columns:minmax(450px,1.4fr) minmax(260px,.6fr);gap:18px;align-items:stretch}
+.graph-professional-banner{
+  grid-column:1/-1;margin:0;border:1px solid rgba(61,127,202,.25);border-left:6px solid var(--blue);
+  border-radius:15px;background:#eef6fb;padding:12px 15px;color:#40526a;line-height:1.45;
+}
+.graph-professional-banner strong{color:var(--navy-700)}
+.technical-graph,.graph-explanation{border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px}
+.technical-graph svg{display:block;width:100%;height:auto;overflow:visible}
+.graph-sensible-zone{fill:#eef5fa}.graph-latent-zone{fill:#fff0e9}
+.graph-axis{fill:none;stroke:var(--navy-700);stroke-width:3;stroke-linecap:round}
+.graph-curve{fill:none;stroke:var(--orange);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.graph-curve.cooling{stroke:var(--blue)}
+.graph-guide{stroke:#a7b6c5;stroke-width:1.5;stroke-dasharray:5 5}
+.graph-marker-line{stroke:var(--orange-dark);stroke-width:2;stroke-dasharray:4 4}
+.graph-marker{fill:var(--orange);stroke:#fff;stroke-width:4;filter:drop-shadow(0 3px 4px rgba(0,0,0,.2))}
+.cooling-graph-lesson .graph-marker{fill:var(--blue)}.cooling-graph-lesson .graph-marker-line{stroke:var(--blue)}
+.graph-axis-label{font:700 13px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.graph-tick{font:800 11px "Segoe UI",sans-serif;fill:#718293}.graph-tick.strong{fill:var(--navy-700)}
+.graph-zone-title{font:800 11px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.graph-zone-title.latent{fill:var(--orange-dark)}
+.graph-note{font:800 11px "Segoe UI",sans-serif;fill:var(--orange-dark)}
+.graph-sensible-note{font:800 10px "Segoe UI",sans-serif;fill:var(--blue)}
+.graph-point{font:700 10px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.technical-graph label{display:flex;justify-content:space-between;gap:12px;margin-top:5px;color:var(--muted);font-weight:700}
+.technical-graph label b{color:var(--orange-dark)}
+.graph-explanation{display:grid;align-content:center;gap:13px}
+.graph-explanation h3{margin:0;font:500 30px "Trebuchet MS",Calibri,sans-serif}.graph-explanation>p{margin:0;color:var(--muted);line-height:1.55}
+.graph-type{justify-self:start;display:inline-flex;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;letter-spacing:.08em}
+.graph-type.sensible{background:#e6f1f9;color:var(--blue)}.graph-type.latent{background:#fff0e8;color:var(--orange-dark)}
+.graph-reading{display:grid;gap:7px}
+.graph-reading span{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--muted);font-size:13px}
+.graph-reading b{color:var(--navy-700);text-align:right}
+.flat-rule{border-left:5px solid var(--orange);background:#fff5ef;border-radius:0 13px 13px 0;padding:13px!important;color:#68402c!important}
+
+.formula-lesson{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.formula-preview-note{
+  grid-column:1/-1;margin:0;border:1px solid rgba(255,107,53,.25);border-left:6px solid var(--orange);
+  border-radius:15px;background:#fff5ef;padding:13px 16px;color:#5c6672;line-height:1.5;
+}
+.formula-preview-note strong{color:var(--orange-dark)}
+.formula-card{position:relative;border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px;overflow:hidden}
+.formula-card::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--formula-color,var(--blue))}
+.formula-card>span{display:inline-flex;border-radius:999px;background:#eef5fa;color:var(--formula-color,var(--blue));padding:5px 9px;font-size:11px;font-weight:900;letter-spacing:.08em}
+.formula-card h3{margin:16px 0 12px;font:500 clamp(27px,4vw,39px) "Trebuchet MS",Calibri,sans-serif;color:var(--formula-color,var(--blue))}
+.formula-card sub{font-size:.5em}.formula-card ul{padding-left:20px;color:var(--muted);line-height:1.65}.formula-card p{color:var(--muted);line-height:1.5}
+.latent-formula{--formula-color:var(--orange-dark)}
+.mass-lab{display:grid;grid-template-columns:.75fr 1.25fr;gap:18px;margin-top:16px;border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px}
+.mass-lab label{font-weight:800}.mass-lab label b{color:var(--orange-dark)}.mass-lab p{color:var(--muted);margin:5px 0 0}
+.energy-bars{display:grid;gap:10px}
+.energy-bars span{position:relative;height:38px;border-radius:10px;background:#e8edf0;overflow:hidden;padding:10px 12px;font-size:12px;font-weight:800;z-index:1}
+.energy-bars span i{position:absolute;inset:0 auto 0 0;width:30%;background:rgba(61,127,202,.35);z-index:-1;transition:width .25s}
+.energy-bars span:nth-child(2) i{background:rgba(255,107,53,.35)}
+.energy-bars strong{color:var(--navy-700);font-size:13px}
+.energy-bars small{color:var(--muted);font-size:11px;line-height:1.45}
+
+.energy-balance{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px;
+  border-radius:16px;background:#fff;border:1px solid var(--line);padding:14px;text-align:center;
+}
+.energy-balance span,.energy-balance strong{border-radius:12px;background:#eef5fa;padding:9px 12px;font-size:12px}
+.energy-balance strong{background:#fff0e8;color:var(--orange-dark)}.energy-balance i{font-style:normal;color:var(--orange);font-size:21px;font-weight:900}
+.energy-balance sub{font-size:.7em}
+
+.fridge-lesson{display:grid;grid-template-columns:minmax(440px,1.2fr) minmax(260px,.8fr);gap:18px;align-items:stretch}
+.fridge-diagram{
+  min-height:430px;position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#edf5fa,#fff);overflow:hidden;
+}
+.fridge-instruction{position:absolute;z-index:5;left:18px;top:14px;margin:0;color:#40526a;font-size:12px;font-weight:700}
+.fridge-instruction b{display:inline-flex;margin-right:5px;border-radius:999px;background:var(--navy-700);color:#fff;padding:4px 8px;font-size:10px}
+.fridge-body{
+  position:absolute;left:24px;top:70px;width:196px;height:300px;border:5px solid #718293;border-radius:22px;
+  background:#fff;box-shadow:0 18px 30px rgba(16,35,60,.13);
+}
+.fridge-body::after{content:"";position:absolute;left:0;right:0;top:68%;height:4px;background:#718293}
+.fridge-shelf{position:absolute;left:18px;right:18px;top:47%;height:4px;background:#b2c0cc}
+.fridge-food{position:absolute;left:24px;right:24px;top:51%;height:40px;display:flex;align-items:end;justify-content:space-around}
+.fridge-food i{width:34px;height:27px;border-radius:8px;background:#f2c94c}.fridge-food i:nth-child(2){height:39px;background:var(--green)}.fridge-food i:nth-child(3){height:31px;background:var(--orange)}
+.rear-grid{position:absolute;left:228px;top:103px;width:64px;height:218px;display:grid;gap:6px}
+.rear-grid i{border:4px solid var(--orange);border-left:0;border-right:0;border-radius:50%}
+.fridge-zone{position:absolute;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink);padding:9px;text-align:center;z-index:4}
+.fridge-zone small{display:block;color:var(--orange-dark);font-size:9px;font-weight:900}.fridge-zone strong{display:block;font-size:13px}.fridge-zone span{display:block;color:var(--muted);font-size:10px}
+.fridge-zone.active{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.18)}
+.fridge-zone .fridge-step{
+  position:absolute;left:-9px;top:-9px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;
+  background:var(--navy-700);color:#fff;font-size:11px;box-shadow:0 3px 8px rgba(16,35,60,.18);
+}
+.fridge-zone.active .fridge-step{background:var(--orange)}
+.inside-zone{left:21px;right:21px;top:17px}.compressor-zone{left:38px;right:38px;bottom:13px}
+.condenser-zone{left:304px;top:120px;width:130px}.expansion-zone{left:304px;top:240px;width:130px}
+.room-label{position:absolute;right:18px;top:72px;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.16em}
+.fridge-energy-flow{position:absolute;left:226px;right:16px;bottom:27px;color:var(--orange-dark);font-size:11px;font-weight:800;text-align:center}
+.fridge-explanation{display:grid;align-content:center;gap:13px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px}
+.fridge-explanation h3{margin:0;font:500 30px "Trebuchet MS",Calibri,sans-serif}.fridge-explanation>p{color:var(--muted);line-height:1.55}
+.fridge-truth{border-left:5px solid var(--orange);background:#fff5ef;border-radius:0 13px 13px 0;padding:14px}
+.fridge-truth b{display:block;color:var(--orange-dark);margin-bottom:6px}.fridge-truth span{color:#68402c;line-height:1.5}
+
+.discovery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.discovery-card{
+  min-height:285px;display:grid;grid-template-rows:150px auto auto auto;gap:7px;
+  border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);padding:17px;text-align:left;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.discovery-card:hover,.discovery-card.active{transform:translateY(-3px);border-color:var(--orange);box-shadow:0 12px 28px rgba(16,35,60,.1)}
+.discovery-card small{color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.12em}
+.discovery-card strong{font:500 23px "Trebuchet MS",Calibri,sans-serif}
+.discovery-card>span:last-child{color:var(--muted);font-size:14px}
+.scene-art{position:relative;display:block;border-radius:15px;background:#edf4f8;overflow:hidden}
+.ice-art::before{
+  content:"";position:absolute;left:50%;top:40%;width:78px;height:70px;border-radius:15px;
+  transform:translate(-50%,-50%) rotate(-5deg);background:linear-gradient(135deg,#dff4ff,#86c7eb);
+  border:3px solid #6ca9d1;box-shadow:inset 10px 10px 14px rgba(255,255,255,.45);
+}
+.ice-art::after{content:"";position:absolute;left:25%;right:20%;bottom:22px;height:13px;border-radius:50%;background:rgba(61,127,202,.2)}
+.ice-art i{position:absolute;bottom:25px;width:8px;height:8px;border-radius:50% 50% 55% 45%;background:var(--blue)}
+.ice-art i:nth-child(1){left:38%}.ice-art i:nth-child(2){left:50%;bottom:17px}.ice-art i:nth-child(3){left:61%}
+.pot-art::before{
+  content:"";position:absolute;left:20%;right:20%;bottom:24px;height:67px;border-radius:9px 9px 24px 24px;
+  border:4px solid #697887;background:linear-gradient(to bottom,transparent 0 24%,#68afe2 25%);
+}
+.pot-art::after{content:"";position:absolute;left:15%;right:15%;bottom:15px;height:9px;border-radius:50%;background:var(--orange)}
+.pot-art i{position:absolute;bottom:79px;width:11px;height:11px;border-radius:50%;border:2px solid var(--blue);animation:scene-bubble 2.3s ease-in infinite}
+.pot-art i:nth-child(1){left:38%}.pot-art i:nth-child(2){left:50%;animation-delay:-.8s}.pot-art i:nth-child(3){left:62%;animation-delay:-1.5s}
+@keyframes scene-bubble{to{transform:translateY(-38px) scale(.45);opacity:0}}
+.lid-art::before{
+  content:"";position:absolute;left:17%;right:17%;top:36px;height:15px;border-radius:50% 50% 8px 8px;
+  border:4px solid #697887;background:#dfe7ee;box-shadow:0 9px 0 -4px rgba(61,127,202,.16);
+}
+.lid-art::after{content:"";position:absolute;left:46%;top:20px;width:28px;height:18px;border-radius:8px 8px 0 0;background:#697887}
+.lid-art i{position:absolute;top:66px;width:13px;height:18px;border-radius:50% 50% 55% 45%;background:#72b4e8}
+.lid-art i:nth-child(1){left:31%}.lid-art i:nth-child(2){left:49%;top:78px}.lid-art i:nth-child(3){left:67%}
+.discovery-feedback{text-align:center;margin-bottom:0}
+
+.quantity-lab{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(360px,1.3fr);gap:22px;align-items:stretch}
+.energy-control-card{display:grid;align-content:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.energy-control-card small{color:var(--orange-dark);font-weight:800;letter-spacing:.1em}
+.energy-control-card label{font-weight:700}.energy-control-card label b{color:var(--orange-dark)}
+.energy-control-card p{margin:0;color:var(--muted);line-height:1.5}
+.energy-bricks{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;min-height:45px}
+.energy-bricks i{border-radius:7px;background:#e1e7eb;border:1px solid rgba(27,58,99,.08);transition:background .18s,transform .18s}
+.energy-bricks i.on{background:linear-gradient(135deg,#ffd166,var(--orange));transform:translateY(-2px)}
+.water-comparison{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.water-cup{
+  position:relative;display:grid;grid-template-columns:1fr 28px;grid-template-rows:1fr auto auto;gap:7px 13px;
+  min-height:330px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center;
+}
+.water-cup .cup{
+  align-self:end;justify-self:center;position:relative;width:105px;height:150px;border:4px solid #718293;border-top:0;
+  border-radius:0 0 25px 25px;overflow:hidden;background:rgba(255,255,255,.55);
+}
+.water-cup.large-cup .cup{width:140px;height:190px}
+.water-cup .water{position:absolute;inset:auto 0 0;height:67%;background:linear-gradient(#82c2ec,#3d7fca)}
+.water-cup strong{grid-column:1/3}.water-cup>b{grid-column:1/3;color:var(--orange-dark)}
+.cup-bubbles{position:absolute;inset:0;opacity:0;transition:opacity .2s}
+.cup-bubbles i{
+  position:absolute;bottom:12px;width:12px;height:12px;border:2px solid #fff;border-radius:50%;
+  animation:pot-boil 1.9s ease-in infinite;
+}
+.cup-bubbles i:nth-child(1){left:18%}.cup-bubbles i:nth-child(2){left:38%;animation-delay:-.5s}
+.cup-bubbles i:nth-child(3){left:61%;animation-delay:-1s}.cup-bubbles i:nth-child(4){left:78%;animation-delay:-1.45s}
+.cup.boiling .cup-bubbles{opacity:1}
+@keyframes pot-boil{to{transform:translateY(-82px) scale(.45);opacity:0}}
+.temperature-track{grid-column:2;grid-row:1;align-self:stretch;position:relative;width:18px;border-radius:999px;background:#e6ebee;overflow:hidden}
+.temperature-track i{position:absolute;inset:auto 0 0;height:8%;border-radius:999px;background:linear-gradient(var(--orange),#ffd166);transition:height .25s}
+.pot-energy{grid-column:1/3;display:grid;gap:14px;margin-top:4px;text-align:left}
+.pot-energy>span{position:relative;display:block;height:13px;margin-bottom:18px;border-radius:999px;background:#e4e9ed}
+.pot-energy>span>i{position:absolute;inset:0 auto 0 0;width:0;border-radius:999px;background:linear-gradient(90deg,#ffd166,var(--orange));transition:width .25s}
+.pot-energy>span>b{
+  position:absolute;top:-7px;transform:translateX(-50%);height:27px;border-left:3px solid var(--navy-700);
+  padding:29px 0 0;color:var(--navy-700);font-size:9px;text-transform:uppercase;white-space:nowrap;
+}
+.pot-energy small{min-height:32px;color:var(--muted);font-size:11px;line-height:1.4;text-align:left}
+
+.journey-lab,.cooling-lab{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(340px,1.2fr);gap:24px;align-items:stretch}
+.journey-lab{grid-template-columns:minmax(250px,.55fr) minmax(560px,1.45fr)}
+.journey-visual{
+  min-height:540px;position:relative;display:grid;place-items:center;background:linear-gradient(#eef6fb,#fff);
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+}
+.journey-vessel,.cooling-vessel{
+  position:relative;width:175px;height:230px;border:4px solid #718293;border-top:0;border-radius:0 0 32px 32px;
+  background:rgba(255,255,255,.55);overflow:hidden;z-index:2;
+}
+.journey-vessel::before,.cooling-vessel::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:#718293;z-index:5}
+.journey-liquid,.cooling-liquid{position:absolute;inset:auto 0 0;height:0;background:linear-gradient(#80c1ed,#3d7fca);transition:height .25s;z-index:1}
+.ice-cubes{position:absolute;inset:auto 12px 12px;height:100px;z-index:3;transition:opacity .2s}
+.ice-cubes i{
+  position:absolute;width:62px;height:57px;border-radius:12px;background:linear-gradient(135deg,#e6f7ff,#8dc9eb);
+  border:2px solid #6ca9d1;transform:rotate(-7deg);
+}
+.ice-cubes i:nth-child(1){left:2px;bottom:3px}.ice-cubes i:nth-child(2){right:3px;bottom:8px;transform:rotate(8deg)}.ice-cubes i:nth-child(3){left:48px;bottom:42px;transform:rotate(1deg)}
+.journey-bubbles,.journey-vapor,.cooling-drops,.cooling-vapor{position:absolute;inset:0;z-index:4;opacity:0;transition:opacity .2s}
+.journey-bubbles i{
+  position:absolute;bottom:18px;width:13px;height:13px;border:2px solid #fff;border-radius:50%;
+  animation:journey-bubble 2.7s ease-in infinite;
+}
+.journey-bubbles i:nth-child(1){left:18%}.journey-bubbles i:nth-child(2){left:39%;animation-delay:-.8s}.journey-bubbles i:nth-child(3){left:61%;animation-delay:-1.4s}.journey-bubbles i:nth-child(4){left:79%;animation-delay:-2s}
+@keyframes journey-bubble{to{transform:translateY(-175px) scale(.5);opacity:0}}
+.journey-vapor i,.cooling-vapor i{
+  position:absolute;width:15px;height:15px;border-radius:50%;background:var(--orange);opacity:.55;
+  animation:vapor-drift 3.2s ease-in-out infinite alternate;
+}
+.journey-vapor i:nth-child(1),.cooling-vapor i:nth-child(1){left:22%;top:24%}
+.journey-vapor i:nth-child(2),.cooling-vapor i:nth-child(2){left:51%;top:46%;animation-delay:-1.1s}
+.journey-vapor i:nth-child(3),.cooling-vapor i:nth-child(3){left:75%;top:18%;animation-delay:-2s}
+.cooling-vapor i:nth-child(4){left:35%;top:70%;animation-delay:-.5s}
+@keyframes vapor-drift{to{transform:translate(13px,-12px)}}
+.journey-vessel.stage-melting .ice-cubes{opacity:.62}
+.journey-vessel.stage-liquid .ice-cubes,.journey-vessel.stage-boiling .ice-cubes,.journey-vessel.stage-vapor .ice-cubes{opacity:0}
+.journey-vessel.stage-boiling .journey-bubbles,.journey-vessel.stage-vapor .journey-vapor{opacity:1}
+.vessel-temperature{
+  position:absolute;left:50%;top:19px;transform:translateX(-50%);z-index:8;min-width:116px;
+  border:1px solid rgba(27,58,99,.18);border-radius:12px;background:rgba(255,255,255,.9);
+  padding:7px 9px;text-align:center;box-shadow:0 5px 15px rgba(16,35,60,.1);
+}
+.vessel-temperature small{display:block;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.12em}
+.vessel-temperature b{display:block;margin-top:2px;color:var(--blue);font-size:23px;font-variant-numeric:tabular-nums}
+.vessel-temperature span{display:block;margin-top:1px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase}
+.vessel-temperature.stable{border-color:rgba(255,107,53,.45);background:rgba(255,245,239,.94)}
+.vessel-temperature.stable b{color:var(--orange-dark)}
+.temperature-column{position:absolute;left:28px;top:48px;bottom:88px;width:22px;border-radius:999px;background:#dfe6eb;overflow:visible}
+.temperature-column::after{content:"";position:absolute;left:-7px;bottom:-6px;width:36px;height:36px;border-radius:50%;background:var(--orange)}
+.temperature-fill{position:absolute;inset:auto 6px 0;height:12%;border-radius:999px;background:var(--orange);transition:height .25s}
+.temperature-scale{position:absolute;left:58px;top:47px;bottom:85px;z-index:2;width:50px;color:var(--muted);font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
+.temperature-scale span{position:absolute;left:0;white-space:nowrap;transform:translateY(-50%)}
+.temperature-scale span:nth-child(1){top:0}
+.temperature-scale span:nth-child(2){top:14.3%}
+.temperature-scale span:nth-child(3){top:85.7%}
+.temperature-scale span:nth-child(4){top:100%}
+.journey-pressure{position:absolute;left:14px;right:14px;bottom:14px;margin:0;border-radius:999px;background:#fff;padding:7px 10px;color:var(--muted);font-size:10px;font-weight:700;text-align:center;box-shadow:0 5px 15px rgba(16,35,60,.08)}
+.journey-flame{position:absolute;bottom:72px;width:68px;height:46px;border-radius:75% 25% 70% 30%;transform:rotate(45deg);background:linear-gradient(135deg,#ffd166,var(--orange))}
+.journey-panel,.cooling-panel{display:grid;align-content:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px}
+.journey-panel .state-badge,.cooling-panel .state-badge{justify-self:start}
+.journey-panel h3,.cooling-panel h3{margin:0;font:500 31px "Trebuchet MS",Calibri,sans-serif}
+.journey-panel>p,.cooling-panel>p{margin:0;color:var(--muted);line-height:1.5}
+.journey-panel label,.cooling-panel label{font-weight:700}.journey-panel label b,.cooling-panel label b{color:var(--orange-dark)}
+.journey-live-graph{border:2px solid rgba(27,58,99,.14);border-radius:18px;background:#fff;padding:14px 14px 10px;box-shadow:0 12px 28px rgba(16,35,60,.08)}
+.journey-graph-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 4px 8px}
+.journey-graph-heading span{color:var(--navy-700);font-size:12px;font-weight:900;letter-spacing:.08em}
+.journey-graph-heading b{color:var(--muted);font-size:11px}
+.journey-live-graph svg{display:block;width:100%;height:auto}
+.journey-zone{opacity:.46}
+.journey-zone.sensible{fill:#eaf4fb}
+.journey-zone.latent{fill:#fff1e8}
+.journey-graph-grid{fill:none;stroke:#d8e1e8;stroke-width:1}
+.journey-graph-axis{fill:none;stroke:var(--navy-700);stroke-width:2.5;stroke-linecap:round}
+.journey-graph-curve{fill:none;stroke:var(--orange);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.journey-graph-guides{stroke:#a7b6c5;stroke-width:1.2;stroke-dasharray:4 4}
+.journey-graph-marker-line{stroke:var(--orange-dark);stroke-width:1.6;stroke-dasharray:4 4}
+.journey-graph-marker{fill:var(--orange);stroke:#fff;stroke-width:3}
+.journey-graph-axis-label{font:800 11px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.journey-graph-axis-label.axis-title{font-size:10px;letter-spacing:.04em}
+.journey-graph-tick{font:800 11px "Segoe UI",sans-serif;fill:#718293}
+.journey-graph-tick.strong{fill:var(--navy-700);font-size:12px}
+.journey-heat-label{font:900 10px "Segoe UI",sans-serif;letter-spacing:.06em}
+.journey-heat-label.sensible{fill:var(--blue)}
+.journey-heat-label.latent{fill:var(--orange-dark)}
+.journey-graph-label{font:900 11px "Segoe UI",sans-serif;fill:var(--orange-dark)}
+.journey-phase-label{font:900 9px "Segoe UI",sans-serif;fill:var(--blue)}
+.journey-phase-label.latent{fill:var(--orange-dark)}
+.journey-graph-reading{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-top:4px;border-top:1px solid var(--line);padding:10px 4px 1px}
+.journey-live-graph p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.journey-live-graph p strong{color:var(--orange-dark)}
+.journey-phase-copy{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:12px}
+.journey-phase-copy .state-badge{margin-top:2px}
+.journey-phase-copy h3{margin:0;font:500 25px "Trebuchet MS",Calibri,sans-serif}
+.journey-phase-copy p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+.observation-pair{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.observation-pair span{padding:10px;border-radius:12px;background:#f1f5f7;color:var(--muted);font-size:13px}
+.observation-pair b{display:block;margin-top:4px;color:var(--navy-700);font-size:15px}
+.observation-pair small{display:block;margin-top:2px;color:var(--orange-dark);font-weight:800}
+.journey-energy-meter{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px}
+.journey-energy-meter>span{color:var(--muted);font-size:11px;font-weight:800}
+.journey-energy-meter .energy-bricks{min-height:25px}
+
+.example-chain{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;color:var(--muted);font-size:13px}
+.example-chain b{color:var(--card,var(--blue))}.example-chain i{font-style:normal}
+
+.evaporation-lab{display:grid;grid-template-columns:minmax(360px,1fr) minmax(380px,1fr);gap:20px;align-items:stretch}
+.evaporation-scene{
+  min-height:410px;display:grid;grid-template-columns:1fr 82px 160px;gap:12px;align-items:center;
+  border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#edf6fb,#fff);padding:20px;
+}
+.local-card{display:grid;align-content:center;gap:9px;min-height:275px;border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px;text-align:center}
+.local-card small{color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.1em}.local-card h3{margin:0;font:500 27px "Trebuchet MS",Calibri,sans-serif}
+.local-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.local-temperature{position:relative;height:110px;width:25px;justify-self:center;border-radius:999px;background:#e1e7eb;overflow:visible}
+.local-temperature::after{content:"";position:absolute;left:-6px;bottom:-5px;width:37px;height:37px;border-radius:50%;background:var(--orange)}
+.local-temperature i{position:absolute;inset:auto 6px 0;height:86%;border-radius:999px;background:linear-gradient(var(--orange),#ffd166);transition:height .25s}
+.local-temperature b{position:absolute;left:38px;top:50%;width:110px;transform:translateY(-50%);color:var(--muted);font-size:10px;text-align:left}
+.local-energy{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}
+.local-energy i{height:17px;border-radius:5px;background:linear-gradient(135deg,#ffd166,var(--orange));transition:opacity .2s,transform .2s}
+.local-energy i.transferred{opacity:.15;transform:translateX(5px)}
+.evaporation-transfer{display:grid;place-items:center;align-content:center;text-align:center;color:var(--orange-dark)}
+.evaporation-transfer span{border-radius:999px;background:var(--orange);color:#fff;padding:6px 8px;font-size:9px;font-weight:900}
+.evaporation-transfer b{font-size:39px}.evaporation-transfer small{font-size:9px;font-weight:800}
+.evaporator-vessel{
+  position:relative;width:150px;height:245px;border:4px solid #718293;border-top:0;border-radius:0 0 30px 30px;
+  background:rgba(255,255,255,.62);overflow:hidden;
+}
+.evaporator-vessel::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:#718293;z-index:5}
+.evaporator-liquid{position:absolute;inset:auto 0 0;height:68%;background:linear-gradient(#80c1ed,#3d7fca);transition:height .25s}
+.evaporator-bubbles,.evaporator-vapor{position:absolute;inset:0;z-index:3}
+.evaporator-bubbles i{position:absolute;bottom:13px;width:13px;height:13px;border:2px solid #fff;border-radius:50%;animation:evap-bubble 2.2s ease-in infinite}
+.evaporator-bubbles i:nth-child(1){left:16%}.evaporator-bubbles i:nth-child(2){left:37%;animation-delay:-.6s}
+.evaporator-bubbles i:nth-child(3){left:61%;animation-delay:-1.2s}.evaporator-bubbles i:nth-child(4){left:79%;animation-delay:-1.7s}
+@keyframes evap-bubble{to{transform:translateY(-180px) scale(.45);opacity:0}}
+.evaporator-vapor i{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--orange);opacity:.35;animation:vapor-drift 3s ease-in-out infinite alternate}
+.evaporator-vapor i:nth-child(1){left:20%;top:24%}.evaporator-vapor i:nth-child(2){left:52%;top:41%;animation-delay:-1s}.evaporator-vapor i:nth-child(3){left:76%;top:19%;animation-delay:-1.8s}
+.evaporator-temperature{
+  position:absolute;left:50%;top:13px;transform:translateX(-50%);z-index:6;width:128px;border-radius:11px;
+  background:rgba(255,245,239,.94);border:1px solid rgba(255,107,53,.42);padding:7px;text-align:center;
+}
+.evaporator-temperature small{display:block;color:var(--muted);font-size:7px;font-weight:900;letter-spacing:.08em}
+.evaporator-temperature b{display:block;color:var(--orange-dark);font-size:14px}
+.evaporator-vessel.nearly-vapor .evaporator-bubbles{opacity:.35}
+.evaporation-control{display:grid;align-content:center;gap:11px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px}
+.evaporation-control h3{margin:0;font:500 30px "Trebuchet MS",Calibri,sans-serif}.evaporation-control>p{margin:0;color:var(--muted);line-height:1.5}
+.evaporation-control label{font-weight:800}.evaporation-control label b{color:var(--orange-dark)}
+.evaporation-graph{border:1px solid var(--line);border-radius:15px;background:#fbfcfd;padding:8px}
+.evaporation-graph svg{display:block;width:100%;height:auto}
+.evap-graph-axis{fill:none;stroke:var(--navy-700);stroke-width:2.5;stroke-linecap:round}
+.evap-graph-curve{fill:none;stroke:var(--orange);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.evap-graph-guides{stroke:#a7b6c5;stroke-width:1.2;stroke-dasharray:4 4}
+.evap-graph-marker-line{stroke:var(--orange-dark);stroke-width:1.5;stroke-dasharray:4 4}
+.evap-graph-marker{fill:var(--orange);stroke:#fff;stroke-width:3}
+.evap-graph-axis-label{font:700 10px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.evap-graph-label{font:800 9px "Segoe UI",sans-serif;fill:var(--orange-dark)}
+.evap-graph-point{font:700 8px "Segoe UI",sans-serif;fill:var(--navy-700)}
+.evaporation-balance{display:flex;align-items:center;justify-content:center;gap:8px}
+.evaporation-balance span{flex:1;border-radius:12px;background:#eef5fa;padding:9px;color:var(--muted);font-size:11px;text-align:center}
+.evaporation-balance b{display:block;margin-top:3px;color:var(--navy-700);font-size:13px}.evaporation-balance i{font-style:normal;color:var(--orange);font-size:22px;font-weight:900}
+.effect-frigorifique{border-left:5px solid var(--blue);background:#eef5fa;border-radius:0 13px 13px 0;padding:12px!important;color:#40526a!important}
+
+.cooling-scene{
+  min-height:360px;position:relative;display:grid;grid-template-columns:1fr 90px 190px;gap:10px;align-items:center;
+  background:linear-gradient(135deg,#edf5fa,#fff);border:1px solid var(--line);border-radius:20px;padding:20px;
+}
+.cold-source{padding:15px;border-radius:16px;background:#dceef9;color:var(--navy-700);font-weight:800;text-align:center}
+.energy-arrow{display:grid;place-items:center;color:var(--orange-dark);font-size:11px;font-weight:800;text-align:center}
+.energy-arrow b{font-size:40px}.cooling-vessel{width:160px;height:230px}
+.cooling-vessel .cooling-vapor{opacity:1}
+.cooling-drops i{
+  position:absolute;width:14px;height:18px;border-radius:50% 50% 55% 45%;background:#72b4e8;opacity:0;
+}
+.cooling-drops i:nth-child(1){left:18%;top:17%}.cooling-drops i:nth-child(2){left:42%;top:39%}.cooling-drops i:nth-child(3){left:68%;top:23%}.cooling-drops i:nth-child(4){left:57%;top:61%}
+.cooling-vessel.stage-condensing .cooling-drops i{opacity:1}.cooling-vessel.stage-condensing .cooling-vapor{opacity:.6}
+.cooling-vessel.stage-cold-liquid .cooling-vapor,.cooling-vessel.stage-cold-liquid .cooling-drops{opacity:0}
+.cooling-vessel.stage-cold-liquid .cooling-liquid{filter:saturate(calc(1 - var(--cool,0)*.25)) brightness(calc(1 + var(--cool,0)*.12))}
+
+.circuit-stage{
+  display:grid;grid-template-columns:1fr 86px 1.15fr 75px 1fr;gap:12px;align-items:stretch;
+  min-height:300px;padding:18px;border-radius:20px;background:#edf4f8;
+}
+.environment-card,.exchange-card{
+  min-height:250px;display:grid;align-content:center;gap:9px;border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px;text-align:center;
+}
+.environment-card small,.exchange-card small{color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.12em}
+.environment-card strong{font:500 25px "Trebuchet MS",Calibri,sans-serif}.environment-card span,.exchange-card p{color:var(--muted);line-height:1.5}
+.circuit-transfer{display:grid;place-items:center;align-content:center;color:var(--orange-dark)}
+.energy-token{border-radius:999px;background:var(--orange);color:#fff;padding:7px 9px;font-size:10px;font-weight:900}
+.circuit-transfer b{font-size:38px}
+.exchange-card{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.12)}
+.exchange-card h3{margin:0;font:500 29px "Trebuchet MS",Calibri,sans-serif}
+.exchange-card p{margin:0}.exchange-card .coil{width:115px;height:54px}
+.cycle-link{display:grid;place-items:center;align-content:center;color:var(--navy-700);text-align:center}
+.cycle-link b{font-size:12px}.cycle-link span{font-size:10px;color:var(--muted)}
+.circuit-stage.mode-cond{grid-template-columns:1fr 75px 1.15fr 86px 1fr}
+.circuit-stage.mode-cond .indoor{order:1}.circuit-stage.mode-cond .cycle-link{order:2}.circuit-stage.mode-cond .exchange-card{order:3}
+.circuit-stage.mode-cond .circuit-transfer{order:4}.circuit-stage.mode-cond .outdoor{order:5}
+.circuit-stage.mode-cond .exchange-card .coil,.circuit-stage.mode-cond .exchange-card .coil::after{border-top-color:var(--orange);border-bottom-color:var(--orange)}
+
+.foundation-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.foundation-card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px;position:relative;overflow:hidden}
+.foundation-card::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--blue)}
+.foundation-card.subcool-card::before{background:var(--orange)}
+.foundation-card>small{color:var(--orange-dark);font-weight:800;letter-spacing:.1em}
+.foundation-card h3{margin:7px 0 16px;font:500 26px "Trebuchet MS",Calibri,sans-serif}
+.foundation-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:13px}
+.foundation-line span{border-radius:999px;background:#edf3f7;padding:7px 10px}.foundation-line b{color:var(--orange)}
+.foundation-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:6px;margin:18px 0;padding:11px;border-radius:15px;background:#f2f6f8;text-align:center}
+.foundation-path span,.foundation-path b,.foundation-path strong{font-size:11px;line-height:1.25}.foundation-path b{color:var(--orange-dark)}.foundation-path strong{color:var(--navy-700)}
+.foundation-path i{color:var(--orange);font-style:normal;font-weight:900}
+.foundation-question{border-left:4px solid var(--blue);padding-left:12px}.subcool-card .foundation-question{border-left-color:var(--orange)}
+.foundation-question>span{color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.08em}
+.foundation-answers{display:grid;gap:8px}
+.foundation-answers button{border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink);padding:12px;text-align:left;font-weight:700}
+.foundation-answers button.good{border-color:var(--green);background:#edf8f2}.foundation-answers button.bad{border-color:var(--red);background:#fdeeee}
+.next-lesson-note{margin:18px 0 0;border-left:5px solid var(--blue);background:#eef5fa;border-radius:0 14px 14px 0;padding:15px;color:#40526a;line-height:1.5}
+
+.final-message{padding:65px 0 80px;text-align:center}
+.final-message>p{color:var(--orange);font-size:12px;font-weight:800;letter-spacing:.2em}
+.final-message h2{font-size:clamp(40px,5vw,66px);margin:12px auto 32px;max-width:950px}
+.pillars{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.pillars span,.pillars strong{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px}
+.pillars strong{background:var(--navy);color:#fff}.pillars i{color:var(--orange);font-style:normal;font-weight:900}
+.next-brick{
+  max-width:760px;margin:38px auto 0;display:grid;gap:8px;padding:20px 24px;border-radius:20px;
+  background:#fff;border:1px solid var(--line);box-shadow:0 14px 30px rgba(16,35,60,.08);
+}
+.next-brick small{color:var(--orange-dark);font-weight:800;letter-spacing:.12em}
+.next-brick strong{font:500 24px "Trebuchet MS",Calibri,sans-serif}.next-brick span{color:var(--muted);line-height:1.5}
+.next-brick-link{text-decoration:none;color:var(--ink);transition:transform .18s,border-color .18s}
+.next-brick-link>b{color:var(--blue);font-size:13px}.next-brick-link:hover{transform:translateY(-2px);border-color:rgba(61,127,202,.45)}
+.refs{background:#fff;border-radius:24px;padding:28px 32px;margin-bottom:30px;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.refs h2{font-size:31px}.refs li{margin:10px 0;line-height:1.55}
+footer{min-height:80px;color:#536271;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+footer button{border:0;background:transparent;color:var(--blue);font-weight:800}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}.hero-art{display:none}
+  .module-shell{grid-template-columns:1fr}
+  .stepper{grid-template-columns:repeat(4,1fr);overflow:auto}.stepper button{justify-content:center}.stepper button span{display:none}
+  .heat-lab,.pressure-lab,.quantity-lab,.journey-lab,.cooling-lab,.graph-lesson,.fridge-lesson,.evaporation-lab{grid-template-columns:1fr}
+  .machine-scene{grid-template-columns:1fr}.heat-arrow{min-height:70px}.heat-arrow b{transform:rotate(90deg)}.heat-arrow.reverse b{transform:rotate(-90deg)}
+  .circuit-stage,.circuit-stage.mode-cond{grid-template-columns:1fr}
+  .circuit-stage .circuit-transfer b,.circuit-stage.mode-cond .circuit-transfer b{transform:rotate(90deg)}
+  .environment-card,.exchange-card{min-height:190px}
+}
+@media(max-width:650px){
+  .topbar{min-height:74px}.topbar-actions .pill:first-child{display:none}
+  .hero{padding:45px 0 55px}.hero h1{font-size:clamp(44px,13vw,64px)}
+  .learning-goals{display:grid}.learning-goals span{border-radius:15px}
+  .lesson-top{display:grid}.voice-controls{justify-content:flex-start}
+  .answer-grid,.concept-grid,.boundary-lab,.quiz-options,.discovery-grid,.water-comparison,.foundation-grid,.formula-lesson,.mass-lab{grid-template-columns:1fr}
+  .cooling-scene{grid-template-columns:1fr;justify-items:center}
+  .energy-arrow b{transform:rotate(90deg)}
+  .evaporation-scene{grid-template-columns:1fr;justify-items:center}
+  .evaporation-transfer b{transform:rotate(90deg)}
+  .local-card{width:100%}.local-temperature b{left:35px}
+  .evaporation-balance{align-items:stretch}.evaporation-balance i{align-self:center}
+  .water-cup{min-height:285px}
+  .technical-graph{padding:8px}.graph-axis-label{font-size:10px}.graph-zone-title,.graph-note,.graph-point{font-size:8px}
+  .fridge-diagram{min-height:545px}
+  .fridge-instruction{right:16px}
+  .fridge-body{left:20px;top:75px;width:180px}
+  .rear-grid{left:210px;top:105px;width:70px}
+  .condenser-zone{left:20px;top:395px;width:132px}
+  .expansion-zone{left:162px;top:395px;width:132px}
+  .room-label{top:365px;right:20px}
+  .fridge-energy-flow{left:20px;right:20px;bottom:22px}
+  .interactive-zone{min-height:330px;padding:16px}
+  .lesson-card{padding:24px 18px}.lesson-footer{align-items:stretch}.lesson-footer .nav{padding:11px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .start:hover,.nav:hover,.answer-card:hover,.quiz-option:hover{transform:none}
+  /* Seuls le défilement doux et les effets de survol sont neutralisés.
+     JAMAIS les animations visibles (.orb, .heat-rings…) : sur une machine
+     aux effets d'animation Windows désactivés (MinAnimate=0), ce média est
+     actif EN PERMANENCE et les ferait disparaître pour tout le monde —
+     piège déjà payé sur la frise vivante et la nomenclature. */
+}
+@media print{
+  .ambient,.topbar-actions,.voice-controls,.lesson-footer,.start{display:none}
+  .hero{min-height:auto}.module-shell{display:block}.stepper{display:none}
+  .lesson-card{box-shadow:none}.interactive-zone{min-height:0}
+}

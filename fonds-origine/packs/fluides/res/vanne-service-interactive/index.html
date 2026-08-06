@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F1E7">
+  <meta name="description" content="Cours interactif sur la vanne de service à deux prises : les trois positions en coupe animée, la voie de service P et la prise permanente P1, le sens BP et HP, le geste de raccordement du manifold et deux mini-jeux corrigés.">
+  <title>La vanne de service — trois positions, deux prises | Pilote Fluides</title>
+  <link rel="stylesheet" href="styles.css?v=20260802-6">
+  <link rel="stylesheet" href="impression.css?v=20260802-6" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-title">Aller à l’explication</a>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="inerWeb Édu">
+        <span class="brand-mark" aria-hidden="true">iW</span>
+        <span class="brand-copy"><strong>inerWeb Édu</strong><span>PILOTE FLUIDES</span></span>
+      </div>
+      <div class="module-name">
+        <strong>La vanne de service</strong>
+        <span>coupe, circulation et raccordements</span>
+      </div>
+      <div class="reading-tools" aria-label="Sommaire, partage et impression">
+        <button type="button" id="home-button" class="share-button" title="Revenir au sommaire">☰ Sommaire</button>
+        <button type="button" id="copy-link" class="share-button" title="Copier le lien de cet écran">🔗 Copier le lien</button>
+        <button type="button" id="print-book-button" class="share-button" title="Imprimer le livret des quatre écrans">🖨 Livret</button>
+      </div>
+    </header>
+
+    <nav class="stepper" aria-label="Étapes de l’animation">
+      <button type="button" class="step-button active" data-step="0" aria-current="step"><span>1</span><strong>3 positions</strong></button>
+      <button type="button" class="step-button" data-step="1"><span>2</span><strong>BP / HP</strong></button>
+      <button type="button" class="step-button" data-step="2"><span>3</span><strong>Geste et sécurité</strong></button>
+      <button type="button" class="step-button" data-step="3"><span>4</span><strong>Mini-jeux</strong></button>
+    </nav>
+
+    <section class="home" id="home" aria-labelledby="home-title">
+      <div class="home-top">
+        <div class="home-copy">
+          <p class="kicker">Cours interactif · inerWeb Édu</p>
+          <h1 id="home-title" tabindex="-1">La vanne de service</h1>
+          <p class="home-intro">Le carré de manœuvre, la tige et le pointeau se déplacent comme <strong>un seul ensemble</strong> ; le presse-étoupe, lui, reste fixe. Choisis par où commencer — ou suis les quatre écrans dans l’ordre.</p>
+          <p class="home-danger"><strong>P1 peut rester sous pression dans toutes les positions.</strong> Ne jamais défaire son bouchon sur une installation chargée.</p>
+        </div>
+        <figure class="home-visual">
+          <img src="vanne-3d.webp?v=20260803-1" width="1024" height="783" alt="Vue en perspective d’une vanne de service à deux prises : le corps traversé par le passage principal, l’écrou de raccordement à droite, les deux prises de pression dressées vers le haut et le carré de manœuvre." decoding="async">
+          <figcaption>Voilà l’objet, vu de l’extérieur. Les écrans qui suivent l’ouvrent en coupe.</figcaption>
+        </figure>
+      </div>
+      <nav class="home-grid" aria-label="Les quatre écrans du cours">
+        <button type="button" class="home-tile" data-step="0">
+          <span class="home-tile-num">1</span>
+          <strong>Les trois positions</strong>
+          <small>Fermée sur l’arrière, intermédiaire, fermée sur l’avant : ce que chaque position ouvre et ce qu’elle isole.</small>
+        </button>
+        <button type="button" class="home-tile" data-step="1">
+          <span class="home-tile-num">2</span>
+          <strong>BP et HP</strong>
+          <small>Le même organe côté aspiration et côté refoulement : la géométrie ne change pas, le sens du fluide si.</small>
+        </button>
+        <button type="button" class="home-tile" data-step="2">
+          <span class="home-tile-num">3</span>
+          <strong>Geste et sécurité</strong>
+          <small>Où brancher le flexible du manifold, où va le pressostat, le presse-étoupe et les points de fuite.</small>
+        </button>
+        <button type="button" class="home-tile" data-step="3">
+          <span class="home-tile-num">4</span>
+          <strong>Mini-jeux</strong>
+          <small>Quatre repérages cliquables sur la coupe, puis cinq décisions de chantier. Correction immédiate.</small>
+        </button>
+      </nav>
+      <p class="home-note">Fonctionne hors ligne une fois la page ouverte. Le bouton <strong>Aa</strong> agrandit le texte et propose une police adaptée aux lecteurs DYS ; <strong>🖨 Livret</strong> imprime les quatre écrans avec le corrigé.</p>
+    </section>
+
+    <main class="lesson" id="main-content">
+      <section class="lesson-copy" aria-live="polite" aria-atomic="false">
+        <p class="kicker" id="lesson-kicker">Écran 1 · Les trois positions</p>
+        <h1 id="lesson-title">Tourner la clé et suivre les passages</h1>
+        <p class="lesson-intro" id="lesson-intro">La clé, le carré, la tige et le pointeau se déplacent ensemble.</p>
+        <div class="lesson-detail" id="lesson-detail"></div>
+      </section>
+
+      <section class="visual-card" aria-labelledby="visual-title">
+        <div class="visual-heading">
+          <h2 id="visual-title">Les trois positions de la vanne</h2>
+          <p id="visual-hint">Choisis une position ou clique sur la clé.</p>
+        </div>
+        <div class="visual-controls" id="visual-controls"></div>
+        <div class="visual-root" id="visual-root"></div>
+        <p class="visual-caption" id="visual-caption"></p>
+      </section>
+    </main>
+
+    <footer class="bottom-nav">
+      <button type="button" class="nav-button secondary" id="previous-button" disabled>← Retour</button>
+      <div class="progress-copy" aria-live="polite">
+        <span id="progress-label">Écran 1 sur 4</span>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+      </div>
+      <button type="button" class="nav-button primary" id="next-button">Continuer →</button>
+    </footer>
+  </div>
+
+  <!-- Le livret des quatre écrans : rempli seulement au moment d'imprimer,
+       vidé ensuite (voir la note dans app.js — les <style> d'un SVG inline
+       sont globaux au document). -->
+  <section class="print-book" id="print-book" aria-label="Livret imprimable des quatre écrans"></section>
+
+  <div class="sr-only" id="reading-status" role="status" aria-live="polite"></div>
+
+  <script src="valve-diagram.js?v=20260802-6"></script>
+  <script src="app.js?v=20260802-6"></script>
+  <script src="../../../../moteur/lisibilite.js?v=20260802-6"></script>
+</body>
+</html>

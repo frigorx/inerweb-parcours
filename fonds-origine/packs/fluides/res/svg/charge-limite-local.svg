@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+     aria-label="Trois locaux de volumes croissants abritent la même installation au R-290, classe A3, et la même fuite. Animation : le gaz forme une nappe au sol, qui envahit le petit local et ne fait qu'une mince couche dans le grand. Sous chaque local, une jauge montre que la charge admissible grandit avec le volume. En bas, sur une bande sans graduation chiffrée, le curseur du petit local entre dans le domaine d'explosivité quand celui du grand local reste en zone trop pauvre.">
+  <title>Fluide inflammable : ce que le volume du local commande</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    /* CYCLIQUE, 12 s (4 s de montée, 4 s de lecture, 4 s de retour). Valeurs de
+       base = ÉTAT FINAL (nappes formées, curseurs arrivés) : une planche figée
+       reste juste — une nappe au ras du sol ferait croire le petit local sûr.
+       À l'impression on neutralise les animations elles-mêmes, JAMAIS via
+       `prefers-reduced-motion` qui supprimerait la démonstration à l'écran. */
+    @media print { animate, animateTransform { display: none; } }
+  </style>
+
+  <rect width="900" height="470" fill="#ffffff"/>
+
+  <text class="t" x="30" y="32">Fluide inflammable : ce que le volume du local commande</text>
+  <text class="lg" x="30" y="54">Même installation au <tspan style="font-weight:700;fill:#1b3a63">R-290 (classe A3)</tspan>, même fuite. Seul le volume du local change — et c'est lui qui commande la charge autorisée.</text>
+
+  <!-- LES TROIS LOCAUX. Sol commun à y=238 (et non 250) : sans ces 12 px, le
+       titre de la bande collait aux étiquettes de jauge et les deux blocs se
+       lisaient comme un seul paragraphe. -->
+  <path class="p" d="M42,238 v-82 h140 v82"/>
+  <path class="p" d="M244,238 v-114 h200 v114"/>
+  <path class="p" d="M504,238 v-148 h340 v148"/>
+  <text class="st" x="112" y="148" text-anchor="middle">Petit local</text>
+  <text class="st" x="344" y="116" text-anchor="middle">Local moyen</text>
+  <text class="st" x="674" y="82"  text-anchor="middle">Grand local</text>
+
+  <!-- NAPPES : même quantité de gaz partout (section épaisseur x largeur
+       identique) — plus le local est large, plus la couche est mince. -->
+  <rect x="42" y="182" width="140" height="56" fill="#e8b9a8" stroke="#c9451a" stroke-width="2.6">
+    <animate attributeName="y" values="238;182;182;238" dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="0;56;56;0" dur="12s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="244" y="199" width="200" height="39" fill="#7fa9c9" stroke="#1b3a63" stroke-width="2.2">
+    <animate attributeName="y" values="238;199;199;238" dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="0;39;39;0" dur="12s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="504" y="215" width="340" height="23" fill="#7fa9c9" stroke="#1b3a63" stroke-width="2.2">
+    <animate attributeName="y" values="238;215;215;238" dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="0;23;23;0" dur="12s" repeatCount="indefinite"/>
+  </rect>
+
+  <line class="p" x1="30" y1="238" x2="870" y2="238"/>
+
+  <!-- la MÊME installation, et la MÊME fuite, dans les trois locaux -->
+  <g class="p">
+    <rect x="122" y="206" width="44" height="32" rx="3"/><circle cx="136" cy="222" r="7"/>
+    <rect x="380" y="206" width="44" height="32" rx="3"/><circle cx="394" cy="222" r="7"/>
+    <rect x="776" y="206" width="44" height="32" rx="3"/><circle cx="790" cy="222" r="7"/>
+  </g>
+  <path class="acc" d="M119,222 h-20 m9,-8 l-9,8 9,8"/>
+  <path class="acc" d="M377,222 h-20 m9,-8 l-9,8 9,8"/>
+  <path class="acc" d="M773,222 h-20 m9,-8 l-9,8 9,8"/>
+  <text class="lg" x="99"  y="194" text-anchor="middle">fuite</text>
+  <text class="lg" x="357" y="194" text-anchor="middle">fuite</text>
+  <text class="lg" x="753" y="194" text-anchor="middle">fuite</text>
+
+  <!-- ce que devient le mélange dans chaque local -->
+  <text class="bad" x="112" y="174" text-anchor="middle" opacity="1">
+    <animate attributeName="opacity" values="0;1;1;0" dur="12s" repeatCount="indefinite"/>
+    mélange explosif
+  </text>
+  <text class="lg" x="344" y="146" text-anchor="middle" opacity="1">
+    <animate attributeName="opacity" values="0;1;1;0" dur="12s" repeatCount="indefinite"/>
+    mélange dilué
+  </text>
+  <text class="st" x="674" y="112" text-anchor="middle" opacity="1">
+    <animate attributeName="opacity" values="0;1;1;0" dur="12s" repeatCount="indefinite"/>
+    reste trop pauvre pour s'enflammer
+  </text>
+
+  <!-- JAUGES DE CHARGE ADMISSIBLE : aucune graduation, aucune valeur -->
+  <g fill="#e8eef4" stroke="#c9d4de" stroke-width="1.5">
+    <rect x="37"  y="250" width="150" height="16" rx="8"/>
+    <rect x="269" y="250" width="150" height="16" rx="8"/>
+    <rect x="599" y="250" width="150" height="16" rx="8"/>
+  </g>
+  <g fill="#ff6b35">
+    <rect x="37"  y="250" width="30"  height="16" rx="8"/>
+    <rect x="269" y="250" width="60"  height="16" rx="8"/>
+    <rect x="599" y="250" width="130" height="16" rx="8"/>
+  </g>
+  <text class="st" x="112" y="280" text-anchor="middle">charge admissible faible</text>
+  <text class="st" x="344" y="280" text-anchor="middle">charge admissible moyenne</text>
+  <text class="st" x="674" y="280" text-anchor="middle">charge admissible plus élevée</text>
+
+  <!-- BANDE DE CONCENTRATION -->
+  <text class="st" x="42" y="311">Concentration du mélange dans l'air du local</text>
+  <rect x="42" y="352" width="558" height="34" rx="6" fill="#e8eef4" stroke="#c9d4de" stroke-width="1.5"/>
+  <rect x="282" y="352" width="190" height="34" fill="#c9451a"/>
+  <text class="lg" x="162" y="375" text-anchor="middle">trop pauvre</text>
+  <text x="377" y="375" text-anchor="middle" style="font:700 13.5px Calibri,Segoe UI,sans-serif;fill:#ffffff">domaine d'explosivité</text>
+  <text class="lg" x="536" y="375" text-anchor="middle">trop riche</text>
+  <rect x="282" y="352" width="190" height="34" fill="none" stroke="#c9451a" stroke-width="3" opacity="1">
+    <animate attributeName="opacity" values="0;1;1;0" dur="12s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- PETIT local : il entre dans le domaine d'explosivité -->
+  <g transform="translate(370,0)">
+    <animateTransform attributeName="transform" type="translate" values="62,0;370,0;370,0;62,0" dur="12s" repeatCount="indefinite"/>
+    <text class="bad" x="0" y="332" text-anchor="middle">petit local</text>
+    <path d="M0,350 -9,338 9,338 Z" fill="#c9451a"/>
+  </g>
+  <!-- GRAND local : la même quantité y reste sous le seuil -->
+  <g transform="translate(150,0)">
+    <animateTransform attributeName="transform" type="translate" values="62,0;150,0;150,0;62,0" dur="12s" repeatCount="indefinite"/>
+    <path d="M0,388 -9,400 9,400 Z" fill="#1b3a63"/>
+    <text class="st" x="0" y="416" text-anchor="middle">grand local</text>
+  </g>
+
+  <!-- RAPPEL -->
+  <rect x="620" y="306" width="238" height="110" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+  <text class="st" x="638" y="330">R-290 : classe A3</text>
+  <text class="lg" x="638" y="352">très inflammable — et jamais</text>
+  <text class="lg" x="638" y="370">A2L comme le R-32.</text>
+  <line x1="636" y1="384" x2="842" y2="384" stroke="#c9d4de" stroke-width="1.5"/>
+  <!-- « Le volume commande tout » retiré : la charge dépend du volume ET du
+       fluide (légende du bas, fiche G12). Formule du bloc clé de la fiche. -->
+  <text class="bad" x="638" y="404">Petite pièce = charge plus faible.</text>
+
+  <text class="lg" x="42" y="442">La charge maximale admissible <tspan style="font-weight:700;fill:#c9451a">se CALCULE</tspan> selon la <tspan style="font-weight:700;fill:#1b3a63">NF EN 378</tspan>, en fonction du volume du local et du fluide —</text>
+  <text class="lg" x="42" y="462"><tspan style="font-weight:700;fill:#c9451a">elle ne se retient pas par cœur.</tspan> On la lit sur la plaque signalétique et dans la notice, et on fait valider le résultat avant mise en service.</text>
+</svg>

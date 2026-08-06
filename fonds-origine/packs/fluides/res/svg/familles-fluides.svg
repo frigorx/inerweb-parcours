@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img"
+     aria-label="Les cinq familles de fluides frigorigènes : CFC, HCFC, HFC, HFO et fluides naturels, avec leur composition atomique et leur statut.">
+  <title>Les familles de fluides — trois atomes décident de tout</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .fam { font:700 17px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .ex  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .s   { font:400 12.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .st  { font:700 12px Calibri,Segoe UI,sans-serif; }
+    .at  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#fff; }
+    .leg { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#33475b; }
+    .cell{ fill:#fff; stroke:#c9d4de; stroke-width:1.5; }
+  </style>
+
+  <rect width="900" height="520" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">Trois atomes décident de tout</text>
+  <!-- légende atomes -->
+  <g transform="translate(340,22)">
+    <circle cx="0" cy="6" r="9" fill="#c0392b"/><text class="at" x="0" y="10" text-anchor="middle">Cl</text>
+    <text class="leg" x="14" y="11">chlore → détruit l'ozone</text>
+    <circle cx="190" cy="6" r="9" fill="#2f5689"/><text class="at" x="190" y="10" text-anchor="middle">F</text>
+    <text class="leg" x="204" y="11">fluor → stable, effet de serre</text>
+    <circle cx="420" cy="6" r="9" fill="#1e7e54"/><text class="at" x="420" y="10" text-anchor="middle">H</text>
+    <text class="leg" x="434" y="11">hydrogène → vie courte</text>
+  </g>
+
+  <!-- ===== 5 colonnes ===== -->
+  <!-- CFC -->
+  <g transform="translate(48,70)">
+    <rect class="cell" width="152" height="330" rx="10"/>
+    <text class="fam" x="76" y="30" text-anchor="middle">CFC</text>
+    <text class="s" x="76" y="50" text-anchor="middle">chlore + fluor + carbone</text>
+    <g transform="translate(76,105)">
+      <circle r="13" fill="#7a8794"/><text class="at" y="4" text-anchor="middle">C</text>
+      <circle cx="-34" cy="-20" r="11" fill="#c0392b"/><text class="at" x="-34" y="-16" text-anchor="middle">Cl</text>
+      <circle cx="34" cy="-20" r="11" fill="#c0392b"/><text class="at" x="34" y="-16" text-anchor="middle">Cl</text>
+      <circle cx="-34" cy="24" r="11" fill="#2f5689"/><text class="at" x="-34" y="28" text-anchor="middle">F</text>
+      <circle cx="34" cy="24" r="11" fill="#2f5689"/><text class="at" x="34" y="28" text-anchor="middle">F</text>
+    </g>
+    <text class="ex" x="76" y="170" text-anchor="middle">R-12</text>
+    <text class="s" x="76" y="196" text-anchor="middle">Les « miracles » des</text>
+    <text class="s" x="76" y="212" text-anchor="middle">années 1930 : stables,</text>
+    <text class="s" x="76" y="228" text-anchor="middle">ni toxiques ni inflammables…</text>
+    <text class="s" x="76" y="244" text-anchor="middle">et tueurs d'ozone.</text>
+    <rect x="20" y="286" width="112" height="24" rx="12" fill="#fbe7e0"/>
+    <text class="st" x="76" y="302" text-anchor="middle" fill="#a33418">INTERDITS</text>
+  </g>
+
+  <!-- HCFC -->
+  <g transform="translate(216,70)">
+    <rect class="cell" width="152" height="330" rx="10"/>
+    <text class="fam" x="76" y="30" text-anchor="middle">HCFC</text>
+    <text class="s" x="76" y="50" text-anchor="middle">+ un peu d'hydrogène</text>
+    <g transform="translate(76,105)">
+      <circle r="13" fill="#7a8794"/><text class="at" y="4" text-anchor="middle">C</text>
+      <circle cx="-34" cy="-20" r="11" fill="#1e7e54"/><text class="at" x="-34" y="-16" text-anchor="middle">H</text>
+      <circle cx="34" cy="-20" r="11" fill="#c0392b"/><text class="at" x="34" y="-16" text-anchor="middle">Cl</text>
+      <circle cx="-34" cy="24" r="11" fill="#2f5689"/><text class="at" x="-34" y="28" text-anchor="middle">F</text>
+      <circle cx="34" cy="24" r="11" fill="#2f5689"/><text class="at" x="34" y="28" text-anchor="middle">F</text>
+    </g>
+    <text class="ex" x="76" y="170" text-anchor="middle">R-22</text>
+    <text class="s" x="76" y="196" text-anchor="middle">La transition : moins de</text>
+    <text class="s" x="76" y="212" text-anchor="middle">chlore, vie plus courte —</text>
+    <text class="s" x="76" y="228" text-anchor="middle">mais du chlore quand même.</text>
+    <rect x="20" y="286" width="112" height="24" rx="12" fill="#fbe7e0"/>
+    <text class="st" x="76" y="302" text-anchor="middle" fill="#a33418">INTERDITS</text>
+  </g>
+
+  <!-- HFC -->
+  <g transform="translate(384,70)">
+    <rect class="cell" width="152" height="330" rx="10"/>
+    <text class="fam" x="76" y="30" text-anchor="middle">HFC</text>
+    <text class="s" x="76" y="50" text-anchor="middle">zéro chlore</text>
+    <g transform="translate(76,105)">
+      <circle r="13" fill="#7a8794"/><text class="at" y="4" text-anchor="middle">C</text>
+      <circle cx="-34" cy="-20" r="11" fill="#1e7e54"/><text class="at" x="-34" y="-16" text-anchor="middle">H</text>
+      <circle cx="34" cy="-20" r="11" fill="#2f5689"/><text class="at" x="34" y="-16" text-anchor="middle">F</text>
+      <circle cx="-34" cy="24" r="11" fill="#2f5689"/><text class="at" x="-34" y="28" text-anchor="middle">F</text>
+      <circle cx="34" cy="24" r="11" fill="#2f5689"/><text class="at" x="34" y="28" text-anchor="middle">F</text>
+    </g>
+    <text class="ex" x="76" y="170" text-anchor="middle">R-134a · R-32</text>
+    <text class="s" x="76" y="196" text-anchor="middle">Ozone : sauvé (ODP = 0).</text>
+    <text class="s" x="76" y="212" text-anchor="middle">Climat : raté — PRP fort,</text>
+    <text class="s" x="76" y="228" text-anchor="middle">d'où le phase-down F-Gas</text>
+    <text class="s" x="76" y="244" text-anchor="middle">et l'amendement de Kigali.</text>
+    <rect x="14" y="286" width="124" height="24" rx="12" fill="#fdf3e4"/>
+    <text class="st" x="76" y="302" text-anchor="middle" fill="#8a5a00">EN RÉDUCTION</text>
+  </g>
+
+  <!-- HFO -->
+  <g transform="translate(552,70)">
+    <rect class="cell" width="152" height="330" rx="10"/>
+    <text class="fam" x="76" y="30" text-anchor="middle">HFO</text>
+    <text class="s" x="76" y="50" text-anchor="middle">double liaison C = C</text>
+    <g transform="translate(76,105)">
+      <circle cx="-18" r="13" fill="#7a8794"/><text class="at" x="-18" y="4" text-anchor="middle">C</text>
+      <circle cx="18" r="13" fill="#7a8794"/><text class="at" x="18" y="4" text-anchor="middle">C</text>
+      <path d="M -8 -4 L 8 -4 M -8 4 L 8 4" stroke="#33475b" stroke-width="2"/>
+      <circle cx="-44" cy="-20" r="11" fill="#1e7e54"/><text class="at" x="-44" y="-16" text-anchor="middle">H</text>
+      <circle cx="44" cy="-20" r="11" fill="#2f5689"/><text class="at" x="44" y="-16" text-anchor="middle">F</text>
+      <circle cx="-44" cy="24" r="11" fill="#2f5689"/><text class="at" x="-44" y="28" text-anchor="middle">F</text>
+      <circle cx="44" cy="24" r="11" fill="#2f5689"/><text class="at" x="44" y="28" text-anchor="middle">F</text>
+    </g>
+    <text class="ex" x="76" y="170" text-anchor="middle">R-1234yf</text>
+    <text class="s" x="76" y="196" text-anchor="middle">La double liaison casse en</text>
+    <text class="s" x="76" y="212" text-anchor="middle">quelques jours dans l'air :</text>
+    <text class="s" x="76" y="228" text-anchor="middle">PRP ≈ 1. Souvent A2L,</text>
+    <text class="s" x="76" y="244" text-anchor="middle">et la question PFAS se pose.</text>
+    <rect x="20" y="286" width="112" height="24" rx="12" fill="#e3f5ec"/>
+    <text class="st" x="76" y="302" text-anchor="middle" fill="#1e7e54">AUTORISÉS</text>
+  </g>
+
+  <!-- Naturels -->
+  <g transform="translate(720,70)">
+    <rect class="cell" width="152" height="330" rx="10"/>
+    <text class="fam" x="76" y="30" text-anchor="middle">Naturels</text>
+    <text class="s" x="76" y="50" text-anchor="middle">présents dans la nature</text>
+    <text class="ex" x="76" y="105" text-anchor="middle" style="font-size:16px">R-290 · R-600a</text>
+    <text class="ex" x="76" y="130" text-anchor="middle" style="font-size:16px">R-717 · R-744</text>
+    <text class="s" x="76" y="170" text-anchor="middle">propane · isobutane</text>
+    <text class="s" x="76" y="186" text-anchor="middle">ammoniac · CO₂</text>
+    <text class="s" x="76" y="212" text-anchor="middle">PRP minuscule — mais</text>
+    <text class="s" x="76" y="228" text-anchor="middle">chacun son revers : A3,</text>
+    <text class="s" x="76" y="244" text-anchor="middle">B2L ou haute pression.</text>
+    <rect x="20" y="286" width="112" height="24" rx="12" fill="#e3f5ec"/>
+    <text class="st" x="76" y="302" text-anchor="middle" fill="#1e7e54">AUTORISÉS</text>
+  </g>
+
+  <!-- flèche du temps -->
+  <g transform="translate(48,430)">
+    <path d="M 0 12 L 810 12" stroke="#8494a4" stroke-width="2.5" marker-end="url(#fl)"/>
+    <defs><marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8494a4"/></marker></defs>
+    <text class="s" x="0" y="40">années 1930</text>
+    <text class="s" x="405" y="40" text-anchor="middle">l'histoire va de gauche à droite : chaque famille corrige le défaut de la précédente…</text>
+    <text class="s" x="810" y="40" text-anchor="end">aujourd'hui</text>
+  </g>
+  <text class="leg" x="450" y="505" text-anchor="middle" style="font-weight:700;fill:#1b3a63">…et en révèle un nouveau. Il n'y a pas de fluide parfait : il n'y a que des compromis maîtrisés.</text>
+</svg>

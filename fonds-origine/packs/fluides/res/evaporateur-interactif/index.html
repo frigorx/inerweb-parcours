@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Module interactif A1 sur l’installation, le réglage et la vérification d’un évaporateur : givre, dégivrage, régulation, inspection et rapport d’état.">
+  <title>Évaporateur — installer, régler, vérifier | Pilote Fluides</title>
+  <link rel="stylesheet" href="styles.css?v=20260731-4">
+  <link rel="stylesheet" href="impression.css?v=20260731-4" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-title">Aller au contenu de l’étape</a>
+
+  <header class="appbar">
+    <a class="brand" href="index.html" aria-label="Revenir au sommaire du module">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span><strong>inerWeb Édu</strong><small>Pilote Fluides · Évaporateur</small></span>
+    </a>
+    <div class="appbar-actions">
+      <span class="mode-badge" id="mode-badge">Module complet</span>
+      <button class="small-button" id="home-button" type="button" hidden>Sommaire</button>
+      <button class="small-button exit-button" id="exit-button" type="button" hidden>Quitter</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="home" id="home" aria-labelledby="home-title">
+      <div class="home-copy">
+        <p class="eyebrow">HABILITATION FLUIDES A1 · FICHE G8B</p>
+        <h1 id="home-title">Évaporateur<br><span>installer, régler, vérifier</span></h1>
+        <p class="home-intro">Faites varier le givre, réglez un cycle de dégivrage, distinguez régulateur et pressostat, puis rédigez un constat utile.</p>
+        <div class="home-actions">
+          <button class="primary-button" id="start-button" type="button">Commencer le module <span aria-hidden="true">→</span></button>
+          <span>26 écrans · 5 contrôles · environ 10 minutes</span>
+        </div>
+      </div>
+
+      <figure class="home-visual">
+        <img src="images/evaporateur-air.webp" alt="Évaporateur à air isolé, avec batterie à ailettes, deux ventilateurs et bac inférieur.">
+        <figcaption>Reconnaître l’organe, puis lire ce qu’il montre.</figcaption>
+      </figure>
+
+      <nav class="dossier-grid" id="dossier-grid" aria-label="Ouvrir directement un dossier"></nav>
+
+      <p class="home-note"><strong>Règle de travail :</strong> ce module apprend à observer et à décider. Les valeurs de réglage réelles viennent toujours de la documentation du matériel installé.</p>
+    </section>
+
+    <section class="course-shell" id="course-shell" hidden aria-label="Cours interactif sur l’évaporateur">
+      <aside class="course-rail">
+        <div class="rail-heading">
+          <span id="rail-mode">PARCOURS</span>
+          <strong id="rail-progress">1 / 26</strong>
+        </div>
+        <nav class="stepper" id="stepper" aria-label="Progression par dossier"></nav>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <p id="progress-copy">Début du parcours</p>
+      </aside>
+
+      <article class="lesson-card" aria-labelledby="lesson-title">
+        <header class="lesson-header">
+          <div class="lesson-heading">
+            <p class="eyebrow" id="lesson-kicker"></p>
+            <h2 id="lesson-title" tabindex="-1"></h2>
+          </div>
+          <div class="lesson-tools" aria-label="Outils de l’étape">
+            <button class="tool-button" id="copy-link" type="button" aria-label="Copier le lien de cet écran"><span aria-hidden="true">🔗</span><span class="tool-label">Copier le lien</span></button>
+            <div class="speed-control" aria-label="Vitesse de la voix">
+              <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+              <span id="speed-value">0,95×</span>
+              <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+            </div>
+            <button class="tool-button voice-button" id="listen" type="button"><span aria-hidden="true">▶</span> <span>Écouter</span></button>
+            <button class="tool-button" id="stop-voice" type="button" aria-label="Arrêter la voix" disabled><span aria-hidden="true">■</span><span class="tool-label">Arrêter</span></button>
+          </div>
+        </header>
+
+        <div class="lesson-content">
+          <div class="lesson-copy">
+            <p id="lesson-text"></p>
+            <p class="action-prompt" id="action-prompt"></p>
+          </div>
+          <section class="activity-zone" id="activity-zone" aria-label="Activité de l’étape"></section>
+        </div>
+
+        <footer class="lesson-footer">
+          <button class="nav-button secondary" id="prev-button" type="button">← Précédent</button>
+          <div class="reference-box" id="reference-box"></div>
+          <button class="nav-button" id="next-button" type="button">Suivant →</button>
+        </footer>
+        <p class="status-message" id="status-message" role="status" aria-live="polite"></p>
+      </article>
+    </section>
+
+    <section class="print-book" id="print-book" aria-label="Version imprimable du module"></section>
+  </main>
+
+  <script src="app.js?v=20260731-4"></script>
+  <script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

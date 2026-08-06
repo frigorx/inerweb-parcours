@@ -1,0 +1,124 @@
+@page { size: A4 portrait; margin: 15mm; }
+
+html, body {
+  height: auto !important;
+  overflow: visible !important;
+  background: #fff !important;
+  color: #000 !important;
+  font: 14pt/1.45 Calibri, "Segoe UI", Arial, sans-serif !important;
+}
+
+.skip-link,
+.appbar,
+.home,
+.course-shell,
+#lisib-bouton,
+#lisib-panneau { display: none !important; }
+
+.print-book {
+  display: block !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #000 !important;
+  background: #fff !important;
+}
+
+.print-cover {
+  break-after: page;
+  min-height: 235mm;
+  border-top: 4pt solid #1b3a63;
+  border-bottom: 2pt solid #c9451a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.print-cover p { margin: 0 0 8mm; color: #c9451a; font-weight: 700; }
+.print-cover h1 {
+  margin: 0;
+  color: #1b3a63;
+  font: 700 28pt/1.05 "Trebuchet MS", Calibri, Arial, sans-serif;
+  border-bottom: 1.5pt solid #1b3a63;
+  padding-bottom: 5mm;
+}
+.print-cover .print-purpose { margin-top: 10mm; color: #000; font-weight: 400; }
+
+.print-screen {
+  break-inside: avoid;
+  margin: 0 0 7mm;
+  padding: 4mm 0 4mm 5mm;
+  border: 1pt solid #1b3a63;
+  border-left-width: 3pt;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.print-screen h2 {
+  margin: 0 0 2mm;
+  color: #1b3a63;
+  font: 700 18pt/1.15 "Trebuchet MS", Calibri, Arial, sans-serif;
+}
+
+.print-screen h3 {
+  margin: 3mm 0 1.5mm;
+  color: #1b3a63;
+  font: 700 14pt/1.2 "Trebuchet MS", Calibri, Arial, sans-serif;
+}
+
+.print-screen p,
+.print-screen li { margin: 0 0 2mm; color: #000 !important; }
+.print-screen ul { margin: 2mm 0; padding-left: 7mm; }
+
+.print-meta {
+  margin-bottom: 2mm !important;
+  color: #637285 !important;
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.print-codes {
+  display: inline-block;
+  margin-top: 2mm;
+  padding-top: 2mm;
+  border-top: 1pt solid #1b3a63;
+  color: #1b3a63 !important;
+  font: 700 10pt/1.3 Consolas, monospace;
+}
+
+.print-correction {
+  margin-top: 3mm;
+  padding: 3mm;
+  border: 2pt double #1e7e54;
+  background: #fff !important;
+}
+
+.print-correction strong { color: #1e7e54; }
+
+.print-warning {
+  margin-top: 3mm;
+  padding: 3mm;
+  border: 2pt dashed #c9451a;
+  background: #fff !important;
+}
+
+.print-screen a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 10pt;
+  word-break: break-all;
+}
+
+img,
+svg,
+canvas,
+button,
+input,
+.mobile { display: none !important; }
+
+* {
+  text-shadow: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}

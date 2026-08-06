@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img"
+     aria-label="La lecture croisée : le manomètre donne une pression relative, on ajoute environ 1 bar, on lit la température de saturation dans la table du fluide, on compare à la température mesurée sur le tube.">
+  <title>La lecture croisée : manomètre, table, thermomètre</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .l   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .s   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .f   { font:700 16px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .th  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+    .td  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#33475b; }
+    .sym { stroke:#33475b; stroke-width:2.4; fill:none; }
+    .maillon { fill:none; stroke:#ff6b35; stroke-width:3; marker-end:url(#fo); }
+  </style>
+
+  <defs>
+    <marker id="fo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ff6b35"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="420" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">Sans ouvrir le circuit : la lecture croisée</text>
+
+  <!-- ① manomètre -->
+  <g transform="translate(140,170)">
+    <circle cx="0" cy="0" r="58" fill="#fff" stroke="#33475b" stroke-width="3"/>
+    <path class="sym" d="M -38 22 A 44 44 0 1 1 38 22" style="stroke-width:1.6"/>
+    <path class="sym" d="M 0 0 L 26 -30" style="stroke-width:3.4"/>
+    <circle cx="0" cy="0" r="4" fill="#33475b"/>
+    <path class="sym" d="M 0 58 L 0 84" style="stroke-width:3"/>
+    <text class="l" x="0" y="118" text-anchor="middle">① Manomètre BP</text>
+    <text class="s" x="0" y="138" text-anchor="middle">lecture : <tspan style="font-weight:700">3 bar relatifs</tspan></text>
+  </g>
+
+  <!-- conversion -->
+  <g transform="translate(295,150)">
+    <rect x="-58" y="-34" width="116" height="66" rx="8" fill="#f5f8fb" stroke="#d7e0e8" stroke-width="1.5"/>
+    <text class="f" x="0" y="-6" text-anchor="middle">+ ~1 bar</text>
+    <text class="s" x="0" y="18" text-anchor="middle">≈ 4 bar absolus</text>
+  </g>
+  <path class="maillon" d="M 205 150 L 232 150"/>
+  <path class="maillon" d="M 358 150 L 396 150"/>
+
+  <!-- ② table -->
+  <g transform="translate(520,178)">
+    <rect x="-115" y="-92" width="230" height="184" rx="6" fill="#fff" stroke="#33475b" stroke-width="2.4"/>
+    <rect x="-115" y="-92" width="230" height="36" rx="6" fill="#1b3a63"/>
+    <text class="th" x="-58" y="-68" text-anchor="middle">P abs (bar)</text>
+    <text class="th" x="58" y="-68" text-anchor="middle">T° sat (°C)</text>
+    <path d="M 0 -92 L 0 92" stroke="#c9d4de" stroke-width="1.2"/>
+    <text class="td" x="-58" y="-30" text-anchor="middle">…</text><text class="td" x="58" y="-30" text-anchor="middle">…</text>
+    <rect x="-113" y="-16" width="226" height="30" fill="#fff3e8"/>
+    <text class="td" x="-58" y="4" text-anchor="middle" style="font-weight:700">≈ 4</text>
+    <text class="td" x="58" y="4" text-anchor="middle" style="font-weight:700">→ lire ici</text>
+    <text class="td" x="-58" y="40" text-anchor="middle">…</text><text class="td" x="58" y="40" text-anchor="middle">…</text>
+    <text class="td" x="-58" y="72" text-anchor="middle">…</text><text class="td" x="58" y="72" text-anchor="middle">…</text>
+    <text class="l" x="0" y="118" text-anchor="middle">② Table de saturation</text>
+    <text class="s" x="0" y="138" text-anchor="middle">celle <tspan style="font-weight:700">du fluide présent</tspan> — plaque + registre</text>
+  </g>
+
+  <!-- ③ thermomètre -->
+  <g transform="translate(760,170)">
+    <rect x="-30" y="-64" width="60" height="88" rx="8" fill="#fff" stroke="#33475b" stroke-width="2.4"/>
+    <path class="sym" d="M 0 -44 L 0 2" style="stroke:#c9451a;stroke-width:4"/>
+    <circle cx="0" cy="10" r="9" fill="#c9451a"/>
+    <path class="sym" d="M 0 24 L 0 52" style="stroke-width:3"/>
+    <rect x="-16" y="52" width="32" height="16" rx="4" fill="#c6d3df" stroke="#33475b" stroke-width="1.6"/>
+    <text class="l" x="0" y="102" text-anchor="middle">③ Sonde de contact</text>
+    <text class="s" x="0" y="122" text-anchor="middle">T° réelle du tube</text>
+  </g>
+  <path class="maillon" d="M 648 150 L 712 150"/>
+
+  <!-- conclusion -->
+  <g transform="translate(450,368)">
+    <rect x="-330" y="-30" width="660" height="60" rx="10" fill="#f5f8fb" stroke="#d7e0e8" stroke-width="1.5"/>
+    <text class="f" x="0" y="-2" text-anchor="middle">L'écart entre ② et ③, c'est la surchauffe (ou le sous-refroidissement).</text>
+    <text class="s" x="0" y="20" text-anchor="middle">Hors des plages habituelles (5-10 K / 4-8 K) → fonctionnement anormal : on soupçonne, puis on localise en méthode directe.</text>
+  </g>
+</svg>

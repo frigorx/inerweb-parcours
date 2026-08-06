@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+ aria-label="L'ordre des vannes à la déconnexion. On voit l'installation et ses deux vannes de service (aspiration, liquide), le manifold avec ses manomètres et ses vannes, le raccord du flexible, puis le groupe de récupération et la bouteille avec sa vanne. L'animation allume les étapes une à une : 1 fermer côté circuit puis côté appareil, 2 laisser la pression se stabiliser en observant le manomètre dont l'aiguille s'immobilise, 3 desserrer lentement le raccord par petites touches, 4 récupérer par l'appareil le fluide resté dans le flexible, 5 déconnecter seulement quand la pression est retombée. À la fin tout est allumé.">
+ <title>L'ordre des vannes : une chorégraphie, jamais une improvisation</title>
+ <style>
+  .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+  .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+  .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+  .sm  { font:400 12.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+  .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+  .big { font:700 17px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+  .num { font:700 15px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+  .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+  .hl  { fill:none; stroke:#ff6b35; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+  /* Le dessin est complet sans animation : celle-ci ne fait qu'allumer les étapes
+     une à une. À l'impression on force l'état final, tout allumé. Filet conditionné
+     à `print`, JAMAIS à `prefers-reduced-motion` : sur une machine aux effets
+     d'animation Windows désactivés, cette condition supprimerait la démonstration. */
+  @media print { .final { opacity: 1 !important; } }
+ </style>
+
+ <rect width="900" height="470" fill="#ffffff"/>
+ <text class="t" x="30" y="32">L'ordre des vannes : une chorégraphie, jamais une improvisation</text>
+ <text class="lg" x="30" y="52">À la déconnexion, l'ordre ne change jamais — les étapes s'allument ici dans l'ordre où on les exécute.</text>
+ <rect x="30" y="64" width="580" height="268" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+ <rect x="630" y="64" width="240" height="268" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+
+ <!-- ===== SCHÉMA ===== -->
+ <g transform="translate(30,64)">
+  <path class="p" d="M182,98 L182,212"/>
+  <path class="p" d="M268,98 L268,212"/>
+  <path class="p" d="M302,82 L415,82 L415,118"/>
+  <path class="p" d="M458,148 L501,148"/>
+
+  <!-- manifold : corps, manomètres -->
+  <rect x="148" y="66" width="154" height="32" rx="6" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.4"/>
+  <text x="225" y="88" text-anchor="middle" style="font:700 13px Calibri,Segoe UI,sans-serif;fill:#1b3a63">MANIFOLD</text>
+  <path class="p" d="M182,56 L182,66 M268,56 L268,66 M268,34 L282,22"/>
+  <circle cx="182" cy="34" r="22" fill="#ffffff" stroke="#1b3a63" stroke-width="2.6"/>
+  <circle cx="268" cy="34" r="22" fill="#ffffff" stroke="#1b3a63" stroke-width="2.6"/>
+  <!-- aiguille observée : elle oscille puis s'immobilise (étape 2). Sa position de
+       base EST sa position d'arrêt : sans animation, le dessin reste juste. -->
+  <g><animateTransform attributeName="transform" type="rotate" values="-42 182 34;-6 182 34;-30 182 34;-12 182 34;-22 182 34;-15 182 34;-18 182 34;0 182 34" dur="2.4s" begin="4.9s" fill="freeze"/><path class="p" d="M182,34 L198,20"/></g>
+  <circle cx="182" cy="34" r="3.4" fill="#1b3a63"/>
+  <circle cx="268" cy="34" r="3.4" fill="#1b3a63"/>
+
+  <!-- installation -->
+  <rect x="118" y="212" width="214" height="50" rx="6" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="225" y="236" text-anchor="middle">Installation</text>
+  <text class="sm" x="182" y="256" text-anchor="middle">aspiration</text>
+  <text class="sm" x="268" y="256" text-anchor="middle">liquide</text>
+
+  <!-- appareil de récupération et bouteille -->
+  <rect x="372" y="118" width="86" height="60" rx="6" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="sm" x="415" y="144" text-anchor="middle">groupe de</text>
+  <text class="sm" x="415" y="160" text-anchor="middle">récupération</text>
+  <rect x="484" y="174" width="56" height="64" rx="8" fill="#ffffff" stroke="#1b3a63" stroke-width="2.6"/>
+  <rect x="504" y="160" width="16" height="14" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.4"/>
+
+  <!-- vannes : manifold, service, bouteille -->
+  <path class="p" d="M173,107 L191,107 L182,118 L191,129 L173,129 L182,118 Z M182,118 L164,118 M164,111 L164,125"/>
+  <path class="p" d="M259,107 L277,107 L268,118 L277,129 L259,129 L268,118 Z M268,118 L286,118 M286,111 L286,125"/>
+  <path class="p" d="M173,179 L191,179 L182,190 L191,201 L173,201 L182,190 Z M182,190 L164,190 M164,183 L164,197"/>
+  <path class="p" d="M259,179 L277,179 L268,190 L277,201 L259,201 L268,190 Z M268,190 L286,190 M286,183 L286,197"/>
+  <path class="p" d="M501,139 L501,157 L512,148 L523,157 L523,139 L512,148 Z M512,148 L512,132 M504,132 L520,132 M512,157 L512,160"/>
+
+  <!-- raccord du flexible -->
+  <rect x="258" y="145" width="20" height="7" rx="1.5" fill="#ffffff" stroke="#1b3a63" stroke-width="2"/>
+  <rect x="258" y="154" width="20" height="7" rx="1.5" fill="#ffffff" stroke="#1b3a63" stroke-width="2"/>
+  <text class="sm" x="245" y="158" text-anchor="end">raccord</text>
+  <text class="sm" x="152" y="38" text-anchor="end">manomètres</text>
+  <text class="sm" x="152" y="122" text-anchor="end">vannes du manifold</text>
+  <text class="sm" x="152" y="194" text-anchor="end">vannes de service</text>
+  <text class="sm" x="512" y="104" text-anchor="middle">vanne de la</text>
+  <text class="sm" x="512" y="120" text-anchor="middle">bouteille</text>
+
+  <!-- pastilles éteintes : le disque gris reste dessous en permanence -->
+  <g fill="#8aa0b4">
+   <circle cx="225" cy="190" r="15"/><circle cx="227" cy="34" r="15"/><circle cx="312" cy="152" r="15"/>
+   <circle cx="340" cy="104" r="15"/><circle cx="312" cy="192" r="15"/></g>
+
+  <!-- CHAQUE TEMPS ALLUME ENSEMBLE SA PASTILLE ET SON ORGANE.
+       Une seule animation par groupe : le temps se joue d'un bloc, il ne peut
+       pas s'allumer à moitié. -->
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="1s" fill="freeze"/>
+   <circle cx="225" cy="190" r="15" fill="#1b3a63"/>
+   <rect class="hl" x="158" y="176" width="40" height="28" rx="6"/>
+   <rect class="hl" x="252" y="176" width="40" height="28" rx="6"/></g>
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.9s" fill="freeze"/>
+   <rect class="hl" x="158" y="104" width="40" height="28" rx="6"/>
+   <rect class="hl" x="252" y="104" width="40" height="28" rx="6"/>
+   <rect class="hl" x="496" y="126" width="32" height="36" rx="6"/></g>
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="4.9s" fill="freeze"/>
+   <circle cx="227" cy="34" r="15" fill="#1b3a63"/>
+   <circle class="hl" cx="182" cy="34" r="26"/></g>
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="7.4s" fill="freeze"/>
+   <circle cx="312" cy="152" r="15" fill="#1b3a63"/>
+   <rect class="hl" x="250" y="140" width="36" height="26" rx="6"/></g>
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="9.8s" fill="freeze"/>
+   <circle cx="340" cy="104" r="15" fill="#1b3a63"/>
+   <rect class="hl" x="366" y="112" width="98" height="72" rx="8"/>
+   <path class="hl" d="M352,76 L360,82 L352,88 M409,100 L415,108 L421,100 M474,142 L482,148 L474,154"/></g>
+  <g class="final" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="12.2s" fill="freeze"/>
+   <circle cx="312" cy="192" r="15" fill="#1b3a63"/></g>
+
+  <g class="num" text-anchor="middle">
+   <text x="225" y="195">1</text><text x="227" y="39">2</text><text x="312" y="157">3</text>
+   <text x="340" y="109">4</text><text x="312" y="197">5</text></g>
+ </g>
+
+ <!-- ===== LES CINQ TEMPS ===== -->
+ <g transform="translate(630,64)">
+  <text class="st" x="18" y="30">L'ordre à la déconnexion</text>
+  <g class="final" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.6s" begin="1s" fill="freeze"/>
+   <circle cx="32" cy="62" r="14" fill="#1b3a63"/>
+   <text class="num" x="32" y="67" text-anchor="middle">1</text>
+   <text class="lg" x="54" y="59">Fermer : côté circuit,</text>
+   <text class="lg" x="54" y="76">puis côté appareil.</text></g>
+  <g class="final" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.6s" begin="4.9s" fill="freeze"/>
+   <circle cx="32" cy="106" r="14" fill="#1b3a63"/>
+   <text class="num" x="32" y="111" text-anchor="middle">2</text>
+   <text class="lg" x="54" y="103">Laisser la pression se</text>
+   <text class="lg" x="54" y="120">stabiliser, on attend.</text></g>
+  <g class="final" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.6s" begin="7.4s" fill="freeze"/>
+   <circle cx="32" cy="150" r="14" fill="#1b3a63"/>
+   <text class="num" x="32" y="155" text-anchor="middle">3</text>
+   <text class="lg" x="54" y="147">Desserrer lentement,</text>
+   <text class="lg" x="54" y="164">par petites touches.</text></g>
+  <g class="final" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.6s" begin="9.8s" fill="freeze"/>
+   <circle cx="32" cy="194" r="14" fill="#1b3a63"/>
+   <text class="num" x="32" y="199" text-anchor="middle">4</text>
+   <text class="lg" x="54" y="191">Récupérer par l'appareil</text>
+   <text class="lg" x="54" y="208">le fluide du flexible.</text></g>
+  <g class="final" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.6s" begin="12.2s" fill="freeze"/>
+   <circle cx="32" cy="238" r="14" fill="#1b3a63"/>
+   <text class="num" x="32" y="243" text-anchor="middle">5</text>
+   <text class="lg" x="54" y="235">Déconnecter quand la</text>
+   <text class="lg" x="54" y="252">pression est retombée.</text></g>
+ </g>
+
+ <!-- ===== LA RÈGLE, ET LA FAUTE ===== -->
+ <rect x="30" y="350" width="486" height="106" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+ <text class="st" x="52" y="378">Ce qui commande l'ordre : la pression, jamais la montre</text>
+ <text class="big" x="52" y="410">Fermer <tspan fill="#ff6b35">→</tspan> laisser stabiliser <tspan fill="#ff6b35">→</tspan> desserrer lentement</text>
+ <text class="sm" x="52" y="432">À la connexion : vannes fermées, on raccorde, on chasse l'air resté dedans,</text>
+ <text class="sm" x="52" y="448">puis on ouvre progressivement.</text>
+
+ <rect x="528" y="350" width="342" height="106" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+ <text class="bad" x="548" y="378">La faute type</text>
+ <circle cx="554" cy="396" r="3.5" fill="#c9451a"/>
+ <text class="lg" x="568" y="400">Ouvrir ou fermer dans le désordre.</text>
+ <circle cx="554" cy="418" r="3.5" fill="#c9451a"/>
+ <text class="lg" x="568" y="422">Desserrer un raccord encore sous pression.</text>
+ <circle cx="554" cy="440" r="3.5" fill="#c9451a"/>
+ <text class="lg" x="568" y="444">Purger le flexible à l'air libre.</text>
+</svg>

@@ -1,0 +1,1698 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier animations — inventaire du fonds</title>
+<link rel="stylesheet" href="fonds-origine/moteur/charte-edu.css">
+<style>
+  body{background:var(--fond)}
+  .entete{background:var(--bleu);color:#fff;padding:18px 22px}
+  .entete h1{color:#fff;margin:0 0 4px;font-size:24px}
+  .entete p{margin:0;color:#cdd9e6;font-size:14px;max-width:70ch}
+  .entete b{color:var(--orange)}
+  .pilotage{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--ligne);
+    padding:10px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px}
+  .pilotage button, .pilotage select{font:inherit;padding:6px 12px;border-radius:8px;
+    border:2px solid var(--ligne);background:#fff;color:var(--txt);cursor:pointer}
+  .pilotage button:hover{border-color:var(--bleu-clair);background:#f5f9fd}
+  .pilotage .compte{color:var(--mut);margin-left:auto}
+  .zone{max-width:1180px;margin:22px auto;padding:0 22px 80px}
+  .zone > h2{border-bottom:3px solid var(--orange);padding-bottom:6px;margin-top:34px}
+  .zone > h2 .n{color:var(--mut);font-weight:400;font-size:16px}
+  .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;margin-top:16px}
+  .piece{background:var(--carte);border:1px solid var(--ligne);border-radius:var(--r);
+    box-shadow:var(--ombre);overflow:hidden;display:flex;flex-direction:column}
+  .piece.large{grid-column:span 2}
+  @media(max-width:820px){.piece.large{grid-column:span 1}}
+  .vue{background:#f7fafd;border-bottom:1px solid var(--ligne);display:flex;align-items:center;
+    justify-content:center;min-height:190px;padding:10px}
+  .vue img{max-width:100%;max-height:280px;display:block}
+  .vue.cadre{padding:0;min-height:330px}
+  .vue.cadre iframe{width:100%;height:330px;border:0;background:#fff}
+  .infos{padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .infos h3{margin:0;font-size:17px;line-height:1.3}
+  .meta{margin:0;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .et{font-size:12px;font-weight:700;background:#eef3f9;color:var(--bleu);
+    border-radius:999px;padding:2px 9px}
+  .et-récit{background:var(--orange-clair);color:#a8410f}
+  .et-boucle{background:#e6f0ff;color:#1d4a8f}
+  .et-fixe{background:#eceff2;color:var(--mut)}
+  .et-narré{background:var(--ok-bg);color:var(--ok)}
+  .et-guidé{background:var(--orange-clair);color:#a8410f}
+  .fic{font-size:11px;color:var(--mut);font-family:Consolas,monospace}
+  .txt{font-size:13px;color:var(--mut);margin:0}
+  .txt summary{cursor:pointer;color:var(--bleu-clair)}
+  .txt p{margin:6px 0 0;line-height:1.5}
+  .txt.vide{font-style:italic}
+  .actions{margin:0;display:flex;gap:10px;align-items:center;font-size:14px}
+  .actions button{font:inherit;padding:5px 11px;border-radius:8px;border:2px solid var(--ligne);
+    background:#fff;color:var(--bleu);cursor:pointer}
+  .actions button:hover{border-color:var(--orange)}
+  .actions a{color:var(--bleu-clair);text-decoration:none}
+  .actions a:hover{text-decoration:underline}
+  .decision{margin-top:auto;padding-top:10px;border-top:1px dashed var(--ligne);
+    display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .decision button{font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;
+    border:2px solid var(--ligne);background:#fff;color:var(--mut);cursor:pointer}
+  .decision button:hover{border-color:var(--bleu-clair)}
+  .decision button[aria-pressed="true"][data-val="garder"]{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+  .decision button[aria-pressed="true"][data-val="refondre"]{background:var(--orange-clair);color:#a8410f;border-color:var(--orange)}
+  .decision button[aria-pressed="true"][data-val="abandonner"]{background:var(--ko-bg);color:var(--ko);border-color:var(--ko)}
+  .decision .note{flex:1;min-width:150px;font:inherit;font-size:13px;padding:5px 9px;
+    border:1px solid var(--ligne);border-radius:8px;background:#fff;color:var(--txt)}
+  .piece[data-choix="abandonner"] .vue{opacity:.4}
+  .sortie{margin-top:30px;background:#fff;border:1px solid var(--ligne);border-radius:var(--r);padding:16px}
+  .sortie textarea{width:100%;min-height:200px;font-family:Consolas,monospace;font-size:13px;
+    border:1px solid var(--ligne);border-radius:8px;padding:10px;background:#fbfdff;color:var(--txt)}
+  @media print{.pilotage,.actions,.decision button{display:none}}
+</style>
+
+<header class="entete">
+  <h1>Atelier animations — inventaire du fonds</h1>
+  <p>Les <b>44 planches animées</b> et les <b>20 tutos guidés</b> repris de
+  <i>pilote-fluides</i>, tels qu'ils tournent aujourd'hui. Rien ici n'est modifié : c'est la
+  <b>copie gelée</b>. On regarde, on tranche pièce par pièce, on exporte la liste — et c'est
+  cette liste qui devient le cahier des charges de la refonte.</p>
+</header>
+
+<div class="pilotage">
+  <button type="button" id="tout-rejouer">↻ Tout rejouer</button>
+  <label>Montrer&nbsp;
+    <select id="filtre">
+      <option value="">tout</option>
+      <option value="sans">pas encore tranché</option>
+      <option value="garder">à garder</option>
+      <option value="refondre">à refondre</option>
+      <option value="abandonner">à abandonner</option>
+    </select>
+  </label>
+  <button type="button" id="exporter">↧ Exporter les décisions</button>
+  <button type="button" id="vider">Effacer mes décisions</button>
+  <span class="compte" id="compte"></span>
+</div>
+
+<main class="zone">
+  <h2>Planches animées <span class="n">— 44, dessin seul, aucun texte lu</span></h2>
+  <div class="grille">
+<article class="piece" data-id="aptitude-capacite" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/aptitude-capacite.svg" alt="Aptitude et capacité : la personne et l'entreprise" loading="lazy"></div>
+  <div class="infos">
+    <h3>Aptitude et capacité : la personne et l'entreprise</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">4 Ko</span>
+      <span class="fic">aptitude-capacite.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (16)</summary><p>Deux documents que tout le monde confond · Attestation d'APTITUDE · Elle concerne  la personne . · C'est vous qui la détenez. · Elle prouve que vous  savez faire . · Sans elle, vous ne pouvez pas intervenir — même dans une · entreprise en règle. · Attestation de CAPACITÉ · Elle concerne  l'entreprise . · C'est la société qui la détient. · Personnel, outillage, procédures. · Sans elle, l'entreprise ne peut pas exercer — même avec des · techniciens tous attestés. · + · Il faut les DEUX, et l'une ne remplace jamais l'autre. · C'est la confusion la plus fréquente du métier : « mon patron a la capacité, donc je peux y aller » est faux.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/aptitude-capacite.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="aptitude-capacite">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur aptitude-capacite">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="balayage-azote" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/balayage-azote.svg" alt="Braser sous balayage d'azote" loading="lazy"></div>
+  <div class="infos">
+    <h3>Braser sous balayage d'azote</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">4 Ko</span>
+      <span class="fic">balayage-azote.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (11)</summary><p>Braser sous balayage d'azote · N₂ · débit léger · et continu · sortie · libre · Chalumeau · Le joint · l'azote chasse l'oxygène : · pas de calamine à l'intérieur · Deux gestes à l'azote, à ne pas confondre : le  balayage  (pendant, débit léger) et l' épreuve  (après, sous pression).</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/balayage-azote.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="balayage-azote">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur balayage-azote">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="balayage-detecteur" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/balayage-detecteur.svg" alt="Le balayage au détecteur électronique" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le balayage au détecteur électronique</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">4 s</span>
+      <span class="et">3 Ko</span>
+      <span class="fic">balayage-detecteur.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (4)</summary><p>Balayer lentement, au contact, puis confirmer · le point suspect · la sonde longe le raccord, au contact —  lentement , puis  second passage  pour confirmer · 1.  Vérifier l'appareil au gaz de référence avant.  2.  Balayage lent, au contact.  3.  Alerte →  second passage , ventilateurs à l'arrêt.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/balayage-detecteur.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="balayage-detecteur">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur balayage-detecteur">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="chaleur-sensible-latente" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/chaleur-sensible-latente.svg" alt="Chaleur sensible et chaleur latente : la courbe de chauffe et son palier" loading="lazy"></div>
+  <div class="infos">
+    <h3>Chaleur sensible et chaleur latente : la courbe de chauffe et son palier</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">9 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">chaleur-sensible-latente.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (32)</summary><p>On chauffe sans arrêt — et pourtant la température s'arrête de monter · température · chaleur apportée au fluide → · liquide sous-refroidi · vapeur surchauffée · point de bulle · ça commence à bouillir · point de rosée · dernière goutte vaporisée · LIQUIDE · la température monte · chaleur sensible · LIQUIDE + VAPEUR · la température ne bouge plus · chaleur latente · VAPEUR · la température repart · chaleur sensible · Dans la machine · L' évaporateur  parcourt · le palier vers la droite : · il  absorbe  la chaleur · du local pour faire · bouillir le fluide. · Le  condenseur  le · parcourt en sens · inverse : il  rend  cette · chaleur dehors en · liquéfiant le fluide. · Le palier est le cœur du métier : c'est là que le fluide échange  beaucoup de chaleur sans changer de température . · Voilà pourquoi une machine frigorifique travaille avec un fluide qui change d'état, et non avec de l'air. · La hauteur du palier dépend de la  pression  : plus la pression est basse, plus le fluide bout froid.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/chaleur-sensible-latente.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="chaleur-sensible-latente">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur chaleur-sensible-latente">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="charge-limite-local" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/charge-limite-local.svg" alt="Fluide inflammable : ce que le volume du local commande" loading="lazy"></div>
+  <div class="infos">
+    <h3>Fluide inflammable : ce que le volume du local commande</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">8 Ko</span>
+      <span class="fic">charge-limite-local.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (26)</summary><p>Fluide inflammable : ce que le volume du local commande · Même installation au  R-290 (classe A3) , même fuite. Seul le volume du local change — et c'est lui qui commande la charge autorisée. · Petit local · Local moyen · Grand local · fuite · fuite · fuite · mélange explosif · mélange dilué · reste trop pauvre pour s'enflammer · charge admissible faible · charge admissible moyenne · charge admissible plus élevée · Concentration du mélange dans l'air du local · trop pauvre · domaine d'explosivité · trop riche · petit local · grand local · R-290 : classe A3 · très inflammable — et jamais · A2L comme le R-32. · Petite pièce = charge plus faible. · La charge maximale admissible  se CALCULE  selon la  NF EN 378 , en fonction du volume du local et du fluide — · elle ne se retient pas par cœur.  On la lit sur la plaque signalétique et dans la notice, et on fait valider le résultat avant mise en service.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/charge-limite-local.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="charge-limite-local">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur charge-limite-local">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="circuit-complet-manifold" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/circuit-complet-manifold.svg" alt="Le poste de récupération : circuit complet et manifold branché" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le poste de récupération : circuit complet et manifold branché</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">20 Ko</span>
+      <span class="fic">circuit-complet-manifold.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (59)</summary><p>Le poste de récupération : circuit complet et manifold branché · Configuration illustrée : récupération en cours — les vannes du trajet du fluide sont ouvertes. · HAUT · CONDENSEUR · DROITE · COMPRESSEUR · GAUCHE · DÉTENDEUR · BAS · ÉVAPORATEUR · 1 · 2 · 3 · 4 · vanne service · LIQUIDE (HP) · vanne service · ASPIRATION (BP) · BASSE PRESSION · HAUTE PRESSION · vanne BP —  OUVERTE · vanne HP —  OUVERTE · BP · HP · MANIFOLD 2 VOIES · flexible central : vers la station de récupération · Station de récupération · Bouteille sur balance · jamais &amp;gt; 80 % — voir pesee-charge.svg · Bouteille d'azote — étape ULTÉRIEURE · N₂ · Épreuve de pression après · réparation, azote sec seul · (voir epreuve-azote.svg). · NON raccordée pendant · la récupération. · Dernière étape : la purge · 1. Fermer côté circuit, puis côté appareil. · 2. Laisser la pression se stabiliser (lire le manomètre). · 3. Desserrer lentement, par petites touches. · 4. Le récupérateur aspire le fluide resté dans les flexibles · — jamais à l'air libre. · 5. Déconnecter quand la pression est retombée, peser la · bouteille pleine et consigner l'écart au registre. · Lire une vanne, lire un flexible · poignée ALIGNÉE = OUVERTE · poignée PERPENDICULAIRE = FERMÉE · bleu — BP / aspiration · jaune — voie centrale / récupérateur · rouge — HP / liquide · Les 4 organes de la ligne liquide · 1 · Bouteille liquide — réserve HP · 2 · Filtre déshydrateur — retient l'humidité · 3 · Voyant liquide — état du fluide · 4 · Électrovanne — coupe l'alimentation liquide</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/circuit-complet-manifold.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="circuit-complet-manifold">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur circuit-complet-manifold">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="classes-securite" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/classes-securite.svg" alt="Classes de sécurité NF EN 378 — les huit cases" loading="lazy"></div>
+  <div class="infos">
+    <h3>Classes de sécurité NF EN 378 — les huit cases</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">5 Ko</span>
+      <span class="fic">classes-securite.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (39)</summary><p>La classe du fluide commande tout le reste · EPI, matériel électrique, détection, charge admissible dans le local : tout part de là (NF EN 378). · 1 — aucune flamme · 2L — faible, lente · 2 — inflammable · 3 — forte · inflammabilité → · A · faible toxicité · B · toxicité élevée · toxicité ↓ · A1 · CO₂ (R-744) · pression, anoxie · A2L · R-32 · R-1234yf · ventilation, outillage · A2 · R-152a · peu courant en froid · A3 · R-290 (propane) · charge limitée · B1 · R-123 · plus en neuf · B2L · NH₃ (R-717) · les deux : cat. C · B2 · aucun fluide · courant · B3 · aucun fluide · courant · Huit cases : deux axes croisés. B2 et B3 existent dans la norme, mais aucun fluide du parc français ne s'y trouve — retenez la logique de la case, pas un exemple. · ⚠ Le piège de l'année : · le R-290 est  A3 , pas A2L — tout hydrocarbure est très inflammable.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/classes-securite.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="classes-securite">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur classes-securite">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="co2-nh3-compare" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/co2-nh3-compare.svg" alt="CO₂ et ammoniac : deux fluides, deux comportements inverses" loading="lazy"></div>
+  <div class="infos">
+    <h3>CO₂ et ammoniac : deux fluides, deux comportements inverses</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">8 Ko</span>
+      <span class="fic">co2-nh3-compare.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (18)</summary><p>Le même réflexe ne marche pas pour les deux · CO₂ — R-744 · A1 · il descend · plus  lourd  que l'air · aucune odeur · capteur  en bas · catégorie B · Dangers : la pression, et l'atmosphère irrespirable en local fermé. · NH₃ — R-717 · B2L · il monte · plus  léger  que l'air · odeur piquante · toxique  ET inflammable · catégorie C · L'odeur se perçoit tôt — mais elle ne remplace aucune mesure. · Une attestation A1 ou A2 ne donne AUCUN droit d'intervention sur ces deux fluides. Ici, on apprend à reconnaître — et à ne pas toucher.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/co2-nh3-compare.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="co2-nh3-compare">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur co2-nh3-compare">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="co2-point-bas" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/co2-point-bas.svg" alt="Le CO₂ s'accumule en point bas — on descend dedans sans le voir" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le CO₂ s'accumule en point bas — on descend dedans sans le voir</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">11 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">co2-point-bas.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (15)</summary><p>Le CO₂ est plus lourd que l'air : il coule vers le bas · entrée · CO₂ · il descend · Ce que montre l'animation · Le gaz ne monte pas : · il remplit par le bas. · Respirable à hauteur · de visage, mortel en · bas de l'escalier. · On ne le voit pas : · on descend dedans. · Le danger est EN BAS. · Cette règle vaut pour le CO₂ et la plupart des fluides fluorés —  mais pas pour l'ammoniac , plus léger que l'air, qui lui monte. · Aucune odeur, aucune couleur : ce que vous ressentirez (souffle court, mal de tête) arrivera quand vous serez déjà dans la nappe.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/co2-point-bas.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="co2-point-bas">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur co2-point-bas">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="co2-protection" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/co2-protection.svg" alt="Préalarme, alarme, et celle qui prévient AVANT d'ouvrir la porte" loading="lazy"></div>
+  <div class="infos">
+    <h3>Préalarme, alarme, et celle qui prévient AVANT d'ouvrir la porte</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">14 s</span>
+      <span class="et">12 Ko</span>
+      <span class="fic">co2-protection.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (22)</summary><p>On protège d'abord TOUT LE MONDE, ensuite soi-même · EPC — protection collective : elle protège même quand personne n'y pense · alarme · DEHORS · on sait · avant d'ouvrir · ! · ppm · capteur EN BAS · préalarme · alarme d'évacuation · alarme intérieure · ventilation · EPI — pour vous seul · lunettes · gants adaptés au froid · Un masque à · cartouche ne protège · PAS du CO₂. · Il ne fabrique pas d'oxygène. La protection, c'est de ne pas entrer. · Un capteur se vérifie et se remplace selon la documentation du fabricant : une cellule usée reste allumée sans plus rien mesurer. · À l'arrivée, on contrôle trois choses : la signalisation est à jour, les issues de secours sont dégagées, les capteurs et alarmes fonctionnent.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/co2-protection.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="co2-protection">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur co2-protection">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="compresseurs" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/compresseurs.svg" alt="Le compresseur — principe et technologies" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le compresseur — principe et technologies</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">3 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">compresseurs.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (19)</summary><p>Dans le cylindre · aspiration (BP) · refoulement (HP) · Le piston  aspire en descendant , · refoule en remontant  — seul organe actif du circuit. · Quatre technologies, un même symbole · À piston · le plus ancien, encore · partout en froid commercial · Rotatif · petits climatiseurs, · monoblocs · Scroll (spirales) · climatisation et PAC : · silencieux, bon retour d'huile · À vis · grandes puissances, · froid industriel · Un seul des groupes 6 à 9 est tiré au sort à l'épreuve — donc les quatre s'apprennent.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/compresseurs.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="compresseurs">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur compresseurs">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="croix-frigoriste" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/croix-frigoriste.svg" alt="La croix du frigoriste" loading="lazy"></div>
+  <div class="infos">
+    <h3>La croix du frigoriste</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">9 Ko</span>
+      <span class="fic">croix-frigoriste.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (21)</summary><p>HAUT · CONDENSEUR (à air) · évacue la chaleur · la vapeur redevient liquide · DROITE · COMPRESSEUR · aspire en BP, · refoule en HP · GAUCHE · DÉTENDEUR · fait chuter la pression, · dose le débit de liquide · BAS · ÉVAPORATEUR · absorbe la chaleur du milieu à refroidir · le liquide s'évapore · HP · liquide · HP · vapeur chaude · BP · liquide + vapeur · BP · vapeur surchauffée · Deux moitiés, deux pressions · HAUTE pression — on rejette la chaleur · BASSE pression — on produit le froid</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/croix-frigoriste.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="croix-frigoriste">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur croix-frigoriste">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="detendeur-regulation" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/detendeur-regulation.svg" alt="Le détendeur thermostatique : une boucle qui se corrige toute seule" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le détendeur thermostatique : une boucle qui se corrige toute seule</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">10 Ko</span>
+      <span class="fic">detendeur-regulation.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (34)</summary><p>Le détendeur thermostatique : une boucle qui se corrige toute seule · capillaire · ligne liquide · membrane · passage · pointeau · Détendeur · thermostatique · Évaporateur · vers le compresseur · charge thermique · bulbe · surchauffe · plage · visée · La boucle, temps par temps · 1 · La charge thermique monte : · le gaz sort plus chaud en · sortie d'évaporateur. · 2 · Le bulbe se réchauffe : · la pression du capillaire · bombe la membrane. · 3 · Le détendeur s'OUVRE : · le pointeau quitte son · siège, le débit augmente. · 4 · La surchauffe redescend, · le détendeur se referme. · Et la boucle recommence. · Le détendeur ne règle pas la température du local : il maintient la SURCHAUFFE en sortie d'évaporateur. · Plage visée :  5 à 10 K . Le réglage exact se lit sur la notice du constructeur, après stabilisation de l'installation.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/detendeur-regulation.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="detendeur-regulation">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur detendeur-regulation">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="detendeurs-ligne" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/detendeurs-ligne.svg" alt="Détendeurs et ligne liquide" loading="lazy"></div>
+  <div class="infos">
+    <h3>Détendeurs et ligne liquide</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">detendeurs-ligne.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (25)</summary><p>Quatre façons de détendre · Thermostatique interne · le bulbe sent la sortie · d'évaporateur · Thermostatique externe · + prise de pression après · l'évaporateur (grosses batteries) · Électronique · sonde + régulateur : · plus précis, plus rapide · Tube capillaire · fixe, sans réglage : · frigos et petits appareils · La ligne liquide, dans l'ordre · Réserve de liquide · du condenseur · Filtre déshydrateur · monté dans le sens de la flèche · Voyant · bulles ? pastille d'humidité ? · Électrovanne · coupe la ligne à l'arrêt · Détendeur · vers l'évaporateur · Chaque accessoire est aussi un point de fuite potentiel : raccords vissés, presse-étoupes — à recontrôler.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/detendeurs-ligne.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="detendeurs-ligne">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur detendeurs-ligne">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="diagramme-logph" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/diagramme-logph.svg" alt="Le diagramme log p-h : trois zones, deux frontières, un cycle en quatre transformations" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le diagramme log p-h : trois zones, deux frontières, un cycle en quatre transformations</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">11 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">diagramme-logph.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (27)</summary><p>Le même fluide, la même histoire — mais en image · pression · (échelle log) · enthalpie — l'énergie contenue dans un kilo de fluide (kJ/kg) → · point critique · LIQUIDE · rien que du liquide · courbe · de bulle · VAPEUR SURCHAUFFÉE · plus une seule goutte · courbe de rosée · LIQUIDE + VAPEUR · 1 · 2 · 3 · 4 · CONDENSEUR — il rend la chaleur · ÉVAPORATEUR — il absorbe la chaleur · COMPRESSEUR · il monte la pression · DÉTENDEUR · il fait chuter la pression · surchauffe · sous-refr. · Le cycle forme un  rectangle , et c'est la  croix du frigoriste  : compresseur à droite, condenseur en haut, détendeur à gauche, évaporateur en bas. · La  table de saturation  dit exactement la même chose, en chiffres : la cloche du diagramme, c'est la colonne « température de saturation » de la table.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/diagramme-logph.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="diagramme-logph">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur diagramme-logph">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="echangeur-air" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/echangeur-air.svg" alt="Le condenseur à air : l'air emporte la chaleur" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le condenseur à air : l'air emporte la chaleur</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">2 s</span>
+      <span class="et">5 Ko</span>
+      <span class="fic">echangeur-air.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (12)</summary><p>L'air emporte la chaleur — si on le laisse passer · Batterie ailetée · le fluide HP circule dans le serpentin · air ambiant · air réchauffé · Ventilateur · force l'air à travers · Batterie sale ? · l'air ne passe plus, · la HP monte, la machine · consomme — puis coupe. · Même échangeur côté froid : à l'évaporateur, l'air cède sa chaleur au fluide — et un filtre encrassé produit le givrage complet.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/echangeur-air.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="echangeur-air">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur echangeur-air">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="epreuve-azote" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/epreuve-azote.svg" alt="L'épreuve de pression, à l'azote seul" loading="lazy"></div>
+  <div class="infos">
+    <h3>L'épreuve de pression, à l'azote seul</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">4 Ko</span>
+      <span class="fic">epreuve-azote.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (14)</summary><p>L'épreuve de pression : azote, et rien d'autre · N₂ · Azote sec · avec mano-détendeur · Manifold · pression d'épreuve : · doc constructeur / norme · Circuit à éprouver · sans fluide, vanne par vanne · JAMAIS · O₂ · air · explosif + humide · Oxygène sur circuit huilé = explosion. Air comprimé = humidité + oxygène. Le geste ne se discute pas.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/epreuve-azote.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="epreuve-azote">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur epreuve-azote">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="familles-fluides" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/familles-fluides.svg" alt="Les familles de fluides — trois atomes décident de tout" loading="lazy"></div>
+  <div class="infos">
+    <h3>Les familles de fluides — trois atomes décident de tout</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">9 Ko</span>
+      <span class="fic">familles-fluides.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (73)</summary><p>Trois atomes décident de tout · Cl · chlore → détruit l'ozone · F · fluor → stable, effet de serre · H · hydrogène → vie courte · CFC · chlore + fluor + carbone · C · Cl · Cl · F · F · R-12 · Les « miracles » des · années 1930 : stables, · ni toxiques ni inflammables… · et tueurs d'ozone. · INTERDITS · HCFC · + un peu d'hydrogène · C · H · Cl · F · F · R-22 · La transition : moins de · chlore, vie plus courte — · mais du chlore quand même. · INTERDITS · HFC · zéro chlore · C · H · F · F · F · R-134a · R-32 · Ozone : sauvé (ODP = 0). · Climat : raté — PRP fort, · d'où le phase-down F-Gas · et l'amendement de Kigali. · EN RÉDUCTION · HFO · double liaison C = C · C · C · H · F · F · F · R-1234yf · La double liaison casse en · quelques jours dans l'air : · PRP ≈ 1. Souvent A2L, · et la question PFAS se pose. · AUTORISÉS · Naturels · présents dans la nature · R-290 · R-600a · R-717 · R-744 · propane · isobutane · ammoniac · CO₂ · PRP minuscule — mais · chacun son revers : A3, · B2L ou haute pression. · AUTORISÉS · années 1930 · l'histoire va de gauche à droite : chaque famille corrige le défaut de la précédente… · aujourd'hui · …et en révèle un nouveau. Il n'y a pas de fluide parfait : il n'y a que des compromis maîtrisés.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/familles-fluides.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="familles-fluides">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur familles-fluides">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="frise-histoire" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/frise-histoire.svg" alt="Quarante ans d'histoire — de l'ozone au climat" loading="lazy"></div>
+  <div class="infos">
+    <h3>Quarante ans d'histoire — de l'ozone au climat</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">5 Ko</span>
+      <span class="fic">frise-histoire.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (28)</summary><p>Quarante ans d'histoire : le problème a changé deux fois · FIL OZONE · la couche se répare ✓ · FIL CLIMAT · Les CFC, fluides « miracle » · stables, ni toxiques, ni inflammables · Protocole de MONTRÉAL · sortie des CFC puis des HCFC — · le grand succès environnemental · Accord de PARIS · limiter le réchauffement à +1,5 °C · Le trou dans la couche d'ozone · au-dessus de l'Antarctique — le chlore accuse · Protocole de KYOTO · 6 gaz à effet de serre, dont les HFC · Amendement de KIGALI · les HFC entrent… dans Montréal ! · années 1930 · 1985 · 1987 · 1997 · 2015 · 2016 · 2024 · F-Gas III · règlement UE 2024/573 · phase-down, quotas, interdictions · Montréal a réglé l'ozone en interdisant le chlore… et les HFC de remplacement ont créé le problème climat. · C'est pour ça qu'un frigoriste manipule aujourd'hui des fluides sous quotas : chaque kilo relâché compte.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/frise-histoire.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="frise-histoire">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur frise-histoire">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="givre-degivrage" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/givre-degivrage.svg" alt="Le givre étouffe l'échange — le dégivrage le libère" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le givre étouffe l'échange — le dégivrage le libère</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">11 Ko</span>
+      <span class="fic">givre-degivrage.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (26)</summary><p>Le givre sur l'évaporateur : l'échange s'étouffe, le dégivrage le libère · Évaporateur à ailettes, vu de face · GIVRE · ventilateur · air du local · air soufflé · bac de condensats · écoulement · Écoulement bouché : · le givre revient. · l'air traverse : l'échange se fait · le givre s'installe : l'air ne passe plus · dégivrage : le givre fond, l'eau part au bac · Ce que le givre provoque · échange · L'échange chute · La température ne · descend plus · La surchauffe se · dérègle · Le givre isole la batterie. · Ce qui se vérifie · l'état des ailettes : propres, non écrasées · l'écoulement libre : bac, siphon, tuyau · le sens et le débit d'air : ventilateur, filtre · fin de dégivrage : selon la fiche constructeur</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/givre-degivrage.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="givre-degivrage">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur givre-degivrage">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="intro-securite" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/intro-securite.svg" alt="Module sécurité — introduction" loading="lazy"></div>
+  <div class="infos">
+    <h3>Module sécurité — introduction</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">17 s</span>
+      <span class="et">8 Ko</span>
+      <span class="fic">intro-securite.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (20)</summary><p>Tout le reste de cette formation · protège l'installation · et l'environnement · ne pas laisser fuir · ne pas émettre · tenir le registre · Ce module-ci vous apprend · à vous protéger, vous · Personne d'autre ne le fera à votre place. · Cinq dangers. Cinq fiches. · O₂ · l'air qui manque · le froid brûle · la flamme interdite · ce qui éclate · consigner d'abord · Ce qui arrive · comment ça arrive vraiment · ce qui protège · et le geste qu'on ne fait jamais. · La sécurité se démontre · et s'impose. · Elle ne se découvre jamais par l'erreur. · Module à voir en premier — avant de choisir votre catégorie.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/intro-securite.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="intro-securite">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur intro-securite">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="lecture-table" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/lecture-table.svg" alt="La lecture croisée : manomètre, table, thermomètre" loading="lazy"></div>
+  <div class="infos">
+    <h3>La lecture croisée : manomètre, table, thermomètre</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">5 Ko</span>
+      <span class="fic">lecture-table.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (21)</summary><p>Sans ouvrir le circuit : la lecture croisée · ① Manomètre BP · lecture :  3 bar relatifs · + ~1 bar · ≈ 4 bar absolus · P abs (bar) · T° sat (°C) · … · … · ≈ 4 · → lire ici · … · … · … · … · ② Table de saturation · celle  du fluide présent  — plaque + registre · ③ Sonde de contact · T° réelle du tube · L'écart entre ② et ③, c'est la surchauffe (ou le sous-refroidissement). · Hors des plages habituelles (5-10 K / 4-8 K) → fonctionnement anormal : on soupçonne, puis on localise en méthode directe.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/lecture-table.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="lecture-table">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur lecture-table">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="lie-domaine" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/lie-domaine.svg" alt="LIE et LSE : le domaine d'explosivité, et ce qu'affiche l'explosimètre" loading="lazy"></div>
+  <div class="infos">
+    <h3>LIE et LSE : le domaine d'explosivité, et ce qu'affiche l'explosimètre</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">8 Ko</span>
+      <span class="fic">lie-domaine.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (20)</summary><p>Un gaz ne brûle qu'entre deux bornes · quantité de gaz dans l'air → · trop PAUVRE · pas assez de gaz · DOMAINE D'EXPLOSIVITÉ · une étincelle suffit · trop RICHE · pas assez d'air · LIE · limite inférieure · LSE · limite supérieure · 0 % LIE · 100 % LIE · ce que mesure l'explosimètre · L'appareil n'affiche pas « combien il y a de gaz ». · Il affiche  la marge qui reste  avant le domaine d'explosivité. · Son alarme se déclenche donc bien  avant  le danger. · Les valeurs de LIE et de LSE sont  propres à chaque fluide  : elles se lisent sur sa fiche de données de sécurité, jamais de mémoire. · L'appareil se règle  pour un gaz donné  : réglé pour un autre, il affiche un chiffre faux. Le R-290 du froid est inodore — le nez n'avertit de rien.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/lie-domaine.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="lie-domaine">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur lie-domaine">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="manifold-lecture" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/manifold-lecture.svg" alt="Le manifold : quelle vanne ouvre quoi" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le manifold : quelle vanne ouvre quoi</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">12 s</span>
+      <span class="et">10 Ko</span>
+      <span class="fic">manifold-lecture.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (36)</summary><p>Le manifold : quelle vanne ouvre quoi · BASSE PRESSION · HAUTE PRESSION · BP · HP · vanne BP · FERMÉE · OUVERTE · vanne HP · FERMÉE · OUVERTE · raccord BP · raccord de service · raccord HP · vers le côté BASSE PRESSION · (l'évaporateur, en bas) · flexible central : vers la · bouteille ou la pompe à vide · vers le côté HAUTE PRESSION · (le condenseur, en haut) · Ce que montre l'animation · Les manomètres lisent en · permanence, vannes fermées. · Ouvrir une vanne ne sert pas · à lire : cela met le côté · choisi en communication avec · le flexible central. · On n'ouvre que ce dont on a · besoin, et rien de plus. · On referme AVANT toute · déconnexion, puis on purge · chaque flexible. · Vannes FERMÉES pour lire. · Une vanne à la fois, jamais · les deux ensemble. · Les raccords se vissent à la main, puis se serrent à la clé  selon la fiche constructeur  : aucun couple ne s'invente.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/manifold-lecture.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="manifold-lecture">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur manifold-lecture">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="mesure-surchauffe" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/mesure-surchauffe.svg" alt="Mesurer la surchauffe" loading="lazy"></div>
+  <div class="infos">
+    <h3>Mesurer la surchauffe</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">4 Ko</span>
+      <span class="fic">mesure-surchauffe.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (13)</summary><p>La surchauffe se mesure en deux points · Évaporateur · ligne d'aspiration → compresseur · ① Manomètre BP · pression → table →  T° de saturation · ② Sonde de contact · T° réelle du tube , au même endroit · surchauffe = · T° tube − T° saturation · repère sain :  5 à 10 K · 0 K = coup de liquide ! · Même logique en sortie de condenseur : T° saturation − T° du tube =  sous-refroidissement  (4 à 8 K). · Ne pas oublier : le manomètre lit en relatif — pression absolue ≈ relative + 1 bar avant d'ouvrir la table.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/mesure-surchauffe.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="mesure-surchauffe">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur mesure-surchauffe">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="motif-flocon" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/motif-flocon.svg" alt="motif-flocon" loading="lazy"></div>
+  <div class="infos">
+    <h3>motif-flocon</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">1 Ko</span>
+      <span class="fic">motif-flocon.svg</span>
+    </p>
+    <p class="txt vide">Aucun texte dans la planche — elle ne parle que par le dessin.</p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/motif-flocon.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="motif-flocon">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur motif-flocon">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="nomenclature" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/nomenclature.svg" alt="Décoder un code fluide, chiffre par chiffre" loading="lazy"></div>
+  <div class="infos">
+    <h3>Décoder un code fluide, chiffre par chiffre</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">14 s</span>
+      <span class="et">9 Ko</span>
+      <span class="fic">nomenclature.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (35)</summary><p>Le code dit la molécule · R- · 1 · 3 · 4 · a · centaines + 1  = atomes de  carbone  → C = 2 · dizaines − 1  = atomes d' hydrogène  → H = 2 · unités  = atomes de  fluor  → F = 4 · la lettre minuscule (a) = l'isomère : même formule, arrangement différent · =  C₂  H₂  F₄ · tétrafluoroéthane : · zéro chlore → HFC · L'astuce du + 90 · code + 90 → on lit C H F · 134 + 90 =  2  2  4  → C₂H₂F₄ · 22 + 90 =  1  1  2  → CHClF₂ · les liaisons restantes sont du chlore · Et les numéros à trois chiffres qui commencent par 4, 5, 6, 7 ? · R-4xx · mélanges zéotropes · R-404A · R-407C · R-410A · majuscule = les proportions · R-5xx · mélanges azéotropes · R-507A · se comportent en corps pur · R-6xx · organiques divers · R-600a (isobutane) · frigos domestiques · R-7xx · inorganiques : 7 + masse molaire · R-717 = NH₃ (17 g/mol) · R-744 = CO₂ (44 g/mol)</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/nomenclature.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="nomenclature">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur nomenclature">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="ordre-vannes" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/ordre-vannes.svg" alt="L'ordre des vannes : une chorégraphie, jamais une improvisation" loading="lazy"></div>
+  <div class="infos">
+    <h3>L'ordre des vannes : une chorégraphie, jamais une improvisation</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">13 s</span>
+      <span class="et">11 Ko</span>
+      <span class="fic">ordre-vannes.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (43)</summary><p>L'ordre des vannes : une chorégraphie, jamais une improvisation · À la déconnexion, l'ordre ne change jamais — les étapes s'allument ici dans l'ordre où on les exécute. · MANIFOLD · Installation · aspiration · liquide · groupe de · récupération · raccord · manomètres · vannes du manifold · vannes de service · vanne de la · bouteille · 1 · 2 · 3 · 4 · 5 · L'ordre à la déconnexion · 1 · Fermer : côté circuit, · puis côté appareil. · 2 · Laisser la pression se · stabiliser, on attend. · 3 · Desserrer lentement, · par petites touches. · 4 · Récupérer par l'appareil · le fluide du flexible. · 5 · Déconnecter quand la · pression est retombée. · Ce qui commande l'ordre : la pression, jamais la montre · Fermer  →  laisser stabiliser  →  desserrer lentement · À la connexion : vannes fermées, on raccorde, on chasse l'air resté dedans, · puis on ouvre progressivement. · La faute type · Ouvrir ou fermer dans le désordre. · Desserrer un raccord encore sous pression. · Purger le flexible à l'air libre.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/ordre-vannes.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="ordre-vannes">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur ordre-vannes">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="pesee-charge" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/pesee-charge.svg" alt="La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu" loading="lazy"></div>
+  <div class="infos">
+    <h3>La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">16 s</span>
+      <span class="et">8 Ko</span>
+      <span class="fic">pesee-charge.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (19)</summary><p>La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu · 1 · AVANT — on pèse · --,-- kg · pesée 1 · on la note · 2 · PENDANT — le fluide passe · installation · --,-- kg · la masse baisse · on surveille · 3 · APRÈS — on pèse à nouveau · --,-- kg · pesée 2 · on la note · la différence = la charge introduite · on relit l'afficheur, on soustrait : c'est la quantité réellement passée dans la machine · Sur le registre :  toute quantité introduite ou récupérée se note — date, quantité, intervenant. · La balance dit  combien  ; le manomètre dit comment la machine se comporte. Une seule pesée ne donne qu'une estimation. · En  récupération , même méthode dans l'autre sens : c'est la bouteille qui gagne. Dans les deux cas, deux pesées, jamais une.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/pesee-charge.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="pesee-charge">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur pesee-charge">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="points-de-fuite" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/points-de-fuite.svg" alt="Où fuit une installation ?" loading="lazy"></div>
+  <div class="infos">
+    <h3>Où fuit une installation ?</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">15 s</span>
+      <span class="et">13 Ko</span>
+      <span class="fic">points-de-fuite.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (30)</summary><p>CONDENSEUR · ÉVAPORATEUR · COMPRESSEUR · DÉTENDEUR · 4 · 3 · 2 · 1 · 5 · 6 · Une fuite ne sort jamais d'un tube plein. · Elle sort d'un point d'assemblage ou d'une pièce en mouvement — voilà où regarder. · 1 · Brasures · porosité, manque de pénétration · 2 · Accessoires de ligne liquide · filtre, voyant, pressostat : raccords vissés · 3 · Presse-étoupes · vannes de service, robinets · 4 · Compresseur · bornes hermétiques, garnitures, vibrations · 5 · Raccords mécaniques · flare, raccords à visser · 6 · Supports et vibrations · tuyauterie mal fixée : fatigue du joint</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/points-de-fuite.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="points-de-fuite">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur points-de-fuite">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="prepa-chantier" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/prepa-chantier.svg" alt="Préparation de chantier : quatre temps avant de toucher" loading="lazy"></div>
+  <div class="infos">
+    <h3>Préparation de chantier : quatre temps avant de toucher</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">5 Ko</span>
+      <span class="fic">prepa-chantier.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (23)</summary><p>Avant de toucher quoi que ce soit · 1 · Reconnaître · quel fluide, quel local, · quelles issues, quelle · ventilation · 2 · ! · Identifier les risques · ceux du jour, pas ceux · du manuel — et les · supprimer si possible · 3 · Se protéger · les EPI découlent des · risques — et se mettent · AVANT de commencer · 4 · Préparer · délimiter la zone, · sortir le matériel, · vérifier qu'il est bon · Ce qui n'a pas été prévu ici se découvrira au pire moment. La sécurité se démontre et s'impose : elle ne se découvre jamais par l'erreur.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/prepa-chantier.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="prepa-chantier">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur prepa-chantier">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="pression-absolue-relative" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/pression-absolue-relative.svg" alt="Pression absolue et pression relative : deux échelles décalées de 1 bar" loading="lazy"></div>
+  <div class="infos">
+    <h3>Pression absolue et pression relative : deux échelles décalées de 1 bar</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">14 s</span>
+      <span class="et">9 Ko</span>
+      <span class="fic">pression-absolue-relative.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (30)</summary><p>Pression absolue et pression relative : deux échelles décalées de 1 bar · ÉCHELLE RELATIVE · ce que lit le manomètre · ÉCHELLE ABSOLUE · ce que donnent les tables · 1 bar · 0 du manomètre · = l'atmosphère · en dessous : dépression · 0 · le vide absolu · une graduation = 1 bar · 0 · manomètre à zéro · = déjà 1 bar absolu · Ce que montre l'animation · Le curseur monte : les · deux lectures montent · exactement ensemble. · Le même écart d'un bar · à toute pression. · Manomètre à zéro : il · reste 1 bar absolu. · la même pression réelle · à retenir · P absolue ≈ P relative + 1 bar · quelle que soit la pression · Le piège : les tables et le manomètre ne parlent pas la même langue · Les tables de saturation se lisent en pression ABSOLUE ; le manomètre affiche du RELATIF. · Oublier le + 1 bar fausse toute lecture de température de saturation : · on se trompe de plusieurs kelvins, et on cherche une fuite qui n'existe pas.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/pression-absolue-relative.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="pression-absolue-relative">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur pression-absolue-relative">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="prp-echelle" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/prp-echelle.svg" alt="Un kilogramme n'égale pas un kilogramme" loading="lazy"></div>
+  <div class="infos">
+    <h3>Un kilogramme n'égale pas un kilogramme</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">2 s</span>
+      <span class="et">2 Ko</span>
+      <span class="fic">prp-echelle.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (12)</summary><p>1 kg de fluide n'égale pas 1 kg d'un autre · PRP : effet de serre d'1 kg de fluide, comparé à 1 kg de CO₂ (l'étalon, PRP = 1). · CO₂ · 1  — l'étalon… et un vrai fluide (R-744) · R-32 · 675 · R-410A · 2088 · R-404A · 3922 · Conséquence : fuir 1 kg de R-404A ≈ relâcher  3,9 tonnes  équivalent CO₂. · Valeurs indicatives (Mission F-GAZ) — en intervention, le PRP se lit sur la fiche du fluide.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/prp-echelle.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="prp-echelle">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur prp-echelle">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="recuperation" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/recuperation.svg" alt="Le montage de récupération" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le montage de récupération</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">1 s</span>
+      <span class="et">4 Ko</span>
+      <span class="fic">recuperation.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (13)</summary><p>Récupérer : le montage · Installation · à l'arrêt, isolée · Groupe de récupération · certifié, dédié à cet usage · niveau maxi — · jamais pleine · Bouteille sur balance · Les 3 réflexes · 1. Peser  avant · 2. Un cylindre, · un seul fluide · 3. Consigner</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/recuperation.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="recuperation">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur recuperation">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="regulateurs-pression" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/regulateurs-pression.svg" alt="Les trois régulateurs de pression : où ils se montent, ce qu'ils protègent" loading="lazy"></div>
+  <div class="infos">
+    <h3>Les trois régulateurs de pression : où ils se montent, ce qu'ils protègent</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">9 Ko</span>
+      <span class="fic">regulateurs-pression.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (29)</summary><p>Trois régulateurs, trois endroits, trois raisons · CONDENSEUR (à air) · ÉVAPORATEUR · COMPRESSEUR · aspire en BP, refoule en HP · DÉTENDEUR · fait chuter la pression · 1 · sortie de condenseur · HP · 2 · sortie d'évaporateur · BP · 3 · avant le compresseur · BP · 1 · pression de CONDENSATION · couramment appelé « KVR » · Tient la pression de condensation assez · haute quand il fait froid dehors. · 2 · pression d'ÉVAPORATION · couramment appelé « KVP » · Empêche l'évaporateur de descendre · trop bas — il protège le produit. · 3 · pression de CARTER · couramment appelé « KVL » · Limite la pression d'aspiration, surtout · au redémarrage après un arrêt long. · Aucun des trois ne coupe le compresseur :  un régulateur maintient une pression, un pressostat coupe un circuit électrique .</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/regulateurs-pression.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="regulateurs-pression">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur regulateurs-pression">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="s1-double-accident" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/s1-double-accident.svg" alt="Espace clos : pourquoi il y a deux victimes" loading="lazy"></div>
+  <div class="infos">
+    <h3>Espace clos : pourquoi il y a deux victimes</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">17 s</span>
+      <span class="et">7 Ko</span>
+      <span class="fic">s1-double-accident.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (12)</summary><p>Pourquoi ces accidents font presque toujours deux victimes · entrée · le gaz remplit par le bas — invisible, inodore · il ne sent rien · il descend le chercher · sans protection, sans ventiler · 1 victime · 2 victimes · Devant une personne au sol : · on alerte, on ventile, on fait venir les secours. · ON NE DESCEND PAS. · Avant d'entrer : ventiler, mesurer l'air, jamais seul.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/s1-double-accident.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="s1-double-accident">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur s1-double-accident">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-bouteille" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-bouteille.svg" alt="La bouteille : jamais à ras, jamais chauffée" loading="lazy"></div>
+  <div class="infos">
+    <h3>La bouteille : jamais à ras, jamais chauffée</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">8 s</span>
+      <span class="et">7 Ko</span>
+      <span class="fic">secu-bouteille.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (19)</summary><p>Pourquoi une bouteille ne se remplit JAMAIS à ras · liquide · la température monte · Pas de place · pour se dilater · la pression grimpe · très vite · ✗ remplie à ras · volume · libre · la température monte · Le liquide a · où se dilater · taux de remplissage · selon le fabricant · ✓ volume libre respecté · JAMAIS : · chauffer une bouteille (ni flamme, ni eau chaude, ni radiateur) · la laisser au soleil ou dans un véhicule fermé · mettre un circuit en pression à l'oxygène ou à l'air comprimé —  azote seul, et toujours avec un mano-détendeur</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-bouteille.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-bouteille">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-bouteille">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-consignation" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-consignation.svg" alt="La consignation électrique en cinq étapes" loading="lazy"></div>
+  <div class="infos">
+    <h3>La consignation électrique en cinq étapes</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">5 s</span>
+      <span class="et">7 Ko</span>
+      <span class="fic">secu-consignation.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (23)</summary><p>Consigner : cinq étapes, toujours dans cet ordre · 1 · Séparer · couper de façon · visible et certaine · 2 · Condamner · verrouiller : personne · ne peut réenclencher · 3 · Identifier · est-ce bien CE · circuit-là ? · 4 · Vérifier au VAT · l'absence de tension — · c'est la preuve · 5 · Mettre à la terre · quand une tension · peut revenir · Le VAT se teste AVANT et APRÈS, sur une source que l'on sait sous tension. · S'il marchait au premier essai et plus au second, tout ce qu'il a mesuré entre les deux ne vaut rien. Un appareil mort affiche « pas de tension » quoi qu'il arrive.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-consignation.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-consignation">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-consignation">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-decomposition-ari" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-decomposition-ari.svg" alt="Fumées de décomposition : l'ARI protège l'intervenant formé, pas le chantier" loading="lazy"></div>
+  <div class="infos">
+    <h3>Fumées de décomposition : l'ARI protège l'intervenant formé, pas le chantier</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">8 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">secu-decomposition-ari.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (16)</summary><p>Des fumées de décomposition sont déjà là : qui peut approcher, et comment · fumées présentes · fumées inhalées · à bout portant · lésions pulmonaires possibles · ✗ rester ou entrer sans protection respiratoire · 1 · S'éloigner de la source · 2 · Alerter, ne jamais entrer seul · 3 · Seule une personne formée, · avec ARI, peut approcher · ARI + protection faciale · RAPPEL : · l'ARI protège l'intervenant formé — il ne remplace jamais l'éloignement de la source et l'évacuation.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-decomposition-ari.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-decomposition-ari">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-decomposition-ari">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-espace-clos" data-genre="planche" data-nature="fixe">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-espace-clos.svg" alt="Espace clos, version statique (non utilisée — remplacée par s1-double-accident.svg)" loading="lazy"></div>
+  <div class="infos">
+    <h3>Espace clos, version statique (non utilisée — remplacée par s1-double-accident.svg)</h3>
+    <p class="meta">
+      <span class="et et-fixe">fixe</span>
+      
+      <span class="et">5 Ko</span>
+      <span class="fic">secu-espace-clos.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (16)</summary><p>Pourquoi ces accidents font presque toujours DEUX victimes · le gaz s'accumule · 1 · Porte fermée depuis des heures. · Rien ne se voit, rien ne se sent. · aucune alerte · 2 · Il entre. Il perd connaissance · en quelques instants. · 3 · Le collègue descend le chercher. · Il entre dans la même nappe. · AVANT d'entrer : · ventiler · mesurer l'air · ne jamais y aller seul · Si quelqu'un est au sol : · alerter, ventiler, faire venir les secours —  ne pas descendre</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-espace-clos.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-espace-clos">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-espace-clos">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-flamme" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-flamme.svg" alt="Brasage : récupérer et balayer, jamais chauffer du fluide" loading="lazy"></div>
+  <div class="infos">
+    <h3>Brasage : récupérer et balayer, jamais chauffer du fluide</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">9 s</span>
+      <span class="et">7 Ko</span>
+      <span class="fic">secu-flamme.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (16)</summary><p>Chauffer un tube où il reste du fluide : ce qui sort n'était pas dedans · fluide non récupéré · gaz toxiques · et corrosifs · inhalés à bout portant · ✗ brasage sur un tronçon encore chargé · 1 · Récupérer tout le fluide · 2 · Balayer à l'azote pendant · azote au mano-détendeur · N₂ · 3 · Ventiler · ne pas se pencher au-dessus · JAMAIS : · chercher une fuite avec une flamme — c'est une méthode ancienne, aujourd'hui interdite. On utilise un détecteur électronique.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-flamme.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-flamme">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-flamme">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="secu-projection" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/secu-projection.svg" alt="Projection de liquide : rester hors de l'axe" loading="lazy"></div>
+  <div class="infos">
+    <h3>Projection de liquide : rester hors de l'axe</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">7 s</span>
+      <span class="et">6 Ko</span>
+      <span class="fic">secu-projection.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (12)</summary><p>Un reste de liquide sous pression jaillit dans l'axe du raccord · raccord · jet de liquide · souvent invisible · ✗ ne jamais se placer ici · ✓ hors de l'axe · 0 · Pression nulle, · vanne fermée · Dans l'ordre : · gants et lunettes AVANT de commencer · lire le manomètre, vanne fermée · desserrer progressivement, jamais d'un coup · En cas de projection sur la peau ou les yeux : rincer sans frotter et consulter — la conduite à tenir exacte est sur la  FDS du fluide .</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/secu-projection.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="secu-projection">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur secu-projection">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="surchauffe-utile-totale" data-genre="planche" data-nature="boucle">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/surchauffe-utile-totale.svg" alt="Surchauffe utile et surchauffe totale : où elles se prennent, comment on les mesure" loading="lazy"></div>
+  <div class="infos">
+    <h3>Surchauffe utile et surchauffe totale : où elles se prennent, comment on les mesure</h3>
+    <p class="meta">
+      <span class="et et-boucle">boucle</span>
+      <span class="et">14 s</span>
+      <span class="et">12 Ko</span>
+      <span class="fic">surchauffe-utile-totale.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (17)</summary><p>Deux surchauffes, une seule méthode de mesure · détendeur · ÉVAPORATEUR · compresseur · ligne d'aspiration · liquide + vapeur : ça bout · la dernière goutte disparaît · vapeur seule : elle s'échauffe · surchauffe UTILE · gagnée dans l'évaporateur : · elle a servi à refroidir le local · surchauffe TOTALE — jusqu'au compresseur · l'utile, plus ce que la ligne d'aspiration ajoute au passage · La surchauffe est une DIFFÉRENCE, jamais une température · Manomètre → table de saturation → température d'évaporation. · Sonde sur le tube → température réelle. L'écart, en  kelvins . · Une surchauffe qui  tombe à zéro  annonce du liquide au compresseur ; une surchauffe qui  grimpe  annonce un évaporateur mal alimenté.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/surchauffe-utile-totale.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="surchauffe-utile-totale">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur surchauffe-utile-totale">
+  </div>
+  </div>
+</article>
+<article class="piece" data-id="tirage-au-vide" data-genre="planche" data-nature="récit">
+  <div class="vue"><img src="fonds-origine/packs/fluides/res/svg/tirage-au-vide.svg" alt="Le tirage au vide : la courbe qui descend, le palier, et la remontée qui accuse" loading="lazy"></div>
+  <div class="infos">
+    <h3>Le tirage au vide : la courbe qui descend, le palier, et la remontée qui accuse</h3>
+    <p class="meta">
+      <span class="et et-récit">récit</span>
+      <span class="et">14 s</span>
+      <span class="et">9 Ko</span>
+      <span class="fic">tirage-au-vide.svg</span>
+    </p>
+    <details class="txt"><summary>Le texte de la planche (32)</summary><p>Le tirage au vide : la courbe qui descend, le palier, et la remontée qui accuse · Le montage · circuit · vacuomètre · vanne d'isolement · pompe · à vide · Le manomètre du manifold · ne suffit pas pour lire le vide. · Le vide en fonction du temps · atmosphère · vide poussé · temps · tirage au vide · contrôle · vanne fermée, pompe arrêtée · bon · humidité · fuite · Lire le palier · Palier bas et stable · → tirage correct · Palier à mi-hauteur · → humidité résiduelle · Le vide remonte après · l'isolement → fuite · Aucune valeur cible ici : · le vide à atteindre et la · durée selon le constructeur. · Le vacuomètre se monte au plus près du circuit, jamais sur la pompe — et il se lit circuit isolé, pompe arrêtée. · Fermer la vanne côté circuit  avant  d'arrêter la pompe : sinon l'huile de la pompe peut être aspirée vers le circuit. · Une remontée du vide signale d'abord une fuite ; elle peut aussi venir d'une humidité résiduelle.</p></details>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Rejouer</button>
+      <a href="fonds-origine/packs/fluides/res/svg/tirage-au-vide.svg" target="_blank" rel="noopener">⬇ Ouvrir seule</a>
+    </p>
+    <div class="decision" data-pour="tirage-au-vide">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur tirage-au-vide">
+  </div>
+  </div>
+</article></div>
+
+  <h2>Tutos guidés <span class="n">— 20, pages autonomes qui avancent par étapes</span></h2>
+  <div class="grille">
+<article class="piece large" data-id="bilan-thermique-performance-interactif" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/bilan-thermique-performance-interactif/index.html" title="Bilan thermique et performance énergétique" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Bilan thermique et performance énergétique</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">322 Ko</span>
+      <span class="et">117 lignes</span>
+      <span class="fic">bilan-thermique-performance-interactif</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/bilan-thermique-performance-interactif/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="bilan-thermique-performance-interactif">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur bilan-thermique-performance-interactif">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="chaine-intervention-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/chaine-intervention-interactive/index.html" title="La chaîne de l’intervention" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>La chaîne de l’intervention</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">57 Ko</span>
+      <span class="et">43 lignes</span>
+      <span class="fic">chaine-intervention-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/chaine-intervention-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="chaine-intervention-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur chaine-intervention-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="chaleur-circuit-interactif" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/chaleur-circuit-interactif/index.html" title="Premières notions de thermodynamique" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Premières notions de thermodynamique</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">117 Ko</span>
+      <span class="et">141 lignes</span>
+      <span class="fic">chaleur-circuit-interactif</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/chaleur-circuit-interactif/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="chaleur-circuit-interactif">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur chaleur-circuit-interactif">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="chaleur-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/chaleur-interactive/index.html" title="Du glaçon au circuit frigorifique" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Du glaçon au circuit frigorifique</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">153 Ko</span>
+      <span class="et">132 lignes</span>
+      <span class="fic">chaleur-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/chaleur-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="chaleur-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur chaleur-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="circuit-organe-par-organe" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/circuit-organe-par-organe/index.html" title="Le circuit, organe par organe" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Le circuit, organe par organe</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">837 Ko</span>
+      <span class="et">311 lignes</span>
+      <span class="fic">circuit-organe-par-organe</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/circuit-organe-par-organe/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="circuit-organe-par-organe">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur circuit-organe-par-organe">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="condenseur-interactif" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/condenseur-interactif/index.html" title="Condenseur — installer, régler, vérifier" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Condenseur — installer, régler, vérifier</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">72 Ko</span>
+      <span class="et">89 lignes</span>
+      <span class="fic">condenseur-interactif</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/condenseur-interactif/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="condenseur-interactif">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur condenseur-interactif">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="cours-classes-securite" data-genre="tuto" data-nature="narré">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/cours-classes-securite/index.html" title="Classes de sécurité des fluides frigorigènes — cours interactif" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Classes de sécurité des fluides frigorigènes — cours interactif</h3>
+    <p class="meta">
+      <span class="et et-narré">narré</span>
+      <span class="et">13 écrans</span>
+      
+      <span class="et">152 Ko</span>
+      <span class="et">496 lignes</span>
+      <span class="fic">cours-classes-securite</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/cours-classes-securite/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="cours-classes-securite">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur cours-classes-securite">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="etancheite-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/etancheite-interactive/index.html" title="L’étanchéité — de l’indice à la preuve" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>L’étanchéité — de l’indice à la preuve</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">63 Ko</span>
+      <span class="et">43 lignes</span>
+      <span class="fic">etancheite-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/etancheite-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="etancheite-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur etancheite-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="evaporateur-interactif" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/evaporateur-interactif/index.html" title="Évaporateur — installer, régler, vérifier" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Évaporateur — installer, régler, vérifier</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">160 Ko</span>
+      <span class="et">101 lignes</span>
+      <span class="fic">evaporateur-interactif</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/evaporateur-interactif/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="evaporateur-interactif">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur evaporateur-interactif">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="frise-vivante" data-genre="tuto" data-nature="guidé">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/frise-vivante/frise-vivante.html" title="La Frise Vivante des Fluides" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>La Frise Vivante des Fluides</h3>
+    <p class="meta">
+      <span class="et et-guidé">guidé</span>
+      <span class="et">5 écrans</span>
+      
+      <span class="et">1.1 Mo</span>
+      <span class="et">157 lignes</span>
+      <span class="fic">frise-vivante</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/frise-vivante/frise-vivante.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="frise-vivante">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur frise-vivante">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="froid-clim-academie" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/froid-clim-academie/index.html" title="Froid Clim Académie - cours interactifs" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Froid Clim Académie - cours interactifs</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">26 Ko</span>
+      <span class="et">152 lignes</span>
+      <span class="fic">froid-clim-academie</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/froid-clim-academie/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="froid-clim-academie">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur froid-clim-academie">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="hydrocarbures-a1-a2" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/hydrocarbures-a1-a2/index.html" title="Mission 290 — travailler en sécurité" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Mission 290 — travailler en sécurité</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">203 Ko</span>
+      <span class="et">105 lignes</span>
+      <span class="fic">hydrocarbures-a1-a2</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/hydrocarbures-a1-a2/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="hydrocarbures-a1-a2">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur hydrocarbures-a1-a2">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="intervention-hydrocarbures-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/intervention-hydrocarbures-interactive/index.html" title="Intervenir sur un circuit hydrocarbure" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Intervenir sur un circuit hydrocarbure</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">53 Ko</span>
+      <span class="et">43 lignes</span>
+      <span class="fic">intervention-hydrocarbures-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/intervention-hydrocarbures-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="intervention-hydrocarbures-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur intervention-hydrocarbures-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="mission-bouteilles" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/mission-bouteilles/index.html" title="Mission Bouteilles" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Mission Bouteilles</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">47 Ko</span>
+      <span class="et">48 lignes</span>
+      <span class="fic">mission-bouteilles</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/mission-bouteilles/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="mission-bouteilles">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur mission-bouteilles">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="nomenclature-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/nomenclature-interactive/index.html" title="Décrypter le code d’un fluide" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Décrypter le code d’un fluide</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">97 Ko</span>
+      <span class="et">45 lignes</span>
+      <span class="fic">nomenclature-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/nomenclature-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="nomenclature-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur nomenclature-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="outils/fiche-fluide" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/outils/fiche-fluide.html" title="Carte d'identité du fluide" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Carte d'identité du fluide</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">22 Ko</span>
+      <span class="et">120 lignes</span>
+      <span class="fic">outils/fiche-fluide</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/outils/fiche-fluide.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="outils/fiche-fluide">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur outils/fiche-fluide">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="outils/reglette" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/outils/reglette.html" title="Réglette P ↔ T" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Réglette P ↔ T</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">22 Ko</span>
+      <span class="et">166 lignes</span>
+      <span class="fic">outils/reglette</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/outils/reglette.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="outils/reglette">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur outils/reglette">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="pression-temperature-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/pression-temperature-interactive/index.html" title="La pression choisit la température" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>La pression choisit la température</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">146 Ko</span>
+      <span class="et">137 lignes</span>
+      <span class="fic">pression-temperature-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/pression-temperature-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="pression-temperature-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur pression-temperature-interactive">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="tome-3-technologie-organes" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/tome-3-technologie-organes/index.html" title="Tome 3 — Technologie des organes frigorifiques" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>Tome 3 — Technologie des organes frigorifiques</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">1.0 Mo</span>
+      <span class="et">95 lignes</span>
+      <span class="fic">tome-3-technologie-organes</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/tome-3-technologie-organes/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="tome-3-technologie-organes">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur tome-3-technologie-organes">
+  </div>
+  </div>
+</article>
+<article class="piece large" data-id="vanne-service-interactive" data-genre="tuto" data-nature="outil">
+  <div class="vue cadre"><iframe src="fonds-origine/packs/fluides/res/vanne-service-interactive/index.html" title="La vanne de service — trois positions, deux prises" loading="lazy"></iframe></div>
+  <div class="infos">
+    <h3>La vanne de service — trois positions, deux prises</h3>
+    <p class="meta">
+      <span class="et et-outil">outil</span>
+      
+      
+      <span class="et">177 Ko</span>
+      <span class="et">118 lignes</span>
+      <span class="fic">vanne-service-interactive</span>
+    </p>
+    <p class="actions">
+      <button class="rejouer" type="button">↻ Recharger</button>
+      <a href="fonds-origine/packs/fluides/res/vanne-service-interactive/index.html" target="_blank" rel="noopener">⬇ Ouvrir en grand</a>
+    </p>
+    <div class="decision" data-pour="vanne-service-interactive">
+    <button type="button" data-val="garder">✔ Garder telle quelle</button>
+    <button type="button" data-val="refondre">✎ Refondre</button>
+    <button type="button" data-val="abandonner">✖ Abandonner</button>
+    <input type="text" class="note" placeholder="pourquoi / ce qu'il faut changer" aria-label="note sur vanne-service-interactive">
+  </div>
+  </div>
+</article></div>
+
+  <section class="sortie" id="sortie" hidden>
+    <h3>Les décisions, en Markdown</h3>
+    <p class="txt">À coller dans <code>REPRISE.md</code> ou à me redonner tel quel : c'est le point de départ de la refonte.</p>
+    <textarea id="md" readonly></textarea>
+  </section>
+</main>
+
+<script>
+/* Les décisions vivent dans le navigateur : aucun serveur, aucun compte,
+   et on peut fermer la page sans rien perdre. */
+const CLE = "atelier-animations-decisions";
+const etat = JSON.parse(localStorage.getItem(CLE) || "{}");
+
+function peindre(){
+  for (const piece of document.querySelectorAll(".piece")){
+    const id = piece.dataset.id, d = etat[id] || {};
+    piece.dataset.choix = d.choix || "";
+    for (const b of piece.querySelectorAll(".decision button"))
+      b.setAttribute("aria-pressed", String(d.choix === b.dataset.val));
+    const n = piece.querySelector(".note");
+    if (document.activeElement !== n) n.value = d.note || "";
+  }
+  const total = document.querySelectorAll(".piece").length;
+  const tranches = Object.values(etat).filter(d => d.choix).length;
+  document.getElementById("compte").textContent = tranches + " / " + total + " tranchés";
+  filtrer();
+}
+
+function filtrer(){
+  const v = document.getElementById("filtre").value;
+  for (const piece of document.querySelectorAll(".piece")){
+    const c = (etat[piece.dataset.id] || {}).choix || "";
+    piece.hidden = v === "" ? false : v === "sans" ? !!c : c !== v;
+  }
+}
+
+function noter(id, champ, valeur){
+  etat[id] = etat[id] || {};
+  etat[id][champ] = valeur;
+  if (!etat[id].choix && !etat[id].note) delete etat[id];
+  localStorage.setItem(CLE, JSON.stringify(etat));
+}
+
+document.addEventListener("click", (e) => {
+  const b = e.target.closest(".decision button");
+  if (b){
+    const id = b.closest(".decision").dataset.pour;
+    const dejà = (etat[id] || {}).choix === b.dataset.val;
+    noter(id, "choix", dejà ? "" : b.dataset.val);   /* re-cliquer annule */
+    peindre();
+    return;
+  }
+  const r = e.target.closest(".rejouer");
+  if (r){
+    /* Relancer une animation SVG = recharger la source. Il n'y a pas
+       d'autre prise sur un SVG affiché en image. */
+    const vue = r.closest(".piece").querySelector("img, iframe");
+    const src = vue.src.split("#")[0];
+    vue.src = src + "#r" + performance.now();
+  }
+});
+
+document.addEventListener("input", (e) => {
+  if (e.target.classList.contains("note"))
+    noter(e.target.closest(".decision").dataset.pour, "note", e.target.value);
+});
+
+document.getElementById("filtre").addEventListener("change", filtrer);
+
+document.getElementById("tout-rejouer").addEventListener("click", () => {
+  for (const v of document.querySelectorAll(".piece:not([hidden]) img, .piece:not([hidden]) iframe")){
+    const src = v.src.split("#")[0];
+    v.src = src + "#r" + performance.now();
+  }
+});
+
+document.getElementById("vider").addEventListener("click", () => {
+  if (!confirm("Effacer toutes les décisions prises sur cette page ?")) return;
+  for (const k of Object.keys(etat)) delete etat[k];
+  localStorage.removeItem(CLE);
+  peindre();
+});
+
+document.getElementById("exporter").addEventListener("click", () => {
+  const par = { refondre: [], garder: [], abandonner: [] };
+  for (const piece of document.querySelectorAll(".piece")){
+    const id = piece.dataset.id, d = etat[id] || {};
+    if (!d.choix) continue;
+    const titre = piece.querySelector("h3").textContent;
+    par[d.choix].push("- **" + titre + "** (`" + id + "`)" + (d.note ? " — " + d.note : ""));
+  }
+  const sans = [...document.querySelectorAll(".piece")]
+    .filter(p => !(etat[p.dataset.id] || {}).choix)
+    .map(p => "- " + p.querySelector("h3").textContent + " (`" + p.dataset.id + "`)");
+  let md = "# Décisions de refonte\n\n";
+  md += "## À refondre (" + par.refondre.length + ")\n" + (par.refondre.join("\n") || "_rien_") + "\n\n";
+  md += "## À garder telles quelles (" + par.garder.length + ")\n" + (par.garder.join("\n") || "_rien_") + "\n\n";
+  md += "## À abandonner (" + par.abandonner.length + ")\n" + (par.abandonner.join("\n") || "_rien_") + "\n\n";
+  md += "## Pas encore tranché (" + sans.length + ")\n" + (sans.join("\n") || "_rien_") + "\n";
+  document.getElementById("sortie").hidden = false;
+  const z = document.getElementById("md");
+  z.value = md;
+  z.select();
+  document.getElementById("sortie").scrollIntoView({ behavior:"smooth" });
+});
+
+peindre();
+</script>

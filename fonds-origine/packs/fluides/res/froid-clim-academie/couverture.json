@@ -1,0 +1,29 @@
+{
+  "cours": "froid-clim-academie",
+  "titre": "Académie froid-clim — cycle animé, simulateur et atelier panne",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g1e"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup, et resserrée volontairement.",
+    "Le module annonce huit thèmes (cycle, pressions, surchauffe, fluides et",
+    "réglementation, étanchéité, électricité, mise en service, diagnostic) : c'est un",
+    "TOUR D'HORIZON, pas un cours par code. Déclarer huit codes parce que huit thèmes",
+    "sont nommés serait exactement la faute que la mesure de profondeur est là pour",
+    "attraper. Seul ce que le module fait manipuler est déclaré."
+  ],
+
+  "codes": {
+    "1.02": "surchauffe et sous-refroidissement : le simulateur à quatre curseurs fait varier les paramètres et montre l'effet sur le cycle — la notion est manipulée, pas seulement énoncée"
+  },
+
+  "appui": {
+    "1.04": "le cycle animé sur canvas montre le rôle des quatre organes (croix du frigoriste respectée)",
+    "5.05": "lire l'état du fluide au cycle prépare le choix de la méthode de charge, sans traiter la charge elle-même"
+  },
+
+  "hors_referentiel": [
+    "l'atelier panne (charge insuffisante, condenseur encrassé, détendeur trop fermé, présence d'incondensables) : c'est du diagnostic, utile mais rattaché à aucun code d'aptitude",
+    "le quiz flash de fin de séance"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "cours": "mission-bouteilles",
+  "titre": "Mission Bouteilles — prélever, remplir, peser",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["p6"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. C'est le seul des dix cours restés",
+    "sans déclaration qui couvre des codes PRATIQUES : il fait manipuler la bouteille,",
+    "la phase prélevée et la balance. Un code de plus que ce que porte sa fiche d'accroche",
+    "(5.02, qui vit aussi sur p5) : la déclaration suit ce que le cours enseigne, pas la",
+    "fiche. Le cours ne prescrit aucune quantité, aucun taux de remplissage : ce sont la",
+    "bouteille, sa plaque et la procédure du site qui les donnent."
+  ],
+
+  "codes": {
+    "5.02": "vider et remplir un cylindre à l'état liquide et à l'état gazeux : prélèvement vapeur et prélèvement liquide sont traités séparément, chacun avec son geste",
+    "5.05": "déterminer l'état du fluide avant remplissage pour choisir la méthode : c'est la décision que le cours fait prendre au stagiaire, phase par phase",
+    "5.06": "choisir le bon type de balance et l'utiliser : la tare est le geste central du module, avec le contrôle du surremplissage"
+  },
+
+  "appui": {},
+
+  "hors_referentiel": [
+    "les points de vigilance de fin de module, qui rappellent des règles de sécurité déjà enseignées ailleurs"
+  ]
+}

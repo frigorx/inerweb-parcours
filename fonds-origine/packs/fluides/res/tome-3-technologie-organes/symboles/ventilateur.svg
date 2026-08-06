@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.0 -20.0 50 40" overflow="visible"><circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -1.00 0.00 A 6.00 6.00 0 0 1 -7.00 -6.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -7.00 6.00 A 6.00 6.00 0 0 1 -1.00 0.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M 0.00 1.00 A 6.00 6.00 0 0 1 -6.00 7.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -6.00 7.00 A 1.00 1.00 0 0 1 -7.00 6.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -6.00 -7.00 A 6.00 6.00 0 0 1 0.00 -1.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -7.00 -6.00 A 1.00 1.00 0 0 1 -6.00 -7.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M 0.00 -1.00 A 1.00 1.00 0 0 1 -1.00 0.00" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<ellipse cx="4.5" cy="0.0" rx="4.5" ry="2.5" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-15" y1="0" x2="-16" y2="0" stroke="#1b3a63" stroke-width="1"/>
+<line x1="15" y1="0" x2="16" y2="0" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-7" y1="-13" x2="13" y2="-7" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-7" y1="13" x2="13" y2="7" stroke="#1b3a63" stroke-width="1"/>
+<circle cx="16" cy="0" r="1.5" fill="#1b3a63"/>
+<circle cx="-16" cy="0" r="1.5" fill="#1b3a63"/>
+</svg>

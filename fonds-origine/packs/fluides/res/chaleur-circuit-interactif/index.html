@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Habilitation Fluide, découverte du circuit frigorifique, tome 2 : thermodynamique appliquée, transferts de chaleur, saturation, surchauffe et sous-refroidissement.">
+  <title>Premières notions de thermodynamique | Circuit frigorifique · Tome 2</title>
+  <link rel="stylesheet" href="styles.css?v=20260731-voice2">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../" aria-label="Retour au choix des tomes">
+      <span class="brand-mark" aria-hidden="true">HF</span>
+      <span><strong>Habilitation Fluide</strong><small>inerWeb Pilote · Auto-formation</small></span>
+    </a>
+    <div class="topbar-tools">
+      <a class="quiet-link" href="../module/index.html">Revoir le tome 1</a>
+      <span class="time-badge">≈ 35 min</span>
+      <button class="quiet-button" id="restart-top" type="button">Recommencer</button>
+    </div>
+  </header>
+
+  <main id="accueil">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">DÉCOUVERTE DU CIRCUIT FRIGORIFIQUE · TOME 2</p>
+        <h1 id="page-title">Premières notions<br><span>de thermodynamique</span></h1>
+        <p class="hero-lead">Comprendre comment la circulation du fluide frigorigène permet d’absorber, de transporter et de rejeter la chaleur.</p>
+        <div class="goal-row" aria-label="Objectifs du tome 2">
+          <span><b>1</b> Chaleur et température</span>
+          <span><b>2</b> Transferts de chaleur</span>
+          <span><b>3</b> Changements d’état</span>
+          <span><b>4</b> États du fluide · codes 1.02 et 5.05</span>
+        </div>
+        <button class="primary-button hero-start" id="start-course" type="button">Commencer le tome 2 <span aria-hidden="true">→</span></button>
+      </div>
+
+      <figure class="hero-visual" aria-labelledby="hero-visual-title">
+        <figcaption id="hero-visual-title"><span class="status-dot" aria-hidden="true"></span>La chaleur se déplace du chaud vers le froid</figcaption>
+        <div class="hero-exchange">
+          <div class="hero-vessel hero-hot">
+            <span class="water-surface"></span>
+            <b>EAU CHAUDE</b>
+            <strong>60 °C</strong>
+          </div>
+          <div class="hero-transfer" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <span>CHALEUR</span>
+          </div>
+          <div class="hero-vessel hero-cold">
+            <span class="water-surface"></span>
+            <b>EAU PLUS FROIDE</b>
+            <strong>20 °C</strong>
+          </div>
+        </div>
+        <p class="hero-rule"><b>Le froid ne circule pas.</b> L’énergie thermique passe du milieu le plus chaud vers le milieu le plus froid.</p>
+      </figure>
+    </section>
+
+    <section class="spiral-strip" aria-label="Progression en deux tomes">
+      <div><span>TOME 1</span><b>Les 4 éléments du circuit</b><small>Reconnaître · situer · expliquer</small></div>
+      <i aria-hidden="true">→</i>
+      <div class="active"><span>TOME 2</span><b>Premières notions de thermodynamique</b><small>Comprendre les transferts et les changements d’état</small></div>
+    </section>
+
+    <section class="course-shell" id="module" aria-label="Parcours de thermodynamique appliquée">
+      <header class="course-head">
+        <div>
+          <p class="eyebrow">VOTRE PARCOURS</p>
+          <h2>12 écrans techniques</h2>
+        </div>
+        <div class="course-progress" aria-label="Progression">
+          <span id="progress-label">Étape 1 sur 12</span>
+          <div class="progress-track"><i id="progress-bar"></i></div>
+        </div>
+      </header>
+
+      <nav class="stepper" id="stepper" aria-label="Étapes du tome 2"></nav>
+
+      <article class="lesson-card" aria-live="polite">
+        <header class="lesson-heading">
+          <div>
+            <p class="eyebrow" id="lesson-kicker"></p>
+            <h2 id="lesson-title"></h2>
+            <p class="lesson-intro" id="lesson-intro"></p>
+          </div>
+          <div class="speech-panel" aria-label="Narration">
+            <button class="listen-button" id="listen" type="button">Écouter</button>
+            <button class="pause-button" id="pause" type="button" disabled>Pause</button>
+            <label class="voice-control">
+              <span>Voix</span>
+              <select id="voice-choice" aria-label="Choisir la voix française">
+                <option value="">Voix française automatique</option>
+              </select>
+            </label>
+            <div class="rate-control" aria-label="Vitesse de la voix">
+              <button id="slower" type="button" aria-label="Ralentir">−</button>
+              <span id="rate-label">0,95×</span>
+              <button id="faster" type="button" aria-label="Accélérer">+</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="lesson-zone" id="lesson-zone"></div>
+        <p class="speech-warning" id="speech-warning" role="status" hidden>La synthèse vocale n’est pas disponible. Tout le contenu reste lisible à l’écran.</p>
+
+        <footer class="lesson-nav">
+          <button class="back-button" id="previous" type="button">← Retour</button>
+          <span id="step-count">1 / 12</span>
+          <button class="primary-button" id="next" type="button">Continuer →</button>
+        </footer>
+      </article>
+    </section>
+
+    <section class="takeaway" aria-labelledby="takeaway-title">
+      <p class="eyebrow">LA CARTE MENTALE DU TOME 2</p>
+      <h2 id="takeaway-title">Une seule énergie, deux manières de la transférer.</h2>
+      <div class="takeaway-grid">
+        <div><span>1</span><b>Chaleur sensible</b><small>La température varie, l’état ne change pas.</small></div>
+        <div><span>2</span><b>Chaleur latente</b><small>L’état change à température presque stable.</small></div>
+        <div><span>3</span><b>Évaporateur</b><small>Le fluide frigorigène absorbe de la chaleur.</small></div>
+        <div><span>4</span><b>Condenseur</b><small>Le fluide frigorigène rejette de la chaleur.</small></div>
+      </div>
+      <div class="takeaway-actions">
+        <button class="quiet-button" id="restart-bottom" type="button">Reprendre le tome 2</button>
+        <a class="primary-button" href="../module/index.html">Revoir les organes</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>Habilitation Fluide · Découverte du circuit frigorifique · Tome 2</span>
+    <span>inerWeb Pilote · Auto-formation</span>
+  </footer>
+
+  <script src="app.js?v=20260731-voice2"></script>
+<!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

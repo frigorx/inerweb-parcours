@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 466" role="img"
+     aria-label="Trois vignettes : la même bouteille sur la même balance de charge. 1, avant : la bouteille est pleine, on relève une première pesée et on la note. 2, pendant : une flèche orange animée conduit le fluide vers l'installation, le niveau baisse et une flèche vers le bas indique que la masse diminue. 3, après : on pèse à nouveau et on relève la seconde valeur. Une accolade relie les deux pesées : leur différence est la charge introduite. En bas, le rappel que toute quantité introduite ou récupérée se note au registre — date, quantité, intervenant — et qu'une récupération suit la même méthode dans l'autre sens, la bouteille gagnant ce que le circuit perd. Les afficheurs ne portent que des tirets : aucune valeur n'est donnée.">
+  <title>La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu</title>
+  <style>
+    .t    { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st   { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .lgd  { font:700 17px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .aff  { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .p    { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .br   { fill:none; stroke:#ff6b35; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .bo   { fill:#e8eef4; stroke:#1b3a63; stroke-width:2.6; }
+    .flux { fill:none; stroke:#ff6b35; stroke-width:5; stroke-linecap:round;
+            stroke-dasharray:14 12; animation: defile 1.5s linear infinite; }
+    .bais { animation: bais 1.7s ease-in-out infinite; }
+    @keyframes defile { from { stroke-dashoffset:0; } to { stroke-dashoffset:-26; } }
+    @keyframes bais   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+    /* Filet conditionné à `print`, JAMAIS à `prefers-reduced-motion` : celle-ci
+       supprimait la démonstration à l'écran. */
+    @media print { .final { opacity:1 !important; } .flux, .bais { animation:none; } }
+  </style>
+
+  <defs>
+    <!-- bouteille vide + balance + afficheur : le décor identique des trois temps -->
+    <g id="socle">
+      <rect class="p" x="82" y="46" width="16" height="14" rx="2"/>
+      <path class="p" d="M62,70 a10,10 0 0 1 10,-10 h36 a10,10 0 0 1 10,10 v88 a8,8 0 0 1 -8,8 h-40 a8,8 0 0 1 -8,-8 z"/>
+      <rect class="bo" x="34" y="168" width="112" height="12" rx="3"/>
+      <rect class="bo" x="44" y="180" width="92" height="13" rx="3" style="fill:#ffffff"/>
+      <line class="p" x1="22" y1="195" x2="158" y2="195"/>
+      <path class="p" d="M136,186 C148,186 150,178 156,168"/>
+      <rect class="bo" x="152" y="112" width="102" height="54" rx="6"/>
+    </g>
+    <rect id="cadre" x="0" y="0" width="268" height="218" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+  </defs>
+
+  <rect width="900" height="466" fill="#ffffff"/>
+  <text class="t" x="30" y="32">La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu</text>
+
+  <!-- ================= 1 · AVANT ================= -->
+  <g transform="translate(30,52)">
+    <use href="#cadre"/>
+    <text class="st" x="16" y="28">1 · AVANT — on pèse</text>
+    <use href="#socle"/>
+    <rect x="64" y="78" width="52" height="86" rx="5" fill="#7fa9c9"/>
+    <text class="aff" x="203" y="147" text-anchor="middle">--,-- kg</text>
+    <text class="st" x="203" y="186" text-anchor="middle">pesée 1</text>
+    <text class="lg" x="203" y="204" text-anchor="middle">on la note</text>
+    <rect class="final br" x="148" y="108" width="110" height="62" rx="8" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="11.2s" fill="freeze"/>
+    </rect>
+  </g>
+
+  <!-- ================= 2 · PENDANT ================= -->
+  <g class="final" opacity="0" transform="translate(316,52)">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.2s" fill="freeze"/>
+    <use href="#cadre"/>
+    <text class="st" x="16" y="28">2 · PENDANT — le fluide passe</text>
+    <use href="#socle"/>
+    <!-- Base = ÉTAT FINAL (niveau bas) : sans animation, la vignette reste vraie.
+         UNE SEULE animation par attribut ; le palier « pleine » est une ÉTAPE.
+         Rallongé au contrôle 27/07 : 1,8 s pleine à l'écran, contre 0,41 s avant —
+         on voyait le niveau descendre sans avoir vu d'où il partait. -->
+    <rect x="64" y="120" width="52" height="44" rx="5" fill="#7fa9c9">
+      <animate attributeName="y"      values="78;78;120" keyTimes="0;0.444;1" dur="5.4s" begin="2.2s" fill="freeze"/>
+      <animate attributeName="height" values="86;86;44"  keyTimes="0;0.444;1" dur="5.4s" begin="2.2s" fill="freeze"/>
+    </rect>
+
+    <rect x="164" y="40" width="90" height="52" rx="6" fill="#f3f7fb" stroke="#1b3a63" stroke-width="2.6"/>
+    <text class="st" x="209" y="71" text-anchor="middle">installation</text>
+    <path class="p" d="M98,53 C124,50 138,66 164,66"/>
+    <path class="flux" d="M98,53 C124,50 138,66 164,66"/>
+    <path class="br" d="M156,60 l8,6 -8,6" style="stroke-width:4.4"/>
+
+    <path class="bais br" d="M167,126 v16 m-6,-6 l6,6 6,-6" style="stroke-width:3.4"/>
+    <text class="aff" x="212" y="147" text-anchor="middle">--,-- kg</text>
+    <text class="st" x="203" y="186" text-anchor="middle">la masse baisse</text>
+    <text class="lg" x="203" y="204" text-anchor="middle">on surveille</text>
+  </g>
+
+  <!-- ================= 3 · APRÈS ================= -->
+  <g class="final" opacity="0" transform="translate(602,52)">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="9.2s" fill="freeze"/>
+    <use href="#cadre"/>
+    <text class="st" x="16" y="28">3 · APRÈS — on pèse à nouveau</text>
+    <use href="#socle"/>
+    <rect x="64" y="120" width="52" height="44" rx="5" fill="#7fa9c9"/>
+    <text class="aff" x="203" y="147" text-anchor="middle">--,-- kg</text>
+    <text class="st" x="203" y="186" text-anchor="middle">pesée 2</text>
+    <text class="lg" x="203" y="204" text-anchor="middle">on la note</text>
+    <rect class="final br" x="148" y="108" width="110" height="62" rx="8" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="11.2s" fill="freeze"/>
+    </rect>
+  </g>
+
+  <!-- ================= L'ÉCART ================= -->
+  <path class="final br" opacity="0"
+        d="M233,284 v6 a6,6 0 0 0 6,6 h274 a6,6 0 0 1 6,6 a6,6 0 0 1 6,-6 h274 a6,6 0 0 0 6,-6 v-6">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="11.2s" fill="freeze"/>
+  </path>
+
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="13s" fill="freeze"/>
+    <text class="lgd" x="519" y="326" text-anchor="middle">la différence = la charge introduite</text>
+    <text class="lg"  x="519" y="348" text-anchor="middle">on relit l'afficheur, on soustrait : c'est la quantité réellement passée dans la machine</text>
+  </g>
+
+  <!-- ================= CE QU'ON EN FAIT ================= -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="14.8s" fill="freeze"/>
+    <rect x="30" y="362" width="840" height="84" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="lg" x="50" y="388"><tspan style="font-weight:700;fill:#1b3a63">Sur le registre :</tspan> toute quantité introduite ou récupérée se note — date, quantité, intervenant.</text>
+    <text class="lg" x="50" y="410">La balance dit <tspan style="font-weight:700;fill:#1b3a63">combien</tspan> ; le manomètre dit comment la machine se comporte. Une seule pesée ne donne qu'une estimation.</text>
+    <!-- Contrôle 27/07 : les vignettes ne montrent qu'un sens (la charge, donc une
+         balance qui perd) quand la ligne du dessus parle des deux. -->
+    <text class="lg" x="50" y="432">En <tspan style="font-weight:700;fill:#1b3a63">récupération</tspan>, même méthode dans l'autre sens : c'est la bouteille qui gagne. Dans les deux cas, deux pesées, jamais une.</text>
+  </g>
+</svg>

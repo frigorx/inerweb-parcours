@@ -1,0 +1,186 @@
+HABILITATION FLUIDE — LE CIRCUIT, ORGANE PAR ORGANE
+====================================================
+
+CONTENU
+-------
+Ce dossier contient un module d’auto-formation interactif destiné aux stagiaires
+frigoristes, avec une rédaction adaptée à un public FLE/DYS et à un niveau
+d’entrée bas.
+
+Le parcours comporte 12 slides courtes :
+1. Mission d’ouverture : identifier les quatre organes.
+2. Croix du frigoriste, sens de circulation et niveaux thermiques qualitatifs.
+3. Rôle du compresseur : aspirer, comprimer, refouler et mettre en mouvement.
+4. Compresseurs à piston, scroll et à vis.
+   - Trois boutons donnent accès à trois animations mécaniques distinctes.
+   - Chaque principe est expliqué en cinq points maximum.
+5. Condenseur : échange de chaleur avec l’air.
+   - L’air entre plus frais et ressort plus chaud.
+6. Condenseur : évolution du fluide frigorigène.
+   - Serpentin animé : désurchauffe sensible, liquéfaction latente, puis
+     sous-refroidissement sensible après la dernière bulle de vapeur.
+   - La circulation et la masse repère avancent automatiquement.
+   - La courbe qualitative est continue et synchronisée.
+7. Détendeur : chute de pression, dosage et technologies.
+8. Détendeur thermostatique : régulation de la surchauffe.
+   - Le symbole fourni est celui du détendeur thermostatique à égalisation
+     externe.
+   - L’animation d’archive réunit le détendeur, l’évaporateur, le bulbe, la
+     membrane, le pointeau et la circulation du fluide frigorigène.
+   - La boucle montre : surchauffe qui augmente, pression du bulbe qui monte,
+     ouverture du détendeur, augmentation du débit massique, puis diminution
+     de la surchauffe.
+   - La prise d’égalisation transmet sous la membrane la pression réelle en
+     sortie d’évaporateur afin de tenir compte des pertes de charge.
+9. Évaporateur : échange de chaleur avec l’air.
+   - L’air entre plus chaud et ressort plus froid.
+10. Évaporateur : évolution du fluide frigorigène.
+   - Serpentin animé : évaporation latente, puis surchauffe sensible après la
+     dernière goutte de liquide.
+   - La circulation et la masse repère avancent automatiquement.
+11. Exercice « Suivez le fluide ».
+   - Flèches animées : rouge après le compresseur, orange après le condenseur,
+     bleu après le détendeur et bleu ciel après l’évaporateur.
+   - Chaque couleur couvre les deux demi-tronçons compris entre la sortie d’un
+     organe et l’entrée de l’organe suivant. La couleur ne change jamais dans
+     un simple angle de tuyauterie.
+   - Repère fondamental : on suit une même masse de fluide, jamais un même
+     volume en cm³. En régime établi, le débit massique se conserve ; le volume
+     occupé, la masse volumique et le volume massique varient avec l’état.
+12. Défi final de 10 questions portant exclusivement sur le contenu observé.
+
+La séquence est une découverte du fonctionnement. Elle ne contient plus de
+module de diagnostic ou de dépannage.
+
+RÈGLE DE TERMINOLOGIE
+---------------------
+Toujours écrire et prononcer « fluide frigorigène ».
+Préciser l’état vapeur, liquide ou mélange lorsque cela est nécessaire.
+Les quatre définitions métier sont présentées dès la première étape, puis
+répétées dans les étapes détaillées, les dossiers et le résumé final.
+
+CHALEUR SENSIBLE ET CHALEUR LATENTE
+-----------------------------------
+Les animations du condenseur et de l’évaporateur prolongent directement le
+module précédent :
+- chaleur latente : changement d’état à température presque stable ;
+- chaleur sensible : variation de température sans changement d’état ;
+- surchauffe : zone vapeur après la dernière goutte de liquide ;
+- sous-refroidissement : zone liquide après la dernière bulle de vapeur.
+
+Les valeurs en kelvins ne sont pas un objectif de cette séquence. Elles seront
+introduites au moment des mesures. Ici, l’objectif est de reconnaître les zones
+et de comprendre leur fonction.
+
+COMPRESSEUR
+-----------
+Le compresseur aspire le fluide frigorigène en vapeur BP, le comprime, le
+refoule en vapeur HP et le met en mouvement. La création du débit massique est
+présentée comme une fonction fondamentale, et non comme un simple effet
+secondaire de la compression.
+
+Les animations interactives montrent :
+- piston : aspiration à la descente, compression et refoulement à la remontée ;
+- scroll : poches déplacées vers le centre et réduites par le mouvement orbital ;
+- vis : poches déplacées et réduites entre deux rotors hélicoïdaux.
+
+Le symbole général ne représente pas une technologie rotative. En l’absence de
+symbole rotatif fourni, aucun tracé approximatif n’est utilisé.
+La partie lubrification indique uniquement qu’une partie de l’huile peut être
+entraînée avec le fluide frigorigène et doit revenir au compresseur.
+
+La bibliothèque technologique comporte 10 dossiers :
+1. Compresseurs.
+2. Condenseur à air.
+3. Détendeur thermostatique à égalisation externe.
+4. Détendeur électronique.
+5. Tube capillaire.
+6. Évaporateur à air.
+7. Filtre déshydrateur.
+8. Voyant liquide.
+9. Pressostats HP et BP.
+10. Sonde de température.
+
+Chaque dossier associe :
+- une vue réaliste de l’organe isolé ;
+- le ou les symboles SVG normalisés fournis ;
+- plusieurs fiches de technologie ;
+- une fiche de réponse orale pour l’épreuve ;
+- une narration en français.
+
+FICHIERS
+--------
+- index.html : structure du module et bibliothèque des symboles SVG.
+- styles.css : thème clair, mise en page responsive et animations.
+- app.js : navigation, exercices, quiz et synthèse vocale.
+- images-organes/ : vues réalistes isolées des éléments frigorifiques.
+- animations/detendeur-regulation.svg : animation d’archive sur la régulation
+  de surchauffe par le détendeur thermostatique.
+
+LANCEMENT
+---------
+Ouvrir index.html dans un navigateur récent.
+Le module ne nécessite ni installation, ni connexion, ni bibliothèque externe.
+
+NARRATION
+---------
+La narration utilise la synthèse vocale intégrée au navigateur en français.
+Le module privilégie une voix Natural, Neural, Online ou Google lorsqu’elle est
+disponible. La vitesse peut être réglée de 0,75× à 1,25× et reste mémorisée
+dans le navigateur.
+
+RÈGLE DE LA CROIX
+-----------------
+Tous les schémas du module appliquent la disposition fixe :
+- Détendeur à gauche
+- Compresseur à droite
+- Condenseur en haut
+- Évaporateur en bas
+
+Le condenseur représenté est toujours un échangeur à air avec ventilateur.
+
+SYMBOLES MÉTIER
+---------------
+Les 13 symboles SVG intégrés à index.html reprennent les tracés fournis dans la
+bibliothèque inerWeb, sans redessin des organes ou des capteurs :
+- compresseur général, scroll, piston et vis
+- échangeur à air
+- détendeur thermostatique à égalisation externe et détendeur électronique
+- tube capillaire
+- filtre déshydrateur
+- voyant liquide
+- pressostats HP et BP
+- sonde de température
+
+ACCESSIBILITÉ
+-------------
+- Navigation possible au clavier.
+- Contrastes renforcés et grandes zones cliquables.
+- Consignes courtes et retours explicites.
+- Aucun contenu pédagogique n’est masqué par une préférence de mouvement réduit.
+- Tous les textes restent disponibles si la synthèse vocale est absente.
+
+DÉCOUPAGE ÉCRAN
+----------------
+Les notions longues sont séparées en slides distinctes : rôle, échange avec
+l’air, changement d’état et régulation. Sur les écrans de faible hauteur,
+l’en-tête de parcours est masqué pendant la lecture afin de conserver le
+contenu principal, l’animation et la navigation dans le même écran.
+
+IMAGES TECHNIQUES
+-----------------
+Les vues réalistes ont été générées avec l’outil d’image intégré, uniquement
+pour aider à reconnaître un organe isolé. Elles ne représentent jamais un
+circuit complet, un raccordement d’installation ou une documentation
+constructeur.
+
+Les prompts imposent, pour chaque vue :
+- un seul organe ou une famille d’organes physiquement séparés ;
+- un fond studio blanc ou crème ;
+- aucune tuyauterie d’installation ;
+- aucun manomètre, outil, technicien, logo ou texte ;
+- aucun assemblage frigorifique complet ;
+- des raccords limités aux sorties propres de l’organe.
+
+Les représentations schématiques utilisent exclusivement les 13 tracés SVG
+fournis par la bibliothèque de symboles inerWeb.

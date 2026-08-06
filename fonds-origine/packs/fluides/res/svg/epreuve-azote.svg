@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img"
+     aria-label="Montage d'une épreuve de pression : bouteille d'azote avec mano-détendeur, flexible vers le manifold, circuit à éprouver. Oxygène et air comprimé barrés.">
+  <title>L'épreuve de pression, à l'azote seul</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .l   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .s   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .k   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .sym { stroke:#33475b; stroke-width:1.6; fill:none; }
+    .box { fill:#fff; stroke:#33475b; stroke-width:2.2; }
+    .pipe{ stroke:#1b3a63; stroke-width:5; fill:none; stroke-linecap:round; }
+    .flux{ fill:none; stroke:#fff; stroke-opacity:.9; stroke-width:2.4; stroke-linecap:round;
+           stroke-dasharray:0.1 16; animation:flux 1.3s linear infinite; }
+    @keyframes flux { to { stroke-dashoffset:-16.1; } }
+    .non { stroke:#c9451a; stroke-width:4; stroke-linecap:round; }
+    @media print { .flux { animation:none; } }
+  </style>
+
+  <rect width="900" height="380" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">L'épreuve de pression : azote, et rien d'autre</text>
+
+  <!-- flexibles -->
+  <path class="pipe" d="M 160 160 L 160 130 L 330 130 L 330 160"/>
+  <path class="flux" d="M 160 160 L 160 130 L 330 130 L 330 160"/>
+  <path class="pipe" d="M 400 200 L 540 200"/>
+  <path class="flux" d="M 400 200 L 540 200"/>
+
+  <!-- bouteille d'azote -->
+  <g>
+    <rect class="box" x="120" y="170" width="80" height="130" rx="16" fill="#eef3f8"/>
+    <path class="sym" d="M 148 170 L 148 155 M 172 170 L 172 155 M 140 155 L 180 155"/>
+    <text class="l" x="160" y="252" text-anchor="middle">N₂</text>
+    <!-- mano-détendeur -->
+    <g transform="translate(160,142)" class="sym">
+      <circle cx="-14" cy="-6" r="9" fill="#fff"/>
+      <circle cx="10" cy="-6" r="9" fill="#fff"/>
+      <path d="M -14 -6 L -10 -11 M 10 -6 L 14 -11"/>
+    </g>
+    <text class="l" x="160" y="326" text-anchor="middle">Azote sec</text>
+    <text class="s" x="160" y="344" text-anchor="middle">avec mano-détendeur</text>
+  </g>
+
+  <!-- manifold -->
+  <g>
+    <g transform="translate(365,185)" class="sym">
+      <rect x="-42" y="-2" width="84" height="26" rx="5" fill="#fff" stroke-width="2.2"/>
+      <circle cx="-20" cy="-14" r="14" fill="#fff" stroke-width="2"/>
+      <circle cx="20" cy="-14" r="14" fill="#fff" stroke-width="2"/>
+      <path d="M -20 -14 L -14 -22 M 20 -14 L 26 -22"/>
+      <circle cx="-20" cy="12" r="5" fill="#fff"/>
+      <circle cx="20" cy="12" r="5" fill="#fff"/>
+    </g>
+    <text class="l" x="365" y="248" text-anchor="middle">Manifold</text>
+    <text class="s" x="365" y="266" text-anchor="middle">pression d'épreuve :</text>
+    <text class="s" x="365" y="283" text-anchor="middle">doc constructeur / norme</text>
+  </g>
+
+  <!-- circuit à éprouver -->
+  <g>
+    <rect class="box" x="540" y="140" width="200" height="120" rx="6"/>
+    <g transform="translate(640,200) scale(1.5)" class="sym" style="stroke-width:1.1">
+      <circle cx="40" cy="0" r="10" fill="#fff"/>
+      <path d="M 35 -9 L 48 -5 M 35 9 L 48 5"/>
+      <rect x="-52" y="-14" width="46" height="28" rx="2"/>
+      <path d="M -47 -5 L -12 -5 M -47 5 L -12 5"/>
+      <path d="M -6 -9 L 30 -9 M -6 9 L 30 9"/>
+    </g>
+    <text class="l" x="640" y="288" text-anchor="middle">Circuit à éprouver</text>
+    <text class="s" x="640" y="306" text-anchor="middle">sans fluide, vanne par vanne</text>
+  </g>
+
+  <!-- interdits -->
+  <g transform="translate(815,175)">
+    <rect x="-52" y="-45" width="112" height="150" rx="8" fill="#fff6f2" stroke="#ffc7ad" stroke-width="1.5"/>
+    <text class="k" x="4" y="-18" text-anchor="middle">JAMAIS</text>
+    <g>
+      <circle cx="-24" cy="12" r="14" fill="none" class="non" stroke-width="3"/>
+      <path class="non" d="M -34 22 L -14 2" stroke-width="3"/>
+      <text class="l" x="-2" y="18">O₂</text>
+    </g>
+    <g>
+      <circle cx="-24" cy="58" r="14" fill="none" class="non" stroke-width="3"/>
+      <path class="non" d="M -34 68 L -14 48" stroke-width="3"/>
+      <text class="l" x="-2" y="64">air</text>
+    </g>
+    <text class="s" x="4" y="94" text-anchor="middle">explosif + humide</text>
+  </g>
+
+  <text class="s" x="270" y="370" text-anchor="start">Oxygène sur circuit huilé = explosion. Air comprimé = humidité + oxygène. Le geste ne se discute pas.</text>
+</svg>

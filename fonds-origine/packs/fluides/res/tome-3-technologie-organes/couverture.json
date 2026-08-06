@@ -1,0 +1,49 @@
+{
+  "cours": "tome-3-technologie-organes",
+  "titre": "Tome 3 — la technologie des organes",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g6", "g7", "g8", "g9", "g9b"],
+  "ecrans": 112,
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, puis ÉLARGIE le 3 août.",
+    "Le 2, cinq codes étaient en appui et non en couverture, pour une raison",
+    "précise : 6.01, 7.01, 8.01, 9.01 et 1.05 exigent le principe de",
+    "fonctionnement ET les risques de fuite associés. Le mot « fuite »",
+    "n'apparaissait alors nulle part dans le module — compté, pas supposé.",
+    "Le 3 août, un septième écran a été ajouté à CHACUN des 16 organes :",
+    "« Où ça fuit » (adressable par `?ecran=6`), avec les points de fuite",
+    "propres à l'organe et la méthode de recherche, identique pour tous.",
+    "96 écrans deviennent 112. Les cinq codes passent donc en couverture.",
+    "Ce qui reste vrai : le module enseigne, il ne remplace ni le geste au",
+    "plateau ni la fiche de l'organe. Aucune valeur chiffrée n'y est donnée."
+  ],
+
+  "codes": {
+    "1.04": "fonction des principales composantes et transformations du fluide, organe par organe, chacun avec son symbole normalisé : compresseurs, condenseurs à air et à eau, évaporateurs à air et à eau, détendeurs",
+    "1.05": "fonctionnement élémentaire des organes annexes ET leur rôle dans la prévention et la détection des fuites — réservoir, filtre déshydrateur, voyant, électrovanne, clapet et vannes de service, bouteille anti-coup de liquide, séparateur d'huile, pressostats, sondes, régulateurs et soupapes : chacun a son écran « Où ça fuit »",
+    "6.01": "principe des quatre technologies de compression et risques de fuite du compresseur : raccords, vannes de service, traversées électriques, joint de carter, presse-étoupe d'arbre, et l'effet des vibrations sur une tuyauterie en contrainte",
+    "7.01": "principe du condenseur à air et à eau et risques de fuite associés : raccords et brasures, batterie exposée aux chocs et à la corrosion, vibrations du ventilateur, joints et brasures d'un échangeur à plaques",
+    "8.01": "principe de l'évaporateur et risques de fuite associés : batterie exposée, dégivrage mal conduit, corrosion par condensats stagnants, résistances de dégivrage",
+    "9.01": "principe du détendeur thermostatique, du détendeur électronique et du tube capillaire, et risques de fuite associés : raccords, capillaire du bulbe, prise d'égalisation, tige de réglage, points de frottement"
+  },
+
+  "appui": {},
+
+  "hors_referentiel": [
+    "cycle",
+    "liquid",
+    "protection",
+    "control"
+  ],
+
+  "a_faire": [
+    "Le contenu des seize écrans « Où ça fuit » est à faire relire par",
+    "F. Henninot : il est écrit à partir de ce que les fiches du pack",
+    "affirment déjà (g6 pour les points de fuite du compresseur, g4a pour la",
+    "méthode), sans aucune valeur chiffrée, mais c'est du contenu métier.",
+    "`circuit-organe-par-organe` garde volontairement ces codes en appui : un",
+    "code n'a pas besoin d'être tenu deux fois, et dupliquer ce contenu",
+    "reviendrait à corriger la même faute à deux endroits."
+  ]
+}

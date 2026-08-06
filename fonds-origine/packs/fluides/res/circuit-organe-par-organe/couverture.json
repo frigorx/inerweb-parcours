@@ -1,0 +1,39 @@
+{
+  "cours": "circuit-organe-par-organe",
+  "titre": "Le circuit, organe par organe",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g6", "g7", "g8", "g9"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup — et volontairement PRUDENTE.",
+    "Les fiches qui appellent ce cours portent 6.01, 7.01, 8.01 et 9.01. Ces quatre codes",
+    "demandent deux choses : « expliquer le principe de fonctionnement » ET « les risques",
+    "de fuite qui y sont associés ». Le cours tient la première ; la seconde n'apparaît que",
+    "deux fois dans tout le module — mesuré, pas supposé. Ces quatre codes sont donc en",
+    "APPUI, pas en couverture : ce sont les fiches d'organe qui les portent.",
+    "Déclarer l'inverse ferait croire à un auditeur que le point « fuite » est enseigné ici."
+  ],
+
+  "codes": {
+    "1.04": "fonction des principales composantes (compresseur, condenseur, détendeur, évaporateur) et transformations du fluide : la croix du frigoriste, les niveaux thermiques, désurchauffe/liquéfaction/sous-refroidissement, évaporation puis surchauffe, l'exercice « suivez le fluide »"
+  },
+
+  "appui": {
+    "6.01": "principe du compresseur — piston, scroll, vis, architectures, lubrification (sans le volet « risques de fuite »)",
+    "7.01": "principe du condenseur à air (sans le volet « risques de fuite »)",
+    "8.01": "principe de l'évaporateur (sans le volet « risques de fuite » ni le dégivrage)",
+    "9.01": "principe du détendeur thermostatique, du détendeur électronique et du capillaire (sans le volet « risques de fuite »)"
+  },
+
+  "hors_referentiel": [
+    "la bibliothèque des dix organes et le défi final de dix questions : ils vérifient ce qui précède sans rien ajouter"
+  ],
+
+  "a_faire": [
+    "Compléter le volet « risques de fuite » de chaque organe ferait passer 6.01, 7.01,",
+    "8.01 et 9.01 d'appui à couverture réelle. Quatre codes pour quatre paragraphes.",
+    "Les identifiants de dossier existent déjà (compresseurs, condenseur,",
+    "detendeur-thermostatique, detendeur-electronique, capillaire, evaporateur, filtre,",
+    "voyant, pressostats, sonde) : la déclaration pourra alors se faire écran par écran."
+  ]
+}

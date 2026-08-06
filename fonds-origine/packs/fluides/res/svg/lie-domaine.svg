@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img"
+     aria-label="Animation du domaine d'explosivité d'un gaz inflammable. Un curseur parcourt lentement l'axe des concentrations de gaz dans l'air. Il traverse d'abord la zone trop pauvre, où une étincelle ne déclenche rien. Quand il franchit la limite inférieure d'explosivité, le domaine d'explosivité s'illumine en rouge et une étincelle apparaît au sommet du curseur : c'est le moment dangereux. Le curseur franchit ensuite la limite supérieure et entre dans la zone trop riche, où il manque d'air pour entretenir la combustion. En dessous, l'échelle de l'explosimètre se remplit à mesure que le curseur avance, mais elle bute à cent pour cent de la limite inférieure et n'avance plus, alors que le curseur, lui, entre dans le domaine : l'échelle de l'appareil s'arrête exactement là où commence le danger, parce qu'elle affiche la marge qui reste et non la quantité de gaz. Son alarme, elle, se déclenche bien avant cette butée. L'appareil se règle pour un gaz donné : réglé pour un autre, il affiche un chiffre faux. Les valeurs de ces limites sont propres à chaque fluide et se lisent sur sa fiche de données de sécurité. Le R-290 utilisé en froid n'a aucune odeur : le nez n'avertit de rien.">
+  <title>LIE et LSE : le domaine d'explosivité, et ce qu'affiche l'explosimètre</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    /* Animation CYCLIQUE : le phénomène est permanent, le curseur repasse
+       indéfiniment sur l'axe. Valeurs de base = ÉTAT INSTRUCTIF (curseur
+       juste entré dans le domaine, domaine illuminé, aiguille à sa butée) :
+       sans animation — impression, capture — la planche reste juste.
+       Filet conditionné à `print` et à rien d'autre : conditionné au confort
+       visuel, il supprimait la démonstration à l'écran sur toute machine aux
+       effets d'animation désactivés. */
+    @media print { animate, animateTransform { display: none; } }
+  </style>
+
+  <rect width="880" height="340" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Un gaz ne brûle qu'entre deux bornes</text>
+
+  <!-- axe -->
+  <text class="lg" x="30" y="66">quantité de gaz dans l'air →</text>
+
+  <!-- zones -->
+  <rect x="60" y="80" width="220" height="52" rx="4" fill="#eef3f7" stroke="#c9d4de" stroke-width="1.5"/>
+  <rect x="280" y="80" width="300" height="52" fill="#fbdcd2" stroke="#c9451a" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;2;5;5;2;2"
+      keyTimes="0;0.28;0.32;0.70;0.75;1" dur="12s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="580" y="80" width="240" height="52" rx="4" fill="#eef3f7" stroke="#c9d4de" stroke-width="1.5"/>
+
+  <!-- AJOUT : le domaine s'illumine quand le curseur y entre. Voile posé AVANT
+       les textes, pour qu'ils restent au premier plan et lisibles à distance. -->
+  <rect x="280" y="80" width="300" height="52" fill="#c9451a" opacity="0.15">
+    <animate attributeName="opacity" values="0;0;0.15;0.15;0;0"
+      keyTimes="0;0.28;0.32;0.70;0.75;1" dur="12s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- AJOUT : LE CURSEUR. Il part de zéro, traverse « trop pauvre » sans que
+       rien n'arrive, entre dans le domaine — l'étincelle s'allume — puis
+       ressort en « trop riche ». Repos = juste entré dans le domaine.
+       Déclaré ICI, AVANT les libellés de zones : posé après, son trait
+       vertical barrait « DOMAINE D'EXPLOSIVITÉ » et « une étincelle suffit »
+       pendant toute la pause au centre du domaine (x=430 = centre exact de
+       ces deux textes). Les libellés se peignent maintenant par-dessus. -->
+  <g transform="translate(310,0)" opacity="1">
+    <animateTransform attributeName="transform" type="translate"
+      values="60,0;60,0;280,0;280,0;430,0;430,0;580,0;780,0;780,0;780,0"
+      keyTimes="0;0.083;0.300;0.383;0.517;0.617;0.717;0.833;0.942;1"
+      dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;1;0;0"
+      keyTimes="0;0.04;0.90;0.94;0.97;1" dur="12s" repeatCount="indefinite"/>
+    <g opacity="1">
+      <animate attributeName="opacity" values="0;0;1;0.3;1;0.3;1;0;0"
+        keyTimes="0;0.30;0.34;0.42;0.50;0.58;0.66;0.72;1"
+        dur="12s" repeatCount="indefinite"/>
+      <path class="acc" d="M0,49 v6 M0,67 v-6 M-9,58 h6 M9,58 h-6 M-6.4,51.6 l4.2,4.2 M6.4,64.4 l-4.2,-4.2 M-6.4,64.4 l4.2,-4.2 M6.4,51.6 l-4.2,4.2"/>
+    </g>
+    <line x1="0" y1="72" x2="0" y2="140" stroke="#1b3a63" stroke-width="3" stroke-linecap="round"/>
+    <path d="M0,140 l-10,13 h20 z" fill="#1b3a63"/>
+  </g>
+
+  <text class="st" x="170" y="104" text-anchor="middle">trop PAUVRE</text>
+  <text class="lg" x="170" y="123" text-anchor="middle">pas assez de gaz</text>
+
+  <text class="bad" x="430" y="104" text-anchor="middle">DOMAINE D'EXPLOSIVITÉ</text>
+  <text class="lg" x="430" y="123" text-anchor="middle" style="fill:#8a3312">une étincelle suffit</text>
+
+  <text class="st" x="700" y="104" text-anchor="middle">trop RICHE</text>
+  <text class="lg" x="700" y="123" text-anchor="middle">pas assez d'air</text>
+
+  <!-- bornes -->
+  <line class="acc" x1="280" y1="72" x2="280" y2="146"/>
+  <line class="acc" x1="580" y1="72" x2="580" y2="146"/>
+  <text class="bad" x="280" y="166" text-anchor="middle">LIE</text>
+  <text class="lg"  x="280" y="184" text-anchor="middle">limite inférieure</text>
+  <text class="bad" x="580" y="166" text-anchor="middle">LSE</text>
+  <text class="lg"  x="580" y="184" text-anchor="middle">limite supérieure</text>
+
+  <!-- échelle explosimètre -->
+  <line x1="60" y1="222" x2="280" y2="222" stroke="#1b3a63" stroke-width="2.5"/>
+  <path class="p" d="M60,216 v12 M280,216 v12"/>
+
+  <!-- AJOUT : l'aiguille. Elle monte avec le curseur tant qu'il reste sous la
+       LIE, puis S'ARRÊTE : l'échelle finit là où commence le domaine. -->
+  <g opacity="1">
+    <animate attributeName="opacity" values="0;1;1;1;0;0"
+      keyTimes="0;0.04;0.90;0.94;0.97;1" dur="12s" repeatCount="indefinite"/>
+    <line x1="60" y1="222" x2="280" y2="222" stroke="#ff6b35" stroke-width="5.5" stroke-linecap="round">
+      <animate attributeName="x2" values="60;60;280;280;280;280;280;280;280;280"
+        keyTimes="0;0.083;0.300;0.383;0.517;0.617;0.717;0.833;0.942;1"
+        dur="12s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- AJOUT : la butée, reliée à la LIE — la fin de l'échelle EST la LIE. -->
+  <g opacity="1">
+    <animate attributeName="opacity" values="0;0;1;1;0;0"
+      keyTimes="0;0.28;0.32;0.94;0.97;1" dur="12s" repeatCount="indefinite"/>
+    <line x1="280" y1="194" x2="280" y2="210" stroke="#c9451a" stroke-width="1.6" stroke-dasharray="4 4"/>
+    <line x1="280" y1="212" x2="280" y2="232" stroke="#c9451a" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <text class="st" x="66" y="244">0 % LIE</text>
+  <text class="st" x="274" y="244" text-anchor="end">100 % LIE</text>
+  <text class="st" x="170" y="212" text-anchor="middle">ce que mesure l'explosimètre</text>
+
+  <path class="acc" d="M300,222 h44 m-10,-6 l10,6 -10,6"/>
+  <text class="lg" x="356" y="218">L'appareil n'affiche pas « combien il y a de gaz ».</text>
+  <text class="lg" x="356" y="238">Il affiche <tspan style="font-weight:700;fill:#c9451a">la marge qui reste</tspan> avant le domaine d'explosivité.</text>
+  <text class="lg" x="356" y="258">Son alarme se déclenche donc bien <tspan style="font-weight:700">avant</tspan> le danger.</text>
+
+  <!-- bandeau -->
+  <rect x="30" y="278" width="820" height="46" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+  <text class="lg" x="48" y="298">Les valeurs de LIE et de LSE sont <tspan style="font-weight:700">propres à chaque fluide</tspan> : elles se lisent sur sa fiche de données de sécurité, jamais de mémoire.</text>
+  <!-- Cette ligne finissait à x≈858, au-delà du bord du bandeau (x=850) :
+       les derniers mots chevauchaient le cadre. Raccourcie, elle finit à 814. -->
+  <text class="lg" x="48" y="317">L'appareil se règle <tspan style="font-weight:700">pour un gaz donné</tspan> : réglé pour un autre, il affiche un chiffre faux. Le R-290 du froid est inodore — le nez n'avertit de rien.</text>
+</svg>

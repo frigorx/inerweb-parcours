@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Suite pratique de Mission 290 : parcours à embranchements pour ouvrir, remplacer, éprouver, tirer au vide, charger, contrôler et tracer sur un circuit hydrocarbure.">
+  <title>Intervenir sur un circuit hydrocarbure | Pilote Fluides</title>
+  <link rel="stylesheet" href="styles.css?v=20260802-2">
+  <link rel="stylesheet" href="impression.css?v=20260801-4" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-title">Aller au contenu de l’écran</a>
+  <header class="appbar">
+    <a class="brand" href="index.html" aria-label="Revenir au sommaire du cours"><span class="brand-mark" aria-hidden="true">F</span><span><strong>inerWeb Édu</strong><small>Pilote Fluides · Intervention hydrocarbure</small></span></a>
+    <div class="appbar-actions"><span class="mode-badge" id="mode-badge">Cours complet</span><button class="small-button" id="home-button" type="button" hidden>Sommaire</button><button class="small-button exit-button" id="exit-button" type="button" hidden>Quitter</button></div>
+  </header>
+  <main id="app">
+    <section class="home" id="home" aria-labelledby="home-title">
+      <div class="home-copy">
+        <p class="eyebrow">HABILITATION FLUIDES A1/A2 · FICHE G12B</p>
+        <h1 id="home-title">Après Mission 290<br><span>vous prenez les décisions</span></h1>
+        <p class="home-intro">Le circuit est récupéré et rempli d’azote. À chaque embranchement, un mauvais choix montre la conséquence, puis vous ramène au dernier point sûr.</p>
+        <div class="home-actions"><button class="primary-button" id="start-button" type="button">Commencer le parcours <span aria-hidden="true">→</span></button><span>27 écrans · 6 embranchements · 5 contrôles</span></div>
+      </div>
+      <figure class="home-visual"><img src="../bibliotheque/illu-g12b.webp" alt="Illustration éditoriale claire d’un technicien préparant une intervention sur un équipement au R-290."><figcaption>Un mauvais choix n’efface pas l’accident possible : il le rend visible, puis on recommence.</figcaption></figure>
+      <nav class="dossier-grid" id="dossier-grid" aria-label="Ouvrir directement un dossier"></nav>
+      <p class="home-note"><strong>Périmètre :</strong> ce cours entraîne l’ordre et les points d’arrêt. Le geste réel se fait sur un poste hydrocarbures dédié, avec la procédure du site et sous contrôle du formateur.</p>
+    </section>
+    <section class="course-shell" id="course-shell" hidden aria-label="Parcours interactif d’intervention hydrocarbures">
+      <aside class="course-rail"><div class="rail-heading"><span id="rail-mode">PARCOURS</span><strong id="rail-progress">1 / 27</strong></div><nav class="stepper" id="stepper" aria-label="Progression par dossier"></nav><div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div><p id="progress-copy">Début du parcours</p></aside>
+      <article class="lesson-card" aria-labelledby="lesson-title">
+        <header class="lesson-header"><div class="lesson-heading"><p class="eyebrow" id="lesson-kicker"></p><h2 id="lesson-title" tabindex="-1"></h2></div><div class="lesson-tools" aria-label="Outils de l’écran"><button class="tool-button" id="copy-link" type="button" aria-label="Copier le lien de cet écran"><span aria-hidden="true">🔗</span><span class="tool-label">Copier</span></button><div class="speed-control" aria-label="Vitesse de la voix"><button id="slower" type="button" aria-label="Ralentir la voix">−</button><span id="speed-value">0,95×</span><button id="faster" type="button" aria-label="Accélérer la voix">+</button></div><button class="tool-button voice-button" id="listen" type="button"><span aria-hidden="true">▶</span><span>Écouter</span></button><button class="tool-button" id="stop-voice" type="button" aria-label="Arrêter la voix" disabled><span aria-hidden="true">■</span><span class="tool-label">Arrêter</span></button></div></header>
+        <div class="lesson-content"><div class="lesson-copy"><p id="lesson-text"></p><p class="action-prompt" id="action-prompt"></p></div><section class="activity-zone" id="activity-zone" aria-label="Décision ou activité de l’écran"></section></div>
+        <footer class="lesson-footer"><button class="nav-button secondary" id="prev-button" type="button">← Précédent</button><div class="reference-box" id="reference-box"></div><button class="nav-button" id="next-button" type="button">Suivant →</button></footer><p class="status-message" id="status-message" role="status" aria-live="polite"></p>
+      </article>
+    </section>
+    <section class="print-book" id="print-book" aria-label="Version imprimable du cours"></section>
+  </main>
+  <script src="app.js?v=20260801-4"></script>
+  <script src="../../../../moteur/lisibilite.js?v=20260802-1"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img"
+     aria-label="Dans l'évaporateur, le fluide venu du détendeur bout : les gouttes de liquide rapetissent le long du tube et la dernière disparaît en un point marqué d'un repère. Au-delà, il n'y a plus que de la vapeur, dont la température remonte : ce qu'elle gagne encore dans l'évaporateur est la surchauffe utile, puisqu'elle a servi à refroidir le local ; ce qu'elle gagne ensuite dans la ligne d'aspiration s'y ajoute et forme la surchauffe totale. Deux accolades les montrent l'une après l'autre. La surchauffe se mesure toujours par différence : la pression au manomètre donne, par la table de saturation, la température d'évaporation ; la sonde de contact donne la température réelle du tube ; l'écart entre les deux est la surchauffe, en kelvins. Le passage du fluide se répète sans fin, le phénomène étant permanent.">
+  <title>Surchauffe utile et surchauffe totale : où elles se prennent, comment on les mesure</title>
+  <desc>Symboles de la bibliothèque inerWeb : détendeur thermostatique à égalisation
+        externe, échangeur à air, compresseur. Basse pression en bleu. Les instruments
+        ne sont pas dessinés sur le circuit : un manomètre se branche sur une vanne de
+        service, une sonde de contact se pose sur le tube.</desc>
+  <style>
+    .t      { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st     { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg     { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm     { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .organe { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .bad    { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .trait  { fill:none; stroke:#33475b; stroke-width:2.2; }
+    .fine   { fill:none; stroke:#33475b; stroke-width:1; stroke-dasharray:3 5; }
+    .pt     { fill:#33475b; }
+    .bp     { fill:none; stroke:#1b3a63; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc    { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash   { fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+    .vap    { fill:#ffffff; stroke:#7fa9c9; stroke-width:1.8; }
+    /* Filet conditionné à `print`, jamais au confort visuel : cette dernière
+       condition supprimait la démonstration à l'écran (incident du 27/07). À
+       l'impression les animate sont neutralisés, et les valeurs de base — état
+       représentatif : gouttes qui rapetissent jusqu'au repère, vapeur seule
+       au-delà — laissent une planche juste. Les blocs révélés une seule fois
+       (.final) sont forcés à leur état final. */
+    @media print {
+      animate { display: none; }
+      .final  { opacity: 1 !important; }
+    }
+  </style>
+
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text class="t" x="30" y="30">Deux surchauffes, une seule méthode de mesure</text>
+
+  <!-- tuyauteries BP -->
+  <path class="bp" d="M 100 150 L 152 150"/>
+  <path class="bp" d="M 388 150 L 706 150"/>
+
+  <!-- détendeur -->
+  <g transform="translate(78,150) scale(1.8)" stroke="#33475b" stroke-width="1.2" fill="none">
+    <circle cx="0" cy="-12" r="5.83" fill="#fff"/>
+    <path d="M 0 -18 L 0 -20"/>
+    <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0" fill="#fff"/>
+    <path d="M 0 0 L 0 -6 M 10 0 L 11 0 M -10 0 L -11 0"/>
+    <circle class="pt" cx="0" cy="-20" r="1.5" stroke="none"/>
+    <circle class="pt" cx="11" cy="0" r="1.5" stroke="none"/>
+    <circle class="pt" cx="-11" cy="0" r="1.5" stroke="none"/>
+  </g>
+  <text class="sm" x="78" y="202" text-anchor="middle">détendeur</text>
+
+  <!-- évaporateur -->
+  <g transform="translate(270,150)">
+    <rect x="-118" y="-32" width="236" height="64" rx="4" fill="#fff" stroke="#33475b" stroke-width="2.2"/>
+    <path class="fine" d="M -79 -32 L -79 32 M -39 -32 L -39 32 M 0 -32 L 0 32 M 39 -32 L 39 32 M 79 -32 L 79 32"/>
+    <path class="trait" d="M -118 0 L -118 -18 L 96 -18 A 9 9 0 0 1 96 0 L -96 0 A 9 9 0 0 0 -96 18 L 118 18 L 118 0"/>
+    <circle class="pt" cx="-118" cy="0" r="3.5"/>
+    <circle class="pt" cx="118" cy="0" r="3.5"/>
+  </g>
+  <text class="organe" x="270" y="96" text-anchor="middle">ÉVAPORATEUR</text>
+
+  <!-- compresseur -->
+  <g transform="translate(736,150) scale(1.9)" stroke="#33475b" stroke-width="1.2" fill="none">
+    <circle cx="0" cy="0" r="15" fill="#fff"/>
+    <path d="M -15 0 L -16 0 M 15 0 L 16 0"/>
+    <path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+    <circle class="pt" cx="-16" cy="0" r="1.5" stroke="none"/>
+    <circle class="pt" cx="16" cy="0" r="1.5" stroke="none"/>
+  </g>
+  <text class="sm" x="736" y="202" text-anchor="middle">compresseur</text>
+  <text class="sm" x="547" y="130" text-anchor="middle">ligne d'aspiration</text>
+
+  <!-- LE FLUIDE QUI BOUT. Chaque goutte sort du détendeur (x=102), avance à
+       31 px/s et s'éteint là où elle a fini de bouillir : les unes tôt, les
+       autres plus loin — c'est la raréfaction. Une seule par cycle atteint
+       x=320, LA DERNIÈRE GOUTTE, et le repère s'allume à cet instant (t=7 s
+       sur 12 s). Les valeurs de base sont l'état imprimé. -->
+  <g fill="#7fa9c9">
+    <circle cx="316" cy="150" r="1.8"><animate attributeName="cx" values="102;320;320" keyTimes="0;.583;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;6.6;3.3;0;0" keyTimes="0;.015;.35;.583;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="104" cy="150" r="6.9"><animate attributeName="cx" values="102;102;196;196" keyTimes="0;.1;.353;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;5.4;2.7;0;0" keyTimes="0;.1;.113;.25;.353;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="126" cy="150" r="6.6"><animate attributeName="cx" values="102;102;262;262" keyTimes="0;.2;.630;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;6.2;3.1;0;0" keyTimes="0;.2;.213;.46;.630;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="150" cy="150" r="6.2"><animate attributeName="cx" values="102;102;172;172" keyTimes="0;.3;.488;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;4.8;2.4;0;0" keyTimes="0;.3;.313;.41;.488;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="178" cy="150" r="5.7"><animate attributeName="cx" values="102;102;288;288" keyTimes="0;.4;.900;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;6.4;3.2;0;0" keyTimes="0;.4;.413;.70;.900;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="212" cy="150" r="5.0"><animate attributeName="cx" values="102;102;204;204" keyTimes="0;.52;.794;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;5.5;2.7;0;0" keyTimes="0;.52;.533;.68;.794;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="250" cy="150" r="4.1"><animate attributeName="cx" values="102;102;250;250" keyTimes="0;.6;.998;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;6.0;3.0;0;0" keyTimes="0;.6;.613;.84;.998;1" dur="12s" repeatCount="indefinite"/></circle>
+    <circle cx="288" cy="150" r="3.0"><animate attributeName="cx" values="102;102;170;170" keyTimes="0;.78;.963;1" dur="12s" repeatCount="indefinite"/><animate attributeName="r" values="0;0;4.6;2.3;0;0" keyTimes="0;.78;.793;.89;.963;1" dur="12s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- éclat au point de fin d'évaporation, à l'instant exact où la dernière
+       goutte s'éteint : cyclique comme le phénomène -->
+  <circle cx="320" cy="150" r="4" fill="none" stroke="#ff6b35" stroke-width="3" opacity="0">
+    <animate attributeName="r" values="4;4;22;22" keyTimes="0;.583;.667;1" dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0;.95;0;0" keyTimes="0;.583;.592;.667;1" dur="12s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- le point où la vaporisation s'achève -->
+  <text class="sm final" x="200" y="228" text-anchor="middle" opacity="0">liquide + vapeur : ça bout<animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.5s" fill="freeze"/></text>
+
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="7s" fill="freeze"/>
+    <path class="dash" d="M 320 100 L 320 250"/>
+    <circle cx="320" cy="150" r="6.5" fill="#ffffff"/>
+    <circle cx="320" cy="150" r="4.2" fill="#c9451a"/>
+    <text class="bad" x="330" y="228">la dernière goutte disparaît</text>
+  </g>
+
+  <!-- au-delà du repère : plus une goutte, de la vapeur seule qui s'échauffe -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="8.8s" fill="freeze"/>
+    <circle class="vap" cx="356" cy="150" r="3.4"><animate attributeName="cx" values="326;700" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.08;.88;1" dur="4s" repeatCount="indefinite"/></circle>
+    <circle class="vap" cx="450" cy="150" r="3.4"><animate attributeName="cx" values="326;700" dur="4s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.08;.88;1" dur="4s" begin="1s" repeatCount="indefinite"/></circle>
+    <circle class="vap" cx="544" cy="150" r="3.4"><animate attributeName="cx" values="326;700" dur="4s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.08;.88;1" dur="4s" begin="2s" repeatCount="indefinite"/></circle>
+    <circle class="vap" cx="638" cy="150" r="3.4"><animate attributeName="cx" values="326;700" dur="4s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.08;.88;1" dur="4s" begin="3s" repeatCount="indefinite"/></circle>
+    <text class="sm" x="532" y="228">vapeur seule : elle s'échauffe</text>
+  </g>
+
+  <!-- les deux surchauffes -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="10.6s" fill="freeze"/>
+    <path class="acc" d="M 320 272 L 388 272 m -8 -5 l 8 5 -8 5"/>
+    <path class="acc" d="M 320 266 L 320 278 M 388 266 L 388 278"/>
+    <text class="bad" x="354" y="296" text-anchor="middle">surchauffe UTILE</text>
+    <text class="sm"  x="354" y="314" text-anchor="middle">gagnée dans l'évaporateur :</text>
+    <text class="sm"  x="354" y="330" text-anchor="middle">elle a servi à refroidir le local</text>
+  </g>
+
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="13.2s" fill="freeze"/>
+    <path class="acc" d="M 320 354 L 706 354 m -8 -5 l 8 5 -8 5"/>
+    <path class="acc" d="M 320 348 L 320 360 M 706 348 L 706 360"/>
+    <text class="bad" x="513" y="378" text-anchor="middle">surchauffe TOTALE — jusqu'au compresseur</text>
+    <text class="sm"  x="513" y="396" text-anchor="middle">l'utile, plus ce que la ligne d'aspiration ajoute au passage</text>
+  </g>
+
+  <!-- la mesure -->
+  <g transform="translate(470,30)">
+    <rect x="0" y="0" width="400" height="76" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <text class="st" x="16" y="24" style="font-size:13px">La surchauffe est une DIFFÉRENCE, jamais une température</text>
+    <text class="sm" x="16" y="44">Manomètre → table de saturation → température d'évaporation.</text>
+    <text class="sm" x="16" y="62">Sonde sur le tube → température réelle. L'écart, en <tspan style="font-weight:700;fill:#c9451a">kelvins</tspan>.</text>
+  </g>
+
+  <text class="lg" x="30" y="424">Une surchauffe qui <tspan style="font-weight:700">tombe à zéro</tspan> annonce du liquide au compresseur ; une surchauffe qui <tspan style="font-weight:700">grimpe</tspan> annonce un évaporateur mal alimenté.</text>
+</svg>

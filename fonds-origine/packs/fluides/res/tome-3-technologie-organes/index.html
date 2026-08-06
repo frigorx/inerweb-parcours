@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Tome 3 interactif inerWeb Édu : reconnaître, situer et comprendre les organes d’un circuit frigorifique.">
+  <title>Tome 3 — Technologie des organes frigorifiques</title>
+  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="impression.css?v=1" media="print">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Retour au parcours complet">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span><strong>inerWeb Édu</strong><small>Tome 3 · Technologie des organes</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="tool-button" id="listen" type="button" aria-label="Écouter l’écran actuel">▶ <span>Écouter</span></button>
+      <button class="tool-button" id="pause" type="button" disabled aria-label="Mettre la voix en pause">Ⅱ <span>Pause</span></button>
+      <div class="rate-control" aria-label="Vitesse de la voix">
+        <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+        <output id="rate-label">0,95×</output>
+        <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+      </div>
+      <button class="tool-button" id="readability" type="button" aria-pressed="false" title="Agrandir le texte">Aa</button>
+      <button class="tool-button exit-button" id="exit-dossier" type="button" hidden>Quitter</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="home-view" id="home-view" aria-labelledby="page-title">
+      <div class="home-intro">
+        <div>
+          <p class="eyebrow">TOME 3 · RÉFÉRENTIEL DES COMPOSANTS</p>
+          <h1 id="page-title">Reconnaître, situer et comprendre <span>chaque organe</span></h1>
+          <p>Choisissez un dossier. Six écrans courts vous guident du composant réel jusqu’au montage et à la mémorisation.</p>
+        </div>
+        <aside class="progress-card" aria-label="Progression dans les dossiers">
+          <div class="progress-ring" id="progress-ring"><strong id="progress-count">0</strong><span>/ 16 acquis</span></div>
+          <p id="progress-message">Commencez par le cycle principal.</p>
+        </aside>
+      </div>
+
+      <div class="flow-legend" aria-label="Code couleur du fluide frigorigène">
+        <span class="flow flow-red"><i></i><b>Rouge</b> Vapeur HP très chaude</span>
+        <span class="flow flow-orange"><i></i><b>Orange</b> Liquide HP chaud à tiède</span>
+        <span class="flow flow-darkblue"><i></i><b>Bleu foncé</b> Mélange BP très froid</span>
+        <span class="flow flow-lightblue"><i></i><b>Bleu clair</b> Vapeur BP froide</span>
+      </div>
+
+      <nav class="family-tabs" id="family-tabs" aria-label="Familles d’organes"></nav>
+      <div class="dossier-grid" id="dossier-grid"></div>
+
+      <footer class="home-footer">
+        <p><b>Règle :</b> la couleur est toujours accompagnée de l’état du fluide, de la pression et d’une flèche.</p>
+        <a href="../index.html">← Retour au parcours complet</a>
+      </footer>
+    </section>
+
+    <section class="dossier-view" id="dossier-view" hidden aria-live="polite">
+      <aside class="dossier-rail">
+        <p class="eyebrow" id="rail-family">FAMILLE</p>
+        <h2 id="rail-title">Dossier</h2>
+        <div class="rail-progress" id="rail-progress" aria-label="Progression dans le dossier"></div>
+        <div class="rail-context" id="rail-context"></div>
+        <button class="rail-home" id="rail-home" type="button">← Tous les dossiers</button>
+      </aside>
+
+      <article class="screen-card">
+        <header class="screen-heading">
+          <div>
+            <p class="eyebrow" id="screen-kicker">ÉCRAN 1 SUR 7</p>
+            <h2 id="screen-title">Reconnaître</h2>
+          </div>
+          <div class="screen-state" id="screen-state" aria-live="polite"></div>
+        </header>
+
+        <div class="screen-content" id="screen-content"></div>
+        <p class="speech-warning" id="speech-warning" role="status" hidden>La synthèse vocale n’est pas disponible. Tout le contenu reste lisible à l’écran.</p>
+
+        <footer class="screen-nav">
+          <button class="secondary-button" id="previous" type="button">← Retour</button>
+          <span id="screen-count">1 / 7</span>
+          <button class="primary-button" id="next" type="button">Continuer →</button>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <noscript>Ce module nécessite JavaScript pour changer d’écran. Les fichiers restent entièrement locaux et ne transmettent aucune donnée.</noscript>
+  <script src="app.js?v=1"></script>
+</body>
+</html>

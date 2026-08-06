@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte d'identité du fluide</title>
+<style>
+  * { box-sizing:border-box; margin:0; }
+  body { font:15px Calibri,'Segoe UI',sans-serif; color:#33475b; background:#fff; padding:16px 18px; }
+  h2 { font-size:17px; color:#1b3a63; margin-bottom:2px; }
+  .sub { font-size:12.5px; color:#8494a4; margin-bottom:12px; }
+  label { display:block; font-weight:700; font-size:13px; color:#1b3a63; margin-bottom:4px; }
+  select, input[type=number] { font:inherit; padding:7px 10px; border:1.5px solid #c9d4de; border-radius:7px; background:#fff; color:#33475b; }
+  select:focus, input:focus { outline:2px solid #ff6b35; border-color:#ff6b35; }
+  .haut { display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; margin-bottom:12px; }
+  .badge { display:inline-block; font-weight:700; font-size:14px; padding:4px 14px; border-radius:999px; border:1.5px solid; }
+  .b-a1  { background:#e9f5ee; border-color:#bfe3cd; color:#1e6b40; }
+  .b-a2l { background:#fdf3e4; border-color:#f3d9a8; color:#8a5a00; }
+  .b-a2, .b-a3 { background:#fbe7e0; border-color:#f3bda8; color:#a33418; }
+  .b-b1, .b-b2l { background:#efe6f3; border-color:#d8c2e0; color:#6b3a80; }
+  .grille { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .tuile { flex:1 1 118px; background:#f5f8fb; border:1.5px solid #d7e0e8; border-radius:8px; padding:9px 12px; text-align:center; }
+  .tuile .v { font-size:19px; font-weight:700; color:#1b3a63; }
+  .tuile .u { font-size:12px; color:#8494a4; }
+  .desc { font-size:13.5px; color:#4a5b6e; margin:-4px 0 14px; }
+  .calc { background:#fff3e8; border:1.5px solid #ffc7ad; border-radius:10px; padding:12px 14px; }
+  .calc .titre { font-weight:700; color:#c9451a; font-size:14px; margin-bottom:8px; }
+  .calc .ligne { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .calc .res { font-size:19px; font-weight:700; color:#1b3a63; }
+  .note { font-size:11.5px; color:#8494a4; margin-top:10px; }
+</style>
+</head>
+<body>
+  <h2>La carte d'identité du fluide</h2>
+  <div class="sub">Avant de toucher au circuit : qui est ce fluide ? — données FRIGOLO.</div>
+
+  <div class="haut">
+    <div>
+      <label for="fluide">Fluide</label>
+      <select id="fluide"></select>
+    </div>
+    <div><span class="badge" id="classe">—</span></div>
+    <div style="font-size:13px;color:#4a5b6e" id="statut">—</div>
+  </div>
+  <div class="desc" id="desc"></div>
+
+  <div class="grille">
+    <div class="tuile"><div class="v" id="cat">—</div><div class="u">famille</div></div>
+    <div class="tuile"><div class="v" id="gwp">—</div><div class="u">PRP (GWP)</div></div>
+    <div class="tuile"><div class="v" id="glide">—</div><div class="u">glide</div></div>
+  </div>
+
+  <div class="calc">
+    <div class="titre">Et sur une vraie machine ?</div>
+    <div class="ligne">
+      <div>
+        <label for="charge">Charge (kg)</label>
+        <input type="number" id="charge" min="0" step="0.1" value="10" style="width:110px">
+      </div>
+      <div style="flex:1">
+        <div style="font-size:12.5px;color:#8a5a00">charge × PRP ÷ 1000 =</div>
+        <div class="res" id="teq">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">PRP : valeurs pédagogiques (FRIGOLO / Mission F-GAZ, selon le rapport d'évaluation la valeur varie) —
+  en intervention, le PRP se lit sur la fiche du fluide. Statut réglementaire indicatif.</div>
+
+<script src="fluides-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var F = window.FLUIDES;
+  var sel = document.getElementById("fluide");
+  var $ = function (id) { return document.getElementById(id); };
+
+  Object.keys(F).forEach(function (k) {
+    var o = document.createElement("option");
+    o.value = k; o.textContent = F[k].nom;
+    sel.appendChild(o);
+  });
+  sel.value = "R290";
+
+  function fr(x, d) { return x.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+  function maj() {
+    var f = F[sel.value];
+    var badge = $("classe");
+    badge.textContent = f.classe;
+    badge.className = "badge b-" + f.classe.toLowerCase();
+    $("statut").textContent = f.statut;
+    $("desc").textContent = (f.desc ? f.desc + " · " : "") + (f.compo || "");
+    $("cat").textContent = f.cat;
+    $("gwp").textContent = f.gwp.toLocaleString("fr-FR");
+    $("glide").textContent = f.glide > 0.5 ? fr(f.glide, 1) + " K" : "≈ 0";
+    calc();
+  }
+  function calc() {
+    var f = F[sel.value];
+    var kg = parseFloat($("charge").value);
+    $("teq").textContent = isNaN(kg) || kg < 0 ? "—"
+      : fr(kg * f.gwp / 1000, 2) + " t éq. CO₂";
+  }
+  sel.onchange = maj;
+  $("charge").oninput = calc;
+  maj();
+
+  /* annonce la hauteur réelle à la page hôte (iframe auto-ajustée) */
+  function annonceHauteur() {
+    try { parent.postMessage({ piloteOutilH: document.body.offsetHeight + 8 }, '*'); } catch (e) {}
+  }
+  window.addEventListener('load', annonceHauteur);
+  window.addEventListener('resize', annonceHauteur);
+  new MutationObserver(annonceHauteur).observe(document.body, { childList: true, subtree: true, attributes: true });
+})();
+</script>
+</body>
+</html>

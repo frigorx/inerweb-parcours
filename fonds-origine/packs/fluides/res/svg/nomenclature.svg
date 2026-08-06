@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 510" role="img"
+     aria-label="Décoder un code fluide, chiffre par chiffre. Animation : dans R-134a, chaque chiffre s'allume à son tour et sa règle apparaît en même temps — centaines plus un égale les atomes de carbone, dizaines moins un l'hydrogène, unités le fluor, la lettre minuscule finale l'isomère. La formule C2H2F4 se compose à la fin, puis l'astuce du plus 90. En bas, les séries R-4xx, R-5xx, R-6xx et R-7xx restent affichées en permanence.">
+  <title>Décoder un code fluide, chiffre par chiffre</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    /* Le gros code revient à Calibri : la charte n'autorise que Calibri et
+       Segoe UI, et les cases sont calées sur ses chiffres (hauteur 41 px
+       au-dessus de la ligne de base, à 64 px de corps). */
+    .kod { font:700 64px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .res { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .fl  { stroke:#ff6b35; stroke-width:2.5; fill:none; }
+    .cell{ fill:#f3f7fb; stroke:#c9d4de; stroke-width:1.5; }
+    /* Fond NEUTRE pour les cases : le rose et le vert de la charte disent
+       ailleurs l'interdit et le geste juste, un chiffre n'est ni l'un ni
+       l'autre. Le codage passe par la bordure et par le chiffre. */
+    .box { fill:#e8eef4; stroke-width:2.5; }
+    /* Le code est lisible dès la 1re seconde, ses chiffres seulement en
+       attente ; chacun s'allume à son tour avec SA règle, et le repos montre
+       tout. Filet sur `print`, JAMAIS sur `prefers-reduced-motion` — motif
+       dans build/planches.mjs : .final rend la planche imprimée complète. */
+    @media print { .final { opacity: 1 !important; } }
+  </style>
+
+  <rect width="900" height="510" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">Le code dit la molécule</text>
+
+  <!-- ===== décodage R-134a ===== -->
+  <g transform="translate(70,80)">
+    <defs><marker id="fo2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ff6b35"/></marker></defs>
+
+    <!-- les trois cases + la lettre : elles s'allument l'une après l'autre -->
+    <rect class="box final" opacity="0" x="69" y="10" width="38" height="56" rx="8" stroke="#c9451a">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.2s" fill="freeze"/></rect>
+    <rect class="box final" opacity="0" x="109" y="10" width="38" height="56" rx="8" stroke="#2f7a4f">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.6s" fill="freeze"/></rect>
+    <rect class="box final" opacity="0" x="149" y="10" width="38" height="56" rx="8" stroke="#1b3a63">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="6s" fill="freeze"/></rect>
+    <rect class="final" opacity="0" x="189" y="34" width="32" height="32" rx="8" fill="#f3f7fb" stroke="#8aa0b4" stroke-width="2.5">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.4s" fill="freeze"/></rect>
+
+    <text class="kod" x="0" y="60">R-</text>
+    <text class="kod final" x="72" y="60" fill="#c9451a" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.5s" begin="1.2s" fill="freeze"/>1</text>
+    <text class="kod final" x="112" y="60" fill="#2f7a4f" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.5s" begin="3.6s" fill="freeze"/>3</text>
+    <text class="kod final" x="152" y="60" fill="#1b3a63" opacity="0.4"><animate attributeName="opacity" values="0.4;1" dur="0.5s" begin="6s" fill="freeze"/>4</text>
+    <text class="kod final" x="195" y="60" fill="#4a5b6e" opacity="0.4" style="font-size:40px"><animate attributeName="opacity" values="0.4;1" dur="0.5s" begin="8.4s" fill="freeze"/>a</text>
+
+    <path class="fl final" opacity="0" d="M 90 75 L 90 105" marker-end="url(#fo2)">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.4s" fill="freeze"/></path>
+    <path class="fl final" opacity="0" d="M 130 75 L 130 150" marker-end="url(#fo2)">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.8s" fill="freeze"/></path>
+    <path class="fl final" opacity="0" d="M 170 75 L 170 195" marker-end="url(#fo2)">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="6.2s" fill="freeze"/></path>
+
+    <text class="st final" x="210" y="118" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="1.6s" fill="freeze"/><tspan fill="#c9451a">centaines + 1</tspan> = atomes de <tspan fill="#c9451a">carbone</tspan> → C = 2</text>
+    <text class="st final" x="210" y="163" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="4s" fill="freeze"/><tspan fill="#2f7a4f">dizaines − 1</tspan> = atomes d'<tspan fill="#2f7a4f">hydrogène</tspan> → H = 2</text>
+    <text class="st final" x="210" y="208" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="6.4s" fill="freeze"/><tspan fill="#1b3a63">unités</tspan> = atomes de <tspan fill="#1b3a63">fluor</tspan> → F = 4</text>
+    <text class="lg final" x="210" y="232" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.6s" begin="8.6s" fill="freeze"/>la lettre minuscule (a) = l'isomère : même formule, arrangement différent</text>
+
+    <!-- la formule se compose : chaque groupe garde la couleur de son chiffre -->
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.7s" begin="10.8s" fill="freeze"/>
+      <text class="res" x="0" y="150">= <tspan fill="#c9451a">C₂</tspan><tspan fill="#2f7a4f">H₂</tspan><tspan fill="#1b3a63">F₄</tspan></text>
+      <text class="lg" x="0" y="174">tétrafluoroéthane :</text>
+      <text class="lg" x="0" y="192">zéro chlore → HFC</text>
+    </g>
+  </g>
+
+  <!-- astuce +90 : elle n'arrive qu'APRÈS la règle, jamais à sa place -->
+  <g transform="translate(660,88)" class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="13.2s" fill="freeze"/>
+    <rect x="-24" y="-26" width="230" height="150" rx="10" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="bad" x="91" y="0" text-anchor="middle">L'astuce du + 90</text>
+    <text class="lg" x="91" y="26" text-anchor="middle">code + 90 → on lit C H F</text>
+    <text class="st" x="91" y="52" text-anchor="middle">134 + 90 = <tspan fill="#c9451a">2</tspan><tspan fill="#2f7a4f">2</tspan><tspan fill="#1b3a63">4</tspan> → C₂H₂F₄</text>
+    <text class="st" x="91" y="76" text-anchor="middle">22 + 90 = <tspan fill="#c9451a">1</tspan><tspan fill="#2f7a4f">1</tspan><tspan fill="#1b3a63">2</tspan> → CHClF₂</text>
+    <text class="lg" x="91" y="100" text-anchor="middle">les liaisons restantes sont du chlore</text>
+  </g>
+
+  <!-- ===== les séries ===== (permanentes : elles ne dépendent pas du décodage) -->
+  <text class="t" x="40" y="356">Et les numéros à trois chiffres qui commencent par 4, 5, 6, 7 ?</text>
+  <g transform="translate(40,376)">
+    <rect class="cell" x="0" width="196" height="96" rx="10"/>
+    <text class="st" x="98" y="26" text-anchor="middle">R-4xx</text>
+    <text class="lg" x="98" y="48" text-anchor="middle">mélanges zéotropes</text>
+    <text class="lg" x="98" y="66" text-anchor="middle">R-404A · R-407C · R-410A</text>
+    <text class="lg" x="98" y="84" text-anchor="middle">majuscule = les proportions</text>
+
+    <rect class="cell" x="208" width="196" height="96" rx="10"/>
+    <text class="st" x="306" y="26" text-anchor="middle">R-5xx</text>
+    <text class="lg" x="306" y="48" text-anchor="middle">mélanges azéotropes</text>
+    <text class="lg" x="306" y="66" text-anchor="middle">R-507A</text>
+    <text class="lg" x="306" y="84" text-anchor="middle">se comportent en corps pur</text>
+
+    <rect class="cell" x="416" width="196" height="96" rx="10"/>
+    <text class="st" x="514" y="26" text-anchor="middle">R-6xx</text>
+    <text class="lg" x="514" y="48" text-anchor="middle">organiques divers</text>
+    <text class="lg" x="514" y="66" text-anchor="middle">R-600a (isobutane)</text>
+    <text class="lg" x="514" y="84" text-anchor="middle">frigos domestiques</text>
+
+    <rect class="cell" x="624" width="196" height="96" rx="10"/>
+    <text class="st" x="722" y="26" text-anchor="middle">R-7xx</text>
+    <text class="lg" x="722" y="48" text-anchor="middle">inorganiques : 7 + masse molaire</text>
+    <text class="lg" x="722" y="66" text-anchor="middle">R-717 = NH₃ (17 g/mol)</text>
+    <text class="lg" x="722" y="84" text-anchor="middle">R-744 = CO₂ (44 g/mol)</text>
+  </g>
+</svg>

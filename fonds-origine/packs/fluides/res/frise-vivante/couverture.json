@@ -1,0 +1,30 @@
+{
+  "cours": "frise-vivante",
+  "titre": "La frise vivante — de l’invention des CFC au règlement F-Gas",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["c00"],
+  "ecrans": 10,
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. Particularité de ce module : il est",
+    "appelé depuis l'ACCUEIL (c00), qui ne porte aucun code — le compteur du registre ne",
+    "bougera donc pas, et c'est normal. La déclaration ci-dessous n'est pas là pour un",
+    "compteur : elle est là pour qu'un auditeur qui demande « où enseignez-vous le",
+    "protocole de Montréal ? » trouve une réponse."
+  ],
+
+  "codes": {
+    "2.01": "politique de l'UE et politique internationale sur le climat : le protocole de Montréal, le protocole de Kyoto, l'accord de Paris, l'encadrement des HFC puis le règlement F-Gas (UE) 2024/573 — une scène par étape, dans l'ordre"
+  },
+
+  "appui": {
+    "2.02": "la frise fait apparaître pourquoi le PRP est devenu le critère de décision ; elle ne définit ni ne calcule le PRP, c'est la fiche qui le fait"
+  },
+
+  "hors_referentiel": [
+    "L’invention des CFC",
+    "L’hypothèse de Molina et Rowland",
+    "La découverte du trou d’ozone",
+    "Le choix des fluides naturels"
+  ]
+}

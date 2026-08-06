@@ -1,0 +1,27 @@
+{
+  "cours": "chaleur-interactive",
+  "titre": "Du glaçon au circuit — chaleur sensible et chaleur latente",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "appelé_depuis": ["g1s"],
+
+  "_lire_avant_de_compter": [
+    "Couverture déclarée le 2 août 2026, après coup. Elle porte sur le cours entier :",
+    "les écrans n'ont pas d'identifiant stable dans le code.",
+    "Ce cours enseigne le PALIER de changement d'état — la notion que « surchauffe » et",
+    "« sous-refroidissement » supposent connue. Il ne traite ni les organes en détail,",
+    "ni la lecture des tables : c'est le rôle de `circuit-organe-par-organe` et de",
+    "`pression-temperature-interactive`."
+  ],
+
+  "codes": {
+    "1.02": "théorie élémentaire : température ≠ quantité d'énergie, courbe en escalier du glaçon à la vapeur, chaleur sensible et chaleur latente, sens donné à surchauffe et sous-refroidissement"
+  },
+
+  "appui": {
+    "1.04": "le voyage de l'énergie fait apparaître le rôle des quatre organes, sans les décrire comme le fait la fiche d'organe"
+  },
+
+  "hors_referentiel": [
+    "les trois scènes de la vie courante qui ouvrent le cours (mise en situation)"
+  ]
+}

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 466" role="img"
+     aria-label="Deux règles verticales graduées côte à côte. À gauche l'échelle relative, celle du manomètre : son zéro est la pression atmosphérique. À droite l'échelle absolue, celle des tables : son zéro est le vide absolu, une graduation plus bas. Les deux échelles sont décalées d'exactement une graduation, soit un bar. À gauche est dessiné un manomètre, aiguille sur zéro : à zéro relatif, il y a déjà un bar absolu. L'animation fait monter un curseur le long des deux échelles à la fois : les deux colonnes de lecture montent ensemble, celle de l'échelle absolue gardant toujours en pied le bar supplémentaire, en orange. Oublier ce bar fausse toute lecture de température de saturation.">
+  <title>Pression absolue et pression relative : deux échelles décalées de 1 bar</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    /* Le curseur EST la démonstration : on ne le masque pas, on neutralise les
+       animations à l'impression. Valeurs de base = lecture parlante (colonnes à
+       mi-hauteur) : figée, la planche reste juste. Jamais prefers-reduced-motion,
+       qui supprimait la démonstration à l'écran (effets Windows désactivés). */
+    @media print { animate, animateTransform { display: none; } }
+  </style>
+
+  <rect width="900" height="466" fill="#ffffff"/>
+  <text class="t" x="30" y="30">Pression absolue et pression relative : deux échelles décalées de 1 bar</text>
+
+  <rect x="26" y="44" width="848" height="312" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+
+  <text class="st" x="340" y="66" text-anchor="middle">ÉCHELLE RELATIVE</text>
+  <text class="lg" x="340" y="84" text-anchor="middle">ce que lit le manomètre</text>
+  <text class="st" x="560" y="66" text-anchor="middle">ÉCHELLE ABSOLUE</text>
+  <text class="lg" x="560" y="84" text-anchor="middle">ce que donnent les tables</text>
+
+  <!-- correspondances : une même hauteur = une même pression -->
+  <line x1="368" y1="142" x2="540" y2="142" stroke="#8aa0b4" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <line x1="368" y1="184" x2="540" y2="184" stroke="#8aa0b4" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <line x1="368" y1="226" x2="540" y2="226" stroke="#8aa0b4" stroke-width="1.6" stroke-dasharray="5 5"/>
+
+  <!-- colonnes de lecture : elles montent ensemble -->
+  <rect x="340" y="184" width="24" height="84" fill="#7fa9c9" fill-opacity="0.75">
+    <animate attributeName="y" values="268;268;142;142;268;268" keyTimes="0;0.1;0.42;0.56;0.88;1" dur="14s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="0;0;126;126;0;0" keyTimes="0;0.1;0.42;0.56;0.88;1" dur="14s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="560" y="184" width="24" height="84" fill="#7fa9c9" fill-opacity="0.75">
+    <animate attributeName="y" values="268;268;142;142;268;268" keyTimes="0;0.1;0.42;0.56;0.88;1" dur="14s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="0;0;126;126;0;0" keyTimes="0;0.1;0.42;0.56;0.88;1" dur="14s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- le bar que le manomètre ne voit pas : jamais animé -->
+  <rect x="560" y="268" width="24" height="42" fill="#ff6b35" fill-opacity="0.45" stroke="#ff6b35" stroke-width="2"/>
+  <path d="M592,268 h7 v42 h-7" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <text x="606" y="293" style="font:700 14px Calibri,Segoe UI,sans-serif;fill:#ff6b35">1 bar</text>
+
+  <!-- règle RELATIVE -->
+  <path class="p" d="M340,268 V118 m-6,11 l6,-11 6,11"/>
+  <line x1="340" y1="268" x2="340" y2="310" stroke="#8aa0b4" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="324" y1="226" x2="340" y2="226" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="324" y1="184" x2="340" y2="184" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="324" y1="142" x2="340" y2="142" stroke="#1b3a63" stroke-width="2.2"/>
+  <text class="st" x="318" y="264" text-anchor="end">0 du manomètre</text>
+  <text class="lg" x="318" y="284" text-anchor="end">= l'atmosphère</text>
+  <text class="lg" x="318" y="306" text-anchor="end" fill="#8aa0b4">en dessous : dépression</text>
+
+  <!-- règle ABSOLUE -->
+  <path class="p" d="M560,310 V118 m-6,11 l6,-11 6,11"/>
+  <line x1="544" y1="268" x2="560" y2="268" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="544" y1="226" x2="560" y2="226" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="544" y1="184" x2="560" y2="184" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="544" y1="142" x2="560" y2="142" stroke="#1b3a63" stroke-width="2.2"/>
+  <line x1="538" y1="310" x2="584" y2="310" stroke="#1b3a63" stroke-width="3.2" stroke-linecap="round"/>
+  <text class="st" x="560" y="330" text-anchor="middle">0 · le vide absolu</text>
+  <text class="lg" x="430" y="350" text-anchor="middle" fill="#8aa0b4">une graduation = 1 bar</text>
+
+  <!-- manomètre, aiguille sur zéro -->
+  <circle class="p" cx="110" cy="168" r="58"/>
+  <path d="M66.7,193 A50,50 0 1 1 153.3,193" fill="none" stroke="#8aa0b4" stroke-width="2"/>
+  <path d="M66.7,193 L73.6,189 M60.8,159.3 L68.6,160.7 M77.9,129.7 L83.0,135.8 M110,118 L110,126 M142.1,129.7 L137.0,135.8 M159.2,159.3 L151.4,160.7 M153.3,193 L146.4,189"
+        fill="none" stroke="#1b3a63" stroke-width="2"/>
+  <line x1="110" y1="168" x2="77.1" y2="187" stroke="#c9451a" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="110" cy="168" r="4.5" fill="#1b3a63"/>
+  <text x="46" y="203" text-anchor="middle" style="font:700 15px Calibri,Segoe UI,sans-serif;fill:#c9451a">0</text>
+  <path class="p" d="M100,224 v16 h20 v-16"/>
+  <text class="st" x="110" y="258" text-anchor="middle">manomètre à zéro</text>
+  <text class="bad" x="110" y="280" text-anchor="middle">= déjà 1 bar absolu</text>
+
+  <rect x="650" y="104" width="216" height="208" rx="8" fill="#ffffff" stroke="#c9d4de" stroke-width="1.5"/>
+  <text class="st" x="668" y="130">Ce que montre l'animation</text>
+  <circle cx="676" cy="158" r="4" fill="#ff6b35"/>
+  <text class="lg" x="690" y="162">Le curseur monte : les</text>
+  <text class="lg" x="690" y="180">deux lectures montent</text>
+  <text class="lg" x="690" y="198">exactement ensemble.</text>
+  <circle cx="676" cy="224" r="4" fill="#ff6b35"/>
+  <text class="lg" x="690" y="228">Le même écart d'un bar</text>
+  <text class="lg" x="690" y="246">à toute pression.</text>
+  <circle cx="676" cy="272" r="4" fill="#ff6b35"/>
+  <text class="lg" x="690" y="276">Manomètre à zéro : il</text>
+  <text class="lg" x="690" y="294">reste 1 bar absolu.</text>
+
+  <!-- curseur : il balaie les deux échelles d'un seul mouvement -->
+  <g>
+    <animateTransform attributeName="transform" type="translate"
+      values="0,84;0,84;0,-42;0,-42;0,84;0,84" keyTimes="0;0.1;0.42;0.56;0.88;1"
+      dur="14s" repeatCount="indefinite"/>
+    <rect x="368" y="160" width="172" height="21" fill="#f7fafc"/>
+    <text class="st" x="452" y="176" text-anchor="middle">la même pression réelle</text>
+    <line x1="320" y1="184" x2="590" y2="184" stroke="#c9451a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="340" cy="184" r="5.5" fill="#c9451a"/>
+    <circle cx="560" cy="184" r="5.5" fill="#c9451a"/>
+  </g>
+
+  <!-- LA LIGNE CLÉ (zéro manomètre = 1 bar absolu), tracée APRÈS le curseur :
+       le curseur s'arrête dessus trois secondes, c'est le temps fort, et son
+       trait rouge la recouvrirait si elle passait dessous. -->
+  <line x1="318" y1="268" x2="364" y2="268" stroke="#ff6b35" stroke-width="3.2" stroke-linecap="round"/>
+  <line x1="340" y1="268" x2="586" y2="268" stroke="#ff6b35" stroke-width="2.4" stroke-dasharray="7 5"/>
+  <path d="M578,263 l7,5 -7,5" fill="none" stroke="#ff6b35" stroke-width="2.4"/>
+
+  <rect x="26" y="364" width="848" height="92" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+  <rect x="40" y="374" width="252" height="76" rx="6" fill="#ffffff" stroke="#e8b9a8" stroke-width="1.5"/>
+  <text class="lg" x="166" y="398" text-anchor="middle">à retenir</text>
+  <text class="st" x="166" y="422" text-anchor="middle">P absolue ≈ P relative + 1 bar</text>
+  <text class="lg" x="166" y="442" text-anchor="middle">quelle que soit la pression</text>
+  <text class="bad" x="308" y="388">Le piège : les tables et le manomètre ne parlent pas la même langue</text>
+  <text class="lg" x="308" y="410">Les tables de saturation se lisent en pression ABSOLUE ; le manomètre affiche du RELATIF.</text>
+  <text class="lg" x="308" y="429">Oublier le + 1 bar fausse toute lecture de température de saturation :</text>
+  <text class="lg" x="308" y="448">on se trompe de plusieurs kelvins, et on cherche une fuite qui n'existe pas.</text>
+</svg>

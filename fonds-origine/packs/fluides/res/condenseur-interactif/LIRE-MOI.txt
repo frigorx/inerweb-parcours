@@ -1,0 +1,115 @@
+CONDENSEUR — INSTALLER, RÉGLER, VÉRIFIER
+========================================
+
+Cours interactif autonome pour la fiche g7b.
+Racine travaillée : C:\git\pilote-fluides
+
+INTENTION PÉDAGOGIQUE
+---------------------
+
+Le cours rend visible le lien demandé par le formateur :
+
+  batterie grise → débit d’air réduit → chaleur moins bien rejetée
+  → température et pression de condensation qui tendent à monter.
+
+Cette chaîne sert de premier raisonnement, pas de diagnostic unique. Une haute
+pression anormale impose aussi de vérifier le ventilateur, le passage de l’air,
+le recyclage de l’air chaud, l’ambiance, la régulation et les autres causes
+prévues par la procédure avant de modifier la charge.
+
+LE PARCOURS
+-----------
+
+- 24 écrans courts, sans défilement, dans 5 dossiers : Observer, Installer,
+  Régler, Vérifier et Tracer.
+- Interaction centrale : encrasser progressivement une batterie, arrêter le
+  ventilateur et voir réagir une indication QUALITATIVE de pression.
+- Installation : dégagements de notice, support, conduites sans contrainte,
+  vibrations, accès aux organes de réglage et de sécurité.
+- Régulation : distinguer le régulateur de pression du pressostat HP ; toute
+  valeur et toute méthode de réglage viennent de la notice.
+- Vérification : consignation, inspection des conduites de refoulement et de
+  liquide, démarrage, mesures contextualisées, arrêt, nettoyage et nouvelle
+  mesure.
+- Rapport : séparer fait observé, mesure avec conditions, action, anomalie
+  restante et suite demandée.
+- Contrôle final distribué sur 5 questions. Le score n’est ni une habilitation
+  ni une validation du geste sur plateau.
+
+CE QUE CE COURS REMPLACE
+------------------------
+
+Fiche g7b : les paragraphes sur la place et l’installation du condenseur, ainsi
+que les encadrés « Bien installer l’unité extérieure », « Régler le régulateur
+de pression », « Un régulateur ne coupe rien », « Avant de toucher aux
+conduites », « Rédiger le rapport d’état » et « Entretenir pour économiser
+l’énergie » sont traités ici par observation, choix et correction. Ils restent
+disponibles en lecture, mais n’ont plus à être projetés ni lus intégralement en
+séance.
+
+Le nom commercial « KVR » et le développement métier signalé « À FAIRE
+VALIDER » dans les notes de g7b ne sont PAS déclarés remplacés. Le cours emploie
+le nom fonctionnel exact du référentiel et ne donne aucune consigne chiffrée.
+
+Le repère de sous-refroidissement 4 à 8 K reste dans la fiche écrite. Le cours
+se concentre sur la méthode de mesure contextualisée et le lien air/pression.
+
+COUVERTURE DU RÉFÉRENTIEL
+-------------------------
+
+Codes traités : 7.02 · 7.03 · 7.05 · 7.07 · 7.09 · 7.10.
+Le détail écran par écran est dans couverture.json. Les deux écrans de contexte
+sont explicitement séparés de la preuve de couverture.
+
+ADRESSAGE
+---------
+
+index.html
+  Ouvre le sommaire du cours complet.
+
+index.html?dossier=observer
+  Ouvre le premier écran du dossier « Observer ».
+
+index.html?dossier=verifier&ecran=4
+  Ouvre le quatrième écran du dossier « Vérifier ».
+
+index.html?extrait=encrassement-progressif
+  Ouvre uniquement l’interaction batterie/pression.
+
+index.html?extrait=encrassement-progressif,lien-haute-pression,quiz-diagnostic
+  Ouvre ces trois écrans dans l’ordre demandé.
+
+Chaque écran propose « Copier ». Le lien utilise l’identifiant stable.
+
+VOIX, STOCKAGE ET HORS LIGNE
+----------------------------
+
+- Aucune voix et aucun son au chargement.
+- La voix française démarre seulement après « Écouter ».
+- Vitesses : 0,80 · 0,95 · 1,10 · 1,25 ; défaut 0,95.
+- Clé locale du cours : condenseur-voice-rate.
+- Lisibilité commune : pilote_lisibilite.
+- Le rapport saisi n’est ni stocké ni transmis.
+- Aucun nom, score ou donnée personnelle n’est stocké.
+- Le cours reste complet sans voix, sans stockage et sans réseau.
+
+COMMANDES
+---------
+
+- Flèche droite : écran suivant.
+- Flèche gauche : écran précédent.
+- Espace : pause/reprise de la voix hors contrôle.
+- Échap : quitter le cours et revenir au sommaire.
+
+IMPRESSION ET LIMITES
+---------------------
+
+impression.css produit un livret complet : 24 écrans, consignes, corrections et
+codes. Les commandes, ombres et aplats sont retirés ; le papier est blanc, le
+texte noir et les titres/filets conservent la couleur.
+
+La jauge de pression ne porte volontairement aucune unité ni valeur. Elle
+montre une relation de cause à effet ; elle ne simule pas une installation, un
+fluide ou une ambiance réels. Toute valeur réelle vient de la documentation du
+matériel et de mesures effectuées avec l’outillage adapté.
+

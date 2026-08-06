@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" role="img"
+     aria-label="Sur un circuit dessiné selon la croix du frigoriste — détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas — trois emplacements de régulateur de pression sont repérés. Repère 1, en sortie de condenseur, côté haute pression : le régulateur de pression de condensation, couramment appelé KVR, empêche la pression de condensation de trop descendre quand il fait froid dehors. Repère 2, en sortie d'évaporateur, côté basse pression : le régulateur de pression d'évaporation, couramment appelé KVP, empêche la pression d'évaporation de descendre sous la valeur réglée, ce qui protège le produit ou permet de faire coexister plusieurs évaporateurs sur un même compresseur. Repère 3, sur la ligne d'aspiration juste avant le compresseur : le régulateur de pression de carter, couramment appelé KVL, limite la pression d'aspiration, notamment au redémarrage après un arrêt long, pour ne pas surcharger le moteur. Aucun des trois ne coupe le compresseur : un régulateur maintient une pression, un pressostat coupe un circuit électrique.">
+  <title>Les trois régulateurs de pression : où ils se montent, ce qu'ils protègent</title>
+  <desc>Circuit frigorifique de principe. Symboles issus de la bibliothèque inerWeb
+        (compresseur général, détendeur thermostatique à égalisation externe,
+        échangeurs à air, ventilateur axial). Haute pression en orange, basse
+        pression en bleu. La bibliothèque ne comporte pas de symbole normalisé
+        pour le régulateur de pression : les trois emplacements sont donc marqués
+        par un repère numéroté, et non par un organe dessiné.</desc>
+  <style>
+    .t      { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st     { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg     { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm     { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .organe { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .bad    { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .num    { font:700 15px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+    .trait  { fill:none; stroke:#33475b; stroke-width:2.2; }
+    .fine   { fill:none; stroke:#33475b; stroke-width:1; stroke-dasharray:3 5; }
+    .pt     { fill:#33475b; }
+    .hp     { fill:none; stroke:#ff6b35; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+    .bp     { fill:none; stroke:#1b3a63; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+
+  <rect width="900" height="580" fill="#ffffff"/>
+  <text class="t" x="30" y="30">Trois régulateurs, trois endroits, trois raisons</text>
+
+  <!-- ======================= TUYAUTERIES ======================= -->
+  <!-- refoulement : compresseur → condenseur (HP) -->
+  <path class="hp" d="M 692 241 L 692 150 L 550 150"/>
+  <!-- ligne liquide : condenseur → détendeur (HP) -->
+  <path class="hp" d="M 350 150 L 208 150 L 208 249"/>
+  <!-- détendeur → évaporateur (BP) -->
+  <path class="bp" d="M 208 293 L 208 392 L 350 392"/>
+  <!-- aspiration : évaporateur → compresseur (BP) -->
+  <path class="bp" d="M 550 392 L 692 392 L 692 301"/>
+
+  <!-- ======================= CONDENSEUR (HAUT) ======================= -->
+  <g transform="translate(450,150)">
+    <rect x="-100" y="-32" width="200" height="64" rx="4" fill="#fff" stroke="#33475b" stroke-width="2.2"/>
+    <path class="fine" d="M -66 -32 L -66 32 M -33 -32 L -33 32 M 0 -32 L 0 32 M 33 -32 L 33 32 M 66 -32 L 66 32"/>
+    <path class="trait" d="M -100 0 L -100 -18 L 78 -18 A 9 9 0 0 1 78 0 L -78 0 A 9 9 0 0 0 -78 18 L 100 18 L 100 0"/>
+    <circle class="pt" cx="-100" cy="0" r="3.5"/>
+    <circle class="pt" cx="100" cy="0" r="3.5"/>
+  </g>
+  <!-- ventilateur axial — symbole normalisé (bibliothèque inerWeb) -->
+  <g transform="translate(450,90) scale(1.2)" stroke="#33475b" stroke-width="1.5" fill="none">
+    <circle cx="0" cy="0" r="15" fill="#fff"/>
+    <path d="M -6 -7 A 6 6 0 0 1 0 -1"/>
+    <path d="M -1 0 A 6 6 0 0 1 -7 -6"/>
+    <path d="M -7 6 A 6 6 0 0 1 -1 0"/>
+    <path d="M 0 1 A 6 6 0 0 1 -6 7"/>
+    <ellipse cx="4.5" cy="0" rx="4.5" ry="2.5"/>
+    <path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+  </g>
+  <path class="fine" d="M 450 108 L 450 118"/>
+  <text class="organe" x="450" y="204" text-anchor="middle">CONDENSEUR (à air)</text>
+
+  <!-- ======================= ÉVAPORATEUR (BAS) ======================= -->
+  <g transform="translate(450,392)">
+    <rect x="-100" y="-32" width="200" height="64" rx="4" fill="#fff" stroke="#33475b" stroke-width="2.2"/>
+    <path class="fine" d="M -66 -32 L -66 32 M -33 -32 L -33 32 M 0 -32 L 0 32 M 33 -32 L 33 32 M 66 -32 L 66 32"/>
+    <path class="trait" d="M -100 0 L -100 -18 L 78 -18 A 9 9 0 0 1 78 0 L -78 0 A 9 9 0 0 0 -78 18 L 100 18 L 100 0"/>
+    <circle class="pt" cx="-100" cy="0" r="3.5"/>
+    <circle class="pt" cx="100" cy="0" r="3.5"/>
+  </g>
+  <text class="organe" x="450" y="450" text-anchor="middle">ÉVAPORATEUR</text>
+
+  <!-- ======================= COMPRESSEUR (DROITE) =======================
+       symbole normalisé, pivoté : aspiration en bas, refoulement en haut -->
+  <g transform="translate(692,271) rotate(-90) scale(1.9)" stroke="#33475b" stroke-width="1.2" fill="none">
+    <circle cx="0" cy="0" r="15" fill="#fff"/>
+    <path d="M -15 0 L -16 0 M 15 0 L 16 0"/>
+    <path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+    <circle class="pt" cx="-16" cy="0" r="1.5" stroke="none"/>
+    <circle class="pt" cx="16" cy="0" r="1.5" stroke="none"/>
+  </g>
+  <text class="organe" x="742" y="266">COMPRESSEUR</text>
+  <text class="sm"     x="742" y="286">aspire en BP, refoule en HP</text>
+
+  <!-- ======================= DÉTENDEUR (GAUCHE) =======================
+       thermostatique à égalisation externe, pivoté -->
+  <g transform="translate(208,271) rotate(-90) scale(2.0)" stroke="#33475b" stroke-width="1.2" fill="none">
+    <circle cx="0" cy="-12" r="5.83" fill="#fff"/>
+    <path d="M 0 -18 L 0 -20"/>
+    <polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0" fill="#fff"/>
+    <path d="M 0 0 L 0 -6 M 10 0 L 11 0 M -10 0 L -11 0"/>
+    <circle class="pt" cx="0" cy="-20" r="1.5" stroke="none"/>
+    <circle class="pt" cx="11" cy="0" r="1.5" stroke="none"/>
+    <circle class="pt" cx="-11" cy="0" r="1.5" stroke="none"/>
+  </g>
+  <text class="organe" x="158" y="266" text-anchor="end">DÉTENDEUR</text>
+  <text class="sm"     x="158" y="286" text-anchor="end">fait chuter la pression</text>
+
+  <!-- ======================= LES TROIS EMPLACEMENTS ======================= -->
+  <circle cx="310" cy="150" r="14" fill="#c9451a" stroke="#fff" stroke-width="2.5"/>
+  <text class="num" x="310" y="156" text-anchor="middle">1</text>
+  <text class="bad" x="290" y="126" text-anchor="end">sortie de condenseur · HP</text>
+
+  <circle cx="600" cy="392" r="14" fill="#c9451a" stroke="#fff" stroke-width="2.5"/>
+  <text class="num" x="600" y="398" text-anchor="middle">2</text>
+  <text class="bad" x="624" y="424">sortie d'évaporateur · BP</text>
+
+  <circle cx="692" cy="340" r="14" fill="#c9451a" stroke="#fff" stroke-width="2.5"/>
+  <text class="num" x="692" y="346" text-anchor="middle">3</text>
+  <text class="bad" x="716" y="346">avant le compresseur · BP</text>
+
+  <!-- ======================= LES TROIS FICHES ======================= -->
+  <g transform="translate(30,462)">
+    <rect x="0" y="0" width="272" height="82" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <circle cx="22" cy="24" r="12" fill="#c9451a"/><text class="num" x="22" y="29" text-anchor="middle">1</text>
+    <text class="st" x="42" y="21" style="font-size:13px">pression de CONDENSATION</text>
+    <text class="sm" x="42" y="38">couramment appelé « KVR »</text>
+    <text class="sm" x="16" y="60">Tient la pression de condensation assez</text>
+    <text class="sm" x="16" y="76">haute quand il fait froid dehors.</text>
+  </g>
+
+  <g transform="translate(314,462)">
+    <rect x="0" y="0" width="272" height="82" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <circle cx="22" cy="24" r="12" fill="#c9451a"/><text class="num" x="22" y="29" text-anchor="middle">2</text>
+    <text class="st" x="42" y="21" style="font-size:13px">pression d'ÉVAPORATION</text>
+    <text class="sm" x="42" y="38">couramment appelé « KVP »</text>
+    <text class="sm" x="16" y="60">Empêche l'évaporateur de descendre</text>
+    <text class="sm" x="16" y="76">trop bas — il protège le produit.</text>
+  </g>
+
+  <g transform="translate(598,462)">
+    <rect x="0" y="0" width="272" height="82" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <circle cx="22" cy="24" r="12" fill="#c9451a"/><text class="num" x="22" y="29" text-anchor="middle">3</text>
+    <text class="st" x="42" y="21" style="font-size:13px">pression de CARTER</text>
+    <text class="sm" x="42" y="38">couramment appelé « KVL »</text>
+    <text class="sm" x="16" y="60">Limite la pression d'aspiration, surtout</text>
+    <text class="sm" x="16" y="76">au redémarrage après un arrêt long.</text>
+  </g>
+
+  <text class="lg" x="30" y="566">Aucun des trois ne coupe le compresseur : <tspan style="font-weight:700;fill:#c9451a">un régulateur maintient une pression, un pressostat coupe un circuit électrique</tspan>.</text>
+</svg>

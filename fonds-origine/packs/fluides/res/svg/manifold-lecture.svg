@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+     aria-label="Le manifold vu de face : manomètre basse pression bleu à gauche, manomètre haute pression rouge à droite, chacun avec son aiguille et une échelle en traits sans aucune graduation chiffrée ; au centre le corps, ses deux vannes bleue et rouge, et ses trois raccords basse pression, service et haute pression, d'où partent trois flexibles vers le côté basse pression du circuit, vers la bouteille ou la pompe à vide, et vers le côté haute pression. L'animation montre les aiguilles qui bougent doucement vannes fermées — les manomètres lisent en permanence — puis la vanne bleue seule, qui met le côté basse pression en communication avec le flexible central et colore le trajet du fluide, puis la vanne rouge à son tour, jamais les deux ensemble.">
+  <title>Le manifold : quelle vanne ouvre quoi</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .tk  { fill:none; stroke:#8aa0b4; stroke-width:2.6; stroke-linecap:round; }
+    .fx  { fill:none; stroke-width:6.5; stroke-linecap:round; stroke-linejoin:round; }
+    .ch  { fill:none; stroke:#ffffff; stroke-width:9; stroke-linecap:round; stroke-linejoin:round; }
+    .et  { font:700 15px Calibri,Segoe UI,sans-serif; }
+    .c   { text-anchor:middle; }  .e { text-anchor:end; }
+    .flux { fill:none; stroke:#ff6b35; stroke-width:3.6; stroke-linecap:round;
+            stroke-dasharray:14 12; animation:defile 1s linear infinite; }
+    @keyframes defile { to { stroke-dashoffset:-26; } }
+    /* CYCLIQUE. Valeurs de base = repos, qui est l'état JUSTE : vannes fermées,
+       aucun trajet ouvert. Filet sur `print`, JAMAIS sur le confort visuel. */
+    @media print { animate, animateTransform { display: none; } .flux { animation: none; } }
+  </style>
+
+  <!-- échelle des cadrans : traits seuls, aucun chiffre -->
+  <defs><path id="cad" class="tk" d="M-38.1,22 L-26.9,15.5 M-44,0 L-36,0 M-38.1,-22 L-26.9,-15.5 M-22,-38.1 L-18,-31.2 M0,-44 L0,-31 M22,-38.1 L18,-31.2 M38.1,-22 L26.9,-15.5 M44,0 L36,0 M38.1,22 L26.9,15.5"/></defs>
+
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Le manifold : quelle vanne ouvre quoi</text>
+
+  <!-- LE MANIFOLD VU DE FACE -->
+  <rect x="26" y="50" width="590" height="380" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+  <text class="st c" x="176" y="80">BASSE PRESSION</text>
+  <text class="st c" x="466" y="80" style="fill:#c9451a">HAUTE PRESSION</text>
+
+  <rect x="168" y="196" width="16" height="66" fill="#e8eef4" stroke="#1b3a63" stroke-width="2"/>
+  <rect x="458" y="196" width="16" height="66" fill="#e8eef4" stroke="#c9451a" stroke-width="2"/>
+
+  <!-- corps + galeries. La galerie est COUPÉE à chaque vanne : fermée, elle
+       n'ouvre aucun passage, et BP ne communique jamais avec HP. -->
+  <rect x="126" y="258" width="390" height="56" rx="10" fill="#e8eef4" stroke="#1b3a63" stroke-width="2.6"/>
+  <path class="ch" d="M160,320 L160,286 L212,286"/>
+  <path class="ch" d="M247,286 L395,286 M321,286 L321,320"/>
+  <path class="ch" d="M430,286 L482,286 L482,320"/>
+
+  <!-- les trois raccords, flancs ouverts -->
+  <path class="p" d="M149,310 v20 M171,310 v20"/>
+  <path d="M310,310 v20 M332,310 v20" fill="none" stroke="#4a5b6e" stroke-width="2.6" stroke-linecap="round"/>
+  <path class="acc" d="M471,310 v20 M493,310 v20"/>
+
+  <!-- les trois flexibles -->
+  <path class="fx" style="stroke:#1b3a63" d="M160,328 C160,358 128,378 92,380 L48,380"/>
+  <path class="fx" style="stroke:#4a5b6e" d="M321,328 L321,380"/>
+  <path class="fx" style="stroke:#c9451a" d="M482,328 C482,358 514,378 550,380 L594,380"/>
+
+  <!-- trajet du fluide, vanne BLEUE ouverte : du côté BP au flexible central -->
+  <path class="flux" opacity="0" d="M48,380 L92,380 C128,378 160,358 160,328 L160,286 L321,286 L321,380">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.283;0.5;0.533;1" dur="12s" repeatCount="indefinite"/>
+  </path>
+  <!-- trajet du fluide, vanne ROUGE ouverte -->
+  <path class="flux" opacity="0" d="M594,380 L550,380 C514,378 482,358 482,328 L482,286 L321,286 L321,380">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.667;0.7;0.917;0.95;1" dur="12s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- vannes : anneau ouvert, le trajet se lit à travers. Au repos, fermées. -->
+  <g transform="translate(230,286)">
+    <circle r="21" fill="none" stroke="#1b3a63" stroke-width="3"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0;0;140;140;0;0" keyTimes="0;0.25;0.283;0.5;0.533;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="0" y1="0" x2="0" y2="-16" stroke="#1b3a63" stroke-width="4.5" stroke-linecap="round"/>
+    </g>
+    <circle r="4.5" fill="#1b3a63"/>
+  </g>
+  <g transform="translate(412,286)">
+    <circle r="21" fill="none" stroke="#c9451a" stroke-width="3"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0;0;-140;-140;0;0" keyTimes="0;0.667;0.7;0.917;0.95;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="0" y1="0" x2="0" y2="-16" stroke="#c9451a" stroke-width="4.5" stroke-linecap="round"/>
+    </g>
+    <circle r="4.5" fill="#c9451a"/>
+  </g>
+
+  <!-- LES DEUX MANOMÈTRES -->
+  <g transform="translate(176,150)">
+    <circle r="58" fill="#ffffff" stroke="#1b3a63" stroke-width="3.2"/>
+    <circle r="49" fill="none" stroke="#c9d4de" stroke-width="1.2"/>
+    <use href="#cad"/>
+    <g transform="rotate(-55)">
+      <animateTransform attributeName="transform" type="rotate" values="-55;-48;-58;-51;-57;-49;-55" keyTimes="0;0.17;0.33;0.5;0.67;0.84;1" dur="12s" repeatCount="indefinite"/>
+      <path d="M0,10 L-3.5,0 L0,-40 L3.5,0 Z" fill="#1b3a63"/>
+    </g>
+    <circle r="6" fill="#1b3a63"/>
+    <text class="st c" y="36">BP</text>
+  </g>
+  <g transform="translate(466,150)">
+    <circle r="58" fill="#ffffff" stroke="#c9451a" stroke-width="3.2"/>
+    <circle r="49" fill="none" stroke="#c9d4de" stroke-width="1.2"/>
+    <use href="#cad"/>
+    <g transform="rotate(50)">
+      <animateTransform attributeName="transform" type="rotate" values="50;57;46;54;48;56;50" keyTimes="0;0.17;0.33;0.5;0.67;0.84;1" dur="12s" repeatCount="indefinite"/>
+      <path d="M0,10 L-3.5,0 L0,-40 L3.5,0 Z" fill="#c9451a"/>
+    </g>
+    <circle r="6" fill="#c9451a"/>
+    <text class="st c" y="36" style="fill:#c9451a">HP</text>
+  </g>
+
+  <!-- ÉTAT DES VANNES -->
+  <text class="lg c" x="230" y="230">vanne BP</text>
+  <text class="et c" x="230" y="250" style="fill:#4a5b6e">FERMÉE<animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.25;0.283;0.5;0.533;1" dur="12s" repeatCount="indefinite"/></text>
+  <text class="et c" x="230" y="250" opacity="0" style="fill:#ff6b35">OUVERTE<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.283;0.5;0.533;1" dur="12s" repeatCount="indefinite"/></text>
+
+  <text class="lg c" x="412" y="230">vanne HP</text>
+  <text class="et c" x="412" y="250" style="fill:#4a5b6e">FERMÉE<animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.667;0.7;0.917;0.95;1" dur="12s" repeatCount="indefinite"/></text>
+  <text class="et c" x="412" y="250" opacity="0" style="fill:#ff6b35">OUVERTE<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.667;0.7;0.917;0.95;1" dur="12s" repeatCount="indefinite"/></text>
+
+  <!-- LES TROIS RACCORDS -->
+  <text class="lg e" x="140" y="330">raccord BP</text>
+  <text class="lg" x="340" y="348">raccord de service</text>
+  <text class="lg" x="502" y="330">raccord HP</text>
+
+  <text class="lg" x="44" y="402">vers le côté BASSE PRESSION</text>
+  <text class="lg" x="44" y="420">(l'évaporateur, en bas)</text>
+  <text class="lg c" x="321" y="402">flexible central : vers la</text>
+  <text class="lg c" x="321" y="420">bouteille ou la pompe à vide</text>
+  <text class="lg e" x="598" y="402">vers le côté HAUTE PRESSION</text>
+  <text class="lg e" x="598" y="420">(le condenseur, en haut)</text>
+
+  <!-- ENCADRÉ -->
+  <g transform="translate(634,50)">
+    <rect x="0" y="0" width="240" height="380" rx="8" fill="#f3f7fb" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="18" y="28">Ce que montre l'animation</text>
+
+    <circle cx="26" cy="54" r="4" fill="#ff6b35"/>
+    <text class="lg" x="40" y="58">Les manomètres lisent en</text>
+    <text class="lg" x="40" y="76">permanence, vannes fermées.</text>
+
+    <circle cx="26" cy="104" r="4" fill="#ff6b35"/>
+    <text class="lg" x="40" y="108">Ouvrir une vanne ne sert pas</text>
+    <text class="lg" x="40" y="126">à lire : cela met le côté</text>
+    <text class="lg" x="40" y="144">choisi en communication avec</text>
+    <text class="lg" x="40" y="162">le flexible central.</text>
+
+    <circle cx="26" cy="190" r="4" fill="#ff6b35"/>
+    <text class="lg" x="40" y="194">On n'ouvre que ce dont on a</text>
+    <text class="lg" x="40" y="212">besoin, et rien de plus.</text>
+
+    <circle cx="26" cy="240" r="4" fill="#ff6b35"/>
+    <text class="lg" x="40" y="244">On referme AVANT toute</text>
+    <text class="lg" x="40" y="262">déconnexion, puis on purge</text>
+    <text class="lg" x="40" y="280">chaque flexible.</text>
+
+    <line x1="18" y1="302" x2="222" y2="302" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="bad" x="18" y="326">Vannes FERMÉES pour lire.</text>
+    <text class="lg" x="18" y="350">Une vanne à la fois, jamais</text>
+    <text class="lg" x="18" y="368">les deux ensemble.</text>
+  </g>
+
+  <text class="lg" x="30" y="452">Les raccords se vissent à la main, puis se serrent à la clé <tspan style="font-weight:700;fill:#1b3a63">selon la fiche constructeur</tspan> : aucun couple ne s'invente.</text>
+</svg>

@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
+     aria-label="La boucle de régulation du détendeur thermostatique : l'évaporateur en bas, le détendeur à gauche en entrée d'évaporateur, le bulbe fixé sur la ligne d'aspiration en sortie d'évaporateur et le capillaire remontant vers la tête du détendeur. L'animation tourne en boucle en quatre temps : la charge thermique augmente et la surchauffe monte sur l'échelle ; le bulbe se réchauffe et la pression du capillaire bombe la membrane ; la membrane pousse la tige, le pointeau quitte son siège et le débit augmente ; la surchauffe redescend, le pointeau se rapproche de son siège, et la boucle recommence.">
+  <title>Le détendeur thermostatique : une boucle qui se corrige toute seule</title>
+
+  <style>
+    .t    { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st   { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .p    { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .rep  { fill:none; stroke:#ff6b35; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .tube { fill:none; stroke:#7fa9c9; stroke-linecap:round; stroke-linejoin:round; }
+    .num  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#ffffff; }
+    .flux { fill:none; stroke:#ffffff; stroke-opacity:.9; stroke-width:2.4; stroke-linecap:round;
+            stroke-dasharray:0.1 16; animation:flux 1.2s linear infinite; }
+    @keyframes flux { to { stroke-dashoffset:-16.1; } }
+
+    /* PIÈGE CSS (27/07) : une classe l'emporte sur l'attribut de présentation de
+       même nom, et sur son animation SMIL. D'où le capillaire sans classe, et
+       les style= en ligne partout où l'on s'écarte de .p.
+       Cycle de 12 s. Valeurs de base = marche stable : figée, la planche reste
+       juste. Filet sur print, JAMAIS sur prefers-reduced-motion, qui supprimait
+       la démonstration à l'écran. */
+    @media print {
+      animate, animateTransform { display: none; }
+      .flux { animation: none; }
+    }
+  </style>
+
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Le détendeur thermostatique : une boucle qui se corrige toute seule</text>
+
+  <!-- ===== SCHÉMA ===== -->
+  <g transform="translate(30,52)">
+    <rect x="0" y="0" width="590" height="344" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+
+    <!-- capillaire : du bulbe à la tête. Sans classe (piège CSS ci-dessus). -->
+    <path fill="none" stroke="#8aa0b4" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round" d="M440,250 V34 H112 V88">
+      <animate attributeName="stroke" dur="12s" repeatCount="indefinite"
+        values="#8aa0b4;#8aa0b4;#ff6b35;#ff6b35;#8aa0b4" keyTimes="0;0.3;0.4;0.85;1"/>
+    </path>
+    <path class="rep" d="M312,28 l-8,6 8,6"/>
+    <path class="rep" d="M212,28 l-8,6 8,6"/>
+    <text class="lg" x="262" y="24" text-anchor="middle">capillaire</text>
+
+    <!-- ligne liquide venant du condenseur -->
+    <text class="lg" x="6" y="136">ligne liquide</text>
+    <path class="tube" stroke-width="6" d="M8,150 H88">
+      <animate attributeName="stroke-width" dur="12s" repeatCount="indefinite"
+        values="6;6;6;9;9;6" keyTimes="0;0.5;0.62;0.72;0.9;1"/>
+    </path>
+    <path class="flux" d="M8,150 H88"/>
+    <path class="rep" d="M62,144 l8,6 -8,6"/>
+
+    <rect class="p" style="fill:#f3f7fb" x="70" y="88" width="84" height="42" rx="8"/>
+    <rect class="p" style="fill:#ffffff" x="88" y="130" width="48" height="86" rx="3"/>
+
+    <!-- membrane : elle se bombe en deux temps ; la tige suit le centre de la
+         courbe (mêmes keyTimes et même course que le pointeau). -->
+    <path class="p" d="M70,112 Q112,112 154,112">
+      <animate attributeName="d" dur="12s" repeatCount="indefinite"
+        keyTimes="0;0.36;0.46;0.5;0.6;0.88;1"
+        values="M70,112 Q112,112 154,112;M70,112 Q112,112 154,112;M70,112 Q112,126 154,112;M70,112 Q112,126 154,112;M70,112 Q112,140 154,112;M70,112 Q112,140 154,112;M70,112 Q112,112 154,112"/>
+    </path>
+    <text class="lg" x="164" y="108">membrane</text>
+
+    <!-- siège : le passage est entre les deux portées -->
+    <path class="p" style="stroke-width:4" d="M88,174 H101 M123,174 H136"/>
+    <text class="lg" x="142" y="179">passage</text>
+
+    <!-- pointeau : au repos il obture presque le siège ; la membrane le pousse
+         vers le BAS, il quitte le siège et le passage s'ouvre. -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="12s" repeatCount="indefinite"
+        keyTimes="0;0.36;0.46;0.5;0.6;0.88;1" values="0,0;0,0;0,7;0,7;0,14;0,14;0,0"/>
+      <path class="p" d="M112,112 V163"/>
+      <path d="M112,163 L98,195 L126,195 Z" fill="#1b3a63"/>
+    </g>
+    <text class="lg" x="82" y="202" text-anchor="end">pointeau</text>
+    <path class="p" style="stroke-width:1.4" d="M85,198 L98,192"/>
+
+    <text class="st" x="60" y="252" text-anchor="middle">Détendeur</text>
+    <text class="st" x="60" y="270" text-anchor="middle">thermostatique</text>
+
+    <!-- évaporateur (en bas, croix du frigoriste) -->
+    <rect x="150" y="206" width="250" height="90" rx="5" fill="#ffffff" stroke="#1b3a63" stroke-width="2.2"/>
+    <path class="p" style="stroke-width:1" stroke-dasharray="3 5" d="M195,206 V296 M245,206 V296 M295,206 V296 M345,206 V296"/>
+    <text class="st" x="275" y="316" text-anchor="middle">Évaporateur</text>
+
+    <path class="tube" stroke-width="6" d="M112,216 V226 H370 A12,12 0 0 1 370,250 H180 A12,12 0 0 0 180,274 H555">
+      <animate attributeName="stroke-width" dur="12s" repeatCount="indefinite"
+        values="6;6;6;9;9;6" keyTimes="0;0.5;0.62;0.72;0.9;1"/>
+    </path>
+    <path class="flux" d="M112,216 V226 H370 A12,12 0 0 1 370,250 H180 A12,12 0 0 0 180,274 H555"/>
+    <path class="rep" d="M532,268 l8,6 -8,6"/>
+    <text class="lg" x="500" y="302" text-anchor="middle">vers le compresseur</text>
+
+    <text class="lg" x="262" y="158" text-anchor="middle">charge thermique</text>
+    <path class="rep" d="M212,170 V200 m-6,-8 l6,8 6,-8"/>
+    <path class="rep" d="M262,170 V200 m-6,-8 l6,8 6,-8"/>
+    <path class="rep" d="M312,170 V200 m-6,-8 l6,8 6,-8"/>
+
+    <rect x="418" y="250" width="44" height="22" rx="9" stroke="#1b3a63" stroke-width="2.2" fill="#e8eef4">
+      <animate attributeName="fill" dur="12s" repeatCount="indefinite"
+        values="#e8eef4;#e8eef4;#ff6b35;#ff6b35;#e8eef4" keyTimes="0;0.26;0.34;0.85;1"/>
+    </rect>
+    <path class="p" d="M428,268 V282 M452,268 V282"/>
+    <text class="st" x="470" y="266">bulbe</text>
+
+    <!-- échelle de surchauffe, sans graduation chiffrée -->
+    <text class="st" x="529" y="142" text-anchor="middle">surchauffe</text>
+    <rect x="520" y="150" width="18" height="100" rx="4" fill="#ffffff" stroke="#c9d4de" stroke-width="1.5"/>
+    <rect x="521" y="210" width="16" height="28" fill="#eef7f1" stroke="#a8ccb4" stroke-width="1.2"/>
+    <text class="lg" x="544" y="222">plage</text>
+    <text class="lg" x="544" y="238">visée</text>
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        values="0,0;0,-48;0,-48;0,-48;0,0;0,0" keyTimes="0;0.25;0.5;0.75;0.95;1"
+        dur="12s" repeatCount="indefinite"/>
+      <path d="M518,224 L504,216 L504,232 Z" fill="#ff6b35"/>
+    </g>
+  </g>
+
+  <!-- ===== LES QUATRE TEMPS ===== -->
+  <g transform="translate(640,52)">
+    <rect x="0" y="0" width="230" height="344" rx="8" fill="#f7fafc" stroke="#c9d4de" stroke-width="1.5"/>
+    <text class="st" x="18" y="30">La boucle, temps par temps</text>
+
+    <g>
+      <animateTransform attributeName="transform" type="translate" calcMode="discrete"
+        values="0,0;0,74;0,148;0,222" keyTimes="0;0.25;0.5;0.75"
+        dur="12s" repeatCount="indefinite"/>
+      <rect x="8" y="44" width="214" height="70" rx="6" fill="#ffffff" stroke="#ff6b35" stroke-width="2"/>
+    </g>
+
+    <circle cx="30" cy="66" r="12" fill="#1b3a63"/>
+    <text class="num" x="30" y="71" text-anchor="middle">1</text>
+    <text class="lg" x="52" y="60">La charge thermique monte :</text>
+    <text class="lg" x="52" y="78">le fluide frigorigène ressort</text>
+    <text class="lg" x="52" y="96">plus chaud de l'évaporateur.</text>
+
+    <circle cx="30" cy="140" r="12" fill="#1b3a63"/>
+    <text class="num" x="30" y="145" text-anchor="middle">2</text>
+    <text class="lg" x="52" y="134">Le bulbe se réchauffe :</text>
+    <text class="lg" x="52" y="152">la pression du capillaire</text>
+    <text class="lg" x="52" y="170">bombe la membrane.</text>
+
+    <circle cx="30" cy="214" r="12" fill="#1b3a63"/>
+    <text class="num" x="30" y="219" text-anchor="middle">3</text>
+    <text class="lg" x="52" y="208">Le détendeur s'OUVRE :</text>
+    <text class="lg" x="52" y="226">le pointeau quitte son</text>
+    <text class="lg" x="52" y="244">siège, le débit augmente.</text>
+
+    <circle cx="30" cy="288" r="12" fill="#1b3a63"/>
+    <text class="num" x="30" y="293" text-anchor="middle">4</text>
+    <text class="lg" x="52" y="282">La surchauffe redescend,</text>
+    <text class="lg" x="52" y="300">le détendeur se referme.</text>
+    <text class="lg" x="52" y="318">Et la boucle recommence.</text>
+  </g>
+
+  <!-- ===== CE QU'IL FAUT RETENIR ===== -->
+  <rect x="30" y="408" width="840" height="54" rx="8" fill="#eef7f1" stroke="#a8ccb4" stroke-width="1.5"/>
+  <text class="st" x="48" y="432">Le détendeur ne règle pas la température du local : il maintient la SURCHAUFFE en sortie d'évaporateur.</text>
+  <text class="lg" x="48" y="452">La valeur se contrôle après stabilisation de l'installation et se compare à la notice du constructeur.</text>
+</svg>

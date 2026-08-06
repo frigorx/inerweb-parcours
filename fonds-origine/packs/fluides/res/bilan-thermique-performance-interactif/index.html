@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Cours interactif professionnel : bilan thermique d’une chambre froide, climatisation en chaud et en froid, COP, EER, SCOP et SEER.">
+  <title>Bilan thermique et performance énergétique | Habilitation Fluide</title>
+  <link rel="stylesheet" href="styles.css?v=20260801-tome4-v8">
+</head>
+<body>
+<main class="experience" id="experience">
+  <header class="topbar">
+    <a class="brand" href="#module" aria-label="Aller au cours interactif">
+      <span class="brand-mark" aria-hidden="true">HF</span>
+      <span><strong>Habilitation Fluide</strong><small>Tome 4 · Bilan thermique</small></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="pill" id="voice-toggle" type="button" aria-pressed="true">Voix active</button>
+      <button class="pill" id="refs-toggle" type="button" aria-expanded="false">Repères et sources</button>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p class="eyebrow">TOME 4 · DU BESOIN À LA CONSOMMATION</p>
+      <h1 id="page-title">La machine vient après.<br><span>Le besoin thermique vient d’abord.</span></h1>
+      <p>Une chambre froide, un local climatisé et une pompe à chaleur ne se dimensionnent pas au hasard. On repère les apports ou les pertes, on les additionne, puis on relie la puissance utile à l’électricité consommée.</p>
+      <a class="chapter-back" href="../circuit-organes-interactif/index.html">← Revoir le circuit et ses organes</a>
+      <button class="start" id="start" type="button">Commencer le projet <span aria-hidden="true">▶</span></button>
+      <small class="duration">16 étapes · environ 28 minutes · calculateurs guidés, étiquette énergie et défi final</small>
+    </div>
+
+    <div class="hero-route" aria-label="Les trois chapitres du cours">
+      <article><small>CHAPITRE 1</small><strong>Chambre froide</strong><span>Repérer et additionner les apports de chaleur.</span></article>
+      <i aria-hidden="true">→</i>
+      <article><small>CHAPITRE 2</small><strong>Climatisation</strong><span>Calculer en chauffage et en refroidissement.</span></article>
+      <i aria-hidden="true">→</i>
+      <article><small>CHAPITRE 3</small><strong>Performance</strong><span>Lire COP, EER, SCOP et SEER sans les confondre.</span></article>
+    </div>
+  </section>
+
+  <section class="module-shell" id="module" aria-label="Cours interactif sur le bilan thermique et la performance énergétique">
+    <nav class="stepper" id="stepper" aria-label="Progression du cours"></nav>
+
+    <article class="lesson-card" aria-live="polite">
+      <div class="lesson-top">
+        <div>
+          <p class="eyebrow" id="kicker"></p>
+          <h2 id="title"></h2>
+        </div>
+        <div class="voice-controls">
+          <button class="exit-course" id="exit-course" type="button">Quitter</button>
+          <label class="voice-choice-control">
+            <span>Voix</span>
+            <select id="voice-choice" aria-label="Choisir la voix française">
+              <option value="">Voix française automatique</option>
+            </select>
+          </label>
+          <div class="speed" aria-label="Vitesse de lecture">
+            <button id="slower" type="button" aria-label="Ralentir la voix">−</button>
+            <span id="speed-value">0,95×</span>
+            <button id="faster" type="button" aria-label="Accélérer la voix">+</button>
+          </div>
+          <button class="listen" id="listen" type="button"><span aria-hidden="true">▶</span><b> Écouter</b></button>
+        </div>
+      </div>
+
+      <p class="lesson-text" id="lesson-text"></p>
+      <section class="interactive-zone" id="zone"></section>
+
+      <div class="lesson-footer">
+        <button class="nav subtle" id="prev" type="button">← Retour</button>
+        <span id="status"></span>
+        <button class="nav" id="next" type="button">Continuer →</button>
+      </div>
+      <p class="speech-warning" id="speech-warning" role="status" hidden>La synthèse vocale n’est pas disponible. Tout le contenu reste lisible à l’écran.</p>
+    </article>
+  </section>
+
+  <section class="final-message">
+    <p class="eyebrow">À RETENIR</p>
+    <h2>Besoin utile, puissance électrique,<br><span>deux grandeurs à ne jamais confondre.</span></h2>
+    <div class="pillars" aria-label="Méthode résumée">
+      <span>Repérer les flux</span><i>→</i><span>Calculer le bilan</span><i>→</i><span>Choisir la puissance</span><i>→</i><strong>Estimer l’énergie</strong>
+    </div>
+    <div class="next-brick">
+      <small>LE RÉFLEXE PROJET</small>
+      <strong>Chaque valeur doit avoir une origine.</strong>
+      <span>Dimensions relevées, températures de calcul, données produit, occupation, air neuf et fiche constructeur : un résultat n’est défendable que si ses entrées le sont.</span>
+      <a class="next-tool" href="../../../../galerie.html">Voir tous les cours interactifs →</a>
+    </div>
+  </section>
+
+  <aside class="refs" id="refs" hidden>
+    <p class="eyebrow">REPÈRES ET SOURCES</p>
+    <h2>Le cadre utilisé dans ce tutoriel</h2>
+    <ul>
+      <li>Les cas numériques sont fictifs et servent uniquement à comprendre la méthode. Ils ne remplacent ni une étude réglementaire, ni les données constructeur, ni les conditions de calcul du projet.</li>
+      <li>Transmission : Φ = U × A × ΔT. Produit : Φ = m × c × ΔT ÷ durée. Changement d’état : Φ = m × L ÷ durée.</li>
+      <li>Pour l’air, le raccourci 0,34 × débit d’air × ΔT estime uniquement la part sensible avec des propriétés d’air arrondies. L’humidité demande un calcul d’enthalpie.</li>
+      <li>Dans la convention courante de la climatisation : COP pour le chauffage, EER pour le refroidissement, SCOP et SEER pour les performances saisonnières.</li>
+      <li>Les valeurs saisonnières prennent en compte des conditions et des charges variables. Elles ne sont pas une simple mesure prise à un instant.</li>
+      <li>Sources terminologiques : Commission européenne, étiquette énergie des climatiseurs ; règlement délégué (UE) n° 626/2011 et ses mises à jour.</li>
+    </ul>
+    <p class="source-links"><a href="https://energy-efficient-products.ec.europa.eu/product-list/air-conditioners-and-comfort-fans_en" target="_blank" rel="noopener">Commission européenne : climatiseurs et étiquette énergie</a><a href="https://eur-lex.europa.eu/eli/reg_del/2011/626/oj" target="_blank" rel="noopener">EUR-Lex : règlement délégué (UE) n° 626/2011</a><a href="https://www.abcclim.net/classe-energetique.html" target="_blank" rel="noopener">ABC Clim : lecture terrain de l’étiquette</a><a href="https://www.abcclim.net/calcul-bilan-thermique.html" target="_blank" rel="noopener">ABC Clim : facteurs du bilan thermique</a></p>
+  </aside>
+
+  <footer>
+    <span>Habilitation Fluide · Auto-formation interactive</span>
+    <button id="restart" type="button">Recommencer</button>
+  </footer>
+</main>
+  <script src="app.js?v=20260801-tome4-v8"></script>
+  <script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

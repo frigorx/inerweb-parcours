@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réglette P ↔ T</title>
+<style>
+  * { box-sizing:border-box; margin:0; }
+  body { font:15px Calibri,'Segoe UI',sans-serif; color:#33475b; background:#fff; padding:16px 18px; }
+  h2 { font-size:17px; color:#1b3a63; margin-bottom:2px; }
+  .sub { font-size:12.5px; color:#8494a4; margin-bottom:12px; }
+  .ligne { display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; margin-bottom:12px; }
+  label { display:block; font-weight:700; font-size:13px; color:#1b3a63; margin-bottom:4px; }
+  select, input[type=number] { font:inherit; padding:7px 10px; border:1.5px solid #c9d4de; border-radius:7px; background:#fff; color:#33475b; }
+  select:focus, input:focus { outline:2px solid #ff6b35; border-color:#ff6b35; }
+  input[type=range] { width:100%; accent-color:#ff6b35; }
+  .curseur { flex:1 1 220px; }
+  .bornes { display:flex; justify-content:space-between; font-size:11.5px; color:#8494a4; }
+  .resultats { display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 12px; }
+  .tuile { flex:1 1 120px; background:#f5f8fb; border:1.5px solid #d7e0e8; border-radius:8px; padding:9px 12px; text-align:center; }
+  .tuile .v { font-size:21px; font-weight:700; color:#1b3a63; }
+  .tuile .u { font-size:12px; color:#8494a4; }
+  .tuile.accent { background:#fff3e8; border-color:#ffc7ad; }
+  .tuile.accent .v { color:#c9451a; }
+  .modes { display:flex; gap:6px; margin-bottom:10px; }
+  .modes button { font:inherit; font-weight:700; font-size:13px; padding:6px 12px; border:1.5px solid #c9d4de; border-radius:999px; background:#fff; color:#4a5b6e; cursor:pointer; }
+  .modes button.actif { background:#1b3a63; border-color:#1b3a63; color:#fff; }
+  .verdict { border-radius:8px; padding:9px 13px; font-size:14px; display:none; }
+  .verdict.on { display:block; }
+  .v-ok  { background:#e9f5ee; border:1.5px solid #bfe3cd; color:#1e6b40; }
+  .v-att { background:#fdf3e4; border:1.5px solid #f3d9a8; color:#8a5a00; }
+  .v-ko  { background:#fbe7e0; border:1.5px solid #f3bda8; color:#a33418; }
+  .note { font-size:11.5px; color:#8494a4; margin-top:10px; }
+</style>
+</head>
+<body>
+  <h2>La réglette P ↔ T</h2>
+  <div class="sub">La relation pression-température du fluide, sans ouvrir le circuit — données FRIGOLO.</div>
+
+  <div class="ligne">
+    <div>
+      <label for="fluide">Fluide</label>
+      <select id="fluide"></select>
+    </div>
+    <div class="curseur">
+      <label for="prel">Pression lue au manomètre : <span id="prel-aff">3,0</span> bar (relatifs)</label>
+      <input type="range" id="prel" min="0" max="30" step="0.1" value="3">
+      <div class="bornes"><span>0</span><span>30 bar</span></div>
+    </div>
+  </div>
+
+  <div class="resultats">
+    <div class="tuile"><div class="v" id="pabs">≈ 4,0</div><div class="u">bar absolus (+ ~1 bar)</div></div>
+    <div class="tuile accent"><div class="v" id="tsat">—</div><div class="u">T° de saturation</div></div>
+    <div class="tuile"><div class="v" id="glide">—</div><div class="u">glide (zéotrope)</div></div>
+  </div>
+
+  <div class="modes" role="group" aria-label="Point de mesure">
+    <button id="m-asp" class="actif">Aspiration → surchauffe</button>
+    <button id="m-liq">Ligne liquide → sous-refroidissement</button>
+  </div>
+
+  <div class="ligne">
+    <div>
+      <label for="ttube">T° mesurée sur le tube (°C)</label>
+      <input type="number" id="ttube" step="0.5" placeholder="ex. 12" style="width:130px">
+    </div>
+    <div style="flex:1 1 260px">
+      <div id="verdict" class="verdict"></div>
+    </div>
+  </div>
+
+  <div class="note">Interpolation sur tables FRIGOLO (sources publiques) — valeurs pédagogiques.
+  En intervention : la table du fluide réellement présent (plaque + registre) et la doc constructeur.</div>
+
+<script src="fluides-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var PATM = 1.013;
+  var F = window.FLUIDES;
+  var sel = document.getElementById("fluide");
+  var rng = document.getElementById("prel");
+  var affP = document.getElementById("prel-aff");
+  var elAbs = document.getElementById("pabs");
+  var elSat = document.getElementById("tsat");
+  var elGl = document.getElementById("glide");
+  var inT = document.getElementById("ttube");
+  var verdict = document.getElementById("verdict");
+  var bAsp = document.getElementById("m-asp");
+  var bLiq = document.getElementById("m-liq");
+  var mode = "asp";
+
+  Object.keys(F).forEach(function (k) {
+    var o = document.createElement("option");
+    o.value = k; o.textContent = F[k].nom + "  (" + F[k].classe + ")";
+    sel.appendChild(o);
+  });
+  sel.value = "R32";
+
+  function tSat(f, pAbs) {
+    var t = f.table;
+    if (pAbs <= t[0].p) return null;
+    if (pAbs >= t[t.length - 1].p) return null;
+    for (var i = 0; i < t.length - 1; i++) {
+      if (pAbs >= t[i].p && pAbs <= t[i + 1].p) {
+        var r = (pAbs - t[i].p) / (t[i + 1].p - t[i].p);
+        return t[i].t + r * (t[i + 1].t - t[i].t);
+      }
+    }
+    return null;
+  }
+  function fr(x, d) { return x.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+  function calc() {
+    var f = F[sel.value];
+    var pRel = parseFloat(rng.value);
+    var pAbs = pRel + PATM;
+    affP.textContent = fr(pRel, 1);
+    elAbs.textContent = "≈ " + fr(pAbs, 1);
+    var ts = tSat(f, pAbs);
+    elSat.textContent = ts === null ? "hors table" : fr(ts, 1) + " °C";
+    elGl.textContent = f.glide > 0.5 ? fr(f.glide, 1) + " K" : "≈ 0";
+
+    verdict.className = "verdict";
+    var tv = parseFloat(inT.value);
+    if (ts === null || isNaN(tv)) return;
+    var ecart, lib, cls, plage;
+    if (mode === "asp") {
+      ecart = tv - ts; lib = "surchauffe"; plage = [5, 10];
+    } else {
+      ecart = ts - tv; lib = "sous-refroidissement"; plage = [4, 8];
+    }
+    var txt = lib + " = " + fr(tv, 1) + " − " + fr(mode === "asp" ? ts : tv, 1) + " … ";
+    txt = "<b>" + lib + " ≈ " + fr(ecart, 1) + " K</b> — ";
+    if (ecart < 0) { cls = "v-ko"; txt += mode === "asp" ? "négatif : du liquide arrive au compresseur, on agit tout de suite." : "négatif : vérifier la mesure et le point de prise."; }
+    else if (ecart < plage[0]) { cls = "v-att"; txt += "sous la plage habituelle (" + plage[0] + "-" + plage[1] + " K) : à surveiller."; }
+    else if (ecart <= plage[1]) { cls = "v-ok"; txt += "dans la plage habituelle (" + plage[0] + "-" + plage[1] + " K)."; }
+    else { cls = "v-att"; txt += "au-dessus de la plage (" + plage[0] + "-" + plage[1] + " K) : indice de manque de charge ou de réglage."; }
+    verdict.className = "verdict on " + cls;
+    verdict.innerHTML = txt;
+  }
+
+  function setMode(m) {
+    mode = m;
+    bAsp.className = m === "asp" ? "actif" : "";
+    bLiq.className = m === "liq" ? "actif" : "";
+    calc();
+  }
+  bAsp.onclick = function () { setMode("asp"); };
+  bLiq.onclick = function () { setMode("liq"); };
+  sel.onchange = calc; rng.oninput = calc; inT.oninput = calc;
+  calc();
+
+  /* annonce la hauteur réelle à la page hôte (iframe auto-ajustée) */
+  function annonceHauteur() {
+    try { parent.postMessage({ piloteOutilH: document.body.offsetHeight + 8 }, '*'); } catch (e) {}
+  }
+  window.addEventListener('load', annonceHauteur);
+  window.addEventListener('resize', annonceHauteur);
+  new MutationObserver(annonceHauteur).observe(document.body, { childList: true, subtree: true, attributes: true });
+})();
+</script>
+</body>
+</html>

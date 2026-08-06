@@ -1,0 +1,18 @@
+{
+  "cours": "etancheite-interactive",
+  "titre": "L’étanchéité — de l’indice à la preuve",
+  "reference": "arrêté du 21 novembre 2025 et règlement d’exécution (UE) 2024/2215 ; note réglementaire au 1er août 2026",
+  "ecrans": 27,
+  "codes": {
+    "4.01": ["points-sensibles", "controle-orienter"],
+    "4.02": ["registre-dabord", "enquete-complete", "controle-orienter"],
+    "4.03": ["controle-visuel", "enquete-complete", "controle-orienter"],
+    "4.04": ["indirect-definition", "indices-convergents", "indirect-conclusion", "deux-methodes", "enquete-complete", "controle-indirect", "ordre-final"],
+    "4.05": ["instruments-portables", "indices-convergents", "controle-indirect"],
+    "4.06": ["direct-definition", "choisir-methode", "frontiere-circuit", "controle-direct", "controle-comparer"],
+    "4.07": ["direct-definition", "choisir-methode", "frontiere-circuit", "enquete-complete", "controle-direct", "controle-comparer"],
+    "4.08": ["detecteur-conditions", "balayage-detecteur", "confirmer-alerte", "enquete-complete", "controle-direct"],
+    "4.09": ["registre-resultat", "trace-structure", "absence-preuve", "enquete-complete", "controle-trace", "ordre-final"]
+  },
+  "hors_referentiel": ["regle-aujourdhui", "deux-questions", "bilan"]
+}

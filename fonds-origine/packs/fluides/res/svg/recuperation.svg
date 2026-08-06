@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img"
+     aria-label="Montage de récupération : installation isolée, groupe de récupération, bouteille de récupération posée sur une balance. Le fluide circule de gauche à droite.">
+  <title>Le montage de récupération</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .l   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .s   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .k   { font:700 13.5px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .sym { stroke:#33475b; stroke-width:1.6; fill:none; }
+    .box { fill:#fff; stroke:#33475b; stroke-width:2.2; }
+    .pipe{ stroke:#1b3a63; stroke-width:5; fill:none; stroke-linecap:round; }
+    .flux{ fill:none; stroke:#fff; stroke-opacity:.9; stroke-width:2.4; stroke-linecap:round;
+           stroke-dasharray:0.1 16; animation:flux 1.2s linear infinite; }
+    @keyframes flux { to { stroke-dashoffset:-16.1; } }
+    @media print { .flux { animation:none; } }
+  </style>
+
+  <rect width="900" height="380" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">Récupérer : le montage</text>
+
+  <!-- flexibles -->
+  <path class="pipe" d="M 250 190 L 380 190"/>
+  <path class="flux" d="M 250 190 L 380 190"/>
+  <path class="pipe" d="M 560 190 L 650 190 L 650 230"/>
+  <path class="flux" d="M 560 190 L 650 190 L 650 230"/>
+
+  <!-- installation -->
+  <g>
+    <rect class="box" x="70" y="120" width="180" height="140" rx="6"/>
+    <!-- mini circuit à l'intérieur -->
+    <g transform="translate(160,175) scale(1.35)" class="sym" style="stroke-width:1.1">
+      <circle cx="35" cy="0" r="10" fill="#fff"/>
+      <path d="M 30 -9 L 43 -5 M 30 9 L 43 5"/>
+      <rect x="-45" y="-12" width="42" height="24" rx="2"/>
+      <path d="M -40 -4 L -8 -4 M -40 4 L -8 4"/>
+      <path d="M -3 -8 L 25 -8 M -3 8 L 25 8"/>
+    </g>
+    <text class="l" x="160" y="290" text-anchor="middle">Installation</text>
+    <text class="s" x="160" y="310" text-anchor="middle">à l'arrêt, isolée</text>
+    <!-- vanne de service -->
+    <g transform="translate(250,190) scale(1.5)" class="sym">
+      <polygon points="0,0 -7,-4 -7,4 0,0 7,-4 7,4 0,0" fill="#fff"/>
+    </g>
+  </g>
+
+  <!-- groupe de récupération -->
+  <g>
+    <rect class="box" x="380" y="130" width="180" height="120" rx="8"/>
+    <g transform="translate(470,190) scale(2)" class="sym" style="stroke-width:1.1">
+      <circle cx="0" cy="0" r="15" fill="#fff"/>
+      <path d="M -15 0 L -16 0 M 15 0 L 16 0"/>
+      <path d="M -7 -13 L 13 -7 M -7 13 L 13 7"/>
+    </g>
+    <text class="l" x="470" y="278" text-anchor="middle">Groupe de récupération</text>
+    <text class="s" x="470" y="298" text-anchor="middle">certifié, dédié à cet usage</text>
+  </g>
+
+  <!-- bouteille sur balance -->
+  <g>
+    <!-- bouteille -->
+    <rect class="box" x="618" y="230" width="64" height="90" rx="14"/>
+    <path class="sym" d="M 640 230 L 640 218 M 660 230 L 660 218 M 632 218 L 668 218"/>
+    <!-- niveau de remplissage : 80 % max -->
+    <rect x="622" y="266" width="56" height="50" rx="9" fill="#c6d3df"/>
+    <path d="M 618 262 L 682 262" stroke="#c9451a" stroke-width="2" stroke-dasharray="5 4"/>
+    <text class="k" x="692" y="266">niveau maxi —</text>
+    <text class="k" x="692" y="283">jamais pleine</text>
+    <!-- balance -->
+    <rect class="box" x="600" y="324" width="100" height="18" rx="4"/>
+    <rect class="box" x="712" y="322" width="46" height="22" rx="4"/>
+    <path class="sym" d="M 700 333 L 712 333"/>
+    <text class="l" x="675" y="366" text-anchor="middle">Bouteille sur balance</text>
+  </g>
+
+  <!-- les trois réflexes -->
+  <g transform="translate(795,120)">
+    <rect x="-65" y="-30" width="150" height="130" rx="8" fill="#f5f8fb" stroke="#d7e0e8" stroke-width="1.5"/>
+    <text class="l" x="10" y="-6" text-anchor="middle">Les 3 réflexes</text>
+    <text class="s" x="-52" y="20">1. Peser <tspan style="font-weight:700">avant</tspan></text>
+    <text class="s" x="-52" y="44">2. Un cylindre,</text>
+    <text class="s" x="-40" y="61">un seul fluide</text>
+    <text class="s" x="-52" y="85">3. Consigner</text>
+  </g>
+</svg>

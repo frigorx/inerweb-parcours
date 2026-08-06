@@ -1,0 +1,114 @@
+INTERVENIR SUR UN CIRCUIT HYDROCARBURE
+======================================
+
+Suite pratique de « Mission 290 » pour la fiche g12b.
+Racine travaillée : C:\git\pilote-fluides
+
+INTENTION PÉDAGOGIQUE
+---------------------
+
+Mission 290 apprend à autoriser ou suspendre un chantier. Ce second cours prend
+le relais au dernier point sûr : zone autorisée, fluide récupéré, circuit rempli
+d’azote et installation consignée selon la procédure applicable.
+
+L’élève suit ensuite l’intervention de bout en bout. Six écrans sont de vrais
+embranchements. Un mauvais choix ne retire pas un point et ne termine pas le
+parcours : il montre la conséquence possible, puis renvoie explicitement au
+dernier point sûr.
+
+LE PARCOURS
+-----------
+
+- 27 écrans courts, sans défilement, dans 6 dossiers : Préparer, Ouvrir,
+  Éprouver, Sécher et charger, Contrôler et tracer, Contrôle.
+- Ouvrir : vérifier les preuves, déposer le composant, monter le composant
+  compatible et refermer complètement le circuit.
+- Épreuve : azote sec au travers du mano-détendeur, valeur et critère issus de
+  la documentation, arrêt immédiat si le résultat n’est pas concluant.
+- Vide : pompe et vacuomètre adaptés, critère de documentation, tenue du vide ;
+  aucune charge tant que la remontée n’est pas expliquée.
+- Charge : équipement identifié, fluide et quantité lus, charge suivie par
+  pesée, aucune conversion ou correction au jugé.
+- Contrôle direct : méthode et détecteur documentés pour l’hydrocarbure ; un
+  signal répété suspend la remise en service.
+- Rapport : équipement, composant, épreuve, vide, charge, contrôle final,
+  décision et réserves.
+- Contrôle final de 5 questions. Le score ne valide pas le geste sur plateau.
+
+CE QUE CE COURS REMPLACE
+------------------------
+
+Fiche g12b : le paragraphe d’introduction, la liste ordonnée des six opérations,
+le bloc « Le fil rouge de l’intervention » et la question finale sont traités
+ici par décisions, conséquences et retours au point sûr. Ils restent
+disponibles en lecture, mais n’ont plus à être projetés ni lus intégralement en
+séance.
+
+Le bloc « Geste interdit » reste volontairement visible dans la fiche écrite :
+il constitue un rappel de sécurité court que le formateur peut conserver avant
+toute manipulation réelle.
+
+Le cours ne remplace pas le plateau technique. Il ne donne aucune pression,
+durée, valeur de vide, débit d’azote, couple ou charge générique. Ces données
+viennent du matériel réel, de la notice, de la norme, de la FDS et de la
+procédure de l’entreprise.
+
+COUVERTURE DU RÉFÉRENTIEL
+-------------------------
+
+Codes traités : 12.07 · 12.08 · 12.09 · 12.10 · 12.11 · 12.12.
+Le détail écran par écran est dans couverture.json. Les écrans de relais et de
+bilan sont déclarés hors preuve de couverture.
+
+ADRESSAGE
+---------
+
+index.html
+  Ouvre le sommaire du cours complet.
+
+index.html?dossier=ouvrir
+  Ouvre le premier écran du dossier « Ouvrir ».
+
+index.html?dossier=charger&ecran=3
+  Ouvre l’embranchement sur la remontée du vide.
+
+index.html?extrait=embranchement-vide
+  Ouvre uniquement cet embranchement.
+
+index.html?extrait=embranchement-epreuve,embranchement-vide,quiz-ordre
+  Ouvre les deux conséquences et le contrôle dans l’ordre demandé.
+
+Chaque écran propose « Copier ». Le lien emploie l’identifiant stable.
+
+VOIX, STOCKAGE ET HORS LIGNE
+----------------------------
+
+- Aucune voix et aucun son au chargement.
+- La voix française démarre seulement après « Écouter ».
+- Vitesses : 0,80 · 0,95 · 1,10 · 1,25 ; défaut 0,95.
+- Clé locale du cours : intervention-hydrocarbures-voice-rate.
+- Lisibilité commune : pilote_lisibilite.
+- Les choix, erreurs et scores ne sont ni stockés ni transmis.
+- Aucun nom ni donnée personnelle n’est demandé.
+- Le cours reste complet sans voix, sans stockage et sans réseau.
+
+COMMANDES
+---------
+
+- Flèche droite : écran suivant, seulement après la décision demandée.
+- Flèche gauche : écran précédent.
+- Espace : pause/reprise de la voix hors contrôle.
+- Échap : quitter le cours et revenir au sommaire.
+
+IMPRESSION ET LIMITES
+---------------------
+
+impression.css produit un livret de 27 écrans. Pour chaque embranchement, le
+point sûr et la conséquence du mauvais choix sont écrits. Les commandes, ombres
+et aplats sont retirés ; le papier est blanc, le texte noir et les titres/filets
+conservent la couleur.
+
+Les représentations sont des fils d’opérations et des cartes de décision. Elles
+ne montrent aucun raccordement technique à imiter sans le matériel réel et ne
+remplacent jamais la démonstration du formateur.
+

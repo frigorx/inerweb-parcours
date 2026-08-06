@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img"
+     aria-label="Brasage : ce qui se passe quand il reste du fluide dans le tube. À gauche, le geste interdit : on chauffe un tronçon non récupéré, le fluide se décompose au contact de la flamme et dégage des gaz toxiques et corrosifs qui montent vers le visage penché sur le brasage. À droite, le geste juste en trois temps : récupérer tout le fluide, balayer l'intérieur du tube à l'azote au mano-détendeur pendant le chauffage, ventiler et ne pas se pencher au-dessus de la flamme. Interdiction absolue : rechercher une fuite avec une flamme, méthode ancienne aujourd'hui interdite, remplacée par le détecteur électronique.">
+  <title>Brasage : récupérer et balayer, jamais chauffer du fluide</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    /* Au repos, l'image est complète : l'animation ne fait que la mettre en scène. */
+    @media print { .final { opacity: 1 !important; } }
+  </style>
+
+  <rect width="900" height="320" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Chauffer un tube où il reste du fluide : ce qui sort n'était pas dedans</text>
+
+  <!-- ===== INTERDIT ===== -->
+  <g transform="translate(30,52)">
+    <rect x="0" y="0" width="400" height="192" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+
+    <!-- visage penché sur le brasage -->
+    <g transform="translate(96,44)">
+      <circle class="acc" cx="0" cy="0" r="15"/>
+      <path class="acc" d="M-4,20 v18"/>
+    </g>
+
+    <!-- tube contenant du fluide non récupéré -->
+    <rect class="acc" x="60" y="122" width="230" height="22" rx="4"/>
+    <rect x="63" y="125" width="224" height="16" fill="#e6a894" opacity="0.6"/>
+    <text x="175" y="138" text-anchor="middle" style="font:700 12.5px Calibri;fill:#8a3312">fluide non récupéré</text>
+
+    <!-- chalumeau : la flamme s'allume et vacille -->
+    <g transform="translate(300,133)">
+      <rect class="acc" x="26" y="-9" width="52" height="18" rx="4"/>
+      <path class="acc" d="M26,0 l-16,0"/>
+      <path d="M10,0 c-10,-6 -20,-2 -26,0 c6,2 16,6 26,0 z" fill="#c9451a" opacity="0">
+        <animate attributeName="opacity" values="0;1" dur="0.4s" begin="1s" fill="freeze"/>
+        <animateTransform attributeName="transform" type="scale" values="1,1; 1.14,0.9; 1,1"
+          dur="0.7s" begin="1.4s" repeatCount="6" additive="sum" fill="remove"/>
+      </path>
+    </g>
+
+    <!-- les fumées montent vers le visage -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0.95" dur="1.2s" begin="2.2s" fill="freeze"/>
+      <path class="acc" d="M150,120 q-14,-22 -6,-40 q8,-18 -6,-32">
+        <animateTransform attributeName="transform" type="translate" values="0,10; 0,-6; 0,10"
+          dur="3.2s" begin="2.2s" repeatCount="4" fill="remove"/>
+      </path>
+      <path class="acc" d="M172,120 q-10,-26 0,-44" opacity="0.65">
+        <animateTransform attributeName="transform" type="translate" values="0,8; 0,-8; 0,8"
+          dur="2.6s" begin="2.6s" repeatCount="5" fill="remove"/>
+      </path>
+    </g>
+
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="3s" fill="freeze"/>
+      <text class="bad" x="238" y="60" text-anchor="middle">gaz toxiques</text>
+      <text class="bad" x="238" y="80" text-anchor="middle">et corrosifs</text>
+      <text class="lg"  x="238" y="102" text-anchor="middle">inhalés à bout portant</text>
+    </g>
+
+    <text class="bad final" x="200" y="176" text-anchor="middle" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.8s" fill="freeze"/>
+      ✗ brasage sur un tronçon encore chargé
+    </text>
+  </g>
+
+  <!-- ===== JUSTE ===== -->
+  <g transform="translate(470,52)">
+    <rect x="0" y="0" width="400" height="192" rx="8" fill="#eef6f1" stroke="#a9cdb8" stroke-width="1.5"/>
+
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.6s" fill="freeze"/>
+      <g transform="translate(24,30)">
+        <circle cx="10" cy="10" r="11" fill="#1b3a63"/>
+        <text x="10" y="15" text-anchor="middle" style="font:700 12px Calibri;fill:#fff">1</text>
+        <text class="st" x="30" y="15">Récupérer tout le fluide</text>
+      </g>
+    </g>
+
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5.4s" fill="freeze"/>
+      <g transform="translate(24,62)">
+        <circle cx="10" cy="10" r="11" fill="#1b3a63"/>
+        <text x="10" y="15" text-anchor="middle" style="font:700 12px Calibri;fill:#fff">2</text>
+        <text class="st" x="30" y="15">Balayer à l'azote pendant</text>
+      </g>
+    </g>
+
+    <!-- tube balayé : l'azote circule -->
+    <rect class="p" x="54" y="104" width="240" height="22" rx="4"/>
+    <rect x="57" y="107" width="234" height="16" fill="#dff0e6"/>
+    <path class="p" d="M70,115 h34 m-8,-5 l8,5 -8,5" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;1;0.25" dur="1.5s" begin="5.8s" repeatCount="6" fill="remove"/>
+    </path>
+    <path class="p" d="M140,115 h34 m-8,-5 l8,5 -8,5" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;1;0.25" dur="1.5s" begin="6.1s" repeatCount="6" fill="remove"/>
+    </path>
+    <path class="p" d="M210,115 h34 m-8,-5 l8,5 -8,5" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;1;0.25" dur="1.5s" begin="6.4s" repeatCount="6" fill="remove"/>
+    </path>
+    <text x="174" y="146" text-anchor="middle" style="font:700 12.5px Calibri;fill:#2f7a4f">azote au mano-détendeur</text>
+
+    <!-- bouteille azote -->
+    <g transform="translate(304,92)">
+      <rect class="p" x="8" y="-8" width="12" height="10" rx="2"/>
+      <path class="p" d="M4,2 h20 a6,6 0 0 1 6,6 v34 a6,6 0 0 1 -6,6 h-20 a6,6 0 0 1 -6,-6 v-34 a6,6 0 0 1 6,-6 z"/>
+      <text x="14" y="30" text-anchor="middle" style="font:700 12px Calibri;fill:#1b3a63">N₂</text>
+    </g>
+
+    <g class="final" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="7s" fill="freeze"/>
+      <g transform="translate(24,158)">
+        <circle cx="10" cy="10" r="11" fill="#1b3a63"/>
+        <text x="10" y="15" text-anchor="middle" style="font:700 12px Calibri;fill:#fff">3</text>
+        <text class="st" x="30" y="15">Ventiler · ne pas se pencher au-dessus</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- bandeau -->
+  <g class="final" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.7s" begin="7.8s" fill="freeze"/>
+    <rect x="30" y="258" width="840" height="42" rx="8" fill="#ffffff" stroke="#e8b9a8" stroke-width="1.5"/>
+    <text class="bad" x="50" y="284">JAMAIS :</text>
+    <text class="lg" x="120" y="284">chercher une fuite avec une flamme — c'est une méthode ancienne, aujourd'hui interdite. On utilise un détecteur électronique.</text>
+  </g>
+</svg>

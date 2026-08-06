@@ -1,0 +1,21 @@
+HABILITATION FLUIDE · SUJET 3
+LA PRESSION CHOISIT LA TEMPÉRATURE
+
+Point d’entrée :
+  index.html
+
+Contenu :
+  - 13 étapes interactives sans défilement en mode cours ;
+  - relation pression–température de saturation ;
+  - expérience de l’eau sous vide ;
+  - pression absolue et pression relative ;
+  - application à l’évaporateur et au condenseur avec le R-134a ;
+  - fluide pur, mélange zéotrope R-407C, glissement, bulle et rosée ;
+  - défi de 10 questions, validation à partir de 8/10 ;
+  - narration française avec sélection manuelle de la voix et vitesse réglable.
+
+Dépendances hors ligne à conserver dans le parcours :
+  ../chaleur-interactive/styles.css
+  ../outils/fluides-data.js
+
+Le module reste entièrement utilisable sans synthèse vocale et sans connexion.

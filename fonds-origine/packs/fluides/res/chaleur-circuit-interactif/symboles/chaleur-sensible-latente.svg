@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="On chauffe un liquide régulièrement et on suit sa température. D'abord elle monte : c'est la chaleur sensible, celle que le thermomètre sent. Puis, au point de bulle, le liquide se met à bouillir et la température s'arrête de monter, alors qu'on continue de chauffer : toute la chaleur sert à changer l'état du fluide, c'est la chaleur latente, et cela dure tout le palier. Au point de rosée, la dernière goutte est vaporisée et la température repart à la hausse : la vapeur est surchauffée. Dans une machine frigorifique, l'évaporateur parcourt ce palier de la gauche vers la droite en absorbant la chaleur du local, et le condenseur le parcourt en sens inverse en rendant cette chaleur dehors.">
+  <title>Chaleur sensible et chaleur latente : la courbe de chauffe et son palier</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+    @media print { .mobile { display:none; } }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">On chauffe sans arrêt — et pourtant la température s'arrête de monter</text>
+
+  <!-- ================= ZONES DE FOND ================= -->
+  <rect x="92" y="70" width="143" height="230" fill="#eef3f7"/>
+  <rect x="235" y="70" width="235" height="230" fill="#fbdcd2"/>
+  <rect x="470" y="70" width="150" height="230" fill="#eef3f7"/>
+
+  <!-- ================= AXES ================= -->
+  <path class="p" d="M92,60 v240 h538"/>
+  <text class="st" x="30" y="64">température</text>
+  <text class="st" x="630" y="392" text-anchor="end">chaleur apportée au fluide →</text>
+
+  <!-- ================= COURBE DE CHAUFFE ================= -->
+  <path id="chauffe" class="acc" style="stroke-width:3.2" d="M110,275 L235,195 L470,195 L600,115"/>
+
+  <!-- point mobile : il parcourt la courbe, il ne la dessine pas -->
+  <circle class="mobile" r="7" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="9s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#chauffe"/>
+    </animateMotion>
+  </circle>
+
+  <!-- repères verticaux jusque sous l'axe -->
+  <path class="dash" d="M235,195 v113 M470,195 v113"/>
+  <circle cx="235" cy="195" r="5.5" fill="#1b3a63"/>
+  <circle cx="470" cy="195" r="5.5" fill="#1b3a63"/>
+
+  <!-- états, dans les zones -->
+  <text class="sm" x="106" y="104">liquide sous-refroidi</text>
+  <text class="sm" x="604" y="104" text-anchor="end">vapeur surchauffée</text>
+
+  <!-- ================= LES DEUX FRONTIÈRES ================= -->
+  <text class="st" x="235" y="172" text-anchor="middle" style="font-size:13px">point de bulle</text>
+  <text class="sm" x="235" y="154" text-anchor="middle">ça commence à bouillir</text>
+
+  <text class="st" x="470" y="172" text-anchor="middle" style="font-size:13px">point de rosée</text>
+  <text class="sm" x="470" y="154" text-anchor="middle">dernière goutte vaporisée</text>
+
+  <!-- ================= LES TROIS ZONES, NOMMÉES SOUS L'AXE ================= -->
+  <text class="st" x="163" y="330" text-anchor="middle">LIQUIDE</text>
+  <text class="sm" x="163" y="348" text-anchor="middle">la température monte</text>
+  <text class="bad" x="163" y="368" text-anchor="middle">chaleur sensible</text>
+
+  <text class="st" x="352" y="330" text-anchor="middle">LIQUIDE + VAPEUR</text>
+  <text class="sm" x="352" y="348" text-anchor="middle">la température ne bouge plus</text>
+  <text class="bad" x="352" y="368" text-anchor="middle">chaleur latente</text>
+
+  <text class="st" x="545" y="330" text-anchor="middle">VAPEUR</text>
+  <text class="sm" x="545" y="348" text-anchor="middle">la température repart</text>
+  <text class="bad" x="545" y="368" text-anchor="middle">chaleur sensible</text>
+
+  <!-- ================= ENCART : DANS LA MACHINE ================= -->
+  <g transform="translate(648,54)">
+    <rect x="0" y="0" width="202" height="258" rx="8" fill="#fdf1ed" stroke="#e8b9a8" stroke-width="1.5"/>
+    <text class="st" x="16" y="28">Dans la machine</text>
+
+    <text class="lg" x="16" y="58">L'<tspan style="font-weight:700">évaporateur</tspan> parcourt</text>
+    <text class="lg" x="16" y="76">le palier vers la droite :</text>
+    <text class="lg" x="16" y="94">il <tspan style="font-weight:700;fill:#c9451a">absorbe</tspan> la chaleur</text>
+    <text class="lg" x="16" y="112">du local pour faire</text>
+    <text class="lg" x="16" y="130">bouillir le fluide.</text>
+
+    <line x1="16" y1="148" x2="186" y2="148" stroke="#e8b9a8" stroke-width="1.5"/>
+
+    <text class="lg" x="16" y="174">Le <tspan style="font-weight:700">condenseur</tspan> le</text>
+    <text class="lg" x="16" y="192">parcourt en sens</text>
+    <text class="lg" x="16" y="210">inverse : il <tspan style="font-weight:700;fill:#c9451a">rend</tspan> cette</text>
+    <text class="lg" x="16" y="228">chaleur dehors en</text>
+    <text class="lg" x="16" y="246">liquéfiant le fluide.</text>
+  </g>
+
+  <text class="lg" x="30" y="410">Le palier est le cœur du métier : c'est là que le fluide échange <tspan style="font-weight:700;fill:#c9451a">beaucoup de chaleur sans changer de température</tspan>.</text>
+  <text class="lg" x="30" y="430">Voilà pourquoi une machine frigorifique travaille avec un fluide qui change d'état, et non avec de l'air.</text>
+  <text class="lg" x="30" y="450">La hauteur du palier dépend de la <tspan style="font-weight:700">pression</tspan> : plus la pression est basse, plus le fluide bout froid.</text>
+</svg>

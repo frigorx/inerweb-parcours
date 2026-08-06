@@ -1,0 +1,65 @@
+{
+  "cours": "bilan-thermique-performance-interactif",
+  "titre": "Tome 4 — Bilan thermique et performance énergétique",
+  "reference": "arrêté du 21 novembre 2025",
+  "ecrans": 16,
+
+  "_lire_avant_de_compter": [
+    "Ce cours ne COUVRE aucun code en propre, et c'est volontaire : le bilan thermique",
+    "(parois, lambda, R, U, charges internes) n'est pas au programme de l'habilitation A1.",
+    "Il est au Bac MFER et au BTS FED.",
+    "En revanche il donne les OUTILS que douze codes du référentiel supposent connus sans",
+    "jamais les enseigner : « connaître les mesures d'amélioration ou de maintien de",
+    "l'efficacité énergétique ». Un stagiaire qui ne sait pas ce qu'est un COP ne peut pas",
+    "juger d'une mesure d'efficacité. D'où le champ `appui` ci-dessous, distinct de `codes`.",
+    "NE JAMAIS compter ces codes comme couverts par ce cours : ils sont ancrés sur un organe",
+    "précis (le compresseur pour 6.08, le condenseur pour 7.10…) et c'est la fiche de cet",
+    "organe qui les couvre. Ce cours la rend compréhensible, il ne la remplace pas."
+  ],
+
+  "codes": {},
+
+  "appui": {
+    "6.08": "efficacité énergétique du compresseur",
+    "7.10": "efficacité énergétique du condenseur",
+    "8.11": "efficacité énergétique de l'évaporateur",
+    "9.10": "efficacité énergétique du détendeur et des annexes",
+    "11.02": "conception à charge réduite et efficacité",
+    "11.04": "comparer les fluides, notamment sur l'efficacité",
+    "11.06": "différences de conception des systèmes",
+    "12.14": "efficacité énergétique des équipements aux hydrocarbures",
+    "13.17": "efficacité énergétique des équipements au CO₂",
+    "14.19": "efficacité énergétique des équipements au NH₃",
+    "5.2": "systèmes de conception réduisant la charge",
+    "5.4": "avantages et inconvénients, dont l'efficacité"
+  },
+
+  "hors_referentiel": [
+    "01-avant-la-machine-regarder-la-chaleur",
+    "02-le-watt-n-est-pas-le-kilowattheure",
+    "03-la-chaleur-traverse-les-parois",
+    "04-le-produit-apporte-aussi-sa-chaleur",
+    "05-une-porte-ouverte-change-le-bilan",
+    "06-additionner-puis-tenir-compte-du-temps-de-marche",
+    "07-en-hiver-on-compense-en-ete-on-extrait",
+    "08-bilan-chaud-enveloppe-plus-air-neuf",
+    "09-bilan-froid-sensible-plus-latent",
+    "10-le-meme-local-n-a-pas-le-meme-besoin-toute-l-annee",
+    "15-un-resultat-doit-pouvoir-etre-defendu",
+    "16-du-bilan-a-l-etiquette"
+  ],
+
+  "ecrans_d_appui": [
+    "11-a-un-instant-cop-en-chaud-eer-en-froid",
+    "12-sur-une-saison-les-conditions-changent",
+    "13-de-l-energie-utile-a-l-electricite",
+    "14-lire-la-vraie-etiquette-europeenne"
+  ],
+
+  "a_faire": [
+    "Les écrans n'ont pas encore d'identifiant stable dans app.js : les noms ci-dessus sont",
+    "dérivés de leur titre et de leur rang. Tant qu'ils ne sont pas posés dans le code,",
+    "l'adressage par `?extrait=` ne peut pas fonctionner sur ce cours.",
+    "À valider par F. Henninot : le partage entre `appui` et `hors_referentiel`."
+  ]
+}

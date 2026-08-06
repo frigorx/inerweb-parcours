@@ -1,0 +1,18 @@
+@page{margin:15mm}
+html,body{height:auto!important;overflow:visible!important;background:#fff!important;color:#000!important}
+body{font:12pt/1.45 Calibri,"Segoe UI",Arial,sans-serif!important}
+.topbar,.top-actions,.family-tabs,.home-footer,.screen-nav,.dossier-rail,.flow-legend,.mechanism-stage,.speech-warning{display:none!important}
+.app-shell,.home-view,.dossier-view,.screen-card,.screen-content{display:block!important;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;box-shadow:none!important;background:#fff!important}
+.home-intro{display:block!important}.home-intro h1{font-size:24pt!important;color:#1b3a63!important}.progress-card{display:none!important}
+.dossier-grid{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:none!important;gap:8mm!important;margin-top:8mm!important}
+.dossier-card{display:grid!important;grid-template-columns:18mm 1fr!important;break-inside:avoid!important;border:1pt solid #1b3a63!important;border-radius:0!important;background:#fff!important;box-shadow:none!important}
+.dossier-card p,.dossier-card h2{color:#000!important}.card-state{display:none!important}
+.screen-heading{display:block!important;border-bottom:1.5pt solid #1b3a63!important}.screen-heading h2{color:#1b3a63!important;font-size:20pt!important}.screen-state{display:none!important}
+.recognition-layout,.function-layout,.connection-layout,.mechanism-layout,.location-layout,.question-layout{display:block!important;height:auto!important}
+.visual-gallery{display:grid!important;grid-template-columns:repeat(2,1fr)!important;height:90mm!important}.real-figure{height:90mm!important;break-inside:avoid!important;border:1pt solid #999!important;background:#fff!important}.real-figure img{height:78mm!important}.symbol-panel,.professional-card,.key-card,.ports-card,.text-card,.mechanism-copy,.mount-card,.question-card,.memory-summary{margin-top:5mm!important;break-inside:avoid!important;border-radius:0!important;background:#fff!important;box-shadow:none!important;color:#000!important}
+.symbol-grid{overflow:visible!important}.symbol-card{border:1pt solid #1b3a63!important;background:#fff!important}.symbol-pending{border:1.5pt dotted #b06a00!important;background:#fff!important}
+.professional-card{border:1pt solid #1b3a63!important;border-left:4pt solid #1b3a63!important}.key-card,.memory-summary{border:4pt double #1e7e54!important}.trap{border:2pt dashed #c9451a!important;background:#fff!important}
+.port-box{background:#fff!important}.no-through{background:#fff!important;border:2pt dashed #3d7fca!important}.cross-card{height:105mm!important;background:#fff!important;border:1pt solid #999!important}.cross-map{height:95mm!important}.cross-marker{background:#fff!important}
+.answer-button{background:#fff!important;color:#000!important}.answer-button.correct{border:4pt double #1e7e54!important}.answer-button.incorrect{border:2pt dashed #c0392b!important}.feedback{background:#fff!important}
+a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
+*{animation:none!important;transition:none!important;text-shadow:none!important}

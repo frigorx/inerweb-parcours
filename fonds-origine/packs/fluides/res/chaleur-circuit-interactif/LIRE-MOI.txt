@@ -1,0 +1,56 @@
+TOME 2 — PREMIÈRES NOTIONS DE THERMODYNAMIQUE
+==============================================
+
+Objectif
+--------
+Ce module appartient au parcours « Habilitation Fluide — Découverte du circuit
+frigorifique ». Il prolonge le tome 1, consacré aux quatre éléments du circuit.
+Le tome 2 permet de comprendre comment la circulation du fluide frigorigène
+rend possibles les transferts de chaleur et les changements d’état.
+
+Parcours en 12 écrans
+---------------------
+1. Rappel du circuit frigorifique et des quatre organes.
+2. Différence entre température, énergie transférée et puissance thermique.
+3. Transfert du chaud vers le froid et bilan Qchaud + Qfroid = 0.
+4. Chaleur sensible et relation Q = m × c × ΔT.
+5. Calculateur interactif d’énergie sensible.
+6. Puissance thermique d’un fluide en mouvement :
+   Q̇ = ṁ × cp × |ΔT|.
+7. Chaleur latente, Q = m × L, saturation, points de bulle et de rosée,
+   et glissement des mélanges zéotropes.
+8. Évaporation, effet frigorifique et surchauffe.
+9. Désurchauffe, liquéfaction et sous-refroidissement.
+10. Bilan énergétique, effet frigorifique et chaleur de compression.
+11. Synthèse animée et interactive.
+12. Quiz de douze questions portant uniquement sur le contenu étudié,
+    avec un seuil de maîtrise de 9/12.
+
+Règles pédagogiques
+-------------------
+- Le mot « fluide frigorigène » est utilisé systématiquement.
+- La circulation est décrite par une masse et un débit massique, pas par un
+  volume fixe.
+- Le compresseur aspire en BP, comprime, refoule en HP et met le fluide
+  frigorigène en mouvement.
+- Le froid ne se déplace pas : la chaleur est transférée du milieu le plus
+  chaud vers le milieu le plus froid.
+- La relation Q = m × c × ΔT est limitée aux zones de chaleur sensible.
+- Les changements d’état sont associés à la chaleur latente Q = m × L.
+- La surchauffe et le sous-refroidissement sont présentés comme des
+  différences de températures exprimées en kelvins, jamais comme des
+  températures lues directement.
+- La croix du frigoriste forme une boucle entièrement raccordée :
+  compresseur → condenseur → détendeur → évaporateur → compresseur.
+- Le module reste centré sur la compréhension et ne traite pas du dépannage.
+
+Contenu technique
+-----------------
+index.html  : structure du module
+styles.css  : mise en page, adaptation aux écrans et animations
+app.js      : navigation, narration, calculateurs, expériences et quiz
+symboles/   : symboles normalisés fournis par la bibliothèque inerWeb
+
+Utilisation locale
+------------------
+Ouvrir index.html dans un navigateur récent. Aucun serveur n’est nécessaire.

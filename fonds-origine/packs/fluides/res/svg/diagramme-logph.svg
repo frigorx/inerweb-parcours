@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" role="img"
+     aria-label="Le diagramme log p h. En ordonnée la pression, sur une échelle logarithmique ; en abscisse l'enthalpie, c'est-à-dire l'énergie contenue dans un kilo de fluide. Une courbe en cloche partage le diagramme en trois zones : à gauche de la courbe de bulle le fluide est entièrement liquide, sous la cloche c'est un mélange de liquide et de vapeur, à droite de la courbe de rosée c'est de la vapeur surchauffée. Le sommet de la cloche est le point critique. Le cycle frigorifique se trace en quatre transformations qui forment un rectangle : le trait montant de droite est la compression, le trait horizontal du haut la condensation, le trait descendant de gauche la détente, le trait horizontal du bas l'évaporation. C'est exactement la croix du frigoriste. La surchauffe se lit sur le trait du bas, à droite de la courbe de rosée ; le sous-refroidissement se lit sur le trait du haut, à gauche de la courbe de bulle.">
+  <title>Le diagramme log p-h : trois zones, deux frontières, un cycle en quatre transformations</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .zn  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#5a6b7d; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .cyc { fill:none; stroke:#c9451a; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+    @media print { .mobile { display:none; } }
+  </style>
+
+  <rect width="880" height="470" fill="#ffffff"/>
+  <text class="t" x="30" y="30">Le même fluide, la même histoire — mais en image</text>
+
+  <!-- ================= AXES ================= -->
+  <path class="p" d="M100,58 v312 h620"/>
+  <text class="st" x="30" y="62">pression</text>
+  <text class="sm" x="30" y="80">(échelle log)</text>
+  <text class="st" x="716" y="394" text-anchor="end">enthalpie — l'énergie contenue dans un kilo de fluide (kJ/kg) →</text>
+
+  <!-- ================= LA CLOCHE ================= -->
+  <path d="M190,370 C216,265 296,152 380,120 C464,152 544,265 570,370 Z"
+        fill="#fbdcd2" stroke="none" opacity="0.5"/>
+  <path class="p" style="stroke-width:2.8" d="M190,370 C216,265 296,152 380,120"/>
+  <path class="p" style="stroke-width:2.8" d="M380,120 C464,152 544,265 570,370"/>
+  <circle cx="380" cy="120" r="5" fill="#1b3a63"/>
+  <text class="sm" x="380" y="108" text-anchor="middle">point critique</text>
+
+  <!-- ================= LES TROIS ZONES ================= -->
+  <text class="zn" x="112" y="176">LIQUIDE</text>
+  <text class="sm" x="112" y="194">rien que du liquide</text>
+
+  <text class="zn" x="110" y="300">courbe</text>
+  <text class="zn" x="110" y="316">de bulle</text>
+  <path class="dash" d="M168,308 h38"/>
+
+  <text class="zn" x="716" y="136" text-anchor="end">VAPEUR SURCHAUFFÉE</text>
+  <text class="sm" x="716" y="154" text-anchor="end">plus une seule goutte</text>
+
+  <text class="zn" x="716" y="336" text-anchor="end">courbe de rosée</text>
+  <path class="dash" d="M600,332 h-44"/>
+
+  <text class="zn" x="380" y="344" text-anchor="middle">LIQUIDE + VAPEUR</text>
+
+  <!-- ================= LE CYCLE, EN QUATRE TRANSFORMATIONS ================= -->
+  <path id="cycle" class="cyc" d="M596,305 L645,185 L258,185 L258,305 Z"/>
+
+  <circle class="mobile" r="7" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="11s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#cycle"/>
+    </animateMotion>
+  </circle>
+
+  <!-- les quatre points du cycle -->
+  <circle cx="596" cy="305" r="5.5" fill="#1b3a63"/><text class="bad" x="604" y="324">1</text>
+  <circle cx="645" cy="185" r="5.5" fill="#1b3a63"/><text class="bad" x="656" y="180">2</text>
+  <circle cx="258" cy="185" r="5.5" fill="#1b3a63"/><text class="bad" x="246" y="180" text-anchor="end">3</text>
+  <circle cx="258" cy="305" r="5.5" fill="#1b3a63"/><text class="bad" x="246" y="322" text-anchor="end">4</text>
+
+  <!-- les organes, sur leur trait -->
+  <text class="st" x="452" y="176" text-anchor="middle" style="fill:#c9451a">CONDENSEUR — il rend la chaleur</text>
+  <text class="st" x="400" y="296" text-anchor="middle" style="fill:#c9451a">ÉVAPORATEUR — il absorbe la chaleur</text>
+  <text class="st" x="668" y="240" style="fill:#c9451a">COMPRESSEUR</text>
+  <text class="sm" x="668" y="258">il monte la pression</text>
+  <text class="st" x="240" y="240" text-anchor="end" style="fill:#c9451a">DÉTENDEUR</text>
+  <text class="sm" x="240" y="258" text-anchor="end">il fait chuter la pression</text>
+
+  <!-- ================= CE QU'ON Y LIT ================= -->
+  <!-- surchauffe : sur le trait du bas, à droite de la courbe de rosée -->
+  <path class="dash" d="M550,305 v-32 M596,305 v-32"/>
+  <path class="p" style="stroke:#c9451a;stroke-width:2" d="M550,278 h46 m-8,-5 l8,5 -8,5"/>
+  <text class="bad" x="573" y="268" text-anchor="middle">surchauffe</text>
+
+  <!-- sous-refroidissement : sur le trait du haut, à gauche de la courbe de bulle -->
+  <path class="dash" d="M298,185 v34 M258,185 v34"/>
+  <path class="p" style="stroke:#c9451a;stroke-width:2" d="M298,218 h-40 m8,-5 l-8,5 8,5"/>
+  <text class="bad" x="278" y="238" text-anchor="middle">sous-refr.</text>
+
+  <!-- ================= BANDEAU ================= -->
+  <rect x="30" y="410" width="820" height="46" rx="8" fill="#eef3f7" stroke="#c9d4de" stroke-width="1.5"/>
+  <text class="lg" x="48" y="432">Le cycle forme un <tspan style="font-weight:700">rectangle</tspan>, et c'est la <tspan style="font-weight:700;fill:#c9451a">croix du frigoriste</tspan> : compresseur à droite, condenseur en haut, détendeur à gauche, évaporateur en bas.</text>
+  <text class="lg" x="48" y="450">La <tspan style="font-weight:700">table de saturation</tspan> dit exactement la même chose, en chiffres : la cloche du diagramme, c'est la colonne « température de saturation » de la table.</text>
+</svg>

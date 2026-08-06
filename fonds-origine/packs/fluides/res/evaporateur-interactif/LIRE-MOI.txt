@@ -1,0 +1,101 @@
+ÉVAPORATEUR — INSTALLER, RÉGLER, VÉRIFIER
+===========================================
+
+Module interactif autonome pour l’habilitation fluides A1/A2.
+Fiche d’origine : g8b.
+
+CE QUE LE MODULE FAIT
+---------------------
+
+- 26 écrans courts, organisés en 5 dossiers : Observer, Dégivrer, Régler,
+  Vérifier et Contrôle.
+- Curseur de température d’air au contact de la batterie, représentation
+  qualitative du givre et comparaison de trois états de débit d’air.
+- Réglage qualitatif d’une minuterie de dégivrage, sans inventer de durée
+  universelle.
+- Distinction entre régulateur de pression d’évaporation et pressostat BP.
+- Inspection guidée d’un évaporateur et construction d’un rapport d’état.
+- Contrôle final de 5 questions. Seuil pédagogique : 4/5. Ce résultat n’est
+  ni une attestation ni un examen officiel.
+
+CE QUE CE MODULE REMPLACE
+-------------------------
+
+Fiche g8b : les paragraphes 1, 2, 5, 6 et 7, ainsi que les encadrés
+« Avant toute mise en service », « Qui protège quoi ? » et
+« Ce qu’un bon rapport contient », sont traités ici par observation,
+manipulation et correction. Ils restent disponibles en lecture, mais n’ont
+plus à être projetés ni lus intégralement en séance.
+
+Les paragraphes 3 et 4 de g8b, qui emploient les appellations commerciales
+KVP/KVL et des cas d’usage encore marqués « À FAIRE VALIDER » dans
+cartes.js, ne sont PAS déclarés remplacés. Le module emploie les noms
+fonctionnels du référentiel officiel et attend une validation humaine avant
+d’intégrer ces appellations.
+
+COUVERTURE DU RÉFÉRENTIEL
+-------------------------
+
+Codes traités : 8.02 · 8.03 · 8.04 · 8.06 · 8.07 · 8.10 · 8.11.
+Le détail écran par écran est dans couverture.json. Les écrans sans code
+sont explicitement déclarés hors preuve de couverture.
+
+ADRESSAGE
+---------
+
+index.html
+  Ouvre le sommaire du module complet.
+
+index.html?dossier=degivrer
+  Ouvre le premier écran du dossier « Dégivrer ».
+
+index.html?dossier=degivrer&ecran=3
+  Ouvre le troisième écran de ce dossier.
+
+index.html?extrait=minuterie-reglage
+  Ouvre uniquement cet écran.
+
+index.html?extrait=givre-naissance,givre-debit-air,quiz-givre
+  Ouvre ces écrans dans l’ordre demandé, avec navigation réduite.
+
+Chaque écran propose « Copier le lien ». Le lien copié utilise l’identifiant
+stable de l’écran, jamais son numéro.
+
+VOIX, SON ET STOCKAGE
+---------------------
+
+- Aucun son et aucune voix au chargement.
+- La voix démarre seulement après « Écouter ».
+- Vitesses : 0,80 · 0,95 · 1,10 · 1,25 ; valeur par défaut 0,95.
+- Clé locale du module : evaporateur-voice-rate.
+- Le réglage commun de lisibilité utilise pilote_lisibilite.
+- Aucune donnée personnelle, aucun score et aucun contenu de rapport ne sont
+  stockés ni transmis.
+- Le module reste complet sans voix, sans stockage et sans réseau.
+
+COMMANDES
+---------
+
+- Flèche droite : écran suivant.
+- Flèche gauche : écran précédent.
+- Espace : pause/reprise de la voix lorsque le focus n’est pas sur un contrôle.
+- Échap : quitter le cours et revenir au sommaire.
+
+IMPRESSION
+----------
+
+impression.css produit un livret complet : 26 écrans, consignes, questions,
+corrections et codes. Les contrôles interactifs, ombres et aplats sont retirés.
+Le papier reste blanc, le texte noir, les titres et filets conservent la couleur.
+
+LIMITES MÉTIER
+--------------
+
+La simulation de givre et la minuterie sont qualitatives. Elles apprennent à
+relier des signes et à éviter les excès ; elles ne donnent aucun réglage chantier.
+Toute valeur réelle dépend du matériel, du fluide, de l’application, des capteurs
+et de la documentation constructeur.
+
+Copie travaillée : C:\git\pilote-fluides
+Module : packs\fluides\res\evaporateur-interactif\
+

@@ -1,0 +1,241 @@
+/* ===========================================================================
+   inerWeb Pilote — Charte "inerWeb Édu" (PRO, fonds clairs, anti-TDAH)
+   Bleu #1B3A63 · Orange #FF6B35 · Trebuchet MS (titres) · Calibri (texte)
+   Règle : fonds clairs uniquement, jamais de dark mode. Une chose à la fois.
+   =========================================================================== */
+:root{
+  --bleu:#1B3A63; --bleu-clair:#2f5689; --orange:#FF6B35; --orange-clair:#ffe2d6;
+  --txt:#1d2a38; --mut:#5a6b7d; --fond:#eef2f6; --carte:#ffffff; --ligne:#d6dee7;
+  --ok:#1e7e54; --ok-bg:#e3f5ec; --ko:#c0392b; --ko-bg:#fbe7e4; --attente:#b06a00;
+  --r:14px; --ombre:0 2px 10px rgba(27,58,99,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--fond); color:var(--txt);
+  font-family:Calibri,"Segoe UI",system-ui,Arial,sans-serif; font-size:16px; line-height:1.6;
+}
+h1,h2,h3,.tt{font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700; color:var(--bleu)}
+
+/* ---- Bandeau ---- */
+.barre{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  background:var(--bleu); color:#fff; padding:10px 18px;
+}
+.barre .logo{font-family:"Trebuchet MS";font-weight:700;font-size:18px;letter-spacing:.5px}
+.barre .logo b{color:var(--orange)}
+.barre .pack-titre{font-size:14px;color:#cdd9e6}
+.barre .spacer{flex:1}
+.barre .mode-tag{
+  background:#fff; color:var(--bleu); font-weight:700; font-size:13px;
+  padding:5px 12px; border-radius:999px; border:2px solid var(--orange);
+}
+
+/* ---- Progression ---- */
+.fil{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:8px 18px;background:#fff;border-bottom:1px solid var(--ligne);font-size:13px;color:var(--mut)}
+.fil a{color:var(--bleu-clair);text-decoration:none;cursor:pointer}
+.fil .sep{color:var(--ligne)}
+
+/* ---- Zone carte (UNE carte à la fois) ---- */
+.scene{max-width:920px;margin:24px auto;padding:0 18px 60px}
+.carte{
+  background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
+  box-shadow:var(--ombre); overflow:hidden;
+}
+.carte > .illus{width:100%;max-height:340px;object-fit:cover;display:block;background:#dde6ef}
+.carte .corps{padding:22px 26px}
+.carte .dc{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--orange);
+  padding:3px 10px;border-radius:999px;margin-bottom:10px;letter-spacing:.3px}
+.carte h1{margin:.1em 0 .5em;font-size:26px}
+.carte p{margin:0 0 12px}
+.carte ul{margin:0 0 12px;padding-left:22px}
+.carte li{margin:4px 0}
+
+/* encadrés pédagogiques */
+.bloc{border-left:4px solid var(--bleu);background:#f3f7fb;border-radius:8px;padding:12px 16px;margin:14px 0}
+.bloc.cle{border-color:var(--ok);background:var(--ok-bg)}
+.bloc.piege{border-color:var(--orange);background:var(--orange-clair)}
+.bloc .t{font-weight:700;color:var(--bleu);margin-bottom:4px}
+
+/* ---- Question ---- */
+.question{margin-top:18px;border-top:2px dashed var(--ligne);padding-top:16px}
+.question .enonce{font-weight:700;color:var(--bleu);margin-bottom:10px;font-size:17px}
+.choix{display:flex;flex-direction:column;gap:8px}
+.choix button{
+  text-align:left; font:inherit; cursor:pointer; padding:11px 14px;
+  background:#fff; border:2px solid var(--ligne); border-radius:10px; color:var(--txt);
+  transition:.12s;
+}
+.choix button:hover{border-color:var(--bleu-clair);background:#f5f9fd}
+.choix button.bon{border-color:var(--ok);background:var(--ok-bg)}
+.choix button.mauvais{border-color:var(--ko);background:var(--ko-bg)}
+.choix button:disabled{cursor:default;opacity:.95}
+.retour{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:14.5px}
+.retour.ok{background:var(--ok-bg);border:1px solid var(--ok);color:var(--ok)}
+.retour.ko{background:var(--ko-bg);border:1px solid var(--ko);color:var(--ko)}
+
+/* ---- Critères (couche évaluation) ---- */
+.criteres{margin-top:16px}
+.criteres .crit{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  border:1px solid var(--ligne);border-radius:10px;padding:8px 12px;margin:6px 0;background:#fff}
+.criteres .code{font-weight:700;color:var(--bleu);font-size:13px;min-width:54px}
+.criteres .lib{flex:1;font-size:14.5px}
+.criteres .etats{display:flex;gap:6px}
+.criteres .etats button{font:inherit;font-size:12.5px;cursor:pointer;border-radius:999px;
+  border:1.5px solid var(--ligne);background:#fff;padding:4px 10px}
+.criteres .etats button.sel.acquis{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.criteres .etats button.sel.non{background:var(--ko-bg);border-color:var(--ko);color:var(--ko)}
+.criteres .etats button.sel.cours{background:#fff4e0;border-color:var(--attente);color:var(--attente)}
+
+/* ---- Compétences visées (extension pack fluides) ----
+   Le référentiel est la promesse faite au candidat : il doit lire, sur
+   chaque fiche, le savoir-faire qui sera évalué. Reformulation accessible
+   en avant, texte de l'arrêté à un clic. */
+.competences{border:1.5px solid var(--bleu);border-radius:12px;background:#f3f7fb;
+  padding:12px 16px;margin:0 0 18px}
+.competences > .t{font-weight:700;color:var(--bleu);margin-bottom:8px;font-size:14.5px}
+.competences .comp{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding:6px 0;border-top:1px solid #dbe6f1}
+.competences .comp.prem{border-top:0}
+.competences .lib{flex:1;min-width:200px;font-size:15px}
+.competences .tp{font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;
+  border:1.5px solid;background:#fff;white-space:nowrap}
+.competences .tp.p{color:var(--orange);border-color:var(--orange)}
+.competences .tp.t{color:var(--bleu-clair);border-color:var(--bleu-clair)}
+.competences .tp.i{color:var(--mut);border-color:var(--ligne)}
+.competences .cat{font-size:12.5px;color:var(--mut);white-space:nowrap}
+.competences .neuf{font-size:12px;color:var(--attente);font-weight:700;white-space:nowrap}
+.competences .avert{margin-top:10px;font-size:13.5px;color:var(--attente);font-weight:600}
+.competences .plus{margin-top:10px}
+.competences .plus button{font:inherit;font-size:13px;cursor:pointer;background:none;
+  border:0;color:var(--bleu);text-decoration:underline;padding:0}
+.competences .officiel{margin-top:8px;font-size:13.5px;color:var(--mut);
+  border-top:1px dashed var(--ligne);padding-top:8px}
+.competences .officiel p{margin:6px 0}
+.competences .officiel b{color:var(--bleu)}
+.competences .officiel .src{font-size:12.5px;font-style:italic}
+
+/* ---- Carte « Ma progression » (extension pack fluides) ----
+   Où j'en suis, compétence par compétence. Quatre états lisibles,
+   distingués par la couleur ET par un mot — jamais par la couleur seule. */
+.prog-resume{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 20px}
+.pst{border:1.5px solid var(--ligne);border-radius:999px;padding:6px 14px;font-size:14px;background:#fff}
+.pst b{font-size:17px}
+.pst.acquis{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.pst.fragile{border-color:var(--attente);color:var(--attente);background:#fff4e0}
+.pst.revoir{border-color:var(--ko);color:var(--ko);background:var(--ko-bg)}
+.pst.vierge{color:var(--mut)}
+.prog-groupe{margin:18px 0}
+.prog-groupe .gt{font-weight:700;color:var(--bleu);font-size:14px;border-bottom:1.5px solid var(--ligne);
+  padding-bottom:4px;margin-bottom:8px}
+.pc{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:7px 12px;margin:5px 0;
+  border:1px solid var(--ligne);border-left-width:5px;border-radius:8px;background:#fff}
+.pc.acquis{border-left-color:var(--ok)}
+.pc.fragile{border-left-color:var(--attente)}
+.pc.revoir{border-left-color:var(--ko)}
+.pc.vierge{border-left-color:var(--ligne)}
+.pc .cd{font-weight:700;color:var(--bleu);font-size:13px;min-width:46px}
+.pc .lb{flex:1;min-width:190px;font-size:14.5px}
+.pc .st{font-size:13px;white-space:nowrap;color:var(--mut)}
+.pc.acquis .st{color:var(--ok);font-weight:600}
+.pc.fragile .st{color:var(--attente);font-weight:600}
+.pc.revoir .st{color:var(--ko);font-weight:600}
+
+/* ---- Bilan par compétence (extension pack fluides) ----
+   Après un examen blanc, l'élève lit ce qui n'est pas acquis en termes de
+   compétences de l'arrêté, pas seulement en numéros de fiches. */
+.bilan-comp{margin-top:14px;border:1.5px solid var(--attente);background:#fffaf2;
+  border-radius:10px;padding:10px 14px}
+.bilan-comp > .t{font-weight:700;color:var(--attente);margin-bottom:6px}
+.bilan-comp .bc{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:4px 0}
+.bilan-comp .code{font-weight:700;color:var(--bleu);font-size:13px;min-width:46px}
+.bilan-comp .lib{flex:1;min-width:180px;font-size:14.5px}
+.bilan-comp .n{font-size:12px;font-weight:700;color:var(--ko)}
+.bilan-comp .hr{margin-top:6px;font-size:13px;color:var(--mut);font-style:italic}
+
+/* ---- Couche pilote (formateur seulement) ---- */
+.pilote{margin-top:16px;border:2px solid var(--orange);background:#fff8f4;border-radius:10px;padding:12px 16px}
+.pilote .t{font-weight:700;color:var(--orange);margin-bottom:4px;font-size:13px;letter-spacing:.4px}
+
+/* ---- Ressources ---- */
+.ressources{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.ressources a{font-size:13.5px;text-decoration:none;color:var(--bleu);background:#eef4fa;
+  border:1px solid var(--ligne);border-radius:999px;padding:6px 12px}
+.ressources a:hover{background:#e0ecf7}
+
+/* ---- Navigation (liens sortants) ---- */
+.liens{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.liens button{font:inherit;font-weight:700;cursor:pointer;border:none;border-radius:12px;
+  padding:14px 18px;text-align:left;color:#fff;background:var(--bleu);box-shadow:var(--ombre)}
+.liens button:hover{background:var(--bleu-clair)}
+.liens button.sec{background:#fff;color:var(--bleu);border:2px solid var(--ligne);box-shadow:none}
+.liens button.sec:hover{border-color:var(--bleu-clair)}
+
+/* ---- Barre basse (minuteur, accès secours) ---- */
+.pied{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--ligne);
+  display:flex;align-items:center;gap:14px;padding:8px 18px;font-size:13px;color:var(--mut)}
+.pied .chrono{font-weight:700;color:var(--bleu)}
+.pied .spacer{flex:1}
+.pied a,.pied button{color:var(--bleu-clair);background:none;border:none;font:inherit;cursor:pointer;text-decoration:underline}
+.docs-btn{font-weight:700}
+
+/* ---- Voile (accès docs / accès secours) ---- */
+.voile{position:fixed;inset:0;background:rgba(27,58,99,.55);display:none;align-items:center;justify-content:center;z-index:60;padding:20px}
+.voile.on{display:flex}
+.voile .modale{background:#fff;border-radius:14px;max-width:560px;width:100%;padding:22px 24px;box-shadow:var(--ombre)}
+.voile h3{margin:0 0 12px}
+.voile .x{float:right;cursor:pointer;color:var(--mut);font-size:20px;border:none;background:none}
+
+/* ---- PAGE D'ACCUEIL / PORTAIL ---- */
+.accueil{max-width:1000px;margin:0 auto;padding:0 18px 80px}
+.hero{position:relative;margin:24px 0 6px;border-radius:var(--r);overflow:hidden;border:1px solid var(--ligne);box-shadow:var(--ombre);background:#fff}
+.hero img{width:100%;height:250px;object-fit:cover;display:block}
+.hero .cap{padding:22px 28px}
+.hero h1{font-size:32px;margin:0 0 8px}
+.hero p{margin:0;color:var(--mut);font-size:17px}
+.hero .lead{color:var(--txt)}
+.sct{font-family:"Trebuchet MS",Calibri,Arial,sans-serif;color:var(--bleu);font-weight:700;font-size:14px;letter-spacing:.6px;text-transform:uppercase;margin:28px 4px 14px}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.tuile{cursor:pointer;text-align:left;font:inherit;background:#fff;border:1px solid var(--ligne);border-radius:14px;padding:20px 22px;box-shadow:var(--ombre);transition:.14s;display:flex;flex-direction:column;gap:6px;color:var(--txt)}
+.tuile:hover{transform:translateY(-3px);border-color:var(--bleu-clair)}
+.tuile .ic{font-size:34px;line-height:1}
+.tuile h3{margin:4px 0 0;font-size:19px;color:var(--bleu)}
+.tuile p{margin:0;color:var(--mut);font-size:14px;line-height:1.5}
+.tuile .go{margin-top:auto;padding-top:8px;color:var(--orange);font-weight:700;font-size:14px}
+.tuile.primaire{grid-column:1/-1;border-top:5px solid var(--orange);background:linear-gradient(180deg,#fff,#fff7f3)}
+.tuile.primaire{flex-direction:row;align-items:center;gap:18px;flex-wrap:wrap}
+.tuile.primaire .ic{font-size:40px}
+.tuile.primaire .txt{flex:1;min-width:200px}
+.tuile.primaire .go{margin:0}
+@media(max-width:560px){ .hero img{height:170px} .hero h1{font-size:24px} .carte .corps{padding:16px} .carte h1{font-size:22px} }
+
+/* Bouton « revoir l'animation », posé sous une planche animée. Discret :
+   il sert quand on arrive sur le schéma après la fin de l'animation, ce qui
+   est le cas dès qu'on fait défiler la fiche. Il n'apparaît jamais sous un
+   dessin fixe — la liste des planches animées est relevée au build. */
+button.rejeu{display:block;margin:-10px 0 18px;padding:5px 12px;font:600 13.5px/1.3 inherit;
+  color:var(--bleu);background:#f3f7fb;border:1.5px solid var(--bleu-clair);border-radius:999px;cursor:pointer}
+button.rejeu:hover{background:#e7eff7}
+/* Le bouton du son se pose à côté de « revoir ». Neutre : le son est un
+   supplément, jamais une information — une planche muette reste complète. */
+button.rejeu.son{margin-top:-6px;color:#5a6b7d;border-color:var(--bord)}
+button.rejeu.son[aria-pressed="true"]{color:var(--bleu);border-color:#2f5689}
+@media print{ button.rejeu{display:none} }
+
+/* Le curseur de volume, à côté du bouton son. Demande de F. Henninot,
+   28/07 : « des fois c'est difficilement audible » — le mixage entre sept
+   sons calculés et quatre fichiers d'origines différentes ne peut pas être
+   parfait partout, le réglage laisse chacun compenser sur son matériel. */
+.son-reglage{display:inline-flex;align-items:center;gap:8px;vertical-align:middle}
+input[data-son-volume]{width:88px;accent-color:var(--bleu);cursor:pointer}
+@media print{ .son-reglage{display:none} }
+
+/* Le bouton d'écoute d'une fiche : discret, posé juste sous le titre.
+   Il change d'état visuellement quand la lecture est en cours, pour
+   qu'on sache d'un coup d'œil qu'un second clic l'arrêtera. */
+button.ecouter{display:inline-block;margin:0 0 16px;padding:6px 14px;font:600 13.5px/1.3 inherit;
+  color:var(--bleu);background:#f3f7fb;border:1.5px solid var(--bleu-clair);border-radius:999px;cursor:pointer}
+button.ecouter:hover{background:#e7eff7}
+button.ecouter.actif{background:var(--bleu);color:#fff;border-color:var(--bleu)}
+@media print{ button.ecouter{display:none} }

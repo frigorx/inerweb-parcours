@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Frise interactive et racontée de l’histoire des fluides frigorigènes.">
+    <title>La Frise Vivante des Fluides</title>
+    <link rel="stylesheet" href="frise-vivante.css">
+    <link rel="stylesheet" href="../../../../moteur/impression.css" media="print">
+</head>
+  <body>
+    <main class="experience theme-intro" id="experience">
+      <div class="ambient" aria-hidden="true">
+        <span class="orb orb-one"></span>
+        <span class="orb orb-two"></span>
+        <span class="orb orb-three"></span>
+      </div>
+
+      <header class="topbar">
+        <a class="brand" href="#frise">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span>
+            <strong>Habilitation Fluide</strong>
+            <small>La frise vivante</small>
+          </span>
+        </a>
+        <div class="topbar-actions">
+          <button class="source-toggle" id="source-toggle" type="button" aria-expanded="false">Sources</button>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">De l’ozone au climat</p>
+          <h1 id="page-title">L’histoire des fluides <span>prend vie.</span></h1>
+          <p class="hero-intro">Suivez le fil. Écoutez le récit. Comprenez pourquoi chaque kilogramme de fluide compte aujourd’hui.</p>
+        </div>
+        <div class="guide-wrap" aria-hidden="true">
+          <div class="guide-halo"></div>
+          <svg class="guide-image" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <rect x="66" y="120" width="68" height="86" rx="6" fill="#0f2a4a" stroke="#3d7fca" stroke-width="2"/>
+            <circle cx="88" cy="146" r="20" fill="#0b1c33" stroke="#3d7fca" stroke-width="3"/>
+            <circle cx="88" cy="146" r="12" fill="#132b4a"/>
+            <circle cx="112" cy="146" r="20" fill="#0b1c33" stroke="#ff6b35" stroke-width="3"/>
+            <circle cx="112" cy="146" r="12" fill="#132b4a"/>
+            <rect x="70" y="182" width="60" height="16" rx="3" fill="#0b1c33" stroke="#3d7fca" stroke-width="2"/>
+            <circle cx="76" cy="190" r="4" fill="#3d7fca"/>
+            <circle cx="124" cy="190" r="4" fill="#ff6b35"/>
+            <line x1="100" y1="120" x2="100" y2="90" stroke="#3d7fca" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="guide-badge">
+            <strong>Votre guide</strong>
+            <span>Le manifold, l’outil du frigoriste</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-shell" id="frise" aria-label="Frise interactive">
+        <div class="story-stage">
+          <div class="thread-legend" aria-label="Les deux fils de l’histoire">
+            <span class="legend-item ozone"><i></i> Fil ozone</span>
+            <span class="legend-item climate"><i></i> Fil climat</span>
+          </div>
+
+          <div class="timeline-scroll">
+            <div class="timeline" id="timeline" role="list" aria-label="Événements">
+              <div class="timeline-track track-base" aria-hidden="true"></div>
+              <div class="timeline-track track-progress" id="timeline-progress" aria-hidden="true"></div>
+              <div class="timeline-thread ozone-thread" aria-hidden="true"></div>
+              <div class="timeline-thread climate-thread" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="scene-visual" id="scene-visual" aria-hidden="true">
+              <img class="scene-visual-img" id="scene-visual-a" alt="">
+              <img class="scene-visual-img" id="scene-visual-b" alt="">
+            </div>
+
+            <article class="narration-card" aria-live="polite">
+              <div class="narration-meta">
+                <span class="scene-number" id="scene-number">01</span>
+                <div>
+                  <p id="scene-kicker"></p>
+                  <strong id="scene-year"></strong>
+                </div>
+              </div>
+              <div class="narration-copy">
+                <h2 id="scene-title"></h2>
+                <p id="scene-narration"></p>
+                <div class="takeaway">
+                  <span aria-hidden="true">→</span>
+                  <strong id="scene-takeaway"></strong>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="player" aria-label="Commandes de narration">
+            <div class="player-progress" aria-hidden="true"><span id="player-progress"></span></div>
+            <div class="player-controls">
+              <button class="icon-button" id="previous-button" type="button" aria-label="Étape précédente" title="Étape précédente">←</button>
+              <button class="play-button" id="play-button" type="button">
+                <span aria-hidden="true">▶</span>
+                <b>Écouter l’histoire</b>
+              </button>
+              <button class="icon-button" id="next-button" type="button" aria-label="Étape suivante" title="Étape suivante">→</button>
+              <button class="replay-button" id="replay-button" type="button">↻ Relire</button>
+            </div>
+            <div class="player-status">
+              <span id="step-status">Étape 1 sur 10</span>
+              <span class="keyboard-hint">Espace : lecture · Flèches : navigation</span>
+            </div>
+          </div>
+
+          <p class="speech-warning" id="speech-warning" role="status" hidden>
+            La voix de synthèse n’est pas disponible dans ce navigateur. La frise et les sous-titres restent utilisables.
+          </p>
+        </div>
+      </section>
+
+      <section class="final-message" aria-label="À retenir">
+        <p>À retenir</p>
+        <h2>Il n’existe pas de fluide parfait. <span>Il existe des professionnels bien formés.</span></h2>
+        <div class="final-pillars">
+          <span>Sécurité</span><i aria-hidden="true">+</i>
+          <span>Confinement</span><i aria-hidden="true">+</i>
+          <span>Traçabilité</span><i aria-hidden="true">=</i>
+          <strong>Responsabilité</strong>
+        </div>
+        <button class="commencer-button" id="commencer-button" type="button">
+          Commencer la formation <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <aside class="sources-panel" id="sources-panel" aria-label="Sources documentaires" hidden>
+        <div><p class="eyebrow">Pour aller plus loin</p><h2>Sources documentaires</h2></div>
+        <ul>
+          <li><a href="https://www.bas.ac.uk/about/history/ozone-hole-discovery/" target="_blank" rel="noreferrer">British Antarctic Survey — découverte du trou d’ozone</a></li>
+          <li><a href="https://ozone.unep.org/treaties/montreal-protocol" target="_blank" rel="noreferrer">ONU Environnement — protocole de Montréal</a></li>
+          <li><a href="https://unfccc.int/process-and-meetings/the-kyoto-protocol" target="_blank" rel="noreferrer">CCNUCC — protocole de Kyoto</a></li>
+          <li><a href="https://unfccc.int/process-and-meetings/the-paris-agreement" target="_blank" rel="noreferrer">CCNUCC — accord de Paris</a></li>
+          <li><a href="https://climate.ec.europa.eu/eu-action/fluorinated-greenhouse-gases/f-gas-legislation_en" target="_blank" rel="noreferrer">Commission européenne — règlement F-Gas 2024/573</a></li>
+        </ul>
+      </aside>
+
+      <footer>
+        <span>Habilitation Fluide · Ressource pédagogique interactive</span>
+        <button id="restart-button" type="button">Recommencer</button>
+      </footer>
+    </main>
+    <script src="frise-vivante.js"></script>
+  <!-- Lisibilité : bouton « Aa » commun au pack (taille + police DYS) -->
+<script src="../../../../moteur/lisibilite.js"></script>
+</body>
+</html>

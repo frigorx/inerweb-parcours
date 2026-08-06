@@ -1,0 +1,46 @@
+L’ÉTANCHÉITÉ — DE L’INDICE À LA PREUVE
+
+Cours interactif commun aux fiches g4a, g4b et g4c.
+27 écrans, 6 dossiers, 9 codes du référentiel et 5 contrôles.
+
+CE QUE LE COURS FAIT
+  Il fait suivre une enquête complète : lire le registre, repérer les points
+  sensibles, observer, analyser les paramètres, choisir une méthode directe,
+  utiliser le détecteur dans de bonnes conditions et consigner le résultat.
+  Les méthodes indirecte et directe sont toujours comparées : la première
+  soupçonne une perte de charge, la seconde cherche sa localisation.
+
+PARTI PRIS VISUEL
+  L’accueil réunit trois illustrations : recherche au détecteur, lecture des
+  paramètres et localisation à la solution moussante. Dix-sept écrans portent
+  une illustration ou un pictogramme métier ; les autres utilisent trois
+  schémas techniques validés et des manipulations visuelles. Les images restent
+  locales : le cours ne dépend d’aucun réseau.
+
+CE QUE CE COURS REMPLACE
+  Fiche g4a : les paragraphes sur les points de fuite, le registre et le contrôle
+  visuel peuvent être traités par les écrans ORIENTER.
+  Fiche g4b : l’explication projetée de la méthode indirecte et de la convergence
+  des mesures peut être remplacée par le dossier SOUPÇONNER.
+  Fiche g4c : la comparaison des méthodes directes, le balayage du détecteur et
+  la structure du registre peuvent être remplacés par LOCALISER et TRACER.
+  Les textes restent disponibles. La manipulation réelle des instruments, la
+  procédure du site et la validation pratique ne sont jamais remplacées.
+
+POINT RÉGLEMENTAIRE AU 1er AOÛT 2026
+  Le référentiel 2024/2215 cite le règlement (CE) 1516/2007 dans les compétences
+  4.03 à 4.07. Le règlement d’exécution (UE) 2026/1444 l’a abrogé à compter du
+  23 juillet 2026, sans le remplacer, au motif que des méthodes actualisées sont
+  désormais employées. Le cours conserve les distinctions exigées par le
+  référentiel, mais ne présente pas l’ancien règlement comme une procédure de
+  chantier actuelle. La procédure en vigueur, la notice et les consignes de
+  l’organisme priment toujours.
+
+ADRESSAGE
+  index.html?dossier=orienter
+  index.html?dossier=soupconner&ecran=2
+  index.html?extrait=indirect-definition,deux-methodes
+
+DONNÉES ET RÉSEAU
+  Aucune donnée personnelle. Seule la préférence de vitesse vocale peut être
+  conservée localement ; le cours reste complet sans stockage, voix ni réseau.

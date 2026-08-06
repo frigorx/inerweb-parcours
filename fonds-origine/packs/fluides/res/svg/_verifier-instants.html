@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les schémas figés — choisir les instants</title>
+<style>
+  :root{ --navy:#1b3a63; --orange:#ff6b35; --orange-deep:#c9451a; --cream:#f7f1e7;
+         --paper:#fffdf8; --ink:#10233c; --muted:#637285; --line:rgba(27,58,99,.16);
+         --ok:#1e7e54; --ok-bg:#e3f5ec; }
+  *{box-sizing:border-box}
+  body{margin:0;padding:26px 22px 120px;background:var(--cream);color:var(--ink);
+       font:16px/1.55 Calibri,'Segoe UI',system-ui,sans-serif}
+  h1{font-family:'Trebuchet MS',Calibri,sans-serif;color:var(--navy);font-size:26px;margin:0 0 6px}
+  .st{color:var(--muted);margin:0 0 18px;max-width:80ch}
+  .mode{background:#fff4e0;border-left:5px solid #b06a00;border-radius:8px;padding:14px 18px;
+        margin:0 0 24px;max-width:88ch;font-size:15px}
+  .planche{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+           padding:16px 18px;margin:0 0 18px;box-shadow:0 2px 10px rgba(27,58,99,.07)}
+  .planche h2{font-family:'Trebuchet MS',Calibri,sans-serif;color:var(--navy);font-size:17px;
+              margin:0 0 2px}
+  .planche .meta{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .vues{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .vue{border:2px solid var(--line);border-radius:10px;background:#fff;padding:8px;
+       cursor:pointer;text-align:center;position:relative}
+  .vue:hover{border-color:var(--navy)}
+  .vue.gardee{border-color:var(--ok);background:var(--ok-bg)}
+  .vue.gardee::after{content:"gardé";position:absolute;top:6px;right:8px;font-size:11px;
+                     font-weight:700;color:#fff;background:var(--ok);border-radius:999px;
+                     padding:2px 8px;letter-spacing:.03em;text-transform:uppercase}
+  .vue svg{width:100%;height:190px;display:block}
+  .vue b{display:block;font-size:12.5px;color:var(--navy);margin-top:6px;font-weight:700}
+  .barre{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--navy);color:#fff;
+         padding:12px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+         box-shadow:0 -3px 14px rgba(16,35,60,.28)}
+  .barre b{font-size:17px}
+  .barre .sp{flex:1}
+  .barre button{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:999px;
+                padding:8px 18px;background:var(--orange);color:#fff}
+  .barre button:hover{background:var(--orange-deep)}
+  .barre button.sec{background:rgba(255,255,255,.16)}
+  #sortie{position:fixed;inset:6% 8%;z-index:12;background:var(--paper);border-radius:14px;
+          padding:20px 24px;overflow:auto;display:none;box-shadow:0 24px 70px rgba(16,35,60,.4)}
+  #sortie.on{display:block}
+  #sortie textarea{width:100%;height:60vh;font:13px/1.5 Consolas,monospace;border:1px solid var(--line);
+                   border-radius:8px;padding:12px}
+  @media print{ .barre,#sortie{display:none!important} }
+</style>
+</head>
+<body>
+
+<h1>Les schémas figés — choisir les instants</h1>
+<p class="st">Chaque planche animée du pack est montrée à <b>quatre instants</b> de son
+animation. Le principe : au lieu de laisser la même illustration à l'écran pendant vingt
+diapositives, on fait défiler ces instants au fil de la séquence — l'image avance avec le propos,
+sans qu'aucun fichier soit produit.</p>
+
+<div class="mode">
+  <b>Ce qu'il faut faire :</b> cliquer sur les vues qui <b>tombent juste</b> — un dessin complet,
+  lisible, qui veut dire quelque chose. Laisser de côté celles qui montrent un tracé à
+  moitié fait. Trois vues gardées par planche suffisent ; une seule, c'est déjà mieux que rien.
+  Quand c'est fini : <b>« Voir le résultat »</b> en bas, et me coller ce qui s'affiche.
+</div>
+
+<div id="tout"></div>
+
+<div class="barre">
+  <b id="compte">0 vue gardée</b>
+  <span class="sp"></span>
+  <button class="sec" id="b-fin">Tout garder la dernière vue</button>
+  <button id="b-voir">Voir le résultat ▸</button>
+</div>
+
+<div id="sortie">
+  <p><b>À me coller tel quel.</b> Chaque ligne : la planche, puis les instants gardés en secondes.</p>
+  <textarea id="txt" readonly></textarea>
+  <p><button id="b-fermer">Fermer</button></p>
+</div>
+
+<script>
+"use strict";
+var PLANCHES = [{"f":"balayage-azote.svg","d":1.1},{"f":"balayage-detecteur.svg","d":4},{"f":"chaleur-sensible-latente.svg","d":9},{"f":"charge-limite-local.svg","d":12},{"f":"circuit-complet-manifold.svg","d":1.8},{"f":"co2-nh3-compare.svg","d":12},{"f":"co2-point-bas.svg","d":11},{"f":"co2-protection.svg","d":14},{"f":"compresseurs.svg","d":2.6},{"f":"croix-frigoriste.svg","d":1.8},{"f":"detendeur-regulation.svg","d":12},{"f":"detendeurs-ligne.svg","d":1.1},{"f":"diagramme-logph.svg","d":11},{"f":"echangeur-air.svg","d":2.2},{"f":"epreuve-azote.svg","d":1.3},{"f":"givre-degivrage.svg","d":12},{"f":"intro-securite.svg","d":16.5},{"f":"lie-domaine.svg","d":12},{"f":"manifold-lecture.svg","d":12},{"f":"mesure-surchauffe.svg","d":1.2},{"f":"nomenclature.svg","d":13.9},{"f":"ordre-vannes.svg","d":12.8},{"f":"pesee-charge.svg","d":15.5},{"f":"points-de-fuite.svg","d":15},{"f":"pression-absolue-relative.svg","d":14},{"f":"prp-echelle.svg","d":1.4},{"f":"recuperation.svg","d":1.2},{"f":"s1-double-accident.svg","d":17.2},{"f":"secu-bouteille.svg","d":7.7},{"f":"secu-consignation.svg","d":5},{"f":"secu-decomposition-ari.svg","d":7.7},{"f":"secu-flamme.svg","d":15.6},{"f":"secu-projection.svg","d":7.1},{"f":"surchauffe-utile-totale.svg","d":13.9},{"f":"tirage-au-vide.svg","d":14}];
+var PARTS = [0.15,0.42,0.7,0.99];
+var garde = {};   // fichier -> [instants]
+
+/* Figer une animation : SMIL par l'horloge du document SVG, keyframes CSS
+   par la Web Animations API. Les deux mécaniques coexistent dans le pack,
+   il faut traiter les deux ou la moitié des planches ne bougerait pas. */
+function figer(svg, t){
+  try { svg.pauseAnimations(); svg.setCurrentTime(t); } catch(e){}
+  if (svg.getAnimations) {
+    svg.getAnimations({ subtree: true }).forEach(function(a){
+      try { a.pause(); a.currentTime = t * 1000; } catch(e){}
+    });
+  }
+}
+
+function basculer(el, fichier, t){
+  el.classList.toggle("gardee");
+  garde[fichier] = garde[fichier] || [];
+  var i = garde[fichier].indexOf(t);
+  if (i >= 0) garde[fichier].splice(i, 1); else garde[fichier].push(t);
+  garde[fichier].sort(function(a,b){ return a-b; });
+  majCompte();
+}
+
+function majCompte(){
+  var n = 0;
+  for (var k in garde) n += garde[k].length;
+  document.getElementById("compte").textContent =
+    n + (n > 1 ? " vues gardées" : " vue gardée") + " sur " + (PLANCHES.length * PARTS.length);
+}
+
+(async function(){
+  var tout = document.getElementById("tout");
+  for (var p of PLANCHES) {
+    var txt;
+    try { txt = await (await fetch(p.f)).text(); }
+    catch (e) {
+      var err = document.createElement("div");
+      err.className = "planche";
+      err.innerHTML = "<h2>" + p.f + "</h2><p class='meta'>Non lisible — la page doit être " +
+                      "SERVIE en HTTP, pas ouverte depuis le disque.</p>";
+      tout.appendChild(err);
+      continue;
+    }
+    var bloc = document.createElement("div");
+    bloc.className = "planche";
+    bloc.innerHTML = "<h2>" + p.f + "</h2><p class='meta'>animation de " + p.d +
+                     " s — quatre instants</p><div class='vues'></div>";
+    var vues = bloc.querySelector(".vues");
+    for (var part of PARTS) {
+      var t = Math.round(p.d * part * 10) / 10;
+      var vue = document.createElement("div");
+      vue.className = "vue";
+      vue.innerHTML = txt + "<b>" + t.toFixed(1) + " s</b>";
+      var svg = vue.querySelector("svg");
+      if (svg) { svg.removeAttribute("width"); svg.removeAttribute("height"); figer(svg, t); }
+      (function(vue, f, t){ vue.onclick = function(){ basculer(vue, f, t); }; })(vue, p.f, t);
+      vues.appendChild(vue);
+    }
+    tout.appendChild(bloc);
+  }
+  majCompte();
+})();
+
+document.getElementById("b-fin").onclick = function(){
+  // raccourci : la fin d'animation est l'état complet, elle tombe juste le plus souvent
+  document.querySelectorAll(".planche").forEach(function(bloc){
+    var derniere = bloc.querySelectorAll(".vue")[PARTS.length - 1];
+    if (derniere && !derniere.classList.contains("gardee")) derniere.click();
+  });
+};
+
+document.getElementById("b-voir").onclick = function(){
+  var l = [];
+  for (var k in garde) if (garde[k].length) l.push(k + " : " + garde[k].join(", "));
+  document.getElementById("txt").value = l.length
+    ? l.join("\n")
+    : "(aucune vue gardée — cliquer sur celles qui tombent juste)";
+  document.getElementById("sortie").classList.add("on");
+};
+document.getElementById("b-fermer").onclick = function(){
+  document.getElementById("sortie").classList.remove("on");
+};
+</script>
+</body>
+</html>

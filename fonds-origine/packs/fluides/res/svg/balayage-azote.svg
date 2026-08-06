@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img"
+     aria-label="Brasage sous balayage d'azote : l'azote entre dans le tube à gauche, traverse le joint chauffé au chalumeau, ressort à droite.">
+  <title>Braser sous balayage d'azote</title>
+
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .l   { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .s   { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sym { stroke:#33475b; stroke-width:1.6; fill:none; }
+    .box { fill:#fff; stroke:#33475b; stroke-width:2.2; }
+    .tube{ stroke:#33475b; stroke-width:3; fill:none; }
+    .flux{ fill:none; stroke:#1b3a63; stroke-opacity:.75; stroke-width:2.6; stroke-linecap:round;
+           stroke-dasharray:0.1 14; animation:flux 1.1s linear infinite; }
+    @keyframes flux { to { stroke-dashoffset:-14.1; } }
+    .flamme { animation:flam 0.5s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+    @keyframes flam { from { transform:scale(1); } to { transform:scale(1.12,0.94); } }
+    @media print { .flux,.flamme { animation:none; } }
+  </style>
+
+  <rect width="900" height="340" fill="#ffffff"/>
+
+  <text class="t" x="40" y="36">Braser sous balayage d'azote</text>
+
+  <!-- bouteille N2 + détendeur -->
+  <g>
+    <rect class="box" x="80" y="150" width="60" height="120" rx="13" fill="#eef3f8"/>
+    <path class="sym" d="M 101 150 L 101 138 M 119 150 L 119 138 M 94 138 L 126 138"/>
+    <g transform="translate(110,126)" class="sym">
+      <circle cx="0" cy="-8" r="8" fill="#fff"/>
+      <path d="M 0 -8 L 4 -13"/>
+    </g>
+    <text class="l" x="110" y="215" text-anchor="middle">N₂</text>
+    <text class="s" x="110" y="292" text-anchor="middle">débit léger</text>
+    <text class="s" x="110" y="309" text-anchor="middle">et continu</text>
+  </g>
+
+  <!-- tuyau souple vers le tube -->
+  <path class="sym" d="M 140 190 C 200 190 210 208 260 208" style="stroke-width:2.4"/>
+
+  <!-- tube en cours de brasage -->
+  <path class="tube" d="M 260 200 L 820 200"/>
+  <path class="tube" d="M 260 216 L 820 216"/>
+  <!-- manchon du joint -->
+  <path class="tube" d="M 520 194 L 560 194 M 520 222 L 560 222 M 520 194 L 520 200 M 520 222 L 520 216 M 560 194 L 560 200 M 560 222 L 560 216" style="stroke-width:2.4"/>
+
+  <!-- azote qui traverse -->
+  <path class="flux" d="M 262 208 L 818 208"/>
+  <!-- sortie libre -->
+  <path class="sym" d="M 826 202 L 848 196 M 826 208 L 852 208 M 826 214 L 848 220" style="stroke-width:2"/>
+  <text class="s" x="836" y="246" text-anchor="middle">sortie</text>
+  <text class="s" x="836" y="263" text-anchor="middle">libre</text>
+
+  <!-- chalumeau + flamme -->
+  <g>
+    <g class="flamme">
+      <path d="M 540 188 C 532 170 534 158 540 146 C 546 158 548 170 540 188 Z" fill="#ff6b35"/>
+      <path d="M 540 184 C 536 172 537 164 540 156 C 543 164 544 172 540 184 Z" fill="#ffd166"/>
+    </g>
+    <path class="sym" d="M 540 132 L 540 112 L 600 84" style="stroke-width:5"/>
+    <text class="l" x="614" y="80">Chalumeau</text>
+  </g>
+  <text class="l" x="540" y="252" text-anchor="middle">Le joint</text>
+  <text class="s" x="540" y="270" text-anchor="middle">l'azote chasse l'oxygène :</text>
+  <text class="s" x="540" y="287" text-anchor="middle">pas de calamine à l'intérieur</text>
+
+  <text class="s" x="40" y="326">Deux gestes à l'azote, à ne pas confondre : le <tspan style="font-weight:700;fill:#1b3a63">balayage</tspan> (pendant, débit léger) et l'<tspan style="font-weight:700;fill:#1b3a63">épreuve</tspan> (après, sous pression).</text>
+</svg>
