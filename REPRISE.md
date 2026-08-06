@@ -124,20 +124,52 @@ node build/inventaire.mjs
 | `DECOUPAGE-3-CAPSULES.html` | **les 3 capsules en un seul fichier**, sans son (257 Ko) |
 | `CAPSULE-AVEC-LA-VOIX.html` | une capsule **avec ses 18 narrations dedans** (3,9 Mo) |
 
-### Les capsules produites
+### Les capsules produites — 7 sujets, 92 écrans
 
-| Sujet | Niveau | Fil | Détours | Écrans | Voix |
-|---|---|---|---|---|---|
-| Lire le code d'un fluide | découverte | 6 | 7 | 18 | ✅ |
-| A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 | ✅ |
-| Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 | ✅ |
+| # | Sujet | Niveau | Fil | Détours | Écrans | À vérifier |
+|---|---|---|---|---|---|---|
+| 1 | Le circuit : quatre organes, deux pressions | découverte | 6 | 5 | 12 | 3 |
+| 2 | Lire le code d'un fluide | découverte | 6 | 7 | 18 | 8 |
+| 3 | A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 | 10 |
+| 4 | La surchauffe : la mesurer, la comprendre | métier | 6 | 5 | 11 | 6 |
+| 5 | Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 | 10 |
+| 6 | Le contrôle d'étanchéité : qui, quand, comment | examen | 6 | 5 | 11 | 8 |
+| 7 | Récupérer le fluide : le geste et la règle | examen | 6 | 3 | 10 | 6 |
 
-**Voix retenues** : **Henri** (masculine) et **Denise** (féminine), voix neuronales `edge-tts`.
+**Total** : 40 détours · 24 planches du fonds réemployées · **63 points « À vérifier »**
+sur 51 écrans · 184 narrations (33 Mo).
+
+L'ordre ci-dessus est **déclaré** par chaque capsule (champ `ordre`) : sans lui, l'accueil
+sortirait dans l'ordre alphabétique des fichiers et proposerait les classes de sécurité
+avant d'avoir montré un circuit.
+
+**Voix** : **Henri** (masculine) et **Denise** (féminine), voix neuronales `edge-tts`.
 Elles se changent **à un seul endroit** : la constante `VOIX` de `refonte/voix/fabriquer.mjs`.
-Les fichiers vivent dans `refonte/voix/masculine|feminine/<capsule>/<ecran>.mp3`.
 
-Une capsule est **un fichier de données** : on ajoute un sujet ou un détour sans écrire
-une ligne de JavaScript.
+### Le mode relecture
+
+Activé par **une seule ligne** — `window.RELECTURE = true` — et par rien d'autre. Le produit
+normal ne porte pas une trace du dispositif.
+
+- **Encadrés rouges « À VÉRIFIER »** : écrits dans les capsules (champ `verifier`), jamais
+  générés. Couleur **+** trait **+** mot, jamais la couleur seule.
+- **En bas de chaque écran** : Juste / À corriger / Question / Sensible, plus une remarque
+  libre gardée à la frappe.
+- **Barre du bas** : compteur, « Enregistrer mon relevé » (Markdown signé, téléchargé), et
+  un **va-et-vient vers le produit nu** — ce que l'élève verra.
+- Tout reste sur la machine du relecteur. **Aucun serveur, rien ne sort.**
+
+### Les livrables
+
+| Fichier | Poids | Pour qui |
+|---|---|---|
+| `CAPSULES-BETA.zip` · dossier `BETA/` | 28 Mo | **les 10 relecteurs** — produit complet, voix comprises, `LANCER.cmd` + `LISEZ-MOI.txt` |
+| `MAQUETTE-BETA.html` | 471 Ko | **relire depuis un téléphone** — 7 capsules en un fichier, mode relecture actif, sans son |
+| `CAPSULE-AVEC-LA-VOIX.html` | 3,9 Mo | juger la voix — une capsule, 18 narrations dedans |
+| `ECOUTER-LES-VOIX.html` | 620 Ko | comparer les 4 voix candidates |
+
+`BETA/` et le zip sont **hors dépôt** (`.gitignore`) : ce sont des produits, refaits d'une
+commande — `node build/paquet-beta.mjs`.
 
 ### Ce qui reste en attente de F. Henninot
 
