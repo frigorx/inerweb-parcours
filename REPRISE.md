@@ -85,6 +85,30 @@ Le premier déploiement a demandé trois tentatives et une réinitialisation de 
 Pages (`gh api -X DELETE …/pages` puis `POST … -f build_type=workflow`). Compter aussi
 **plusieurs minutes de 503** après un déploiement réussi : c'est normal, ce n'est pas un échec.
 
+### Avant de conclure qu'un déploiement échoue par notre faute
+
+**Regarder d'abord si GitHub est en panne** :
+
+```bash
+curl -s https://www.githubstatus.com/api/v2/components.json
+```
+
+Le 06/08 après-midi, quatre déploiements de suite ont échoué — délais dépassés, puis
+annulations immédiates — alors que **Actions et Pages étaient en panne majeure**. Rien
+n'était cassé dans le site, et aucune des corrections tentées n'aurait pu y changer quoi que
+ce soit. Une demi-heure perdue à chercher au mauvais endroit.
+
+Autre chose apprise : le réglage `timeout` de `deploy-pages` est **plafonné à 600 000 ms**.
+Écrire davantage ne sert à rien — GitHub ramène silencieusement à cette valeur et le note en
+avertissement dans le journal.
+
+**Distinguer les deux états**, ils n'ont rien à voir :
+- **le dépôt** (`git push`) — c'est là que vit le travail, et il passe même pendant une panne ;
+- **le site** (GitHub Pages) — une publication, qui peut rester en retard sur le dépôt.
+
+Le fichier autonome déposé sur les bureaux de F. Henninot, lui, est toujours à jour
+immédiatement : c'est le chemin de secours quand Pages traîne.
+
 ---
 
 ## 5. La marche à suivre — trancher avant de coder
