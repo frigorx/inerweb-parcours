@@ -41,8 +41,8 @@
   function lireReglages() {
     try {
       var r = JSON.parse(localStorage.getItem(CLE) || "{}");
-      return { voix: r.voix || "h", vitesse: r.vitesse || 1, auto: r.auto !== false };
-    } catch (e) { return { voix: "h", vitesse: 1, auto: true }; }
+      return { voix: r.voix || "h", vitesse: r.vitesse || 0.95 };
+    } catch (e) { return { voix: "h", vitesse: 0.95 }; }
   }
   function ecrireReglages() {
     try { localStorage.setItem(CLE, JSON.stringify(reglages)); } catch (e) {}
@@ -73,6 +73,13 @@
     this.vus = lireVus(capsule.id);
     this.audio = null;
     this.repli = false;         /* vrai = on parle avec la voix du navigateur */
+
+    /* AUCUNE voix au chargement. Une page qui se met à parler toute seule
+       est ingérable en salle, et insupportable pour qui ouvre le lien dans
+       le train. La voix ne part qu'après un clic sur « Écouter » — et cette
+       autorisation vaut ensuite pour tout le parcours en cours, sinon il
+       faudrait recliquer à chaque écran. */
+    this.autorise = false;
   }
 
   Lecteur.prototype.demarrer = function () {
@@ -224,7 +231,7 @@
        changement d'écran. */
     this.zone().innerHTML = h;
     this.brancher();
-    if (parler !== false && reglages.auto) this.lire();
+    if (parler !== false && this.autorise) this.lire();
   };
 
   Lecteur.prototype.zone = function () {
@@ -345,7 +352,15 @@
         case "suiv":    self.taire(); self.suivant(); break;
         case "prec":    self.taire(); self.precedent(); break;
         case "revenir": self.taire(); self.revenir(); break;
-        case "ecouter": self.audio || speechSynthesis.speaking ? self.taire() : self.lire(); break;
+        case "ecouter":
+          if (self.audio || (window.speechSynthesis && speechSynthesis.speaking)) {
+            self.taire();
+            self.autorise = false;   /* couper, c'est aussi dire « ne repars pas tout seul » */
+          } else {
+            self.autorise = true;
+            self.lire();
+          }
+          break;
         case "rejouer": {
           /* Relancer une planche animée = recharger sa source. Il n'y a pas
              d'autre prise sur un SVG affiché en image. */
@@ -355,6 +370,13 @@
         }
       }
     });
+
+    /* Onglet caché, page quittée : on se tait. Sinon une voix continue de
+       parler dans un onglet que plus personne ne regarde. */
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) self.taire();
+    });
+    window.addEventListener("pagehide", function () { self.taire(); });
 
     /* Clavier : on avance au clavier comme on avance au clic. */
     document.onkeydown = function (ev) {
