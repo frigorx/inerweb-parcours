@@ -443,13 +443,21 @@
       /* Mode relecture : l'avis du relecteur sur l'écran courant. */
       var av = ev.target.closest("[data-avis]");
       if (av) {
-        var cle = av.closest(".avis").dataset.cle;
+        var bloc = av.closest(".avis");
+        var cle = bloc.dataset.cle;
         var deja = av.getAttribute("aria-pressed") === "true";
-        noterAvis(cle, "avis", deja ? "" : av.dataset.avis);
+        var choisi = deja ? "" : av.dataset.avis;
         var freres = av.closest(".choix-relecture").querySelectorAll("[data-avis]");
         for (var i = 0; i < freres.length; i++) {
-          freres[i].setAttribute("aria-pressed",
-            String(!deja && freres[i] === av));
+          freres[i].setAttribute("aria-pressed", String(!deja && freres[i] === av));
+        }
+        noterAvis(cle, "avis", choisi);
+        /* Le curseur va se poser tout seul dans le champ : c'est le geste
+           attendu après avoir dit « à corriger », et cela évite l'avis coché
+           puis oublié. */
+        if (choisi && EXIGE_REMARQUE[choisi]) {
+          var champ = bloc.querySelector(".note-avis");
+          if (champ && !champ.value.trim()) champ.focus({ preventScroll: true });
         }
         return;
       }
@@ -457,6 +465,16 @@
       var b = ev.target.closest("[data-agir]");
       if (!b) return;
       if (b.dataset.agir === "releve") { montrerReleve(); return; }
+      if (b.dataset.agir === "completer") {
+        var restants = comptesRelecture().incomplets;
+        if (!restants.length) return;
+        self.taire();
+        if (allerA(restants[0], window.__racine)) {
+          var champ = document.querySelector(".avis.incomplet .note-avis");
+          if (champ) champ.focus({ preventScroll: false });
+        }
+        return;
+      }
       if (b.dataset.agir === "reglages-voix") {
         var d = b.closest(".voix");
         d.classList.toggle("ouvert");
@@ -653,20 +671,49 @@
     sensible: "⚠ Sensible",
   };
 
+  /* Trois avis sur quatre EXIGENT une explication. « C'est faux » sans dire
+     en quoi ne sert à personne : on ne saura ni quoi corriger, ni pourquoi.
+     Seul « Juste » se passe de commentaire — il n'y a rien à ajouter. */
+  var EXIGE_REMARQUE = { corriger: true, question: true, sensible: true };
+
+  var INVITE = {
+    corriger: "Qu'est-ce qui est faux, et que faut-il écrire à la place ?",
+    question: "Que voulez-vous savoir, ou qu'est-ce qui n'est pas clair ?",
+    sensible: "En quoi est-ce risqué, ou pourquoi cela ne doit-il pas sortir en l'état ?",
+    juste: "Une remarque, si vous en avez une. Facultatif ici.",
+  };
+
+  function avisIncomplet(d) {
+    return !!(d && d.avis && EXIGE_REMARQUE[d.avis] && !(d.note || "").trim());
+  }
+
   function blocAvis(cle) {
     var tout = lireAvis();
     var d = tout[cle] || {};
-    var h = '<div class="avis" data-cle="' + esc(cle) + '">'
+    var manque = avisIncomplet(d);
+
+    var h = '<div class="avis' + (manque ? " incomplet" : "") + '" data-cle="' + esc(cle) + '">'
       + '<p class="q">Cet écran vous paraît-il juste ?</p>'
       + '<div class="choix-relecture">';
     for (var k in LIBELLES) {
       h += '<button type="button" data-avis="' + k + '" aria-pressed="'
         + (d.avis === k ? "true" : "false") + '">' + LIBELLES[k] + "</button>";
     }
-    h += "</div>"
-      + '<textarea class="note-avis" placeholder="Ce qui est faux, ce qui manque, ce qu\'il faut dire autrement…"'
-      + ' aria-label="votre remarque sur cet écran">' + esc(d.note || "") + "</textarea>"
-      + '<p class="ou">Votre remarque est gardée sur <b>votre</b> machine. Rien ne part ailleurs. '
+    h += "</div>";
+
+    h += '<label class="etiquette-note" for="note-' + esc(cle) + '">'
+      + (d.avis ? esc(INVITE[d.avis]) : "Votre remarque")
+      + (d.avis && EXIGE_REMARQUE[d.avis] ? ' <b class="obligatoire">obligatoire</b>' : "")
+      + "</label>";
+
+    h += '<textarea class="note-avis" id="note-' + esc(cle) + '"'
+      + ' placeholder="Ce qui est faux, ce qui manque, ce qu\'il faut dire autrement…"'
+      + ' aria-label="votre remarque sur cet écran">' + esc(d.note || "") + "</textarea>";
+
+    h += '<p class="manque-remarque">⚑ <b>Dites pourquoi.</b> Sans votre explication, '
+      + "cet avis ne nous apprend rien : on saura qu'il y a un problème, pas lequel.</p>";
+
+    h += '<p class="ou">Votre remarque est gardée sur <b>votre</b> machine. Rien ne part ailleurs. '
       + "Le bouton <b>« Enregistrer mon relevé »</b>, en bas, produit le fichier à renvoyer.</p>"
       + "</div>";
     return h;
@@ -678,18 +725,64 @@
     tout[cle][champ] = valeur;
     if (!tout[cle].avis && !tout[cle].note) delete tout[cle];
     ecrireAvis(tout);
+    majBlocAvis(cle);
     majBarreRelecture();
+  }
+
+  /* Le bloc se remet à jour SANS repeindre l'écran : repeindre viderait le
+     champ en cours de frappe et ferait perdre le curseur. */
+  function majBlocAvis(cle) {
+    var bloc = document.querySelector('.avis[data-cle="' + cle.replace(/"/g, '\\"') + '"]');
+    if (!bloc) return;
+    var d = lireAvis()[cle] || {};
+    bloc.classList.toggle("incomplet", avisIncomplet(d));
+    var et = bloc.querySelector(".etiquette-note");
+    if (et) {
+      et.innerHTML = (d.avis ? esc(INVITE[d.avis]) : "Votre remarque")
+        + (d.avis && EXIGE_REMARQUE[d.avis] ? ' <b class="obligatoire">obligatoire</b>' : "");
+    }
   }
 
   function comptesRelecture() {
     var tout = lireAvis();
-    var c = { juste: 0, corriger: 0, question: 0, sensible: 0, notes: 0, total: 0 };
+    var c = { juste: 0, corriger: 0, question: 0, sensible: 0, notes: 0, total: 0, incomplets: [] };
     for (var k in tout) {
       if (k.charAt(0) === "_") continue;
       if (tout[k].avis) { c[tout[k].avis]++; c.total++; }
       if (tout[k].note) c.notes++;
+      if (avisIncomplet(tout[k])) c.incomplets.push(k);
     }
     return c;
+  }
+
+  /* Retrouver un écran par sa clé « capsule/ecran » et l'ouvrir, qu'il soit
+     dans le fil ou au fond d'un détour. Sert au bouton « à compléter » :
+     sans lui, le relecteur devrait refaire le tour pour retrouver l'avis
+     qu'il a laissé en plan. */
+  function allerA(cle, racine) {
+    var coupe = cle.indexOf("/");
+    var idCapsule = cle.slice(0, coupe), idEcran = cle.slice(coupe + 1);
+    var c = window.CAPSULES[idCapsule];
+    if (!c) return false;
+
+    var l = new Lecteur(c, racine || "", Object.keys(window.CAPSULES).length > 1);
+    var i = c.fil.findIndex(function (e) { return e.id === idEcran; });
+    if (i >= 0) { l.i = i; l.demarrer(); return true; }
+
+    for (var d in c.detours || {}) {
+      var j = c.detours[d].ecrans.findIndex(function (e) { return e.id === idEcran; });
+      if (j < 0) continue;
+      /* On entre par l'écran du fil qui propose ce détour, pour que le
+         retour ramène quelque part de sensé. */
+      var depart = c.fil.findIndex(function (e) { return (e.plus || []).indexOf(d) >= 0; });
+      l.i = depart >= 0 ? depart : 0;
+      l.demarrer();
+      l.ouvrirDetour(d);
+      l.i = j;
+      l.peindre(false);
+      return true;
+    }
+    return false;
   }
 
   /* Combien d'écrans en tout, et combien portent un « À VÉRIFIER » ? On les
@@ -734,16 +827,57 @@
       ? "Aucun avis donné pour l'instant"
       : "<b>" + c.total + "</b> avis · " + c.juste + " juste · " + c.corriger
         + " à corriger · " + c.question + " question · " + c.sensible + " sensible";
+
+    /* Les avis sans explication sont montrés en permanence, et le bouton
+       mène droit au premier : c'est ce qui les fait finir. */
+    var b = document.getElementById("a-completer");
+    if (b) b.remove();
+    if (c.incomplets.length) {
+      var barre = document.getElementById("barre-relecture");
+      if (!barre) return;
+      var n = document.createElement("button");
+      n.id = "a-completer";
+      n.type = "button";
+      n.className = "alerte";
+      n.dataset.agir = "completer";
+      n.innerHTML = "⚑ " + c.incomplets.length + " à expliquer";
+      n.title = "Des avis attendent votre explication — cliquez pour y aller";
+      barre.insertBefore(n, barre.querySelector("[data-agir='releve']"));
+    }
+  }
+
+  /* Le titre lisible d'un écran, retrouvé depuis sa clé « capsule/ecran ». */
+  function titreDeLaCle(cle) {
+    var coupe = cle.indexOf("/");
+    var c = window.CAPSULES[cle.slice(0, coupe)];
+    if (!c) return null;
+    var id = cle.slice(coupe + 1);
+    var tous = c.fil.slice();
+    for (var d in c.detours || {}) tous = tous.concat(c.detours[d].ecrans);
+    var e = tous.filter(function (x) { return x.id === id; })[0];
+    return e ? c.titre + " — " + e.titre : null;
   }
 
   function releveMarkdown() {
     var tout = lireAvis();
     var nom = tout.__nom || "";
-    var lignes = ["# Relevé de relecture — capsules inerWeb", ""];
+    var lignes = ["# Relevé de relecture — inerWeb Parcours", ""];
     if (nom) lignes.push("**Relecteur : " + nom + "**", "");
     var c = comptesRelecture();
     lignes.push("Avis donnés : **" + c.total + "** — " + c.juste + " juste · " + c.corriger
       + " à corriger · " + c.question + " question · " + c.sensible + " sensible.", "");
+
+    /* En TÊTE du fichier, pas à la fin : celui qui reçoit le relevé doit
+       voir tout de suite ce qui lui manquera pour agir. */
+    if (c.incomplets.length) {
+      lignes.push("> ⚑ **" + c.incomplets.length + " avis sans explication.** Les écrans ci-dessous "
+        + "ont été signalés, mais sans dire pourquoi — il manque l'essentiel pour agir :");
+      c.incomplets.forEach(function (k) {
+        var t = titreDeLaCle(k);
+        lignes.push("> - " + (t || k) + "  (`" + k + "`)");
+      });
+      lignes.push("");
+    }
 
     for (var id in window.CAPSULES) {
       var cap = window.CAPSULES[id];
@@ -778,8 +912,15 @@
     var tout = lireAvis();
     var fond = document.createElement("div");
     fond.className = "releve-fond";
+    var manquants = comptesRelecture().incomplets;
     fond.innerHTML = '<div class="releve">'
       + "<h2>Votre relevé de relecture</h2>"
+      + (manquants.length
+        ? '<div class="alerte-releve"><b>⚑ ' + manquants.length + " avis "
+          + (manquants.length > 1 ? "attendent" : "attend") + " votre explication.</b> "
+          + "Le relevé partira quand même, mais ces avis-là ne diront pas ce qui ne va pas. "
+          + '<button type="button" data-agir="aller-completer">Aller les compléter</button></div>'
+        : "")
       + '<p>Mettez votre nom, puis enregistrez le fichier et renvoyez-le. '
       + "Vous pouvez aussi tout sélectionner et le coller dans un message.</p>"
       + '<p><input type="text" id="nom-relecteur" placeholder="votre nom" '
@@ -809,6 +950,15 @@
       var b = ev.target.closest("[data-agir]");
       if (!b) { if (ev.target === fond) fond.remove(); return; }
       if (b.dataset.agir === "fermer-releve") fond.remove();
+      if (b.dataset.agir === "aller-completer") {
+        var restants = comptesRelecture().incomplets;
+        fond.remove();
+        if (restants.length && allerA(restants[0], window.__racine)) {
+          var ch = document.querySelector(".avis.incomplet .note-avis");
+          if (ch) ch.focus();
+        }
+        return;
+      }
       if (b.dataset.agir === "copier") { zone.select(); }
       if (b.dataset.agir === "telecharger") {
         var t = lireAvis();
@@ -897,6 +1047,7 @@
       return;
     }
     racine = racine || "";
+    window.__racine = racine;
     window.__retourAccueil = function () { peindreAccueil(racine); };
     var ids = Object.keys(window.CAPSULES);
     var id = new URLSearchParams(location.search).get("sujet");

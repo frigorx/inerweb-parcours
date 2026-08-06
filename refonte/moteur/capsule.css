@@ -252,6 +252,48 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 }
 .avis .ou{font-size:13px; color:var(--mut); margin:8px 0 0}
 
+/* ---- La remarque obligatoire -------------------------------------
+   Dire « à corriger » sans dire en quoi ne sert à personne : on saura
+   qu'il y a un problème, pas lequel. Trois avis sur quatre exigent donc
+   une explication — « Juste » est le seul à s'en passer.
+   Le champ se signale, il ne se verrouille pas : on ne bloque pas
+   quelqu'un qui relit, on l'empêche seulement d'oublier. */
+.avis .etiquette-note{
+  display:block; font-size:14px; font-weight:700; color:var(--bleu); margin:0 0 6px;
+}
+.avis .obligatoire{
+  display:inline-block; font-size:11px; letter-spacing:.4px; text-transform:uppercase;
+  background:var(--ko); color:#fff; border-radius:999px; padding:2px 9px; margin-left:6px;
+  vertical-align:1px;
+}
+.avis .manque-remarque{display:none}
+.avis.incomplet{border-color:var(--ko); border-style:solid; background:#fffaf9}
+.avis.incomplet textarea{border:2px solid var(--ko); background:#fff}
+.avis.incomplet textarea:focus{outline:2px solid var(--ko); outline-offset:1px}
+.avis.incomplet .manque-remarque{
+  display:block; margin:8px 0 0; font-size:14px; color:#8c2c20;
+  background:var(--ko-bg); border-left:4px solid var(--ko); border-radius:8px; padding:9px 13px;
+}
+.avis.incomplet .manque-remarque b{color:var(--ko)}
+
+/* Le rappel dans la barre du bas, et le bouton qui y mène */
+.barre-relecture button.alerte{
+  background:var(--ko); color:#fff; border-color:#fff; font-weight:700;
+}
+.barre-relecture button.alerte:hover{background:#fff; color:var(--ko); border-color:#fff}
+
+.alerte-releve{
+  background:var(--ko-bg); border:1px solid #f0c9c2; border-left:5px solid var(--ko);
+  border-radius:8px; padding:12px 16px; margin-bottom:14px; color:#8c2c20; font-size:15px;
+}
+.alerte-releve b{color:var(--ko)}
+.alerte-releve button{
+  display:inline-block; margin-top:8px; font:inherit; font-size:14px; font-weight:700;
+  cursor:pointer; padding:7px 14px; border-radius:8px;
+  border:2px solid var(--ko); background:var(--ko); color:#fff;
+}
+.alerte-releve button:hover{background:#fff; color:var(--ko)}
+
 /* ---- La barre du relecteur, tout en bas de l'écran ---------------- */
 .barre-relecture{
   position:fixed; left:0; right:0; bottom:0; z-index:12;
