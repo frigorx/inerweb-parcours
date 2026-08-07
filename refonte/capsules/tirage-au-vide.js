@@ -17,7 +17,7 @@
    ===================================================================== */
 CAPSULE({
   id: "tirage-au-vide",
-  ordre: 5,
+  ordre: 8,
   titre: "Le tirage au vide : pourquoi, et jusqu'où",
   question: "« J'ai tiré une heure » — est-ce que ça veut dire quelque chose ?",
   niveau: "métier",

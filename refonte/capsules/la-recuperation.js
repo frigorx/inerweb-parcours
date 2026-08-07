@@ -13,12 +13,12 @@
    ===================================================================== */
 CAPSULE({
   id: "la-recuperation",
-  ordre: 7,
+  ordre: 9,
   titre: "Récupérer le fluide : le geste et la règle",
   question: "Où va le fluide quand on vide une machine ?",
   niveau: "examen",
   minutes: 7,
-  suppose: "A1, A2L, A3 : lire l'étiquette",
+  suppose: "Les bouteilles : choisir, peser, ne jamais gaver",
   voixFabriquee: true,   /* Henri + Denise, 06/08/2026 */
 
   fil: [

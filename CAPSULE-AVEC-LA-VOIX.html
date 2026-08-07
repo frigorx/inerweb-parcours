@@ -694,6 +694,102 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
   body{background:#fff}
 }
 
+/* =====================================================================
+   PAGES DU SITE — parcours, planches, vidéos, espace enseignant
+   ---------------------------------------------------------------------
+   Le site autour des capsules (06/08/2026). Même règle que pour les
+   capsules : tout vit ici, aucune page n'a de feuille à elle.
+   La couleur ne porte jamais seule : couleur + trait + mot.
+   ===================================================================== */
+
+.accueil-tete .ariane{margin:0 0 10px; font-size:14px}
+.accueil-tete .ariane a{color:#cdd9e6; text-decoration:none}
+.accueil-tete .ariane a:hover{color:#fff; text-decoration:underline}
+
+.zone-paliers{max-width:980px; margin:22px auto; padding:0 20px 80px}
+
+/* ---- Un palier : une section numérotée, ses entrées en grille ---- */
+.palier{background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
+  box-shadow:var(--ombre); padding:20px 22px; margin-bottom:20px}
+.palier h2{display:flex; align-items:center; gap:10px; margin:0 0 4px;
+  font-size:22px; border-bottom:3px solid var(--orange); padding-bottom:8px}
+.palier h2 .num{flex:0 0 auto; width:34px; height:34px; border-radius:50%;
+  background:var(--bleu); color:#fff; font-size:18px; display:flex;
+  align-items:center; justify-content:center}
+.palier h2 .compte{margin-left:auto; font-size:14px; font-weight:700;
+  background:#eef3f9; color:var(--bleu); border-radius:999px; padding:3px 12px}
+.palier .pour{margin:8px 0 14px; color:var(--mut); font-size:15px}
+
+.entrees{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px}
+.entree{display:flex; flex-direction:column; gap:6px; background:#fff;
+  border:1px solid var(--ligne); border-left:4px solid var(--orange);
+  border-radius:var(--r); padding:14px 16px; text-decoration:none; color:var(--txt);
+  transition:.12s}
+a.entree:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(27,58,99,.16)}
+.entree h3{margin:0; font-size:17px; line-height:1.3}
+.entree .note{margin:0; color:var(--mut); font-size:14px}
+.entree .pied{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+  padding-top:8px; font-size:13px; font-weight:700}
+.entree .et{background:#eef3f9; color:var(--bleu); border-radius:999px; padding:3px 10px}
+
+/* Vu / en cours / à venir — l'état se lit au badge (mot), au trait
+   (bordure) et à la couleur, jamais à la couleur seule. */
+.entree .et.vu{background:var(--ok-bg); color:var(--ok)}
+.entree .et.encours{background:var(--orange-clair); color:#a8410f}
+.entree.faite-vu{border-left-color:var(--ok)}
+.entree.avenir{border-left-style:dashed; border-left-color:var(--ligne);
+  background:var(--fond); color:var(--mut)}
+.entree.avenir h3{font-size:16px; font-weight:400}
+
+/* ---- Les planches en grand ---------------------------------------- */
+.planches-grille{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:14px}
+.planche-carte{margin:0; background:#fff; border:1px solid var(--ligne);
+  border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column}
+.planche-carte .vue{background:var(--fond); border-bottom:1px solid var(--ligne);
+  display:flex; align-items:center; justify-content:center; min-height:180px; padding:10px}
+.planche-carte .vue img{max-width:100%; height:auto; max-height:260px}
+.planche-carte figcaption{padding:12px 14px; display:flex; flex-direction:column; gap:8px; flex:1}
+.planche-carte h3{margin:0; font-size:15px; line-height:1.35; font-weight:700}
+.planche-actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:13px}
+.planche-actions a, .planche-actions button{font:inherit; font-weight:700;
+  background:#eef3f9; color:var(--bleu); border:1px solid var(--ligne);
+  border-radius:999px; padding:4px 11px; text-decoration:none; cursor:pointer}
+.planche-actions a:hover, .planche-actions button:hover{background:var(--bleu); color:#fff}
+.planche-actions .et{margin-left:auto; background:none; border:none; color:var(--mut); font-weight:400}
+
+/* ---- Vidéos -------------------------------------------------------- */
+.vide-cadre{background:#fff; border:1px dashed var(--ligne); border-radius:var(--r);
+  padding:26px 24px; text-align:center; margin-bottom:20px}
+.vide-cadre h2{margin:0 0 8px; font-size:20px}
+.vide-cadre p{margin:0; color:var(--mut)}
+.regles{margin:8px 0 0; padding-left:22px}
+.regles li{margin:8px 0}
+.video-cadre{background:#000; border-radius:var(--r); overflow:hidden; margin-bottom:20px}
+.video-cadre video{display:block; width:100%; max-height:70vh}
+.chapitres{display:flex; flex-direction:column; gap:8px}
+.chapitres button{font:inherit; text-align:left; background:#fff; color:var(--txt);
+  border:1px solid var(--ligne); border-left:4px solid var(--orange);
+  border-radius:var(--r); padding:10px 14px; cursor:pointer}
+.chapitres button:hover{background:#eef3f9}
+.chapitres .temps{font-weight:700; color:var(--bleu); margin-right:8px;
+  font-variant-numeric:tabular-nums}
+
+.pied-page{margin-top:30px; padding-top:14px; border-top:1px solid var(--ligne);
+  font-size:14px; color:var(--mut)}
+
+/* ---- Projection (vidéoprojecteur) --------------------------------- */
+/* capsule.html?sujet=…&projection=1 : tout est grossi d'un tiers.
+   Indépendant du bouton Aa (qui garde le réglage personnel du poste). */
+html.projection body{zoom:1.32}
+
+/* ---- Petits écrans ------------------------------------------------- */
+@media (max-width: 760px){
+  .zone-paliers{padding:0 12px 50px}
+  .palier{padding:16px 14px}
+  .palier h2{font-size:19px}
+  .entrees, .planches-grille{grid-template-columns:1fr}
+}
+
 
 /* Le bandeau de relecture n'existe QUE dans ces versions-ci : il dit au
    relecteur ce qu'il regarde et ce qu'on attend de lui. */
@@ -1822,7 +1918,7 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
    ===================================================================== */
 CAPSULE({
   id: "lire-le-code",
-  ordre: 2,
+  ordre: 4,
   titre: "Lire le code d'un fluide",
   question: "R-22, R-134a, R-404A : que veulent dire ces chiffres ?",
   niveau: "découverte",

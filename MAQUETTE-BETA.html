@@ -694,6 +694,102 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
   body{background:#fff}
 }
 
+/* =====================================================================
+   PAGES DU SITE — parcours, planches, vidéos, espace enseignant
+   ---------------------------------------------------------------------
+   Le site autour des capsules (06/08/2026). Même règle que pour les
+   capsules : tout vit ici, aucune page n'a de feuille à elle.
+   La couleur ne porte jamais seule : couleur + trait + mot.
+   ===================================================================== */
+
+.accueil-tete .ariane{margin:0 0 10px; font-size:14px}
+.accueil-tete .ariane a{color:#cdd9e6; text-decoration:none}
+.accueil-tete .ariane a:hover{color:#fff; text-decoration:underline}
+
+.zone-paliers{max-width:980px; margin:22px auto; padding:0 20px 80px}
+
+/* ---- Un palier : une section numérotée, ses entrées en grille ---- */
+.palier{background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r);
+  box-shadow:var(--ombre); padding:20px 22px; margin-bottom:20px}
+.palier h2{display:flex; align-items:center; gap:10px; margin:0 0 4px;
+  font-size:22px; border-bottom:3px solid var(--orange); padding-bottom:8px}
+.palier h2 .num{flex:0 0 auto; width:34px; height:34px; border-radius:50%;
+  background:var(--bleu); color:#fff; font-size:18px; display:flex;
+  align-items:center; justify-content:center}
+.palier h2 .compte{margin-left:auto; font-size:14px; font-weight:700;
+  background:#eef3f9; color:var(--bleu); border-radius:999px; padding:3px 12px}
+.palier .pour{margin:8px 0 14px; color:var(--mut); font-size:15px}
+
+.entrees{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px}
+.entree{display:flex; flex-direction:column; gap:6px; background:#fff;
+  border:1px solid var(--ligne); border-left:4px solid var(--orange);
+  border-radius:var(--r); padding:14px 16px; text-decoration:none; color:var(--txt);
+  transition:.12s}
+a.entree:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(27,58,99,.16)}
+.entree h3{margin:0; font-size:17px; line-height:1.3}
+.entree .note{margin:0; color:var(--mut); font-size:14px}
+.entree .pied{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+  padding-top:8px; font-size:13px; font-weight:700}
+.entree .et{background:#eef3f9; color:var(--bleu); border-radius:999px; padding:3px 10px}
+
+/* Vu / en cours / à venir — l'état se lit au badge (mot), au trait
+   (bordure) et à la couleur, jamais à la couleur seule. */
+.entree .et.vu{background:var(--ok-bg); color:var(--ok)}
+.entree .et.encours{background:var(--orange-clair); color:#a8410f}
+.entree.faite-vu{border-left-color:var(--ok)}
+.entree.avenir{border-left-style:dashed; border-left-color:var(--ligne);
+  background:var(--fond); color:var(--mut)}
+.entree.avenir h3{font-size:16px; font-weight:400}
+
+/* ---- Les planches en grand ---------------------------------------- */
+.planches-grille{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:14px}
+.planche-carte{margin:0; background:#fff; border:1px solid var(--ligne);
+  border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column}
+.planche-carte .vue{background:var(--fond); border-bottom:1px solid var(--ligne);
+  display:flex; align-items:center; justify-content:center; min-height:180px; padding:10px}
+.planche-carte .vue img{max-width:100%; height:auto; max-height:260px}
+.planche-carte figcaption{padding:12px 14px; display:flex; flex-direction:column; gap:8px; flex:1}
+.planche-carte h3{margin:0; font-size:15px; line-height:1.35; font-weight:700}
+.planche-actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:13px}
+.planche-actions a, .planche-actions button{font:inherit; font-weight:700;
+  background:#eef3f9; color:var(--bleu); border:1px solid var(--ligne);
+  border-radius:999px; padding:4px 11px; text-decoration:none; cursor:pointer}
+.planche-actions a:hover, .planche-actions button:hover{background:var(--bleu); color:#fff}
+.planche-actions .et{margin-left:auto; background:none; border:none; color:var(--mut); font-weight:400}
+
+/* ---- Vidéos -------------------------------------------------------- */
+.vide-cadre{background:#fff; border:1px dashed var(--ligne); border-radius:var(--r);
+  padding:26px 24px; text-align:center; margin-bottom:20px}
+.vide-cadre h2{margin:0 0 8px; font-size:20px}
+.vide-cadre p{margin:0; color:var(--mut)}
+.regles{margin:8px 0 0; padding-left:22px}
+.regles li{margin:8px 0}
+.video-cadre{background:#000; border-radius:var(--r); overflow:hidden; margin-bottom:20px}
+.video-cadre video{display:block; width:100%; max-height:70vh}
+.chapitres{display:flex; flex-direction:column; gap:8px}
+.chapitres button{font:inherit; text-align:left; background:#fff; color:var(--txt);
+  border:1px solid var(--ligne); border-left:4px solid var(--orange);
+  border-radius:var(--r); padding:10px 14px; cursor:pointer}
+.chapitres button:hover{background:#eef3f9}
+.chapitres .temps{font-weight:700; color:var(--bleu); margin-right:8px;
+  font-variant-numeric:tabular-nums}
+
+.pied-page{margin-top:30px; padding-top:14px; border-top:1px solid var(--ligne);
+  font-size:14px; color:var(--mut)}
+
+/* ---- Projection (vidéoprojecteur) --------------------------------- */
+/* capsule.html?sujet=…&projection=1 : tout est grossi d'un tiers.
+   Indépendant du bouton Aa (qui garde le réglage personnel du poste). */
+html.projection body{zoom:1.32}
+
+/* ---- Petits écrans ------------------------------------------------- */
+@media (max-width: 760px){
+  .zone-paliers{padding:0 12px 50px}
+  .palier{padding:16px 14px}
+  .palier h2{font-size:19px}
+  .entrees, .planches-grille{grid-template-columns:1fr}
+}
+
 
 /* Le bandeau de relecture n'existe QUE dans ces versions-ci : il dit au
    relecteur ce qu'il regarde et ce qu'on attend de lui. */
@@ -1816,7 +1912,7 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
    ===================================================================== */
 CAPSULE({
   id: "classes-de-securite",
-  ordre: 3,
+  ordre: 6,
   titre: "A1, A2L, A3 : lire l'étiquette",
   question: "Deux caractères sur la bouteille — que disent-ils vraiment ?",
   niveau: "métier",
@@ -2134,7 +2230,7 @@ CAPSULE({
    ===================================================================== */
 CAPSULE({
   id: "controle-etancheite",
-  ordre: 6,
+  ordre: 11,
   titre: "Le contrôle d'étanchéité : qui, quand, comment",
   question: "Pourquoi certaines machines se contrôlent tous les ans, et d'autres jamais ?",
   niveau: "examen",
@@ -2362,6 +2458,376 @@ CAPSULE({
 });
 
 /* =====================================================================
+   familles-et-prp.js — « Familles et PRP : pourquoi les fluides changent »
+   ---------------------------------------------------------------------
+   Redécoupage du fonds : familles-fluides.svg, prp-echelle.svg,
+   frise-vivante (l'histoire), frise-histoire.svg.
+
+   RÈGLE TENUE — zéro invention : le fonds ne donne NI les seuils F-Gas
+   chiffrés, NI les valeurs de PRP de la plupart des fluides, NI le lien
+   explicite PRP/PRG. Ces trous sont FLAGUÉS « à vérifier », jamais
+   comblés de tête. Les quatre valeurs de PRP citées viennent de
+   prp-echelle.svg, qui les dit elle-même « indicatives (Mission F-GAZ) ».
+   ===================================================================== */
+CAPSULE({
+  id: "familles-et-prp",
+  ordre: 5,
+  titre: "Familles et PRP : pourquoi les fluides changent",
+  question: "CFC, HFC, HFO, naturels… pourquoi remplace-t-on sans cesse les fluides ?",
+  niveau: "métier",
+  minutes: 7,
+  suppose: "Lire le code d'un fluide",
+  voixFabriquee: true,   /* Henri + Denise, 07/08/2026 */
+
+  fil: [
+    {
+      id: "01-cinq-familles",
+      titre: "Cinq familles. Chacune corrige la précédente — et révèle un nouveau défaut.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNTIwIiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iTGVzIGNpbnEgZmFtaWxsZXMgZGUgZmx1aWRlcyBmcmlnb3JpZ8OobmVzIDogQ0ZDLCBIQ0ZDLCBIRkMsIEhGTyBldCBmbHVpZGVzIG5hdHVyZWxzLCBhdmVjIGxldXIgY29tcG9zaXRpb24gYXRvbWlxdWUgZXQgbGV1ciBzdGF0dXQuIj4KICA8dGl0bGU+TGVzIGZhbWlsbGVzIGRlIGZsdWlkZXMg4oCUIHRyb2lzIGF0b21lcyBkw6ljaWRlbnQgZGUgdG91dDwvdGl0bGU+CgogIDxzdHlsZT4KICAgIC50ICAgeyBmb250OjcwMCAxOXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAuZmFtIHsgZm9udDo3MDAgMTdweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzFiM2E2MzsgfQogICAgLmV4ICB7IGZvbnQ6NzAwIDE0cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiNjOTQ1MWE7IH0KICAgIC5zICAgeyBmb250OjQwMCAxMi41cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiM0YTViNmU7IH0KICAgIC5zdCAgeyBmb250OjcwMCAxMnB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgfQogICAgLmF0ICB7IGZvbnQ6NzAwIDEzcHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiNmZmY7IH0KICAgIC5sZWcgeyBmb250OjQwMCAxMy41cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMzMzQ3NWI7IH0KICAgIC5jZWxseyBmaWxsOiNmZmY7IHN0cm9rZTojYzlkNGRlOyBzdHJva2Utd2lkdGg6MS41OyB9CiAgPC9zdHlsZT4KCiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MjAiIGZpbGw9IiNmZmZmZmYiLz4KCiAgPHRleHQgY2xhc3M9InQiIHg9IjQwIiB5PSIzNiI+VHJvaXMgYXRvbWVzIGTDqWNpZGVudCBkZSB0b3V0PC90ZXh0PgogIDwhLS0gbMOpZ2VuZGUgYXRvbWVzIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM0MCwyMikiPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjYiIHI9IjkiIGZpbGw9IiNjMDM5MmIiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjAiIHk9IjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DbDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZWciIHg9IjE0IiB5PSIxMSI+Y2hsb3JlIOKGkiBkw6l0cnVpdCBsJ296b25lPC90ZXh0PgogICAgPGNpcmNsZSBjeD0iMTkwIiBjeT0iNiIgcj0iOSIgZmlsbD0iIzJmNTY4OSIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iMTkwIiB5PSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZWciIHg9IjIwNCIgeT0iMTEiPmZsdW9yIOKGkiBzdGFibGUsIGVmZmV0IGRlIHNlcnJlPC90ZXh0PgogICAgPGNpcmNsZSBjeD0iNDIwIiBjeT0iNiIgcj0iOSIgZmlsbD0iIzFlN2U1NCIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iNDIwIiB5PSIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZWciIHg9IjQzNCIgeT0iMTEiPmh5ZHJvZ8OobmUg4oaSIHZpZSBjb3VydGU8L3RleHQ+CiAgPC9nPgoKICA8IS0tID09PT09IDUgY29sb25uZXMgPT09PT0gLS0+CiAgPCEtLSBDRkMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDgsNzApIj4KICAgIDxyZWN0IGNsYXNzPSJjZWxsIiB3aWR0aD0iMTUyIiBoZWlnaHQ9IjMzMCIgcng9IjEwIi8+CiAgICA8dGV4dCBjbGFzcz0iZmFtIiB4PSI3NiIgeT0iMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNGQzwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmNobG9yZSArIGZsdW9yICsgY2FyYm9uZTwvdGV4dD4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2LDEwNSkiPgogICAgICA8Y2lyY2xlIHI9IjEzIiBmaWxsPSIjN2E4Nzk0Ii8+PHRleHQgY2xhc3M9ImF0IiB5PSI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSItMzQiIGN5PSItMjAiIHI9IjExIiBmaWxsPSIjYzAzOTJiIi8+PHRleHQgY2xhc3M9ImF0IiB4PSItMzQiIHk9Ii0xNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q2w8L3RleHQ+CiAgICAgIDxjaXJjbGUgY3g9IjM0IiBjeT0iLTIwIiByPSIxMSIgZmlsbD0iI2MwMzkyYiIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iMzQiIHk9Ii0xNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q2w8L3RleHQ+CiAgICAgIDxjaXJjbGUgY3g9Ii0zNCIgY3k9IjI0IiByPSIxMSIgZmlsbD0iIzJmNTY4OSIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iLTM0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgICAgPGNpcmNsZSBjeD0iMzQiIGN5PSIyNCIgcj0iMTEiIGZpbGw9IiMyZjU2ODkiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjM0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgIDwvZz4KICAgIDx0ZXh0IGNsYXNzPSJleCIgeD0iNzYiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Ui0xMjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMTk2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MZXMgwqsgbWlyYWNsZXMgwrsgZGVzPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIyMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmFubsOpZXMgMTkzMCA6IHN0YWJsZXMsPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIyMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm5pIHRveGlxdWVzIG5pIGluZmxhbW1hYmxlc+KApjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMjQ0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ldCB0dWV1cnMgZCdvem9uZS48L3RleHQ+CiAgICA8cmVjdCB4PSIyMCIgeT0iMjg2IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IiNmYmU3ZTAiLz4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNzYiIHk9IjMwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2EzMzQxOCI+SU5URVJESVRTPC90ZXh0PgogIDwvZz4KCiAgPCEtLSBIQ0ZDIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIxNiw3MCkiPgogICAgPHJlY3QgY2xhc3M9ImNlbGwiIHdpZHRoPSIxNTIiIGhlaWdodD0iMzMwIiByeD0iMTAiLz4KICAgIDx0ZXh0IGNsYXNzPSJmYW0iIHg9Ijc2IiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SENGQzwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPisgdW4gcGV1IGQnaHlkcm9nw6huZTwvdGV4dD4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2LDEwNSkiPgogICAgICA8Y2lyY2xlIHI9IjEzIiBmaWxsPSIjN2E4Nzk0Ii8+PHRleHQgY2xhc3M9ImF0IiB5PSI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSItMzQiIGN5PSItMjAiIHI9IjExIiBmaWxsPSIjMWU3ZTU0Ii8+PHRleHQgY2xhc3M9ImF0IiB4PSItMzQiIHk9Ii0xNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SDwvdGV4dD4KICAgICAgPGNpcmNsZSBjeD0iMzQiIGN5PSItMjAiIHI9IjExIiBmaWxsPSIjYzAzOTJiIi8+PHRleHQgY2xhc3M9ImF0IiB4PSIzNCIgeT0iLTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DbDwvdGV4dD4KICAgICAgPGNpcmNsZSBjeD0iLTM0IiBjeT0iMjQiIHI9IjExIiBmaWxsPSIjMmY1Njg5Ii8+PHRleHQgY2xhc3M9ImF0IiB4PSItMzQiIHk9IjI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSIzNCIgY3k9IjI0IiByPSIxMSIgZmlsbD0iIzJmNTY4OSIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iMzQiIHk9IjI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GPC90ZXh0PgogICAgPC9nPgogICAgPHRleHQgY2xhc3M9ImV4IiB4PSI3NiIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5SLTIyPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIxOTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxhIHRyYW5zaXRpb24gOiBtb2lucyBkZTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5jaGxvcmUsIHZpZSBwbHVzIGNvdXJ0ZSDigJQ8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+bWFpcyBkdSBjaGxvcmUgcXVhbmQgbcOqbWUuPC90ZXh0PgogICAgPHJlY3QgeD0iMjAiIHk9IjI4NiIgd2lkdGg9IjExMiIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSIjZmJlN2UwIi8+CiAgICA8dGV4dCBjbGFzcz0ic3QiIHg9Ijc2IiB5PSIzMDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhMzM0MTgiPklOVEVSRElUUzwvdGV4dD4KICA8L2c+CgogIDwhLS0gSEZDIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM4NCw3MCkiPgogICAgPHJlY3QgY2xhc3M9ImNlbGwiIHdpZHRoPSIxNTIiIGhlaWdodD0iMzMwIiByeD0iMTAiLz4KICAgIDx0ZXh0IGNsYXNzPSJmYW0iIHg9Ijc2IiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SEZDPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+esOpcm8gY2hsb3JlPC90ZXh0PgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzYsMTA1KSI+CiAgICAgIDxjaXJjbGUgcj0iMTMiIGZpbGw9IiM3YTg3OTQiLz48dGV4dCBjbGFzcz0iYXQiIHk9IjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+CiAgICAgIDxjaXJjbGUgY3g9Ii0zNCIgY3k9Ii0yMCIgcj0iMTEiIGZpbGw9IiMxZTdlNTQiLz48dGV4dCBjbGFzcz0iYXQiIHg9Ii0zNCIgeT0iLTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5IPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSIzNCIgY3k9Ii0yMCIgcj0iMTEiIGZpbGw9IiMyZjU2ODkiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjM0IiB5PSItMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+CiAgICAgIDxjaXJjbGUgY3g9Ii0zNCIgY3k9IjI0IiByPSIxMSIgZmlsbD0iIzJmNTY4OSIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iLTM0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgICAgPGNpcmNsZSBjeD0iMzQiIGN5PSIyNCIgcj0iMTEiIGZpbGw9IiMyZjU2ODkiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjM0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgIDwvZz4KICAgIDx0ZXh0IGNsYXNzPSJleCIgeD0iNzYiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Ui0xMzRhIMK3IFItMzI8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjE5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T3pvbmUgOiBzYXV2w6kgKE9EUCA9IDApLjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DbGltYXQgOiByYXTDqSDigJQgUFJQIGZvcnQsPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIyMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmQnb8O5IGxlIHBoYXNlLWRvd24gRi1HYXM8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjI0NCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ZXQgbCdhbWVuZGVtZW50IGRlIEtpZ2FsaS48L3RleHQ+CiAgICA8cmVjdCB4PSIxNCIgeT0iMjg2IiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IiNmZGYzZTQiLz4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNzYiIHk9IjMwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzhhNWEwMCI+RU4gUsOJRFVDVElPTjwvdGV4dD4KICA8L2c+CgogIDwhLS0gSEZPIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU1Miw3MCkiPgogICAgPHJlY3QgY2xhc3M9ImNlbGwiIHdpZHRoPSIxNTIiIGhlaWdodD0iMzMwIiByeD0iMTAiLz4KICAgIDx0ZXh0IGNsYXNzPSJmYW0iIHg9Ijc2IiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SEZPPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ZG91YmxlIGxpYWlzb24gQyA9IEM8L3RleHQ+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3NiwxMDUpIj4KICAgICAgPGNpcmNsZSBjeD0iLTE4IiByPSIxMyIgZmlsbD0iIzdhODc5NCIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iLTE4IiB5PSI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSIxOCIgcj0iMTMiIGZpbGw9IiM3YTg3OTQiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjE4IiB5PSI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DPC90ZXh0PgogICAgICA8cGF0aCBkPSJNIC04IC00IEwgOCAtNCBNIC04IDQgTCA4IDQiIHN0cm9rZT0iIzMzNDc1YiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICAgIDxjaXJjbGUgY3g9Ii00NCIgY3k9Ii0yMCIgcj0iMTEiIGZpbGw9IiMxZTdlNTQiLz48dGV4dCBjbGFzcz0iYXQiIHg9Ii00NCIgeT0iLTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5IPC90ZXh0PgogICAgICA8Y2lyY2xlIGN4PSI0NCIgY3k9Ii0yMCIgcj0iMTEiIGZpbGw9IiMyZjU2ODkiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjQ0IiB5PSItMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+CiAgICAgIDxjaXJjbGUgY3g9Ii00NCIgY3k9IjI0IiByPSIxMSIgZmlsbD0iIzJmNTY4OSIvPjx0ZXh0IGNsYXNzPSJhdCIgeD0iLTQ0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgICAgPGNpcmNsZSBjeD0iNDQiIGN5PSIyNCIgcj0iMTEiIGZpbGw9IiMyZjU2ODkiLz48dGV4dCBjbGFzcz0iYXQiIHg9IjQ0IiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KICAgIDwvZz4KICAgIDx0ZXh0IGNsYXNzPSJleCIgeD0iNzYiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Ui0xMjM0eWY8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjE5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TGEgZG91YmxlIGxpYWlzb24gY2Fzc2UgZW48L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cXVlbHF1ZXMgam91cnMgZGFucyBsJ2FpciA6PC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIyMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBSUCDiiYggMS4gU291dmVudCBBMkwsPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9Ijc2IiB5PSIyNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmV0IGxhIHF1ZXN0aW9uIFBGQVMgc2UgcG9zZS48L3RleHQ+CiAgICA8cmVjdCB4PSIyMCIgeT0iMjg2IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IiNlM2Y1ZWMiLz4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNzYiIHk9IjMwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFlN2U1NCI+QVVUT1JJU8OJUzwvdGV4dD4KICA8L2c+CgogIDwhLS0gTmF0dXJlbHMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzIwLDcwKSI+CiAgICA8cmVjdCBjbGFzcz0iY2VsbCIgd2lkdGg9IjE1MiIgaGVpZ2h0PSIzMzAiIHJ4PSIxMCIvPgogICAgPHRleHQgY2xhc3M9ImZhbSIgeD0iNzYiIHk9IjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OYXR1cmVsczwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnByw6lzZW50cyBkYW5zIGxhIG5hdHVyZTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJleCIgeD0iNzYiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtc2l6ZToxNnB4Ij5SLTI5MCDCtyBSLTYwMGE8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0iZXgiIHg9Ijc2IiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250LXNpemU6MTZweCI+Ui03MTcgwrcgUi03NDQ8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cHJvcGFuZSDCtyBpc29idXRhbmU8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjE4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+YW1tb25pYWMgwrcgQ0/igoI8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iNzYiIHk9IjIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UFJQIG1pbnVzY3VsZSDigJQgbWFpczwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMjI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5jaGFjdW4gc29uIHJldmVycyA6IEEzLDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI3NiIgeT0iMjQ0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CMkwgb3UgaGF1dGUgcHJlc3Npb24uPC90ZXh0PgogICAgPHJlY3QgeD0iMjAiIHk9IjI4NiIgd2lkdGg9IjExMiIgaGVpZ2h0PSIyNCIgcng9IjEyIiBmaWxsPSIjZTNmNWVjIi8+CiAgICA8dGV4dCBjbGFzcz0ic3QiIHg9Ijc2IiB5PSIzMDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxZTdlNTQiPkFVVE9SSVPDiVM8L3RleHQ+CiAgPC9nPgoKICA8IS0tIGZsw6hjaGUgZHUgdGVtcHMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDgsNDMwKSI+CiAgICA8cGF0aCBkPSJNIDAgMTIgTCA4MTAgMTIiIHN0cm9rZT0iIzg0OTRhNCIgc3Ryb2tlLXdpZHRoPSIyLjUiIG1hcmtlci1lbmQ9InVybCgjZmwpIi8+CiAgICA8ZGVmcz48bWFya2VyIGlkPSJmbCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI4IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8iPgogICAgICA8cGF0aCBkPSJNMCwwIEwxMCw1IEwwLDEwIHoiIGZpbGw9IiM4NDk0YTQiLz48L21hcmtlcj48L2RlZnM+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iMCIgeT0iNDAiPmFubsOpZXMgMTkzMDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI0MDUiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5sJ2hpc3RvaXJlIHZhIGRlIGdhdWNoZSDDoCBkcm9pdGUgOiBjaGFxdWUgZmFtaWxsZSBjb3JyaWdlIGxlIGTDqWZhdXQgZGUgbGEgcHLDqWPDqWRlbnRl4oCmPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9IjgxMCIgeT0iNDAiIHRleHQtYW5jaG9yPSJlbmQiPmF1am91cmQnaHVpPC90ZXh0PgogIDwvZz4KICA8dGV4dCBjbGFzcz0ibGVnIiB4PSI0NTAiIHk9IjUwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMDtmaWxsOiMxYjNhNjMiPuKApmV0IGVuIHLDqXbDqGxlIHVuIG5vdXZlYXUuIElsIG4neSBhIHBhcyBkZSBmbHVpZGUgcGFyZmFpdCA6IGlsIG4neSBhIHF1ZSBkZXMgY29tcHJvbWlzIG1hw650cmlzw6lzLjwvdGV4dD4KPC9zdmc+Cg==",
+      texte: [
+        "CFC, HCFC, HFC, HFO, naturels : **cinq familles**, et une histoire qui va de gauche à droite.",
+        "**Trois atomes décident de tout** : le chlore détruit l'ozone, le fluor rend la molécule stable — donc durable dans l'atmosphère, où elle fait effet de serre —, l'hydrogène raccourcit sa vie.",
+        "**Il n'y a pas de fluide parfait : il n'y a que des compromis maîtrisés.** Toute la suite tient dans cette phrase."
+      ],
+      lu: "CFC, HCFC, HFC, HFO, et les fluides naturels : cinq familles, et une histoire qui se lit de gauche à droite. Chaque famille corrige le défaut de la précédente, et en révèle un nouveau. Trois atomes décident de tout. Le chlore détruit l'ozone. Le fluor rend la molécule stable, donc durable dans l'atmosphère, où elle fait effet de serre. L'hydrogène raccourcit sa vie dans l'air. Retenez surtout la conclusion : il n'y a pas de fluide parfait. Il n'y a que des compromis maîtrisés.",
+      plus: ["trois-atomes"],
+      codes: ["2.01"]
+    },
+
+    {
+      id: "02-les-interdits",
+      titre: "CFC et HCFC : le chlore les a condamnés.",
+      texte: [
+        "Les **CFC** (le R-12) : les « miracles » des années 1930 — stables, ni toxiques ni inflammables… **et tueurs d'ozone**. Interdits.",
+        "Les **HCFC** (le R-22) : la transition. Un peu d'hydrogène, moins de chlore, vie plus courte — **mais du chlore quand même**. Interdits aussi.",
+        "Vous croiserez encore ces machines en dépannage : savoir d'où elles viennent, c'est savoir pourquoi on ne les recharge plus."
+      ],
+      lu: "Les deux premières familles sont interdites, et c'est le chlore qui les a condamnées. Les CFC, comme le R douze, étaient les miracles des années mille neuf cent trente : stables, ni toxiques, ni inflammables… et tueurs d'ozone. Les HCFC, comme le R vingt-deux, ont fait la transition : un peu d'hydrogène, moins de chlore, une vie plus courte. Mais du chlore quand même. Vous croiserez encore ces machines en dépannage. Savoir d'où elles viennent, c'est savoir pourquoi on ne les recharge plus.",
+      verifier: [
+        "**« Interdits » sans nuance** — c'est le mot de la planche. Faut-il préciser ce qui reste permis sur une machine au R-22 encore en service (dépannage sans recharge, récupération) ? À trancher en relecture.",
+      ],
+      plus: ["histoire-ozone"],
+      codes: ["2.01"]
+    },
+
+    {
+      id: "03-les-hfc",
+      titre: "Les HFC : l'ozone sauvé, le climat raté.",
+      texte: [
+        "**Zéro chlore** : avec les HFC (R-134a, R-32), l'ozone est sauvé — ODP = 0.",
+        "Mais leur **PRP est fort** : ils réchauffent le climat des centaines à des milliers de fois plus que le CO₂, kilo pour kilo.",
+        "D'où leur statut : **en réduction**. C'est la réduction progressive des quotas (le « phase-down ») du règlement F-Gas, et l'amendement de Kigali."
+      ],
+      lu: "Troisième famille : les HFC, comme le R cent trente-quatre a ou le R trente-deux. Zéro chlore : l'ozone est sauvé. Leur potentiel de destruction de l'ozone, l'O D P, est nul. Mais leur PRP est fort : ils réchauffent le climat des centaines à des milliers de fois plus que le CO2, kilo pour kilo. D'où leur statut actuel : en réduction. C'est la réduction progressive des quotas du règlement F-Gas, et l'amendement de Kigali.",
+      plus: ["histoire-climat"],
+      codes: ["2.01"]
+    },
+
+    {
+      id: "04-le-prp",
+      titre: "Le PRP : un kilogramme n'égale pas un kilogramme.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgMzMwIiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iQ29tcGFyYWlzb24gZHUgUFJQIGRlIHF1YXRyZSBmbHVpZGVzIDogbGUgQ08yIHZhdXQgMSwgbGUgUi0zMiA2NzUsIGxlIFItNDEwQSAyMDg4LCBsZSBSLTQwNEEgMzkyMi4iPgogIDx0aXRsZT5VbiBraWxvZ3JhbW1lIG4nw6lnYWxlIHBhcyB1biBraWxvZ3JhbW1lPC90aXRsZT4KCiAgPHN0eWxlPgogICAgLnQgICB7IGZvbnQ6NzAwIDE5cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC5sICAgeyBmb250OjcwMCAxNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAudiAgIHsgZm9udDo3MDAgMTVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6I2M5NDUxYTsgfQogICAgLnMgICB7IGZvbnQ6NDAwIDEzLjVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzRhNWI2ZTsgfQogICAgLmJhcnJlIHsgYW5pbWF0aW9uOnBvdXNzZSAxLjRzIGVhc2Utb3V0IGJvdGg7IHRyYW5zZm9ybS1vcmlnaW46MTUwcHggMDsgfQogICAgQGtleWZyYW1lcyBwb3Vzc2UgeyBmcm9tIHsgdHJhbnNmb3JtOnNjYWxlWCgwKTsgfSB0byB7IHRyYW5zZm9ybTpzY2FsZVgoMSk7IH0gfQogICAgQG1lZGlhIHByaW50IHsgLmJhcnJlIHsgYW5pbWF0aW9uOm5vbmU7IH0gfQogIDwvc3R5bGU+CgogIDxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iMzMwIiBmaWxsPSIjZmZmZmZmIi8+CgogIDx0ZXh0IGNsYXNzPSJ0IiB4PSI0MCIgeT0iMzgiPjEga2cgZGUgZmx1aWRlIG4nw6lnYWxlIHBhcyAxIGtnIGQndW4gYXV0cmU8L3RleHQ+CiAgPHRleHQgY2xhc3M9InMiIHg9IjQwIiB5PSI2MCI+UFJQIDogZWZmZXQgZGUgc2VycmUgZCcxIGtnIGRlIGZsdWlkZSwgY29tcGFyw6kgw6AgMSBrZyBkZSBDT+KCgiAobCfDqXRhbG9uLCBQUlAgPSAxKS48L3RleHQ+CgogIDwhLS0gw6ljaGVsbGUgOiAzOTIyIOKGkiA2NjAgcHggLS0+CiAgPCEtLSBDT+KCgiAtLT4KICA8dGV4dCBjbGFzcz0ibCIgeD0iMTQwIiB5PSIxMDYiIHRleHQtYW5jaG9yPSJlbmQiPkNP4oKCPC90ZXh0PgogIDxyZWN0IGNsYXNzPSJiYXJyZSIgeD0iMTUwIiB5PSI5MiIgd2lkdGg9IjIiIGhlaWdodD0iMjAiIHJ4PSIxIiBmaWxsPSIjMmU4YjU3Ii8+CiAgPHRleHQgY2xhc3M9InMiIHg9IjE2MiIgeT0iMTA2Ij48dHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMDtmaWxsOiMyZThiNTciPjE8L3RzcGFuPiDigJQgbCfDqXRhbG9u4oCmIGV0IHVuIHZyYWkgZmx1aWRlIChSLTc0NCk8L3RleHQ+CgogIDwhLS0gUi0zMiAtLT4KICA8dGV4dCBjbGFzcz0ibCIgeD0iMTQwIiB5PSIxNTYiIHRleHQtYW5jaG9yPSJlbmQiPlItMzI8L3RleHQ+CiAgPHJlY3QgY2xhc3M9ImJhcnJlIiB4PSIxNTAiIHk9IjE0MiIgd2lkdGg9IjExNCIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiMxYjNhNjMiIHN0eWxlPSJhbmltYXRpb24tZGVsYXk6LjE1cyIvPgogIDx0ZXh0IGNsYXNzPSJ2IiB4PSIyNzQiIHk9IjE1NiIgc3R5bGU9ImZpbGw6IzFiM2E2MyI+Njc1PC90ZXh0PgoKICA8IS0tIFItNDEwQSAtLT4KICA8dGV4dCBjbGFzcz0ibCIgeD0iMTQwIiB5PSIyMDYiIHRleHQtYW5jaG9yPSJlbmQiPlItNDEwQTwvdGV4dD4KICA8cmVjdCBjbGFzcz0iYmFycmUiIHg9IjE1MCIgeT0iMTkyIiB3aWR0aD0iMzUxIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iIzVhN2JhNiIgc3R5bGU9ImFuaW1hdGlvbi1kZWxheTouM3MiLz4KICA8dGV4dCBjbGFzcz0idiIgeD0iNTExIiB5PSIyMDYiIHN0eWxlPSJmaWxsOiMxYjNhNjMiPjIwODg8L3RleHQ+CgogIDwhLS0gUi00MDRBIC0tPgogIDx0ZXh0IGNsYXNzPSJsIiB4PSIxNDAiIHk9IjI1NiIgdGV4dC1hbmNob3I9ImVuZCI+Ui00MDRBPC90ZXh0PgogIDxyZWN0IGNsYXNzPSJiYXJyZSIgeD0iMTUwIiB5PSIyNDIiIHdpZHRoPSI2NjAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmY2YjM1IiBzdHlsZT0iYW5pbWF0aW9uLWRlbGF5Oi40NXMiLz4KICA8dGV4dCBjbGFzcz0idiIgeD0iODIwIiB5PSIyNTYiPjM5MjI8L3RleHQ+CgogIDx0ZXh0IGNsYXNzPSJzIiB4PSI0MCIgeT0iMzAyIj5Db25zw6lxdWVuY2UgOiBmdWlyIDEga2cgZGUgUi00MDRBIOKJiCByZWzDomNoZXIgPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDA7ZmlsbDojYzk0NTFhIj4zLDkgdG9ubmVzPC90c3Bhbj4gw6lxdWl2YWxlbnQgQ0/igoIuPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzIiB4PSI0MCIgeT0iMzIwIj5WYWxldXJzIGluZGljYXRpdmVzIChNaXNzaW9uIEYtR0FaKSDigJQgZW4gaW50ZXJ2ZW50aW9uLCBsZSBQUlAgc2UgbGl0IHN1ciBsYSBmaWNoZSBkdSBmbHVpZGUuPC90ZXh0Pgo8L3N2Zz4K",
+      texte: [
+        "Le **PRP**, c'est l'effet de serre d'**1 kg de fluide**, comparé à **1 kg de CO₂** — l'étalon, PRP = 1.",
+        "L'échelle parle d'elle-même : CO₂ **1** · R-32 **675** · R-410A **2088** · R-404A **3922**.",
+        "Conséquence : **fuir 1 kg de R-404A ≈ relâcher 3,9 tonnes équivalent CO₂.**",
+        "*En intervention, le PRP ne se devine pas : il se lit sur la fiche du fluide.*"
+      ],
+      lu: "Voici l'outil de mesure de toute cette histoire : le PRP. C'est l'effet de serre d'un kilogramme de fluide, comparé à un kilogramme de CO2, qui sert d'étalon avec un PRP de un. Regardez l'échelle. Le CO2 : un. Le R trente-deux : six cent soixante-quinze. Le R quatre cent dix A : deux mille quatre-vingt-huit. Le R quatre cent quatre A : trois mille neuf cent vingt-deux. La conséquence est concrète : fuir un kilogramme de R quatre cent quatre A, c'est relâcher environ trois virgule neuf tonnes équivalent CO2. Et retenez ce réflexe : en intervention, le PRP ne se devine pas. Il se lit sur la fiche du fluide.",
+      verifier: [
+        "**Les quatre valeurs de PRP (1 · 675 · 2088 · 3922)** — la planche les dit elle-même « indicatives ». Sont-elles celles que vous voulez enseigner (AR4 ? AR5 ?) — à valider.",
+        "**PRP, PRG, GWP** : le fonds emploie « PRP » et « PRG » sans jamais dire que c'est la même grandeur (GWP en anglais). Faut-il le dire ici ? À valider.",
+        "**L'horizon de temps manque** : la définition complète est « sur 100 ans », et c'est une question d'examen classique — le fonds ne le dit nulle part. L'ajouter ?",
+      ],
+      plus: ["teqco2"],
+      codes: ["2.02"]
+    },
+
+    {
+      id: "05-les-autorises",
+      titre: "HFO et naturels : autorisés — chacun son revers.",
+      texte: [
+        "Les **HFO** (R-1234yf) : une **double liaison C = C** qui casse en quelques jours dans l'air — **PRP ≈ 1**. Souvent A2L. Et la question **PFAS** se pose.",
+        "Les **naturels** : R-290 et R-600a (propane, isobutane), R-717 (ammoniac), R-744 (CO₂). **PRP minuscule.**",
+        "Mais **chacun son revers : A3, B2L ou haute pression.** Le fluide qui ne réchauffe pas le climat vous demande, à vous, davantage de métier."
+      ],
+      lu: "Restent les deux familles autorisées. Les HFO, comme le R mille deux cent trente-quatre igrec èf : leur double liaison casse en quelques jours dans l'air, d'où un PRP proche de un. Ils sont souvent classés A deux L. Et la question des PFAS se pose. Puis les fluides naturels : le R deux cent quatre-vingt-dix et le R six cents a, propane et isobutane ; le R sept cent dix-sept, l'ammoniac ; le R sept cent quarante-quatre, le CO2. Leur PRP est minuscule. Mais chacun a son revers : A trois, B deux L, ou haute pression. Le fluide qui ne réchauffe pas le climat vous demande, à vous, davantage de métier.",
+      verifier: [
+        "**« La question PFAS se pose »** — le fonds n'en dit pas plus. Suffisant à ce niveau, ou faut-il un mot d'explication ? À trancher.",
+      ],
+      codes: ["2.01"]
+    },
+
+    {
+      id: "06-la-regle",
+      titre: "Ce que la règle en fait — et ce que ça vous demande.",
+      texte: [
+        "Le règlement **F-Gas 2024/573** accélère la baisse des **quotas** de HFC et programme **l'interdiction** de certains fluides à fort PRP dans de nombreux équipements neufs.",
+        "L'amendement de **Kigali** fait la même chose à l'échelle mondiale.",
+        "La chaîne est simple : **plus le PRP est fort, plus la règle serre.** Et la conclusion de toute la frise : **il n'existe pas de fluide parfait. Il existe des professionnels bien formés.**"
+      ],
+      lu: "Terminons par ce que la règle en fait. Le règlement F-Gas deux mille vingt-quatre, cinq cent soixante-treize, accélère radicalement la baisse des quotas de HFC mis sur le marché, et programme l'interdiction pure et simple de certains fluides à fort PRP dans de nombreux équipements neufs. L'amendement de Kigali fait la même chose à l'échelle mondiale. La chaîne est simple : plus le PRP est fort, plus la règle serre. Et la conclusion de toute cette histoire tient en deux phrases : il n'existe pas de fluide parfait. Il existe des professionnels bien formés.",
+      verifier: [
+        "**Aucun seuil chiffré de la F-Gas n'est enseigné ici** (le fonds n'en donne pas). Faut-il ajouter les seuils et échéances qui tombent à l'examen ? Si oui, lesquels — à fournir.",
+      ],
+      codes: ["2.01"]
+    }
+  ],
+
+  retenir: [
+    "**Cinq familles** : CFC et HCFC **interdits** (chlore) · HFC **en réduction** (PRP fort) · HFO et naturels **autorisés**, chacun son revers.",
+    "Le **PRP** compare 1 kg de fluide à 1 kg de CO₂ — l'étalon, PRP = 1.",
+    "**R-404A : PRP 3922** — fuir 1 kg ≈ 3,9 tonnes équivalent CO₂.",
+    "En intervention, **le PRP se lit sur la fiche du fluide**.",
+    "**Pas de fluide parfait : des compromis maîtrisés.**"
+  ],
+
+  detours: {
+
+    "trois-atomes": {
+      question: "Chlore, fluor, hydrogène : pourquoi ces trois-là décident-ils de tout ?",
+      ecrans: [
+        {
+          id: "d-atomes-1",
+          titre: "Un rôle par atome.",
+          texte: [
+            "**Le chlore (Cl)** : monté dans la stratosphère, il **détruit l'ozone**. C'est lui qui a condamné CFC et HCFC.",
+            "**Le fluor (F)** : il rend la molécule **stable** — et une molécule stable qui absorbe la chaleur fait un **gaz à effet de serre durable**.",
+            "**L'hydrogène (H)** : il donne une **vie courte** à la molécule, qui se détruit dans l'air avant de s'accumuler.",
+            "Lisez une famille comme un dosage de ces trois-là : c'est toute la planche."
+          ],
+          lu: "Un rôle par atome. Le chlore : une fois monté dans la stratosphère, il détruit l'ozone. C'est lui qui a condamné les CFC et les HCFC. Le fluor : il rend la molécule stable. Et une molécule stable qui absorbe la chaleur devient un gaz à effet de serre durable. L'hydrogène : il donne une vie courte à la molécule, qui se détruit dans l'air avant de s'accumuler. Lisez chaque famille comme un dosage de ces trois atomes : c'est toute la planche.",
+          codes: ["2.01"]
+        }
+      ]
+    },
+
+    "histoire-ozone": {
+      question: "Comment en est-on venu à interdire des fluides « miracles » ?",
+      ecrans: [
+        {
+          id: "d-ozone-1",
+          titre: "Soixante ans, en quatre dates.",
+          planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNTYwIiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iRnJpc2UgY2hyb25vbG9naXF1ZSA6IENGQyBkYW5zIGxlcyBhbm7DqWVzIDE5MzAsIGTDqWNvdXZlcnRlIGR1IHRyb3UgZCdvem9uZSBlbiAxOTg1LCBwcm90b2NvbGUgZGUgTW9udHLDqWFsIDE5ODcsIEt5b3RvIDE5OTcsIGFjY29yZCBkZSBQYXJpcyAyMDE1LCBhbWVuZGVtZW50IGRlIEtpZ2FsaSAyMDE2LCBGLUdhcyBJSUkgMjAyNC4gRGV1eCBmaWxzIDogb3pvbmUgcHVpcyBjbGltYXQuIj4KICA8dGl0bGU+UXVhcmFudGUgYW5zIGQnaGlzdG9pcmUg4oCUIGRlIGwnb3pvbmUgYXUgY2xpbWF0PC90aXRsZT4KCiAgPHN0eWxlPgogICAgLnQgICB7IGZvbnQ6NzAwIDE5cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC5hbiAgeyBmb250OjcwMCAxNXB4ICdUcmVidWNoZXQgTVMnLENhbGlicmksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAuZXYgIHsgZm9udDo3MDAgMTMuNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAucyAgIHsgZm9udDo0MDAgMTIuNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojNGE1YjZlOyB9CiAgICAuZmlsIHsgZm9udDo3MDAgMTIuNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgfQogICAgLnRpZ2V7IHN0cm9rZTojYzlkNGRlOyBzdHJva2Utd2lkdGg6MS4yOyB9CiAgPC9zdHlsZT4KCiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiNmZmZmZmYiLz4KCiAgPHRleHQgY2xhc3M9InQiIHg9IjQwIiB5PSIzNCI+UXVhcmFudGUgYW5zIGQnaGlzdG9pcmUgOiBsZSBwcm9ibMOobWUgYSBjaGFuZ8OpIGRldXggZm9pczwvdGV4dD4KCiAgPCEtLSA9PT09PSBsZXMgZGV1eCBmaWxzLCBlbiBiYW5kZWF1IGhhdXQgPT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCw1OCkiPgogICAgPHRleHQgY2xhc3M9ImZpbCIgeD0iNDAiIHk9IjQiIGZpbGw9IiMyZjU2ODkiPkZJTCBPWk9ORTwvdGV4dD4KICAgIDxwYXRoIGQ9Ik0gMTI0IDAgTCA2MDAgMCIgc3Ryb2tlPSIjMmY1Njg5IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTSA2MDAgMCBMIDY4NiAwIiBzdHJva2U9IiMyZjU2ODkiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIyIDkiLz4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSI2OTYiIHk9IjQiIGZpbGw9IiMyZjU2ODkiPmxhIGNvdWNoZSBzZSByw6lwYXJlIOKckzwvdGV4dD4KCiAgICA8dGV4dCBjbGFzcz0iZmlsIiB4PSI0MCIgeT0iMzAiIGZpbGw9IiNjOTQ1MWEiPkZJTCBDTElNQVQ8L3RleHQ+CiAgICA8cGF0aCBkPSJNIDEyNCAyNiBMIDg1NiAyNiIgc3Ryb2tlPSIjZmY2YjM1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KCiAgPCEtLSA9PT09PSBheGUgZHUgdGVtcHMgPT09PT0gLS0+CiAgPHBhdGggZD0iTSA0MCAzMDAgTCA4NjYgMzAwIiBzdHJva2U9IiM4NDk0YTQiIHN0cm9rZS13aWR0aD0iMi41Ii8+CgogIDwhLS0gPT09PT09PT09PT09IMOpdsOpbmVtZW50cyBBVS1ERVNTVVMgPT09PT09PT09PT09IC0tPgogIDwhLS0gMTkzMHMgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEyLDMwMCkiPgogICAgPGNpcmNsZSByPSI3IiBmaWxsPSIjMmY1Njg5Ii8+CiAgICA8cGF0aCBjbGFzcz0idGlnZSIgZD0iTSAwIC03IEwgMCAtNTgiLz4KICAgIDx0ZXh0IGNsYXNzPSJldiIgeT0iLTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MZXMgQ0ZDLCBmbHVpZGVzIMKrIG1pcmFjbGUgwrs8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgIHk9Ii01MiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+c3RhYmxlcywgbmkgdG94aXF1ZXMsIG5pIGluZmxhbW1hYmxlczwvdGV4dD4KICA8L2c+CiAgPCEtLSAxOTg3IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5MCwzMDApIj4KICAgIDxjaXJjbGUgcj0iOSIgZmlsbD0iIzFiM2E2MyIvPgogICAgPHBhdGggY2xhc3M9InRpZ2UiIGQ9Ik0gMCAtOSBMIDAgLTU4Ii8+CiAgICA8dGV4dCBjbGFzcz0iZXYiIHk9Ii04NCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UHJvdG9jb2xlIGRlIE1PTlRSw4lBTDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiAgeT0iLTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5zb3J0aWUgZGVzIENGQyBwdWlzIGRlcyBIQ0ZDIOKAlDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiAgeT0iLTUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5sZSBncmFuZCBzdWNjw6hzIGVudmlyb25uZW1lbnRhbDwvdGV4dD4KICA8L2c+CiAgPCEtLSAyMDE1IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY2OCwzMDApIj4KICAgIDxjaXJjbGUgcj0iNyIgZmlsbD0iI2ZmNmIzNSIvPgogICAgPHBhdGggY2xhc3M9InRpZ2UiIGQ9Ik0gMCAtNyBMIDAgLTU4Ii8+CiAgICA8dGV4dCBjbGFzcz0iZXYiIHk9Ii02OCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QWNjb3JkIGRlIFBBUklTPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiICB5PSItNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxpbWl0ZXIgbGUgcsOpY2hhdWZmZW1lbnQgw6AgKzEsNSDCsEM8L3RleHQ+CiAgPC9nPgoKICA8IS0tID09PT09PT09PT09PSDDqXbDqW5lbWVudHMgRU4gREVTU09VUyA9PT09PT09PT09PT0gLS0+CiAgPCEtLSAxOTg1IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MiwzMDApIj4KICAgIDxjaXJjbGUgcj0iNyIgZmlsbD0iIzJmNTY4OSIvPgogICAgPHBhdGggY2xhc3M9InRpZ2UiIGQ9Ik0gMCA3IEwgMCA1MiIvPgogICAgPHRleHQgY2xhc3M9ImV2IiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TGUgdHJvdSBkYW5zIGxhIGNvdWNoZSBkJ296b25lPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiICB5PSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+YXUtZGVzc3VzIGRlIGwnQW50YXJjdGlxdWUg4oCUIGxlIGNobG9yZSBhY2N1c2U8L3RleHQ+CiAgPC9nPgogIDwhLS0gMTk5NyAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MzAsMzAwKSI+CiAgICA8Y2lyY2xlIHI9IjciIGZpbGw9IiNmZjZiMzUiLz4KICAgIDxwYXRoIGNsYXNzPSJ0aWdlIiBkPSJNIDAgNyBMIDAgNTIiLz4KICAgIDx0ZXh0IGNsYXNzPSJldiIgeT0iNzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb3RvY29sZSBkZSBLWU9UTzwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiAgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjYgZ2F6IMOgIGVmZmV0IGRlIHNlcnJlLCBkb250IGxlcyBIRkM8L3RleHQ+CiAgPC9nPgogIDwhLS0gMjAxNiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MDYsMzAwKSI+CiAgICA8Y2lyY2xlIHI9IjkiIGZpbGw9IiNjOTQ1MWEiLz4KICAgIDxwYXRoIGNsYXNzPSJ0aWdlIiBkPSJNIDAgOSBMIDAgNTIiLz4KICAgIDx0ZXh0IGNsYXNzPSJldiIgeT0iNzIiIHRleHQtYW5jaG9yPSJlbmQiIHg9IjQ2Ij5BbWVuZGVtZW50IGRlIEtJR0FMSTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiAgeT0iODgiIHRleHQtYW5jaG9yPSJlbmQiIHg9IjQ2Ij5sZXMgSEZDIGVudHJlbnTigKYgZGFucyBNb250csOpYWwgITwvdGV4dD4KICA8L2c+CgogIDwhLS0gPT09PT09PT09PT09IGFubsOpZXMgc3VyIGwnYXhlID09PT09PT09PT09PSAtLT4KICA8dGV4dCBjbGFzcz0iYW4iIHg9IjExMiIgeT0iMzMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5hbm7DqWVzIDE5MzA8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImFuIiB4PSIyNTIiIHk9IjMzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTk4NTwvdGV4dD4KICA8dGV4dCBjbGFzcz0iYW4iIHg9IjM5MCIgeT0iMzMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xOTg3PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJhbiIgeD0iNTMwIiB5PSIzMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE5OTc8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImFuIiB4PSI2NjgiIHk9IjMzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjAxNTwvdGV4dD4KICA8dGV4dCBjbGFzcz0iYW4iIHg9IjgwNiIgeT0iMzMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yMDE2PC90ZXh0PgoKICA8IS0tID09PT09PT09PT09PSBGLUdhcyBJSUksIGVuIGVuY2FkcsOpIMOgIGRyb2l0ZSA9PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODY2LDE4MikiPgogICAgPHJlY3QgeD0iLTE3MiIgeT0iLTM0IiB3aWR0aD0iMTcyIiBoZWlnaHQ9IjYwIiByeD0iOSIgZmlsbD0iI2ZmZjNlOCIgc3Ryb2tlPSIjZmZjN2FkIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHRleHQgY2xhc3M9ImV2IiB4PSItODYiIHk9Ii0xNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M5NDUxYSI+MjAyNCDCtyBGLUdhcyBJSUk8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgIHg9Ii04NiIgeT0iMiIgIHRleHQtYW5jaG9yPSJtaWRkbGUiPnLDqGdsZW1lbnQgVUUgMjAyNC81NzM8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgIHg9Ii04NiIgeT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnBoYXNlLWRvd24sIHF1b3RhcywgaW50ZXJkaWN0aW9uczwvdGV4dD4KICA8L2c+CgogIDwhLS0gPT09PT09PT09PT09IG1vcmFsZSA9PT09PT09PT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDUwLDQ3MCkiPgogICAgPHJlY3QgeD0iLTQwMCIgeT0iLTMwIiB3aWR0aD0iODAwIiBoZWlnaHQ9IjY2IiByeD0iMTAiIGZpbGw9IiNmNWY4ZmIiIHN0cm9rZT0iI2Q3ZTBlOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IGNsYXNzPSJldiIgeT0iLTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1vbnRyw6lhbCBhIHLDqWdsw6kgbCdvem9uZSBlbiBpbnRlcmRpc2FudCBsZSBjaGxvcmXigKYgZXQgbGVzIEhGQyBkZSByZW1wbGFjZW1lbnQgb250IGNyw6nDqSBsZSBwcm9ibMOobWUgY2xpbWF0LjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiAgeT0iMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkMnZXN0IHBvdXIgw6dhIHF1J3VuIGZyaWdvcmlzdGUgbWFuaXB1bGUgYXVqb3VyZCdodWkgZGVzIGZsdWlkZXMgc291cyBxdW90YXMgOiBjaGFxdWUga2lsbyByZWzDomNow6kgY29tcHRlLjwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=",
+          texte: [
+            "**1928-1930** — Thomas Midgley Jr. synthétise les CFC : stables, ininflammables, non toxiques. Ils remplacent des gaz dangereux comme l'ammoniac.",
+            "**1974** — Molina et Rowland démontrent que les CFC, inertes en bas, libèrent dans la stratosphère un chlore qui **attaque la couche d'ozone**.",
+            "**1985** — le trou d'ozone est **confirmé** au-dessus du pôle Sud, depuis la station Halley.",
+            "**1987** — le **protocole de Montréal** planifie l'élimination des substances qui appauvrissent l'ozone. L'un des plus grands succès de la diplomatie environnementale."
+          ],
+          lu: "L'histoire tient en quatre dates. Mille neuf cent vingt-huit : Thomas Midgley junior synthétise les CFC. Stables, ininflammables, non toxiques, ils remplacent des gaz dangereux comme l'ammoniac. Mille neuf cent soixante-quatorze : deux chimistes, Molina et Rowland, démontrent que les CFC, inertes dans la basse atmosphère, libèrent dans la stratosphère un chlore qui attaque massivement la couche d'ozone. Mille neuf cent quatre-vingt-cinq : le trou d'ozone est confirmé au-dessus du pôle Sud. Mille neuf cent quatre-vingt-sept, enfin : le protocole de Montréal planifie l'élimination progressive des substances qui appauvrissent la couche d'ozone. C'est l'un des plus grands succès de la diplomatie environnementale.",
+          codes: ["2.01"]
+        }
+      ]
+    },
+
+    "histoire-climat": {
+      question: "Et après l'ozone, comment le climat est-il devenu le sujet ?",
+      ecrans: [
+        {
+          id: "d-climat-1",
+          titre: "Le problème résolu d'un côté en a créé un de l'autre.",
+          texte: [
+            "**Années 1990** — pour remplacer CFC et HCFC, l'industrie adopte massivement les **HFC**. L'ozone est sauvé… mais leur pouvoir de réchauffement est **des centaines à des milliers de fois** celui du CO₂.",
+            "**2015** — l'**accord de Paris** fixe le cap : contenir le réchauffement bien en dessous de 2 degrés. Le froid est scruté comme tout le monde.",
+            "**2016** — l'**amendement de Kigali** intègre les HFC au protocole de Montréal : réduction mondiale programmée.",
+            "**2024** — le **règlement F-Gas 2024/573** accélère les quotas et programme des interdictions dans le neuf."
+          ],
+          lu: "Le problème résolu d'un côté en a créé un de l'autre. Dans les années mille neuf cent quatre-vingt-dix, pour remplacer les CFC et les HCFC, l'industrie adopte massivement les HFC. La couche d'ozone est sauvée. Mais on découvre rapidement que leur pouvoir de réchauffement est des centaines à des milliers de fois supérieur à celui du CO2. Deux mille quinze : l'accord de Paris fixe le cap, contenir le réchauffement bien en dessous de deux degrés. Deux mille seize : l'amendement de Kigali intègre officiellement les HFC au protocole de Montréal, avec un calendrier mondial de réduction. Et deux mille vingt-quatre : le règlement F-Gas accélère radicalement la baisse des quotas, et programme des interdictions dans les équipements neufs.",
+          codes: ["2.01"]
+        }
+      ]
+    },
+
+    "teqco2": {
+      question: "3,9 tonnes pour un kilo : d'où sort ce calcul ?",
+      ecrans: [
+        {
+          id: "d-teq-1",
+          titre: "La charge multipliée par le PRP.",
+          texte: [
+            "L'exemple de la planche : **fuir 1 kg de R-404A ≈ relâcher 3,9 tonnes équivalent CO₂** — c'est le PRP (3922) qui fait la conversion.",
+            "Ce chiffre en « tonnes équivalent CO₂ » est celui que la réglementation regarde : c'est lui qui **classe la sévérité** d'une installation.",
+            "C'est aussi lui qui commande les obligations de contrôle — voyez la capsule **« Le contrôle d'étanchéité »**."
+          ],
+          lu: "Reprenons l'exemple de la planche. Fuir un kilogramme de R quatre cent quatre A, c'est relâcher environ trois virgule neuf tonnes équivalent CO2. C'est le PRP, trois mille neuf cent vingt-deux, qui fait la conversion. Ce chiffre en tonnes équivalent CO2 est celui que la réglementation regarde : c'est lui qui classe la sévérité d'une installation. Et c'est lui qui commande les obligations de contrôle. Pour la suite, voyez la capsule sur le contrôle d'étanchéité.",
+          verifier: [
+            "**La formule générale « charge × PRP » n'est écrite nulle part dans le fonds** (seul l'exemple du R-404A y figure). L'énoncer ainsi est-il exact et suffisant — et à quel écran du cursus la formule complète (unités, /1000) doit-elle être enseignée ?",
+          ],
+          codes: ["2.02"]
+        }
+      ]
+    }
+  }
+});
+
+/* =====================================================================
+   la-chaleur.js — « La chaleur, sensible et latente »
+   ---------------------------------------------------------------------
+   Redécoupage du fonds : chaleur-interactive (le « voyage de l'eau »,
+   les deux mots, le frigo) + chaleur-circuit-interactif (les grandeurs,
+   les valeurs de c, le bilan Qcond = Qévap + Wcomp),
+   planche chaleur-sensible-latente.svg.
+
+   Toutes les valeurs viennent des deux tutos sources (relevé du 07/08).
+   Le modèle est celui qu'ils énoncent : eau pure, pression
+   atmosphérique, palier d'un corps pur — le glissement des zéotropes
+   est renvoyé à « Pression et température ».
+   ===================================================================== */
+CAPSULE({
+  id: "la-chaleur",
+  ordre: 2,
+  titre: "La chaleur, sensible et latente",
+  question: "Pourquoi la température peut-elle rester stable pendant qu'on chauffe ?",
+  niveau: "découverte",
+  minutes: 7,
+  suppose: null,
+  voixFabriquee: true,   /* Henri + Denise, 07/08/2026 */
+
+  fil: [
+    {
+      id: "01-energie",
+      titre: "Chauffer, c'est transférer de l'énergie. Et température n'est pas énergie.",
+      texte: [
+        "**Chauffer**, c'est transférer de l'énergie vers la matière. **Refroidir**, c'est lui en retirer pour la transmettre ailleurs.",
+        "Et attention : **une température n'est pas une quantité d'énergie.** Deux casseroles à la même température ne contiennent pas la même énergie si l'une est pleine et l'autre presque vide.",
+        "**La masse compte.** Masse doublée : énergie nécessaire doublée, toutes choses égales par ailleurs."
+      ],
+      lu: "Commençons par remettre deux mots à leur place. Chauffer, c'est transférer de l'énergie vers la matière. Refroidir, c'est lui en retirer, pour la transmettre ailleurs. Et attention à l'idée fausse la plus répandue : une température n'est pas une quantité d'énergie. Deux casseroles à la même température ne contiennent pas la même énergie, si l'une est pleine et l'autre presque vide. La masse compte. Masse doublée : énergie nécessaire doublée, toutes choses égales par ailleurs.",
+      plus: ["la-masse"],
+      codes: ["1.02"]
+    },
+
+    {
+      id: "02-escalier",
+      titre: "La courbe en escalier : du glaçon à la vapeur.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDY0IiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iT24gY2hhdWZmZSB1biBsaXF1aWRlIHLDqWd1bGnDqHJlbWVudCBldCBvbiBzdWl0IHNhIHRlbXDDqXJhdHVyZS4gRCdhYm9yZCBlbGxlIG1vbnRlIDogYydlc3QgbGEgY2hhbGV1ciBzZW5zaWJsZSwgY2VsbGUgcXVlIGxlIHRoZXJtb23DqHRyZSBzZW50LiBQdWlzLCBhdSBwb2ludCBkZSBidWxsZSwgbGUgbGlxdWlkZSBzZSBtZXQgw6AgYm91aWxsaXIgZXQgbGEgdGVtcMOpcmF0dXJlIHMnYXJyw6p0ZSBkZSBtb250ZXIsIGFsb3JzIHF1J29uIGNvbnRpbnVlIGRlIGNoYXVmZmVyIDogdG91dGUgbGEgY2hhbGV1ciBzZXJ0IMOgIGNoYW5nZXIgbCfDqXRhdCBkdSBmbHVpZGUsIGMnZXN0IGxhIGNoYWxldXIgbGF0ZW50ZSwgZXQgY2VsYSBkdXJlIHRvdXQgbGUgcGFsaWVyLiBBdSBwb2ludCBkZSByb3PDqWUsIGxhIGRlcm5pw6hyZSBnb3V0dGUgZXN0IHZhcG9yaXPDqWUgZXQgbGEgdGVtcMOpcmF0dXJlIHJlcGFydCDDoCBsYSBoYXVzc2UgOiBsYSB2YXBldXIgZXN0IHN1cmNoYXVmZsOpZS4gRGFucyB1bmUgbWFjaGluZSBmcmlnb3JpZmlxdWUsIGwnw6l2YXBvcmF0ZXVyIHBhcmNvdXJ0IGNlIHBhbGllciBkZSBsYSBnYXVjaGUgdmVycyBsYSBkcm9pdGUgZW4gYWJzb3JiYW50IGxhIGNoYWxldXIgZHUgbG9jYWwsIGV0IGxlIGNvbmRlbnNldXIgbGUgcGFyY291cnQgZW4gc2VucyBpbnZlcnNlIGVuIHJlbmRhbnQgY2V0dGUgY2hhbGV1ciBkZWhvcnMuIj4KICA8dGl0bGU+Q2hhbGV1ciBzZW5zaWJsZSBldCBjaGFsZXVyIGxhdGVudGUgOiBsYSBjb3VyYmUgZGUgY2hhdWZmZSBldCBzb24gcGFsaWVyPC90aXRsZT4KICA8c3R5bGU+CiAgICAudCAgIHsgZm9udDo3MDAgMTlweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzFiM2E2MzsgfQogICAgLnN0ICB7IGZvbnQ6NzAwIDE0cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC5sZyAgeyBmb250OjQwMCAxMy41cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiM0YTViNmU7IH0KICAgIC5zbSAgeyBmb250OjQwMCAxMnB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojNGE1YjZlOyB9CiAgICAuYmFkIHsgZm9udDo3MDAgMTNweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6I2M5NDUxYTsgfQogICAgLnAgICB7IGZpbGw6bm9uZTsgc3Ryb2tlOiMxYjNhNjM7IHN0cm9rZS13aWR0aDoyLjY7IHN0cm9rZS1saW5lY2FwOnJvdW5kOyBzdHJva2UtbGluZWpvaW46cm91bmQ7IH0KICAgIC5hY2MgeyBmaWxsOm5vbmU7IHN0cm9rZTojYzk0NTFhOyBzdHJva2Utd2lkdGg6Mi42OyBzdHJva2UtbGluZWNhcDpyb3VuZDsgc3Ryb2tlLWxpbmVqb2luOnJvdW5kOyB9CiAgICAuZGFzaHsgZmlsbDpub25lOyBzdHJva2U6IzhmYTNiODsgc3Ryb2tlLXdpZHRoOjEuNjsgc3Ryb2tlLWRhc2hhcnJheTo1IDU7IH0KICAgIEBtZWRpYSBwcmludCB7IC5tb2JpbGUgeyBkaXNwbGF5Om5vbmU7IH0gfQogIDwvc3R5bGU+CgogIDxyZWN0IHdpZHRoPSI4ODAiIGhlaWdodD0iNDY0IiBmaWxsPSIjZmZmZmZmIi8+CiAgPHRleHQgY2xhc3M9InQiIHg9IjMwIiB5PSIzMiI+T24gY2hhdWZmZSBzYW5zIGFycsOqdCDigJQgZXQgcG91cnRhbnQgbGEgdGVtcMOpcmF0dXJlIHMnYXJyw6p0ZSBkZSBtb250ZXI8L3RleHQ+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gWk9ORVMgREUgRk9ORCA9PT09PT09PT09PT09PT09PSAtLT4KICA8cmVjdCB4PSI5MiIgeT0iNzAiIHdpZHRoPSIxNDMiIGhlaWdodD0iMjMwIiBmaWxsPSIjZWVmM2Y3Ii8+CiAgPHJlY3QgeD0iMjM1IiB5PSI3MCIgd2lkdGg9IjIzNSIgaGVpZ2h0PSIyMzAiIGZpbGw9IiNmYmRjZDIiLz4KICA8cmVjdCB4PSI0NzAiIHk9IjcwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjIzMCIgZmlsbD0iI2VlZjNmNyIvPgoKICA8IS0tID09PT09PT09PT09PT09PT09IEFYRVMgPT09PT09PT09PT09PT09PT0gLS0+CiAgPHBhdGggY2xhc3M9InAiIGQ9Ik05Miw2MCB2MjQwIGg1MzgiLz4KICA8dGV4dCBjbGFzcz0ic3QiIHg9IjMwIiB5PSI2NCI+dGVtcMOpcmF0dXJlPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNjMwIiB5PSIzOTIiIHRleHQtYW5jaG9yPSJlbmQiPmNoYWxldXIgYXBwb3J0w6llIGF1IGZsdWlkZSDihpI8L3RleHQ+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gQ09VUkJFIERFIENIQVVGRkUgPT09PT09PT09PT09PT09PT0gLS0+CiAgPHBhdGggaWQ9ImNoYXVmZmUiIGNsYXNzPSJhY2MiIHN0eWxlPSJzdHJva2Utd2lkdGg6My4yIiBkPSJNMTEwLDI3NSBMMjM1LDE5NSBMNDcwLDE5NSBMNjAwLDExNSIvPgoKICA8IS0tIHBvaW50IG1vYmlsZSA6IGlsIHBhcmNvdXJ0IGxhIGNvdXJiZSwgaWwgbmUgbGEgZGVzc2luZSBwYXMgLS0+CiAgPGNpcmNsZSBjbGFzcz0ibW9iaWxlIiByPSI3IiBmaWxsPSIjYzk0NTFhIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiI+CiAgICA8YW5pbWF0ZU1vdGlvbiBkdXI9IjlzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgY2FsY01vZGU9ImxpbmVhciI+CiAgICAgIDxtcGF0aCBocmVmPSIjY2hhdWZmZSIvPgogICAgPC9hbmltYXRlTW90aW9uPgogIDwvY2lyY2xlPgoKICA8IS0tIHJlcMOocmVzIHZlcnRpY2F1eCBqdXNxdWUgc291cyBsJ2F4ZSAtLT4KICA8cGF0aCBjbGFzcz0iZGFzaCIgZD0iTTIzNSwxOTUgdjExMyBNNDcwLDE5NSB2MTEzIi8+CiAgPGNpcmNsZSBjeD0iMjM1IiBjeT0iMTk1IiByPSI1LjUiIGZpbGw9IiMxYjNhNjMiLz4KICA8Y2lyY2xlIGN4PSI0NzAiIGN5PSIxOTUiIHI9IjUuNSIgZmlsbD0iIzFiM2E2MyIvPgoKICA8IS0tIMOpdGF0cywgZGFucyBsZXMgem9uZXMgLS0+CiAgPHRleHQgY2xhc3M9InNtIiB4PSIxMDYiIHk9IjEwNCI+bGlxdWlkZSBzb3VzLXJlZnJvaWRpPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzbSIgeD0iNjA0IiB5PSIxMDQiIHRleHQtYW5jaG9yPSJlbmQiPnZhcGV1ciBzdXJjaGF1ZmbDqWU8L3RleHQ+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gTEVTIERFVVggRlJPTlRJw4hSRVMgPT09PT09PT09PT09PT09PT0gLS0+CiAgPHRleHQgY2xhc3M9InN0IiB4PSIyMzUiIHk9IjE3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtc2l6ZToxM3B4Ij5wb2ludCBkZSBidWxsZTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ic20iIHg9IjIzNSIgeT0iMTU0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7Dp2EgY29tbWVuY2Ugw6AgYm91aWxsaXI8L3RleHQ+CgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNDcwIiB5PSIxNzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250LXNpemU6MTNweCI+cG9pbnQgZGUgcm9zw6llPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzbSIgeD0iNDcwIiB5PSIxNTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmRlcm5pw6hyZSBnb3V0dGUgdmFwb3Jpc8OpZTwvdGV4dD4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBMRVMgVFJPSVMgWk9ORVMsIE5PTU3DiUVTIFNPVVMgTCdBWEUgPT09PT09PT09PT09PT09PT0gLS0+CiAgPHRleHQgY2xhc3M9InN0IiB4PSIxNjMiIHk9IjMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TElRVUlERTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ic20iIHg9IjE2MyIgeT0iMzQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5sYSB0ZW1ww6lyYXR1cmUgbW9udGU8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImJhZCIgeD0iMTYzIiB5PSIzNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmNoYWxldXIgc2Vuc2libGU8L3RleHQ+CgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iMzUyIiB5PSIzMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxJUVVJREUgKyBWQVBFVVI8L3RleHQ+CiAgPHRleHQgY2xhc3M9InNtIiB4PSIzNTIiIHk9IjM0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+bGEgdGVtcMOpcmF0dXJlIG5lIGJvdWdlIHBsdXM8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImJhZCIgeD0iMzUyIiB5PSIzNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmNoYWxldXIgbGF0ZW50ZTwvdGV4dD4KCiAgPHRleHQgY2xhc3M9InN0IiB4PSI1NDUiIHk9IjMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VkFQRVVSPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzbSIgeD0iNTQ1IiB5PSIzNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxhIHRlbXDDqXJhdHVyZSByZXBhcnQ8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImJhZCIgeD0iNTQ1IiB5PSIzNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmNoYWxldXIgc2Vuc2libGU8L3RleHQ+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gRU5DQVJUIDogREFOUyBMQSBNQUNISU5FID09PT09PT09PT09PT09PT09IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0OCw1NCkiPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIwMiIgaGVpZ2h0PSIyNTgiIHJ4PSI4IiBmaWxsPSIjZmRmMWVkIiBzdHJva2U9IiNlOGI5YTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCBjbGFzcz0ic3QiIHg9IjE2IiB5PSIyOCI+RGFucyBsYSBtYWNoaW5lPC90ZXh0PgoKICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9IjU4Ij5MJzx0c3BhbiBzdHlsZT0iZm9udC13ZWlnaHQ6NzAwIj7DqXZhcG9yYXRldXI8L3RzcGFuPiBwYXJjb3VydDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9Ijc2Ij5sZSBwYWxpZXIgdmVycyBsYSBkcm9pdGUgOjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9Ijk0Ij5pbCA8dHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNjOTQ1MWEiPmFic29yYmU8L3RzcGFuPiBsYSBjaGFsZXVyPC90ZXh0PgogICAgPHRleHQgY2xhc3M9ImxnIiB4PSIxNiIgeT0iMTEyIj5kdSBsb2NhbCBwb3VyIGZhaXJlPC90ZXh0PgogICAgPHRleHQgY2xhc3M9ImxnIiB4PSIxNiIgeT0iMTMwIj5ib3VpbGxpciBsZSBmbHVpZGUuPC90ZXh0PgoKICAgIDxsaW5lIHgxPSIxNiIgeTE9IjE0OCIgeDI9IjE4NiIgeTI9IjE0OCIgc3Ryb2tlPSIjZThiOWE4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgoKICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9IjE3NCI+TGUgPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDAiPmNvbmRlbnNldXI8L3RzcGFuPiBsZTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9IjE5MiI+cGFyY291cnQgZW4gc2VuczwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9IjIxMCI+aW52ZXJzZSA6IGlsIDx0c3BhbiBzdHlsZT0iZm9udC13ZWlnaHQ6NzAwO2ZpbGw6I2M5NDUxYSI+cmVuZDwvdHNwYW4+IGNldHRlPC90ZXh0PgogICAgPHRleHQgY2xhc3M9ImxnIiB4PSIxNiIgeT0iMjI4Ij5jaGFsZXVyIGRlaG9ycyBlbjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTYiIHk9IjI0NiI+bGlxdcOpZmlhbnQgbGUgZmx1aWRlLjwvdGV4dD4KICA8L2c+CgogIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMzAiIHk9IjQxMCI+TGUgcGFsaWVyIGVzdCBsZSBjxZN1ciBkdSBtw6l0aWVyIDogYydlc3QgbMOgIHF1ZSBsZSBmbHVpZGUgw6ljaGFuZ2UgPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDA7ZmlsbDojYzk0NTFhIj5iZWF1Y291cCBkZSBjaGFsZXVyIHNhbnMgY2hhbmdlciBkZSB0ZW1ww6lyYXR1cmU8L3RzcGFuPi48L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMCIgeT0iNDMwIj5Wb2lsw6AgcG91cnF1b2kgdW5lIG1hY2hpbmUgZnJpZ29yaWZpcXVlIHRyYXZhaWxsZSBhdmVjIHVuIGZsdWlkZSBxdWkgY2hhbmdlIGQnw6l0YXQsIGV0IG5vbiBhdmVjIGRlIGwnYWlyLjwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjMwIiB5PSI0NTAiPkxhIGhhdXRldXIgZHUgcGFsaWVyIGTDqXBlbmQgZGUgbGEgPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDAiPnByZXNzaW9uPC90c3Bhbj4gOiBwbHVzIGxhIHByZXNzaW9uIGVzdCBiYXNzZSwgcGx1cyBsZSBmbHVpZGUgYm91dCBmcm9pZC48L3RleHQ+Cjwvc3ZnPgo=",
+      texte: [
+        "Suivez de l'eau pure, à pression atmosphérique, du glaçon à **−20 °C** jusqu'à la vapeur au-delà de **100 °C**.",
+        "La courbe monte, **s'arrête à 0 °C** le temps de fondre, remonte, **s'arrête à 100 °C** le temps de bouillir, puis remonte encore.",
+        "Le réflexe de lecture tient en une phrase : **une pente change la température ; un palier change l'état.**"
+      ],
+      lu: "Voici la première carte du frigoriste : la courbe en escalier. Suivez de l'eau pure, à pression atmosphérique, depuis un glaçon à moins vingt degrés jusqu'à la vapeur au-delà de cent degrés. La courbe monte, puis s'arrête à zéro degré, le temps de fondre. Elle remonte, puis s'arrête à cent degrés, le temps de bouillir. Puis elle remonte encore. Le réflexe de lecture tient en une phrase : une pente change la température ; un palier change l'état.",
+      codes: ["1.02"]
+    },
+
+    {
+      id: "03-sensible",
+      titre: "La pente, c'est la chaleur sensible. Le thermomètre la sent.",
+      texte: [
+        "La **chaleur sensible** modifie la température **sans changer l'état**. C'est elle que le thermomètre voit.",
+        "Sa formule : **Q = m × c × ΔT** — la masse, la capacité thermique de la matière, l'écart de température.",
+        "À ce stade, on la **reconnaît** : température qui change = chaleur sensible."
+      ],
+      lu: "La pente de la courbe, c'est la chaleur sensible. Elle modifie la température, sans changer l'état. C'est elle que le thermomètre voit. Sa formule s'écrit Q égale m fois c fois delta T : la masse, la capacité thermique de la matière, et l'écart de température. À ce stade, contentez-vous de la reconnaître : température qui change, égale chaleur sensible.",
+      plus: ["les-grandeurs"],
+      codes: ["1.02"]
+    },
+
+    {
+      id: "04-latente",
+      titre: "Le palier, c'est la chaleur latente. Cachée au thermomètre.",
+      texte: [
+        "Pendant le palier, on chauffe toujours — et la température **ne bouge pas**. L'énergie sert à **changer l'état** : c'est la **chaleur latente**.",
+        "**Un palier n'est pas une pause : c'est un changement d'état en cours.** Sa formule : **Q = m × L**.",
+        "Et elle transporte **énormément** d'énergie — c'est le secret de toute la machine frigorifique."
+      ],
+      lu: "Pendant le palier, on chauffe toujours, et pourtant la température ne bouge pas. Toute l'énergie sert à changer l'état : c'est la chaleur latente, cachée au thermomètre. Retenez bien ceci : un palier n'est pas une pause. C'est un changement d'état en cours. Sa formule s'écrit Q égale m fois L. Et cette chaleur latente transporte énormément d'énergie. C'est le secret de toute la machine frigorifique.",
+      codes: ["1.02"]
+    },
+
+    {
+      id: "05-le-frigo",
+      titre: "Le froid n'est pas une substance : la machine déplace l'énergie.",
+      texte: [
+        "Dans le réfrigérateur : **dedans, l'évaporateur absorbe** l'énergie — c'est l'effet frigorifique. **Derrière, le condenseur la restitue.**",
+        "**Le froid n'est pas une substance** que la machine envoie dans la pièce : le local **perd** de l'énergie, voilà tout.",
+        "La preuve : porte ouverte, la pièce ne refroidit pas — le condenseur y rejette **plus** que l'évaporateur n'en retire.",
+        "Le bilan s'écrit : **Q̇ condenseur = Q̇ évaporateur + le travail du compresseur transmis au fluide.**"
+      ],
+      lu: "Regardez maintenant un appareil que vous connaissez : le réfrigérateur. Dedans, l'évaporateur absorbe l'énergie : c'est l'effet frigorifique. Derrière, la grille du condenseur la restitue à la pièce. Comprenez bien : le froid n'est pas une substance que la machine envoie. Le local perd de l'énergie, voilà tout. Et la preuve est amusante : laisser la porte ouverte ne refroidit pas la pièce. Le condenseur y rejette plus d'énergie que l'évaporateur n'en retire. D'où le bilan, à retenir : Q point condenseur égale Q point évaporateur, plus le travail du compresseur transmis au fluide.",
+      plus: ["le-bilan"],
+      codes: ["1.02", "1.04"]
+    },
+
+    {
+      id: "06-deux-briques",
+      titre: "Les deux briques du métier : surchauffe et sous-refroidissement.",
+      texte: [
+        "Dans l'évaporateur, **la dernière goutte disparaît**. Si la vapeur seule reçoit encore de l'énergie, elle se réchauffe : **c'est la surchauffe**.",
+        "Dans le condenseur, **la dernière bulle disparaît**. Si le liquide seul cède encore de l'énergie, il se refroidit : **c'est le sous-refroidissement**.",
+        "Pour **mesurer** ces écarts, il faudra relier pression et température — c'est la capsule suivante."
+      ],
+      lu: "Terminons par les deux briques du métier. Dans l'évaporateur, la dernière goutte de liquide vient de disparaître. Si le fluide reçoit encore de l'énergie, la vapeur seule se réchauffe : c'est la surchauffe. Dans le condenseur, la dernière bulle de vapeur vient de disparaître. Si le liquide cède encore de l'énergie, il se refroidit sous sa température de changement d'état : c'est le sous-refroidissement. Les mots ont maintenant un sens. Pour mesurer ces écarts, il faudra relier pression et température. C'est exactement l'objet de la capsule suivante.",
+      codes: ["1.02"]
+    }
+  ],
+
+  retenir: [
+    "**Température qui change = chaleur sensible · état qui change = chaleur latente.**",
+    "**Q = m × c × ΔT** (sensible) · **Q = m × L** (latente) — la masse compte dans les deux.",
+    "**Un palier n'est pas une pause** : c'est un changement d'état en cours.",
+    "**Le froid n'est pas une substance** : l'évaporateur prend l'énergie, le condenseur la rend.",
+    "**Q̇ condenseur = Q̇ évaporateur + le travail du compresseur transmis au fluide.**"
+  ],
+
+  detours: {
+
+    "la-masse": {
+      question: "Deux casseroles, même plaque : pourquoi la grande met-elle plus longtemps ?",
+      ecrans: [
+        {
+          id: "d-masse-1",
+          titre: "Une même température ne signifie pas une même quantité d'énergie.",
+          texte: [
+            "Petite et grande casserole reçoivent **la même énergie** par la plaque. La petite bout la première : **moins de matière à faire évoluer**.",
+            "Masse doublée : énergie doublée. Masse triplée : énergie triplée — toutes choses égales par ailleurs.",
+            "Et un corps **ne contient pas de la chaleur comme un réservoir** : il possède une énergie interne, et il peut en recevoir ou en céder."
+          ],
+          lu: "Mettez une petite et une grande casserole sur deux plaques identiques. Elles reçoivent la même énergie. La petite bout la première : il y a moins de matière à faire évoluer. Masse doublée : énergie nécessaire doublée. Masse triplée : énergie triplée, toutes choses égales par ailleurs. Et corrigeons une image trompeuse : un corps ne contient pas de la chaleur comme un réservoir. Il possède une énergie interne, et il peut recevoir ou céder de la chaleur.",
+          codes: ["1.02"]
+        }
+      ]
+    },
+
+    "les-grandeurs": {
+      question: "T, Q, Q̇ : trois grandeurs qui se ressemblent — comment les tenir ?",
+      ecrans: [
+        {
+          id: "d-grandeurs-1",
+          titre: "T décrit l'état · Q compte l'énergie · Q̇ mesure la puissance.",
+          texte: [
+            "**T**, la température : elle situe le niveau thermique. En **°C ou en K**.",
+            "**Q**, la chaleur : une énergie transférée. En **joules**. Exemple du tuto : chauffer 1 kg d'eau de 20 à 60 °C = 1 × 4 180 × 40 = **167 200 J**, soit 167,2 kJ.",
+            "**Q̇**, la puissance : un débit d'énergie. En **watts**. Dans un échangeur traversé en permanence, la grandeur utile est le **kilowatt**.",
+            "Repères de capacité thermique : eau **4 180** · air sec **1 005** · cuivre **385** J/(kg·K)."
+          ],
+          lu: "Trois grandeurs, trois rôles. T, la température : elle situe le niveau thermique du corps, en degrés ou en kelvins. Q, la chaleur : une énergie transférée, en joules. Un exemple : chauffer un kilogramme d'eau de vingt à soixante degrés demande un fois quatre mille cent quatre-vingts fois quarante, soit cent soixante-sept mille deux cents joules — cent soixante-sept virgule deux kilojoules. Q point, enfin, la puissance thermique : un débit d'énergie, en watts. Dans un échangeur traversé en permanence, la grandeur utile est le kilowatt. Et trois repères de capacité thermique : l'eau, quatre mille cent quatre-vingts ; l'air sec, mille cinq joules, à peine plus de mille ; le cuivre, trois cent quatre-vingt-cinq joules par kilogramme et par kelvin.",
+          codes: ["1.01"]
+        }
+      ]
+    },
+
+    "le-bilan": {
+      question: "La grille arrière rejette PLUS que ce qui a été pris dedans. D'où vient le surplus ?",
+      ecrans: [
+        {
+          id: "d-bilan-1",
+          titre: "Du compresseur. Rien ne se perd : tout s'additionne.",
+          texte: [
+            "Le condenseur rejette l'énergie prise dans le local **plus** le travail fourni au compresseur.",
+            "**Q̇ condenseur = Q̇ évaporateur + puissance transmise au fluide.**",
+            "L'exemple du tuto : évaporateur **5,0 kW**, compresseur **1,2 kW** → condenseur **6,2 kW**. La balance tombe juste, toujours."
+          ],
+          lu: "Le surplus vient du compresseur. Rien ne se perd : tout s'additionne. Le condenseur rejette l'énergie prise dans le local, plus le travail fourni au compresseur. Q point condenseur égale Q point évaporateur, plus la puissance transmise au fluide. Un exemple chiffré : cinq kilowatts à l'évaporateur, un virgule deux kilowatts au compresseur : le condenseur rejette six virgule deux kilowatts. La balance tombe juste, toujours.",
+          codes: ["1.02", "1.04"]
+        }
+      ]
+    }
+  }
+});
+
+/* =====================================================================
    la-recuperation.js — « Récupérer le fluide : le geste et la règle »
    ---------------------------------------------------------------------
    Redécoupage du fonds : recuperation.svg, secu-bouteille.svg,
@@ -2376,12 +2842,12 @@ CAPSULE({
    ===================================================================== */
 CAPSULE({
   id: "la-recuperation",
-  ordre: 7,
+  ordre: 9,
   titre: "Récupérer le fluide : le geste et la règle",
   question: "Où va le fluide quand on vide une machine ?",
   niveau: "examen",
   minutes: 7,
-  suppose: "A1, A2L, A3 : lire l'étiquette",
+  suppose: "Les bouteilles : choisir, peser, ne jamais gaver",
   voixFabriquee: true,   /* Henri + Denise, 06/08/2026 */
 
   fil: [
@@ -2586,12 +3052,12 @@ CAPSULE({
    ===================================================================== */
 CAPSULE({
   id: "la-surchauffe",
-  ordre: 4,
+  ordre: 10,
   titre: "La surchauffe : la mesurer, la comprendre",
   question: "Deux lectures et une soustraction — mais lesquelles, et pourquoi ?",
   niveau: "métier",
   minutes: 8,
-  suppose: "Le circuit : quatre organes, deux pressions",
+  suppose: "Pression et température, le couple",
   voixFabriquee: true,   /* Henri + Denise, 06/08/2026 */
 
   fil: [
@@ -3035,6 +3501,172 @@ CAPSULE({
 });
 
 /* =====================================================================
+   les-bouteilles.js — « Les bouteilles : choisir, peser, ne jamais gaver »
+   ---------------------------------------------------------------------
+   Redécoupage du fonds : mission-bouteilles (contenants, vannes, plaque,
+   pesée, surremplissage, « boum »), planches secu-bouteille.svg et
+   pesee-charge.svg.
+
+   RÈGLE DU FONDS, tenue ici : AUCUN taux de remplissage chiffré n'est
+   enseigné — « le remplissage maximal ne se déduit pas d'un simple
+   80 % du poids : il dépend du volume en eau, du fluide, de sa densité
+   et des indications du fabricant ». La plaque et la procédure font foi.
+   Les valeurs TW/WC/PS et la pesée sont celles de la bouteille-exemple
+   du tuto (R-449A de récupération).
+   ===================================================================== */
+CAPSULE({
+  id: "les-bouteilles",
+  ordre: 7,
+  titre: "Les bouteilles : choisir, peser, ne jamais gaver",
+  question: "Deux robinets, une plaque, une balance — que faut-il maîtriser avant d'ouvrir ?",
+  niveau: "métier",
+  minutes: 7,
+  suppose: "A1, A2L, A3 : lire l'étiquette",
+  voixFabriquee: true,   /* Henri + Denise, 07/08/2026 */
+
+  fil: [
+    {
+      id: "01-le-contenant",
+      titre: "Je choisis le bon contenant avant de brancher.",
+      texte: [
+        "Trois bouteilles, trois usages : **transfert** (fluide neuf), **récupération**, et bouteille **dédiée aux fluides inflammables** — A2L comme A3.",
+        "Le fluide extrait d'une installation peut être **contaminé** (huile, humidité) : il va dans un contenant de **récupération compatible et identifié** — jamais dans « une bouteille quelconque ».",
+        "C'est le premier réflexe, avant tout branchement."
+      ],
+      plus: ["les-trois-bouteilles"],
+      lu: "Premier réflexe, avant tout branchement : je choisis le bon contenant. Trois bouteilles, trois usages. La bouteille de transfert, pour le fluide neuf. La bouteille de récupération. Et la bouteille dédiée aux fluides inflammables, A deux L comme A trois, compatible et clairement identifiée. Le fluide que l'on retire d'une installation peut contenir de l'huile, de l'humidité, d'autres contaminants : il va dans un contenant de récupération compatible et identifié. Jamais dans une bouteille quelconque.",
+      codes: ["5.02"]
+    },
+
+    {
+      id: "02-deux-robinets",
+      titre: "Deux robinets ? Deux phases — pas deux pressions.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgMzMwIiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iUG91cnF1b2kgdW5lIGJvdXRlaWxsZSBuZSBzZSByZW1wbGl0IGphbWFpcyDDoCByYXMuIMOAIGdhdWNoZSwgdW5lIGJvdXRlaWxsZSByZW1wbGllIMOgIHJhcyA6IHF1YW5kIGxhIHRlbXDDqXJhdHVyZSBtb250ZSwgbGUgbGlxdWlkZSBzZSBkaWxhdGUgbWFpcyBuJ2EgcGFzIGRlIHBsYWNlLCBldCBsYSBwcmVzc2lvbiBncmltcGUgdHLDqHMgdml0ZSBqdXNxdSfDoCBsYSBydXB0dXJlLiDDgCBkcm9pdGUsIHVuZSBib3V0ZWlsbGUgYXUgdGF1eCBkZSByZW1wbGlzc2FnZSByZXNwZWN0w6kgOiB1biB2b2x1bWUgbGlicmUgcmVzdGUgYXUtZGVzc3VzIGR1IGxpcXVpZGUgZXQgYWJzb3JiZSBsYSBkaWxhdGF0aW9uLiBFbiBiYXMsIGxlcyBnZXN0ZXMgaW50ZXJkaXRzIDogY2hhdWZmZXIgdW5lIGJvdXRlaWxsZSwgbGEgbGFpc3NlciBhdSBzb2xlaWwgb3UgZGFucyB1biB2w6loaWN1bGUgZmVybcOpLCBldCBtZXR0cmUgdW4gY2lyY3VpdCBlbiBwcmVzc2lvbiDDoCBsJ294eWfDqG5lIG91IMOgIGwnYWlyIGNvbXByaW3DqSDigJQgYXpvdGUgc2V1bCwgdG91am91cnMgYXZlYyB1biBtYW5vLWTDqXRlbmRldXIuIj4KICA8dGl0bGU+TGEgYm91dGVpbGxlIDogamFtYWlzIMOgIHJhcywgamFtYWlzIGNoYXVmZsOpZTwvdGl0bGU+CiAgPHN0eWxlPgogICAgLnQgICB7IGZvbnQ6NzAwIDE5cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC5zdCAgeyBmb250OjcwMCAxNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAubGcgIHsgZm9udDo0MDAgMTMuNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojNGE1YjZlOyB9CiAgICAuYmFkIHsgZm9udDo3MDAgMTVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6I2M5NDUxYTsgfQogICAgLnAgICB7IGZpbGw6bm9uZTsgc3Ryb2tlOiMxYjNhNjM7IHN0cm9rZS13aWR0aDoyLjY7IHN0cm9rZS1saW5lY2FwOnJvdW5kOyBzdHJva2UtbGluZWpvaW46cm91bmQ7IH0KICAgIC5hY2MgeyBmaWxsOm5vbmU7IHN0cm9rZTojYzk0NTFhOyBzdHJva2Utd2lkdGg6Mi42OyBzdHJva2UtbGluZWNhcDpyb3VuZDsgc3Ryb2tlLWxpbmVqb2luOnJvdW5kOyB9CiAgICAvKiBBdSByZXBvcywgbCdpbWFnZSBlc3QgY29tcGzDqHRlIDogbCdhbmltYXRpb24gbmUgZmFpdCBxdWUgbGEgbWV0dHJlIGVuIHNjw6huZS4gKi8KICAgIEBtZWRpYSBwcmludCB7IC5maW5hbCB7IG9wYWNpdHk6IDEgIWltcG9ydGFudDsgfSB9CiAgPC9zdHlsZT4KCiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSIzMzAiIGZpbGw9IiNmZmZmZmYiLz4KICA8dGV4dCBjbGFzcz0idCIgeD0iMzAiIHk9IjMyIj5Qb3VycXVvaSB1bmUgYm91dGVpbGxlIG5lIHNlIHJlbXBsaXQgSkFNQUlTIMOgIHJhczwvdGV4dD4KCiAgPCEtLSA9PT09PSBNQVVWQUlTID09PT09IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLDUyKSI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE4MCIgcng9IjgiIGZpbGw9IiNmZGYxZWQiIHN0cm9rZT0iI2U4YjlhOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KCiAgICA8IS0tIGJvdXRlaWxsZSBwbGVpbmUgOiBlbGxlIHZpYnJlIHF1YW5kIGxhIHByZXNzaW9uIG1vbnRlIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDgsMjQpIj4KICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJ0cmFuc2xhdGUiCiAgICAgICAgdmFsdWVzPSI0OCwyNDsgNTAsMjQ7IDQ2LDI0OyA1MCwyNDsgNDcsMjQ7IDQ4LDI0IgogICAgICAgIGR1cj0iMC41cyIgYmVnaW49IjMuMnM7My45cyIgZmlsbD0icmVtb3ZlIi8+CiAgICAgIDxyZWN0IGNsYXNzPSJhY2MiIHg9IjE0IiB5PSItMTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNCIgcng9IjIiLz4KICAgICAgPHBhdGggY2xhc3M9ImFjYyIgZD0iTTYsMiBoMzIgYTgsOCAwIDAgMSA4LDggdjExMiBhOCw4IDAgMCAxIC04LDggaC0zMiBhOCw4IDAgMCAxIC04LC04IHYtMTEyIGE4LDggMCAwIDEgOCwtOCB6Ii8+CiAgICAgIDxyZWN0IHg9IjAiIHk9IjgiIHdpZHRoPSI0NCIgaGVpZ2h0PSIxMjAiIHJ4PSI2IiBmaWxsPSIjOGZiOGQ2IiBvcGFjaXR5PSIwLjg1Ii8+CiAgICAgIDx0ZXh0IHg9IjIyIiB5PSI3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQ6NzAwIDEzcHggQ2FsaWJyaTtmaWxsOiMxMjNhNWMiPmxpcXVpZGU8L3RleHQ+CiAgICA8L2c+CgogICAgPCEtLSBzb2xlaWwgOiBsZXMgcmF5b25zIHB1bHNlbnQgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNTAsNDApIj4KICAgICAgPGNpcmNsZSBjbGFzcz0iYWNjIiBjeD0iMCIgY3k9IjAiIHI9IjEzIi8+CiAgICAgIDxnPgogICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMC4zNTsxOzAuMzUiIGR1cj0iMS42cyIgYmVnaW49IjEuNHMiIHJlcGVhdENvdW50PSIzIiBmaWxsPSJyZW1vdmUiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iYWNjIiBkPSJNMCwtMjIgdjYgTTAsMTYgdjYgTS0yMiwwIGg2IE0xNiwwIGg2IE0tMTYsLTE2IGw0LDQgTTEyLDEyIGw0LDQgTS0xNiwxNiBsNCwtNCBNMTIsLTEyIGw0LC00Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICAgIDx0ZXh0IGNsYXNzPSJsZyBmaW5hbCIgeD0iMTUwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgb3BhY2l0eT0iMCI+CiAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMDsxIiBkdXI9IjAuNXMiIGJlZ2luPSIxLjZzIiBmaWxsPSJmcmVlemUiLz4KICAgICAgbGEgdGVtcMOpcmF0dXJlIG1vbnRlCiAgICA8L3RleHQ+CgogICAgPHBhdGggY2xhc3M9ImFjYyBmaW5hbCIgb3BhY2l0eT0iMCIgZD0iTTIxNSw2NiBoNDQgbS0xMCwtOCBsMTAsOCAtMTAsOCI+CiAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMDsxIiBkdXI9IjAuNHMiIGJlZ2luPSIyLjZzIiBmaWxsPSJmcmVlemUiLz4KICAgIDwvcGF0aD4KCiAgICA8ZyBjbGFzcz0iZmluYWwiIG9wYWNpdHk9IjAiPgogICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjVzIiBiZWdpbj0iM3MiIGZpbGw9ImZyZWV6ZSIvPgogICAgICA8dGV4dCBjbGFzcz0iYmFkIiB4PSIzMzAiIHk9IjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QYXMgZGUgcGxhY2U8L3RleHQ+CiAgICAgIDx0ZXh0IGNsYXNzPSJiYWQiIHg9IjMzMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnBvdXIgc2UgZGlsYXRlcjwvdGV4dD4KICAgICAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMzAiIHk9IjEwNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+bGEgcHJlc3Npb24gZ3JpbXBlPC90ZXh0PgogICAgICA8dGV4dCBjbGFzcz0ibGciIHg9IjMzMCIgeT0iMTI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj50csOocyB2aXRlPC90ZXh0PgogICAgPC9nPgoKICAgIDwhLS0gbCfDqWNsYXRlbWVudCAtLT4KICAgIDxwYXRoIGNsYXNzPSJhY2MgZmluYWwiIG9wYWNpdHk9IjAiIGQ9Ik0zMDAsMTM4IGwxMCwxNCBtMTAsLTE0IGwtNCwxNiBtMTQsLTE2IGw2LDE0Ij4KICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIwOzEiIGR1cj0iMC4zcyIgYmVnaW49IjQuNHMiIGZpbGw9ImZyZWV6ZSIvPgogICAgPC9wYXRoPgogICAgPHRleHQgY2xhc3M9ImJhZCBmaW5hbCIgeD0iMjIyIiB5PSIxNjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIG9wYWNpdHk9IjAiPgogICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjRzIiBiZWdpbj0iNC42cyIgZmlsbD0iZnJlZXplIi8+CiAgICAgIOKclyByZW1wbGllIMOgIHJhcwogICAgPC90ZXh0PgogIDwvZz4KCiAgPCEtLSA9PT09PSBCT04gPT09PT0gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDcwLDUyKSI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE4MCIgcng9IjgiIGZpbGw9IiNlZWY2ZjEiIHN0cm9rZT0iI2E5Y2RiOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ4LDI0KSI+CiAgICAgIDxyZWN0IGNsYXNzPSJwIiB4PSIxNCIgeT0iLTEyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTQiIHJ4PSIyIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJwIiBkPSJNNiwyIGgzMiBhOCw4IDAgMCAxIDgsOCB2MTEyIGE4LDggMCAwIDEgLTgsOCBoLTMyIGE4LDggMCAwIDEgLTgsLTggdi0xMTIgYTgsOCAwIDAgMSA4LC04IHoiLz4KICAgICAgPCEtLSBsZSBsaXF1aWRlIHNlIGRpbGF0ZSwgZXQgaWwgYSBsYSBwbGFjZSAtLT4KICAgICAgPHJlY3QgeD0iMCIgeT0iMzgiIHdpZHRoPSI0NCIgaGVpZ2h0PSI5MCIgcng9IjYiIGZpbGw9IiM4ZmI4ZDYiIG9wYWNpdHk9IjAuODUiPgogICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InkiIHZhbHVlcz0iNDQ7MzgiIGR1cj0iMS42cyIgYmVnaW49IjUuMnMiIGZpbGw9ImZyZWV6ZSIvPgogICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9ImhlaWdodCIgdmFsdWVzPSI4NDs5MCIgZHVyPSIxLjZzIiBiZWdpbj0iNS4ycyIgZmlsbD0iZnJlZXplIi8+CiAgICAgIDwvcmVjdD4KICAgICAgPGxpbmUgeDE9IjAiIHkxPSI0NCIgeDI9IjQ0IiB5Mj0iNDQiIHN0cm9rZT0iIzFiM2E2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI1IDQiLz4KICAgICAgPHRleHQgeD0iMjIiIHk9IjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udDo3MDAgMTJweCBDYWxpYnJpO2ZpbGw6IzFiM2E2MyI+dm9sdW1lPC90ZXh0PgogICAgICA8dGV4dCB4PSIyMiIgeT0iNDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250OjcwMCAxMnB4IENhbGlicmk7ZmlsbDojMWIzYTYzIj5saWJyZTwvdGV4dD4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1MCw0MCkiPgogICAgICA8Y2lyY2xlIGNsYXNzPSJwIiBjeD0iMCIgY3k9IjAiIHI9IjEzIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJwIiBkPSJNMCwtMjIgdjYgTTAsMTYgdjYgTS0yMiwwIGg2IE0xNiwwIGg2IE0tMTYsLTE2IGw0LDQgTTEyLDEyIGw0LDQgTS0xNiwxNiBsNCwtNCBNMTIsLTEyIGw0LC00Ii8+CiAgICA8L2c+CiAgICA8dGV4dCBjbGFzcz0ibGciIHg9IjE1MCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxhIHRlbXDDqXJhdHVyZSBtb250ZTwvdGV4dD4KICAgIDxwYXRoIGNsYXNzPSJwIiBkPSJNMjE1LDY2IGg0NCBtLTEwLC04IGwxMCw4IC0xMCw4Ii8+CgogICAgPGcgY2xhc3M9ImZpbmFsIiBvcGFjaXR5PSIwIj4KICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIwOzEiIGR1cj0iMC42cyIgYmVnaW49IjUuNnMiIGZpbGw9ImZyZWV6ZSIvPgogICAgICA8dGV4dCBjbGFzcz0ic3QiIHg9IjMzMCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxlIGxpcXVpZGUgYTwvdGV4dD4KICAgICAgPHRleHQgY2xhc3M9InN0IiB4PSIzMzAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5vw7kgc2UgZGlsYXRlcjwvdGV4dD4KICAgICAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMzAiIHk9IjExMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+dGF1eCBkZSByZW1wbGlzc2FnZTwvdGV4dD4KICAgICAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMzAiIHk9IjEzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+c2Vsb24gbGUgZmFicmljYW50PC90ZXh0PgogICAgICA8dGV4dCBjbGFzcz0ic3QiIHg9IjIyMiIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZmlsbDojMmY3YTRmIj7inJMgdm9sdW1lIGxpYnJlIHJlc3BlY3TDqTwvdGV4dD4KICAgIDwvZz4KICA8L2c+CgogIDwhLS0gaW50ZXJkaXRzIC0tPgogIDxnIGNsYXNzPSJmaW5hbCIgb3BhY2l0eT0iMCI+CiAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjdzIiBiZWdpbj0iN3MiIGZpbGw9ImZyZWV6ZSIvPgogICAgPHJlY3QgeD0iMzAiIHk9IjI0OCIgd2lkdGg9Ijg0MCIgaGVpZ2h0PSI1OCIgcng9IjgiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2U4YjlhOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IGNsYXNzPSJiYWQiIHg9IjUwIiB5PSIyNzIiPkpBTUFJUyA6PC90ZXh0PgogICAgPHRleHQgY2xhc3M9ImxnIiB4PSIxMjAiIHk9IjI3MiI+Y2hhdWZmZXIgdW5lIGJvdXRlaWxsZSAobmkgZmxhbW1lLCBuaSBlYXUgY2hhdWRlLCBuaSByYWRpYXRldXIpIMK3IGxhIGxhaXNzZXIgYXUgc29sZWlsIG91IGRhbnMgdW4gdsOpaGljdWxlIGZlcm3DqTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTIwIiB5PSIyOTQiPm1ldHRyZSB1biBjaXJjdWl0IGVuIHByZXNzaW9uIMOgIGwnb3h5Z8OobmUgb3Ugw6AgbCdhaXIgY29tcHJpbcOpIOKAlCA8dHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNjOTQ1MWEiPmF6b3RlIHNldWwsIGV0IHRvdWpvdXJzIGF2ZWMgdW4gbWFuby1kw6l0ZW5kZXVyPC90c3Bhbj48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K",
+      texte: [
+        "Dans la bouteille au repos, **les deux phases sont à la même pression** : celle d'équilibre du fluide. Il n'y a pas une vanne BP et une vanne HP.",
+        "Le robinet **vapeur** prélève en haut. Le robinet **liquide** est relié au **tube plongeur** qui descend au fond : le liquide remonte dedans, **bouteille debout**.",
+        "Sur certains récipients à un seul robinet, la procédure peut prévoir de retourner la bouteille — **mais jamais par habitude** : on respecte la conception et la procédure du fabricant."
+      ],
+      lu: "Beaucoup croient que les deux robinets sont une vanne basse pression et une vanne haute pression. C'est faux : dans une bouteille au repos, les deux phases sont à la pression d'équilibre du fluide. Les deux robinets donnent deux phases. Le robinet vapeur prélève dans la partie haute, au-dessus du liquide. Le robinet liquide est relié à un tube plongeur qui descend jusqu'au fond : le liquide remonte dans ce tube, bouteille debout. Sur certains récipients à un seul robinet, la procédure peut prévoir de retourner la bouteille pour obtenir du liquide. Mais jamais par habitude : on respecte la conception, et la procédure du fabricant.",
+      plus: ["quelle-phase"],
+      codes: ["5.02", "5.05"]
+    },
+
+    {
+      id: "03-la-plaque",
+      titre: "La plaque dit tout. La couleur, presque rien.",
+      texte: [
+        "Sur la plaque de la bouteille-exemple : **TW 6,2 kg** — la tare, masse de la bouteille vide · **WC 12 L** — la capacité en eau · **PS 45 bar** — la pression de service.",
+        "**Les couleurs servent seulement de repère visuel.** Sur le terrain, on vérifie la conception, les marquages et la notice du récipient.",
+        "Pour les A2L : matériel et emballages adaptés — repère courant : **ogive rouge, raccord à pas à gauche**."
+      ],
+      lu: "Tout ce qui compte est écrit sur la plaque. Sur notre bouteille-exemple : T W, six virgule deux kilogrammes — c'est la tare, la masse de la bouteille vide. W C, douze litres — la capacité en eau, le volume interne de référence. P S, quarante-cinq bars — la pression de service. Et méfiez-vous des couleurs : elles servent seulement de repère visuel. Sur le terrain, on vérifie toujours la conception, les marquages et la notice du récipient. Pour les A deux L, on emploie du matériel et des emballages adaptés — le repère courant, c'est l'ogive rouge et le raccord à pas à gauche.",
+      codes: ["5.06"]
+    },
+
+    {
+      id: "04-la-pesee",
+      titre: "La balance : masse de fluide = brut − tare.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNDY2IiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iVHJvaXMgdmlnbmV0dGVzIDogbGEgbcOqbWUgYm91dGVpbGxlIHN1ciBsYSBtw6ptZSBiYWxhbmNlIGRlIGNoYXJnZS4gMSwgYXZhbnQgOiBsYSBib3V0ZWlsbGUgZXN0IHBsZWluZSwgb24gcmVsw6h2ZSB1bmUgcHJlbWnDqHJlIHBlc8OpZSBldCBvbiBsYSBub3RlLiAyLCBwZW5kYW50IDogdW5lIGZsw6hjaGUgb3JhbmdlIGFuaW3DqWUgY29uZHVpdCBsZSBmbHVpZGUgdmVycyBsJ2luc3RhbGxhdGlvbiwgbGUgbml2ZWF1IGJhaXNzZSBldCB1bmUgZmzDqGNoZSB2ZXJzIGxlIGJhcyBpbmRpcXVlIHF1ZSBsYSBtYXNzZSBkaW1pbnVlLiAzLCBhcHLDqHMgOiBvbiBww6hzZSDDoCBub3V2ZWF1IGV0IG9uIHJlbMOodmUgbGEgc2Vjb25kZSB2YWxldXIuIFVuZSBhY2NvbGFkZSByZWxpZSBsZXMgZGV1eCBwZXPDqWVzIDogbGV1ciBkaWZmw6lyZW5jZSBlc3QgbGEgY2hhcmdlIGludHJvZHVpdGUuIEVuIGJhcywgbGUgcmFwcGVsIHF1ZSB0b3V0ZSBxdWFudGl0w6kgaW50cm9kdWl0ZSBvdSByw6ljdXDDqXLDqWUgc2Ugbm90ZSBhdSByZWdpc3RyZSDigJQgZGF0ZSwgcXVhbnRpdMOpLCBpbnRlcnZlbmFudCDigJQgZXQgcXUndW5lIHLDqWN1cMOpcmF0aW9uIHN1aXQgbGEgbcOqbWUgbcOpdGhvZGUgZGFucyBsJ2F1dHJlIHNlbnMsIGxhIGJvdXRlaWxsZSBnYWduYW50IGNlIHF1ZSBsZSBjaXJjdWl0IHBlcmQuIExlcyBhZmZpY2hldXJzIG5lIHBvcnRlbnQgcXVlIGRlcyB0aXJldHMgOiBhdWN1bmUgdmFsZXVyIG4nZXN0IGRvbm7DqWUuIj4KICA8dGl0bGU+TGEgcGVzw6llIDogY2UgcXVpIGVzdCBwYXJ0aSBkYW5zIGxhIG1hY2hpbmUsIGMnZXN0IGNlIHF1ZSBsYSBiYWxhbmNlIGEgcGVyZHU8L3RpdGxlPgogIDxzdHlsZT4KICAgIC50ICAgIHsgZm9udDo3MDAgMTlweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzFiM2E2MzsgfQogICAgLnN0ICAgeyBmb250OjcwMCAxNHB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAubGcgICB7IGZvbnQ6NDAwIDEzLjVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzRhNWI2ZTsgfQogICAgLmxnZCAgeyBmb250OjcwMCAxN3B4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAuYWZmICB7IGZvbnQ6NzAwIDIycHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC5wICAgIHsgZmlsbDpub25lOyBzdHJva2U6IzFiM2E2Mzsgc3Ryb2tlLXdpZHRoOjIuNjsgc3Ryb2tlLWxpbmVjYXA6cm91bmQ7IHN0cm9rZS1saW5lam9pbjpyb3VuZDsgfQogICAgLmJyICAgeyBmaWxsOm5vbmU7IHN0cm9rZTojZmY2YjM1OyBzdHJva2Utd2lkdGg6Mi44OyBzdHJva2UtbGluZWNhcDpyb3VuZDsgc3Ryb2tlLWxpbmVqb2luOnJvdW5kOyB9CiAgICAuYm8gICB7IGZpbGw6I2U4ZWVmNDsgc3Ryb2tlOiMxYjNhNjM7IHN0cm9rZS13aWR0aDoyLjY7IH0KICAgIC5mbHV4IHsgZmlsbDpub25lOyBzdHJva2U6I2ZmNmIzNTsgc3Ryb2tlLXdpZHRoOjU7IHN0cm9rZS1saW5lY2FwOnJvdW5kOwogICAgICAgICAgICBzdHJva2UtZGFzaGFycmF5OjE0IDEyOyBhbmltYXRpb246IGRlZmlsZSAxLjVzIGxpbmVhciBpbmZpbml0ZTsgfQogICAgLmJhaXMgeyBhbmltYXRpb246IGJhaXMgMS43cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgfQogICAgQGtleWZyYW1lcyBkZWZpbGUgeyBmcm9tIHsgc3Ryb2tlLWRhc2hvZmZzZXQ6MDsgfSB0byB7IHN0cm9rZS1kYXNob2Zmc2V0Oi0yNjsgfSB9CiAgICBAa2V5ZnJhbWVzIGJhaXMgICB7IDAlLDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7IH0gNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDdweCk7IH0gfQogICAgLyogRmlsZXQgY29uZGl0aW9ubsOpIMOgIGBwcmludGAsIEpBTUFJUyDDoCBgcHJlZmVycy1yZWR1Y2VkLW1vdGlvbmAgOiBjZWxsZS1jaQogICAgICAgc3VwcHJpbWFpdCBsYSBkw6ltb25zdHJhdGlvbiDDoCBsJ8OpY3Jhbi4gKi8KICAgIEBtZWRpYSBwcmludCB7IC5maW5hbCB7IG9wYWNpdHk6MSAhaW1wb3J0YW50OyB9IC5mbHV4LCAuYmFpcyB7IGFuaW1hdGlvbjpub25lOyB9IH0KICA8L3N0eWxlPgoKICA8ZGVmcz4KICAgIDwhLS0gYm91dGVpbGxlIHZpZGUgKyBiYWxhbmNlICsgYWZmaWNoZXVyIDogbGUgZMOpY29yIGlkZW50aXF1ZSBkZXMgdHJvaXMgdGVtcHMgLS0+CiAgICA8ZyBpZD0ic29jbGUiPgogICAgICA8cmVjdCBjbGFzcz0icCIgeD0iODIiIHk9IjQ2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTQiIHJ4PSIyIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJwIiBkPSJNNjIsNzAgYTEwLDEwIDAgMCAxIDEwLC0xMCBoMzYgYTEwLDEwIDAgMCAxIDEwLDEwIHY4OCBhOCw4IDAgMCAxIC04LDggaC00MCBhOCw4IDAgMCAxIC04LC04IHoiLz4KICAgICAgPHJlY3QgY2xhc3M9ImJvIiB4PSIzNCIgeT0iMTY4IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjEyIiByeD0iMyIvPgogICAgICA8cmVjdCBjbGFzcz0iYm8iIHg9IjQ0IiB5PSIxODAiIHdpZHRoPSI5MiIgaGVpZ2h0PSIxMyIgcng9IjMiIHN0eWxlPSJmaWxsOiNmZmZmZmYiLz4KICAgICAgPGxpbmUgY2xhc3M9InAiIHgxPSIyMiIgeTE9IjE5NSIgeDI9IjE1OCIgeTI9IjE5NSIvPgogICAgICA8cGF0aCBjbGFzcz0icCIgZD0iTTEzNiwxODYgQzE0OCwxODYgMTUwLDE3OCAxNTYsMTY4Ii8+CiAgICAgIDxyZWN0IGNsYXNzPSJibyIgeD0iMTUyIiB5PSIxMTIiIHdpZHRoPSIxMDIiIGhlaWdodD0iNTQiIHJ4PSI2Ii8+CiAgICA8L2c+CiAgICA8cmVjdCBpZD0iY2FkcmUiIHg9IjAiIHk9IjAiIHdpZHRoPSIyNjgiIGhlaWdodD0iMjE4IiByeD0iOCIgZmlsbD0iI2Y3ZmFmYyIgc3Ryb2tlPSIjYzlkNGRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDwvZGVmcz4KCiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI0NjYiIGZpbGw9IiNmZmZmZmYiLz4KICA8dGV4dCBjbGFzcz0idCIgeD0iMzAiIHk9IjMyIj5MYSBwZXPDqWUgOiBjZSBxdWkgZXN0IHBhcnRpIGRhbnMgbGEgbWFjaGluZSwgYydlc3QgY2UgcXVlIGxhIGJhbGFuY2UgYSBwZXJkdTwvdGV4dD4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSAxIMK3IEFWQU5UID09PT09PT09PT09PT09PT09IC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLDUyKSI+CiAgICA8dXNlIGhyZWY9IiNjYWRyZSIvPgogICAgPHRleHQgY2xhc3M9InN0IiB4PSIxNiIgeT0iMjgiPjEgwrcgQVZBTlQg4oCUIG9uIHDDqHNlPC90ZXh0PgogICAgPHVzZSBocmVmPSIjc29jbGUiLz4KICAgIDxyZWN0IHg9IjY0IiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9Ijg2IiByeD0iNSIgZmlsbD0iIzdmYTljOSIvPgogICAgPHRleHQgY2xhc3M9ImFmZiIgeD0iMjAzIiB5PSIxNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPi0tLC0tIGtnPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InN0IiB4PSIyMDMiIHk9IjE4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cGVzw6llIDE8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0ibGciIHg9IjIwMyIgeT0iMjA0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5vbiBsYSBub3RlPC90ZXh0PgogICAgPHJlY3QgY2xhc3M9ImZpbmFsIGJyIiB4PSIxNDgiIHk9IjEwOCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI2MiIgcng9IjgiIG9wYWNpdHk9IjAiPgogICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjZzIiBiZWdpbj0iMTEuMnMiIGZpbGw9ImZyZWV6ZSIvPgogICAgPC9yZWN0PgogIDwvZz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSAyIMK3IFBFTkRBTlQgPT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgY2xhc3M9ImZpbmFsIiBvcGFjaXR5PSIwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMTYsNTIpIj4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMDsxIiBkdXI9IjAuNnMiIGJlZ2luPSIyLjJzIiBmaWxsPSJmcmVlemUiLz4KICAgIDx1c2UgaHJlZj0iI2NhZHJlIi8+CiAgICA8dGV4dCBjbGFzcz0ic3QiIHg9IjE2IiB5PSIyOCI+MiDCtyBQRU5EQU5UIOKAlCBsZSBmbHVpZGUgcGFzc2U8L3RleHQ+CiAgICA8dXNlIGhyZWY9IiNzb2NsZSIvPgogICAgPCEtLSBCYXNlID0gw4lUQVQgRklOQUwgKG5pdmVhdSBiYXMpIDogc2FucyBhbmltYXRpb24sIGxhIHZpZ25ldHRlIHJlc3RlIHZyYWllLgogICAgICAgICBVTkUgU0VVTEUgYW5pbWF0aW9uIHBhciBhdHRyaWJ1dCA7IGxlIHBhbGllciDCqyBwbGVpbmUgwrsgZXN0IHVuZSDDiVRBUEUuCiAgICAgICAgIFJhbGxvbmfDqSBhdSBjb250csO0bGUgMjcvMDcgOiAxLDggcyBwbGVpbmUgw6AgbCfDqWNyYW4sIGNvbnRyZSAwLDQxIHMgYXZhbnQg4oCUCiAgICAgICAgIG9uIHZveWFpdCBsZSBuaXZlYXUgZGVzY2VuZHJlIHNhbnMgYXZvaXIgdnUgZCdvw7kgaWwgcGFydGFpdC4gLS0+CiAgICA8cmVjdCB4PSI2NCIgeT0iMTIwIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIHJ4PSI1IiBmaWxsPSIjN2ZhOWM5Ij4KICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ieSIgICAgICB2YWx1ZXM9Ijc4Ozc4OzEyMCIga2V5VGltZXM9IjA7MC40NDQ7MSIgZHVyPSI1LjRzIiBiZWdpbj0iMi4ycyIgZmlsbD0iZnJlZXplIi8+CiAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9ImhlaWdodCIgdmFsdWVzPSI4Njs4Njs0NCIgIGtleVRpbWVzPSIwOzAuNDQ0OzEiIGR1cj0iNS40cyIgYmVnaW49IjIuMnMiIGZpbGw9ImZyZWV6ZSIvPgogICAgPC9yZWN0PgoKICAgIDxyZWN0IHg9IjE2NCIgeT0iNDAiIHdpZHRoPSI5MCIgaGVpZ2h0PSI1MiIgcng9IjYiIGZpbGw9IiNmM2Y3ZmIiIHN0cm9rZT0iIzFiM2E2MyIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iMjA5IiB5PSI3MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+aW5zdGFsbGF0aW9uPC90ZXh0PgogICAgPHBhdGggY2xhc3M9InAiIGQ9Ik05OCw1MyBDMTI0LDUwIDEzOCw2NiAxNjQsNjYiLz4KICAgIDxwYXRoIGNsYXNzPSJmbHV4IiBkPSJNOTgsNTMgQzEyNCw1MCAxMzgsNjYgMTY0LDY2Ii8+CiAgICA8cGF0aCBjbGFzcz0iYnIiIGQ9Ik0xNTYsNjAgbDgsNiAtOCw2IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjQuNCIvPgoKICAgIDxwYXRoIGNsYXNzPSJiYWlzIGJyIiBkPSJNMTY3LDEyNiB2MTYgbS02LC02IGw2LDYgNiwtNiIgc3R5bGU9InN0cm9rZS13aWR0aDozLjQiLz4KICAgIDx0ZXh0IGNsYXNzPSJhZmYiIHg9IjIxMiIgeT0iMTQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4tLSwtLSBrZzwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iMjAzIiB5PSIxODYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxhIG1hc3NlIGJhaXNzZTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMjAzIiB5PSIyMDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm9uIHN1cnZlaWxsZTwvdGV4dD4KICA8L2c+CgogIDwhLS0gPT09PT09PT09PT09PT09PT0gMyDCtyBBUFLDiFMgPT09PT09PT09PT09PT09PT0gLS0+CiAgPGcgY2xhc3M9ImZpbmFsIiBvcGFjaXR5PSIwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDIsNTIpIj4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMDsxIiBkdXI9IjAuNnMiIGJlZ2luPSI5LjJzIiBmaWxsPSJmcmVlemUiLz4KICAgIDx1c2UgaHJlZj0iI2NhZHJlIi8+CiAgICA8dGV4dCBjbGFzcz0ic3QiIHg9IjE2IiB5PSIyOCI+MyDCtyBBUFLDiFMg4oCUIG9uIHDDqHNlIMOgIG5vdXZlYXU8L3RleHQ+CiAgICA8dXNlIGhyZWY9IiNzb2NsZSIvPgogICAgPHJlY3QgeD0iNjQiIHk9IjEyMCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiByeD0iNSIgZmlsbD0iIzdmYTljOSIvPgogICAgPHRleHQgY2xhc3M9ImFmZiIgeD0iMjAzIiB5PSIxNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPi0tLC0tIGtnPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InN0IiB4PSIyMDMiIHk9IjE4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cGVzw6llIDI8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0ibGciIHg9IjIwMyIgeT0iMjA0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5vbiBsYSBub3RlPC90ZXh0PgogICAgPHJlY3QgY2xhc3M9ImZpbmFsIGJyIiB4PSIxNDgiIHk9IjEwOCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI2MiIgcng9IjgiIG9wYWNpdHk9IjAiPgogICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjZzIiBiZWdpbj0iMTEuMnMiIGZpbGw9ImZyZWV6ZSIvPgogICAgPC9yZWN0PgogIDwvZz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBMJ8OJQ0FSVCA9PT09PT09PT09PT09PT09PSAtLT4KICA8cGF0aCBjbGFzcz0iZmluYWwgYnIiIG9wYWNpdHk9IjAiCiAgICAgICAgZD0iTTIzMywyODQgdjYgYTYsNiAwIDAgMCA2LDYgaDI3NCBhNiw2IDAgMCAxIDYsNiBhNiw2IDAgMCAxIDYsLTYgaDI3NCBhNiw2IDAgMCAwIDYsLTYgdi02Ij4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMDsxIiBkdXI9IjAuNnMiIGJlZ2luPSIxMS4ycyIgZmlsbD0iZnJlZXplIi8+CiAgPC9wYXRoPgoKICA8ZyBjbGFzcz0iZmluYWwiIG9wYWNpdHk9IjAiPgogICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIwOzEiIGR1cj0iMC42cyIgYmVnaW49IjEzcyIgZmlsbD0iZnJlZXplIi8+CiAgICA8dGV4dCBjbGFzcz0ibGdkIiB4PSI1MTkiIHk9IjMyNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+bGEgZGlmZsOpcmVuY2UgPSBsYSBjaGFyZ2UgaW50cm9kdWl0ZTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgIHg9IjUxOSIgeT0iMzQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5vbiByZWxpdCBsJ2FmZmljaGV1ciwgb24gc291c3RyYWl0IDogYydlc3QgbGEgcXVhbnRpdMOpIHLDqWVsbGVtZW50IHBhc3PDqWUgZGFucyBsYSBtYWNoaW5lPC90ZXh0PgogIDwvZz4KCiAgPCEtLSA9PT09PT09PT09PT09PT09PSBDRSBRVSdPTiBFTiBGQUlUID09PT09PT09PT09PT09PT09IC0tPgogIDxnIGNsYXNzPSJmaW5hbCIgb3BhY2l0eT0iMCI+CiAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjA7MSIgZHVyPSIwLjdzIiBiZWdpbj0iMTQuOHMiIGZpbGw9ImZyZWV6ZSIvPgogICAgPHJlY3QgeD0iMzAiIHk9IjM2MiIgd2lkdGg9Ijg0MCIgaGVpZ2h0PSI4NCIgcng9IjgiIGZpbGw9IiNmM2Y3ZmIiIHN0cm9rZT0iI2M5ZDRkZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iNTAiIHk9IjM4OCI+PHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDA7ZmlsbDojMWIzYTYzIj5TdXIgbGUgcmVnaXN0cmUgOjwvdHNwYW4+IHRvdXRlIHF1YW50aXTDqSBpbnRyb2R1aXRlIG91IHLDqWN1cMOpcsOpZSBzZSBub3RlIOKAlCBkYXRlLCBxdWFudGl0w6ksIGludGVydmVuYW50LjwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iNTAiIHk9IjQxMCI+TGEgYmFsYW5jZSBkaXQgPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDA7ZmlsbDojMWIzYTYzIj5jb21iaWVuPC90c3Bhbj4gOyBsZSBtYW5vbcOodHJlIGRpdCBjb21tZW50IGxhIG1hY2hpbmUgc2UgY29tcG9ydGUuIFVuZSBzZXVsZSBwZXPDqWUgbmUgZG9ubmUgcXUndW5lIGVzdGltYXRpb24uPC90ZXh0PgogICAgPCEtLSBDb250csO0bGUgMjcvMDcgOiBsZXMgdmlnbmV0dGVzIG5lIG1vbnRyZW50IHF1J3VuIHNlbnMgKGxhIGNoYXJnZSwgZG9uYyB1bmUKICAgICAgICAgYmFsYW5jZSBxdWkgcGVyZCkgcXVhbmQgbGEgbGlnbmUgZHUgZGVzc3VzIHBhcmxlIGRlcyBkZXV4LiAtLT4KICAgIDx0ZXh0IGNsYXNzPSJsZyIgeD0iNTAiIHk9IjQzMiI+RW4gPHRzcGFuIHN0eWxlPSJmb250LXdlaWdodDo3MDA7ZmlsbDojMWIzYTYzIj5yw6ljdXDDqXJhdGlvbjwvdHNwYW4+LCBtw6ptZSBtw6l0aG9kZSBkYW5zIGwnYXV0cmUgc2VucyA6IGMnZXN0IGxhIGJvdXRlaWxsZSBxdWkgZ2FnbmUuIERhbnMgbGVzIGRldXggY2FzLCBkZXV4IHBlc8OpZXMsIGphbWFpcyB1bmUuPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==",
+      texte: [
+        "La balance affiche **13,4 kg**. La tare est **6,2 kg**. Masse de fluide : **13,4 − 6,2 = 7,2 kg**.",
+        "Ce calcul doit devenir **automatique** : c'est par la pesée, et par rien d'autre, que l'on connaît la masse de fluide.",
+        "Ni le manomètre, ni le niveau apparent, ni la couleur ne la donnent."
+      ],
+      lu: "Le geste central du module : la pesée. La balance affiche treize virgule quatre kilogrammes. La tare, lue sur la plaque, est de six virgule deux kilogrammes. La masse de fluide vaut donc treize virgule quatre moins six virgule deux : sept virgule deux kilogrammes. Ce calcul doit devenir automatique. C'est par la pesée, et par rien d'autre, que l'on connaît la masse de fluide dans une bouteille. Ni le manomètre, ni le niveau apparent, ni la couleur ne la donnent.",
+      codes: ["5.06"]
+    },
+
+    {
+      id: "05-le-volume-libre",
+      titre: "Le volume libre n'est pas du vide perdu : c'est la marge de dilatation.",
+      texte: [
+        "Au-dessus du liquide, le volume de vapeur fournit la **marge de dilatation**. Le liquide est **pratiquement incompressible** : s'il se dilate sans marge, la pression monte **très vite**.",
+        "Démonstration du tuto : deux bouteilles chauffées de 20 à 52 °C. À **75 %** de niveau, tout va bien. À **98 %**, la marge disparaît — la pression devient **critique**.",
+        "**Le remplissage maximal ne se déduit pas d'un simple « 80 % du poids »** : il dépend du volume en eau, du fluide, de sa densité et des indications du fabricant."
+      ],
+      lu: "Regardez le haut de la bouteille. Ce volume de vapeur au-dessus du liquide n'est pas du vide perdu : c'est la marge de dilatation. Le liquide est pratiquement incompressible. S'il se dilate et qu'il n'a plus de place, la pression monte très vite. La démonstration du tuto met deux bouteilles côte à côte, chauffées de vingt à cinquante-deux degrés. À soixante-quinze pour cent de niveau, tout va bien. À quatre-vingt-dix-huit pour cent, la marge disparaît : la pression devient critique. Et retenez ceci : le remplissage maximal ne se déduit pas d'un simple quatre-vingts pour cent du poids. Il dépend du volume en eau, du fluide, de sa densité, et des indications du fabricant.",
+      plus: ["le-boum"],
+      codes: ["5.02"]
+    },
+
+    {
+      id: "06-la-soupape",
+      titre: "La soupape est un dernier recours — jamais une autorisation.",
+      texte: [
+        "**La soupape ou le disque de rupture ne transforme jamais un surremplissage en bonne pratique.**",
+        "S'y fier, c'est accepter d'avoir **déjà créé** une situation dangereuse. La bonne sécurité, c'est d'**empêcher** le surremplissage — par la pesée.",
+        "**La sécurité commence avant d'ouvrir les vannes.** Identifier + peser + surveiller : voilà le professionnel."
+      ],
+      lu: "Un dernier mot, et il est grave. La soupape, ou le disque de rupture, ne transforme jamais un surremplissage en bonne pratique. Se fier à cette protection, c'est accepter d'avoir déjà créé une situation dangereuse. La bonne sécurité, c'est d'empêcher le surremplissage — et on l'empêche par la pesée. La sécurité commence avant d'ouvrir les vannes. Identifier, peser, surveiller : voilà ce qui fait le professionnel.",
+      codes: ["5.02"]
+    }
+  ],
+
+  retenir: [
+    "**Le bon contenant avant de brancher** — le fluide extrait va en bouteille de récupération identifiée.",
+    "**Deux robinets = deux phases** (vapeur en haut, liquide par le tube plongeur), pas deux pressions.",
+    "**Masse de fluide = brut − tare.** La plaque : TW · WC · PS.",
+    "**Le volume libre est la marge de dilatation** — le surremplissage la supprime.",
+    "**La soupape est un dernier recours**, jamais une autorisation."
+  ],
+
+  detours: {
+
+    "quelle-phase": {
+      question: "Liquide ou vapeur : comment choisit-on la phase à prélever ?",
+      ecrans: [
+        {
+          id: "d-phase-1",
+          titre: "C'est une décision, pas une habitude.",
+          texte: [
+            "Le tuto fait prendre la décision **phase par phase** : déterminer l'état du fluide avant remplissage, puis choisir la méthode et le robinet.",
+            "Prélèvement **vapeur** et prélèvement **liquide** sont deux gestes distincts, chacun avec sa procédure.",
+            "Et pour les **mélanges zéotropes**, la capsule « Lire le code d'un fluide » l'explique : le glissement impose de **charger en phase liquide** — sinon la composition part de travers."
+          ],
+          lu: "Choisir la phase, c'est une décision, pas une habitude. On détermine d'abord l'état du fluide, puis on choisit la méthode et le robinet. Le prélèvement vapeur et le prélèvement liquide sont deux gestes distincts, chacun avec sa procédure. Et pour les mélanges zéotropes, la capsule sur la lecture des codes l'explique : le glissement impose de charger en phase liquide. Sinon, la composition du mélange part de travers.",
+          codes: ["5.05"]
+        }
+      ]
+    },
+
+    "le-boum": {
+      question: "Et si on va vraiment trop loin — que se passe-t-il ?",
+      ecrans: [
+        {
+          id: "d-boum-1",
+          titre: "On va volontairement trop loin, pour mémoriser le risque.",
+          texte: [
+            "Le scénario du tuto pousse **un cran plus loin** que l'écran précédent : bouteille à **99 %**, température **52 °C**. Le liquide n'a plus aucune place. La pression s'emballe — **éclatement**.",
+            "Le volume vapeur **n'empêche pas** toute montée de pression : il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe.",
+            "Une bouteille au soleil derrière un pare-brise, un local surchauffé : le scénario n'a rien de théorique."
+          ],
+          lu: "Le tuto va volontairement trop loin, pour graver le risque — un cran encore au-delà de l'écran précédent. Une bouteille remplie à quatre-vingt-dix-neuf pour cent, chauffée à cinquante-deux degrés. Le liquide n'a plus aucune place. La pression s'emballe, et la bouteille éclate. Comprenez le mécanisme : le volume vapeur n'empêche pas toute montée en pression, il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe. Une bouteille au soleil derrière un pare-brise, un local surchauffé : le scénario n'a rien de théorique.",
+          codes: ["5.02"]
+        }
+      ]
+    },
+
+    "les-trois-bouteilles": {
+      question: "Transfert, récupération, A2L : qu'est-ce qui les distingue, au juste ?",
+      ecrans: [
+        {
+          id: "d-trois-1",
+          titre: "Trois usages, trois identifications.",
+          texte: [
+            "**Transfert** : le fluide neuf, propre, qui va vers l'installation.",
+            "**Récupération** : reçoit le fluide retiré d'une installation — huile, humidité, contaminants possibles. Compatible et identifiée.",
+            "**Dédiée aux inflammables** : A2L (le R-32) **comme A3** (le R-290 — qui n'est pas A2L, sa capsule sœur le martèle). Matériel adapté ; pour les A2L, repère courant : ogive rouge et raccord à pas à gauche. Voir « A1, A2L, A3 : lire l'étiquette »."
+          ],
+          lu: "Trois usages, trois identifications. La bouteille de transfert porte le fluide neuf, propre, qui va vers l'installation. La bouteille de récupération reçoit le fluide que l'on retire : il peut contenir de l'huile, de l'humidité, d'autres contaminants — elle est compatible et identifiée pour cela. Et la bouteille dédiée aux fluides inflammables : A deux L, comme le R trente-deux, mais aussi A trois, comme le R deux cent quatre-vingt-dix — qui n'est pas un A deux L, sa capsule sœur le martèle. Matériel adapté ; pour les A deux L, le repère courant, c'est l'ogive rouge et le raccord à pas à gauche. Pour la classe elle-même, voyez la capsule sur les étiquettes : A un, A deux L, A trois.",
+          codes: ["5.02"]
+        }
+      ]
+    }
+  }
+});
+
+/* =====================================================================
    lire-le-code.js — capsule pilote : « Lire le code d'un fluide »
    ---------------------------------------------------------------------
    DÉMONSTRATION DU MODÈLE (voir refonte/MODELE-CAPSULE.md).
@@ -3060,7 +3692,7 @@ CAPSULE({
    ===================================================================== */
 CAPSULE({
   id: "lire-le-code",
-  ordre: 2,
+  ordre: 4,
   titre: "Lire le code d'un fluide",
   question: "R-22, R-134a, R-404A : que veulent dire ces chiffres ?",
   niveau: "découverte",
@@ -3374,6 +4006,172 @@ CAPSULE({
 });
 
 /* =====================================================================
+   pression-temperature.js — « Pression et température, le couple »
+   ---------------------------------------------------------------------
+   Redécoupage du fonds : pression-temperature-interactive (la cloche à
+   vide, la courbe de saturation, la traduction manomètre→table, pur
+   contre zéotrope), planches lecture-table.svg et
+   pression-absolue-relative.svg.
+
+   Toutes les valeurs (tables eau et R-134a, glissement R-407C 6,1 K)
+   viennent du tuto source — vérifiées identiques à outils/fluides-data.js
+   par l'agent d'extraction (relevé du 07/08).
+   La lecture du manifold n'est PAS traitée ici : c'est la capsule
+   « Lire un manomètre », en préparation chez F. Henninot.
+   ===================================================================== */
+CAPSULE({
+  id: "pression-temperature",
+  ordre: 3,
+  titre: "Pression et température, le couple",
+  question: "Pourquoi le frigoriste lit-il des températures sur un manomètre ?",
+  niveau: "découverte",
+  minutes: 7,
+  suppose: "La chaleur, sensible et latente",
+  voixFabriquee: true,   /* Henri + Denise, 07/08/2026 */
+
+  fil: [
+    {
+      id: "01-la-cloche",
+      titre: "De l'eau à 25 °C peut bouillir. Sans flamme, sans résistance.",
+      texte: [
+        "Un verre d'eau tiède sous une cloche. Une pompe retire **seulement l'air**. Vers **0,032 bar absolu**, l'eau **bout** — à 25 °C.",
+        "**100 °C n'est vrai qu'autour de la pression atmosphérique.** La pression déplace la température d'ébullition.",
+        "Et « sans chauffage » ne veut pas dire « sans énergie » : la vaporisation prélève la chaleur latente **dans l'eau elle-même**, qui se refroidit."
+      ],
+      lu: "Commençons par une expérience qui surprend tout le monde. Un verre d'eau tiède, à vingt-cinq degrés, sous une cloche transparente. Une pompe retire seulement l'air. Il n'y a ni flamme, ni résistance. Et pourtant, vers zéro virgule zéro trente-deux bar absolu, l'eau se met à bouillir. À vingt-cinq degrés. Cent degrés n'est vrai qu'autour de la pression atmosphérique : la pression déplace la température d'ébullition. Et attention : sans chauffage extérieur ne signifie jamais sans énergie. La vaporisation prélève la chaleur latente dans l'eau elle-même, qui se refroidit.",
+      plus: ["la-cloche-en-detail"],
+      codes: ["1.02"]
+    },
+
+    {
+      id: "02-la-carte",
+      titre: "La courbe de saturation : la carte professionnelle du frigoriste.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNDIwIiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iTGEgbGVjdHVyZSBjcm9pc8OpZSA6IGxlIG1hbm9tw6h0cmUgZG9ubmUgdW5lIHByZXNzaW9uIHJlbGF0aXZlLCBvbiBham91dGUgZW52aXJvbiAxIGJhciwgb24gbGl0IGxhIHRlbXDDqXJhdHVyZSBkZSBzYXR1cmF0aW9uIGRhbnMgbGEgdGFibGUgZHUgZmx1aWRlLCBvbiBjb21wYXJlIMOgIGxhIHRlbXDDqXJhdHVyZSBtZXN1csOpZSBzdXIgbGUgdHViZS4iPgogIDx0aXRsZT5MYSBsZWN0dXJlIGNyb2lzw6llIDogbWFub23DqHRyZSwgdGFibGUsIHRoZXJtb23DqHRyZTwvdGl0bGU+CgogIDxzdHlsZT4KICAgIC50ICAgeyBmb250OjcwMCAxOXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAubCAgIHsgZm9udDo3MDAgMTVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzFiM2E2MzsgfQogICAgLnMgICB7IGZvbnQ6NDAwIDEzLjVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzRhNWI2ZTsgfQogICAgLmYgICB7IGZvbnQ6NzAwIDE2cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiMxYjNhNjM7IH0KICAgIC50aCAgeyBmb250OjcwMCAxNHB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojZmZmZmZmOyB9CiAgICAudGQgIHsgZm9udDo0MDAgMTRweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzMzNDc1YjsgfQogICAgLnN5bSB7IHN0cm9rZTojMzM0NzViOyBzdHJva2Utd2lkdGg6Mi40OyBmaWxsOm5vbmU7IH0KICAgIC5tYWlsbG9uIHsgZmlsbDpub25lOyBzdHJva2U6I2ZmNmIzNTsgc3Ryb2tlLXdpZHRoOjM7IG1hcmtlci1lbmQ6dXJsKCNmbyk7IH0KICA8L3N0eWxlPgoKICA8ZGVmcz4KICAgIDxtYXJrZXIgaWQ9ImZvIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjgiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0byI+CiAgICAgIDxwYXRoIGQ9Ik0wLDAgTDEwLDUgTDAsMTAgeiIgZmlsbD0iI2ZmNmIzNSIvPgogICAgPC9tYXJrZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjQyMCIgZmlsbD0iI2ZmZmZmZiIvPgoKICA8dGV4dCBjbGFzcz0idCIgeD0iNDAiIHk9IjM2Ij5TYW5zIG91dnJpciBsZSBjaXJjdWl0IDogbGEgbGVjdHVyZSBjcm9pc8OpZTwvdGV4dD4KCiAgPCEtLSDikaAgbWFub23DqHRyZSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNDAsMTcwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNTgiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzMzNDc1YiIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgICA8cGF0aCBjbGFzcz0ic3ltIiBkPSJNIC0zOCAyMiBBIDQ0IDQ0IDAgMSAxIDM4IDIyIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjEuNiIvPgogICAgPHBhdGggY2xhc3M9InN5bSIgZD0iTSAwIDAgTCAyNiAtMzAiIHN0eWxlPSJzdHJva2Utd2lkdGg6My40Ii8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNCIgZmlsbD0iIzMzNDc1YiIvPgogICAgPHBhdGggY2xhc3M9InN5bSIgZD0iTSAwIDU4IEwgMCA4NCIgc3R5bGU9InN0cm9rZS13aWR0aDozIi8+CiAgICA8dGV4dCBjbGFzcz0ibCIgeD0iMCIgeT0iMTE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7ikaAgTWFub23DqHRyZSBCUDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSIwIiB5PSIxMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxlY3R1cmUgOiA8dHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMCI+MyBiYXIgcmVsYXRpZnM8L3RzcGFuPjwvdGV4dD4KICA8L2c+CgogIDwhLS0gY29udmVyc2lvbiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOTUsMTUwKSI+CiAgICA8cmVjdCB4PSItNTgiIHk9Ii0zNCIgd2lkdGg9IjExNiIgaGVpZ2h0PSI2NiIgcng9IjgiIGZpbGw9IiNmNWY4ZmIiIHN0cm9rZT0iI2Q3ZTBlOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IGNsYXNzPSJmIiB4PSIwIiB5PSItNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KyB+MSBiYXI8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iMCIgeT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKJiCA0IGJhciBhYnNvbHVzPC90ZXh0PgogIDwvZz4KICA8cGF0aCBjbGFzcz0ibWFpbGxvbiIgZD0iTSAyMDUgMTUwIEwgMjMyIDE1MCIvPgogIDxwYXRoIGNsYXNzPSJtYWlsbG9uIiBkPSJNIDM1OCAxNTAgTCAzOTYgMTUwIi8+CgogIDwhLS0g4pGhIHRhYmxlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUyMCwxNzgpIj4KICAgIDxyZWN0IHg9Ii0xMTUiIHk9Ii05MiIgd2lkdGg9IjIzMCIgaGVpZ2h0PSIxODQiIHJ4PSI2IiBmaWxsPSIjZmZmIiBzdHJva2U9IiMzMzQ3NWIiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cmVjdCB4PSItMTE1IiB5PSItOTIiIHdpZHRoPSIyMzAiIGhlaWdodD0iMzYiIHJ4PSI2IiBmaWxsPSIjMWIzYTYzIi8+CiAgICA8dGV4dCBjbGFzcz0idGgiIHg9Ii01OCIgeT0iLTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QIGFicyAoYmFyKTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJ0aCIgeD0iNTgiIHk9Ii02OCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VMKwIHNhdCAowrBDKTwvdGV4dD4KICAgIDxwYXRoIGQ9Ik0gMCAtOTIgTCAwIDkyIiBzdHJva2U9IiNjOWQ0ZGUiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICA8dGV4dCBjbGFzcz0idGQiIHg9Ii01OCIgeT0iLTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7igKY8L3RleHQ+PHRleHQgY2xhc3M9InRkIiB4PSI1OCIgeT0iLTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7igKY8L3RleHQ+CiAgICA8cmVjdCB4PSItMTEzIiB5PSItMTYiIHdpZHRoPSIyMjYiIGhlaWdodD0iMzAiIGZpbGw9IiNmZmYzZTgiLz4KICAgIDx0ZXh0IGNsYXNzPSJ0ZCIgeD0iLTU4IiB5PSI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC13ZWlnaHQ6NzAwIj7iiYggNDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJ0ZCIgeD0iNTgiIHk9IjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250LXdlaWdodDo3MDAiPuKGkiBsaXJlIGljaTwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJ0ZCIgeD0iLTU4IiB5PSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4oCmPC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0ZCIgeD0iNTgiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7igKY8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0idGQiIHg9Ii01OCIgeT0iNzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKApjwvdGV4dD48dGV4dCBjbGFzcz0idGQiIHg9IjU4IiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4oCmPC90ZXh0PgogICAgPHRleHQgY2xhc3M9ImwiIHg9IjAiIHk9IjExOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4pGhIFRhYmxlIGRlIHNhdHVyYXRpb248L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0icyIgeD0iMCIgeT0iMTM4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5jZWxsZSA8dHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMCI+ZHUgZmx1aWRlIHByw6lzZW50PC90c3Bhbj4g4oCUIHBsYXF1ZSArIHJlZ2lzdHJlPC90ZXh0PgogIDwvZz4KCiAgPCEtLSDikaIgdGhlcm1vbcOodHJlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2MCwxNzApIj4KICAgIDxyZWN0IHg9Ii0zMCIgeT0iLTY0IiB3aWR0aD0iNjAiIGhlaWdodD0iODgiIHJ4PSI4IiBmaWxsPSIjZmZmIiBzdHJva2U9IiMzMzQ3NWIiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cGF0aCBjbGFzcz0ic3ltIiBkPSJNIDAgLTQ0IEwgMCAyIiBzdHlsZT0ic3Ryb2tlOiNjOTQ1MWE7c3Ryb2tlLXdpZHRoOjQiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIxMCIgcj0iOSIgZmlsbD0iI2M5NDUxYSIvPgogICAgPHBhdGggY2xhc3M9InN5bSIgZD0iTSAwIDI0IEwgMCA1MiIgc3R5bGU9InN0cm9rZS13aWR0aDozIi8+CiAgICA8cmVjdCB4PSItMTYiIHk9IjUyIiB3aWR0aD0iMzIiIGhlaWdodD0iMTYiIHJ4PSI0IiBmaWxsPSIjYzZkM2RmIiBzdHJva2U9IiMzMzQ3NWIiIHN0cm9rZS13aWR0aD0iMS42Ii8+CiAgICA8dGV4dCBjbGFzcz0ibCIgeD0iMCIgeT0iMTAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7ikaIgU29uZGUgZGUgY29udGFjdDwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJzIiB4PSIwIiB5PSIxMjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlTCsCByw6llbGxlIGR1IHR1YmU8L3RleHQ+CiAgPC9nPgogIDxwYXRoIGNsYXNzPSJtYWlsbG9uIiBkPSJNIDY0OCAxNTAgTCA3MTIgMTUwIi8+CgogIDwhLS0gY29uY2x1c2lvbiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NTAsMzY4KSI+CiAgICA8cmVjdCB4PSItMzMwIiB5PSItMzAiIHdpZHRoPSI2NjAiIGhlaWdodD0iNjAiIHJ4PSIxMCIgZmlsbD0iI2Y1ZjhmYiIgc3Ryb2tlPSIjZDdlMGU4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPHRleHQgY2xhc3M9ImYiIHg9IjAiIHk9Ii0yIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MJ8OpY2FydCBlbnRyZSDikaEgZXQg4pGiLCBjJ2VzdCBsYSBzdXJjaGF1ZmZlIChvdSBsZSBzb3VzLXJlZnJvaWRpc3NlbWVudCkuPC90ZXh0PgogICAgPHRleHQgY2xhc3M9InMiIHg9IjAiIHk9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ib3JzIGRlcyBwbGFnZXMgaGFiaXR1ZWxsZXMgKDUtMTAgSyAvIDQtOCBLKSDihpIgZm9uY3Rpb25uZW1lbnQgYW5vcm1hbCA6IG9uIHNvdXDDp29ubmUsIHB1aXMgb24gbG9jYWxpc2UgZW4gbcOpdGhvZGUgZGlyZWN0ZS48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K",
+      texte: [
+        "À chaque pression, **sa** température d'ébullition. Pour l'eau : **1,013 bar → 100 °C** · **0,474 → 80 °C** · **0,199 → 60 °C** · **0,032 → 25 °C**.",
+        "**La courbe n'est pas une règle de trois — mais elle monte toujours** : baisser la pression abaisse la température de saturation.",
+        "La condition physique : l'ébullition commence quand la **pression de vapeur** du liquide atteint la pression qui s'exerce sur lui."
+      ],
+      lu: "Cette relation se dessine : c'est la courbe de saturation, la carte professionnelle du frigoriste. À chaque pression, sa température d'ébullition. Pour l'eau : un virgule zéro treize bar, cent degrés. Zéro virgule quatre cent soixante-quatorze bar, quatre-vingts degrés. Zéro virgule cent quatre-vingt-dix-neuf bar, soixante degrés. Zéro virgule zéro trente-deux bar, vingt-cinq degrés. La courbe n'est pas une règle de trois, mais elle monte toujours : baisser la pression abaisse la température de saturation. Et la condition physique tient en une phrase : l'ébullition commence lorsque la pression de vapeur du liquide atteint la pression qui s'exerce sur lui.",
+      codes: ["1.02", "1.03"]
+    },
+
+    {
+      id: "03-deux-sens",
+      titre: "Une seule frontière, deux sens de passage.",
+      texte: [
+        "À pression donnée, un fluide pur **bout et condense à la même température** : sa température de saturation.",
+        "**Évaporation et condensation parcourent la même frontière dans deux sens opposés.**",
+        "Si le liquide reçoit de l'énergie, il se vaporise. Si la vapeur cède de l'énergie, elle se condense. La température de saturation, elle, ne bouge pas."
+      ],
+      lu: "Voici maintenant l'idée qui simplifie tout. À une pression donnée, un fluide pur bout et condense à la même température : sa température de saturation. L'évaporation et la condensation parcourent simplement la même frontière, dans deux sens opposés. Si le liquide reçoit de l'énergie, il se vaporise. Si la vapeur cède de l'énergie, elle se condense. La température de saturation, elle, ne bouge pas.",
+      codes: ["1.02"]
+    },
+
+    {
+      id: "04-le-levier",
+      titre: "Le levier du frigoriste : choisir la pression, c'est choisir la température.",
+      texte: [
+        "Local à **+4 °C**. En tenant le R-134a à **2,0 bar absolus**, il sature à **−10 °C** : plus froid que le local, l'énergie **entre** dans le fluide. **C'est l'effet frigorifique.**",
+        "Extérieur à **+30 °C**. À **10,2 bar absolus**, il sature à **+40 °C** : plus chaud que dehors, le fluide **cède** son énergie.",
+        "**La pression ne fabrique pas le froid. Elle choisit la température du changement d'état.**"
+      ],
+      lu: "Et voilà le levier du frigoriste. Un local à plus quatre degrés. En tenant le R cent trente-quatre a à deux bars absolus, il sature à moins dix degrés : plus froid que le local, donc l'énergie entre dans le fluide. C'est l'effet frigorifique. Dehors, trente degrés. À dix virgule deux bars absolus, le même fluide sature à quarante degrés : plus chaud que l'extérieur, donc il cède son énergie. Retenez la phrase de clôture du cours : la pression ne fabrique pas le froid. Elle choisit la température du changement d'état.",
+      plus: ["la-table-r134a"],
+      codes: ["1.02", "1.03"]
+    },
+
+    {
+      id: "05-le-manometre",
+      titre: "Le manomètre dit « relatif ». La table attend souvent de l'absolu.",
+      planche: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNDY2IiByb2xlPSJpbWciCiAgICAgYXJpYS1sYWJlbD0iRGV1eCByw6hnbGVzIHZlcnRpY2FsZXMgZ3JhZHXDqWVzIGPDtHRlIMOgIGPDtHRlLiDDgCBnYXVjaGUgbCfDqWNoZWxsZSByZWxhdGl2ZSwgY2VsbGUgZHUgbWFub23DqHRyZSA6IHNvbiB6w6lybyBlc3QgbGEgcHJlc3Npb24gYXRtb3NwaMOpcmlxdWUuIMOAIGRyb2l0ZSBsJ8OpY2hlbGxlIGFic29sdWUsIGNlbGxlIGRlcyB0YWJsZXMgOiBzb24gesOpcm8gZXN0IGxlIHZpZGUgYWJzb2x1LCB1bmUgZ3JhZHVhdGlvbiBwbHVzIGJhcy4gTGVzIGRldXggw6ljaGVsbGVzIHNvbnQgZMOpY2Fsw6llcyBkJ2V4YWN0ZW1lbnQgdW5lIGdyYWR1YXRpb24sIHNvaXQgdW4gYmFyLiDDgCBnYXVjaGUgZXN0IGRlc3NpbsOpIHVuIG1hbm9tw6h0cmUsIGFpZ3VpbGxlIHN1ciB6w6lybyA6IMOgIHrDqXJvIHJlbGF0aWYsIGlsIHkgYSBkw6lqw6AgdW4gYmFyIGFic29sdS4gTCdhbmltYXRpb24gZmFpdCBtb250ZXIgdW4gY3Vyc2V1ciBsZSBsb25nIGRlcyBkZXV4IMOpY2hlbGxlcyDDoCBsYSBmb2lzIDogbGVzIGRldXggY29sb25uZXMgZGUgbGVjdHVyZSBtb250ZW50IGVuc2VtYmxlLCBjZWxsZSBkZSBsJ8OpY2hlbGxlIGFic29sdWUgZ2FyZGFudCB0b3Vqb3VycyBlbiBwaWVkIGxlIGJhciBzdXBwbMOpbWVudGFpcmUsIGVuIG9yYW5nZS4gT3VibGllciBjZSBiYXIgZmF1c3NlIHRvdXRlIGxlY3R1cmUgZGUgdGVtcMOpcmF0dXJlIGRlIHNhdHVyYXRpb24uIj4KICA8dGl0bGU+UHJlc3Npb24gYWJzb2x1ZSBldCBwcmVzc2lvbiByZWxhdGl2ZSA6IGRldXggw6ljaGVsbGVzIGTDqWNhbMOpZXMgZGUgMSBiYXI8L3RpdGxlPgogIDxzdHlsZT4KICAgIC50ICAgeyBmb250OjcwMCAxOXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjsgZmlsbDojMWIzYTYzOyB9CiAgICAuc3QgIHsgZm9udDo3MDAgMTRweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzFiM2E2MzsgfQogICAgLmxnICB7IGZvbnQ6NDAwIDEzLjVweCBDYWxpYnJpLFNlZ29lIFVJLHNhbnMtc2VyaWY7IGZpbGw6IzRhNWI2ZTsgfQogICAgLmJhZCB7IGZvbnQ6NzAwIDE0cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmOyBmaWxsOiNjOTQ1MWE7IH0KICAgIC5wICAgeyBmaWxsOm5vbmU7IHN0cm9rZTojMWIzYTYzOyBzdHJva2Utd2lkdGg6Mi42OyBzdHJva2UtbGluZWNhcDpyb3VuZDsgc3Ryb2tlLWxpbmVqb2luOnJvdW5kOyB9CiAgICAuYWNjIHsgZmlsbDpub25lOyBzdHJva2U6I2M5NDUxYTsgc3Ryb2tlLXdpZHRoOjIuNjsgc3Ryb2tlLWxpbmVjYXA6cm91bmQ7IHN0cm9rZS1saW5lam9pbjpyb3VuZDsgfQogICAgLyogTGUgY3Vyc2V1ciBFU1QgbGEgZMOpbW9uc3RyYXRpb24gOiBvbiBuZSBsZSBtYXNxdWUgcGFzLCBvbiBuZXV0cmFsaXNlIGxlcwogICAgICAgYW5pbWF0aW9ucyDDoCBsJ2ltcHJlc3Npb24uIFZhbGV1cnMgZGUgYmFzZSA9IGxlY3R1cmUgcGFybGFudGUgKGNvbG9ubmVzIMOgCiAgICAgICBtaS1oYXV0ZXVyKSA6IGZpZ8OpZSwgbGEgcGxhbmNoZSByZXN0ZSBqdXN0ZS4gSmFtYWlzIHByZWZlcnMtcmVkdWNlZC1tb3Rpb24sCiAgICAgICBxdWkgc3VwcHJpbWFpdCBsYSBkw6ltb25zdHJhdGlvbiDDoCBsJ8OpY3JhbiAoZWZmZXRzIFdpbmRvd3MgZMOpc2FjdGl2w6lzKS4gKi8KICAgIEBtZWRpYSBwcmludCB7IGFuaW1hdGUsIGFuaW1hdGVUcmFuc2Zvcm0geyBkaXNwbGF5OiBub25lOyB9IH0KICA8L3N0eWxlPgoKICA8cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjQ2NiIgZmlsbD0iI2ZmZmZmZiIvPgogIDx0ZXh0IGNsYXNzPSJ0IiB4PSIzMCIgeT0iMzAiPlByZXNzaW9uIGFic29sdWUgZXQgcHJlc3Npb24gcmVsYXRpdmUgOiBkZXV4IMOpY2hlbGxlcyBkw6ljYWzDqWVzIGRlIDEgYmFyPC90ZXh0PgoKICA8cmVjdCB4PSIyNiIgeT0iNDQiIHdpZHRoPSI4NDgiIGhlaWdodD0iMzEyIiByeD0iOCIgZmlsbD0iI2Y3ZmFmYyIgc3Ryb2tlPSIjYzlkNGRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgoKICA8dGV4dCBjbGFzcz0ic3QiIHg9IjM0MCIgeT0iNjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPsOJQ0hFTExFIFJFTEFUSVZFPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMzQwIiB5PSI4NCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Y2UgcXVlIGxpdCBsZSBtYW5vbcOodHJlPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNTYwIiB5PSI2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+w4lDSEVMTEUgQUJTT0xVRTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjU2MCIgeT0iODQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmNlIHF1ZSBkb25uZW50IGxlcyB0YWJsZXM8L3RleHQ+CgogIDwhLS0gY29ycmVzcG9uZGFuY2VzIDogdW5lIG3Dqm1lIGhhdXRldXIgPSB1bmUgbcOqbWUgcHJlc3Npb24gLS0+CiAgPGxpbmUgeDE9IjM2OCIgeTE9IjE0MiIgeDI9IjU0MCIgeTI9IjE0MiIgc3Ryb2tlPSIjOGFhMGI0IiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+CiAgPGxpbmUgeDE9IjM2OCIgeTE9IjE4NCIgeDI9IjU0MCIgeTI9IjE4NCIgc3Ryb2tlPSIjOGFhMGI0IiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+CiAgPGxpbmUgeDE9IjM2OCIgeTE9IjIyNiIgeDI9IjU0MCIgeTI9IjIyNiIgc3Ryb2tlPSIjOGFhMGI0IiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+CgogIDwhLS0gY29sb25uZXMgZGUgbGVjdHVyZSA6IGVsbGVzIG1vbnRlbnQgZW5zZW1ibGUgLS0+CiAgPHJlY3QgeD0iMzQwIiB5PSIxODQiIHdpZHRoPSIyNCIgaGVpZ2h0PSI4NCIgZmlsbD0iIzdmYTljOSIgZmlsbC1vcGFjaXR5PSIwLjc1Ij4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InkiIHZhbHVlcz0iMjY4OzI2ODsxNDI7MTQyOzI2ODsyNjgiIGtleVRpbWVzPSIwOzAuMTswLjQyOzAuNTY7MC44ODsxIiBkdXI9IjE0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9ImhlaWdodCIgdmFsdWVzPSIwOzA7MTI2OzEyNjswOzAiIGtleVRpbWVzPSIwOzAuMTswLjQyOzAuNTY7MC44ODsxIiBkdXI9IjE0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICA8L3JlY3Q+CiAgPHJlY3QgeD0iNTYwIiB5PSIxODQiIHdpZHRoPSIyNCIgaGVpZ2h0PSI4NCIgZmlsbD0iIzdmYTljOSIgZmlsbC1vcGFjaXR5PSIwLjc1Ij4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InkiIHZhbHVlcz0iMjY4OzI2ODsxNDI7MTQyOzI2ODsyNjgiIGtleVRpbWVzPSIwOzAuMTswLjQyOzAuNTY7MC44ODsxIiBkdXI9IjE0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9ImhlaWdodCIgdmFsdWVzPSIwOzA7MTI2OzEyNjswOzAiIGtleVRpbWVzPSIwOzAuMTswLjQyOzAuNTY7MC44ODsxIiBkdXI9IjE0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICA8L3JlY3Q+CgogIDwhLS0gbGUgYmFyIHF1ZSBsZSBtYW5vbcOodHJlIG5lIHZvaXQgcGFzIDogamFtYWlzIGFuaW3DqSAtLT4KICA8cmVjdCB4PSI1NjAiIHk9IjI2OCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQyIiBmaWxsPSIjZmY2YjM1IiBmaWxsLW9wYWNpdHk9IjAuNDUiIHN0cm9rZT0iI2ZmNmIzNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHBhdGggZD0iTTU5MiwyNjggaDcgdjQyIGgtNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2YjM1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI2MDYiIHk9IjI5MyIgc3R5bGU9ImZvbnQ6NzAwIDE0cHggQ2FsaWJyaSxTZWdvZSBVSSxzYW5zLXNlcmlmO2ZpbGw6I2ZmNmIzNSI+MSBiYXI8L3RleHQ+CgogIDwhLS0gcsOoZ2xlIFJFTEFUSVZFIC0tPgogIDxwYXRoIGNsYXNzPSJwIiBkPSJNMzQwLDI2OCBWMTE4IG0tNiwxMSBsNiwtMTEgNiwxMSIvPgogIDxsaW5lIHgxPSIzNDAiIHkxPSIyNjgiIHgyPSIzNDAiIHkyPSIzMTAiIHN0cm9rZT0iIzhhYTBiNCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0IDUiLz4KICA8bGluZSB4MT0iMzI0IiB5MT0iMjI2IiB4Mj0iMzQwIiB5Mj0iMjI2IiBzdHJva2U9IiMxYjNhNjMiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgPGxpbmUgeDE9IjMyNCIgeTE9IjE4NCIgeDI9IjM0MCIgeTI9IjE4NCIgc3Ryb2tlPSIjMWIzYTYzIiBzdHJva2Utd2lkdGg9IjIuMiIvPgogIDxsaW5lIHgxPSIzMjQiIHkxPSIxNDIiIHgyPSIzNDAiIHkyPSIxNDIiIHN0cm9rZT0iIzFiM2E2MyIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICA8dGV4dCBjbGFzcz0ic3QiIHg9IjMxOCIgeT0iMjY0IiB0ZXh0LWFuY2hvcj0iZW5kIj4wIGR1IG1hbm9tw6h0cmU8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMTgiIHk9IjI4NCIgdGV4dC1hbmNob3I9ImVuZCI+PSBsJ2F0bW9zcGjDqHJlPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMzE4IiB5PSIzMDYiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM4YWEwYjQiPmVuIGRlc3NvdXMgOiBkw6lwcmVzc2lvbjwvdGV4dD4KCiAgPCEtLSByw6hnbGUgQUJTT0xVRSAtLT4KICA8cGF0aCBjbGFzcz0icCIgZD0iTTU2MCwzMTAgVjExOCBtLTYsMTEgbDYsLTExIDYsMTEiLz4KICA8bGluZSB4MT0iNTQ0IiB5MT0iMjY4IiB4Mj0iNTYwIiB5Mj0iMjY4IiBzdHJva2U9IiMxYjNhNjMiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgPGxpbmUgeDE9IjU0NCIgeTE9IjIyNiIgeDI9IjU2MCIgeTI9IjIyNiIgc3Ryb2tlPSIjMWIzYTYzIiBzdHJva2Utd2lkdGg9IjIuMiIvPgogIDxsaW5lIHgxPSI1NDQiIHkxPSIxODQiIHgyPSI1NjAiIHkyPSIxODQiIHN0cm9rZT0iIzFiM2E2MyIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICA8bGluZSB4MT0iNTQ0IiB5MT0iMTQyIiB4Mj0iNTYwIiB5Mj0iMTQyIiBzdHJva2U9IiMxYjNhNjMiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgPGxpbmUgeDE9IjUzOCIgeTE9IjMxMCIgeDI9IjU4NCIgeTI9IjMxMCIgc3Ryb2tlPSIjMWIzYTYzIiBzdHJva2Utd2lkdGg9IjMuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHRleHQgY2xhc3M9InN0IiB4PSI1NjAiIHk9IjMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MCDCtyBsZSB2aWRlIGFic29sdTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjQzMCIgeT0iMzUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOGFhMGI0Ij51bmUgZ3JhZHVhdGlvbiA9IDEgYmFyPC90ZXh0PgoKICA8IS0tIG1hbm9tw6h0cmUsIGFpZ3VpbGxlIHN1ciB6w6lybyAtLT4KICA8Y2lyY2xlIGNsYXNzPSJwIiBjeD0iMTEwIiBjeT0iMTY4IiByPSI1OCIvPgogIDxwYXRoIGQ9Ik02Ni43LDE5MyBBNTAsNTAgMCAxIDEgMTUzLjMsMTkzIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YWEwYjQiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik02Ni43LDE5MyBMNzMuNiwxODkgTTYwLjgsMTU5LjMgTDY4LjYsMTYwLjcgTTc3LjksMTI5LjcgTDgzLjAsMTM1LjggTTExMCwxMTggTDExMCwxMjYgTTE0Mi4xLDEyOS43IEwxMzcuMCwxMzUuOCBNMTU5LjIsMTU5LjMgTDE1MS40LDE2MC43IE0xNTMuMywxOTMgTDE0Ni40LDE4OSIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiMxYjNhNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxsaW5lIHgxPSIxMTAiIHkxPSIxNjgiIHgyPSI3Ny4xIiB5Mj0iMTg3IiBzdHJva2U9IiNjOTQ1MWEiIHN0cm9rZS13aWR0aD0iMy40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxNjgiIHI9IjQuNSIgZmlsbD0iIzFiM2E2MyIvPgogIDx0ZXh0IHg9IjQ2IiB5PSIyMDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250OjcwMCAxNXB4IENhbGlicmksU2Vnb2UgVUksc2Fucy1zZXJpZjtmaWxsOiNjOTQ1MWEiPjA8L3RleHQ+CiAgPHBhdGggY2xhc3M9InAiIGQ9Ik0xMDAsMjI0IHYxNiBoMjAgdi0xNiIvPgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iMTEwIiB5PSIyNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm1hbm9tw6h0cmUgw6AgesOpcm88L3RleHQ+CiAgPHRleHQgY2xhc3M9ImJhZCIgeD0iMTEwIiB5PSIyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPj0gZMOpasOgIDEgYmFyIGFic29sdTwvdGV4dD4KCiAgPHJlY3QgeD0iNjUwIiB5PSIxMDQiIHdpZHRoPSIyMTYiIGhlaWdodD0iMjA4IiByeD0iOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjYzlkNGRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNjY4IiB5PSIxMzAiPkNlIHF1ZSBtb250cmUgbCdhbmltYXRpb248L3RleHQ+CiAgPGNpcmNsZSBjeD0iNjc2IiBjeT0iMTU4IiByPSI0IiBmaWxsPSIjZmY2YjM1Ii8+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSI2OTAiIHk9IjE2MiI+TGUgY3Vyc2V1ciBtb250ZSA6IGxlczwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjY5MCIgeT0iMTgwIj5kZXV4IGxlY3R1cmVzIG1vbnRlbnQ8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSI2OTAiIHk9IjE5OCI+ZXhhY3RlbWVudCBlbnNlbWJsZS48L3RleHQ+CiAgPGNpcmNsZSBjeD0iNjc2IiBjeT0iMjI0IiByPSI0IiBmaWxsPSIjZmY2YjM1Ii8+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSI2OTAiIHk9IjIyOCI+TGUgbcOqbWUgw6ljYXJ0IGQndW4gYmFyPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJsZyIgeD0iNjkwIiB5PSIyNDYiPsOgIHRvdXRlIHByZXNzaW9uLjwvdGV4dD4KICA8Y2lyY2xlIGN4PSI2NzYiIGN5PSIyNzIiIHI9IjQiIGZpbGw9IiNmZjZiMzUiLz4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjY5MCIgeT0iMjc2Ij5NYW5vbcOodHJlIMOgIHrDqXJvIDogaWw8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSI2OTAiIHk9IjI5NCI+cmVzdGUgMSBiYXIgYWJzb2x1LjwvdGV4dD4KCiAgPCEtLSBjdXJzZXVyIDogaWwgYmFsYWllIGxlcyBkZXV4IMOpY2hlbGxlcyBkJ3VuIHNldWwgbW91dmVtZW50IC0tPgogIDxnPgogICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJ0cmFuc2xhdGUiCiAgICAgIHZhbHVlcz0iMCw4NDswLDg0OzAsLTQyOzAsLTQyOzAsODQ7MCw4NCIga2V5VGltZXM9IjA7MC4xOzAuNDI7MC41NjswLjg4OzEiCiAgICAgIGR1cj0iMTRzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgPHJlY3QgeD0iMzY4IiB5PSIxNjAiIHdpZHRoPSIxNzIiIGhlaWdodD0iMjEiIGZpbGw9IiNmN2ZhZmMiLz4KICAgIDx0ZXh0IGNsYXNzPSJzdCIgeD0iNDUyIiB5PSIxNzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmxhIG3Dqm1lIHByZXNzaW9uIHLDqWVsbGU8L3RleHQ+CiAgICA8bGluZSB4MT0iMzIwIiB5MT0iMTg0IiB4Mj0iNTkwIiB5Mj0iMTg0IiBzdHJva2U9IiNjOTQ1MWEiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8Y2lyY2xlIGN4PSIzNDAiIGN5PSIxODQiIHI9IjUuNSIgZmlsbD0iI2M5NDUxYSIvPgogICAgPGNpcmNsZSBjeD0iNTYwIiBjeT0iMTg0IiByPSI1LjUiIGZpbGw9IiNjOTQ1MWEiLz4KICA8L2c+CgogIDwhLS0gTEEgTElHTkUgQ0zDiSAoesOpcm8gbWFub23DqHRyZSA9IDEgYmFyIGFic29sdSksIHRyYWPDqWUgQVBSw4hTIGxlIGN1cnNldXIgOgogICAgICAgbGUgY3Vyc2V1ciBzJ2FycsOqdGUgZGVzc3VzIHRyb2lzIHNlY29uZGVzLCBjJ2VzdCBsZSB0ZW1wcyBmb3J0LCBldCBzb24KICAgICAgIHRyYWl0IHJvdWdlIGxhIHJlY291dnJpcmFpdCBzaSBlbGxlIHBhc3NhaXQgZGVzc291cy4gLS0+CiAgPGxpbmUgeDE9IjMxOCIgeTE9IjI2OCIgeDI9IjM2NCIgeTI9IjI2OCIgc3Ryb2tlPSIjZmY2YjM1IiBzdHJva2Utd2lkdGg9IjMuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjM0MCIgeTE9IjI2OCIgeDI9IjU4NiIgeTI9IjI2OCIgc3Ryb2tlPSIjZmY2YjM1IiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWRhc2hhcnJheT0iNyA1Ii8+CiAgPHBhdGggZD0iTTU3OCwyNjMgbDcsNSAtNyw1IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjZiMzUiIHN0cm9rZS13aWR0aD0iMi40Ii8+CgogIDxyZWN0IHg9IjI2IiB5PSIzNjQiIHdpZHRoPSI4NDgiIGhlaWdodD0iOTIiIHJ4PSI4IiBmaWxsPSIjZmRmMWVkIiBzdHJva2U9IiNlOGI5YTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHJlY3QgeD0iNDAiIHk9IjM3NCIgd2lkdGg9IjI1MiIgaGVpZ2h0PSI3NiIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2U4YjlhOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjE2NiIgeT0iMzk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7DoCByZXRlbmlyPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJzdCIgeD0iMTY2IiB5PSI0MjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlAgYWJzb2x1ZSDiiYggUCByZWxhdGl2ZSArIDEgYmFyPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJsZyIgeD0iMTY2IiB5PSI0NDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnF1ZWxsZSBxdWUgc29pdCBsYSBwcmVzc2lvbjwvdGV4dD4KICA8dGV4dCBjbGFzcz0iYmFkIiB4PSIzMDgiIHk9IjM4OCI+TGUgcGnDqGdlIDogbGVzIHRhYmxlcyBldCBsZSBtYW5vbcOodHJlIG5lIHBhcmxlbnQgcGFzIGxhIG3Dqm1lIGxhbmd1ZTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibGciIHg9IjMwOCIgeT0iNDEwIj5MZXMgdGFibGVzIGRlIHNhdHVyYXRpb24gc2UgbGlzZW50IGVuIHByZXNzaW9uIEFCU09MVUUgOyBsZSBtYW5vbcOodHJlIGFmZmljaGUgZHUgUkVMQVRJRi48L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMDgiIHk9IjQyOSI+T3VibGllciBsZSArIDEgYmFyIGZhdXNzZSB0b3V0ZSBsZWN0dXJlIGRlIHRlbXDDqXJhdHVyZSBkZSBzYXR1cmF0aW9uIDo8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImxnIiB4PSIzMDgiIHk9IjQ0OCI+b24gc2UgdHJvbXBlIGRlIHBsdXNpZXVycyBrZWx2aW5zLCBldCBvbiBjaGVyY2hlIHVuZSBmdWl0ZSBxdWkgbidleGlzdGUgcGFzLjwvdGV4dD4KPC9zdmc+Cg==",
+      texte: [
+        "Le manomètre de service indique une pression **relative** : son zéro, c'est la pression atmosphérique. La pression **absolue** part du vide parfait.",
+        "**Absolue = relative + 1,013 bar** (environ +1 bar). Lu **1,0 bar relatif** sur du R-134a → **≈ 2,0 bar absolus** → saturation **≈ −10 °C**.",
+        "Avant de lire une table, **annoncez quatre choses : le fluide, la valeur, l'unité, et le type de pression.**"
+      ],
+      lu: "Un piège classique maintenant. Le manomètre de service indique une pression relative : son zéro correspond à la pression atmosphérique. La pression absolue, elle, part du vide parfait. La conversion est simple : absolue égale relative plus un virgule zéro treize bar — environ plus un bar. Vous lisez un bar relatif sur du R cent trente-quatre a ? Cela fait environ deux bars absolus, donc une saturation d'environ moins dix degrés. D'où la règle du métier : avant de lire une table, annoncez toujours quatre choses. Le fluide. La valeur. L'unité. Et le type de pression.",
+      codes: ["1.03"]
+    },
+
+    {
+      id: "06-pur-ou-melange",
+      titre: "Corps pur : un palier. Zéotrope : un glissement.",
+      texte: [
+        "Le corps pur change d'état à température **constante** : bulle et rosée coïncident.",
+        "Le **mélange zéotrope**, non : ses composants ne changent pas d'état ensemble. La température **glisse** — pour le R-407C, de **−10 °C (bulle)** à **−3,9 °C (rosée)**, soit **6,1 K** de glissement.",
+        "Les références du métier : **surchauffe → rosée · sous-refroidissement → bulle.** La capsule « La surchauffe » s'en sert."
+      ],
+      lu: "Dernière distinction, et elle compte à l'examen. Un corps pur change d'état à température constante : le point de bulle et le point de rosée coïncident. Un mélange zéotrope, non : ses composants ne changent pas d'état exactement ensemble, et la température glisse pendant le changement d'état. Pour le R quatre cent sept C : de moins dix degrés au point de bulle, à moins trois virgule neuf degrés au point de rosée. Six virgule un kelvins de glissement. D'où les références du métier : la surchauffe se mesure par rapport à la rosée ; le sous-refroidissement, par rapport à la bulle. La capsule sur la surchauffe s'en sert directement.",
+      plus: ["bulle-rosee"],
+      codes: ["1.02", "1.03"]
+    }
+  ],
+
+  retenir: [
+    "**À chaque pression sa température de saturation** — et la courbe monte toujours.",
+    "**La pression ne fabrique pas le froid : elle choisit la température du changement d'état.**",
+    "Manomètre = pression **relative** ; **absolue = relative + 1,013 bar**. Annoncer fluide, valeur, unité, référence.",
+    "Corps pur : **palier** · zéotrope : **glissement** entre bulle et rosée (R-407C : 6,1 K).",
+    "**Surchauffe → rosée · sous-refroidissement → bulle.**"
+  ],
+
+  detours: {
+
+    "la-cloche-en-detail": {
+      question: "Que se passe-t-il exactement sous la cloche, étape par étape ?",
+      ecrans: [
+        {
+          id: "d-cloche-1",
+          titre: "L'équilibre : quand la pression de vapeur rejoint la pression extérieure.",
+          texte: [
+            "À 25 °C, l'eau a une pression de vapeur de **0,032 bar**. Sous 1,013 bar d'air, elle reste liquide : **0,032 ≠ 1,013**.",
+            "La pompe descend la pression : à **0,199 bar**, toujours pas égalité. À **0,032 bar : égalité** — les bulles naissent dans la masse.",
+            "Si la pompe continue encore, la pression passe sous 0,032 : l'eau continue de bouillir… **en se refroidissant**, car elle paie elle-même la chaleur latente."
+          ],
+          lu: "Reprenons la cloche au ralenti. À vingt-cinq degrés, l'eau possède une pression de vapeur de zéro virgule zéro trente-deux bar. Sous un virgule zéro treize bar d'air, elle reste liquide : les deux pressions ne sont pas égales. La pompe descend la pression extérieure. À zéro virgule cent quatre-vingt-dix-neuf bar, toujours pas d'égalité. À zéro virgule zéro trente-deux bar : égalité. Les bulles naissent dans toute la masse, l'ébullition commence. Et si la pompe continue encore ? La pression passe sous ce seuil, et l'eau continue de bouillir… en se refroidissant. Car c'est elle qui paie la chaleur latente.",
+          codes: ["1.02"]
+        }
+      ]
+    },
+
+    "la-table-r134a": {
+      question: "La table du R-134a, en entier : comment on s'en sert ?",
+      ecrans: [
+        {
+          id: "d-table-1",
+          titre: "Huit lignes qui traduisent toute la machine.",
+          texte: [
+            "R-134a, pression **absolue** : **−20 °C → 1,327 bar** · **−10 → 2,006** · **0 → 2,928** · **+10 → 4,146**.",
+            "**+20 → 5,717** · **+30 → 7,702** · **+40 → 10,166** · **+50 → 13,179 bar**.",
+            "La table **traduit une pression en température de saturation** — elle ne remplace pas le manomètre, elle lui donne un sens."
+          ],
+          lu: "Voici la table du R cent trente-quatre a, en pressions absolues. Moins vingt degrés : un virgule trois cent vingt-sept bar. Moins dix : deux virgule zéro zéro six. Zéro degré : deux virgule neuf cent vingt-huit. Plus dix : quatre virgule cent quarante-six. Plus vingt : cinq virgule sept cent dix-sept. Plus trente : sept virgule sept cent deux. Plus quarante : dix virgule cent soixante-six. Plus cinquante : treize virgule cent soixante-dix-neuf. Ce que fait une table, ni plus ni moins : elle traduit une pression en température de saturation. Elle ne remplace pas le manomètre. Elle lui donne un sens.",
+          codes: ["1.03"]
+        }
+      ]
+    },
+
+    "bulle-rosee": {
+      question: "Bulle, rosée : comment ne plus jamais les confondre ?",
+      ecrans: [
+        {
+          id: "d-bulle-1",
+          titre: "Les noms décrivent les frontières — pas l'ordre du voyage.",
+          texte: [
+            "**Point de bulle** : la frontière côté **liquide**. En évaporation, la première bulle y apparaît ; en condensation, la dernière bulle y disparaît.",
+            "**Point de rosée** : la frontière côté **vapeur**. En évaporation, la dernière goutte y disparaît ; en condensation, la première goutte y apparaît.",
+            "L'ordre s'inverse selon le sens du voyage — les noms, eux, ne bougent pas. **Vapeur seule → rosée. Liquide seul → bulle.**"
+          ],
+          lu: "Le moyen de ne plus les confondre : les noms décrivent les frontières, ils ne décrivent pas l'ordre du voyage. Le point de bulle, c'est la frontière côté liquide. En évaporation, la première bulle y apparaît. En condensation, la dernière bulle y disparaît. Le point de rosée, c'est la frontière côté vapeur. En évaporation, la dernière goutte y disparaît. En condensation, la première goutte y apparaît. L'ordre s'inverse selon le sens du voyage, mais les noms ne bougent pas. La vapeur seule se réfère à la rosée. Le liquide seul se réfère à la bulle.",
+          codes: ["1.02"]
+        }
+      ]
+    }
+  }
+});
+
+/* =====================================================================
    tirage-au-vide.js — « Le tirage au vide : pourquoi, et jusqu'où »
    ---------------------------------------------------------------------
    Redécoupage du fonds : tirage-au-vide.svg, balayage-azote.svg,
@@ -3392,7 +4190,7 @@ CAPSULE({
    ===================================================================== */
 CAPSULE({
   id: "tirage-au-vide",
-  ordre: 5,
+  ordre: 8,
   titre: "Le tirage au vide : pourquoi, et jusqu'où",
   question: "« J'ai tiré une heure » — est-ce que ça veut dire quelque chose ?",
   niveau: "métier",

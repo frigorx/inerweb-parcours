@@ -174,26 +174,35 @@ tant que Franck n'a pas tranché ses 6 décisions (§ 11 de la proposition).
 | `refonte/index.html` | l'accueil « Qu'est-ce que je veux réviser ? » |
 | `refonte/capsule.html` | le lecteur (`?sujet=…`) |
 | `refonte/moteur/capsule.js` · `capsule.css` | **le** moteur et **la** charte, uniques |
-| `refonte/capsules/*.js` | **3 capsules** — voir le tableau ci-dessous |
+| `refonte/capsules/*.js` | **11 capsules** — voir le tableau ci-dessous |
 | `refonte/voix/fabriquer.mjs` | fabrique les MP3. **Lancé le 06/08** : 96 fichiers, 17 Mo |
 | `ECOUTER-LES-VOIX.html` | les 4 voix neuronales, **son inclus dans la page** |
 | `DECOUPAGE-3-CAPSULES.html` | **les 3 capsules en un seul fichier**, sans son (257 Ko) |
 | `CAPSULE-AVEC-LA-VOIX.html` | une capsule **avec ses 18 narrations dedans** (3,9 Mo) |
 
-### Les capsules produites — 7 sujets, 92 écrans
+### Les capsules produites — 11 sujets, 129 écrans (lot 3 : paliers 1 et 2 recoupés le 07/08)
 
 | # | Sujet | Niveau | Fil | Détours | Écrans | À vérifier |
 |---|---|---|---|---|---|---|
 | 1 | Le circuit : quatre organes, deux pressions | découverte | 6 | 5 | 12 | 3 |
-| 2 | Lire le code d'un fluide | découverte | 6 | 7 | 18 | 8 |
-| 3 | A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 | 10 |
-| 4 | La surchauffe : la mesurer, la comprendre | métier | 6 | 5 | 11 | 6 |
-| 5 | Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 | 10 |
-| 6 | Le contrôle d'étanchéité : qui, quand, comment | examen | 6 | 5 | 11 | 8 |
-| 7 | Récupérer le fluide : le geste et la règle | examen | 6 | 3 | 10 | 6 |
+| 2 | **La chaleur, sensible et latente** *(lot 3)* | découverte | 6 | 3 | 9 | 0 |
+| 3 | **Pression et température, le couple** *(lot 3)* | découverte | 6 | 3 | 9 | 0 |
+| 4 | Lire le code d'un fluide | découverte | 6 | 7 | 18 | 8 |
+| 5 | **Familles et PRP** *(lot 3)* | métier | 6 | 4 | 10 | 7 |
+| 6 | A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 | 10 |
+| 7 | **Les bouteilles** *(lot 3)* | métier | 6 | 3 | 9 | 0 |
+| 8 | Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 | 10 |
+| 9 | Récupérer le fluide : le geste et la règle | examen | 6 | 3 | 10 | 6 |
+| 10 | La surchauffe : la mesurer, la comprendre | métier | 6 | 5 | 11 | 6 |
+| 11 | Le contrôle d'étanchéité : qui, quand, comment | examen | 6 | 5 | 11 | 8 |
 
-**Total** : 40 détours · 24 planches du fonds réemployées · **63 points « À vérifier »**
-sur 51 écrans · 184 narrations (33 Mo).
+**Total** : 53 détours · **70 points « À vérifier »** · 258 narrations (les 74 du lot 3
+fabriquées le 07/08, mêmes voix Henri/Denise).
+**Méthode du lot 3** : extraction fidèle des tutos sources par agents (relevés exhaustifs,
+valeurs chiffrées comprises), redécoupage à la main, puis **relecture adversariale**
+(réfutation métier + cohérence inter-capsules) avant toute publication. Le fonds ne donnant
+ni seuils F-Gas chiffrés ni taux de remplissage, ces trous sont flagués « À vérifier »,
+jamais comblés de tête.
 
 L'ordre ci-dessus est **déclaré** par chaque capsule (champ `ordre`) : sans lui, l'accueil
 sortirait dans l'ordre alphabétique des fichiers et proposerait les classes de sécurité
@@ -230,12 +239,24 @@ commande — `node build/paquet-beta.mjs`.
 ### Ce qui reste en attente de F. Henninot
 
 1. **Le découpage** — ouvrir `MAQUETTE-BETA.html` : le partage fil / détours est-il
-   le bon ? C'est ce qui commande les 61 pièces restantes.
+   le bon ? C'est ce qui commande les pièces restantes.
 2. **La voix** — ouvrir `CAPSULE-AVEC-LA-VOIX.html`. Henri et Denise sont un choix par
    défaut, à confirmer ou à changer.
-3. **La justesse métier** — les sept capsules n'ont **jamais été relues par un frigoriste**.
-   Le contenu vient du fonds, mais il a été réécrit et complété.
+3. **La justesse métier** — les onze capsules n'ont **jamais été relues par un frigoriste**.
+   Le contenu vient du fonds, mais il a été réécrit et complété. (Les 4 du lot 3 ont passé
+   une relecture adversariale interne — 12 défauts corrigés — qui ne remplace pas le métier.)
 4. **Le tri du fonds** — `inventaire.html`, pièce par pièce.
+5. **⚖️ ARBITRAGE DOUBLONS (rapport cohérence du 07/08)** — cinq contenus sont enseignés
+   en entier dans DEUX capsules : sensible/latente (`le-circuit` détour « etats » vs
+   `la-chaleur`) · familles (`lire-le-code` détour « familles » vs `familles-et-prp`) ·
+   pesée/surremplissage (`la-recuperation` vs `les-bouteilles`) · ébullition sous vide
+   (`tirage-au-vide` § 4 vs `pression-temperature`) · bulle-rosée (3 capsules). Deux
+   lectures possibles : redondance ASSUMÉE (chaque capsule se révise seule) ou rappel +
+   renvoi (une seule source à maintenir — la leçon du CO₂ plaide pour ça, mais couper
+   touche des voix déjà enregistrées et un contenu en relecture chez les collègues).
+   **Décision de Franck avant de tailler.** Au passage : le 🔴 « taux de remplissage » de
+   `la-recuperation` peut se clore par la position prise dans `les-bouteilles` (aucun taux
+   chiffré, la plaque fait foi).
 
 ---
 

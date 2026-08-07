@@ -13,7 +13,7 @@
    ===================================================================== */
 CAPSULE({
   id: "controle-etancheite",
-  ordre: 6,
+  ordre: 11,
   titre: "Le contrôle d'étanchéité : qui, quand, comment",
   question: "Pourquoi certaines machines se contrôlent tous les ans, et d'autres jamais ?",
   niveau: "examen",

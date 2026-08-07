@@ -18,7 +18,7 @@
    ===================================================================== */
 CAPSULE({
   id: "classes-de-securite",
-  ordre: 3,
+  ordre: 6,
   titre: "A1, A2L, A3 : lire l'étiquette",
   question: "Deux caractères sur la bouteille — que disent-ils vraiment ?",
   niveau: "métier",

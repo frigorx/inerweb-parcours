@@ -24,7 +24,7 @@
    ===================================================================== */
 CAPSULE({
   id: "lire-le-code",
-  ordre: 2,
+  ordre: 4,
   titre: "Lire le code d'un fluide",
   question: "R-22, R-134a, R-404A : que veulent dire ces chiffres ?",
   niveau: "découverte",

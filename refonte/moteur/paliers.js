@@ -15,8 +15,8 @@ window.PALIERS = [
     pour: "Aucun prérequis. Ce qu'on voit sur toute machine, avant de parler métier.",
     entrees: [
       { sujet: "le-circuit" },
-      { avenir: "La chaleur, sensible et latente", note: "à recouper du fonds" },
-      { avenir: "Pression et température, le couple", note: "à recouper du fonds" },
+      { sujet: "la-chaleur" },
+      { sujet: "pression-temperature" },
     ],
   },
   {
@@ -24,9 +24,9 @@ window.PALIERS = [
     pour: "Lire un code, une étiquette, une bouteille — savoir à quoi on a affaire.",
     entrees: [
       { sujet: "lire-le-code" },
+      { sujet: "familles-et-prp" },
       { sujet: "classes-de-securite" },
-      { avenir: "Familles et PRP", note: "à recouper du fonds" },
-      { avenir: "Les bouteilles", note: "à recouper du fonds (Mission Bouteilles)" },
+      { sujet: "les-bouteilles" },
     ],
   },
   {

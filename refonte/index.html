@@ -17,10 +17,14 @@
 <script src="moteur/capsule.js"></script>
 <script src="capsules/classes-de-securite.js"></script>
 <script src="capsules/controle-etancheite.js"></script>
+<script src="capsules/familles-et-prp.js"></script>
+<script src="capsules/la-chaleur.js"></script>
 <script src="capsules/la-recuperation.js"></script>
 <script src="capsules/la-surchauffe.js"></script>
 <script src="capsules/le-circuit.js"></script>
+<script src="capsules/les-bouteilles.js"></script>
 <script src="capsules/lire-le-code.js"></script>
+<script src="capsules/pression-temperature.js"></script>
 <script src="capsules/tirage-au-vide.js"></script>
 <script src="../fonds-origine/moteur/lisibilite.js"></script>
 <script>
@@ -30,7 +34,11 @@
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   };
   var zone = document.getElementById("sujets");
-  var ids = Object.keys(window.CAPSULES);
+  /* L'ordre pédagogique déclaré (champ ordre), jamais l'ordre alphabétique
+     des fichiers — sinon les classes de sécurité sortent avant le circuit. */
+  var ids = Object.keys(window.CAPSULES).sort(function (a, b) {
+    return (window.CAPSULES[a].ordre || 99) - (window.CAPSULES[b].ordre || 99);
+  });
 
   var h = ids.map(function (id) {
     var c = window.CAPSULES[id];

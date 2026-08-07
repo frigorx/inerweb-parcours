@@ -17,12 +17,12 @@
    ===================================================================== */
 CAPSULE({
   id: "la-surchauffe",
-  ordre: 4,
+  ordre: 10,
   titre: "La surchauffe : la mesurer, la comprendre",
   question: "Deux lectures et une soustraction — mais lesquelles, et pourquoi ?",
   niveau: "métier",
   minutes: 8,
-  suppose: "Le circuit : quatre organes, deux pressions",
+  suppose: "Pression et température, le couple",
   voixFabriquee: true,   /* Henri + Denise, 06/08/2026 */
 
   fil: [
