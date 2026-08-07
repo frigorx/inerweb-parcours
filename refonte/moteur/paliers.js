@@ -58,8 +58,8 @@ window.PALIERS = [
     entrees: [
       { sujet: "la-surchauffe" },
       { avenir: "Le sous-refroidissement", note: "jumelle de la surchauffe, à écrire" },
-      { avenir: "KVP · KVL · KVR", note: "PROTOTYPE du 07/08 à l'essai — local seulement, droits du maillage 3D à arbitrer",
-        essai: "../modules-essai/regulateurs-kv-pedagogiques/index.html" },
+      { avenir: "KVP · KVL · KVR", note: "module publié le 07/08 (8 écrans, 3D, coupe animée) — à valider en relecture ; la capsule qui l'introduit reste à écrire",
+        essai: "modules/regulateurs-kv-pedagogiques/index.html" },
       { avenir: "Le détendeur électronique", note: "en préparation chez F. Henninot" },
       { avenir: "Les pressostats", note: "à écrire" },
     ],

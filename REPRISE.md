@@ -247,15 +247,19 @@ normal ne porte pas une trace du dispositif.
 `BETA/` et le zip sont **hors dépôt** (`.gitignore`) : ce sont des produits, refaits d'une
 commande — `node build/paquet-beta.mjs`.
 
-### 🔬 Prototype REÇU ET BRANCHÉ le 07/08 au soir : les régulateurs KV
+### 🔬 Module régulateurs KV : reçu, essayé, PUBLIÉ le 07/08 au soir
 
 `REGULATEURS-KV-PEDAGOGIQUES-PROTOTYPE-2026-08-07.zip` (Bureau, « inerweb full ia\Livraisons »),
-extrait dans **`modules-essai/regulateurs-kv-pedagogiques/`** — dossier **IGNORÉ PAR GIT** :
-ses 13 tests passent, mais **le maillage 3D dérive d'un STEP constructeur** (« diffusion à
-arbitrer », dit sa propre notice) → il ne se pousse PAS sur le dépôt public tant que Franck
-n'a pas arbitré (point 5 de sa REPRISE interne). Branché pour l'essai : palier 5 du parcours
-(carte « à l'essai » cliquable) + espace enseignant (Relecture et fabrique). Les entrées
-`avenir` de paliers.js acceptent désormais un champ `essai:` (lien local, badge 🔬).
+13 tests verts, d'abord placé hors dépôt (le maillage 3D dérive d'un STEP constructeur,
+« diffusion à arbitrer » disait sa notice). **ARBITRAGE TRANCHÉ PAR FRANCK le 07/08 au
+soir : « je publie — c'est du donné public, aucune marque, vue non identifiable, j'aurais
+pu la faire sous SolidWorks ».** Décision d'auteur, consignée ici ; le module vit désormais
+dans **`refonte/modules/regulateurs-kv-pedagogiques/`** (suivi, poussé). Branché : palier 5
+du parcours (carte 🔬 cliquable — champ `essai:` des entrées `avenir` de paliers.js),
+espace enseignant, tableau de bord. Comme tout le reste : **à valider en relecture métier**.
+Reste à faire : la CAPSULE « KVP · KVL · KVR » du moteur (fil court + voix), qui introduira
+le module comme approfondissement. Le mécanisme `modules-essai/` (ignoré git) reste en
+place pour les prochains prototypes non arbitrés.
 
 ### 📦 Livraison reçue le 07/08 (zip sur le Bureau, dossier « 1er mfre »)
 

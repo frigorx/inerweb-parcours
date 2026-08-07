@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -20.33 30.5 27.83" role="img" aria-labelledby="title desc">
+  <title id="title">Régulateur de pression PC</title>
+  <desc id="desc">Symbole schématique fourni pour une vanne de régulation de pression. La vanne est montée en ligne entre les raccords gauche et droit. Une membrane de commande repérée PC agit sur le clapet.</desc>
+  <g stroke-linecap="round">
+    <path d="M 10 -5 L 14 -7 L 14 -12 L 6 -12" fill="none" stroke="#111827" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+    <text x="-4.7" y="-9.67" font-family="Arial, Helvetica, sans-serif" font-size="5" fill="#000000" xml:space="preserve">PC</text>
+    <ellipse cx="0" cy="-12" rx="5.83" ry="5.83" fill="none" stroke="#111827" stroke-width="1"/>
+    <path d="M 2 1 L 0 3 L -2 1 L -10 5 L -10 -5 L 10 5 L 10 -5 L -2 1 L 0 0 Z" fill="#ffffff" stroke="#111827" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="0" y2="-6" fill="none" stroke="#111827" stroke-width="1" stroke-linecap="round"/>
+    <line x1="10" y1="0" x2="11" y2="0" fill="none" stroke="#111827" stroke-width="1" stroke-linecap="round"/>
+    <line x1="-10" y1="0" x2="-11" y2="0" fill="none" stroke="#111827" stroke-width="1" stroke-linecap="round"/>
+  </g>
+</svg>

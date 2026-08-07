@@ -1,0 +1,12 @@
+@page { size: A4 landscape; margin: 15mm; }
+body { overflow: visible !important; background: #fff !important; }
+.app-shell { display: block !important; height: auto !important; min-height: 0 !important; }
+.top-tools, .stepper, .bottom-nav, .visual-controls, .source-button { display: none !important; }
+.topbar { position: static !important; border: 1px solid #c9d2dc; border-radius: 12px; margin-bottom: 8mm; }
+.course-grid, .lesson { display: block !important; height: auto !important; overflow: visible !important; }
+.lesson-copy, .visual-card { break-inside: avoid; margin-bottom: 7mm; }
+.visual-root { min-height: 145mm !important; }
+.mobile { display: none !important; }
+.cut-moving-static { display: block !important; transform: translateY(-22px); }
+.lesson-copy, .visual-card, .liquid-sequence li, .opening-badge rect { background: #fff !important; box-shadow: none !important; }
+.sources-dialog { display: none !important; }

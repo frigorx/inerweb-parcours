@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5.5 -30.5 27.5 43.5" role="img" aria-labelledby="title desc">
+  <title id="title">Régulateur de pression KV</title>
+  <desc id="desc">Symbole normalisé fourni pour les régulateurs KVP, KVL et KVR. Le raccord d’entrée est en bas, le fluide remonte dans le corps puis ressort à droite après un passage à 90 degrés. La vis de réglage est placée au-dessus.</desc>
+  <g stroke-linecap="round">
+    <rect x="-1.29" y="-28" width="4.62" height="1" fill="none" stroke="#111827" stroke-width="1"/>
+    <path d="M 2.55 -25.89 L 4.09 -16 L -2.83 -16 L -0.52 -26.71 L 2.55 -26.71" fill="none" stroke="#111827" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="14.28" y="-15" width="5.09" height="8" fill="none" stroke="#111827" stroke-width="1"/>
+    <path d="M 14.28 -14 L 4.09 -14 L 4.09 -16 L -2.7 -16 L -2.7 1 L 3.24 1 L 3.24 -4 L 4.94 -4 L 4.94 -8 L 14.28 -8" fill="none" stroke="#111827" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="0.7" y1="-8" x2="0.7" y2="-4" fill="none" stroke="#111827" stroke-width="1" stroke-linecap="round"/>
+    <path d="M 1.3 -5.5 L 0.7 -4 M 0.7 -4 L 0.1 -5.5" fill="none" stroke="#111827" stroke-width="0.5"/>
+    <rect x="-3" y="1" width="7" height="7" fill="none" stroke="#111827" stroke-width="1"/>
+  </g>
+</svg>

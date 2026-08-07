@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F1E7">
+  <meta name="description" content="Parcours inerWeb Édu pour comparer, comprendre et régler les régulateurs de pression KVP, KVL et KVR.">
+  <link rel="icon" href="data:,">
+  <title>La famille des régulateurs KV · inerWeb Édu</title>
+  <link rel="stylesheet" href="styles.css?v=20260807-8">
+  <link rel="stylesheet" href="impression.css?v=20260807-8" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-title">Aller à l’explication</a>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="inerWeb Édu">
+        <span class="brand-mark" aria-hidden="true">iW</span>
+        <span class="brand-copy"><strong>inerWeb Édu</strong><span>HABILITATION FLUIDES</span></span>
+      </div>
+      <div class="module-name">
+        <strong>Les régulateurs de pression</strong>
+        <span>KVP · KVL · KVR — comprendre avant de régler</span>
+      </div>
+      <div class="top-tools">
+        <div class="voice-tools" aria-label="Lecture vocale">
+          <button type="button" id="voice-button" class="tool-button" aria-label="Écouter l’écran">▶ <span>Écouter</span></button>
+          <label class="speed-control" for="voice-rate"><span class="sr-only">Vitesse de lecture</span>
+            <select id="voice-rate" aria-label="Vitesse de lecture">
+              <option value="0.8">0,80×</option>
+              <option value="0.95" selected>0,95×</option>
+              <option value="1.1">1,10×</option>
+              <option value="1.25">1,25×</option>
+            </select>
+          </label>
+        </div>
+        <div class="reading-tools" aria-label="Taille du texte">
+          <button type="button" data-font-action="decrease" aria-label="Réduire la taille du texte">A−</button>
+          <button type="button" data-font-action="reset" aria-label="Rétablir la taille du texte">100 %</button>
+          <button type="button" data-font-action="increase" aria-label="Augmenter la taille du texte">A+</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="course-grid">
+      <nav class="stepper" id="stepper" aria-label="Étapes du parcours"></nav>
+
+      <main class="lesson" id="main-content">
+        <section class="lesson-copy" aria-live="polite" aria-atomic="false">
+          <p class="kicker" id="lesson-kicker"></p>
+          <h1 id="lesson-title" tabindex="-1"></h1>
+          <p class="lesson-intro" id="lesson-intro"></p>
+          <div class="lesson-detail" id="lesson-detail"></div>
+          <p class="takeaway" id="lesson-takeaway"></p>
+        </section>
+
+        <section class="visual-card" aria-labelledby="visual-title">
+          <div class="visual-heading">
+            <div><h2 id="visual-title"></h2><p id="visual-hint"></p></div>
+            <div class="visual-heading-actions">
+              <button type="button" class="focus-button" id="visual-focus-button" aria-pressed="false">⛶ <span>Agrandir</span></button>
+              <button type="button" class="source-button" id="source-button" aria-haspopup="dialog">Sources</button>
+            </div>
+          </div>
+          <div class="visual-controls" id="visual-controls"></div>
+          <div class="visual-root" id="visual-root"></div>
+          <p class="visual-caption" id="visual-caption"></p>
+        </section>
+      </main>
+    </div>
+
+    <footer class="bottom-nav">
+      <button type="button" class="nav-button secondary" id="previous-button" disabled>← Retour</button>
+      <div class="progress-copy" aria-live="polite">
+        <span id="progress-label"></span>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+      </div>
+      <button type="button" class="nav-button primary" id="next-button">Continuer →</button>
+    </footer>
+  </div>
+
+  <dialog class="sources-dialog" id="sources-dialog" aria-labelledby="sources-title">
+    <form method="dialog">
+      <div class="dialog-heading">
+        <div><p class="kicker">Traçabilité</p><h2 id="sources-title">Sources, simplifications et droits</h2></div>
+        <button type="submit" class="close-button" aria-label="Fermer">×</button>
+      </div>
+      <p>Ce prototype associe une géométrie extérieure réelle fournie par l’auteur à des schémas fonctionnels originaux inerWeb. La coupe animée explique une chaîne cinématique ; elle n’est pas une coupe cotée de fabrication.</p>
+      <ul>
+        <li><strong>Socle interne canonique :</strong> planche <code>regulateurs-pression.svg</code> et contenus Pilote Fluides / Habilitation Fluides, codes 7.02, 8.02 et 8.07.</li>
+        <li><strong>Vue extérieure :</strong> maillage local allégé dérivé du STEP <code>ID542975703082-0101.stp</code>, identifié comme KVL 28 / 034L0046. Son usage hors prototype reste à valider avant diffusion publique.</li>
+        <li><strong>KVP :</strong> fiche Danfoss <code>AI249086497299en-001101</code>. Le régulateur ouvre lorsque la pression d’entrée dépasse la valeur réglée et régule la pression d’entrée.</li>
+        <li><strong>KVL :</strong> fiche Danfoss <code>AI555531791071fr-000101</code>. Le régulateur ouvre lorsque la pression de sortie baisse et régule la pression de sortie côté compresseur.</li>
+        <li><strong>KVR :</strong> fiche Danfoss <code>AI251086497566en-001101</code>. Le régulateur ouvre lorsque la pression d’entrée augmente et régule la pression de condensation.</li>
+        <li><strong>Installation :</strong> guide Danfoss KVP/KVL/KVR/KVD/KVC <code>AN22668643486000-000601</code> et notes installateur <code>AX266545601018en-000101</code>. La coupe pédagogique respecte le corps angulaire : entrée basse et sortie latérale à 90°.</li>
+        <li><strong>Réglage commun :</strong> une rotation horaire augmente la pression réglée ; une rotation antihoraire la diminue. La mesure se fait au manomètre du côté régulé et la valeur vient toujours de la notice et de l’installation réelle.</li>
+        <li><strong>KVR :</strong> l’association KVR + NRD est présentée comme le montage courant de maintien de la pression de condensation et de la pression du réservoir.</li>
+      </ul>
+      <p class="rights-rule"><strong>Règle terrain :</strong> identifier la vanne, lire sa flèche, brancher le manomètre au bon endroit, stabiliser l’installation, puis seulement corriger par petites touches.</p>
+    </form>
+  </dialog>
+
+  <div class="sr-only" id="reading-status" aria-live="polite"></div>
+  <div class="sr-only" id="app-status" aria-live="polite"></div>
+
+  <script src="assets/mesh-kvl.js?v=20260807-8"></script>
+  <script src="app.js?v=20260807-8"></script>
+  <script src="lisibilite.js?v=20260807-8"></script>
+</body>
+</html>
