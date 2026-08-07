@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="Les deux familles autorisées, et le revers de chacune. Les HFO, comme le R-1234yf : une double liaison carbone-carbone qui casse en quelques jours dans l'air, d'où un PRP proche de un — souvent classés A2L, et la question des PFAS se pose. Les fluides naturels : R-290 et R-600a, propane et isobutane, classés A3 ; R-717, l'ammoniac, classé B2L ; R-744, le CO2, qui travaille à haute pression. Leur PRP est minuscule, mais chacun a son revers : le fluide qui ne réchauffe pas le climat demande davantage de métier.">
+     aria-label="Les deux familles autorisées, et le revers de chacune. Les HFO, comme le R-1234yf : une double liaison entre carbones qui casse en quelques jours dans l'air, d'où un PRP proche de un — mais souvent classés A2L, et la question des PFAS se pose. Les fluides naturels : R-290 propane et R-600a isobutane, classés A3 ; R-717 ammoniac, classé B2L ; R-744 CO2, qui travaille à haute pression. PRP minuscule, mais chacun son revers : le fluide qui ne réchauffe pas le climat demande davantage de métier.">
   <title>HFO et naturels : autorisés — chacun son revers</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
@@ -7,76 +7,69 @@
     .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
-    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#2e7d4f; }
+    .ok  { font:700 13px Calibri,Segoe UI,sans-serif; fill:#2e7d4f; }
     .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
     .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
   </style>
 
   <rect width="880" height="464" fill="#ffffff"/>
-  <text class="t" x="30" y="32">Autorisés, oui — gratuits, non : chacun son revers</text>
+  <text class="t" x="30" y="32">Les autorisés — mais le revers se lit sur chaque étiquette</text>
 
   <!-- ============ HFO ============ -->
-  <rect x="60" y="64" width="360" height="330" rx="12" fill="#f6f9fc" stroke="#2e7d4f" stroke-width="2.4"/>
-  <text class="st" x="240" y="96" text-anchor="middle" fill="#2e7d4f">HFO — l'exemple : R-1234yf</text>
-  <!-- molécule : deux C double liaison -->
-  <g transform="translate(240,190)">
-    <circle cx="-44" r="24" fill="#4a5b6e"/><text x="-44" y="6" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">C</text>
-    <circle cx="44" r="24" fill="#4a5b6e"/><text x="44" y="6" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">C</text>
-    <path class="p" d="M-20,-7 h40 M-20,7 h40" stroke-width="3"/>
-    <circle cx="-96" cy="-46" r="18" fill="#a9c8a2"/><text x="-96" y="-40" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">H</text>
-    <circle cx="96" cy="-46" r="18" fill="#7db2d6"/><text x="96" y="-40" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
-    <circle cx="-96" cy="46" r="18" fill="#7db2d6"/><text x="-96" y="52" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
-    <circle cx="96" cy="46" r="18" fill="#7db2d6"/><text x="96" y="52" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
-    <path class="p" d="M-62,-16 L-82,-34 M62,-16 L82,-34 M-62,16 L-82,34 M62,16 L82,34" stroke-width="2"/>
-    <!-- la double liaison qui casse -->
-    <path d="M0,-34 l-8,-18 M0,-34 l10,-16" stroke="#c9451a" stroke-width="2.4" fill="none">
-      <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
-    </path>
+  <rect x="55" y="62" width="330" height="330" rx="12" fill="#f6f9fc" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="220" y="94" text-anchor="middle">HFO — R-1234yf</text>
+  <!-- molécule à double liaison C=C -->
+  <g transform="translate(220,180)">
+    <circle cx="-40" r="24" fill="#4a5b6e"/><text x="-40" y="6" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">C</text>
+    <circle cx="40" r="24" fill="#4a5b6e"/><text x="40" y="6" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">C</text>
+    <path class="p" d="M-14,-6 h28 M-14,6 h28" stroke-width="3.4" stroke="#c9451a"/>
+    <circle cx="-90" cy="-40" r="17" fill="#a9c8a2"/><text x="-90" y="-34" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri" font-size="13">H</text>
+    <circle cx="-90" cy="40" r="17" fill="#7db2d6"/><text x="-90" y="46" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri" font-size="13">F</text>
+    <circle cx="90" cy="-40" r="17" fill="#7db2d6"/><text x="90" y="-34" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri" font-size="13">F</text>
+    <circle cx="90" cy="40" r="17" fill="#7db2d6"/><text x="90" y="46" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri" font-size="13">F</text>
+    <path class="p" d="M-58,-14 L-76,-30 M-58,14 L-76,30 M58,-14 L76,-30 M58,14 L76,30" stroke-width="2"/>
   </g>
-  <text class="bad" x="240" y="272" text-anchor="middle">la double liaison C = C casse en quelques jours</text>
-  <text class="ok" x="240" y="298" text-anchor="middle">→ PRP ≈ 1</text>
-  <path class="dash" d="M90,314 h300"/>
-  <text class="st" x="240" y="340" text-anchor="middle">Le revers :</text>
-  <text class="lg" x="240" y="362" text-anchor="middle">souvent inflammables (A2L) —</text>
-  <text class="lg" x="240" y="382" text-anchor="middle">et la question PFAS se pose</text>
+  <text class="bad" x="220" y="252" text-anchor="middle">la double liaison C = C</text>
+  <text class="lg" x="220" y="276" text-anchor="middle">casse en quelques jours dans l'air</text>
+  <text class="ok" x="220" y="300" text-anchor="middle">→ PRP ≈ 1</text>
+  <rect x="80" y="318" width="280" height="52" rx="8" fill="#fdeee8" stroke="#c9451a" stroke-width="1.8"/>
+  <text class="bad" x="220" y="340" text-anchor="middle">le revers : souvent A2L —</text>
+  <text class="sm" x="220" y="358" text-anchor="middle">et la question PFAS se pose</text>
 
   <!-- ============ NATURELS ============ -->
-  <rect x="460" y="64" width="360" height="330" rx="12" fill="#f6f9fc" stroke="#2e7d4f" stroke-width="2.4"/>
-  <text class="st" x="640" y="96" text-anchor="middle" fill="#2e7d4f">NATURELS — présents dans la nature</text>
+  <rect x="425" y="62" width="400" height="330" rx="12" fill="#f6f9fc" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="625" y="94" text-anchor="middle">NATURELS — présents dans la nature</text>
 
-  <!-- quatre vignettes avec le revers de chacun -->
+  <!-- quatre pastilles, chacune avec son revers -->
   <g>
-    <rect x="484" y="116" width="150" height="112" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
-    <text class="st" x="559" y="144" text-anchor="middle">R-290 · R-600a</text>
-    <text class="sm" x="559" y="164" text-anchor="middle">propane · isobutane</text>
-    <path d="M559,176 c-9,12 -9,22 0,30 c9,-8 9,-18 0,-30 z" fill="#c9451a"/>
-    <text class="bad" x="559" y="222" text-anchor="middle">A3 — très inflammables</text>
+    <rect x="450" y="112" width="170" height="120" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+    <text class="st" x="535" y="140" text-anchor="middle">R-290 · R-600a</text>
+    <text class="sm" x="535" y="160" text-anchor="middle">propane · isobutane</text>
+    <text class="ok" x="535" y="184" text-anchor="middle">PRP minuscule</text>
+    <text class="bad" x="535" y="212" text-anchor="middle">revers : A3 — inflammables</text>
   </g>
   <g>
-    <rect x="646" y="116" width="150" height="112" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
-    <text class="st" x="721" y="144" text-anchor="middle">R-717</text>
-    <text class="sm" x="721" y="164" text-anchor="middle">ammoniac</text>
-    <text class="t" x="721" y="196" text-anchor="middle" fill="#c9451a">☠</text>
-    <text class="bad" x="721" y="222" text-anchor="middle">B2L — toxique</text>
+    <rect x="632" y="112" width="170" height="120" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+    <text class="st" x="717" y="140" text-anchor="middle">R-717</text>
+    <text class="sm" x="717" y="160" text-anchor="middle">ammoniac</text>
+    <text class="ok" x="717" y="184" text-anchor="middle">PRP minuscule</text>
+    <text class="bad" x="717" y="212" text-anchor="middle">revers : B2L — toxique</text>
   </g>
   <g>
-    <rect x="484" y="242" width="150" height="112" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
-    <text class="st" x="559" y="270" text-anchor="middle">R-744</text>
-    <text class="sm" x="559" y="290" text-anchor="middle">CO₂</text>
-    <!-- manomètre haute pression -->
-    <circle cx="559" cy="316" r="18" fill="#ffffff" stroke="#c9451a" stroke-width="2.2"/>
-    <path d="M559,316 L571,304" stroke="#c9451a" stroke-width="2.6" stroke-linecap="round"/>
-    <text class="bad" x="559" y="350" text-anchor="middle">haute pression</text>
+    <rect x="450" y="244" width="170" height="120" rx="8" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+    <text class="st" x="535" y="272" text-anchor="middle">R-744</text>
+    <text class="sm" x="535" y="292" text-anchor="middle">CO₂ — l'étalon</text>
+    <text class="ok" x="535" y="316" text-anchor="middle">PRP = 1</text>
+    <text class="bad" x="535" y="344" text-anchor="middle">revers : haute pression</text>
   </g>
   <g>
-    <rect x="646" y="242" width="150" height="112" rx="8" fill="#eef7f0" stroke="#2e7d4f" stroke-width="2"/>
-    <text class="ok" x="721" y="282" text-anchor="middle">PRP minuscule</text>
-    <text class="sm" x="721" y="308" text-anchor="middle">c'est leur grande force</text>
-    <text class="sm" x="721" y="328" text-anchor="middle">à tous les quatre</text>
+    <rect x="632" y="244" width="170" height="120" rx="8" fill="#eef3f9" stroke="#1b3a63" stroke-width="2"/>
+    <text class="st" x="717" y="284" text-anchor="middle">PRP minuscule</text>
+    <text class="lg" x="717" y="310" text-anchor="middle">mais le métier,</text>
+    <text class="lg" x="717" y="330" text-anchor="middle">c'est VOUS qui l'apportez</text>
   </g>
-  <text class="lg" x="640" y="380" text-anchor="middle">Le revers se paie en compétence, pas en PRP.</text>
 
   <!-- morale -->
-  <path class="dash" d="M60,418 h760"/>
-  <text class="st" x="440" y="446" text-anchor="middle">Le fluide qui ne réchauffe pas le climat vous demande, à vous, davantage de métier.</text>
+  <path class="dash" d="M60,414 h760"/>
+  <text class="st" x="440" y="442" text-anchor="middle">Le fluide qui ne réchauffe pas le climat vous demande, à vous, davantage de métier.</text>
 </svg>

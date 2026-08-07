@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="Trois bouteilles, trois usages. La bouteille de transfert porte le fluide neuf, propre, qui va vers l'installation. La bouteille de récupération reçoit le fluide que l'on retire : il peut contenir de l'huile, de l'humidité, des contaminants — elle est compatible et identifiée pour cela. La bouteille dédiée aux fluides inflammables, A2L comme A3 : matériel adapté, et pour les A2L le repère courant est l'ogive rouge avec un raccord à pas à gauche. Le premier réflexe, avant tout branchement : choisir le bon contenant.">
+     aria-label="Trois bouteilles, trois usages, trois identifications. La bouteille de transfert porte le fluide neuf et propre qui va vers l'installation. La bouteille de récupération reçoit le fluide que l'on retire, qui peut contenir de l'huile, de l'humidité et des contaminants — elle est compatible et identifiée pour cela. La bouteille dédiée aux fluides inflammables, A2L comme A3, emploie du matériel adapté — repère courant pour les A2L : ogive rouge et raccord à pas à gauche. Le premier réflexe, avant tout branchement : choisir le bon contenant.">
   <title>Trois bouteilles, trois usages — le bon contenant avant de brancher</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
@@ -15,53 +15,53 @@
   <text class="t" x="30" y="32">Je choisis le bon contenant AVANT de brancher</text>
 
   <!-- gabarit bouteille : corps + ogive + robinet -->
-  <!-- ============ 1. TRANSFERT ============ -->
-  <g transform="translate(90,0)">
-    <rect x="30" y="140" width="120" height="210" rx="18" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
-    <path d="M50,140 a40,34 0 0 1 80,0 z" fill="#dbe4ec" stroke="#1b3a63" stroke-width="2.6"/>
-    <rect x="78" y="86" width="24" height="24" rx="4" fill="#1b3a63"/>
-    <path class="p" d="M102,98 h22"/>
-    <!-- étiquette -->
-    <rect x="48" y="200" width="84" height="66" rx="6" fill="#ffffff" stroke="#8fa3b8" stroke-width="1.6"/>
-    <text class="sm" x="90" y="224" text-anchor="middle">fluide NEUF</text>
-    <text class="sm" x="90" y="244" text-anchor="middle">R-404A</text>
-    <text class="st" x="90" y="386" text-anchor="middle">TRANSFERT</text>
-    <text class="lg" x="90" y="410" text-anchor="middle">le propre, vers</text>
-    <text class="lg" x="90" y="428" text-anchor="middle">l'installation</text>
+  <!-- ============ 1 · TRANSFERT ============ -->
+  <g transform="translate(170,0)">
+    <rect x="-52" y="64" width="104" height="26" rx="6" fill="#eef3f9"/>
+    <text class="st" x="0" y="82" text-anchor="middle">TRANSFERT</text>
+    <path class="p" d="M-40,368 v-160 a40,36 0 0 1 80,0 v160 z" fill="#eef3f9"/>
+    <path d="M-40,232 a40,36 0 0 1 80,0 z" fill="#7db2d6"/>
+    <rect x="-11" y="150" width="22" height="24" rx="4" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+    <path class="p" d="M-24,158 h13 M11,158 h13"/>
+    <rect x="-30" y="266" width="60" height="42" rx="4" fill="#ffffff" stroke="#8fa3b8" stroke-width="1.4"/>
+    <text class="sm" x="0" y="292" text-anchor="middle">étiquette</text>
+    <text class="lg" x="0" y="398" text-anchor="middle">le fluide NEUF, propre,</text>
+    <text class="lg" x="0" y="416" text-anchor="middle">qui va VERS l'installation</text>
   </g>
 
-  <!-- ============ 2. RÉCUPÉRATION ============ -->
-  <g transform="translate(350,0)">
-    <rect x="30" y="140" width="120" height="210" rx="18" fill="#fdf6e3" stroke="#1b3a63" stroke-width="2.6"/>
-    <path d="M50,140 a40,34 0 0 1 80,0 z" fill="#e8d9a8" stroke="#1b3a63" stroke-width="2.6"/>
-    <rect x="78" y="86" width="24" height="24" rx="4" fill="#1b3a63"/>
-    <path class="p" d="M102,98 h22"/>
-    <rect x="48" y="200" width="84" height="66" rx="6" fill="#ffffff" stroke="#8fa3b8" stroke-width="1.6"/>
-    <text class="sm" x="90" y="220" text-anchor="middle">RÉCUP.</text>
-    <text class="sm" x="90" y="238" text-anchor="middle">identifiée</text>
-    <text class="sm" x="90" y="256" text-anchor="middle">compatible</text>
-    <text class="st" x="90" y="386" text-anchor="middle">RÉCUPÉRATION</text>
-    <text class="lg" x="90" y="410" text-anchor="middle">le fluide retiré — huile,</text>
-    <text class="lg" x="90" y="428" text-anchor="middle">humidité, contaminants</text>
+  <!-- ============ 2 · RÉCUPÉRATION ============ -->
+  <g transform="translate(440,0)">
+    <rect x="-68" y="64" width="136" height="26" rx="6" fill="#fdeee8"/>
+    <text class="st" x="0" y="82" text-anchor="middle" fill="#a8410f">RÉCUPÉRATION</text>
+    <path class="p" d="M-40,368 v-160 a40,36 0 0 1 80,0 v160 z" fill="#fdeee8" stroke="#a8410f"/>
+    <path d="M-40,232 a40,36 0 0 1 80,0 z" fill="#e8a58c"/>
+    <rect x="-11" y="150" width="22" height="24" rx="4" fill="#ffffff" stroke="#a8410f" stroke-width="2.4"/>
+    <path class="p" d="M-24,158 h13 M11,158 h13" stroke="#a8410f"/>
+    <rect x="-30" y="266" width="60" height="42" rx="4" fill="#ffffff" stroke="#8fa3b8" stroke-width="1.4"/>
+    <text class="sm" x="0" y="286" text-anchor="middle">compatible</text>
+    <text class="sm" x="0" y="302" text-anchor="middle">et identifiée</text>
+    <text class="lg" x="0" y="398" text-anchor="middle">le fluide RETIRÉ — huile,</text>
+    <text class="lg" x="0" y="416" text-anchor="middle">humidité, contaminants possibles</text>
   </g>
 
-  <!-- ============ 3. INFLAMMABLES ============ -->
-  <g transform="translate(610,0)">
-    <rect x="30" y="140" width="120" height="210" rx="18" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
-    <!-- OGIVE ROUGE -->
-    <path d="M50,140 a40,34 0 0 1 80,0 z" fill="#c9451a" stroke="#1b3a63" stroke-width="2.6"/>
-    <rect x="78" y="86" width="24" height="24" rx="4" fill="#1b3a63"/>
-    <path class="p" d="M102,98 h22"/>
-    <!-- flamme -->
-    <path d="M90,222 c-11,15 -11,27 0,36 c11,-9 11,-21 0,-36 z" fill="#c9451a"/>
-    <text class="sm" x="90" y="286" text-anchor="middle">A2L… et A3</text>
-    <text class="st" x="90" y="386" text-anchor="middle">INFLAMMABLES</text>
-    <text class="lg" x="90" y="410" text-anchor="middle">A2L : ogive rouge,</text>
-    <text class="lg" x="90" y="428" text-anchor="middle">raccord à pas à gauche</text>
-    <text class="bad" x="90" y="126" text-anchor="middle">ogive rouge</text>
+  <!-- ============ 3 · INFLAMMABLES ============ -->
+  <g transform="translate(710,0)">
+    <rect x="-78" y="64" width="156" height="26" rx="6" fill="#fff4ed"/>
+    <text class="st" x="0" y="82" text-anchor="middle" fill="#a8410f">INFLAMMABLES (A2L, A3)</text>
+    <path class="p" d="M-40,368 v-160 a40,36 0 0 1 80,0 v160 z" fill="#f6f9fc"/>
+    <!-- ogive ROUGE : le repère courant A2L -->
+    <path d="M-40,232 a40,36 0 0 1 80,0 z" fill="#c9451a"/>
+    <rect x="-11" y="150" width="22" height="24" rx="4" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+    <path class="p" d="M-24,158 h13 M11,158 h13"/>
+    <!-- flamme discrète sur l'étiquette -->
+    <rect x="-30" y="266" width="60" height="42" rx="4" fill="#ffffff" stroke="#8fa3b8" stroke-width="1.4"/>
+    <path d="M0,274 c-7,9 -9,15 -4,21 a7,7 0 0 0 8,0 c5,-6 3,-12 -4,-21 z" fill="#c9451a"/>
+    <text class="sm" x="0" y="302" text-anchor="middle">matériel adapté</text>
+    <text class="bad" x="0" y="398" text-anchor="middle">repère courant A2L : ogive rouge</text>
+    <text class="lg" x="0" y="416" text-anchor="middle">et raccord à pas à GAUCHE</text>
   </g>
 
   <!-- morale -->
-  <path class="dash" d="M60,442 h760"/>
-  <text class="st" x="440" y="462" text-anchor="middle">La couleur aide — mais c'est la conception, les marquages et la notice qui identifient la bouteille.</text>
+  <path class="dash" d="M60,432 h760"/>
+  <text class="st" x="440" y="456" text-anchor="middle">Le fluide extrait ne va JAMAIS dans « une bouteille quelconque ».</text>
 </svg>

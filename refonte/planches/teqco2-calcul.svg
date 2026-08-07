@@ -1,59 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="D'où sortent les trois virgule neuf tonnes : un kilogramme de R-404A fuit d'une installation. Son PRP est de trois mille neuf cent vingt-deux : chaque kilogramme pèse, pour le climat, comme trois mille neuf cent vingt-deux kilogrammes de CO2 — environ trois virgule neuf tonnes équivalent CO2. C'est ce chiffre en tonnes équivalent CO2 que la réglementation regarde : il classe la sévérité de l'installation et commande les obligations de contrôle d'étanchéité.">
-  <title>1 kg qui fuit × PRP 3922 ≈ 3,9 tonnes équivalent CO₂</title>
+     aria-label="Le calcul en tonnes équivalent CO2, sur l'exemple de la planche PRP : fuir un kilogramme de R-404A, dont le PRP vaut trois mille neuf cent vingt-deux, revient à relâcher environ trois virgule neuf tonnes équivalent CO2. C'est la charge multipliée par le PRP qui fait la conversion, et c'est ce chiffre que la réglementation regarde pour classer la sévérité d'une installation et commander les obligations de contrôle d'étanchéité.">
+  <title>1 kg de fuite → 3,9 tonnes équivalent CO₂ : la conversion que la règle regarde</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
-    .big { font:700 30px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .big { font:700 26px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
     .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
     .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
   </style>
 
   <rect width="880" height="464" fill="#ffffff"/>
-  <text class="t" x="30" y="32">Un kilo n'égale pas un kilo : la conversion que la règle regarde</text>
+  <text class="t" x="30" y="32">Un kilogramme qui fuit ne pèse pas un kilogramme pour le climat</text>
 
-  <!-- ============ LA FUITE ============ -->
-  <g>
-    <!-- bouteille / circuit qui fuit -->
-    <rect x="90" y="120" width="110" height="180" rx="16" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
-    <rect x="122" y="96" width="46" height="26" rx="6" fill="#1b3a63"/>
-    <text class="st" x="145" y="200" text-anchor="middle">R-404A</text>
-    <text class="sm" x="145" y="222" text-anchor="middle">PRP 3922</text>
+  <!-- ============ LA BOUTEILLE QUI FUIT ============ -->
+  <g transform="translate(150,0)">
+    <path class="p" d="M-40,340 v-140 a40,34 0 0 1 80,0 v140 z" fill="#eef3f9"/>
+    <rect x="-14" y="152" width="28" height="18" rx="4" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+    <text class="st" x="0" y="272" text-anchor="middle">R-404A</text>
+    <text class="sm" x="0" y="292" text-anchor="middle">PRP 3922</text>
     <!-- la fuite -->
-    <g fill="#c9451a" opacity="0.85">
-      <circle r="4"><animateMotion dur="1.8s" repeatCount="indefinite" path="M200,160 q30,-16 58,-30"/><animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/></circle>
-      <circle r="3"><animateMotion dur="2.1s" begin="0.5s" repeatCount="indefinite" path="M200,170 q34,-10 62,-20"/><animate attributeName="opacity" values="1;0" dur="2.1s" begin="0.5s" repeatCount="indefinite"/></circle>
-      <circle r="3.5"><animateMotion dur="1.6s" begin="1s" repeatCount="indefinite" path="M200,150 q28,-20 54,-38"/><animate attributeName="opacity" values="1;0" dur="1.6s" begin="1s" repeatCount="indefinite"/></circle>
+    <g fill="#c9451a">
+      <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite" path="M34,180 q30,-24 62,-30"/><animate attributeName="opacity" values="1;0" dur="1.6s" repeatCount="indefinite"/></circle>
+      <circle r="3"><animateMotion dur="1.9s" begin="0.5s" repeatCount="indefinite" path="M34,186 q34,-16 66,-18"/><animate attributeName="opacity" values="1;0" dur="1.9s" begin="0.5s" repeatCount="indefinite"/></circle>
     </g>
-    <text class="bad" x="145" y="336" text-anchor="middle">1 kg fuit</text>
+    <text class="bad" x="66" y="146">1 kg s'échappe…</text>
   </g>
 
-  <!-- ============ LE CALCUL ============ -->
-  <text class="big" x="330" y="220" text-anchor="middle">×</text>
-  <rect x="380" y="170" width="170" height="90" rx="10" fill="#fdeee8" stroke="#c9451a" stroke-width="2.4"/>
-  <text class="st" x="465" y="204" text-anchor="middle" fill="#a8410f">PRP</text>
-  <text class="big" x="465" y="242" text-anchor="middle" fill="#a8410f">3922</text>
-  <text class="big" x="600" y="220" text-anchor="middle">=</text>
+  <!-- ============ LA CONVERSION ============ -->
+  <rect x="330" y="150" width="240" height="130" rx="12" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="450" y="182" text-anchor="middle">la conversion</text>
+  <text class="big" x="450" y="222" text-anchor="middle">1 kg × 3922</text>
+  <text class="sm" x="450" y="252" text-anchor="middle">la charge fuie × le PRP du fluide</text>
+  <path class="acc" d="M578,215 h56 m-12,-8 12,8 -12,8"/>
 
-  <!-- ============ LE NUAGE ============ -->
-  <g>
-    <path d="M660,210 a34,34 0 0 1 30,-46 a40,40 0 0 1 76,-8 a30,30 0 0 1 26,50 a24,24 0 0 1 -18,40 h-96 a26,26 0 0 1 -18,-36 z"
-          fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6">
-      <animate attributeName="opacity" values="0.75;1;0.75" dur="3s" repeatCount="indefinite"/>
-    </path>
-    <text class="big" x="730" y="200" text-anchor="middle" fill="#c9451a">≈ 3,9 t</text>
-    <text class="st" x="730" y="226" text-anchor="middle">équivalent CO₂</text>
-    <text class="sm" x="730" y="290" text-anchor="middle">le poids climatique réel</text>
+  <!-- ============ LE NUAGE RÉSULTAT ============ -->
+  <g transform="translate(740,210)">
+    <path d="M-70,26 a30,30 0 0 1 6,-58 a38,38 0 0 1 72,-14 a30,30 0 0 1 44,26 a24,24 0 0 1 -8,46 z"
+          fill="#fdeee8" stroke="#c9451a" stroke-width="2.6"/>
+    <text class="big" x="-8" y="0" text-anchor="middle" fill="#a8410f">≈ 3,9 t</text>
+    <text class="st" x="-8" y="22" text-anchor="middle" fill="#a8410f">équivalent CO₂</text>
   </g>
 
   <!-- ============ CE QUE LA RÈGLE EN FAIT ============ -->
-  <path class="dash" d="M60,340 h760"/>
-  <rect x="120" y="360" width="640" height="60" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
-  <text class="st" x="440" y="386" text-anchor="middle">C'est CE chiffre que la réglementation regarde :</text>
-  <text class="lg" x="440" y="408" text-anchor="middle">il classe la sévérité de l'installation, et commande les obligations de contrôle d'étanchéité.</text>
-  <text class="sm" x="440" y="448" text-anchor="middle">Valeurs indicatives — en intervention, le PRP se lit sur la fiche du fluide.</text>
+  <rect x="90" y="330" width="700" height="66" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+  <text class="st" x="440" y="358" text-anchor="middle">C'est CE chiffre que la réglementation regarde :</text>
+  <text class="lg" x="440" y="382" text-anchor="middle">il classe la sévérité de l'installation et commande les contrôles d'étanchéité — voir la capsule dédiée.</text>
+
+  <path class="dash" d="M60,414 h760"/>
+  <text class="sm" x="440" y="440" text-anchor="middle">Valeur de l'exemple : la planche « Un kilogramme n'égale pas un kilogramme » (PRP indicatifs — en intervention, la fiche du fluide fait foi).</text>
 </svg>

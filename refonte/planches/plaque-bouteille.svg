@@ -1,72 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="La plaque signalétique d'une bouteille, en grand : TW six virgule deux kilogrammes, la tare, masse de la bouteille vide ; WC douze litres, la capacité en eau, le volume interne de référence ; PS quarante-cinq bars, la pression de service. La couleur de la bouteille sert seulement de repère visuel : sur le terrain, on vérifie la conception, les marquages et la notice. Pour les A2L, matériel adapté — repère courant : ogive rouge et raccord à pas à gauche.">
-  <title>La plaque dit tout — la couleur, presque rien</title>
+     aria-label="La plaque signalétique d'une bouteille, en grand : TW six virgule deux kilogrammes, la tare, c'est-à-dire la masse de la bouteille vide ; WC douze litres, la capacité en eau, le volume interne de référence ; PS quarante-cinq bars, la pression de service. Les couleurs de la bouteille servent seulement de repère visuel : sur le terrain, on vérifie la conception, les marquages et la notice du récipient. C'est la plaque qui fait foi.">
+  <title>La plaque dit tout : TW · WC · PS — la couleur, presque rien</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
     .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
-    .big { font:700 26px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .big { font:700 24px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
     .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
   </style>
 
   <rect width="880" height="464" fill="#ffffff"/>
-  <text class="t" x="30" y="32">Tout ce qui compte est GRAVÉ — lisez la plaque, pas la peinture</text>
+  <text class="t" x="30" y="32">Tout ce qui compte est GRAVÉ — la plaque fait foi</text>
 
-  <!-- ============ LA BOUTEILLE ============ -->
-  <g transform="translate(90,0)">
-    <rect x="0" y="130" width="130" height="230" rx="18" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
-    <path d="M22,130 a43,36 0 0 1 86,0 z" fill="#dbe4ec" stroke="#1b3a63" stroke-width="2.6"/>
-    <rect x="53" y="74" width="24" height="24" rx="4" fill="#1b3a63"/>
-    <!-- la plaque sur l'ogive -->
-    <ellipse cx="65" cy="118" rx="34" ry="14" fill="#ffffff" stroke="#1b3a63" stroke-width="2"/>
-    <text class="sm" x="65" y="123" text-anchor="middle">plaque</text>
-    <!-- loupe -->
-    <path class="p" d="M104,120 L210,150"/>
-    <text class="sm" x="65" y="392" text-anchor="middle">R-449A · récupération</text>
+  <!-- ============ LA BOUTEILLE (petite, à gauche) ============ -->
+  <g transform="translate(150,0)">
+    <path class="p" d="M-46,392 v-190 a46,40 0 0 1 92,0 v190 z" fill="#f6f9fc"/>
+    <path d="M-46,202 a46,40 0 0 1 92,0 z" fill="#8fa3b8"/>
+    <rect x="-12" y="132" width="24" height="26" rx="4" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- la plaque sur l'ogive, mise en évidence -->
+    <rect x="-30" y="216" width="60" height="40" rx="4" fill="#fff4ed" stroke="#c9451a" stroke-width="2.4"/>
+    <text class="sm" x="0" y="240" text-anchor="middle">la plaque</text>
+    <path class="dash" d="M34,236 h84" stroke="#c9451a"/>
+    <text class="lg" x="0" y="420" text-anchor="middle">bouteille de récupération</text>
   </g>
 
   <!-- ============ LA PLAQUE EN GRAND ============ -->
-  <rect x="310" y="80" width="330" height="300" rx="14" fill="#f6f9fc" stroke="#1b3a63" stroke-width="3"/>
-  <text class="st" x="475" y="112" text-anchor="middle">PLAQUE SIGNALÉTIQUE</text>
-  <path class="dash" d="M334,126 h282"/>
+  <rect x="270" y="70" width="540" height="252" rx="14" fill="#fff4ed" stroke="#c9451a" stroke-width="3"/>
+  <circle cx="298" cy="98" r="7" fill="#ffffff" stroke="#c9451a" stroke-width="2"/>
+  <circle cx="782" cy="98" r="7" fill="#ffffff" stroke="#c9451a" stroke-width="2"/>
 
   <g>
-    <text class="big" x="340" y="170">TW</text>
-    <text class="big" x="616" y="170" text-anchor="end">6,2 kg</text>
-    <text class="lg" x="340" y="192">la TARE — masse de la bouteille vide</text>
+    <text class="big" x="300" y="140">TW</text>
+    <text class="big" x="540" y="140" fill="#a8410f">6,2 kg</text>
+    <text class="lg" x="620" y="140">la TARE — masse de la bouteille VIDE</text>
   </g>
-  <path class="dash" d="M334,208 h282"/>
+  <path class="dash" d="M295,162 h490"/>
   <g>
-    <text class="big" x="340" y="248">WC</text>
-    <text class="big" x="616" y="248" text-anchor="end">12 L</text>
-    <text class="lg" x="340" y="270">la capacité EN EAU — volume interne</text>
+    <text class="big" x="300" y="204">WC</text>
+    <text class="big" x="540" y="204" fill="#a8410f">12 L</text>
+    <text class="lg" x="620" y="196">la capacité EN EAU —</text>
+    <text class="lg" x="620" y="216">le volume interne de référence</text>
   </g>
-  <path class="dash" d="M334,286 h282"/>
+  <path class="dash" d="M295,228 h490"/>
   <g>
-    <text class="big" x="340" y="326">PS</text>
-    <text class="big" x="616" y="326" text-anchor="end">45 bar</text>
-    <text class="lg" x="340" y="348">la pression de SERVICE</text>
+    <text class="big" x="300" y="272">PS</text>
+    <text class="big" x="540" y="272" fill="#a8410f">45 bar</text>
+    <text class="lg" x="620" y="272">la pression de SERVICE</text>
   </g>
 
   <!-- ============ LA COULEUR, ELLE… ============ -->
-  <rect x="680" y="80" width="150" height="300" rx="12" fill="#fdeee8" stroke="#c9451a" stroke-width="2.2"/>
-  <text class="bad" x="755" y="112" text-anchor="middle">LA COULEUR ?</text>
-  <!-- nuancier barré -->
-  <rect x="705" y="130" width="100" height="26" rx="5" fill="#7db2d6"/>
-  <rect x="705" y="164" width="100" height="26" rx="5" fill="#a9c8a2"/>
-  <rect x="705" y="198" width="100" height="26" rx="5" fill="#e8d9a8"/>
-  <path class="p" d="M700,236 L810,124" stroke="#c9451a" stroke-width="4"/>
-  <text class="lg" x="755" y="262" text-anchor="middle">un repère,</text>
-  <text class="lg" x="755" y="282" text-anchor="middle">jamais une preuve</text>
-  <path class="dash" d="M700,300 h110"/>
-  <text class="sm" x="755" y="324" text-anchor="middle">A2L : ogive rouge +</text>
-  <text class="sm" x="755" y="342" text-anchor="middle">raccord à pas à gauche</text>
-  <text class="sm" x="755" y="360" text-anchor="middle">(repère courant)</text>
+  <rect x="270" y="340" width="540" height="62" rx="10" fill="#eef3f9" stroke="#1b3a63" stroke-width="2"/>
+  <text class="st" x="540" y="366" text-anchor="middle">La couleur ? Un simple repère visuel.</text>
+  <text class="lg" x="540" y="390" text-anchor="middle">Sur le terrain on vérifie la conception, les marquages et la notice du récipient.</text>
 
-  <!-- morale -->
-  <path class="dash" d="M60,414 h760"/>
-  <text class="st" x="440" y="444" text-anchor="middle">Sur le terrain, on vérifie la CONCEPTION, les MARQUAGES et la NOTICE du récipient.</text>
+  <path class="dash" d="M60,424 h760"/>
+  <text class="st" x="440" y="450" text-anchor="middle">TW pour peser · WC pour la contenance · PS pour la pression : trois lettres qui commandent tous les gestes.</text>
 </svg>

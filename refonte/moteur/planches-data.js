@@ -129,7 +129,7 @@ window.PLANCHES = [
  },
  {
   "id": "teqco2-calcul",
-  "titre": "1 kg qui fuit × PRP 3922 ≈ 3,9 tonnes équivalent CO₂",
+  "titre": "1 kg de fuite → 3,9 tonnes équivalent CO₂ : la conversion que la règle regarde",
   "famille": "fluides et classes",
   "chemin": "planches/teqco2-calcul.svg",
   "ko": 4
@@ -276,7 +276,7 @@ window.PLANCHES = [
  },
  {
   "id": "bouteille-deux-robinets",
-  "titre": "Deux robinets, deux phases — pas deux pressions",
+  "titre": "Deux robinets = deux phases — jamais deux pressions",
   "famille": "gestes",
   "chemin": "planches/bouteille-deux-robinets.svg",
   "ko": 5
@@ -311,7 +311,7 @@ window.PLANCHES = [
  },
  {
   "id": "plaque-bouteille",
-  "titre": "La plaque dit tout — la couleur, presque rien",
+  "titre": "La plaque dit tout : TW · WC · PS — la couleur, presque rien",
   "famille": "gestes",
   "chemin": "planches/plaque-bouteille.svg",
   "ko": 4
@@ -363,7 +363,7 @@ window.PLANCHES = [
   "titre": "Trois bouteilles, trois usages — le bon contenant avant de brancher",
   "famille": "gestes",
   "chemin": "planches/trois-bouteilles.svg",
-  "ko": 4
+  "ko": 5
  },
  {
   "id": "secu-flamme",
