@@ -247,6 +247,16 @@ normal ne porte pas une trace du dispositif.
 `BETA/` et le zip sont **hors dépôt** (`.gitignore`) : ce sont des produits, refaits d'une
 commande — `node build/paquet-beta.mjs`.
 
+### 🔬 Prototype REÇU ET BRANCHÉ le 07/08 au soir : les régulateurs KV
+
+`REGULATEURS-KV-PEDAGOGIQUES-PROTOTYPE-2026-08-07.zip` (Bureau, « inerweb full ia\Livraisons »),
+extrait dans **`modules-essai/regulateurs-kv-pedagogiques/`** — dossier **IGNORÉ PAR GIT** :
+ses 13 tests passent, mais **le maillage 3D dérive d'un STEP constructeur** (« diffusion à
+arbitrer », dit sa propre notice) → il ne se pousse PAS sur le dépôt public tant que Franck
+n'a pas arbitré (point 5 de sa REPRISE interne). Branché pour l'essai : palier 5 du parcours
+(carte « à l'essai » cliquable) + espace enseignant (Relecture et fabrique). Les entrées
+`avenir` de paliers.js acceptent désormais un champ `essai:` (lien local, badge 🔬).
+
 ### 📦 Livraison reçue le 07/08 (zip sur le Bureau, dossier « 1er mfre »)
 
 `ANIMATIONS-TUTORIELS-VOIX-HABILITATION-FLUIDES-2026-08-06.zip` (136,5 Mo, 2 045 entrées),

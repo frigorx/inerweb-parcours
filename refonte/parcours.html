@@ -70,6 +70,17 @@
           + (c.minutes ? '<span class="et">' + c.minutes + " min</span>" : "")
           + "</div></a>";
       }
+      /* Une place réservée peut porter un PROTOTYPE à l'essai (e.essai) :
+         elle devient cliquable, marquée comme telle — jamais confondue
+         avec une capsule finie. Le prototype vit hors dépôt (modules-essai,
+         ignoré par git) : le lien ne répond que sur le poste de Franck. */
+      if (e.essai) {
+        return '<a class="entree avenir" href="' + esc(e.essai) + '">'
+          + "<h3>🔬 " + esc(e.avenir) + "</h3>"
+          + (e.note ? '<p class="note">' + esc(e.note) + "</p>" : "")
+          + '<div class="pied"><span class="et encours">à l\'essai</span></div>'
+          + "</a>";
+      }
       return '<div class="entree avenir">'
         + "<h3>⏳ " + esc(e.avenir) + "</h3>"
         + (e.note ? '<p class="note">' + esc(e.note) + "</p>" : "")
