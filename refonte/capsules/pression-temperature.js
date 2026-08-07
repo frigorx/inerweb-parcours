@@ -26,10 +26,11 @@ CAPSULE({
     {
       id: "01-la-cloche",
       titre: "De l'eau à 25 °C peut bouillir. Sans flamme, sans résistance.",
+      planche: "planches/cloche-a-vide.svg",
       texte: [
         "Un verre d'eau tiède sous une cloche. Une pompe retire **seulement l'air**. Vers **0,032 bar absolu**, l'eau **bout** — à 25 °C.",
         "**100 °C n'est vrai qu'autour de la pression atmosphérique.** La pression déplace la température d'ébullition.",
-        "Et « sans chauffage » ne veut pas dire « sans énergie » : la vaporisation prélève la chaleur latente **dans l'eau elle-même**, qui se refroidit."
+        "Et « sans chauffage » ne veut pas dire « sans énergie » : la vaporisation prélève la [[chaleur latente|l'énergie que demande le changement d'état — elle ne se voit pas au thermomètre ; c'est le sujet de la capsule « La chaleur, sensible et latente »]] **dans l'eau elle-même**, qui se refroidit."
       ],
       lu: "Commençons par une expérience qui surprend tout le monde. Un verre d'eau tiède, à vingt-cinq degrés, sous une cloche transparente. Une pompe retire seulement l'air. Il n'y a ni flamme, ni résistance. Et pourtant, vers zéro virgule zéro trente-deux bar absolu, l'eau se met à bouillir. À vingt-cinq degrés. Cent degrés n'est vrai qu'autour de la pression atmosphérique : la pression déplace la température d'ébullition. Et attention : sans chauffage extérieur ne signifie jamais sans énergie. La vaporisation prélève la chaleur latente dans l'eau elle-même, qui se refroidit.",
       plus: ["la-cloche-en-detail"],
@@ -39,11 +40,11 @@ CAPSULE({
     {
       id: "02-la-carte",
       titre: "La courbe de saturation : la carte professionnelle du frigoriste.",
-      planche: "../fonds-origine/packs/fluides/res/svg/lecture-table.svg",
+      planche: "planches/courbe-saturation-eau.svg",
       texte: [
         "À chaque pression, **sa** température d'ébullition. Pour l'eau : **1,013 bar → 100 °C** · **0,474 → 80 °C** · **0,199 → 60 °C** · **0,032 → 25 °C**.",
         "**La courbe n'est pas une règle de trois — mais elle monte toujours** : baisser la pression abaisse la température de saturation.",
-        "La condition physique : l'ébullition commence quand la **pression de vapeur** du liquide atteint la pression qui s'exerce sur lui."
+        "La condition physique : l'ébullition commence quand la [[pression de vapeur|la pression que la vapeur d'un liquide exerce au-dessus de lui. Chaque liquide a la sienne, et elle grandit avec la température]] du liquide atteint la pression qui s'exerce sur lui."
       ],
       lu: "Cette relation se dessine : c'est la courbe de saturation, la carte professionnelle du frigoriste. À chaque pression, sa température d'ébullition. Pour l'eau : un virgule zéro treize bar, cent degrés. Zéro virgule quatre cent soixante-quatorze bar, quatre-vingts degrés. Zéro virgule cent quatre-vingt-dix-neuf bar, soixante degrés. Zéro virgule zéro trente-deux bar, vingt-cinq degrés. La courbe n'est pas une règle de trois, mais elle monte toujours : baisser la pression abaisse la température de saturation. Et la condition physique tient en une phrase : l'ébullition commence lorsque la pression de vapeur du liquide atteint la pression qui s'exerce sur lui.",
       codes: ["1.02", "1.03"]
@@ -52,6 +53,7 @@ CAPSULE({
     {
       id: "03-deux-sens",
       titre: "Une seule frontière, deux sens de passage.",
+      planche: "planches/saturation-deux-sens.svg",
       texte: [
         "À pression donnée, un fluide pur **bout et condense à la même température** : sa température de saturation.",
         "**Évaporation et condensation parcourent la même frontière dans deux sens opposés.**",
@@ -64,8 +66,9 @@ CAPSULE({
     {
       id: "04-le-levier",
       titre: "Le levier du frigoriste : choisir la pression, c'est choisir la température.",
+      planche: "planches/levier-pressions.svg",
       texte: [
-        "Local à **+4 °C**. En tenant le R-134a à **2,0 bar absolus**, il sature à **−10 °C** : plus froid que le local, l'énergie **entre** dans le fluide. **C'est l'effet frigorifique.**",
+        "Local à **+4 °C**. En tenant le R-134a à **2,0 bar absolus**, il [[sature|il atteint sa température de changement d'état : à cette pression, il bout précisément à cette température-là]] à **−10 °C** : plus froid que le local, l'énergie **entre** dans le fluide. **C'est l'effet frigorifique.**",
         "Extérieur à **+30 °C**. À **10,2 bar absolus**, il sature à **+40 °C** : plus chaud que dehors, le fluide **cède** son énergie.",
         "**La pression ne fabrique pas le froid. Elle choisit la température du changement d'état.**"
       ],
@@ -90,9 +93,10 @@ CAPSULE({
     {
       id: "06-pur-ou-melange",
       titre: "Corps pur : un palier. Zéotrope : un glissement.",
+      planche: "planches/palier-vs-glissement.svg",
       texte: [
         "Le corps pur change d'état à température **constante** : bulle et rosée coïncident.",
-        "Le **mélange zéotrope**, non : ses composants ne changent pas d'état ensemble. La température **glisse** — pour le R-407C, de **−10 °C (bulle)** à **−3,9 °C (rosée)**, soit **6,1 K** de glissement.",
+        "Le [[mélange zéotrope|un fluide fait de plusieurs composants qui ne changent pas d'état exactement ensemble — les séries R-400, voir la capsule « Lire le code d'un fluide »]], non : ses composants ne changent pas d'état ensemble. La température **glisse** — pour le R-407C, de **−10 °C (bulle)** à **−3,9 °C (rosée)**, soit **6,1 K** de glissement.",
         "Les références du métier : **surchauffe → rosée · sous-refroidissement → bulle.** La capsule « La surchauffe » s'en sert."
       ],
       lu: "Dernière distinction, et elle compte à l'examen. Un corps pur change d'état à température constante : le point de bulle et le point de rosée coïncident. Un mélange zéotrope, non : ses composants ne changent pas d'état exactement ensemble, et la température glisse pendant le changement d'état. Pour le R quatre cent sept C : de moins dix degrés au point de bulle, à moins trois virgule neuf degrés au point de rosée. Six virgule un kelvins de glissement. D'où les références du métier : la surchauffe se mesure par rapport à la rosée ; le sous-refroidissement, par rapport à la bulle. La capsule sur la surchauffe s'en sert directement.",
@@ -117,6 +121,7 @@ CAPSULE({
         {
           id: "d-cloche-1",
           titre: "L'équilibre : quand la pression de vapeur rejoint la pression extérieure.",
+          planche: "planches/equilibre-pression-vapeur.svg",
           texte: [
             "À 25 °C, l'eau a une pression de vapeur de **0,032 bar**. Sous 1,013 bar d'air, elle reste liquide : **0,032 ≠ 1,013**.",
             "La pompe descend la pression : à **0,199 bar**, toujours pas égalité. À **0,032 bar : égalité** — les bulles naissent dans la masse.",
@@ -134,6 +139,7 @@ CAPSULE({
         {
           id: "d-table-1",
           titre: "Huit lignes qui traduisent toute la machine.",
+          planche: "../fonds-origine/packs/fluides/res/svg/lecture-table.svg",
           texte: [
             "R-134a, pression **absolue** : **−20 °C → 1,327 bar** · **−10 → 2,006** · **0 → 2,928** · **+10 → 4,146**.",
             "**+20 → 5,717** · **+30 → 7,702** · **+40 → 10,166** · **+50 → 13,179 bar**.",
@@ -151,6 +157,7 @@ CAPSULE({
         {
           id: "d-bulle-1",
           titre: "Les noms décrivent les frontières — pas l'ordre du voyage.",
+          planche: "planches/bulle-rosee.svg",
           texte: [
             "**Point de bulle** : la frontière côté **liquide**. En évaporation, la première bulle y apparaît ; en condensation, la dernière bulle y disparaît.",
             "**Point de rosée** : la frontière côté **vapeur**. En évaporation, la dernière goutte y disparaît ; en condensation, la première goutte y apparaît.",

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Zoom sur le palier de la courbe de chauffe : la chaleur latente. On continue d'apporter de l'énergie, mais la température ne bouge plus : toute l'énergie sert à changer l'état, du liquide vers la vapeur. Le thermomètre ne voit rien, et pourtant l'énergie passe — le palier n'est pas une pause, c'est un changement d'état en cours. La formule associée : Q égale m fois L, la masse fois la chaleur latente massique.">
+  <title>Le palier : chaleur latente — cachée au thermomètre</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Le PALIER : on chauffe toujours — le thermomètre ne bouge plus</text>
+
+  <!-- ============ LE GRAPHE ============ -->
+  <path class="p" d="M110,80 v290 h420"/>
+  <text class="st" x="40" y="84">T</text>
+  <text class="st" x="530" y="402" text-anchor="end">énergie apportée →</text>
+
+  <!-- courbe : pente grisée, PALIER accentué, pente grisée -->
+  <path class="dash" d="M110,330 L180,240"/>
+  <path id="palier" class="acc" d="M180,240 H430"/>
+  <path class="dash" d="M430,240 L500,140"/>
+  <circle r="7" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"><mpath href="#palier"/></animateMotion>
+  </circle>
+  <rect x="180" y="88" width="250" height="282" fill="#fbdcd2" opacity="0.35"/>
+  <text class="bad" x="305" y="222" text-anchor="middle">PLAT — et pourtant l'énergie passe</text>
+
+  <!-- sous le palier : liquide → vapeur -->
+  <g transform="translate(0,0)">
+    <text class="sm" x="196" y="290">liquide</text>
+    <g fill="#7db2d6">
+      <circle cx="210" cy="310" r="7"/><circle cx="230" cy="322" r="7"/><circle cx="250" cy="308" r="7"/>
+    </g>
+    <path class="acc" d="M280,312 h50 m-11,-7 11,7 -11,7"/>
+    <g fill="#e8a58c">
+      <circle cx="360" cy="300" r="6"><animate attributeName="cy" values="300;288;300" dur="2.4s" repeatCount="indefinite"/></circle>
+      <circle cx="385" cy="318" r="6"><animate attributeName="cx" values="385;397;385" dur="2.8s" repeatCount="indefinite"/></circle>
+      <circle cx="405" cy="298" r="6"><animate attributeName="cy" values="298;310;298" dur="2.1s" repeatCount="indefinite"/></circle>
+    </g>
+    <text class="sm" x="392" y="345">vapeur</text>
+  </g>
+
+  <!-- thermomètre figé -->
+  <g transform="translate(60,120)">
+    <rect x="-8" y="0" width="16" height="180" rx="8" fill="#ffffff" stroke="#1b3a63" stroke-width="2.2"/>
+    <circle cx="0" cy="192" r="16" fill="#c9451a"/>
+    <rect x="-5" y="90" width="10" height="90" rx="5" fill="#c9451a"/>
+  </g>
+  <text class="sm" x="60" y="345" text-anchor="middle">il ne voit RIEN</text>
+
+  <!-- ============ LA FORMULE ============ -->
+  <rect x="580" y="90" width="250" height="150" rx="10" fill="#fdeee8" stroke="#c9451a" stroke-width="2.2"/>
+  <text class="t" x="705" y="132" text-anchor="middle" fill="#a8410f">Q = m × L</text>
+  <text class="lg" x="705" y="164" text-anchor="middle">m : la masse (kg)</text>
+  <text class="lg" x="705" y="186" text-anchor="middle">L : la chaleur latente</text>
+  <text class="lg" x="705" y="206" text-anchor="middle">massique (J/kg)</text>
+  <text class="sm" x="705" y="228" text-anchor="middle">la température ne bouge PAS</text>
+
+  <rect x="580" y="260" width="250" height="112" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+  <text class="st" x="705" y="292" text-anchor="middle">Et elle transporte</text>
+  <text class="t" x="705" y="322" text-anchor="middle" fill="#a8410f">ÉNORMÉMENT</text>
+  <text class="lg" x="705" y="350" text-anchor="middle">d'énergie — le secret de la machine</text>
+
+  <!-- morale -->
+  <path class="dash" d="M60,404 h760"/>
+  <text class="st" x="440" y="432" text-anchor="middle">Un palier n'est PAS une pause : c'est un changement d'état en cours.</text>
+  <text class="lg" x="440" y="454" text-anchor="middle">État qui change = chaleur LATENTE — cachée au thermomètre, mais bien réelle.</text>
+</svg>

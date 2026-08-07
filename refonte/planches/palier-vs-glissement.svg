@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Deux courbes de température pendant le changement d'état, à pression constante. À gauche, le corps pur : la température reste plate à moins dix degrés du début à la fin — le point de bulle et le point de rosée coïncident, glissement nul. À droite, le mélange zéotrope R-407C : la température glisse du point de bulle à moins dix degrés jusqu'au point de rosée à moins trois virgule neuf degrés — six virgule un kelvins de glissement. Conséquence métier : la surchauffe se mesure par rapport à la rosée, le sous-refroidissement par rapport à la bulle.">
+  <title>Corps pur : un palier · zéotrope : un glissement</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">À pression constante : le pur fait un palier, le mélange glisse</text>
+
+  <!-- ================= GRAPHE 1 : CORPS PUR ================= -->
+  <rect x="60" y="64" width="360" height="300" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+  <text class="st" x="240" y="92" text-anchor="middle">CORPS PUR</text>
+  <path class="p" d="M100,120 v190 h290"/>
+  <text class="sm" x="100" y="336">état : liquide → vapeur →</text>
+  <text class="sm" x="88" y="116" text-anchor="end">T</text>
+
+  <!-- zone diphasique -->
+  <rect x="160" y="120" width="170" height="190" fill="#eef3f7"/>
+  <text class="sm" x="245" y="300" text-anchor="middle">liquide + vapeur</text>
+
+  <!-- la courbe : montée, PALIER PLAT, montée -->
+  <path id="pur" class="acc" d="M104,290 L160,230 L330,230 L386,150"/>
+  <circle r="6.5" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="7s" repeatCount="indefinite" calcMode="linear"><mpath href="#pur"/></animateMotion>
+  </circle>
+  <path class="dash" d="M160,230 h-58"/>
+  <text class="st" x="96" y="236" text-anchor="end">−10 °C</text>
+  <circle cx="160" cy="230" r="5" fill="#1b3a63"/>
+  <circle cx="330" cy="230" r="5" fill="#1b3a63"/>
+  <text class="sm" x="160" y="218" text-anchor="middle">bulle</text>
+  <text class="sm" x="330" y="218" text-anchor="middle">rosée</text>
+  <text class="bad" x="245" y="260" text-anchor="middle">PLAT — glissement 0 K</text>
+  <text class="lg" x="245" y="356" text-anchor="middle">bulle et rosée coïncident</text>
+
+  <!-- ================= GRAPHE 2 : ZÉOTROPE ================= -->
+  <rect x="460" y="64" width="360" height="300" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+  <text class="st" x="640" y="92" text-anchor="middle">MÉLANGE ZÉOTROPE — R-407C</text>
+  <path class="p" d="M500,120 v190 h290"/>
+  <text class="sm" x="500" y="336">état : liquide → vapeur →</text>
+  <text class="sm" x="488" y="116" text-anchor="end">T</text>
+
+  <rect x="560" y="120" width="170" height="190" fill="#fdeee8"/>
+  <text class="sm" x="645" y="300" text-anchor="middle">liquide + vapeur</text>
+
+  <!-- la courbe : montée, RAMPE, montée -->
+  <path id="zeo" class="acc" d="M504,290 L560,240 L730,192 L786,120"/>
+  <circle r="6.5" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="7s" repeatCount="indefinite" calcMode="linear"><mpath href="#zeo"/></animateMotion>
+  </circle>
+  <path class="dash" d="M560,240 h-58 M730,192 h-228"/>
+  <text class="st" x="496" y="246" text-anchor="end">−10 °C</text>
+  <text class="st" x="496" y="198" text-anchor="end">−3,9 °C</text>
+  <circle cx="560" cy="240" r="5" fill="#1b3a63"/>
+  <circle cx="730" cy="192" r="5" fill="#1b3a63"/>
+  <text class="sm" x="560" y="228" text-anchor="middle">bulle</text>
+  <text class="sm" x="730" y="180" text-anchor="middle">rosée</text>
+  <!-- l'écart, montré ET nommé -->
+  <path class="p" d="M756,240 v-48 m-6,8 6,-8 6,8 m-6,40 v0" stroke="#c9451a"/>
+  <text class="bad" x="762" y="222">6,1 K</text>
+  <text class="bad" x="645" y="264" text-anchor="middle">ÇA GLISSE — la température monte pendant l'ébullition</text>
+  <text class="lg" x="645" y="356" text-anchor="middle">bulle et rosée sont deux températures différentes</text>
+
+  <!-- ================= MORALE ================= -->
+  <path class="dash" d="M60,392 h760"/>
+  <text class="st" x="440" y="420" text-anchor="middle">Les références du métier : surchauffe → ROSÉE · sous-refroidissement → BULLE.</text>
+  <text class="lg" x="440" y="444" text-anchor="middle">Sur un corps pur les deux coïncident — sur un zéotrope, se tromper de référence fausse la mesure de tout le réglage.</text>
+</svg>

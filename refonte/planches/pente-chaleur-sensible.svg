@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Zoom sur une pente de la courbe de chauffe : la chaleur sensible. On apporte de l'énergie, la température monte, l'état ne change pas — le thermomètre la sent. La formule associée : Q égale m fois c fois delta T, la masse fois la capacité thermique fois l'écart de température. Repères de capacité thermique : eau quatre mille cent quatre-vingts, air sec mille cinq, cuivre trois cent quatre-vingt-cinq joules par kilogramme et par kelvin.">
+  <title>La pente : chaleur sensible — le thermomètre la sent</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">La PENTE : on chauffe, et le thermomètre monte</text>
+
+  <!-- ============ LE GRAPHE ============ -->
+  <path class="p" d="M110,80 v290 h420"/>
+  <text class="st" x="40" y="84">T</text>
+  <text class="st" x="530" y="402" text-anchor="end">énergie apportée →</text>
+
+  <!-- la pente, mise en avant ; le reste de la courbe en grisé -->
+  <path class="dash" d="M110,340 l50,-20"/>
+  <path id="pente" class="acc" d="M160,320 L400,150"/>
+  <path class="dash" d="M400,150 h100"/>
+  <circle r="7" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"><mpath href="#pente"/></animateMotion>
+  </circle>
+
+  <!-- l'écart de température, montré -->
+  <path class="dash" d="M160,320 h240 M400,150 v170"/>
+  <path class="p" d="M448,320 v-170 m-7,10 7,-10 7,10 m-7,160 v0" stroke="#c9451a"/>
+  <text class="bad" x="458" y="240">ΔT</text>
+  <text class="sm" x="458" y="258">l'écart de température</text>
+
+  <!-- thermomètre qui monte -->
+  <g transform="translate(60,120)">
+    <rect x="-8" y="0" width="16" height="180" rx="8" fill="#ffffff" stroke="#1b3a63" stroke-width="2.2"/>
+    <circle cx="0" cy="192" r="16" fill="#c9451a"/>
+    <rect x="-5" y="30" width="10" height="150" rx="5" fill="#c9451a">
+      <animate attributeName="y" values="150;30" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="30;150" dur="5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <text class="sm" x="60" y="345" text-anchor="middle">il la SENT</text>
+
+  <!-- ============ LA FORMULE ============ -->
+  <rect x="580" y="90" width="250" height="150" rx="10" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.2"/>
+  <text class="t" x="705" y="130" text-anchor="middle">Q = m × c × ΔT</text>
+  <text class="lg" x="705" y="160" text-anchor="middle">m : la masse (kg)</text>
+  <text class="lg" x="705" y="182" text-anchor="middle">c : la capacité thermique</text>
+  <text class="lg" x="705" y="204" text-anchor="middle">ΔT : l'écart de température</text>
+  <text class="sm" x="705" y="228" text-anchor="middle">l'état ne change PAS</text>
+
+  <!-- repères de c -->
+  <rect x="580" y="260" width="250" height="112" rx="10" fill="#ffffff" stroke="#dbe4ec" stroke-width="2"/>
+  <text class="st" x="705" y="286" text-anchor="middle">c — J/(kg·K)</text>
+  <text class="lg" x="605" y="312">eau</text><text class="st" x="820" y="312" text-anchor="end">4 180</text>
+  <text class="lg" x="605" y="336">air sec</text><text class="st" x="820" y="336" text-anchor="end">1 005</text>
+  <text class="lg" x="605" y="360">cuivre</text><text class="st" x="820" y="360" text-anchor="end">385</text>
+
+  <!-- morale -->
+  <path class="dash" d="M60,404 h760"/>
+  <text class="st" x="440" y="432" text-anchor="middle">Température qui change = chaleur SENSIBLE. L'état, lui, ne bouge pas.</text>
+  <text class="lg" x="440" y="454" text-anchor="middle">Exemple du cours : chauffer 1 kg d'eau de 20 à 60 °C = 1 × 4 180 × 40 = 167 200 J = 167,2 kJ.</text>
+</svg>

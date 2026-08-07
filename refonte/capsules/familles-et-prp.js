@@ -38,6 +38,7 @@ CAPSULE({
     {
       id: "02-les-interdits",
       titre: "CFC et HCFC : le chlore les a condamnés.",
+      planche: "planches/interdits-cfc-hcfc.svg",
       texte: [
         "Les **CFC** (le R-12) : les « miracles » des années 1930 — stables, ni toxiques ni inflammables… **et tueurs d'ozone**. Interdits.",
         "Les **HCFC** (le R-22) : la transition. Un peu d'hydrogène, moins de chlore, vie plus courte — **mais du chlore quand même**. Interdits aussi.",
@@ -54,8 +55,9 @@ CAPSULE({
     {
       id: "03-les-hfc",
       titre: "Les HFC : l'ozone sauvé, le climat raté.",
+      planche: "planches/hfc-ozone-climat.svg",
       texte: [
-        "**Zéro chlore** : avec les HFC (R-134a, R-32), l'ozone est sauvé — ODP = 0.",
+        "**Zéro chlore** : avec les HFC (R-134a, R-32), l'ozone est sauvé — [[ODP|le potentiel de destruction de l'ozone : 0 veut dire que le fluide, même relâché, n'attaque pas la couche d'ozone]] = 0.",
         "Mais leur **PRP est fort** : ils réchauffent le climat des centaines à des milliers de fois plus que le CO₂, kilo pour kilo.",
         "D'où leur statut : **en réduction**. C'est la réduction progressive des quotas (le « phase-down ») du règlement F-Gas, et l'amendement de Kigali."
       ],
@@ -87,8 +89,9 @@ CAPSULE({
     {
       id: "05-les-autorises",
       titre: "HFO et naturels : autorisés — chacun son revers.",
+      planche: "planches/autorises-hfo-naturels.svg",
       texte: [
-        "Les **HFO** (R-1234yf) : une **double liaison C = C** qui casse en quelques jours dans l'air — **PRP ≈ 1**. Souvent A2L. Et la question **PFAS** se pose.",
+        "Les **HFO** (R-1234yf) : une **double liaison C = C** qui casse en quelques jours dans l'air — **PRP ≈ 1**. Souvent A2L. Et la question [[PFAS|le sigle des substances per- et polyfluoroalkylées : des composés fluorés très persistants dans l'environnement. Leur lien avec les HFO fait débat — le point est signalé « à vérifier »]] se pose.",
         "Les **naturels** : R-290 et R-600a (propane, isobutane), R-717 (ammoniac), R-744 (CO₂). **PRP minuscule.**",
         "Mais **chacun son revers : A3, B2L ou haute pression.** Le fluide qui ne réchauffe pas le climat vous demande, à vous, davantage de métier."
       ],
@@ -102,8 +105,9 @@ CAPSULE({
     {
       id: "06-la-regle",
       titre: "Ce que la règle en fait — et ce que ça vous demande.",
+      planche: "planches/prp-regle-serre.svg",
       texte: [
-        "Le règlement **F-Gas 2024/573** accélère la baisse des **quotas** de HFC et programme **l'interdiction** de certains fluides à fort PRP dans de nombreux équipements neufs.",
+        "Le règlement **F-Gas 2024/573** accélère la baisse des [[quotas|les quantités maximales de HFC que les producteurs ont le droit de mettre sur le marché chaque année — elles diminuent d'année en année]] de HFC et programme **l'interdiction** de certains fluides à fort PRP dans de nombreux équipements neufs.",
         "L'amendement de **Kigali** fait la même chose à l'échelle mondiale.",
         "La chaîne est simple : **plus le PRP est fort, plus la règle serre.** Et la conclusion de toute la frise : **il n'existe pas de fluide parfait. Il existe des professionnels bien formés.**"
       ],
@@ -131,6 +135,7 @@ CAPSULE({
         {
           id: "d-atomes-1",
           titre: "Un rôle par atome.",
+          planche: "../fonds-origine/packs/fluides/res/svg/familles-fluides.svg",
           texte: [
             "**Le chlore (Cl)** : monté dans la stratosphère, il **détruit l'ozone**. C'est lui qui a condamné CFC et HCFC.",
             "**Le fluor (F)** : il rend la molécule **stable** — et une molécule stable qui absorbe la chaleur fait un **gaz à effet de serre durable**.",
@@ -152,7 +157,7 @@ CAPSULE({
           planche: "../fonds-origine/packs/fluides/res/svg/frise-histoire.svg",
           texte: [
             "**1928-1930** — Thomas Midgley Jr. synthétise les CFC : stables, ininflammables, non toxiques. Ils remplacent des gaz dangereux comme l'ammoniac.",
-            "**1974** — Molina et Rowland démontrent que les CFC, inertes en bas, libèrent dans la stratosphère un chlore qui **attaque la couche d'ozone**.",
+            "**1974** — Molina et Rowland démontrent que les CFC, inertes en bas, libèrent dans la [[stratosphère|la couche haute de l'atmosphère, entre 10 et 50 km d'altitude environ — c'est là que vit la couche d'ozone]] un chlore qui **attaque la couche d'ozone**.",
             "**1985** — le trou d'ozone est **confirmé** au-dessus du pôle Sud, depuis la station Halley.",
             "**1987** — le **protocole de Montréal** planifie l'élimination des substances qui appauvrissent l'ozone. L'un des plus grands succès de la diplomatie environnementale."
           ],
@@ -168,6 +173,7 @@ CAPSULE({
         {
           id: "d-climat-1",
           titre: "Le problème résolu d'un côté en a créé un de l'autre.",
+          planche: "../fonds-origine/packs/fluides/res/svg/frise-histoire.svg",
           texte: [
             "**Années 1990** — pour remplacer CFC et HCFC, l'industrie adopte massivement les **HFC**. L'ozone est sauvé… mais leur pouvoir de réchauffement est **des centaines à des milliers de fois** celui du CO₂.",
             "**2015** — l'**accord de Paris** fixe le cap : contenir le réchauffement bien en dessous de 2 degrés. Le froid est scruté comme tout le monde.",
@@ -186,6 +192,7 @@ CAPSULE({
         {
           id: "d-teq-1",
           titre: "La charge multipliée par le PRP.",
+          planche: "planches/teqco2-calcul.svg",
           texte: [
             "L'exemple de la planche : **fuir 1 kg de R-404A ≈ relâcher 3,9 tonnes équivalent CO₂** — c'est le PRP (3922) qui fait la conversion.",
             "Ce chiffre en « tonnes équivalent CO₂ » est celui que la réglementation regarde : c'est lui qui **classe la sévérité** d'une installation.",

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Un verre d'eau tiède à vingt-cinq degrés est posé sous une cloche transparente. Une pompe retire seulement l'air : le manomètre descend de un virgule zéro un trois bar vers zéro virgule zéro trente-deux bar. À ce seuil, sans flamme ni résistance, des bulles naissent dans toute la masse : l'eau bout à vingt-cinq degrés. La pression a déplacé la température d'ébullition.">
+  <title>La cloche à vide : l'eau bout à 25 °C, sans flamme</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Ni flamme, ni résistance — et pourtant l'eau bout</text>
+
+  <!-- ================= LA CLOCHE ================= -->
+  <!-- socle -->
+  <rect x="80" y="360" width="360" height="16" rx="4" fill="#dbe4ec"/>
+  <path class="p" d="M80,360 h360"/>
+  <!-- dôme de verre -->
+  <path class="p" d="M120,360 v-190 a140,120 0 0 1 280,0 v190" fill="#eef6fb" fill-opacity="0.55"/>
+  <text class="lg" x="150" y="120">cloche transparente</text>
+
+  <!-- verre d'eau -->
+  <path class="p" d="M215,360 v-95 h90 v95" fill="#ffffff"/>
+  <rect x="219" y="292" width="82" height="64" fill="#cfe6f5"/>
+  <text class="st" x="260" y="345" text-anchor="middle">eau</text>
+  <text class="bad" x="260" y="284" text-anchor="middle">25 °C — et ça ne change pas</text>
+
+  <!-- bulles : elles n'existent qu'en fin de cycle, quand le seuil est atteint -->
+  <g fill="#ffffff" stroke="#1b3a63" stroke-width="1.4">
+    <circle cx="240" cy="350" r="4">
+      <animate attributeName="cy" values="350;300" dur="1.4s" begin="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="262" cy="352" r="5">
+      <animate attributeName="cy" values="352;298" dur="1.1s" begin="6.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="1.1s" begin="6.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="284" cy="349" r="3.5">
+      <animate attributeName="cy" values="349;301" dur="1.3s" begin="6.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="1.3s" begin="6.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <text class="bad" x="260" y="392" text-anchor="middle">ÇA BOUT — à 25 °C
+    <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.6;1" dur="10s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- ================= LA POMPE ================= -->
+  <path class="p" d="M400,250 h90" />
+  <rect x="490" y="222" width="120" height="56" rx="8" fill="#eef3f7" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="st" x="550" y="255" text-anchor="middle">POMPE</text>
+  <text class="lg" x="550" y="296" text-anchor="middle">elle retire l'air, rien d'autre</text>
+  <!-- l'air aspiré : trois traits qui filent vers la pompe -->
+  <g class="acc">
+    <path d="M415,242 h30"><animate attributeName="opacity" values="1;0.15;1" dur="1s" repeatCount="indefinite"/></path>
+    <path d="M425,250 h30"><animate attributeName="opacity" values="0.15;1;0.15" dur="1s" repeatCount="indefinite"/></path>
+    <path d="M415,258 h30"><animate attributeName="opacity" values="1;0.15;1" dur="1s" begin="0.3s" repeatCount="indefinite"/></path>
+  </g>
+  <path class="acc" d="M610,250 h44 m-10,-7 10,7 -10,7"/>
+  <text class="sm" x="662" y="240">l'air sort</text>
+
+  <!-- ================= LE MANOMÈTRE ================= -->
+  <circle cx="720" cy="150" r="64" fill="#ffffff" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="st" x="720" y="90" text-anchor="middle">pression dans la cloche</text>
+  <text class="sm" x="676" y="196">0,032</text>
+  <text class="sm" x="748" y="112">1,013</text>
+  <text class="sm" x="720" y="228" text-anchor="middle">bar absolu</text>
+  <!-- aiguille : elle descend de la pression atmosphérique au seuil, puis y reste -->
+  <g transform="translate(720,150)">
+    <path d="M0,6 L48,0 L0,-6 Z" fill="#c9451a">
+      <animateTransform attributeName="transform" type="rotate"
+        values="-45;-45;170;170" keyTimes="0;0.1;0.6;1" dur="10s" repeatCount="indefinite"/>
+    </path>
+    <circle r="7" fill="#1b3a63"/>
+  </g>
+  <text class="bad" x="720" y="270" text-anchor="middle">1,013 → 0,032 bar
+    <animate attributeName="opacity" values="0.3;1;1" keyTimes="0;0.6;1" dur="10s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- ================= LA MORALE ================= -->
+  <path class="dash" d="M60,414 h760"/>
+  <text class="st" x="440" y="442" text-anchor="middle">100 °C n'est vrai qu'à la pression atmosphérique : la pression déplace la température d'ébullition.</text>
+</svg>

@@ -198,6 +198,17 @@ tant que Franck n'a pas tranché ses 6 décisions (§ 11 de la proposition).
 
 **Total** : 53 détours · **70 points « À vérifier »** · 258 narrations (les 74 du lot 3
 fabriquées le 07/08, mêmes voix Henri/Denise).
+
+**Lot 3 bis (07/08, retour de Franck : « je vois un diaporama — sans image je n'ai rien
+compris »)** : la règle **UN VISUEL PAR ÉCRAN** est entrée dans la doctrine
+(`MODELE-CAPSULE.md`), et les 4 capsules du lot 3 sont **illustrées à 37/37 écrans** —
+**22 planches SVG neuves** dessinées dans `refonte/planches/` (charte, SMIL, jamais d'IA),
+plus les réemplois du fonds. Les **mots difficiles** sont désormais **cliquables**
+(`[[mot|explication]]`, explication ÉCRITE, la voix ne change pas — les 258 narrations
+restent bonnes). `build/planches.mjs` moissonne maintenant les DEUX dossiers → 66 planches
+dans la bibliothèque. ⚠️ **LOT 4 À FAIRE** : le même contrôle révèle **68 écrans SANS
+visuel dans les 7 capsules d'origine** (liste par `node`-contrôle du 07/08, réexécutable) —
+la règle s'applique à elles aussi.
 **Méthode du lot 3** : extraction fidèle des tutos sources par agents (relevés exhaustifs,
 valeurs chiffrées comprises), redécoupage à la main, puis **relecture adversariale**
 (réfutation métier + cohérence inter-capsules) avant toute publication. Le fonds ne donnant
@@ -235,6 +246,19 @@ normal ne porte pas une trace du dispositif.
 
 `BETA/` et le zip sont **hors dépôt** (`.gitignore`) : ce sont des produits, refaits d'une
 commande — `node build/paquet-beta.mjs`.
+
+### 📦 Livraison reçue le 07/08 (zip sur le Bureau, dossier « 1er mfre »)
+
+`ANIMATIONS-TUTORIELS-VOIX-HABILITATION-FLUIDES-2026-08-06.zip` (136,5 Mo, 2 045 entrées),
+inventorié le 07/08 — c'est une FOURCHE ([[feedback_livraisons_full_ia]]) : rien n'écrase rien.
+- `01-tutoriels-voix-naturelle` : les 16 tutoriels avec **1 423 MP3 Piper** (5,9 h) — le
+  brouillon vocal du chantier Codex, **attend l'écoute et le bon à tirer de Franck**.
+- `02-composants-autonomes` : 8 modules dont **électrovanne v2 et détendeur v2** — comble
+  des places « à écrire » du palier 3 (les organes). À intégrer au moment du palier 3,
+  en vérifiant les droits d'images (`SOURCES-IMAGES.md`) avant toute entrée dans ce
+  dépôt PUBLIC.
+- `03-simulateurs` : Regul-Froid canonique — 🔴 **n'entre JAMAIS ici** (images Danfoss,
+  dépôt public).
 
 ### Ce qui reste en attente de F. Henninot
 

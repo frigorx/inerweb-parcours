@@ -69,8 +69,16 @@ Public élargi (décision du 06/08) : stagiaires habilitation A1/A2/D/E **et** �
 CAP IFCA / Bac Pro MFER, dont une partie est FLE ou DYS. Conséquences **obligatoires** :
 
 - **Une idée par écran.** Si un écran a besoin de « et aussi », c'est un détour.
+- **UN VISUEL PAR ÉCRAN, SANS EXCEPTION** (F. Henninot, 07/08/2026 : *« on ne doit pas
+  avoir une explication sans image, sans animation — j'ai écouté, j'ai rien compris »*).
+  Une capsule sans planche est un diaporama : ça ne cause pas. Planche du fonds si elle
+  colle, planche neuve sinon (SVG bibliothèque, jamais d'IA) — le champ `planche:` de
+  chaque écran, fil ET détours, doit être rempli.
 - **Phrases courtes**, voix active, présent. Pas de subordonnée qui traîne.
 - **Le mot difficile est expliqué là où il tombe**, pas dans un glossaire à la fin.
+  Concrètement : la syntaxe `[[mot|explication]]` le rend **gras et cliquable**, et
+  l'explication s'affiche PAR ÉCRIT sous le paragraphe — elle n'est jamais dite par la
+  voix (F. Henninot, 07/08/2026 : lire et comprendre, sans alourdir la narration).
 - **Le texte lu et le texte affiché sont deux textes.** Le texte affiché est court —
   ce qu'on lit ; le texte lu est plus parlé, et les nombres y sont **écrits en toutes
   lettres** (« R cent trente-quatre a », jamais « R-134a » que la voix massacre).

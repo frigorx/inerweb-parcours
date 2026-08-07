@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Les HFC, comme le R-134a et le R-32 : zéro chlore. Côté ozone, c'est gagné : leur potentiel de destruction de l'ozone, l'ODP, est nul. Côté climat, c'est raté : leur PRP est fort, des centaines à des milliers de fois celui du CO2, kilo pour kilo. D'où leur statut : en réduction — la baisse progressive des quotas du règlement F-Gas, et l'amendement de Kigali.">
+  <title>Les HFC : l'ozone sauvé, le climat raté</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#2e7d4f; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Zéro chlore : un problème réglé — un autre créé</text>
+
+  <!-- ============ LA MOLÉCULE ============ -->
+  <g transform="translate(150,220)">
+    <circle r="26" fill="#4a5b6e"/><text x="0" y="6" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">C</text>
+    <circle cx="-56" cy="-48" r="20" fill="#a9c8a2"/><text x="-56" y="-42" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">H</text>
+    <circle cx="56" cy="-48" r="20" fill="#7db2d6"/><text x="56" y="-42" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
+    <circle cx="-56" cy="48" r="20" fill="#7db2d6"/><text x="-56" y="54" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
+    <circle cx="56" cy="48" r="20" fill="#7db2d6"/><text x="56" y="54" text-anchor="middle" fill="#fff" font-weight="700" font-family="Calibri">F</text>
+    <path class="p" d="M-18,-16 L-42,-36 M18,-16 L42,-36 M-18,18 L-42,38 M18,18 L42,38" stroke-width="2"/>
+  </g>
+  <text class="st" x="150" y="330" text-anchor="middle">HFC — R-134a · R-32</text>
+  <text class="ok" x="150" y="356" text-anchor="middle">pas un atome de chlore</text>
+
+  <!-- ============ CÔTÉ OZONE : GAGNÉ ============ -->
+  <rect x="330" y="70" width="230" height="300" rx="12" fill="#eef7f0" stroke="#2e7d4f" stroke-width="2.4"/>
+  <text class="st" x="445" y="102" text-anchor="middle" fill="#2e7d4f">CÔTÉ OZONE</text>
+  <!-- bouclier ozone intact -->
+  <path d="M445,140 c40,14 60,10 60,10 v70 c0,50 -60,80 -60,80 c0,0 -60,-30 -60,-80 v-70 c0,0 20,4 60,-10 z"
+        fill="#ffffff" stroke="#2e7d4f" stroke-width="2.6"/>
+  <path d="M415,215 l22,24 40,-48" fill="none" stroke="#2e7d4f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="ok" x="445" y="336" text-anchor="middle">SAUVÉ — ODP = 0</text>
+  <text class="sm" x="445" y="356" text-anchor="middle">potentiel de destruction : nul</text>
+
+  <!-- ============ CÔTÉ CLIMAT : RATÉ ============ -->
+  <rect x="590" y="70" width="230" height="300" rx="12" fill="#fdeee8" stroke="#c9451a" stroke-width="2.4"/>
+  <text class="st" x="705" y="102" text-anchor="middle" fill="#a8410f">CÔTÉ CLIMAT</text>
+  <!-- thermomètre planétaire qui monte -->
+  <circle cx="705" cy="210" r="56" fill="#ffffff" stroke="#c9451a" stroke-width="2.6"/>
+  <path d="M672,190 a46,46 0 0 1 66,0 M666,222 a52,40 0 0 0 78,0" fill="none" stroke="#8fa3b8" stroke-width="1.8"/>
+  <g transform="translate(705,210)">
+    <rect x="-6" y="-40" width="12" height="76" rx="6" fill="#ffffff" stroke="#c9451a" stroke-width="2"/>
+    <circle cy="44" r="11" fill="#c9451a"/>
+    <rect x="-3.5" y="-20" width="7" height="60" rx="3.5" fill="#c9451a">
+      <animate attributeName="y" values="10;-20;10" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="30;60;30" dur="4s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <text class="bad" x="705" y="310" text-anchor="middle">RATÉ — PRP fort</text>
+  <text class="sm" x="705" y="332" text-anchor="middle">des centaines à des milliers</text>
+  <text class="sm" x="705" y="350" text-anchor="middle">de fois le CO₂, kilo pour kilo</text>
+
+  <!-- ============ LE VERDICT ============ -->
+  <path class="dash" d="M60,394 h760"/>
+  <g transform="translate(440,424) rotate(-2)">
+    <rect x="-130" y="-20" width="260" height="40" rx="8" fill="none" stroke="#c9451a" stroke-width="3"/>
+    <text class="bad" x="0" y="7" text-anchor="middle" font-size="19">EN RÉDUCTION</text>
+  </g>
+  <text class="lg" x="440" y="460" text-anchor="middle">la baisse des quotas F-Gas, et l'amendement de Kigali</text>
+</svg>

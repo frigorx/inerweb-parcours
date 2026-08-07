@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="La courbe de saturation de l'eau : la pression absolue en hauteur, la température d'ébullition en largeur. Quatre points la jalonnent : un virgule zéro un trois bar donne cent degrés, zéro virgule quatre cent soixante-quatorze bar donne quatre-vingts degrés, zéro virgule cent quatre-vingt-dix-neuf bar donne soixante degrés, et zéro virgule zéro trente-deux bar donne vingt-cinq degrés. La courbe n'est pas une droite, mais elle monte toujours : baisser la pression abaisse la température d'ébullition. Au-dessus de la courbe, l'eau reste liquide ; en dessous, elle est vapeur.">
+  <title>La courbe de saturation de l'eau : à chaque pression sa température d'ébullition</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">À chaque pression, sa température d'ébullition</text>
+
+  <!-- zones : liquide au-dessus de la courbe, vapeur en dessous -->
+  <path d="M110,70 L110,380 L740,380 L740,70 Z" fill="#ffffff"/>
+  <path d="M110,70 L110,352 C300,340 560,240 700,96 L700,70 Z" fill="#e3eef7"/>
+  <path d="M110,352 C300,340 560,240 700,96 L740,96 L740,380 L110,380 Z" fill="#fdeee8"/>
+  <text class="st" x="200" y="150" fill="#1b3a63">LIQUIDE</text>
+  <text class="sm" x="200" y="168">au-dessus de la courbe</text>
+  <text class="st" x="520" y="345" fill="#a8410f">VAPEUR</text>
+  <text class="sm" x="520" y="363">en dessous</text>
+
+  <!-- axes -->
+  <path class="p" d="M110,60 v320 h640"/>
+  <text class="st" x="30" y="64">pression</text>
+  <text class="sm" x="30" y="82">bar absolu</text>
+  <text class="st" x="750" y="412" text-anchor="end">température d'ébullition →</text>
+
+  <!-- la courbe -->
+  <path id="sat" class="acc" d="M148,352 C300,338 480,290 668,110"/>
+
+  <!-- point mobile qui parcourt la frontière -->
+  <circle r="7" fill="#c9451a" stroke="#fff" stroke-width="2">
+    <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#sat"/>
+    </animateMotion>
+  </circle>
+
+  <!-- les quatre points jalons, chacun : guide + valeurs -->
+  <g>
+    <path class="dash" d="M148,352 v28 M148,352 h-38"/>
+    <circle cx="148" cy="352" r="5.5" fill="#1b3a63"/>
+    <text class="sm" x="70" y="346" text-anchor="middle">0,032</text>
+    <text class="st" x="148" y="400" text-anchor="middle">25 °C</text>
+  </g>
+  <g>
+    <path class="dash" d="M330,330 v50 M330,330 h-220"/>
+    <circle cx="330" cy="330" r="5.5" fill="#1b3a63"/>
+    <text class="sm" x="70" y="324" text-anchor="middle">0,199</text>
+    <text class="st" x="330" y="400" text-anchor="middle">60 °C</text>
+  </g>
+  <g>
+    <path class="dash" d="M480,286 v94 M480,286 h-370"/>
+    <circle cx="480" cy="286" r="5.5" fill="#1b3a63"/>
+    <text class="sm" x="70" y="280" text-anchor="middle">0,474</text>
+    <text class="st" x="480" y="400" text-anchor="middle">80 °C</text>
+  </g>
+  <g>
+    <path class="dash" d="M668,110 v270 M668,110 h-558"/>
+    <circle cx="668" cy="110" r="5.5" fill="#1b3a63"/>
+    <text class="sm" x="70" y="104" text-anchor="middle">1,013</text>
+    <text class="st" x="668" y="400" text-anchor="middle">100 °C</text>
+    <text class="bad" x="676" y="88">la vie de tous les jours</text>
+  </g>
+
+  <!-- morale -->
+  <path class="dash" d="M60,424 h760"/>
+  <text class="st" x="440" y="450" text-anchor="middle">Ce n'est pas une règle de trois — mais la courbe monte toujours : moins de pression, ébullition plus froide.</text>
+</svg>

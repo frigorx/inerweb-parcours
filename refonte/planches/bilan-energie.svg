@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Le bilan d'énergie de la machine, comme une addition : l'évaporateur absorbe cinq kilowatts dans le local, le compresseur transmet un virgule deux kilowatt de travail au fluide, et le condenseur rejette la somme, six virgule deux kilowatts, vers l'extérieur. Rien ne se perd : le condenseur rejette toujours plus que l'évaporateur n'a absorbé, la différence est le travail du compresseur transmis au fluide.">
+  <title>Le bilan : Q̇ condenseur = Q̇ évaporateur + le travail du compresseur</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .big { font:700 30px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Rien ne se perd : tout ce qui entre ressort, additionné</text>
+
+  <!-- ============ ÉVAPORATEUR : ce qui entre ============ -->
+  <rect x="60" y="90" width="220" height="150" rx="10" fill="#e3eef7" stroke="#1b6ea8" stroke-width="2.4"/>
+  <text class="st" x="170" y="120" text-anchor="middle" fill="#1b6ea8">ÉVAPORATEUR</text>
+  <text class="big" x="170" y="170" text-anchor="middle" fill="#1b6ea8">5,0 kW</text>
+  <text class="lg" x="170" y="200" text-anchor="middle">absorbés dans le local</text>
+  <!-- barre proportionnelle -->
+  <rect x="80" y="212" width="161" height="14" rx="7" fill="#1b6ea8"/>
+
+  <!-- ============ COMPRESSEUR : ce qui s'ajoute ============ -->
+  <rect x="60" y="280" width="220" height="120" rx="10" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="170" y="310" text-anchor="middle">COMPRESSEUR</text>
+  <text class="big" x="170" y="356" text-anchor="middle">+ 1,2 kW</text>
+  <rect x="80" y="372" width="39" height="14" rx="7" fill="#1b3a63"/>
+  <text class="sm" x="170" y="394" text-anchor="middle" opacity="0"> </text>
+
+  <!-- flèches vers le condenseur -->
+  <path class="blu" d="M280,165 H420 q30,0 38,26 m-4,-14 4,14 -14,-3">
+    <animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite"/>
+  </path>
+  <path class="p" d="M280,340 H420 q30,0 38,-26 m-4,14 4,-14 -14,3">
+    <animate attributeName="opacity" values="0.35;1;0.35" dur="1.8s" repeatCount="indefinite"/>
+  </path>
+  <text class="t" x="360" y="262" text-anchor="middle">+</text>
+
+  <!-- ============ CONDENSEUR : la somme ============ -->
+  <rect x="480" y="150" width="260" height="190" rx="10" fill="#fdeee8" stroke="#c9451a" stroke-width="2.8"/>
+  <text class="st" x="610" y="184" text-anchor="middle" fill="#a8410f">CONDENSEUR</text>
+  <text class="big" x="610" y="240" text-anchor="middle" fill="#a8410f">= 6,2 kW</text>
+  <text class="lg" x="610" y="272" text-anchor="middle">rejetés dehors</text>
+  <rect x="505" y="290" width="200" height="14" rx="7" fill="#c9451a"/>
+  <!-- rejet vers l'extérieur -->
+  <g class="acc">
+    <path d="M740,210 h44 m-10,-7 10,7 -10,7"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></path>
+    <path d="M740,250 h44 m-10,-7 10,7 -10,7"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.4s" repeatCount="indefinite"/></path>
+    <path d="M740,290 h44 m-10,-7 10,7 -10,7"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></path>
+  </g>
+
+  <!-- ============ MORALE ============ -->
+  <path class="dash" d="M60,420 h760"/>
+  <text class="st" x="440" y="448" text-anchor="middle">Q̇ condenseur = Q̇ évaporateur + le travail du compresseur transmis au fluide. La balance tombe juste, toujours.</text>
+</svg>

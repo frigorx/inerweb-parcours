@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Une bouteille vue en coupe. En haut, la vapeur ; en bas, le liquide. Dans une bouteille au repos, les deux phases sont à la même pression : celle d'équilibre du fluide. Le robinet vapeur prélève directement dans la partie haute. Le robinet liquide est relié à un tube plongeur qui descend jusqu'au fond : le liquide remonte dans ce tube, bouteille debout. Il ne s'agit pas d'une vanne basse pression et d'une vanne haute pression : deux robinets, deux phases.">
+  <title>Deux robinets, deux phases — pas deux pressions</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Deux robinets ? Deux PHASES — pas deux pressions</text>
+
+  <!-- ============ LA BOUTEILLE EN COUPE ============ -->
+  <g transform="translate(340,0)">
+    <!-- corps -->
+    <path class="p" d="M0,150 a100,64 0 0 1 200,0 v230 a14,14 0 0 1 -14,14 h-172 a14,14 0 0 1 -14,-14 z" fill="#f6f9fc"/>
+    <!-- liquide (bas) -->
+    <path d="M2,250 h196 v130 a12,12 0 0 1 -12,12 h-172 a12,12 0 0 1 -12,-12 z" fill="#cfe6f5"/>
+    <text class="st" x="100" y="330" text-anchor="middle" fill="#1b6ea8">LIQUIDE</text>
+    <!-- vapeur (haut) -->
+    <text class="st" x="100" y="205" text-anchor="middle" fill="#a8410f">VAPEUR</text>
+    <g fill="#e8a58c">
+      <circle cx="52" cy="176" r="5"><animate attributeName="cy" values="176;166;176" dur="2.6s" repeatCount="indefinite"/></circle>
+      <circle cx="148" cy="182" r="5"><animate attributeName="cx" values="148;158;148" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="100" cy="160" r="5"><animate attributeName="cy" values="160;150;160" dur="2.2s" repeatCount="indefinite"/></circle>
+    </g>
+    <!-- tube plongeur -->
+    <path class="blu" d="M132,368 v-282" stroke-width="7"/>
+    <path class="blu" d="M132,368 v-282" stroke="#ffffff" stroke-width="3"/>
+    <text class="sm" x="150" y="300">tube plongeur :</text>
+    <text class="sm" x="150" y="318">jusqu'au fond</text>
+    <!-- le liquide remonte dans le tube -->
+    <circle r="4" fill="#1b6ea8"><animateMotion dur="1.8s" repeatCount="indefinite" path="M132,360 V96"/></circle>
+
+    <!-- les deux robinets -->
+    <rect x="42" y="60" width="28" height="30" rx="5" fill="#1b3a63"/>
+    <path class="acc" d="M56,60 v-22 h-40"/>
+    <text class="st" x="-60" y="30" fill="#a8410f">robinet VAPEUR</text>
+    <text class="sm" x="-60" y="50">il prélève en haut</text>
+    <!-- vapeur qui sort -->
+    <circle r="4" fill="#c9451a"><animateMotion dur="1.6s" repeatCount="indefinite" path="M56,150 V42 H20"/><animate attributeName="opacity" values="1;1;0" dur="1.6s" repeatCount="indefinite"/></circle>
+
+    <rect x="118" y="60" width="28" height="30" rx="5" fill="#1b3a63"/>
+    <path class="blu" d="M132,60 v-22 h40"/>
+    <text class="st" x="188" y="30" fill="#1b6ea8">robinet LIQUIDE</text>
+    <text class="sm" x="188" y="50">relié au tube plongeur</text>
+  </g>
+
+  <!-- ============ LA PRESSION UNIQUE ============ -->
+  <rect x="60" y="150" width="200" height="120" rx="10" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.2"/>
+  <text class="st" x="160" y="182" text-anchor="middle">au repos :</text>
+  <text class="st" x="160" y="206" text-anchor="middle">UNE SEULE pression</text>
+  <text class="lg" x="160" y="230" text-anchor="middle">celle d'équilibre du fluide</text>
+  <text class="sm" x="160" y="252" text-anchor="middle">en haut comme en bas</text>
+  <path class="dash" d="M260,210 h70"/>
+
+  <!-- ============ LE PIÈGE ============ -->
+  <rect x="60" y="300" width="200" height="100" rx="10" fill="#fdeee8" stroke="#c9451a" stroke-width="2.2"/>
+  <text class="bad" x="160" y="330" text-anchor="middle">CE N'EST PAS</text>
+  <text class="lg" x="160" y="354" text-anchor="middle">une vanne BP</text>
+  <text class="lg" x="160" y="374" text-anchor="middle">et une vanne HP</text>
+
+  <!-- morale -->
+  <path class="dash" d="M620,420 h-560"/>
+  <text class="st" x="440" y="450" text-anchor="middle">Bouteille DEBOUT pour le liquide. La retourner ? Seulement si la procédure du fabricant le prévoit — jamais par habitude.</text>
+</svg>

@@ -1,6 +1,13 @@
 /* Généré par build/planches.mjs — NE PAS ÉDITER À LA MAIN.
-   44 planches, familles : physique · fluides et classes · organes et circuit · gestes · sécurité · repères. */
+   66 planches, familles : physique · fluides et classes · organes et circuit · gestes · sécurité · repères. */
 window.PLANCHES = [
+ {
+  "id": "bulle-rosee",
+  "titre": "Bulle et rosée : les noms décrivent les frontières, pas l'ordre du voyage",
+  "famille": "physique",
+  "chemin": "planches/bulle-rosee.svg",
+  "ko": 5
+ },
  {
   "id": "chaleur-sensible-latente",
   "titre": "Chaleur sensible et chaleur latente : la courbe de chauffe et son palier",
@@ -9,11 +16,81 @@ window.PLANCHES = [
   "ko": 6
  },
  {
+  "id": "palier-vs-glissement",
+  "titre": "Corps pur : un palier · zéotrope : un glissement",
+  "famille": "physique",
+  "chemin": "planches/palier-vs-glissement.svg",
+  "ko": 5
+ },
+ {
+  "id": "deux-casseroles",
+  "titre": "Deux casseroles, même plaque : la masse compte",
+  "famille": "physique",
+  "chemin": "planches/deux-casseroles.svg",
+  "ko": 4
+ },
+ {
+  "id": "equilibre-pression-vapeur",
+  "titre": "L'équilibre : l'ébullition commence quand la pression de vapeur rejoint la pression extérieure",
+  "famille": "physique",
+  "chemin": "planches/equilibre-pression-vapeur.svg",
+  "ko": 6
+ },
+ {
+  "id": "cloche-a-vide",
+  "titre": "La cloche à vide : l'eau bout à 25 °C, sans flamme",
+  "famille": "physique",
+  "chemin": "planches/cloche-a-vide.svg",
+  "ko": 5
+ },
+ {
+  "id": "courbe-saturation-eau",
+  "titre": "La courbe de saturation de l'eau : à chaque pression sa température d'ébullition",
+  "famille": "physique",
+  "chemin": "planches/courbe-saturation-eau.svg",
+  "ko": 4
+ },
+ {
+  "id": "pente-chaleur-sensible",
+  "titre": "La pente : chaleur sensible — le thermomètre la sent",
+  "famille": "physique",
+  "chemin": "planches/pente-chaleur-sensible.svg",
+  "ko": 4
+ },
+ {
+  "id": "bilan-energie",
+  "titre": "Le bilan : Q̇ condenseur = Q̇ évaporateur + le travail du compresseur",
+  "famille": "physique",
+  "chemin": "planches/bilan-energie.svg",
+  "ko": 4
+ },
+ {
   "id": "diagramme-logph",
   "titre": "Le diagramme log p-h : trois zones, deux frontières, un cycle en quatre transformations",
   "famille": "physique",
   "chemin": "../fonds-origine/packs/fluides/res/svg/diagramme-logph.svg",
   "ko": 6
+ },
+ {
+  "id": "levier-pressions",
+  "titre": "Le levier du frigoriste : choisir la pression, c'est choisir la température",
+  "famille": "physique",
+  "chemin": "planches/levier-pressions.svg",
+  "ko": 5
+ },
+ {
+  "id": "palier-chaleur-latente",
+  "titre": "Le palier : chaleur latente — cachée au thermomètre",
+  "famille": "physique",
+  "chemin": "planches/palier-chaleur-latente.svg",
+  "ko": 5
+ },
+ {
+  "id": "frigo-domestique",
+  "titre": "Le réfrigérateur : dedans il absorbe, derrière il restitue",
+  "famille": "physique",
+  "chemin": "planches/frigo-domestique.svg",
+  "ko": 5
  },
  {
   "id": "mesure-surchauffe",
@@ -37,11 +114,39 @@ window.PLANCHES = [
   "ko": 12
  },
  {
+  "id": "trois-grandeurs",
+  "titre": "T · Q · Q̇ — l'état, l'énergie, le débit",
+  "famille": "physique",
+  "chemin": "planches/trois-grandeurs.svg",
+  "ko": 4
+ },
+ {
+  "id": "saturation-deux-sens",
+  "titre": "Une seule frontière, deux sens : évaporer et condenser à la même température",
+  "famille": "physique",
+  "chemin": "planches/saturation-deux-sens.svg",
+  "ko": 4
+ },
+ {
+  "id": "teqco2-calcul",
+  "titre": "1 kg qui fuit × PRP 3922 ≈ 3,9 tonnes équivalent CO₂",
+  "famille": "fluides et classes",
+  "chemin": "planches/teqco2-calcul.svg",
+  "ko": 4
+ },
+ {
   "id": "aptitude-capacite",
   "titre": "Aptitude et capacité : la personne et l'entreprise",
   "famille": "fluides et classes",
   "chemin": "../fonds-origine/packs/fluides/res/svg/aptitude-capacite.svg",
   "ko": 4
+ },
+ {
+  "id": "interdits-cfc-hcfc",
+  "titre": "CFC et HCFC : le chlore les a condamnés",
+  "famille": "fluides et classes",
+  "chemin": "planches/interdits-cfc-hcfc.svg",
+  "ko": 5
  },
  {
   "id": "classes-securite",
@@ -65,6 +170,13 @@ window.PLANCHES = [
   "ko": 8
  },
  {
+  "id": "autorises-hfo-naturels",
+  "titre": "HFO et naturels : autorisés — chacun son revers",
+  "famille": "fluides et classes",
+  "chemin": "planches/autorises-hfo-naturels.svg",
+  "ko": 6
+ },
+ {
   "id": "familles-fluides",
   "titre": "Les familles de fluides — trois atomes décident de tout",
   "famille": "fluides et classes",
@@ -72,11 +184,25 @@ window.PLANCHES = [
   "ko": 9
  },
  {
+  "id": "hfc-ozone-climat",
+  "titre": "Les HFC : l'ozone sauvé, le climat raté",
+  "famille": "fluides et classes",
+  "chemin": "planches/hfc-ozone-climat.svg",
+  "ko": 5
+ },
+ {
   "id": "lie-domaine",
   "titre": "LIE et LSE : le domaine d'explosivité, et ce qu'affiche l'explosimètre",
   "famille": "fluides et classes",
   "chemin": "../fonds-origine/packs/fluides/res/svg/lie-domaine.svg",
   "ko": 8
+ },
+ {
+  "id": "prp-regle-serre",
+  "titre": "Plus le PRP est fort, plus la règle serre",
+  "famille": "fluides et classes",
+  "chemin": "planches/prp-regle-serre.svg",
+  "ko": 4
  },
  {
   "id": "prp-echelle",
@@ -149,6 +275,13 @@ window.PLANCHES = [
   "ko": 4
  },
  {
+  "id": "bouteille-deux-robinets",
+  "titre": "Deux robinets, deux phases — pas deux pressions",
+  "famille": "gestes",
+  "chemin": "planches/bouteille-deux-robinets.svg",
+  "ko": 5
+ },
+ {
   "id": "epreuve-azote",
   "titre": "L'épreuve de pression, à l'azote seul",
   "famille": "gestes",
@@ -175,6 +308,13 @@ window.PLANCHES = [
   "famille": "gestes",
   "chemin": "../fonds-origine/packs/fluides/res/svg/pesee-charge.svg",
   "ko": 8
+ },
+ {
+  "id": "plaque-bouteille",
+  "titre": "La plaque dit tout — la couleur, presque rien",
+  "famille": "gestes",
+  "chemin": "planches/plaque-bouteille.svg",
+  "ko": 4
  },
  {
   "id": "balayage-detecteur",
@@ -217,6 +357,13 @@ window.PLANCHES = [
   "famille": "gestes",
   "chemin": "../fonds-origine/packs/fluides/res/svg/prepa-chantier.svg",
   "ko": 5
+ },
+ {
+  "id": "trois-bouteilles",
+  "titre": "Trois bouteilles, trois usages — le bon contenant avant de brancher",
+  "famille": "gestes",
+  "chemin": "planches/trois-bouteilles.svg",
+  "ko": 4
  },
  {
   "id": "secu-flamme",
@@ -266,6 +413,13 @@ window.PLANCHES = [
   "famille": "sécurité",
   "chemin": "../fonds-origine/packs/fluides/res/svg/secu-consignation.svg",
   "ko": 7
+ },
+ {
+  "id": "soupape-dernier-recours",
+  "titre": "La soupape est un dernier recours — jamais une autorisation",
+  "famille": "sécurité",
+  "chemin": "planches/soupape-dernier-recours.svg",
+  "ko": 4
  },
  {
   "id": "co2-point-bas",

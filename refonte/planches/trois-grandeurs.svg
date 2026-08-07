@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Trois grandeurs à ne pas confondre. T, la température : une variable d'état qui situe le niveau thermique, en degrés Celsius ou en kelvins — le thermomètre. Q, la chaleur : une énergie transférée, en joules — le compteur de ce qui est passé. Q point, la puissance thermique : un débit d'énergie, en watts — le débitmètre, ce qui passe par seconde. Exemple du cours : chauffer un kilogramme d'eau de vingt à soixante degrés demande cent soixante-sept virgule deux kilojoules.">
+  <title>T · Q · Q̇ — l'état, l'énergie, le débit</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .big { font:700 44px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Trois grandeurs qui se ressemblent — trois rôles qui n'ont rien à voir</text>
+
+  <!-- ============ CARTE 1 : T ============ -->
+  <rect x="55" y="64" width="240" height="310" rx="12" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="big" x="175" y="118" text-anchor="middle">T</text>
+  <text class="st" x="175" y="148" text-anchor="middle">la température</text>
+  <!-- thermomètre -->
+  <g transform="translate(175,170)">
+    <rect x="-8" y="0" width="16" height="100" rx="8" fill="#ffffff" stroke="#1b3a63" stroke-width="2.2"/>
+    <circle cx="0" cy="112" r="14" fill="#c9451a"/>
+    <rect x="-5" y="40" width="10" height="70" rx="5" fill="#c9451a"/>
+  </g>
+  <text class="lg" x="175" y="322" text-anchor="middle">elle SITUE le niveau thermique</text>
+  <text class="st" x="175" y="352" text-anchor="middle">°C ou K</text>
+
+  <!-- ============ CARTE 2 : Q ============ -->
+  <rect x="320" y="64" width="240" height="310" rx="12" fill="#fdeee8" stroke="#c9451a" stroke-width="2.4"/>
+  <text class="big" x="440" y="118" text-anchor="middle" fill="#a8410f">Q</text>
+  <text class="st" x="440" y="148" text-anchor="middle" fill="#a8410f">la chaleur</text>
+  <!-- un paquet d'énergie qui franchit une frontière -->
+  <path class="p" d="M440,180 v110" stroke-dasharray="8 5"/>
+  <circle r="12" fill="#c9451a">
+    <animateMotion dur="2.2s" repeatCount="indefinite" path="M380,235 H500"/>
+  </circle>
+  <text class="sm" x="380" y="215" text-anchor="middle">système</text>
+  <text class="sm" x="500" y="215" text-anchor="middle">dehors</text>
+  <text class="lg" x="440" y="322" text-anchor="middle">une énergie TRANSFÉRÉE</text>
+  <text class="st" x="440" y="352" text-anchor="middle" fill="#a8410f">joules (J)</text>
+
+  <!-- ============ CARTE 3 : Q̇ ============ -->
+  <rect x="585" y="64" width="240" height="310" rx="12" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="big" x="705" y="118" text-anchor="middle">Q̇</text>
+  <text class="st" x="705" y="148" text-anchor="middle">la puissance thermique</text>
+  <!-- un tuyau traversé en continu -->
+  <path class="p" d="M625,220 h160 M625,252 h160"/>
+  <g fill="#c9451a">
+    <circle r="7"><animateMotion dur="1.6s" repeatCount="indefinite" path="M630,236 H780"/></circle>
+    <circle r="7"><animateMotion dur="1.6s" begin="0.55s" repeatCount="indefinite" path="M630,236 H780"/></circle>
+    <circle r="7"><animateMotion dur="1.6s" begin="1.1s" repeatCount="indefinite" path="M630,236 H780"/></circle>
+  </g>
+  <text class="lg" x="705" y="322" text-anchor="middle">un DÉBIT d'énergie</text>
+  <text class="st" x="705" y="352" text-anchor="middle">watts (W) — par seconde</text>
+
+  <!-- morale -->
+  <path class="dash" d="M60,398 h760"/>
+  <text class="st" x="440" y="426" text-anchor="middle">T décrit l'état · Q compte l'énergie · Q̇ mesure le débit.</text>
+  <text class="lg" x="440" y="450" text-anchor="middle">Dans un échangeur traversé en permanence, la grandeur utile est le kilowatt : kg/s × J/(kg·K) × K = W.</text>
+</svg>

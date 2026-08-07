@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Le levier du frigoriste, en deux scènes avec du R-134a. À gauche, l'évaporateur : le local est à plus quatre degrés ; en tenant le fluide à deux bars absolus, il sature à moins dix degrés, plus froid que le local — l'énergie du local entre donc dans le fluide, c'est l'effet frigorifique. À droite, le condenseur : l'extérieur est à trente degrés ; à dix virgule deux bars absolus, le fluide sature à quarante degrés, plus chaud que l'air — il lui cède son énergie. La pression ne fabrique pas le froid : elle choisit la température du changement d'état.">
+  <title>Le levier du frigoriste : choisir la pression, c'est choisir la température</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">La pression ne fabrique pas le froid : elle choisit la température</text>
+
+  <!-- ======== SCÈNE 1 : ÉVAPORATEUR (BASSE PRESSION) ======== -->
+  <rect x="60" y="70" width="350" height="300" rx="10" fill="#e3eef7" stroke="#1b3a63" stroke-width="2.2"/>
+  <text class="st" x="235" y="98" text-anchor="middle">LE LOCAL — à refroidir</text>
+  <text class="bad" x="235" y="122" text-anchor="middle">+4 °C</text>
+
+  <!-- serpentin évaporateur -->
+  <path class="blu" d="M110,220 h60 a18,18 0 0 1 0,36 h-40 a18,18 0 0 0 0,36 h60" fill="none"/>
+  <rect x="220" y="196" width="170" height="120" rx="8" fill="#ffffff" stroke="#1b6ea8" stroke-width="2.2"/>
+  <text class="st" x="305" y="222" text-anchor="middle" fill="#1b6ea8">R-134a — BP</text>
+  <text class="t"  x="305" y="252" text-anchor="middle" fill="#1b6ea8">2,0 bar abs</text>
+  <text class="st" x="305" y="280" text-anchor="middle" fill="#1b6ea8">sature à −10 °C</text>
+  <text class="sm" x="305" y="304" text-anchor="middle">plus froid que le local</text>
+
+  <!-- l'énergie ENTRE dans le fluide -->
+  <g class="acc">
+    <path d="M110,160 q30,-16 60,0 m-12,-9 12,9 -14,5">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M130,190 q30,-16 60,0 m-12,-9 12,9 -14,5">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  <text class="bad" x="150" y="146">l'énergie ENTRE</text>
+  <text class="st" x="235" y="350" text-anchor="middle" fill="#a8410f">= EFFET FRIGORIFIQUE</text>
+
+  <!-- ======== SCÈNE 2 : CONDENSEUR (HAUTE PRESSION) ======== -->
+  <rect x="470" y="70" width="350" height="300" rx="10" fill="#fdeee8" stroke="#a8410f" stroke-width="2.2"/>
+  <text class="st" x="645" y="98" text-anchor="middle" fill="#a8410f">DEHORS — l'air extérieur</text>
+  <text class="bad" x="645" y="122" text-anchor="middle">+30 °C</text>
+
+  <rect x="500" y="196" width="170" height="120" rx="8" fill="#ffffff" stroke="#c9451a" stroke-width="2.2"/>
+  <text class="st" x="585" y="222" text-anchor="middle" fill="#a8410f">R-134a — HP</text>
+  <text class="t"  x="585" y="252" text-anchor="middle" fill="#a8410f">10,2 bar abs</text>
+  <text class="st" x="585" y="280" text-anchor="middle" fill="#a8410f">sature à +40 °C</text>
+  <text class="sm" x="585" y="304" text-anchor="middle">plus chaud que l'air</text>
+
+  <!-- serpentin condenseur -->
+  <path class="acc" d="M700,220 h60 a18,18 0 0 1 0,36 h-40 a18,18 0 0 0 0,36 h60" fill="none"/>
+
+  <!-- l'énergie SORT du fluide -->
+  <g class="acc">
+    <path d="M700,160 q30,-16 60,0 m-12,-9 12,9 -14,5">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M690,190 q30,-16 60,0 m-12,-9 12,9 -14,5">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  <text class="bad" x="700" y="146">l'énergie SORT</text>
+  <text class="st" x="645" y="350" text-anchor="middle" fill="#a8410f">= le fluide CÈDE sa chaleur</text>
+
+  <!-- ======== MORALE ======== -->
+  <path class="dash" d="M60,398 h760"/>
+  <text class="st" x="440" y="424" text-anchor="middle">Écart utile dans les deux cas : au moins 5 K entre le fluide et le milieu.</text>
+  <text class="lg" x="440" y="448" text-anchor="middle">Basse pression → saturation froide → le froid entre. Haute pression → saturation chaude → la chaleur sort.</text>
+</svg>

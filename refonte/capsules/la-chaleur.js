@@ -25,6 +25,7 @@ CAPSULE({
     {
       id: "01-energie",
       titre: "Chauffer, c'est transférer de l'énergie. Et température n'est pas énergie.",
+      planche: "planches/deux-casseroles.svg",
       texte: [
         "**Chauffer**, c'est transférer de l'énergie vers la matière. **Refroidir**, c'est lui en retirer pour la transmettre ailleurs.",
         "Et attention : **une température n'est pas une quantité d'énergie.** Deux casseroles à la même température ne contiennent pas la même énergie si l'une est pleine et l'autre presque vide.",
@@ -51,9 +52,10 @@ CAPSULE({
     {
       id: "03-sensible",
       titre: "La pente, c'est la chaleur sensible. Le thermomètre la sent.",
+      planche: "planches/pente-chaleur-sensible.svg",
       texte: [
         "La **chaleur sensible** modifie la température **sans changer l'état**. C'est elle que le thermomètre voit.",
-        "Sa formule : **Q = m × c × ΔT** — la masse, la capacité thermique de la matière, l'écart de température.",
+        "Sa formule : **Q = m × c × ΔT** — la masse, la [[capacité thermique|ce que coûte, en énergie, le fait d'élever de 1 degré 1 kilogramme de cette matière. Chaque matière a la sienne : l'eau 4 180, l'air 1 005, le cuivre 385 joules]] de la matière, l'écart de température.",
         "À ce stade, on la **reconnaît** : température qui change = chaleur sensible."
       ],
       lu: "La pente de la courbe, c'est la chaleur sensible. Elle modifie la température, sans changer l'état. C'est elle que le thermomètre voit. Sa formule s'écrit Q égale m fois c fois delta T : la masse, la capacité thermique de la matière, et l'écart de température. À ce stade, contentez-vous de la reconnaître : température qui change, égale chaleur sensible.",
@@ -64,6 +66,7 @@ CAPSULE({
     {
       id: "04-latente",
       titre: "Le palier, c'est la chaleur latente. Cachée au thermomètre.",
+      planche: "planches/palier-chaleur-latente.svg",
       texte: [
         "Pendant le palier, on chauffe toujours — et la température **ne bouge pas**. L'énergie sert à **changer l'état** : c'est la **chaleur latente**.",
         "**Un palier n'est pas une pause : c'est un changement d'état en cours.** Sa formule : **Q = m × L**.",
@@ -76,6 +79,7 @@ CAPSULE({
     {
       id: "05-le-frigo",
       titre: "Le froid n'est pas une substance : la machine déplace l'énergie.",
+      planche: "planches/frigo-domestique.svg",
       texte: [
         "Dans le réfrigérateur : **dedans, l'évaporateur absorbe** l'énergie — c'est l'effet frigorifique. **Derrière, le condenseur la restitue.**",
         "**Le froid n'est pas une substance** que la machine envoie dans la pièce : le local **perd** de l'énergie, voilà tout.",
@@ -90,6 +94,7 @@ CAPSULE({
     {
       id: "06-deux-briques",
       titre: "Les deux briques du métier : surchauffe et sous-refroidissement.",
+      planche: "../fonds-origine/packs/fluides/res/svg/mesure-surchauffe.svg",
       texte: [
         "Dans l'évaporateur, **la dernière goutte disparaît**. Si la vapeur seule reçoit encore de l'énergie, elle se réchauffe : **c'est la surchauffe**.",
         "Dans le condenseur, **la dernière bulle disparaît**. Si le liquide seul cède encore de l'énergie, il se refroidit : **c'est le sous-refroidissement**.",
@@ -116,6 +121,7 @@ CAPSULE({
         {
           id: "d-masse-1",
           titre: "Une même température ne signifie pas une même quantité d'énergie.",
+          planche: "planches/deux-casseroles.svg",
           texte: [
             "Petite et grande casserole reçoivent **la même énergie** par la plaque. La petite bout la première : **moins de matière à faire évoluer**.",
             "Masse doublée : énergie doublée. Masse triplée : énergie triplée — toutes choses égales par ailleurs.",
@@ -133,6 +139,7 @@ CAPSULE({
         {
           id: "d-grandeurs-1",
           titre: "T décrit l'état · Q compte l'énergie · Q̇ mesure la puissance.",
+          planche: "planches/trois-grandeurs.svg",
           texte: [
             "**T**, la température : elle situe le niveau thermique. En **°C ou en K**.",
             "**Q**, la chaleur : une énergie transférée. En **joules**. Exemple du tuto : chauffer 1 kg d'eau de 20 à 60 °C = 1 × 4 180 × 40 = **167 200 J**, soit 167,2 kJ.",
@@ -151,6 +158,7 @@ CAPSULE({
         {
           id: "d-bilan-1",
           titre: "Du compresseur. Rien ne se perd : tout s'additionne.",
+          planche: "planches/bilan-energie.svg",
           texte: [
             "Le condenseur rejette l'énergie prise dans le local **plus** le travail fourni au compresseur.",
             "**Q̇ condenseur = Q̇ évaporateur + puissance transmise au fluide.**",

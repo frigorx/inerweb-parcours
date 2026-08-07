@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="Un réfrigérateur domestique vu en coupe. Dedans : l'évaporateur absorbe l'énergie des aliments et de l'air intérieur — c'est l'effet frigorifique. Derrière : la grille du condenseur restitue cette énergie à la pièce, plus le travail du compresseur. Le froid n'est pas une substance envoyée dans l'enceinte : c'est l'énergie qui en est retirée. Porte ouverte, la pièce ne refroidit pas : le condenseur y rejette plus que l'évaporateur n'en retire.">
+  <title>Le réfrigérateur : dedans il absorbe, derrière il restitue</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Dedans, il absorbe. Derrière, il restitue. Le froid ne « sort » de nulle part.</text>
+
+  <!-- ============ LE FRIGO EN COUPE ============ -->
+  <!-- caisson -->
+  <rect x="250" y="70" width="270" height="320" rx="12" fill="#f6f9fc" stroke="#1b3a63" stroke-width="3"/>
+  <!-- enceinte froide -->
+  <rect x="270" y="90" width="200" height="280" rx="8" fill="#e3eef7" stroke="#8fa3b8" stroke-width="1.6"/>
+  <text class="st" x="370" y="118" text-anchor="middle">l'enceinte — +4 °C</text>
+  <!-- clayettes + aliments stylisés -->
+  <path class="p" d="M280,180 h180 M280,260 h180" stroke-width="1.8"/>
+  <circle cx="320" cy="166" r="11" fill="#7db2d6"/>
+  <rect x="360" y="152" width="42" height="26" rx="4" fill="#e8a58c"/>
+  <circle cx="330" cy="242" r="12" fill="#a9c8a2"/>
+  <rect x="370" y="234" width="52" height="22" rx="4" fill="#d9c58a"/>
+
+  <!-- évaporateur (paroi du fond) -->
+  <path class="blu" d="M455,120 v40 a12,12 0 0 1 -24,0 v-16 a12,12 0 0 0 -24,0 v40" fill="none"/>
+  <text class="st" x="368" y="330" text-anchor="middle" fill="#1b6ea8">ÉVAPORATEUR</text>
+  <!-- l'énergie de l'enceinte ENTRE dans l'évaporateur -->
+  <g class="blu">
+    <path d="M350,200 q22,-10 44,0 m-10,-7 10,7 -12,4"><animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/></path>
+    <path d="M340,290 q22,-10 44,0 m-10,-7 10,7 -12,4"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.6s" repeatCount="indefinite"/></path>
+  </g>
+  <text class="sm" x="352" y="352" text-anchor="middle">il PREND l'énergie du dedans</text>
+
+  <!-- grille condenseur (derrière) -->
+  <path class="acc" d="M540,110 v240 M560,110 v240 M580,110 v240 M540,140 h40 M540,200 h40 M540,260 h40 M540,320 h40"/>
+  <text class="st" x="562" y="380" text-anchor="middle" fill="#a8410f">CONDENSEUR</text>
+  <!-- l'énergie SORT vers la pièce -->
+  <g class="acc">
+    <path d="M600,160 q24,-10 48,0 m-11,-7 11,7 -13,4"><animate attributeName="opacity" values="1;0.2;1" dur="1.5s" repeatCount="indefinite"/></path>
+    <path d="M600,240 q24,-10 48,0 m-11,-7 11,7 -13,4"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.5s" begin="0.4s" repeatCount="indefinite"/></path>
+    <path d="M600,320 q24,-10 48,0 m-11,-7 11,7 -13,4"><animate attributeName="opacity" values="1;0.2;1" dur="1.7s" begin="0.2s" repeatCount="indefinite"/></path>
+  </g>
+  <text class="sm" x="680" y="288">il REND tout à la pièce —</text>
+  <text class="sm" x="680" y="306">et même un peu plus</text>
+
+  <!-- compresseur en bas -->
+  <circle cx="490" cy="410" r="26" fill="#ffffff" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="sm" x="490" y="415" text-anchor="middle">comp.</text>
+  <path class="acc" d="M516,410 h30 q16,0 16,-16 v-30"/>
+  <text class="sm" x="600" y="416">son travail s'ajoute au rejet</text>
+
+  <!-- la pièce -->
+  <text class="st" x="130" y="120">LA PIÈCE — 20 °C</text>
+  <text class="lg" x="60" y="150">le « froid » n'y entre</text>
+  <text class="lg" x="60" y="170">jamais : c'est l'énergie</text>
+  <text class="lg" x="60" y="190">de l'enceinte qui en sort</text>
+
+  <!-- morale -->
+  <path class="dash" d="M60,436 h760"/>
+  <text class="st" x="440" y="458" text-anchor="middle">Porte ouverte, la pièce ne refroidit pas : le condenseur y rejette PLUS que l'évaporateur n'en retire.</text>
+</svg>

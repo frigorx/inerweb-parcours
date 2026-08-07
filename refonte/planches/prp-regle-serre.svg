@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="La chaîne de la réglementation : plus le PRP d'un fluide est fort, plus la règle serre. Le règlement F-Gas 2024/573 accélère la baisse des quotas de HFC mis sur le marché, et programme l'interdiction de certains fluides à fort PRP dans de nombreux équipements neufs. L'amendement de Kigali fait la même chose à l'échelle mondiale. La conclusion de toute l'histoire : il n'existe pas de fluide parfait, il existe des professionnels bien formés.">
+  <title>Plus le PRP est fort, plus la règle serre</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">La chaîne est simple : plus le PRP est fort, plus la règle serre</text>
+
+  <!-- ============ LA CHAÎNE EN 3 MAILLONS ============ -->
+  <!-- maillon 1 : le PRP -->
+  <rect x="60" y="90" width="220" height="130" rx="12" fill="#fdeee8" stroke="#c9451a" stroke-width="2.4"/>
+  <text class="st" x="170" y="126" text-anchor="middle" fill="#a8410f">PRP FORT</text>
+  <!-- barres croissantes -->
+  <rect x="100" y="180" width="24" height="22" fill="#e8a58c"/>
+  <rect x="134" y="164" width="24" height="38" fill="#dd7a55"/>
+  <rect x="168" y="148" width="24" height="54" fill="#c9451a"/>
+  <text class="sm" x="222" y="196">kilo pour</text>
+  <text class="sm" x="222" y="212">kilo</text>
+
+  <path class="acc" d="M280,155 h60 m-13,-8 13,8 -13,8"/>
+
+  <!-- maillon 2 : les deux règles -->
+  <rect x="340" y="70" width="260" height="170" rx="12" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="470" y="102" text-anchor="middle">LA RÈGLE SERRE</text>
+  <text class="lg" x="470" y="132" text-anchor="middle">🇪🇺 F-Gas 2024/573 :</text>
+  <text class="lg" x="470" y="152" text-anchor="middle">quotas en baisse accélérée,</text>
+  <text class="lg" x="470" y="172" text-anchor="middle">interdictions dans le neuf</text>
+  <text class="lg" x="470" y="200" text-anchor="middle">🌍 Kigali : la même chose,</text>
+  <text class="lg" x="470" y="220" text-anchor="middle">à l'échelle mondiale</text>
+
+  <path class="acc" d="M600,155 h60 m-13,-8 13,8 -13,8"/>
+
+  <!-- maillon 3 : les quotas qui fondent -->
+  <rect x="660" y="90" width="160" height="130" rx="12" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="740" y="120" text-anchor="middle">LES QUOTAS</text>
+  <!-- escalier descendant animé -->
+  <path class="acc" d="M680,150 h24 v14 h24 v14 h24 v14 h24 v14 h24"/>
+  <circle r="6" fill="#c9451a">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M680,150 h24 v14 h24 v14 h24 v14 h24 v14 h24"/>
+  </circle>
+  <text class="sm" x="740" y="236" text-anchor="middle">de moins en moins, chaque année</text>
+
+  <!-- ============ LA CONCLUSION DE LA FRISE ============ -->
+  <rect x="140" y="290" width="600" height="106" rx="14" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="t" x="440" y="334" text-anchor="middle">« Il n'existe pas de fluide parfait.</text>
+  <text class="t" x="440" y="368" text-anchor="middle">Il existe des professionnels bien formés. »</text>
+
+  <path class="dash" d="M60,424 h760"/>
+  <text class="lg" x="440" y="450" text-anchor="middle">C'est vous, la vraie garantie environnementale de l'installation — pas la molécule.</text>
+</svg>

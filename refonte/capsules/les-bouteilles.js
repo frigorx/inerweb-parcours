@@ -26,6 +26,7 @@ CAPSULE({
     {
       id: "01-le-contenant",
       titre: "Je choisis le bon contenant avant de brancher.",
+      planche: "planches/trois-bouteilles.svg",
       texte: [
         "Trois bouteilles, trois usages : **transfert** (fluide neuf), **récupération**, et bouteille **dédiée aux fluides inflammables** — A2L comme A3.",
         "Le fluide extrait d'une installation peut être **contaminé** (huile, humidité) : il va dans un contenant de **récupération compatible et identifié** — jamais dans « une bouteille quelconque ».",
@@ -39,9 +40,9 @@ CAPSULE({
     {
       id: "02-deux-robinets",
       titre: "Deux robinets ? Deux phases — pas deux pressions.",
-      planche: "../fonds-origine/packs/fluides/res/svg/secu-bouteille.svg",
+      planche: "planches/bouteille-deux-robinets.svg",
       texte: [
-        "Dans la bouteille au repos, **les deux phases sont à la même pression** : celle d'équilibre du fluide. Il n'y a pas une vanne BP et une vanne HP.",
+        "Dans la bouteille au repos, **les deux phases sont à la même pression** : celle d'[[équilibre|la pression que le fluide impose lui-même : à une température donnée, liquide et vapeur cohabitent à cette pression-là, ni plus ni moins — c'est le couple pression-température de la capsule du même nom]] du fluide. Il n'y a pas une vanne BP et une vanne HP.",
         "Le robinet **vapeur** prélève en haut. Le robinet **liquide** est relié au **tube plongeur** qui descend au fond : le liquide remonte dedans, **bouteille debout**.",
         "Sur certains récipients à un seul robinet, la procédure peut prévoir de retourner la bouteille — **mais jamais par habitude** : on respecte la conception et la procédure du fabricant."
       ],
@@ -53,10 +54,11 @@ CAPSULE({
     {
       id: "03-la-plaque",
       titre: "La plaque dit tout. La couleur, presque rien.",
+      planche: "planches/plaque-bouteille.svg",
       texte: [
         "Sur la plaque de la bouteille-exemple : **TW 6,2 kg** — la tare, masse de la bouteille vide · **WC 12 L** — la capacité en eau · **PS 45 bar** — la pression de service.",
         "**Les couleurs servent seulement de repère visuel.** Sur le terrain, on vérifie la conception, les marquages et la notice du récipient.",
-        "Pour les A2L : matériel et emballages adaptés — repère courant : **ogive rouge, raccord à pas à gauche**."
+        "Pour les A2L : matériel et emballages adaptés — repère courant : [[ogive|le chapeau bombé du haut de la bouteille, autour du robinet — c'est lui qui porte la couleur de repère]] **rouge, raccord à pas à gauche**."
       ],
       lu: "Tout ce qui compte est écrit sur la plaque. Sur notre bouteille-exemple : T W, six virgule deux kilogrammes — c'est la tare, la masse de la bouteille vide. W C, douze litres — la capacité en eau, le volume interne de référence. P S, quarante-cinq bars — la pression de service. Et méfiez-vous des couleurs : elles servent seulement de repère visuel. Sur le terrain, on vérifie toujours la conception, les marquages et la notice du récipient. Pour les A deux L, on emploie du matériel et des emballages adaptés — le repère courant, c'est l'ogive rouge et le raccord à pas à gauche.",
       codes: ["5.06"]
@@ -78,8 +80,9 @@ CAPSULE({
     {
       id: "05-le-volume-libre",
       titre: "Le volume libre n'est pas du vide perdu : c'est la marge de dilatation.",
+      planche: "../fonds-origine/packs/fluides/res/svg/secu-bouteille.svg",
       texte: [
-        "Au-dessus du liquide, le volume de vapeur fournit la **marge de dilatation**. Le liquide est **pratiquement incompressible** : s'il se dilate sans marge, la pression monte **très vite**.",
+        "Au-dessus du liquide, le volume de vapeur fournit la **marge de dilatation**. Le liquide est pratiquement [[incompressible|impossible à comprimer : son volume ne diminue presque pas, même sous une très forte pression — contrairement à une vapeur, qui se comprime facilement]] : s'il se dilate sans marge, la pression monte **très vite**.",
         "Démonstration du tuto : deux bouteilles chauffées de 20 à 52 °C. À **75 %** de niveau, tout va bien. À **98 %**, la marge disparaît — la pression devient **critique**.",
         "**Le remplissage maximal ne se déduit pas d'un simple « 80 % du poids »** : il dépend du volume en eau, du fluide, de sa densité et des indications du fabricant."
       ],
@@ -91,8 +94,9 @@ CAPSULE({
     {
       id: "06-la-soupape",
       titre: "La soupape est un dernier recours — jamais une autorisation.",
+      planche: "planches/soupape-dernier-recours.svg",
       texte: [
-        "**La soupape ou le disque de rupture ne transforme jamais un surremplissage en bonne pratique.**",
+        "**La soupape ou le [[disque de rupture|une membrane calibrée qui se déchire à une pression donnée pour éviter l'éclatement du récipient — contrairement à la soupape, il ne se referme pas : une fois rompu, tout sort]] ne transforme jamais un surremplissage en bonne pratique.**",
         "S'y fier, c'est accepter d'avoir **déjà créé** une situation dangereuse. La bonne sécurité, c'est d'**empêcher** le surremplissage — par la pesée.",
         "**La sécurité commence avant d'ouvrir les vannes.** Identifier + peser + surveiller : voilà le professionnel."
       ],
@@ -117,6 +121,7 @@ CAPSULE({
         {
           id: "d-phase-1",
           titre: "C'est une décision, pas une habitude.",
+          planche: "planches/bouteille-deux-robinets.svg",
           texte: [
             "Le tuto fait prendre la décision **phase par phase** : déterminer l'état du fluide avant remplissage, puis choisir la méthode et le robinet.",
             "Prélèvement **vapeur** et prélèvement **liquide** sont deux gestes distincts, chacun avec sa procédure.",
@@ -134,6 +139,7 @@ CAPSULE({
         {
           id: "d-boum-1",
           titre: "On va volontairement trop loin, pour mémoriser le risque.",
+          planche: "../fonds-origine/packs/fluides/res/svg/secu-bouteille.svg",
           texte: [
             "Le scénario du tuto pousse **un cran plus loin** que l'écran précédent : bouteille à **99 %**, température **52 °C**. Le liquide n'a plus aucune place. La pression s'emballe — **éclatement**.",
             "Le volume vapeur **n'empêche pas** toute montée de pression : il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe.",
@@ -151,6 +157,7 @@ CAPSULE({
         {
           id: "d-trois-1",
           titre: "Trois usages, trois identifications.",
+          planche: "planches/trois-bouteilles.svg",
           texte: [
             "**Transfert** : le fluide neuf, propre, qui va vers l'installation.",
             "**Récupération** : reçoit le fluide retiré d'une installation — huile, humidité, contaminants possibles. Compatible et identifiée.",

@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SVG = join(RACINE, "fonds-origine", "packs", "fluides", "res", "svg");
+const SVG_REFONTE = join(RACINE, "refonte", "planches");
 const SORTIE = join(RACINE, "refonte", "moteur", "planches-data.js");
 
 /* Une planche, une famille. L'ordre des familles est celui des paliers. */
@@ -34,22 +35,42 @@ const FAMILLES = {
     "secu-bouteille", "co2-protection", "co2-point-bas", "co2-nh3-compare"],
   "repères": ["frise-histoire", "motif-flocon"],
 };
+
+/* Les planches dessinées POUR les capsules (refonte/planches/), rangées
+   dans les mêmes familles que celles du fonds. */
+const FAMILLES_REFONTE = {
+  "physique": ["cloche-a-vide", "courbe-saturation-eau", "saturation-deux-sens",
+    "levier-pressions", "palier-vs-glissement", "equilibre-pression-vapeur",
+    "bulle-rosee", "deux-casseroles", "pente-chaleur-sensible",
+    "palier-chaleur-latente", "frigo-domestique", "trois-grandeurs", "bilan-energie"],
+  "fluides et classes": ["interdits-cfc-hcfc", "hfc-ozone-climat",
+    "autorises-hfo-naturels", "prp-regle-serre", "teqco2-calcul"],
+  "gestes": ["trois-bouteilles", "bouteille-deux-robinets", "plaque-bouteille"],
+  "sécurité": ["soupape-dernier-recours"],
+};
 const familleDe = {};
 for (const [f, ids] of Object.entries(FAMILLES)) for (const id of ids) familleDe[id] = f;
+for (const [f, ids] of Object.entries(FAMILLES_REFONTE)) for (const id of ids) familleDe[id] = f;
 
-const planches = readdirSync(SVG).filter((f) => f.endsWith(".svg")).sort().map((fichier) => {
-  const id = fichier.replace(/\.svg$/, "");
-  const svg = readFileSync(join(SVG, fichier), "utf8");
-  const titre = ((svg.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || id).trim();
-  if (!familleDe[id]) console.warn(`⚠ planche hors table, rangée en « repères » : ${id}`);
-  return {
-    id,
-    titre,
-    famille: familleDe[id] || "repères",
-    chemin: `../fonds-origine/packs/fluides/res/svg/${fichier}`,
-    ko: Math.round(statSync(join(SVG, fichier)).size / 1024),
-  };
-});
+function releverDossier(dossier, prefixe) {
+  return readdirSync(dossier).filter((f) => f.endsWith(".svg")).sort().map((fichier) => {
+    const id = fichier.replace(/\.svg$/, "");
+    const svg = readFileSync(join(dossier, fichier), "utf8");
+    const titre = ((svg.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || id).trim();
+    if (!familleDe[id]) console.warn(`⚠ planche hors table, rangée en « repères » : ${id}`);
+    return {
+      id,
+      titre,
+      famille: familleDe[id] || "repères",
+      chemin: `${prefixe}${fichier}`,
+      ko: Math.round(statSync(join(dossier, fichier)).size / 1024),
+    };
+  });
+}
+const planches = [
+  ...releverDossier(SVG, "../fonds-origine/packs/fluides/res/svg/"),
+  ...releverDossier(SVG_REFONTE, "planches/"),
+];
 
 const ordreFamilles = Object.keys(FAMILLES);
 planches.sort((a, b) =>

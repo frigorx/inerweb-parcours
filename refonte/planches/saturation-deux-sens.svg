@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="À une pression donnée, un fluide pur bout et condense à la même température : sa température de saturation. Le schéma montre une seule frontière entre le liquide et la vapeur. Au-dessus, le sens évaporation : le liquide reçoit de l'énergie et devient vapeur. En dessous, le sens condensation : la vapeur cède de l'énergie et redevient liquide. Une seule frontière, deux sens de passage.">
+  <title>Une seule frontière, deux sens : évaporer et condenser à la même température</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Une seule frontière — deux sens de passage</text>
+
+  <!-- les deux mondes -->
+  <rect x="90" y="80" width="300" height="290" rx="10" fill="#e3eef7" stroke="#1b3a63" stroke-width="2.2"/>
+  <text class="st" x="240" y="112" text-anchor="middle">LIQUIDE</text>
+  <g fill="#7db2d6">
+    <circle cx="170" cy="220" r="9"/><circle cx="210" cy="260" r="9"/><circle cx="250" cy="215" r="9"/>
+    <circle cx="290" cy="255" r="9"/><circle cx="190" cy="300" r="9"/><circle cx="265" cy="305" r="9"/>
+    <circle cx="315" cy="290" r="9"/><circle cx="150" cy="270" r="9"/>
+  </g>
+  <text class="sm" x="240" y="350" text-anchor="middle">molécules serrées</text>
+
+  <rect x="490" y="80" width="300" height="290" rx="10" fill="#fdeee8" stroke="#a8410f" stroke-width="2.2"/>
+  <text class="st" x="640" y="112" text-anchor="middle" fill="#a8410f">VAPEUR</text>
+  <g fill="#e8a58c">
+    <circle cx="560" cy="180" r="7"><animate attributeName="cy" values="180;168;180" dur="2.6s" repeatCount="indefinite"/></circle>
+    <circle cx="660" cy="230" r="7"><animate attributeName="cx" values="660;676;660" dur="3.1s" repeatCount="indefinite"/></circle>
+    <circle cx="600" cy="300" r="7"><animate attributeName="cy" values="300;312;300" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="730" cy="160" r="7"><animate attributeName="cy" values="160;174;160" dur="2.9s" repeatCount="indefinite"/></circle>
+    <circle cx="710" cy="320" r="7"><animate attributeName="cx" values="710;696;710" dur="2.4s" repeatCount="indefinite"/></circle>
+  </g>
+  <text class="sm" x="640" y="350" text-anchor="middle">molécules libres</text>
+
+  <!-- la frontière -->
+  <path class="p" d="M440,80 v290" stroke-dasharray="9 6"/>
+  <rect x="360" y="196" width="160" height="52" rx="26" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="440" y="218" text-anchor="middle">MÊME</text>
+  <text class="st" x="440" y="236" text-anchor="middle">température</text>
+  <text class="sm" x="440" y="270" text-anchor="middle">de saturation</text>
+
+  <!-- sens 1 : évaporation (haut) -->
+  <path class="acc" d="M300,140 C370,120 510,120 580,140 m-16,-12 16,12 -19,6"/>
+  <text class="bad" x="440" y="108" text-anchor="middle">ÉVAPORATION — le liquide REÇOIT de l'énergie</text>
+  <circle r="6" fill="#c9451a">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M300,140 C370,120 510,120 580,140"/>
+  </circle>
+
+  <!-- sens 2 : condensation (bas) -->
+  <path class="blu" d="M580,400 C510,420 370,420 300,400 m16,12 -16,-12 19,-6"/>
+  <text class="st" x="440" y="446" text-anchor="middle" fill="#1b6ea8">CONDENSATION — la vapeur CÈDE son énergie</text>
+  <circle r="6" fill="#1b6ea8">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M580,400 C510,420 370,420 300,400"/>
+  </circle>
+</svg>

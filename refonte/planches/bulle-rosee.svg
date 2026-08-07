@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
+     aria-label="La zone de changement d'état, entre deux frontières fixes. À gauche, le point de bulle, côté liquide : en évaporation la première bulle y apparaît, en condensation la dernière bulle y disparaît. À droite, le point de rosée, côté vapeur : en évaporation la dernière goutte y disparaît, en condensation la première goutte y apparaît. Le sens du voyage s'inverse, les noms ne bougent pas. La vapeur seule se réfère à la rosée, le liquide seul se réfère à la bulle.">
+  <title>Bulle et rosée : les noms décrivent les frontières, pas l'ordre du voyage</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .bad { font:700 13px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .blu { fill:none; stroke:#1b6ea8; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="880" height="464" fill="#ffffff"/>
+  <text class="t" x="30" y="32">Deux frontières fixes — et un voyage qui passe dans les deux sens</text>
+
+  <!-- ============ LA BANDE CENTRALE ============ -->
+  <!-- liquide | diphasique | vapeur -->
+  <rect x="70"  y="170" width="180" height="120" fill="#e3eef7" stroke="#1b3a63" stroke-width="2.2"/>
+  <rect x="250" y="170" width="380" height="120" fill="#f2f7fb" stroke="#8fa3b8" stroke-width="1.6"/>
+  <rect x="630" y="170" width="180" height="120" fill="#fdeee8" stroke="#a8410f" stroke-width="2.2"/>
+  <text class="st" x="160" y="236" text-anchor="middle">LIQUIDE seul</text>
+  <text class="st" x="440" y="222" text-anchor="middle">liquide + vapeur</text>
+  <text class="sm" x="440" y="242" text-anchor="middle">le changement d'état est en cours</text>
+  <text class="st" x="720" y="236" text-anchor="middle" fill="#a8410f">VAPEUR seule</text>
+
+  <!-- frontière BULLE -->
+  <path class="p" d="M250,150 v160" stroke-dasharray="8 5"/>
+  <circle cx="250" cy="330" r="16" fill="#ffffff" stroke="#1b3a63" stroke-width="2.4"/>
+  <circle cx="250" cy="330" r="6" fill="#7db2d6"/>
+  <text class="st" x="250" y="372" text-anchor="middle">POINT DE BULLE</text>
+  <text class="sm" x="250" y="390" text-anchor="middle">la frontière côté liquide</text>
+
+  <!-- frontière ROSÉE -->
+  <path class="p" d="M630,150 v160" stroke="#a8410f" stroke-dasharray="8 5"/>
+  <path d="M630,318 c-8,10 -8,18 0,24 c8,-6 8,-14 0,-24 z" fill="#ffffff" stroke="#a8410f" stroke-width="2.4"/>
+  <text class="st" x="630" y="372" text-anchor="middle" fill="#a8410f">POINT DE ROSÉE</text>
+  <text class="sm" x="630" y="390" text-anchor="middle">la frontière côté vapeur</text>
+
+  <!-- ============ SENS 1 : ÉVAPORATION (au-dessus) ============ -->
+  <path class="acc" d="M120,120 H760 m-14,-8 14,8 -14,8"/>
+  <circle r="6" fill="#c9451a"><animateMotion dur="4s" repeatCount="indefinite" path="M120,120 H760"/></circle>
+  <text class="bad" x="120" y="100">ÉVAPORATION →</text>
+  <text class="sm" x="250" y="146" text-anchor="middle">la 1ʳᵉ bulle apparaît</text>
+  <text class="sm" x="630" y="146" text-anchor="middle" fill="#a8410f">la dernière goutte disparaît</text>
+
+  <!-- ============ SENS 2 : CONDENSATION (en dessous, sens inverse) ============ -->
+  <path class="blu" d="M760,430 H120 m14,-8 -14,8 14,8"/>
+  <circle r="6" fill="#1b6ea8"><animateMotion dur="4s" repeatCount="indefinite" path="M760,430 H120"/></circle>
+  <text class="st" x="760" y="458" text-anchor="end" fill="#1b6ea8">← CONDENSATION</text>
+  <text class="sm" x="630" y="414" text-anchor="middle" fill="#a8410f">la 1ʳᵉ goutte apparaît</text>
+  <text class="sm" x="250" y="414" text-anchor="middle">la dernière bulle disparaît</text>
+
+  <!-- ============ LES RÉFÉRENCES DU MÉTIER ============ -->
+  <rect x="70" y="52" width="330" height="34" rx="17" fill="#eef3f9"/>
+  <text class="st" x="235" y="74" text-anchor="middle">sous-refroidissement → réf. BULLE</text>
+  <rect x="480" y="52" width="330" height="34" rx="17" fill="#fdeee8"/>
+  <text class="st" x="645" y="74" text-anchor="middle" fill="#a8410f">surchauffe → réf. ROSÉE</text>
+</svg>
