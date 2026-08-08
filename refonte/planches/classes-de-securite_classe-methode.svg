@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, la classe lue sur l'étiquette. Trois flèches partent vers trois cadres : la charge dans le local ; l'outillage autorisé, point chaud, détecteur, électricité ; la ventilation et la conduite en cas de fuite. En dessous, un bandeau : la classe ne décide pas seule, la notice de l'appareil et les règles du local précisent le tout.">
+  <title>La classe pèse sur la charge, l'outillage et la ventilation — avec la notice</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 17px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .cls { font:700 24px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.6; stroke-linecap:round; }
+    .fin { font:700 17px Trebuchet MS,Calibri,sans-serif; fill:#c9451a; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">Lire la classe : le premier geste, pas le seul</text>
+
+  <!-- Étiquette source -->
+  <g>
+    <rect x="34" y="130" width="180" height="120" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+    <text class="st" x="124" y="164" text-anchor="middle">Classe lue sur</text>
+    <text class="st" x="124" y="186" text-anchor="middle">l'étiquette</text>
+    <text class="cls" x="124" y="226" text-anchor="middle">A1 · A2L · A3…</text>
+  </g>
+
+  <!-- Flèches -->
+  <path class="fl" d="M214,160 C 260,120 290,105 322,98"/>
+  <path class="fl" d="M322,98 l-13,-3 m13,3 l-11,8"/>
+  <path class="fl" d="M214,190 h108"/>
+  <path class="fl" d="M322,190 l-12,-7 m12,7 l-12,7"/>
+  <path class="fl" d="M214,220 C 260,260 290,275 322,282"/>
+  <path class="fl" d="M322,282 l-13,3 m13,-3 l-11,-8"/>
+
+  <!-- Trois conséquences -->
+  <g>
+    <rect x="332" y="62" width="334" height="66" rx="10" fill="#fffdf8" stroke="#3d7fca" stroke-width="2.6"/>
+    <text class="st" x="352" y="90">La charge dans le local</text>
+    <text class="tx" x="352" y="114">combien de fluide, dans quelle pièce</text>
+  </g>
+  <g>
+    <rect x="332" y="156" width="334" height="66" rx="10" fill="#fffdf8" stroke="#3d7fca" stroke-width="2.6"/>
+    <text class="st" x="352" y="184">L'outillage autorisé</text>
+    <text class="tx" x="352" y="208">point chaud · détecteur · électricité</text>
+  </g>
+  <g>
+    <rect x="332" y="250" width="334" height="66" rx="10" fill="#fffdf8" stroke="#3d7fca" stroke-width="2.6"/>
+    <text class="st" x="352" y="278">La ventilation</text>
+    <text class="tx" x="352" y="302">et la conduite en cas de fuite</text>
+  </g>
+
+  <!-- Bandeau : pas seule -->
+  <rect x="34" y="340" width="632" height="42" rx="10" fill="#fff4e0" stroke="#b06a00" stroke-width="2.4" stroke-dasharray="10 6"/>
+  <text class="fin" x="350" y="367" text-anchor="middle" fill="#b06a00">La classe ne décide pas seule : notice de l'appareil + règles applicables au local.</text>
+</svg>

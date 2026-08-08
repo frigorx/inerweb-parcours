@@ -9,8 +9,16 @@
    Toutes les valeurs (tables eau et R-134a, glissement R-407C 6,1 K)
    viennent du tuto source — vérifiées identiques à outils/fluides-data.js
    par l'agent d'extraction (relevé du 07/08).
-   La lecture du manifold n'est PAS traitée ici : c'est la capsule
+   La lecture du bloc de manomètres de service n'est PAS traitée ici : c'est la capsule
    « Lire un manomètre », en préparation chez F. Henninot.
+
+   Refonte 08/08 (doctrine DOCTRINE-REFONTE-2026-08-08.md) :
+   - 05-le-manometre réécrit : « +1 bar » n'est plus automatique (§ 0.3),
+     on lit l'en-tête de la table d'abord — voix périmée.
+   - d-table-1 : convention de pression de la table rendue explicite
+     (précision douce du relevé ; la voix disait déjà « absolues »).
+   - Capsule PROPRIÉTAIRE de l'ébullition sous pression réduite et de
+     bulle/rosée (§ 3) : ces écrans ne bougent pas.
    ===================================================================== */
 CAPSULE({
   id: "pression-temperature",
@@ -83,10 +91,11 @@ CAPSULE({
       planche: "../fonds-origine/packs/fluides/res/svg/pression-absolue-relative.svg",
       texte: [
         "Le manomètre de service indique une pression **relative** : son zéro, c'est la pression atmosphérique. La pression **absolue** part du vide parfait.",
-        "**Absolue = relative + 1,013 bar** (environ +1 bar). Lu **1,0 bar relatif** sur du R-134a → **≈ 2,0 bar absolus** → saturation **≈ −10 °C**.",
+        "**Lisez d'abord l'en-tête de la table** : certaines tables comptent en absolu, d'autres en relatif. Le « +1 bar » n'est **jamais automatique**. Si la table est en absolu, on ajoute la **pression atmosphérique du lieu** — environ 1 bar au niveau de la mer : lu **1,0 bar relatif** sur du R-134a, table en absolu → **≈ 2,0 bar absolus** → saturation **≈ −10 °C**.",
         "Avant de lire une table, **annoncez quatre choses : le fluide, la valeur, l'unité, et le type de pression.**"
       ],
-      lu: "Un piège classique maintenant. Le manomètre de service indique une pression relative : son zéro correspond à la pression atmosphérique. La pression absolue, elle, part du vide parfait. La conversion est simple : absolue égale relative plus un virgule zéro treize bar — environ plus un bar. Vous lisez un bar relatif sur du R cent trente-quatre a ? Cela fait environ deux bars absolus, donc une saturation d'environ moins dix degrés. D'où la règle du métier : avant de lire une table, annoncez toujours quatre choses. Le fluide. La valeur. L'unité. Et le type de pression.",
+      lu: "Un piège classique maintenant. Le manomètre de service indique une pression relative : son zéro correspond à la pression atmosphérique. La pression absolue, elle, part du vide parfait. Alors, avant toute conversion, lisez l'en-tête de la table : certaines tables comptent en pression absolue, d'autres en pression relative. Le plus un bar n'est jamais automatique. Si la table est en absolu, on ajoute la pression atmosphérique du lieu — environ un bar au niveau de la mer. Vous lisez un bar relatif sur du R cent trente-quatre a, et la table est en absolu ? Cela fait environ deux bars absolus, donc une saturation d'environ moins dix degrés. D'où la règle du métier : avant de lire une table, annoncez toujours quatre choses. Le fluide. La valeur. L'unité. Et le type de pression.",
+      voixPerimee: true,
       codes: ["1.03"]
     },
 
@@ -108,7 +117,7 @@ CAPSULE({
   retenir: [
     "**À chaque pression sa température de saturation** — et la courbe monte toujours.",
     "**La pression ne fabrique pas le froid : elle choisit la température du changement d'état.**",
-    "Manomètre = pression **relative** ; **absolue = relative + 1,013 bar**. Annoncer fluide, valeur, unité, référence.",
+    "Manomètre = pression **relative** ; absolue = relative + pression atmosphérique du lieu. **Lire l'en-tête de la table — jamais de « +1 bar » automatique.** Annoncer fluide, valeur, unité, type de pression.",
     "Corps pur : **palier** · zéotrope : **glissement** entre bulle et rosée (R-407C : 6,1 K).",
     "**Surchauffe → rosée · sous-refroidissement → bulle.**"
   ],
@@ -141,7 +150,7 @@ CAPSULE({
           titre: "Huit lignes qui traduisent toute la machine.",
           planche: "../fonds-origine/packs/fluides/res/svg/lecture-table.svg",
           texte: [
-            "R-134a, pression **absolue** : **−20 °C → 1,327 bar** · **−10 → 2,006** · **0 → 2,928** · **+10 → 4,146**.",
+            "R-134a — **son en-tête l'annonce : pression absolue** : **−20 °C → 1,327 bar** · **−10 → 2,006** · **0 → 2,928** · **+10 → 4,146**.",
             "**+20 → 5,717** · **+30 → 7,702** · **+40 → 10,166** · **+50 → 13,179 bar**.",
             "La table **traduit une pression en température de saturation** — elle ne remplace pas le manomètre, elle lui donne un sens."
           ],

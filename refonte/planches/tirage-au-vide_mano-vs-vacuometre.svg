@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, le manomètre basse pression du bloc de manomètres : son aiguille est en butée à moins un bar, collée en bas, qu'il reste de l'humidité ou non. À droite, le vacuomètre : il lit les derniers milliers de microns — tout le vide utile, écrasé contre la butée, que l'aiguille du manomètre ne voit pas.">
+  <title>Manomètre BP contre vacuomètre : deux instruments, deux mondes</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c0392b; }
+    .ok  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .no  { fill:none; stroke:#c0392b; stroke-width:2.6; stroke-linecap:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">Le vide utile tient dans l'épaisseur de son aiguille</text>
+
+  <!-- ========= GAUCHE : manomètre BP ========= -->
+  <g>
+    <text class="bad" x="175" y="70" text-anchor="middle">manomètre BP du bloc de manomètres</text>
+    <circle cx="175" cy="180" r="80" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- graduations -->
+    <path class="p" d="M175,108 v12 M239,148 l-10,6 M239,212 l-10,-6 M175,252 v-12 M111,212 l10,-6 M111,148 l10,6"/>
+    <text class="lg" x="175" y="100" text-anchor="middle">0</text>
+    <text class="lg" x="100" y="230" text-anchor="middle">−1 bar</text>
+    <!-- aiguille collée en butée basse gauche -->
+    <path class="no" d="M175,180 L118,222"/>
+    <circle cx="175" cy="180" r="5" fill="#c0392b"/>
+    <text class="bad" x="175" y="290" text-anchor="middle">en butée : l'aiguille est collée,</text>
+    <text class="bad" x="175" y="308" text-anchor="middle">circuit sec ou circuit trempé</text>
+  </g>
+
+  <!-- séparation -->
+  <path class="dash" d="M350,52 v270"/>
+
+  <!-- ========= DROITE : vacuomètre ========= -->
+  <g>
+    <text class="ok" x="525" y="70" text-anchor="middle">vacuomètre</text>
+    <rect x="425" y="110" width="200" height="120" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <rect x="441" y="126" width="168" height="52" rx="4" fill="#eef7f1" stroke="#1e7e54" stroke-width="1.6"/>
+    <text class="ok" x="525" y="160" text-anchor="middle" font-size="24">… microns</text>
+    <text class="st" x="525" y="206" text-anchor="middle">il lit les derniers milliers</text>
+    <text class="st" x="525" y="224" text-anchor="middle">de microns</text>
+    <text class="lg" x="525" y="272" text-anchor="middle">tout le vide utile est écrasé contre la butée —</text>
+    <text class="lg" x="525" y="290" text-anchor="middle">l'aiguille ne le voit pas</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,340 h620"/>
+  <text class="st" x="350" y="372" text-anchor="middle">Le manomètre BP ne ment pas : il n'est pas fait pour ça. Pour le vide, il faut un vacuomètre.</text>
+</svg>

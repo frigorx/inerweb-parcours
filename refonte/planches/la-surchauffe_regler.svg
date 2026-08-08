@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="La méthode de réglage en quatre temps : noter la valeur de départ, un petit pas sur la vis selon la notice, attendre la stabilisation donnée par le constructeur, relire. En dessous, la boucle interdite : retoucher et relire aussitôt.">
+  <title>Régler la surchauffe : petits pas, notice, stabilisation</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 13.5px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .g  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#1e7e54; }
+    .r  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c0392b; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .v  { fill:none; stroke:#1e7e54; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .rr { fill:none; stroke:#c0392b; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">La bonne méthode — quatre temps, dans l'ordre</text>
+
+  <!-- 4 étapes, cadre vert plein -->
+  <g>
+    <rect x="35" y="70" width="140" height="120" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <text class="g" x="105" y="96" text-anchor="middle">① NOTER</text>
+    <rect x="75" y="110" width="60" height="44" rx="4" fill="#eaf2fb" stroke="#1b3a63" stroke-width="1.8"/>
+    <path class="fil" d="M83,122 h44 M83,134 h44 M83,146 h30"/>
+    <text class="s" x="105" y="176" text-anchor="middle">la valeur de départ</text>
+  </g>
+  <path class="v" d="M175,130 h20"/><path d="M193,124 l12,6 -12,6 z" fill="#1e7e54"/>
+  <g>
+    <rect x="207" y="70" width="140" height="120" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <text class="g" x="277" y="96" text-anchor="middle">② UN PETIT PAS</text>
+    <circle cx="277" cy="132" r="20" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.2"/>
+    <path class="p" d="M277,116 v-6 M277,148 v6 M261,132 h-6 M293,132 h6 M277,132 l11,-9"/>
+    <text class="s" x="277" y="176" text-anchor="middle">sens et pas : la notice</text>
+  </g>
+  <path class="v" d="M347,130 h20"/><path d="M365,124 l12,6 -12,6 z" fill="#1e7e54"/>
+  <g>
+    <rect x="379" y="70" width="140" height="120" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <text class="g" x="449" y="96" text-anchor="middle">③ ATTENDRE</text>
+    <circle cx="449" cy="132" r="20" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.2"/>
+    <path class="p" d="M449,132 v-13 M449,132 l9,7"/>
+    <text class="s" x="449" y="170" text-anchor="middle">temps de stabilisation :</text>
+    <text class="s" x="449" y="184" text-anchor="middle">le constructeur</text>
+  </g>
+  <path class="v" d="M519,130 h20"/><path d="M537,124 l12,6 -12,6 z" fill="#1e7e54"/>
+  <g>
+    <rect x="551" y="70" width="120" height="120" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <text class="g" x="611" y="96" text-anchor="middle">④ RELIRE</text>
+    <rect x="586" y="112" width="50" height="30" rx="5" fill="#fffdf8" stroke="#1b3a63" stroke-width="2"/>
+    <path class="p" d="M596,127 h30" style="stroke-width:1.8"/>
+    <text class="s" x="611" y="170" text-anchor="middle">la valeur a fini</text>
+    <text class="s" x="611" y="184" text-anchor="middle">de bouger</text>
+  </g>
+
+  <!-- boucle interdite, cadre rouge tireté -->
+  <rect x="120" y="240" width="460" height="100" rx="10" fill="#fffdf8" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="8 5"/>
+  <text class="r" x="350" y="270" text-anchor="middle">✗ L'ERREUR CLASSIQUE — retoucher, relire aussitôt, retoucher encore</text>
+  <path class="rr" d="M260,300 a48,22 0 1 1 0,0.1"/>
+  <path d="M262,296 l12,4 -10,8 z" fill="#c0392b"/>
+  <text class="s" x="410" y="304" text-anchor="middle">on poursuit une valeur qui n'a pas fini de bouger,</text>
+  <text class="s" x="410" y="322" text-anchor="middle">et on finit très loin du but</text>
+
+  <text class="l" x="350" y="380" text-anchor="middle">Par petits pas — la notice commande le sens, le pas et le temps d'attente.</text>
+</svg>

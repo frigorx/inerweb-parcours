@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, la carte du R-32, classé A2L, faiblement inflammable. À droite, une carte rouge : R-290, le propane, et R-600a, l'isobutane, tous deux classés A3, hautement inflammables. La mention A2L y est barrée d'une croix rouge avec le mot NON. En bas : un fluide naturel n'est pas un fluide doux.">
+  <title>Le piège : R-290 et R-600a sont A3, jamais A2L</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .nom { font:700 19px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .cls { font:700 30px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .st  { font:700 16px Trebuchet MS,Calibri,sans-serif; }
+    .non { font:700 20px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+    .fin { font:700 19px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">« Écologique » ne veut pas dire « peu inflammable »</text>
+
+  <!-- R-32 : la vraie carte A2L -->
+  <g>
+    <rect x="36" y="66" width="250" height="250" rx="10" fill="#fffdf8" stroke="#b06a00" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="nom" x="161" y="102" text-anchor="middle">R-32</text>
+    <line x1="66" y1="116" x2="256" y2="116" stroke="#b06a00" stroke-width="2"/>
+    <text class="cls" x="161" y="162" text-anchor="middle" fill="#b06a00">A2L</text>
+    <text class="st" x="161" y="198" text-anchor="middle" fill="#b06a00">faiblement inflammable</text>
+    <text class="tx" x="161" y="234" text-anchor="middle">la flamme se propage</text>
+    <text class="tx" x="161" y="256" text-anchor="middle">lentement — mais</text>
+    <text class="tx" x="161" y="278" text-anchor="middle">il brûle quand même</text>
+  </g>
+
+  <!-- R-290 / R-600a : A3 -->
+  <g>
+    <rect x="330" y="66" width="334" height="250" rx="10" fill="#fbe7e4" stroke="#c0392b" stroke-width="5"/>
+    <text class="nom" x="430" y="102" text-anchor="middle">R-290 = propane</text>
+    <text class="nom" x="430" y="126" text-anchor="middle">R-600a = isobutane</text>
+    <line x1="360" y1="142" x2="634" y2="142" stroke="#c0392b" stroke-width="2"/>
+    <text class="cls" x="430" y="192" text-anchor="middle" fill="#c0392b">A3</text>
+    <text class="st" x="430" y="228" text-anchor="middle" fill="#c0392b">hautement inflammable</text>
+    <text class="tx" x="430" y="264" text-anchor="middle">le même gaz que la</text>
+    <text class="tx" x="430" y="286" text-anchor="middle">bouteille de camping</text>
+
+    <!-- A2L barré -->
+    <g>
+      <rect x="562" y="164" width="78" height="44" rx="8" fill="#fffdf8" stroke="#637285" stroke-width="2"/>
+      <text class="st" x="601" y="192" text-anchor="middle" fill="#637285">A2L ?</text>
+      <path d="M566,168 l70,36 M636,168 l-70,36" stroke="#c0392b" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <text class="non" x="601" y="240" text-anchor="middle">NON</text>
+    </g>
+  </g>
+
+  <text class="fin" x="350" y="366" text-anchor="middle">Un fluide naturel n'est pas un fluide doux.</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Trois cases. Première case plus un : le nombre de carbones. Deuxième case moins un : le nombre d'hydrogènes. Troisième case telle quelle : le nombre de fluors. Périmètre : les halocarbures saturés acycliques.">
+  <title>La règle : plus un, moins un, tel quel</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .op  { font:700 22px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .case{ font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .atom{ font:700 17px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.4; stroke-linecap:round; marker-end:url(#fleche); }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+  <defs>
+    <marker id="fleche" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="#3d7fca"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Plus un · moins un · tel quel</text>
+
+  <!-- ===== Colonne 1 ===== -->
+  <g transform="translate(60,0)">
+    <rect class="p" x="0" y="70" width="150" height="52" fill="#fffdf8"/>
+    <text class="case" x="75" y="102" text-anchor="middle">1re case</text>
+    <path class="fl" d="M75,132 v50"/>
+    <text class="op" x="105" y="166">+ 1</text>
+    <rect class="p" x="0" y="192" width="150" height="60" fill="#eaf2fb"/>
+    <text class="atom" x="75" y="217" text-anchor="middle">carbones</text>
+    <text class="atom" x="75" y="240" text-anchor="middle">(C)</text>
+  </g>
+
+  <!-- ===== Colonne 2 ===== -->
+  <g transform="translate(275,0)">
+    <rect class="p" x="0" y="70" width="150" height="52" fill="#fffdf8"/>
+    <text class="case" x="75" y="102" text-anchor="middle">2e case</text>
+    <path class="fl" d="M75,132 v50"/>
+    <text class="op" x="105" y="166">− 1</text>
+    <rect class="p" x="0" y="192" width="150" height="60" fill="#eaf2fb"/>
+    <text class="atom" x="75" y="217" text-anchor="middle">hydrogènes</text>
+    <text class="atom" x="75" y="240" text-anchor="middle">(H)</text>
+  </g>
+
+  <!-- ===== Colonne 3 ===== -->
+  <g transform="translate(490,0)">
+    <rect class="p" x="0" y="70" width="150" height="52" fill="#fffdf8"/>
+    <text class="case" x="75" y="102" text-anchor="middle">3e case</text>
+    <path class="fl" d="M75,132 v50"/>
+    <text class="op" x="98" y="166" font-size="15">tel quel</text>
+    <rect class="p" x="0" y="192" width="150" height="60" fill="#eaf2fb"/>
+    <text class="atom" x="75" y="217" text-anchor="middle">fluors</text>
+    <text class="atom" x="75" y="240" text-anchor="middle">(F)</text>
+  </g>
+
+  <text class="lg" x="350" y="292" text-anchor="middle">Le chlore, lui, ne se lit pas : il se déduit des places restantes (voir le détour).</text>
+
+  <!-- ===== Périmètre ===== -->
+  <path class="dash" d="M40,318 h620"/>
+  <text class="st" x="350" y="348" text-anchor="middle">Périmètre de la règle : les halocarbures saturés acycliques</text>
+  <text class="lg" x="350" y="372" text-anchor="middle">— les fluides que nous décodons dans cette capsule. Ailleurs, la règle ne s'applique pas.</text>
+</svg>

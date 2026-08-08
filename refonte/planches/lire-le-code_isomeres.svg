@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux molécules aux mêmes atomes : deux carbones, deux hydrogènes, quatre fluors. À gauche, R-134 : les fluors sont répartis deux de chaque côté — répartition équilibrée, pas de lettre. À droite, R-134a : trois fluors d'un côté, un seul de l'autre — la lettre a marque ce déséquilibre. Schéma de principe, pas à l'échelle.">
+  <title>R-134 et R-134a : mêmes atomes, rangés autrement</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .acc { font:700 14px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .code{ font:700 19px Consolas,monospace; fill:#1b3a63; }
+    .atom{ font:700 16px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .lien{ stroke:#1b3a63; stroke-width:2.2; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Mêmes atomes, rangés autrement</text>
+
+  <!-- ===== R-134 : CHF2–CHF2 (2 F de chaque côté) ===== -->
+  <g transform="translate(115,170)">
+    <line class="lien" x1="0" y1="0" x2="90" y2="0"/>
+    <line class="lien" x1="0" y1="0" x2="-46" y2="-40"/>
+    <line class="lien" x1="0" y1="0" x2="-50" y2="26"/>
+    <line class="lien" x1="0" y1="0" x2="-4" y2="56"/>
+    <line class="lien" x1="90" y1="0" x2="136" y2="-40"/>
+    <line class="lien" x1="90" y1="0" x2="140" y2="26"/>
+    <line class="lien" x1="90" y1="0" x2="94" y2="56"/>
+    <circle class="p" cx="0" cy="0" r="23" fill="#eaf2fb"/>
+    <text class="atom" x="0" y="5" text-anchor="middle">C</text>
+    <circle class="p" cx="90" cy="0" r="23" fill="#eaf2fb"/>
+    <text class="atom" x="90" y="5" text-anchor="middle">C</text>
+    <circle class="p" cx="-56" cy="-48" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-56" y="-43" text-anchor="middle">F</text>
+    <circle class="p" cx="-60" cy="32" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-60" y="37" text-anchor="middle">F</text>
+    <circle class="p" cx="-4" cy="70" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-4" y="75" text-anchor="middle">H</text>
+    <circle class="p" cx="146" cy="-48" r="16" fill="#fffdf8"/>
+    <text class="atom" x="146" y="-43" text-anchor="middle">F</text>
+    <circle class="p" cx="150" cy="32" r="16" fill="#fffdf8"/>
+    <text class="atom" x="150" y="37" text-anchor="middle">F</text>
+    <circle class="p" cx="94" cy="70" r="16" fill="#fffdf8"/>
+    <text class="atom" x="94" y="75" text-anchor="middle">H</text>
+    <text class="code" x="45" y="128" text-anchor="middle">R-134</text>
+    <text class="lg" x="45" y="152" text-anchor="middle">deux fluors de chaque côté :</text>
+    <text class="lg" x="45" y="172" text-anchor="middle">équilibré — pas de lettre</text>
+  </g>
+
+  <!-- ===== R-134a : CF3–CH2F (3 F / 1 F) ===== -->
+  <g transform="translate(465,170)">
+    <line class="lien" x1="0" y1="0" x2="90" y2="0"/>
+    <line class="lien" x1="0" y1="0" x2="-46" y2="-40"/>
+    <line class="lien" x1="0" y1="0" x2="-50" y2="26"/>
+    <line class="lien" x1="0" y1="0" x2="-4" y2="56"/>
+    <line class="lien" x1="90" y1="0" x2="136" y2="-40"/>
+    <line class="lien" x1="90" y1="0" x2="140" y2="26"/>
+    <line class="lien" x1="90" y1="0" x2="94" y2="56"/>
+    <circle class="p" cx="0" cy="0" r="23" fill="#eaf2fb"/>
+    <text class="atom" x="0" y="5" text-anchor="middle">C</text>
+    <circle class="p" cx="90" cy="0" r="23" fill="#eaf2fb"/>
+    <text class="atom" x="90" y="5" text-anchor="middle">C</text>
+    <circle class="p" cx="-56" cy="-48" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-56" y="-43" text-anchor="middle">F</text>
+    <circle class="p" cx="-60" cy="32" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-60" y="37" text-anchor="middle">F</text>
+    <circle class="p" cx="-4" cy="70" r="16" fill="#fffdf8"/>
+    <text class="atom" x="-4" y="75" text-anchor="middle">F</text>
+    <circle class="p" cx="146" cy="-48" r="16" fill="#fffdf8"/>
+    <text class="atom" x="146" y="-43" text-anchor="middle">F</text>
+    <circle class="p" cx="150" cy="32" r="16" fill="#fffdf8"/>
+    <text class="atom" x="150" y="37" text-anchor="middle">H</text>
+    <circle class="p" cx="94" cy="70" r="16" fill="#fffdf8"/>
+    <text class="atom" x="94" y="75" text-anchor="middle">H</text>
+    <text class="code" x="45" y="128" text-anchor="middle">R-134a</text>
+    <text class="acc" x="45" y="152" text-anchor="middle">trois fluors d'un côté, un de l'autre :</text>
+    <text class="acc" x="45" y="172" text-anchor="middle">la lettre a marque le déséquilibre</text>
+  </g>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M40,360 h620"/>
+  <text class="st" x="40" y="388">Mêmes atomes : 2 C · 2 H · 4 F — deux fluides distincts.</text>
+  <text class="lg" x="660" y="388" text-anchor="end">Schéma de principe — pas à l'échelle.</text>
+</svg>

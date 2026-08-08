@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Circuit selon la croix du frigoriste : condenseur en haut, évaporateur en bas, détendeur à gauche, compresseur à droite. Le sous-refroidissement se lit à la sortie du condenseur, sur le liquide : saturation moins mesurée. La surchauffe se lit à la sortie de l'évaporateur, sur la vapeur : mesurée moins saturation.">
+  <title>Deux marges, deux bouts du circuit : surchauffe et sous-refroidissement</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 13.5px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .a  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .b  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#3d7fca; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-dasharray:8 5; }
+    .bb { fill:none; stroke:#3d7fca; stroke-width:2.6; stroke-linecap:round; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">La même idée, aux deux bouts du circuit</text>
+
+  <!-- boucle du circuit (croix du frigoriste) -->
+  <path class="p" d="M240,90 h220 M460,90 v70 M460,250 v60 M460,310 h-220 M240,310 v-60 M240,160 v-70"/>
+
+  <!-- condenseur : HAUT -->
+  <rect x="240" y="70" width="220" height="40" rx="6" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2.6"/>
+  <path class="fil" d="M260,80 l16,20 M292,80 l16,20 M324,80 l16,20 M356,80 l16,20 M388,80 l16,20 M420,80 l16,20"/>
+  <text class="l" x="350" y="96" text-anchor="middle">CONDENSEUR — haut</text>
+
+  <!-- évaporateur : BAS -->
+  <rect x="240" y="290" width="220" height="40" rx="6" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2.6"/>
+  <path class="fil" d="M260,300 l16,20 M292,300 l16,20 M324,300 l16,20 M356,300 l16,20 M388,300 l16,20 M420,300 l16,20"/>
+  <text class="l" x="350" y="316" text-anchor="middle">ÉVAPORATEUR — bas</text>
+
+  <!-- détendeur : GAUCHE -->
+  <path d="M240,160 l-16,28 h32 z M240,248 l-16,-28 h32 z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="l" x="212" y="208" text-anchor="end">Détendeur</text>
+  <text class="s" x="212" y="226" text-anchor="end">gauche</text>
+
+  <!-- compresseur : DROITE -->
+  <circle cx="460" cy="205" r="42" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="l" x="460" y="201" text-anchor="middle">Compres-</text>
+  <text class="l" x="460" y="219" text-anchor="middle">seur — droite</text>
+
+  <!-- sous-refroidissement : sortie condenseur, côté gauche (liquide) -->
+  <circle cx="240" cy="120" r="7" fill="#3d7fca"/>
+  <path class="bb" d="M232,120 h-64"/>
+  <rect x="18" y="86" width="150" height="70" rx="8" fill="#fffdf8" stroke="#3d7fca" stroke-width="2.6"/>
+  <text class="b" x="93" y="108" text-anchor="middle">SOUS-REFROID.</text>
+  <text class="s" x="93" y="126" text-anchor="middle">sur du LIQUIDE</text>
+  <text class="s" x="93" y="144" text-anchor="middle">saturation − mesurée</text>
+
+  <!-- surchauffe : sortie évaporateur, côté droit (vapeur) -->
+  <circle cx="460" cy="280" r="7" fill="#c9451a"/>
+  <path class="o" d="M468,280 h64"/>
+  <rect x="534" y="246" width="150" height="70" rx="8" fill="#fffdf8" stroke="#c9451a" stroke-width="2.6" stroke-dasharray="8 5"/>
+  <text class="a" x="609" y="268" text-anchor="middle">SURCHAUFFE</text>
+  <text class="s" x="609" y="286" text-anchor="middle">sur de la VAPEUR</text>
+  <text class="s" x="609" y="304" text-anchor="middle">mesurée − saturation</text>
+
+  <path class="fil" d="M40,352 h620"/>
+  <text class="s" x="350" y="376" text-anchor="middle">L'une protège le compresseur du liquide ; l'autre contribue à vérifier l'alimentation en liquide du détendeur.</text>
+</svg>

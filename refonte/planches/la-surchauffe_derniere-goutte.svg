@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le long du tube de l'évaporateur : tant qu'il reste du liquide, la température reste bloquée à l'ébullition ; après la dernière goutte, la vapeur seule se réchauffe — c'est la surchauffe.">
+  <title>La dernière goutte : là où la surchauffe commence</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .a  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Le long du tube, deux zones — et une frontière</text>
+
+  <!-- tube de l'évaporateur -->
+  <path class="p" d="M60,170 h580"/>
+  <path class="p" d="M60,230 h580"/>
+
+  <!-- zone 1 : liquide + vapeur -->
+  <rect x="62" y="172" width="318" height="56" fill="#eaf2fb"/>
+  <!-- gouttes / bulles statiques -->
+  <g fill="#fffdf8" stroke="#1b3a63" stroke-width="1.4">
+    <circle cx="110" cy="212" r="6"/><circle cx="165" cy="200" r="5"/>
+    <circle cx="225" cy="215" r="7"/><circle cx="285" cy="198" r="5"/>
+    <circle cx="340" cy="210" r="4"/>
+  </g>
+  <text class="l" x="220" y="130" text-anchor="middle">liquide + vapeur : ça bout encore</text>
+  <text class="s" x="220" y="150" text-anchor="middle">température bloquée à l'ébullition — trait plein</text>
+
+  <!-- frontière : la dernière goutte -->
+  <path class="o" d="M383,110 v170"/>
+  <circle cx="383" cy="200" r="5" fill="#c9451a"/>
+  <text class="a" x="383" y="100" text-anchor="middle">la dernière goutte</text>
+
+  <!-- zone 2 : vapeur seule -->
+  <rect x="386" y="172" width="252" height="56" fill="#fffdf8"/>
+  <path class="fil" stroke-dasharray="7 5" d="M400,180 h230 M400,196 h230 M400,212 h230"/>
+  <text class="l" x="510" y="130" text-anchor="middle">vapeur seule : elle se réchauffe</text>
+  <text class="s" x="510" y="150" text-anchor="middle">au-delà de l'ébullition — zone tiretée</text>
+
+  <!-- flèche de température qui monte -->
+  <path class="o" d="M400,290 q110,0 220,-28"/>
+  <path d="M612,258 l14,2 -9,11 z" fill="#c9451a"/>
+  <text class="a" x="500" y="316" text-anchor="middle">la température monte : c'est la surchauffe</text>
+
+  <!-- morale -->
+  <path class="fil" d="M40,348 h620"/>
+  <text class="l" x="350" y="376" text-anchor="middle">De la surchauffe mesurée = il n'y a plus de liquide à cet endroit.</text>
+</svg>

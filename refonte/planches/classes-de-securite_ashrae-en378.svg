@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Trois cadres reliés par des flèches. D'abord ASHRAE 34, qui classe le fluide à partir de deux mesures : le danger à respirer et le comportement au feu. Ensuite l'étiquette qui en résulte : A1, A2L, A2, A3, B1, B2L, B2, B3. Enfin NF EN 378, qui encadre l'application et en tire les règles d'installation. En dessous : le classement peut évoluer, la classe 2L s'est ajoutée aux trois autres.">
+  <title>ASHRAE 34 classe · NF EN 378 encadre l'application</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 18px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .cls { font:700 18px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .mut { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#637285; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.8; stroke-linecap:round; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">Un classement mesuré, une application encadrée</text>
+
+  <!-- ASHRAE 34 -->
+  <g>
+    <rect x="30" y="70" width="240" height="180" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+    <text class="st" x="150" y="102" text-anchor="middle">ASHRAE 34</text>
+    <text class="tx" x="150" y="128" text-anchor="middle">classe le fluide</text>
+    <line x1="54" y1="142" x2="246" y2="142" stroke="#1b3a63" stroke-width="2"/>
+    <text class="tx" x="150" y="170" text-anchor="middle">deux mesures :</text>
+    <text class="tx" x="150" y="196" text-anchor="middle">· danger à respirer</text>
+    <text class="tx" x="150" y="222" text-anchor="middle">· comportement au feu</text>
+  </g>
+
+  <path class="fl" d="M270,160 h44 m0,0 l-12,-7 m12,7 l-12,7"/>
+
+  <!-- Étiquette -->
+  <g>
+    <rect x="318" y="118" width="120" height="84" rx="10" fill="#fffdf8" stroke="#c9451a" stroke-width="2.6" stroke-dasharray="10 6"/>
+    <text class="cls" x="378" y="150" text-anchor="middle" fill="#c9451a">A1 · A2L</text>
+    <text class="cls" x="378" y="174" text-anchor="middle" fill="#c9451a">A2 · A3 · B…</text>
+    <text class="mut" x="378" y="228" text-anchor="middle">l'étiquette</text>
+  </g>
+
+  <path class="fl" d="M438,160 h44 m0,0 l-12,-7 m12,7 l-12,7"/>
+
+  <!-- NF EN 378 -->
+  <g>
+    <rect x="486" y="70" width="184" height="180" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+    <text class="st" x="578" y="102" text-anchor="middle">NF EN 378</text>
+    <text class="tx" x="578" y="128" text-anchor="middle">encadre l'application</text>
+    <line x1="506" y1="142" x2="650" y2="142" stroke="#1b3a63" stroke-width="2"/>
+    <text class="tx" x="578" y="176" text-anchor="middle">règles</text>
+    <text class="tx" x="578" y="202" text-anchor="middle">d'installation</text>
+  </g>
+
+  <line x1="60" y1="292" x2="640" y2="292" stroke="#8fa3b8" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <text class="st" x="350" y="330" text-anchor="middle">Le classement peut évoluer quand un fluide est remesuré.</text>
+  <text class="tx" x="350" y="362" text-anchor="middle">La classe 2L, plus récente, s'est ajoutée aux trois autres : rien n'est gravé pour toujours.</text>
+</svg>

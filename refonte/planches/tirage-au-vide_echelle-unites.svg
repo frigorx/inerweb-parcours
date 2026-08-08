@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Échelle du vide, de l'atmosphère vers zéro : 760 000 microns pour l'atmosphère ; 1 torr égale 1000 microns ; 1 millibar vaut environ 750 microns ; 500 microns, la cible courante, tout en bas de l'échelle.">
+  <title>Micron, torr, millibar : une seule descente vers zéro</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .ok  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">Trois unités, une seule idée : on descend vers zéro</text>
+  <text class="lg" x="24" y="52">Échelle non proportionnelle : le vide utile se joue tout en bas.</text>
+
+  <!-- ========= AXE VERTICAL ========= -->
+  <path class="p" d="M180,80 V340"/>
+  <!-- flèche vers le bas -->
+  <path class="p" d="M172,328 l8,14 l8,-14"/>
+  <text class="lg" x="204" y="345">sens du tirage : vers zéro</text>
+
+  <!-- ========= GRADUATIONS ========= -->
+  <!-- atmosphère -->
+  <path class="p" d="M164,92 h32"/>
+  <text class="st" x="212" y="90">atmosphère ≈ 760 000 microns</text>
+  <text class="lg" x="212" y="108">le point de départ, tout en haut</text>
+
+  <!-- 1 torr -->
+  <path class="p" d="M164,168 h32"/>
+  <text class="st" x="212" y="166">1 torr = 1 mmHg = 1000 microns</text>
+  <text class="lg" x="212" y="184">le micron : un millième de torr</text>
+
+  <!-- 1 mbar -->
+  <path class="p" d="M164,232 h32"/>
+  <text class="st" x="212" y="230">1 mbar ≈ 750 microns</text>
+
+  <!-- cible 500 -->
+  <g>
+    <path d="M164,296 h32" stroke="#1e7e54" stroke-width="3" fill="none"/>
+    <rect x="208" y="276" width="330" height="34" rx="6" fill="#eef7f1" stroke="#1e7e54" stroke-width="2"/>
+    <text class="ok" x="373" y="298" text-anchor="middle">500 microns ≈ 0,5 torr ≈ 0,67 mbar — cible courante</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,352 h620"/>
+  <text class="st" x="350" y="372" text-anchor="middle">De 760 000 à 500 : on descend à moins d'un millième de la pression ambiante</text>
+  <text class="st" x="350" y="392" text-anchor="middle">(environ un mille-cinq-centième).</text>
+</svg>

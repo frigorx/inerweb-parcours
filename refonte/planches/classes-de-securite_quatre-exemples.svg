@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Quatre étiquettes de bouteille côte à côte. R-134a, classe A1 : peu toxique, ne brûle pas. R-744, le CO2, classe A1 aussi, mais pression de l'ordre de 100 bar. R-32, classe A2L : brûle lentement. R-717, l'ammoniac, classe B2L : plus toxique et faiblement inflammable. En bas : la classe ne résume pas tous les dangers.">
+  <title>Quatre étiquettes lues ensemble : A1 · A1 · A2L · B2L</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .nom { font:700 19px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .cls { font:700 26px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .bad { font:700 16px Trebuchet MS,Calibri,sans-serif; fill:#c9451a; }
+    .fin { font:700 18px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .eti { fill:#fffdf8; stroke-width:3; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">On lit ensemble : quatre étiquettes</text>
+
+  <!-- R-134a -->
+  <g>
+    <rect class="eti" x="28" y="66" width="150" height="230" rx="10" stroke="#1e7e54"/>
+    <text class="nom" x="103" y="100" text-anchor="middle">R-134a</text>
+    <line x1="48" y1="114" x2="158" y2="114" stroke="#1e7e54" stroke-width="2"/>
+    <text class="cls" x="103" y="152" text-anchor="middle" fill="#1e7e54">A1</text>
+    <text class="tx" x="103" y="190" text-anchor="middle">peu toxique</text>
+    <text class="tx" x="103" y="212" text-anchor="middle">ne brûle pas</text>
+    <text class="tx" x="103" y="248" text-anchor="middle">le fluide</text>
+    <text class="tx" x="103" y="270" text-anchor="middle">« tranquille »</text>
+  </g>
+
+  <!-- R-744 -->
+  <g>
+    <rect class="eti" x="198" y="66" width="150" height="230" rx="10" stroke="#1e7e54"/>
+    <text class="nom" x="273" y="100" text-anchor="middle">R-744 (CO₂)</text>
+    <line x1="218" y1="114" x2="328" y2="114" stroke="#1e7e54" stroke-width="2"/>
+    <text class="cls" x="273" y="152" text-anchor="middle" fill="#1e7e54">A1</text>
+    <text class="tx" x="273" y="190" text-anchor="middle">même classe…</text>
+    <text class="bad" x="273" y="226" text-anchor="middle">mais pression</text>
+    <text class="bad" x="273" y="248" text-anchor="middle">de l'ordre</text>
+    <text class="bad" x="273" y="270" text-anchor="middle">de 100 bar</text>
+  </g>
+
+  <!-- R-32 -->
+  <g>
+    <rect class="eti" x="368" y="66" width="150" height="230" rx="10" stroke="#b06a00" stroke-dasharray="10 6"/>
+    <text class="nom" x="443" y="100" text-anchor="middle">R-32</text>
+    <line x1="388" y1="114" x2="498" y2="114" stroke="#b06a00" stroke-width="2"/>
+    <text class="cls" x="443" y="152" text-anchor="middle" fill="#b06a00">A2L</text>
+    <text class="tx" x="443" y="190" text-anchor="middle">peu toxique</text>
+    <text class="tx" x="443" y="212" text-anchor="middle">brûle lentement</text>
+    <text class="tx" x="443" y="248" text-anchor="middle">la classe des</text>
+    <text class="tx" x="443" y="270" text-anchor="middle">fluides récents</text>
+  </g>
+
+  <!-- R-717 -->
+  <g>
+    <rect class="eti" x="538" y="66" width="150" height="230" rx="10" stroke="#c0392b" stroke-dasharray="10 6"/>
+    <text class="nom" x="613" y="100" text-anchor="middle">R-717 (NH₃)</text>
+    <line x1="558" y1="114" x2="668" y2="114" stroke="#c0392b" stroke-width="2"/>
+    <text class="cls" x="613" y="152" text-anchor="middle" fill="#c0392b">B2L</text>
+    <text class="tx" x="613" y="190" text-anchor="middle">plus toxique</text>
+    <text class="tx" x="613" y="212" text-anchor="middle">et faiblement</text>
+    <text class="tx" x="613" y="234" text-anchor="middle">inflammable</text>
+    <text class="tx" x="613" y="270" text-anchor="middle">les deux à la fois</text>
+  </g>
+
+  <line x1="60" y1="330" x2="640" y2="330" stroke="#8fa3b8" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <text class="fin" x="350" y="366" text-anchor="middle">La classe ne résume pas tous les dangers — la pression n'y figure pas.</text>
+</svg>

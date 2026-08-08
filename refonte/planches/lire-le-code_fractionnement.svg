@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux panneaux. À gauche, charge en phase vapeur, à éviter : ce qui sort de la bouteille est surtout le composant le plus volatil, le mélange restant change de composition — c'est le fractionnement. À droite, la règle : charge en phase liquide, le mélange part entier, la composition est respectée.">
+  <title>Zéotrope : charge en liquide, jamais en vapeur</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .ok  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1e7e54; }
+    .non { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#c0392b; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .cadreok { fill:#fffdf8; stroke:#1e7e54; stroke-width:2.6; }
+    .cadrenon{ fill:#fffdf8; stroke:#c0392b; stroke-width:2.6; stroke-dasharray:8 6; }
+    .flnon{ fill:none; stroke:#c0392b; stroke-width:2.4; stroke-linecap:round; marker-end:url(#fnon); }
+    .flok { fill:none; stroke:#1e7e54; stroke-width:2.4; stroke-linecap:round; marker-end:url(#fok); }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+  <defs>
+    <marker id="fnon" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="#c0392b"/>
+    </marker>
+    <marker id="fok" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L8,4.5 L0,9 z" fill="#1e7e54"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Le fractionnement, et comment l'éviter</text>
+
+  <!-- ===== Panneau gauche : vapeur, à éviter ===== -->
+  <g>
+    <rect class="cadrenon" x="40" y="60" width="295" height="250" rx="10"/>
+    <text class="non" x="187" y="90" text-anchor="middle">✘ charge en VAPEUR — à éviter</text>
+    <!-- bouteille -->
+    <g transform="translate(120,0)">
+      <path class="p" d="M-18,140 q0,-18 18,-24 q18,6 18,24 v110 q0,12 -12,12 h-12 q-12,0 -12,-12 z" fill="#eaf2fb"/>
+      <!-- niveau liquide -->
+      <path class="p" d="M-18,190 h36"/>
+      <text class="lg" x="0" y="230" text-anchor="middle">liquide</text>
+      <text class="lg" x="0" y="168" text-anchor="middle">vapeur</text>
+    </g>
+    <!-- flèche vapeur qui sort -->
+    <path class="flnon" d="M140,128 q40,-24 80,-20"/>
+    <text class="non" x="232" y="130" text-anchor="middle">le plus volatil</text>
+    <text class="non" x="232" y="148" text-anchor="middle">part en premier</text>
+    <text class="lg" x="232" y="196" text-anchor="middle">le mélange restant</text>
+    <text class="lg" x="232" y="214" text-anchor="middle">change de composition :</text>
+    <text class="non" x="232" y="238" text-anchor="middle">fractionnement</text>
+  </g>
+
+  <!-- ===== Panneau droit : liquide, la règle ===== -->
+  <g>
+    <rect class="cadreok" x="365" y="60" width="295" height="250" rx="10"/>
+    <text class="ok" x="512" y="90" text-anchor="middle">✔ charge en LIQUIDE — la règle</text>
+    <!-- bouteille -->
+    <g transform="translate(445,0)">
+      <path class="p" d="M-18,140 q0,-18 18,-24 q18,6 18,24 v110 q0,12 -12,12 h-12 q-12,0 -12,-12 z" fill="#eaf2fb"/>
+      <path class="p" d="M-18,190 h36"/>
+      <text class="lg" x="0" y="230" text-anchor="middle">liquide</text>
+      <text class="lg" x="0" y="168" text-anchor="middle">vapeur</text>
+    </g>
+    <!-- flèche liquide qui sort (prise en bas / tube plongeur) -->
+    <path class="flok" d="M465,240 q50,10 90,0"/>
+    <text class="ok" x="580" y="222" text-anchor="middle">le mélange</text>
+    <text class="ok" x="580" y="240" text-anchor="middle">part entier</text>
+    <text class="lg" x="580" y="282" text-anchor="middle">la composition</text>
+    <text class="lg" x="580" y="300" text-anchor="middle">est respectée</text>
+  </g>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M40,338 h620"/>
+  <text class="st" x="350" y="370" text-anchor="middle">Un mélange zéotrope se charge en phase liquide.</text>
+</svg>

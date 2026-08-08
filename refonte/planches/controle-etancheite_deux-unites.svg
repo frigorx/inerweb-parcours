@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux façons de compter la même obligation. Annexe I, la plupart des fluides fluorés : on multiplie la masse par le PRP pour obtenir des tonnes équivalent CO₂. Annexe II section 1 : la masse seule, en kilogrammes, suffit. Même masse, fluides différents : périodicités différentes — on mesure le dégât possible.">
+  <title>Deux façons de compter : t éq. CO₂ (annexe I) ou kilogrammes (annexe II section 1)</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .big { font:700 21px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Deux façons de compter la même obligation</text>
+
+  <!-- ===== Carte gauche : annexe I — trait PLEIN bleu marine ===== -->
+  <g>
+    <rect x="24" y="52" width="316" height="252" rx="12" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <text class="st" x="182" y="82" text-anchor="middle">ANNEXE I — trait plein</text>
+    <text class="sm" x="182" y="102" text-anchor="middle">la plupart des fluides fluorés</text>
+    <!-- bouteille -->
+    <path class="p" d="M78,238 v-72 a24,20 0 0 1 48,0 v72 z" fill="#eef3f9"/>
+    <rect x="94" y="136" width="16" height="12" rx="3" fill="#ffffff" stroke="#1b3a63" stroke-width="2"/>
+    <text class="sm" x="102" y="212" text-anchor="middle">masse</text>
+    <text class="sm" x="102" y="228" text-anchor="middle">en kg</text>
+    <!-- conversion -->
+    <text class="big" x="182" y="188" text-anchor="middle">× PRP</text>
+    <text class="sm" x="182" y="208" text-anchor="middle">÷ 1000</text>
+    <path class="p" d="M216,182 h32 m-8,-6 8,6 -8,6"/>
+    <!-- résultat -->
+    <path d="M262,204 a16,16 0 0 1 4,-31 a20,20 0 0 1 38,-8 a16,16 0 0 1 24,14 a13,13 0 0 1 -5,25 z"
+          fill="#fdeee8" stroke="#c9451a" stroke-width="2.4"/>
+    <text class="acc" x="294" y="190" text-anchor="middle">t éq. CO₂</text>
+    <text class="lg" x="182" y="278" text-anchor="middle">le compte suit le fluide ET la masse</text>
+  </g>
+
+  <!-- ===== Carte droite : annexe II section 1 — trait TIRETÉ bleu vif ===== -->
+  <g>
+    <rect x="360" y="52" width="316" height="252" rx="12" fill="#fffdf8" stroke="#3d7fca" stroke-width="2.6" stroke-dasharray="9 6"/>
+    <text class="st" x="518" y="82" text-anchor="middle" fill="#1b3a63">ANNEXE II · section 1 — trait tireté</text>
+    <text class="sm" x="518" y="102" text-anchor="middle">certains autres gaz</text>
+    <!-- poids -->
+    <path class="fl" d="M462,238 h112 l-14,-64 h-84 z" fill="#eaf2fb"/>
+    <path class="fl" d="M504,174 a14,14 0 0 1 28,0"/>
+    <text class="big" x="518" y="216" text-anchor="middle">kg</text>
+    <text class="lg" x="518" y="278" text-anchor="middle">la masse seule suffit au compte</text>
+  </g>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M24,330 h652"/>
+  <text class="st" x="350" y="358" text-anchor="middle">Même masse, fluides différents → périodicités différentes.</text>
+  <text class="lg" x="350" y="380" text-anchor="middle">On mesure le dégât possible — règlement (UE) 2024/573.</text>
+</svg>

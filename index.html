@@ -1,14 +1,26 @@
+<html lang="fr">
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Les parcours du froid — habilitation fluides</title>
 <link rel="stylesheet" href="fonds-origine/moteur/charte-edu.css">
 <style>
-  .tete{background:var(--bleu);color:#fff;padding:28px 24px}
-  .tete h1{color:#fff;margin:0 0 8px;font-size:31px;line-height:1.2}
-  .tete .sous{margin:0;color:#cdd9e6;max-width:74ch;font-size:18px}
-  .tete b{color:var(--orange)}
+  /* Bandeau CLAIR (charte) : fond de carte, texte bleu marine, filet bas
+     plein. L'orange d'accent en #a8410f — #ff6b35 ne tient pas 4,5:1
+     sur fond clair. */
+  .tete{background:var(--carte);color:var(--bleu);padding:28px 24px;
+    border-bottom:3px solid var(--bleu)}
+  .tete h1{color:var(--bleu);margin:0 0 8px;font-size:31px;line-height:1.2}
+  .tete .sous{margin:0;color:var(--txt);max-width:74ch;font-size:18px}
+  .tete b{color:#a8410f}
   .zone{max-width:940px;margin:24px auto;padding:0 22px 70px}
+
+  /* Le lien discret vers la visite guidée (même style que capsule.css). */
+  .visite-lien{display:inline-block;margin:12px 0 0;font-size:14px;font-weight:700;
+    padding:7px 14px;border:1px dashed var(--bleu);border-radius:999px;
+    background:#fff;color:var(--bleu);text-decoration:none;transition:.12s}
+  .visite-lien:hover{background:var(--bleu);color:#fff;border-style:solid}
+  @media print{.visite-lien{display:none}}
 
   .avert{background:var(--ko-bg);border:1px solid #f0c9c2;border-left:5px solid var(--ko);
     border-radius:var(--r);padding:14px 18px;margin-bottom:24px}
@@ -49,6 +61,7 @@
     .porte{padding:18px 16px}
   }
 </style>
+<link rel="stylesheet" href="refonte/moteur/impression.css" media="print">
 
 <header class="tete">
   <h1>Les parcours <b>du froid</b></h1>
@@ -57,6 +70,7 @@
   <p class="sous">Des <b>capsules courtes</b> : un sujet, un fil de six écrans — et à chaque
   notion voisine, un <b>« Voulez-vous en savoir plus ? »</b> qu'on ouvre si l'on veut.
   Voix au choix, police adaptée aux lecteurs dyslexiques, tout fonctionne hors ligne.</p>
+  <a class="visite-lien" href="refonte/visite.html">▶ Visite guidée — démonstration</a>
 </header>
 
 <main class="zone">
@@ -111,3 +125,4 @@
   </p>
 
 </main>
+<script src="refonte/moteur/lisibilite.js"></script>

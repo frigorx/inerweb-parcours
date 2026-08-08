@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Un évaporateur à ailettes, traversé de gauche à droite par le fluide : à l'entrée, un mélange froid de liquide et de vapeur venu du détendeur ; à la sortie, de la vapeur seulement, qui part vers le compresseur. L'air chaud du local descend sur l'échangeur et en ressort refroidi : la chaleur du local est passée dans le fluide, qui bout.">
+  <title>L'évaporateur : le fluide bout et absorbe la chaleur du local</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .chaud { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#c9451a; }
+    .froid { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#3d7fca; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .mel { fill:none; stroke:#637285; stroke-width:4; stroke-dasharray:9 7; stroke-linecap:round; }
+    .vap { fill:none; stroke:#3d7fca; stroke-width:4; stroke-linecap:round; }
+    .fa-chaud { fill:none; stroke:#c9451a; stroke-width:3; stroke-linecap:round; }
+    .fa-froid { fill:none; stroke:#3d7fca; stroke-width:3; stroke-linecap:round; }
+  </style>
+  <defs>
+    <marker id="fe-chaud" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c9451a"/>
+    </marker>
+    <marker id="fe-froid" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3d7fca"/>
+    </marker>
+    <marker id="fe-gris" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#637285"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="30">L'évaporateur : le fluide bout et absorbe la chaleur du local</text>
+
+  <!-- air chaud qui descend -->
+  <text class="chaud" x="350" y="72" text-anchor="middle">air du local — chaud</text>
+  <path class="fa-chaud" d="M250,84 L250,180" marker-end="url(#fe-chaud)"/>
+  <path class="fa-chaud" d="M350,84 L350,180" marker-end="url(#fe-chaud)"/>
+  <path class="fa-chaud" d="M450,84 L450,180" marker-end="url(#fe-chaud)"/>
+
+  <!-- batterie à ailettes -->
+  <rect x="180" y="192" width="340" height="88" fill="#cfe6f5" stroke="#3d7fca" stroke-width="3"/>
+  <g stroke="#3d7fca" stroke-width="1.4">
+    <path d="M200,192 v14 M225,192 v14 M250,192 v14 M275,192 v14 M300,192 v14 M325,192 v14 M350,192 v14 M375,192 v14 M400,192 v14 M425,192 v14 M450,192 v14 M475,192 v14 M500,192 v14"/>
+    <path d="M200,266 v14 M225,266 v14 M250,266 v14 M275,266 v14 M300,266 v14 M325,266 v14 M350,266 v14 M375,266 v14 M400,266 v14 M425,266 v14 M450,266 v14 M475,266 v14 M500,266 v14"/>
+  </g>
+  <g fill="#fffdf8" stroke="#1b3a63" stroke-width="1.3">
+    <circle cx="240" cy="248" r="4"/>
+    <circle cx="300" cy="252" r="5"/>
+    <circle cx="415" cy="250" r="4"/>
+    <circle cx="470" cy="246" r="5"/>
+  </g>
+  <text class="st" x="350" y="240" text-anchor="middle">le fluide bout :</text>
+  <text class="st" x="350" y="260" text-anchor="middle">la chaleur du local passe dans le fluide</text>
+
+  <!-- entrée : mélange, du détendeur (à gauche) -->
+  <path class="mel" d="M60,236 L172,236" marker-end="url(#fe-gris)"/>
+  <text class="st" x="34" y="308">du détendeur :</text>
+  <text class="lg" x="34" y="328">mélange froid</text>
+  <text class="lg" x="34" y="348">liquide + vapeur</text>
+  <path class="p" d="M84,300 Q64,276 74,248" fill="none" stroke="#637285" stroke-width="1.6" stroke-dasharray="4 4"/>
+
+  <!-- sortie : vapeur, vers le compresseur (à droite) -->
+  <path class="vap" d="M528,236 L648,236" marker-end="url(#fe-froid)"/>
+  <text class="st" x="668" y="308" text-anchor="end">vers le compresseur :</text>
+  <text class="lg" x="668" y="328" text-anchor="end">vapeur, entièrement —</text>
+  <text class="lg" x="668" y="348" text-anchor="end">et même un peu réchauffée</text>
+  <path d="M620,300 Q640,276 630,248" fill="none" stroke="#637285" stroke-width="1.6" stroke-dasharray="4 4"/>
+
+  <!-- air refroidi qui ressort -->
+  <path class="fa-froid" d="M250,292 L250,352" marker-end="url(#fe-froid)"/>
+  <path class="fa-froid" d="M350,292 L350,352" marker-end="url(#fe-froid)"/>
+  <path class="fa-froid" d="M450,292 L450,352" marker-end="url(#fe-froid)"/>
+  <text class="froid" x="350" y="376" text-anchor="middle">air refroidi</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="396" text-anchor="middle">Absorber la chaleur d'un endroit, c'est le refroidir.</text>
+</svg>

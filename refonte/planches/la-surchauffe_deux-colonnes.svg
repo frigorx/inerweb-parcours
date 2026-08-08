@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Table d'un mélange zéotrope avec deux colonnes de température : bulle, début d'ébullition, et rosée, fin d'ébullition. Pour la surchauffe on prend la colonne rosée ; pour le sous-refroidissement, la colonne bulle.">
+  <title>Zéotrope : deux colonnes — la rosée pour la surchauffe</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .a  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .b  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#3d7fca; }
+    .th { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#fffdf8; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:3; stroke-linecap:round; stroke-dasharray:8 5; }
+    .bb { fill:none; stroke:#3d7fca; stroke-width:3; stroke-linecap:round; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Un zéotrope : une pression, DEUX températures</text>
+
+  <!-- table à 3 colonnes -->
+  <g>
+    <rect x="160" y="70" width="380" height="200" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <rect x="160" y="70" width="380" height="38" rx="6" fill="#1b3a63"/>
+    <text class="th" x="223" y="94" text-anchor="middle">pression</text>
+    <text class="th" x="350" y="94" text-anchor="middle">T° BULLE (°C)</text>
+    <text class="th" x="477" y="94" text-anchor="middle">T° ROSÉE (°C)</text>
+    <path class="fil" d="M287,108 v162 M413,108 v162 M160,148 h380 M160,188 h380 M160,228 h380"/>
+    <text class="s" x="223" y="132" text-anchor="middle">…</text><text class="s" x="350" y="132" text-anchor="middle">…</text><text class="s" x="477" y="132" text-anchor="middle">…</text>
+    <text class="s" x="223" y="172" text-anchor="middle">…</text><text class="s" x="350" y="172" text-anchor="middle">…</text><text class="s" x="477" y="172" text-anchor="middle">…</text>
+    <text class="s" x="223" y="212" text-anchor="middle">…</text><text class="s" x="350" y="212" text-anchor="middle">…</text><text class="s" x="477" y="212" text-anchor="middle">…</text>
+  </g>
+
+  <!-- colonne rosée entourée (surchauffe) -->
+  <rect x="418" y="64" width="128" height="212" rx="8" fill="none" stroke="#c9451a" stroke-width="3" stroke-dasharray="9 5"/>
+  <path class="o" d="M482,276 v28"/>
+  <text class="a" x="482" y="326" text-anchor="middle">SURCHAUFFE → colonne ROSÉE</text>
+  <text class="s" x="482" y="346" text-anchor="middle">la fin de l'ébullition (tireté orange)</text>
+
+  <!-- colonne bulle soulignée (sous-refroidissement) -->
+  <rect x="292" y="64" width="118" height="212" rx="8" fill="none" stroke="#3d7fca" stroke-width="3"/>
+  <path class="bb" d="M290,276 q-72,20 -100,52"/>
+  <text class="b" x="146" y="350" text-anchor="middle">SOUS-REFROIDISSEMENT</text>
+  <text class="b" x="146" y="370" text-anchor="middle">→ colonne BULLE</text>
+  <text class="s" x="146" y="390" text-anchor="middle">la fin de la condensation (trait plein bleu)</text>
+
+  <text class="l" x="482" y="384" text-anchor="middle">Se tromper de colonne fausse le réglage.</text>
+</svg>

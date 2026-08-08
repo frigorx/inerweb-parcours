@@ -67,7 +67,10 @@ CAPSULE({
     {
       id: "04-la-pesee",
       titre: "La balance : masse de fluide = brut − tare.",
-      planche: "../fonds-origine/packs/fluides/res/svg/pesee-charge.svg",
+      planche: "planches/les-bouteilles_brut-moins-tare.svg",
+      /* pesee-charge.svg du fonds montre la pesée AVANT/PENDANT/APRÈS une
+         charge d'installation (pesée 1 − pesée 2) : autre calcul, autre écran.
+         Ici : brut − tare, sur la bouteille-exemple. */
       texte: [
         "La balance affiche **13,4 kg**. La tare est **6,2 kg**. Masse de fluide : **13,4 − 6,2 = 7,2 kg**.",
         "Ce calcul doit devenir **automatique** : c'est par la pesée, et par rien d'autre, que l'on connaît la masse de fluide.",
@@ -81,6 +84,7 @@ CAPSULE({
       id: "05-le-volume-libre",
       titre: "Le volume libre n'est pas du vide perdu : c'est la marge de dilatation.",
       planche: "../fonds-origine/packs/fluides/res/svg/secu-bouteille.svg",
+      alt: "Deux bouteilles comparées : remplie à ras, le liquide n'a pas de place pour se dilater et la pression grimpe très vite ; avec le volume libre respecté, le liquide a où se dilater. La planche ajoute l'interdit : ne jamais chauffer une bouteille — ni flamme, ni eau chaude, ni radiateur — ni la laisser au soleil ou dans un véhicule fermé.",
       texte: [
         "Au-dessus du liquide, le volume de vapeur fournit la **marge de dilatation**. Le liquide est pratiquement [[incompressible|impossible à comprimer : son volume ne diminue presque pas, même sous une très forte pression — contrairement à une vapeur, qui se comprime facilement]] : s'il se dilate sans marge, la pression monte **très vite**.",
         "Démonstration du tuto : deux bouteilles chauffées de 20 à 52 °C. À **75 %** de niveau, tout va bien. À **98 %**, la marge disparaît — la pression devient **critique**.",
@@ -128,6 +132,7 @@ CAPSULE({
             "Et pour les **mélanges zéotropes**, la capsule « Lire le code d'un fluide » l'explique : le glissement impose de **charger en phase liquide** — sinon la composition part de travers."
           ],
           lu: "Choisir la phase, c'est une décision, pas une habitude. On détermine d'abord l'état du fluide, puis on choisit la méthode et le robinet. Le prélèvement vapeur et le prélèvement liquide sont deux gestes distincts, chacun avec sa procédure. Et pour les mélanges zéotropes, la capsule sur la lecture des codes l'explique : le glissement impose de charger en phase liquide. Sinon, la composition du mélange part de travers.",
+          renvoi: { sujet: "lire-le-code", libelle: "Lire le code d'un fluide — pourquoi les zéotropes se chargent en liquide" },
           codes: ["5.05"]
         }
       ]
@@ -140,12 +145,14 @@ CAPSULE({
           id: "d-boum-1",
           titre: "On va volontairement trop loin, pour mémoriser le risque.",
           planche: "../fonds-origine/packs/fluides/res/svg/secu-bouteille.svg",
+          alt: "Deux bouteilles comparées, remplie à ras contre volume libre respecté, et l'interdit de chauffe : jamais de flamme, d'eau chaude ni de radiateur sur une bouteille — ni soleil, ni véhicule fermé.",
           texte: [
-            "Le scénario du tuto pousse **un cran plus loin** que l'écran précédent : bouteille à **99 %**, température **52 °C**. Le liquide n'a plus aucune place. La pression s'emballe — **éclatement**.",
+            "Le scénario du tuto pousse **un cran plus loin** que l'écran précédent — **en simulation, à l'écran** : cet essai ne se fait **jamais** en vrai. Bouteille à **99 %**, température **52 °C**. Le liquide n'a plus aucune place. La pression s'emballe — **éclatement**.",
             "Le volume vapeur **n'empêche pas** toute montée de pression : il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe.",
             "Une bouteille au soleil derrière un pare-brise, un local surchauffé : le scénario n'a rien de théorique."
           ],
-          lu: "Le tuto va volontairement trop loin, pour graver le risque — un cran encore au-delà de l'écran précédent. Une bouteille remplie à quatre-vingt-dix-neuf pour cent, chauffée à cinquante-deux degrés. Le liquide n'a plus aucune place. La pression s'emballe, et la bouteille éclate. Comprenez le mécanisme : le volume vapeur n'empêche pas toute montée en pression, il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe. Une bouteille au soleil derrière un pare-brise, un local surchauffé : le scénario n'a rien de théorique.",
+          lu: "Le tuto va volontairement trop loin, pour graver le risque — un cran encore au-delà de l'écran précédent. Attention : c'est une simulation, à l'écran. Cet essai ne se fait jamais en vrai. Une bouteille remplie à quatre-vingt-dix-neuf pour cent, chauffée à cinquante-deux degrés. Le liquide n'a plus aucune place. La pression s'emballe, et la bouteille éclate. Comprenez le mécanisme : le volume vapeur n'empêche pas toute montée en pression, il fournit une marge. Supprimez la marge, et la moindre chauffe devient une bombe. Une bouteille au soleil derrière un pare-brise, un local surchauffé : le scénario n'a rien de théorique.",
+          voixPerimee: true,
           codes: ["5.02"]
         }
       ]
@@ -164,6 +171,7 @@ CAPSULE({
             "**Dédiée aux inflammables** : A2L (le R-32) **comme A3** (le R-290 — qui n'est pas A2L, sa capsule sœur le martèle). Matériel adapté ; pour les A2L, repère courant : ogive rouge et raccord à pas à gauche. Voir « A1, A2L, A3 : lire l'étiquette »."
           ],
           lu: "Trois usages, trois identifications. La bouteille de transfert porte le fluide neuf, propre, qui va vers l'installation. La bouteille de récupération reçoit le fluide que l'on retire : il peut contenir de l'huile, de l'humidité, d'autres contaminants — elle est compatible et identifiée pour cela. Et la bouteille dédiée aux fluides inflammables : A deux L, comme le R trente-deux, mais aussi A trois, comme le R deux cent quatre-vingt-dix — qui n'est pas un A deux L, sa capsule sœur le martèle. Matériel adapté ; pour les A deux L, le repère courant, c'est l'ogive rouge et le raccord à pas à gauche. Pour la classe elle-même, voyez la capsule sur les étiquettes : A un, A deux L, A trois.",
+          renvoi: { sujet: "classes-de-securite", libelle: "A1, A2L, A3 : lire l'étiquette" },
           codes: ["5.02"]
         }
       ]

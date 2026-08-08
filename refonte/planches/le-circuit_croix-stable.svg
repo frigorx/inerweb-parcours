@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux panneaux. À gauche, encadré en vert : le circuit dessiné en croix du frigoriste, toujours le même — détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas ; l'image s'imprime. À droite, encadré en rouge tireté : des formes floues marquées d'un point d'interrogation, pour un dessin qui change à chaque fois ; rien ne s'imprime.">
+  <title>Une image ne s'imprime que si elle est toujours la même</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; paint-order:stroke; stroke:#fffdf8; stroke-width:6px; stroke-linejoin:round; }
+    .ok  { font:700 17px Calibri,Trebuchet MS,sans-serif; fill:#1e7e54; }
+    .non { font:700 17px Calibri,Trebuchet MS,sans-serif; fill:#c0392b; }
+    .q   { font:700 26px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .cadre-ok  { fill:none; stroke:#1e7e54; stroke-width:2.4; }
+    .cadre-non { fill:none; stroke:#c0392b; stroke-width:2.4; stroke-dasharray:8 6; }
+    .flou { fill:#f7f1e7; stroke:#637285; stroke-width:1.8; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="30" text-anchor="middle">Une image ne s'imprime que si elle est toujours la même</text>
+
+  <!-- panneau gauche : la croix, stable -->
+  <rect class="cadre-ok" x="30" y="48" width="300" height="288" rx="8"/>
+  <text class="ok" x="180" y="74" text-anchor="middle">Toujours le même dessin</text>
+
+  <!-- mini croix du frigoriste : boucle -->
+  <path class="p" d="M90,126 H270 V282 H90 Z"/>
+  <!-- condenseur en haut -->
+  <rect x="132" y="112" width="96" height="28" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+  <path d="M146,116 v20 M162,116 v20 M178,116 v20 M194,116 v20 M210,116 v20" stroke="#1b3a63" stroke-width="1.2"/>
+  <text class="st" x="180" y="104" text-anchor="middle">condenseur</text>
+  <!-- évaporateur en bas -->
+  <rect x="132" y="268" width="96" height="28" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+  <path d="M146,272 v20 M162,272 v20 M178,272 v20 M194,272 v20 M210,272 v20" stroke="#1b3a63" stroke-width="1.2"/>
+  <text class="st" x="180" y="318" text-anchor="middle">évaporateur</text>
+  <!-- compresseur à droite -->
+  <circle cx="270" cy="204" r="22" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+  <path class="p" d="M260,213 L281,204 L260,195"/>
+  <text class="st" x="270" y="248" text-anchor="middle">compresseur</text>
+  <!-- détendeur à gauche -->
+  <path d="M80,194 L100,204 L80,214 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M100,194 L80,204 L100,214 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2" stroke-linejoin="round"/>
+  <text class="st" x="90" y="248" text-anchor="middle">détendeur</text>
+
+  <!-- panneau droit : un dessin différent à chaque fois -->
+  <rect class="cadre-non" x="370" y="48" width="300" height="288" rx="8"/>
+  <text class="non" x="520" y="74" text-anchor="middle">Un dessin différent à chaque fois</text>
+  <path class="flou" d="M410,140 q18,-32 52,-22 q34,-12 44,16 q16,26 -14,38 q-10,24 -44,14 q-40,4 -38,-46 Z"/>
+  <text class="q" x="458" y="158" text-anchor="middle">?</text>
+  <path class="flou" d="M540,158 q10,-34 48,-26 q38,-4 40,26 q6,30 -26,36 q-8,20 -40,10 q-30,-2 -22,-46 Z"/>
+  <text class="q" x="586" y="176" text-anchor="middle">?</text>
+  <path class="flou" d="M472,240 q16,-28 52,-20 q36,-6 40,22 q8,28 -22,36 q-12,20 -46,8 q-32,-2 -24,-46 Z"/>
+  <text class="q" x="520" y="258" text-anchor="middle">?</text>
+  <text class="non" x="520" y="318" text-anchor="middle">rien ne s'imprime</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="370" text-anchor="middle">Le jour de la panne, on ne réfléchit pas : on voit le dessin —</text>
+  <text class="st" x="350" y="390" text-anchor="middle">le même, depuis le premier jour.</text>
+</svg>

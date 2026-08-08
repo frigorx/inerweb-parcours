@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le circuit en croix du frigoriste : détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas. Chaque tronçon porte son état : du compresseur au condenseur, vapeur surchauffée sous haute pression ; dans le condenseur, condensation avec liquide et vapeur mélangés ; du condenseur au détendeur, liquide sous haute pression ; du détendeur à l'évaporateur, mélange liquide plus vapeur froid sous basse pression ; dans l'évaporateur, évaporation ; de l'évaporateur au compresseur, vapeur un peu surchauffée sous basse pression.">
+  <title>L'état du fluide, zone après zone</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .vhp { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#c9451a; }
+    .vbp { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#3d7fca; }
+    .mel { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .tliq{ fill:none; stroke:#1b3a63; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .tvhp{ fill:none; stroke:#c9451a; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .tvbp{ fill:none; stroke:#3d7fca; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .tmel{ fill:none; stroke:#637285; stroke-width:5; stroke-dasharray:12 8; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+  <defs>
+    <marker id="et-liq" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1b3a63"/>
+    </marker>
+    <marker id="et-vhp" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c9451a"/>
+    </marker>
+    <marker id="et-vbp" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3d7fca"/>
+    </marker>
+    <marker id="et-mel" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#637285"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="30">L'état du fluide, zone après zone</text>
+
+  <!-- compresseur → condenseur : vapeur surchauffée, HP (trait plein orangé) -->
+  <path class="tvhp" d="M560,166 L560,90 L432,90"/>
+  <path class="tvhp" d="M520,90 L490,90" marker-end="url(#et-vhp)"/>
+  <text class="vhp" x="530" y="72" text-anchor="middle">vapeur surchauffée — HP</text>
+
+  <!-- condenseur → détendeur : liquide, HP (trait plein bleu marine) -->
+  <path class="tliq" d="M268,90 L140,90 L140,176"/>
+  <path class="tliq" d="M228,90 L198,90" marker-end="url(#et-liq)"/>
+  <text class="st" x="196" y="72" text-anchor="middle">liquide — HP</text>
+
+  <!-- détendeur → évaporateur : mélange, BP (tireté gris) -->
+  <path class="tmel" d="M140,224 L140,310 L268,310"/>
+  <path class="tmel" d="M198,310 L228,310" marker-end="url(#et-mel)"/>
+  <text class="mel" x="170" y="344" text-anchor="middle">mélange liquide + vapeur — BP</text>
+
+  <!-- évaporateur → compresseur : vapeur un peu surchauffée, BP (trait plein bleu vif) -->
+  <path class="tvbp" d="M432,310 L560,310 L560,234"/>
+  <path class="tvbp" d="M490,310 L520,310" marker-end="url(#et-vbp)"/>
+  <text class="vbp" x="555" y="344" text-anchor="middle">vapeur (un peu surchauffée) — BP</text>
+
+  <!-- condenseur, en haut -->
+  <rect x="268" y="62" width="164" height="56" fill="#fffdf8" stroke="#c9451a" stroke-width="3"/>
+  <g stroke="#c9451a" stroke-width="1.4">
+    <path d="M284,66 v48 M304,66 v48 M324,66 v48 M344,66 v48 M364,66 v48 M384,66 v48 M404,66 v48"/>
+  </g>
+  <text class="st" x="350" y="52" text-anchor="middle">condenseur</text>
+  <text class="lg" x="350" y="140" text-anchor="middle">condensation : liquide + vapeur, puis liquide</text>
+
+  <!-- évaporateur, en bas -->
+  <rect x="268" y="282" width="164" height="56" fill="#fffdf8" stroke="#3d7fca" stroke-width="3"/>
+  <g stroke="#3d7fca" stroke-width="1.4">
+    <path d="M284,286 v48 M304,286 v48 M324,286 v48 M344,286 v48 M364,286 v48 M384,286 v48 M404,286 v48"/>
+  </g>
+  <text class="lg" x="350" y="272" text-anchor="middle">évaporation : liquide + vapeur, puis vapeur</text>
+  <text class="st" x="350" y="360" text-anchor="middle">évaporateur</text>
+
+  <!-- compresseur, à droite -->
+  <circle cx="560" cy="200" r="34" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+  <path class="p" d="M544,214 L576,200 L544,186"/>
+  <text class="st" x="514" y="205" text-anchor="end">compresseur</text>
+
+  <!-- détendeur, à gauche -->
+  <path d="M124,184 L156,200 L124,216 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M156,184 L124,200 L156,216 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6" stroke-linejoin="round"/>
+  <text class="st" x="168" y="205">détendeur</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="392" text-anchor="middle">Des zones, pas des points : l'état change dans les échangeurs, pas d'un seul coup.</text>
+</svg>

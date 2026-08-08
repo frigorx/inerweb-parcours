@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="R-22 : le carbone a quatre places. Un hydrogène et deux fluors en occupent trois. La place restante est un chlore : le R-22 est donc CHClF2. Ce comptage vaut dans le périmètre de la règle : les halocarbures saturés acycliques.">
+  <title>Le chlore ne se lit pas : il se déduit</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .acc { font:700 14.5px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .calc{ font:700 16px Consolas,monospace; fill:#1b3a63; }
+    .form{ font:700 22px Consolas,monospace; fill:#1b3a63; }
+    .atom{ font:700 18px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .atoc{ font:700 18px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .lien{ stroke:#1b3a63; stroke-width:2.4; }
+    .rest{ fill:#fffdf8; stroke:#c9451a; stroke-width:2.6; stroke-dasharray:6 5; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">R-22 : la place restante, c'est le chlore</text>
+
+  <!-- ===== Comptage à gauche ===== -->
+  <g>
+    <text class="calc" x="40" y="106">4 places sur le carbone</text>
+    <text class="calc" x="40" y="146">1 H + 2 F = 3 occupées</text>
+    <text class="calc" x="40" y="186">4 − 3 = 1 place restante</text>
+    <text class="acc" x="40" y="226">→ cette place, c'est un chlore.</text>
+    <text class="form" x="40" y="282">R-22 = CHClF₂</text>
+  </g>
+
+  <!-- ===== Molécule à droite ===== -->
+  <g transform="translate(520,180)">
+    <line class="lien" x1="0" y1="0" x2="0" y2="-62"/>
+    <line class="lien" x1="0" y1="0" x2="-62" y2="0"/>
+    <line class="lien" x1="0" y1="0" x2="0" y2="62"/>
+    <line class="lien" x1="0" y1="0" x2="62" y2="0"/>
+    <circle class="p" cx="0" cy="0" r="30" fill="#eaf2fb"/>
+    <text class="atom" x="0" y="6" text-anchor="middle">C</text>
+    <circle class="p" cx="0" cy="-84" r="21" fill="#fffdf8"/>
+    <text class="atom" x="0" y="-78" text-anchor="middle">H</text>
+    <circle class="p" cx="-84" cy="0" r="21" fill="#fffdf8"/>
+    <text class="atom" x="-84" y="6" text-anchor="middle">F</text>
+    <circle class="p" cx="0" cy="84" r="21" fill="#fffdf8"/>
+    <text class="atom" x="0" y="90" text-anchor="middle">F</text>
+    <circle class="rest" cx="84" cy="0" r="23"/>
+    <text class="atoc" x="84" y="6" text-anchor="middle">Cl</text>
+    <text class="acc" x="84" y="-36" text-anchor="middle">la place restante</text>
+  </g>
+
+  <text class="lg" x="520" y="312" text-anchor="middle">Schéma de principe — pas à l'échelle.</text>
+
+  <!-- ===== Périmètre ===== -->
+  <path class="dash" d="M40,340 h620"/>
+  <text class="st" x="350" y="372" text-anchor="middle">Ce comptage vaut dans le périmètre de la règle : les halocarbures saturés acycliques.</text>
+</svg>

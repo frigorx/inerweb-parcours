@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, une horloge barrée : une durée de tirage ne prouve rien. À droite, un vacuomètre qui affiche 500 microns : la cible courante, une valeur mesurée. La notice de la pompe ou de la machine commande.">
+  <title>Pas une durée : une valeur mesurée</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c0392b; }
+    .ok  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .no  { fill:none; stroke:#c0392b; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:10 6; }
+    .yes { fill:none; stroke:#1e7e54; stroke-width:2.6; stroke-linecap:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">« J'ai tiré une heure » ne prouve rien — on vise une valeur</text>
+
+  <!-- ========= GAUCHE : la durée, barrée ========= -->
+  <g>
+    <text class="bad" x="170" y="70" text-anchor="middle">NON : la durée</text>
+    <circle cx="170" cy="170" r="70" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <path class="p" d="M170,170 V116"/>
+    <path class="p" d="M170,170 L212,190"/>
+    <circle cx="170" cy="170" r="4.5" fill="#1b3a63"/>
+    <path class="p" d="M170,100 v10 M240,170 h-10 M170,240 v-10 M100,170 h10"/>
+    <!-- croix tiretée rouge -->
+    <path class="no" d="M112,112 L228,228 M228,112 L112,228"/>
+    <text class="lg" x="170" y="268" text-anchor="middle">une heure sur un circuit qui fuit</text>
+    <text class="lg" x="170" y="286" text-anchor="middle">donne un circuit qui fuit</text>
+  </g>
+
+  <!-- séparation -->
+  <path class="dash" d="M350,52 v250"/>
+
+  <!-- ========= DROITE : la valeur mesurée ========= -->
+  <g>
+    <text class="ok" x="525" y="70" text-anchor="middle">OUI : la valeur mesurée</text>
+    <!-- boîtier du vacuomètre -->
+    <rect x="420" y="96" width="210" height="130" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <rect x="438" y="114" width="174" height="56" rx="4" fill="#eef7f1" stroke="#1e7e54" stroke-width="1.6"/>
+    <text class="ok" x="525" y="150" text-anchor="middle" font-size="26">500 microns</text>
+    <text class="st" x="525" y="196" text-anchor="middle">vacuomètre</text>
+    <text class="lg" x="525" y="214" text-anchor="middle">cible courante</text>
+    <text class="lg" x="525" y="268" text-anchor="middle">la notice de la pompe ou de la machine</text>
+    <text class="st" x="525" y="288" text-anchor="middle">peut dire autre chose : c'est elle qui commande</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,326 h620"/>
+  <text class="st" x="350" y="356" text-anchor="middle">On tire jusqu'à la valeur — puis on vérifie par le test de remontée.</text>
+  <text class="lg" x="350" y="380" text-anchor="middle">La durée n'est qu'une conséquence : elle dépend du circuit, de la pompe et de l'eau présente.</text>
+</svg>

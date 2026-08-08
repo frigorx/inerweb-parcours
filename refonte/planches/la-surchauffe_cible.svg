@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="La documentation du matériel donne la cible de surchauffe ; une prétendue valeur unique valable partout est barrée. Le repère ne sert qu'à voir une valeur aberrante, comme une surchauffe nulle.">
+  <title>La cible de surchauffe : la documentation du matériel</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .g  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1e7e54; }
+    .r  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c0392b; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .v  { fill:none; stroke:#1e7e54; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .rr { fill:none; stroke:#c0392b; stroke-width:3; stroke-linecap:round; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Où se trouve la bonne valeur ?</text>
+
+  <!-- OUI : la documentation -->
+  <g>
+    <rect x="60" y="80" width="270" height="200" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.8"/>
+    <text class="g" x="195" y="110" text-anchor="middle">✔ OUI — cadre plein vert</text>
+    <!-- document -->
+    <rect x="130" y="128" width="130" height="100" rx="4" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2"/>
+    <path class="fil" d="M142,148 h106 M142,164 h106 M142,180 h70"/>
+    <rect x="142" y="192" width="106" height="22" rx="3" fill="#fffdf8" stroke="#1e7e54" stroke-width="2"/>
+    <text class="s" x="195" y="207" text-anchor="middle">cible : voir la notice</text>
+    <text class="l" x="195" y="252" text-anchor="middle">la documentation du matériel</text>
+    <text class="s" x="195" y="270" text-anchor="middle">machine · détendeur · constructeur</text>
+  </g>
+
+  <!-- NON : la valeur unique -->
+  <g>
+    <rect x="380" y="80" width="270" height="200" rx="10" fill="#fffdf8" stroke="#c0392b" stroke-width="2.8" stroke-dasharray="8 5"/>
+    <text class="r" x="515" y="110" text-anchor="middle">✗ NON — cadre tireté rouge</text>
+    <rect x="440" y="140" width="150" height="60" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2"/>
+    <text class="l" x="515" y="166" text-anchor="middle">« une valeur unique,</text>
+    <text class="l" x="515" y="186" text-anchor="middle">valable partout »</text>
+    <path class="rr" d="M436,206 L594,134"/>
+    <text class="s" x="515" y="234" text-anchor="middle">l'ordre de grandeur dépend du système :</text>
+    <text class="s" x="515" y="252" text-anchor="middle">évaporateur, fluide, détendeur,</text>
+    <text class="s" x="515" y="270" text-anchor="middle">régime, application</text>
+  </g>
+
+  <path class="fil" d="M40,316 h620"/>
+  <text class="l" x="350" y="346" text-anchor="middle">Un repère ne sert pas à régler : il sert à voir l'aberrant.</text>
+  <text class="s" x="350" y="370" text-anchor="middle">Une surchauffe nulle, par exemple, se repère immédiatement comme anormale.</text>
+</svg>

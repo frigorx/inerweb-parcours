@@ -355,7 +355,6 @@
     const resetButton = document.getElementById("reset-model");
     const labelButton = document.getElementById("label-model");
     const mesh = window.KV_PRODUCT_MESH;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!canvas || !mesh || !mesh.vertices || !mesh.normals) {
       if (viewer) viewer.innerHTML = `<div class="warning-box" style="margin:20px">La géométrie 3D locale n’a pas pu être chargée.</div>`;
       return null;
@@ -410,7 +409,7 @@
     let yaw = -0.65;
     let pitch = -0.18;
     let cameraDistance = 3.35;
-    let autoRotate = !reduced;
+    let autoRotate = true;
     let frame = 0;
     let lastTime = performance.now();
     let dragging = false;

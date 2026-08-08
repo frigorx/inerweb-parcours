@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, le bon geste : chaque fluide va dans sa propre bouteille, une bouteille égale un fluide. À droite, la faute : deux fluides versés dans la même bouteille donnent un mélange qui n'est plus identifiable.">
+  <title>Une bouteille = un fluide — jamais de mélange</title>
+  <style>
+    .t   { font:700 20px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .ok  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#1e7e54; }
+    .ko  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#c0392b; }
+    .b   { fill:#fffdf8; stroke:#1b3a63; stroke-width:2.4; }
+    .flok{ fill:none; stroke:#1e7e54; stroke-width:3; stroke-linecap:round; }
+    .flko{ fill:none; stroke:#c0392b; stroke-width:3; stroke-linecap:round; stroke-dasharray:7 6; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Jamais deux fluides dans la même bouteille</text>
+
+  <!-- ===== côté OK ===== -->
+  <rect x="30" y="60" width="310" height="280" rx="10" fill="none" stroke="#1e7e54" stroke-width="2.6"/>
+  <text class="ok" x="185" y="88" text-anchor="middle">✔ LE BON GESTE</text>
+
+  <text class="st" x="110" y="122" text-anchor="middle">fluide A</text>
+  <path class="flok" d="M110,132 v34"/>
+  <path d="M110,172 l-7,-12 h14 z" fill="#1e7e54"/>
+  <rect class="b" x="80" y="178" width="60" height="110" rx="10"/>
+  <rect x="87" y="212" width="46" height="26" fill="#fffdf8" stroke="#1b3a63" stroke-width="1.3"/>
+  <text class="st" x="110" y="230" text-anchor="middle" style="font-size:12px">A</text>
+
+  <text class="st" x="255" y="122" text-anchor="middle">fluide B</text>
+  <path class="flok" d="M255,132 v34"/>
+  <path d="M255,172 l-7,-12 h14 z" fill="#1e7e54"/>
+  <rect class="b" x="225" y="178" width="60" height="110" rx="10"/>
+  <rect x="232" y="212" width="46" height="26" fill="#fffdf8" stroke="#1b3a63" stroke-width="1.3"/>
+  <text class="st" x="255" y="230" text-anchor="middle" style="font-size:12px">B</text>
+
+  <text class="ok" x="185" y="322" text-anchor="middle">une bouteille = un fluide</text>
+
+  <!-- ===== côté FAUTE ===== -->
+  <rect x="365" y="60" width="310" height="280" rx="10" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="9 7"/>
+  <text class="ko" x="520" y="88" text-anchor="middle">✘ LA FAUTE</text>
+
+  <text class="st" x="445" y="122" text-anchor="middle">fluide A</text>
+  <text class="st" x="595" y="122" text-anchor="middle">fluide B</text>
+  <path class="flko" d="M445,132 q10,34 55,44"/>
+  <path class="flko" d="M595,132 q-10,34 -55,44"/>
+  <path d="M508,178 l-12,-6 8,12 z" fill="#c0392b"/>
+  <path d="M532,178 l12,-6 -8,12 z" fill="#c0392b"/>
+  <rect class="b" x="490" y="182" width="60" height="110" rx="10" stroke="#c0392b" stroke-dasharray="7 6"/>
+  <rect x="497" y="216" width="46" height="26" fill="#fffdf8" stroke="#c0392b" stroke-width="1.3"/>
+  <text class="ko" x="520" y="234" text-anchor="middle" style="font-size:12px">A + B ?</text>
+
+  <text class="ko" x="520" y="322" text-anchor="middle">mélange : plus rien d'identifiable</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="372" text-anchor="middle">On vérifie ce que contient la bouteille AVANT de brancher. Un doute ? Une autre bouteille.</text>
+</svg>

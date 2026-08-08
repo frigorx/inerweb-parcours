@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Trois sources d'information : la plaque signalétique donne le fluide et la charge nominale ; le registre de l'installation donne l'historique réel, ajouts, retraits et interventions ; l'annexe du règlement (UE) 2024/573 donne le PRP, à partir du nom du fluide. Trois sources, trois informations — et on recoupe.">
+  <title>Où lire la charge et le PRP : plaque, registre, annexe du règlement</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 13px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Trois sources, trois informations</text>
+
+  <!-- ===== 1. La plaque — trait plein ===== -->
+  <g>
+    <text class="st" x="130" y="72" text-anchor="middle">1 · La plaque signalétique</text>
+    <rect x="58" y="90" width="144" height="96" rx="6" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
+    <circle cx="72" cy="104" r="3.5" class="p" fill="#ffffff"/>
+    <circle cx="188" cy="104" r="3.5" class="p" fill="#ffffff"/>
+    <text class="sm" x="130" y="122" text-anchor="middle">Fluide : R-XXX</text>
+    <text class="sm" x="130" y="142" text-anchor="middle">Charge : X,X kg</text>
+    <path class="p" d="M70,158 h120"/>
+    <text class="st" x="130" y="214" text-anchor="middle">la charge nominale</text>
+    <text class="sm" x="130" y="232" text-anchor="middle">celle prévue par le constructeur</text>
+  </g>
+
+  <!-- ===== 2. Le registre — trait plein, cahier ===== -->
+  <g>
+    <text class="st" x="350" y="72" text-anchor="middle">2 · Le registre</text>
+    <path class="p" d="M296,92 h96 a10,10 0 0 1 10,10 v76 a10,10 0 0 1 -10,10 h-96 z" fill="#fffdf8"/>
+    <path class="p" d="M296,92 v96"/>
+    <path d="M312,112 h72 M312,130 h72 M312,148 h72 M312,166 h48" stroke="#1b3a63" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <text class="st" x="350" y="214" text-anchor="middle">l'historique réel</text>
+    <text class="sm" x="350" y="232" text-anchor="middle">ajouts, retraits, interventions</text>
+  </g>
+
+  <!-- ===== 3. L'annexe du règlement — trait tireté bleu vif ===== -->
+  <g>
+    <text class="st" x="570" y="72" text-anchor="middle">3 · L'annexe du règlement</text>
+    <rect x="514" y="90" width="112" height="98" rx="6" fill="#eaf2fb" stroke="#3d7fca" stroke-width="2.6" stroke-dasharray="8 5"/>
+    <text class="sm" x="570" y="114" text-anchor="middle">(UE) 2024/573</text>
+    <path d="M528,130 h84 M528,148 h84 M528,166 h56" stroke="#3d7fca" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <text class="st" x="570" y="214" text-anchor="middle">le PRP</text>
+    <text class="sm" x="570" y="232" text-anchor="middle">à partir du nom du fluide</text>
+  </g>
+
+  <!-- ===== Mise en garde + morale ===== -->
+  <path class="dash" d="M24,262 h652"/>
+  <text class="acc" x="350" y="292" text-anchor="middle">⚠ Machines anciennes : autre fluide, plaque effacée, charge modifiée sans mise à jour.</text>
+  <text class="st" x="350" y="330" text-anchor="middle">On recoupe les trois — et le PRP ne se lit jamais sur la machine.</text>
+  <text class="lg" x="350" y="356" text-anchor="middle">Plaque + registre pour la charge · annexe du règlement pour le PRP → le calcul en t éq. CO₂.</text>
+</svg>

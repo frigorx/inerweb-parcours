@@ -70,9 +70,11 @@ CAPSULE({
       texte: [
         "Pendant le palier, on chauffe toujours — et la température **ne bouge pas**. L'énergie sert à **changer l'état** : c'est la **chaleur latente**.",
         "**Un palier n'est pas une pause : c'est un changement d'état en cours.** Sa formule : **Q = m × L**.",
+        "Ce palier bien plat vaut pour un **corps pur** — notre eau — chauffé **à pression maintenue**. Certains mélanges glissent un peu : ce sera pour « Pression et température ».",
         "Et elle transporte **énormément** d'énergie — c'est le secret de toute la machine frigorifique."
       ],
-      lu: "Pendant le palier, on chauffe toujours, et pourtant la température ne bouge pas. Toute l'énergie sert à changer l'état : c'est la chaleur latente, cachée au thermomètre. Retenez bien ceci : un palier n'est pas une pause. C'est un changement d'état en cours. Sa formule s'écrit Q égale m fois L. Et cette chaleur latente transporte énormément d'énergie. C'est le secret de toute la machine frigorifique.",
+      lu: "Pendant le palier, on chauffe toujours, et pourtant la température ne bouge pas. Toute l'énergie sert à changer l'état : c'est la chaleur latente, cachée au thermomètre. Retenez bien ceci : un palier n'est pas une pause. C'est un changement d'état en cours. Sa formule s'écrit Q égale m fois L. Une précision : ce palier bien plat vaut pour un corps pur, comme notre eau, chauffé à pression maintenue. Certains mélanges glissent un peu ; nous le verrons avec la capsule Pression et température. Et cette chaleur latente transporte énormément d'énergie. C'est le secret de toute la machine frigorifique.",
+      voixPerimee: true,
       codes: ["1.02"]
     },
 
@@ -84,9 +86,10 @@ CAPSULE({
         "Dans le réfrigérateur : **dedans, l'évaporateur absorbe** l'énergie — c'est l'effet frigorifique. **Derrière, le condenseur la restitue.**",
         "**Le froid n'est pas une substance** que la machine envoie dans la pièce : le local **perd** de l'énergie, voilà tout.",
         "La preuve : porte ouverte, la pièce ne refroidit pas — le condenseur y rejette **plus** que l'évaporateur n'en retire.",
-        "Le bilan s'écrit : **Q̇ condenseur = Q̇ évaporateur + le travail du compresseur transmis au fluide.**"
+        "Le bilan s'écrit : **Q̇ condenseur = Q̇ évaporateur + la puissance du compresseur transmise au fluide.**"
       ],
-      lu: "Regardez maintenant un appareil que vous connaissez : le réfrigérateur. Dedans, l'évaporateur absorbe l'énergie : c'est l'effet frigorifique. Derrière, la grille du condenseur la restitue à la pièce. Comprenez bien : le froid n'est pas une substance que la machine envoie. Le local perd de l'énergie, voilà tout. Et la preuve est amusante : laisser la porte ouverte ne refroidit pas la pièce. Le condenseur y rejette plus d'énergie que l'évaporateur n'en retire. D'où le bilan, à retenir : Q point condenseur égale Q point évaporateur, plus le travail du compresseur transmis au fluide.",
+      lu: "Regardez maintenant un appareil que vous connaissez : le réfrigérateur. Dedans, l'évaporateur absorbe l'énergie : c'est l'effet frigorifique. Derrière, la grille du condenseur la restitue à la pièce. Comprenez bien : le froid n'est pas une substance que la machine envoie. Le local perd de l'énergie, voilà tout. Et la preuve est amusante : laisser la porte ouverte ne refroidit pas la pièce. Le condenseur y rejette plus d'énergie que l'évaporateur n'en retire. D'où le bilan, à retenir : Q point condenseur égale Q point évaporateur, plus la puissance du compresseur transmise au fluide.",
+      voixPerimee: true,
       plus: ["le-bilan"],
       codes: ["1.02", "1.04"]
     },
@@ -94,7 +97,8 @@ CAPSULE({
     {
       id: "06-deux-briques",
       titre: "Les deux briques du métier : surchauffe et sous-refroidissement.",
-      planche: "../fonds-origine/packs/fluides/res/svg/mesure-surchauffe.svg",
+      planche: "planches/la-chaleur_surchauffe-sousrefroidissement.svg",
+      alt: "Sortie du condenseur en haut, sortie de l'évaporateur en bas. Après la dernière bulle, le liquide seul continue de céder de l'énergie ; après la dernière goutte, la vapeur seule continue d'en recevoir. Les deux écarts se lisent en fin d'échangeur, sur le tube de sortie.",
       texte: [
         "Dans l'évaporateur, **la dernière goutte disparaît**. Si la vapeur seule reçoit encore de l'énergie, elle se réchauffe : **c'est la surchauffe**.",
         "Dans le condenseur, **la dernière bulle disparaît**. Si le liquide seul cède encore de l'énergie, il se refroidit : **c'est le sous-refroidissement**.",
@@ -110,7 +114,7 @@ CAPSULE({
     "**Q = m × c × ΔT** (sensible) · **Q = m × L** (latente) — la masse compte dans les deux.",
     "**Un palier n'est pas une pause** : c'est un changement d'état en cours.",
     "**Le froid n'est pas une substance** : l'évaporateur prend l'énergie, le condenseur la rend.",
-    "**Q̇ condenseur = Q̇ évaporateur + le travail du compresseur transmis au fluide.**"
+    "**Q̇ condenseur = Q̇ évaporateur + la puissance du compresseur transmise au fluide.**"
   ],
 
   detours: {
@@ -142,7 +146,7 @@ CAPSULE({
           planche: "planches/trois-grandeurs.svg",
           texte: [
             "**T**, la température : elle situe le niveau thermique. En **°C ou en K**.",
-            "**Q**, la chaleur : une énergie transférée. En **joules**. Exemple du tuto : chauffer 1 kg d'eau de 20 à 60 °C = 1 × 4 180 × 40 = **167 200 J**, soit 167,2 kJ.",
+            "**Q**, la chaleur : une énergie transférée. En **joules**. Exemple chiffré : chauffer 1 kg d'eau de 20 à 60 °C = 1 × 4 180 × 40 = **167 200 J**, soit 167,2 kJ.",
             "**Q̇**, la puissance : un débit d'énergie. En **watts**. Dans un échangeur traversé en permanence, la grandeur utile est le **kilowatt**.",
             "Repères de capacité thermique : eau **4 180** · air sec **1 005** · cuivre **385** J/(kg·K)."
           ],
@@ -160,11 +164,12 @@ CAPSULE({
           titre: "Du compresseur. Rien ne se perd : tout s'additionne.",
           planche: "planches/bilan-energie.svg",
           texte: [
-            "Le condenseur rejette l'énergie prise dans le local **plus** le travail fourni au compresseur.",
+            "Le condenseur rejette l'énergie prise dans le local **plus** la puissance du compresseur transmise au fluide.",
             "**Q̇ condenseur = Q̇ évaporateur + puissance transmise au fluide.**",
-            "L'exemple du tuto : évaporateur **5,0 kW**, compresseur **1,2 kW** → condenseur **6,2 kW**. La balance tombe juste, toujours."
+            "Exemple chiffré : évaporateur **5,0 kW**, compresseur **1,2 kW** → condenseur **6,2 kW**. La balance tombe juste, toujours."
           ],
-          lu: "Le surplus vient du compresseur. Rien ne se perd : tout s'additionne. Le condenseur rejette l'énergie prise dans le local, plus le travail fourni au compresseur. Q point condenseur égale Q point évaporateur, plus la puissance transmise au fluide. Un exemple chiffré : cinq kilowatts à l'évaporateur, un virgule deux kilowatts au compresseur : le condenseur rejette six virgule deux kilowatts. La balance tombe juste, toujours.",
+          lu: "Le surplus vient du compresseur. Rien ne se perd : tout s'additionne. Le condenseur rejette l'énergie prise dans le local, plus la puissance du compresseur transmise au fluide. Q point condenseur égale Q point évaporateur, plus la puissance transmise au fluide. Un exemple chiffré : cinq kilowatts à l'évaporateur, un virgule deux kilowatts au compresseur : le condenseur rejette six virgule deux kilowatts. La balance tombe juste, toujours.",
+          voixPerimee: true,
           codes: ["1.02", "1.04"]
         }
       ]

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux couloirs comparent la progression d'un front de flamme pendant une seconde. Couloir 2L : la flèche est courte, la vitesse de combustion vaut au plus dix centimètres par seconde. Couloir 3 : la flèche est beaucoup plus longue, le front est beaucoup plus vif. En bas : le 2L brûle quand même, ce n'est pas presque 1.">
+  <title>Le L mesure une vitesse : le front de flamme du 2L avance lentement</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 17px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .cls { font:700 26px Trebuchet MS,Calibri,sans-serif; }
+    .fin { font:700 18px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">En une seconde, le front de flamme avance de…</text>
+
+  <!-- Couloir 2L -->
+  <g>
+    <rect x="30" y="70" width="640" height="110" rx="10" fill="#fff4e0" stroke="#b06a00" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="cls" x="66" y="118" fill="#b06a00">2L</text>
+    <g fill="none" stroke="#b06a00" stroke-width="5" stroke-linecap="round">
+      <path d="M130,125 h80"/>
+      <path d="M210,125 l-14,-9 m14,9 l-14,9"/>
+    </g>
+    <text class="st" x="240" y="118" fill="#b06a00">vitesse de combustion ≤ 10 cm/s</text>
+    <text class="tx" x="240" y="146">le front avance lentement — c'est la définition, et c'est une mesure</text>
+  </g>
+
+  <!-- Couloir 3 -->
+  <g>
+    <rect x="30" y="204" width="640" height="110" rx="10" fill="#fbe7e4" stroke="#c0392b" stroke-width="5"/>
+    <text class="cls" x="66" y="252" fill="#c0392b">3</text>
+    <g fill="none" stroke="#c0392b" stroke-width="5" stroke-linecap="round">
+      <path d="M130,259 h480"/>
+      <path d="M610,259 l-14,-9 m14,9 l-14,9"/>
+    </g>
+    <text class="st" x="240" y="252" fill="#c0392b">beaucoup plus vif</text>
+    <text class="tx" x="240" y="286">le domaine du gaz de camping</text>
+  </g>
+
+  <text class="fin" x="350" y="366" text-anchor="middle">Mais 2L brûle. Ce n'est pas « presque 1 ».</text>
+</svg>

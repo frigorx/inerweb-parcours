@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="Les deux familles interdites, et le coupable : le chlore. À gauche, les CFC comme le R-12 : les miracles des années mille neuf cent trente, stables, ni toxiques ni inflammables — et tueurs d'ozone. À droite, les HCFC comme le R-22 : la transition, un peu d'hydrogène, moins de chlore, vie plus courte — mais du chlore quand même. Les deux portent la mention interdits. On croise encore ces machines en dépannage : on ne les recharge plus.">
+     aria-label="Deux familles condamnées par le même atome : le chlore. À gauche, les CFC comme le R-12 : les miracles des années mille neuf cent trente, stables, ni toxiques ni inflammables — et tueurs d'ozone. Interdits depuis longtemps. À droite, les HCFC comme le R-22 : la transition, un peu d'hydrogène, moins de chlore, vie plus courte — mais du chlore quand même. Statut exact du R-22 : mise sur le marché et recharge interdites, récupération obligatoire ; une machine au R-22 peut continuer de tourner sans appoint. On croise encore ces machines en dépannage : on ne les recharge plus.">
   <title>CFC et HCFC : le chlore les a condamnés</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
@@ -34,10 +34,11 @@
   <text class="lg" x="240" y="302" text-anchor="middle">Les « miracles » des années 1930 :</text>
   <text class="lg" x="240" y="322" text-anchor="middle">stables, ni toxiques, ni inflammables…</text>
   <text class="bad" x="240" y="344" text-anchor="middle">…et tueurs d'ozone.</text>
-  <!-- tampon INTERDITS -->
-  <g transform="translate(240,375) rotate(-6)">
-    <rect x="-90" y="-18" width="180" height="36" rx="6" fill="none" stroke="#c9451a" stroke-width="3"/>
-    <text class="bad" x="0" y="7" text-anchor="middle" font-size="20">INTERDITS</text>
+  <!-- tampon statut CFC -->
+  <g transform="translate(240,372) rotate(-6)">
+    <rect x="-100" y="-22" width="200" height="44" rx="6" fill="none" stroke="#c9451a" stroke-width="3"/>
+    <text class="bad" x="0" y="-2" text-anchor="middle" font-size="17">INTERDITS</text>
+    <text class="bad" x="0" y="15" text-anchor="middle" font-size="12">depuis longtemps</text>
   </g>
 
   <!-- ============ CARTE HCFC ============ -->
@@ -56,9 +57,11 @@
   <text class="lg" x="640" y="302" text-anchor="middle">La transition : moins de chlore,</text>
   <text class="lg" x="640" y="322" text-anchor="middle">vie plus courte —</text>
   <text class="bad" x="640" y="344" text-anchor="middle">mais du chlore quand même.</text>
-  <g transform="translate(640,375) rotate(-6)">
-    <rect x="-90" y="-18" width="180" height="36" rx="6" fill="none" stroke="#c9451a" stroke-width="3"/>
-    <text class="bad" x="0" y="7" text-anchor="middle" font-size="20">INTERDITS</text>
+  <!-- tampon statut HCFC / R-22 : jamais « interdits » sec -->
+  <g transform="translate(640,372) rotate(-6)">
+    <rect x="-120" y="-22" width="240" height="44" rx="6" fill="none" stroke="#c9451a" stroke-width="3"/>
+    <text class="bad" x="0" y="-2" text-anchor="middle" font-size="15">plus de recharge</text>
+    <text class="bad" x="0" y="15" text-anchor="middle" font-size="12">récupération obligatoire</text>
   </g>
 
   <!-- morale -->

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Exemple complet : la sonde mesure plus deux degrés Celsius sur le tube ; le manomètre basse pression conduit, par la table du fluide, à une saturation de moins cinq degrés Celsius ; deux moins moins cinq égale sept kelvins.">
+  <title>Un exemple en entier, avec les unités à chaque étape</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .f  { font:700 19px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .a  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Le même point du circuit, trois lectures</text>
+
+  <!-- tube -->
+  <path class="p" d="M60,190 h580"/>
+  <text class="s" x="640" y="212" text-anchor="end">sortie d'évaporateur</text>
+
+  <!-- sonde : +2 °C -->
+  <g>
+    <rect x="130" y="178" width="40" height="24" rx="5" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2"/>
+    <path class="p" d="M150,178 v-30"/>
+    <rect x="112" y="112" width="76" height="36" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <text class="f" x="150" y="137" text-anchor="middle">+2 °C</text>
+    <text class="l" x="150" y="94" text-anchor="middle">sonde : MESURÉE</text>
+  </g>
+
+  <!-- manomètre → table : −5 °C -->
+  <g>
+    <path class="p" d="M420,190 v-32"/>
+    <circle cx="420" cy="130" r="27" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <path class="p" d="M420,130 l15,-14"/>
+    <text class="l" x="420" y="86" text-anchor="middle">manomètre BP</text>
+    <path class="o" d="M452,130 h44"/>
+    <path d="M494,124 l12,6 -12,6 z" fill="#c9451a"/>
+    <rect x="508" y="98" width="120" height="64" rx="6" fill="#fffdf8" stroke="#c9451a" stroke-width="2.4" stroke-dasharray="8 5"/>
+    <text class="s" x="568" y="120" text-anchor="middle">la table du fluide dit :</text>
+    <text class="f" x="568" y="146" text-anchor="middle">−5 °C</text>
+    <text class="a" x="568" y="180" text-anchor="middle">table : LUE</text>
+  </g>
+
+  <!-- calcul -->
+  <rect x="110" y="250" width="480" height="58" rx="10" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2"/>
+  <text class="f" x="350" y="286" text-anchor="middle">+2 °C − (−5 °C) = 7 K</text>
+
+  <!-- piège du signe -->
+  <path class="fil" d="M40,332 h620"/>
+  <text class="a" x="350" y="360" text-anchor="middle">Attention au signe : soustraire un nombre négatif AUGMENTE le résultat.</text>
+  <text class="s" x="350" y="382" text-anchor="middle">C'est là que se font la plupart des erreurs.</text>
+</svg>

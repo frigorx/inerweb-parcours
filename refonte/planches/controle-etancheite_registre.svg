@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le registre de l'installation, présenté comme une page à quatre sections : les quantités de fluide (en place, ajouté, récupéré, avec nature, origine et destination) ; les contrôles d'étanchéité (date, méthode, résultat, opérateur et attestation) ; les fuites (localisation, réparation, contrôle de suivi) ; la fin de vie (mise à l'arrêt, devenir du fluide). Les enregistrements se conservent au moins 5 ans — article 7 du règlement (UE) 2024/573.">
+  <title>Le registre : quatre familles d'informations, conservées au moins 5 ans (article 7)</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .amb { font:700 14px Calibri,"Segoe UI",Arial,sans-serif; fill:#b06a00; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Le registre : tout ce qui entre, tout ce qui sort, tout ce qu'on a regardé</text>
+
+  <!-- ===== La page du registre ===== -->
+  <rect x="40" y="54" width="430" height="300" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="st" x="255" y="82" text-anchor="middle">REGISTRE DE L'INSTALLATION</text>
+  <path class="p" d="M64,92 h382" stroke-width="1.6"/>
+
+  <!-- 1. quantités — filet plein bleu marine -->
+  <path class="p" d="M64,108 v44" stroke-width="4"/>
+  <text class="st" x="80" y="122">1 · Les quantités — trait plein</text>
+  <text class="sm" x="80" y="140">fluide en place, ajouté, récupéré · nature (neuf, recyclé, régénéré),</text>
+  <text class="sm" x="80" y="156">origine et destination</text>
+
+  <!-- 2. contrôles — filet tireté bleu vif -->
+  <path d="M64,172 v44" stroke="#3d7fca" stroke-width="4" stroke-dasharray="7 5" fill="none" stroke-linecap="round"/>
+  <text class="st" x="80" y="186">2 · Les contrôles d'étanchéité — trait tireté</text>
+  <text class="sm" x="80" y="204">date, méthode, résultat · opérateur et attestation</text>
+
+  <!-- 3. fuites — filet pointillé orange -->
+  <path d="M64,232 v44" stroke="#c9451a" stroke-width="4" stroke-dasharray="2 6" fill="none" stroke-linecap="round"/>
+  <text class="st" x="80" y="246">3 · Les fuites — trait pointillé</text>
+  <text class="sm" x="80" y="264">localisation, réparation, date du contrôle de suivi</text>
+
+  <!-- 4. fin de vie — filet double -->
+  <path class="p" d="M62,292 v44 M69,292 v44" stroke-width="2"/>
+  <text class="st" x="80" y="306">4 · La fin de vie — trait double</text>
+  <text class="sm" x="80" y="324">mise à l'arrêt définitif · devenir du fluide</text>
+
+  <!-- ===== Tampon 5 ans ===== -->
+  <g transform="rotate(-8 580 150)">
+    <rect x="508" y="112" width="150" height="72" rx="10" fill="#fffdf8" stroke="#b06a00" stroke-width="3"/>
+    <text class="amb" x="583" y="142" text-anchor="middle">CONSERVÉ</text>
+    <text class="amb" x="583" y="166" text-anchor="middle">AU MOINS 5 ANS</text>
+  </g>
+
+  <!-- qui le demande -->
+  <text class="st" x="583" y="232" text-anchor="middle">Le premier document</text>
+  <text class="st" x="583" y="252" text-anchor="middle">que demande un contrôleur.</text>
+
+  <!-- ===== Source ===== -->
+  <path class="dash" d="M24,372 h652"/>
+  <text class="lg" x="350" y="392" text-anchor="middle">Source : règlement (UE) 2024/573, article 7 — le professionnel traçable, c'est celui dont l'écrit suit.</text>
+</svg>

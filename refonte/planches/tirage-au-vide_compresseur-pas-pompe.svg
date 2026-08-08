@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Un compresseur n'est pas une pompe à vide. Sous vide, le compresseur sort de ses conditions prévues : plus de fluide pour refroidir le moteur, lubrification non assurée, isolation électrique hors de ses conditions. La pompe à vide, elle, est conçue pour ce travail.">
+  <title>Un compresseur n'est pas une pompe à vide</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c0392b; }
+    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .no  { fill:none; stroke:#c0392b; stroke-width:2.6; stroke-linecap:round; }
+    .yes { fill:none; stroke:#1e7e54; stroke-width:2.6; stroke-linecap:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">Deux machines qui ne font pas le même métier</text>
+
+  <!-- ========= GAUCHE : compresseur ========= -->
+  <g>
+    <text class="bad" x="165" y="70" text-anchor="middle">compresseur : NON</text>
+    <!-- cloche hermétique -->
+    <path class="p" d="M105,100 a60,60 0 0 1 120,0 v110 a60,24 0 0 1 -120,0 z" fill="#fffdf8"/>
+    <!-- tubulures -->
+    <path class="p" d="M105,140 h-30"/>
+    <path class="p" d="M225,140 h30"/>
+    <!-- croix d'interdiction sur son usage en pompe à vide -->
+    <path class="no" d="M112,96 L218,220 M218,96 L112,220" stroke-dasharray="10 6"/>
+    <!-- ce qu'il perd sous vide -->
+    <text class="bad" x="165" y="266" text-anchor="middle">sous vide, il sort de ses conditions :</text>
+    <text class="lg" x="165" y="288" text-anchor="middle">— plus de fluide pour refroidir le moteur</text>
+    <text class="lg" x="165" y="306" text-anchor="middle">— lubrification non assurée</text>
+    <text class="lg" x="165" y="324" text-anchor="middle">— isolation électrique hors conditions</text>
+  </g>
+
+  <!-- ========= CENTRE : le mot ========= -->
+  <text class="t" x="350" y="165" text-anchor="middle" font-size="34">≠</text>
+  <text class="st" x="350" y="192" text-anchor="middle">jamais</text>
+
+  <!-- ========= DROITE : pompe à vide ========= -->
+  <g>
+    <text class="ok" x="535" y="70" text-anchor="middle">pompe à vide : OUI</text>
+    <!-- corps de pompe -->
+    <rect x="455" y="110" width="160" height="90" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <circle cx="510" cy="155" r="26" fill="none" stroke="#1e7e54" stroke-width="2.6"/>
+    <path class="yes" d="M510,155 l18,-14"/>
+    <!-- raccord d'aspiration -->
+    <path class="yes" d="M455,132 h-34"/>
+    <text class="lg" x="404" y="122" text-anchor="middle">aspiration</text>
+    <!-- pieds -->
+    <path class="yes" d="M470,200 v16 M600,200 v16"/>
+    <text class="ok" x="535" y="266" text-anchor="middle">conçue pour ce travail :</text>
+    <text class="lg" x="535" y="288" text-anchor="middle">— atteint et tient le vide profond</text>
+    <text class="lg" x="535" y="306" text-anchor="middle">— refroidie et lubrifiée pour cela</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,346 h620"/>
+  <text class="st" x="350" y="376" text-anchor="middle">Pas de cas particulier, pas de « juste un peu » : pour le vide, la pompe à vide.</text>
+</svg>

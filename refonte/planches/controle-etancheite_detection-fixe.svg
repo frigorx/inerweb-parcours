@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Une salle des machines : un détecteur fixe est monté au mur, il surveille en permanence et déclenche une alarme qui prévient l'exploitant. Il devient obligatoire à partir de 500 tonnes équivalent CO₂ (annexe I) ou 100 kilogrammes (annexe II concernée). Lui-même se vérifie au moins tous les 12 mois. En contrepartie, l'intervalle entre deux contrôles humains est doublé.">
+  <title>La détection fixe : à demeure, elle alerte — et elle se vérifie au moins tous les 12 mois</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .ok  { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1e7e54; }
+    .amb { font:700 13px Calibri,"Segoe UI",Arial,sans-serif; fill:#b06a00; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acl { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Installé à demeure, il surveille — et il alerte tout seul</text>
+
+  <!-- ===== La salle des machines ===== -->
+  <path class="p" d="M40,300 v-210 h380 v210" fill="#fffdf8"/>
+  <text class="sm" x="230" y="322" text-anchor="middle">salle des machines — surveillance en continu, jour et nuit</text>
+
+  <!-- groupe frigorifique (simple) -->
+  <rect x="80" y="220" width="120" height="80" rx="6" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.4"/>
+  <circle cx="120" cy="260" r="22" class="p" fill="#ffffff"/>
+  <path class="p" d="M200,244 h48 M200,276 h48"/>
+  <text class="sm" x="140" y="212" text-anchor="middle">équipement</text>
+
+  <!-- détecteur fixe au mur -->
+  <rect x="330" y="120" width="64" height="44" rx="6" fill="#fdeee8" stroke="#c9451a" stroke-width="2.6"/>
+  <circle cx="348" cy="142" r="6" class="acl" fill="#ffffff"/>
+  <path class="acl" d="M366,136 h16 M366,148 h16"/>
+  <text class="acc" x="362" y="106" text-anchor="middle">détecteur fixe</text>
+
+  <!-- ondes de surveillance (statiques, tiretées) -->
+  <path class="dash" d="M326,150 q-40,26 -78,64 M330,166 q-24,30 -44,68" stroke="#c9451a"/>
+
+  <!-- alerte vers l'exploitant -->
+  <path class="acl" d="M398,142 h96 m-12,-8 12,8 -12,8"/>
+  <g>
+    <path class="acl" d="M530,150 a26,26 0 0 1 52,0 l6,14 h-64 l6,-14 z" fill="#fdeee8"/>
+    <path class="acl" d="M550,168 a6,6 0 0 0 12,0"/>
+    <text class="acc" x="556" y="200" text-anchor="middle">alarme :</text>
+    <text class="sm" x="556" y="218" text-anchor="middle">l'exploitant est prévenu</text>
+  </g>
+
+  <!-- ===== Les trois règles ===== -->
+  <path class="dash" d="M24,336 h652"/>
+  <text class="st" x="40" y="358">Obligatoire dès 500 t éq. CO₂ (annexe I) ou 100 kg (annexe II concernée).</text>
+  <text class="amb" x="40" y="380">Il se vérifie au moins tous les 12 mois</text>
+  <text class="ok" x="330" y="380">✓ en échange : intervalle des contrôles humains doublé.</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Cinq cadres en haut : le fluide, le local, l'occupation, le type de système, les mesures de réduction du risque. Cinq flèches convergent vers un cadre central : la charge admissible, encadrée par la norme NF EN 378. En dessous, où la lire : la plaque, la notice, l'étude applicable, avec la validation du responsable. Aucune formule simplifiée à retenir.">
+  <title>La charge admissible (NF EN 378) dépend de cinq choses à la fois</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .big { font:700 18px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .bad { font:700 16px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:2.4; stroke-linecap:round; }
+    .f   { fill:#fffdf8; stroke:#3d7fca; stroke-width:2.4; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="34" text-anchor="middle">Cinq choses à la fois — jamais une formule de tête</text>
+
+  <!-- Les cinq facteurs -->
+  <rect class="f" x="20"  y="60" width="120" height="56" rx="9"/>
+  <text class="st" x="80" y="94" text-anchor="middle">le fluide</text>
+
+  <rect class="f" x="152" y="60" width="120" height="56" rx="9"/>
+  <text class="st" x="212" y="94" text-anchor="middle">le local</text>
+
+  <rect class="f" x="284" y="60" width="120" height="56" rx="9"/>
+  <text class="st" x="344" y="86" text-anchor="middle">son</text>
+  <text class="st" x="344" y="106" text-anchor="middle">occupation</text>
+
+  <rect class="f" x="416" y="60" width="120" height="56" rx="9"/>
+  <text class="st" x="476" y="86" text-anchor="middle">le type</text>
+  <text class="st" x="476" y="106" text-anchor="middle">de système</text>
+
+  <rect class="f" x="548" y="60" width="132" height="56" rx="9"/>
+  <text class="st" x="614" y="86" text-anchor="middle">les mesures de</text>
+  <text class="st" x="614" y="106" text-anchor="middle">réduction du risque</text>
+
+  <!-- Flèches convergentes -->
+  <path class="fl" d="M80,116 C 90,150 180,172 240,180"/>
+  <path class="fl" d="M212,116 C 220,142 260,164 288,172"/>
+  <path class="fl" d="M344,116 v46 m0,0 l-7,-11 m7,11 l7,-11"/>
+  <path class="fl" d="M476,116 C 468,142 428,164 400,172"/>
+  <path class="fl" d="M614,116 C 604,150 508,172 448,180"/>
+
+  <!-- Charge admissible -->
+  <rect x="210" y="170" width="280" height="70" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="4"/>
+  <text class="big" x="350" y="200" text-anchor="middle">CHARGE ADMISSIBLE</text>
+  <text class="tx" x="350" y="226" text-anchor="middle">encadrée par la norme NF EN 378</text>
+
+  <path class="fl" d="M350,240 v30 m0,0 l-7,-11 m7,11 l7,-11" stroke="#1b3a63"/>
+
+  <!-- Où la lire -->
+  <rect x="90" y="272" width="520" height="62" rx="10" fill="#e3f5ec" stroke="#1e7e54" stroke-width="3"/>
+  <text class="st" x="350" y="298" text-anchor="middle" fill="#1e7e54">Où la lire : la plaque · la notice · l'étude applicable</text>
+  <text class="tx" x="350" y="322" text-anchor="middle">avec la validation du responsable</text>
+
+  <text class="bad" x="350" y="374" text-anchor="middle">Aucune formule simplifiée à retenir en consigne.</text>
+</svg>

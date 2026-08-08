@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Une bouteille posée sur une balance. La balance affiche 13,4 kilogrammes : la masse brute. La plaque de la bouteille indique TW 6,2 kilogrammes : la tare. La soustraction donne 7,2 kilogrammes de fluide. Seule la pesée donne cette masse.">
+  <title>Masse de fluide = brut − tare</title>
+  <style>
+    .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .sm  { font:400 12px Calibri,Segoe UI,sans-serif; fill:#4a5b6e; }
+    .num { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .ok  { font:700 22px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="26" y="32">Masse de fluide = brut − tare</text>
+
+  <!-- ============ BOUTEILLE SUR BALANCE ============ -->
+  <g transform="translate(58,52)">
+    <!-- robinet -->
+    <path class="p" d="M96,26 v-14 h18 M96,12 h-18"/>
+    <rect x="90" y="24" width="12" height="10" fill="#84b7ec" stroke="#1b3a63" stroke-width="2"/>
+    <!-- ogive -->
+    <path class="p" d="M60,66 q36,-40 72,0" fill="#cfe6f5"/>
+    <!-- corps -->
+    <rect x="60" y="64" width="72" height="150" rx="10" fill="#cfe6f5" stroke="#1b3a63" stroke-width="2.6"/>
+    <!-- plaque avec la tare -->
+    <rect x="46" y="108" width="100" height="44" rx="4" fill="#fffdf8" stroke="#c9451a" stroke-width="2.2"/>
+    <text class="st" x="96" y="126" text-anchor="middle">TW 6,2 kg</text>
+    <text class="sm" x="96" y="144" text-anchor="middle">la tare (plaque)</text>
+    <!-- balance -->
+    <rect x="34" y="222" width="124" height="34" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <rect x="58" y="228" width="76" height="22" rx="3" fill="#eaf2fb" stroke="#1b3a63" stroke-width="1.6"/>
+    <text class="st" x="96" y="244" text-anchor="middle">13,4 kg</text>
+    <text class="sm" x="96" y="278" text-anchor="middle">la balance : masse brute</text>
+    <text class="sm" x="96" y="294" text-anchor="middle">(bouteille + fluide)</text>
+  </g>
+
+  <!-- ============ LE CALCUL ============ -->
+  <g transform="translate(320,96)">
+    <text class="num" x="150" y="30" text-anchor="end">13,4 kg</text>
+    <text class="lg" x="168" y="30">masse brute — la balance</text>
+    <text class="num" x="150" y="70" text-anchor="end">− 6,2 kg</text>
+    <text class="lg" x="168" y="70">tare TW — la plaque</text>
+    <path class="p" d="M30,88 h130"/>
+    <rect x="24" y="102" width="330" height="44" rx="6" fill="#e3f5ec" stroke="#1e7e54" stroke-width="2.4"/>
+    <text class="ok" x="150" y="132" text-anchor="end">= 7,2 kg</text>
+    <text class="st" x="168" y="132" style="fill:#1e7e54">de fluide dans la bouteille</text>
+  </g>
+
+  <!-- flèche de la balance vers le calcul -->
+  <path class="acc" d="M218,296 q90,10 160,-58"/>
+  <path class="acc" d="M378,238 l-14,3 M378,238 l-4,13"/>
+
+  <!-- ============ MORALE ============ -->
+  <path class="dash" d="M40,346 h620"/>
+  <text class="st" x="350" y="374" text-anchor="middle">Seule la pesée donne la masse de fluide.</text>
+  <text class="lg" x="350" y="392" text-anchor="middle">Ni le manomètre, ni le niveau apparent, ni la couleur ne la donnent.</text>
+</svg>

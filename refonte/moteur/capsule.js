@@ -74,6 +74,8 @@
     this.vus = lireVus(capsule.id);
     this.audio = null;
     this.repli = false;         /* vrai = on parle avec la voix du navigateur */
+    this.etatVoix = "arret";    /* arret · lecture · pause — l'état du lecteur voix */
+    this.utterance = null;      /* l'énoncé speechSynthesis en cours, pour ignorer les fins tardives */
 
     /* AUCUNE voix au chargement. Une page qui se met à parler toute seule
        est ingérable en salle, et insupportable pour qui ouvre le lien dans
@@ -174,7 +176,9 @@
     var nFil = this.c.fil.length;
     h += '<div class="avance">'
       + '<span class="compte">' + (iFil + 1) + " / " + nFil + "</span>"
-      + '<span class="rail"><span class="jauge" style="width:'
+      + '<span class="rail" role="progressbar" aria-valuemin="0" aria-valuemax="' + nFil
+      + '" aria-valuenow="' + (iFil + 1)
+      + '" aria-label="avancement du fil principal"><span class="jauge" style="width:'
       + Math.round(((iFil + 1) / nFil) * 100) + '%"></span></span>'
       + "</div>";
 
@@ -182,7 +186,7 @@
     h += '<main class="scene"><article class="ecran">';
     if (e.planche) {
       h += '<div class="porte-visuel"><div class="visuel">'
-        + '<img src="' + esc(this.racine + e.planche) + '" alt="' + esc(e.titre) + '">'
+        + '<img src="' + esc(this.racine + e.planche) + '" alt="' + esc(e.alt || "") + '">'
         + '</div><button class="rejouer" type="button" data-agir="rejouer">↻ Rejouer</button></div>';
     }
     h += '<div class="corps"><h1>' + esc(e.titre) + "</h1>";
@@ -191,6 +195,12 @@
       h += '<div class="retenir"><h2>Ce qu\'il faut retenir</h2><ul>'
         + this.c.retenir.map(function (r) { return "<li>" + rendreTexte(r) + "</li>"; }).join("")
         + "</ul></div>";
+    }
+    /* Renvoi vers la capsule propriétaire d'une notion voisine (doctrine § 3) :
+       ici on rappelle en deux phrases, là-bas on enseigne en entier. */
+    if (e.renvoi && e.renvoi.sujet) {
+      h += '<a class="renvoi-capsule" href="capsule.html?sujet=' + esc(e.renvoi.sujet) + '">'
+        + esc(e.renvoi.libelle || "Voir la capsule dédiée") + " →</a>";
     }
     h += "</div>";
 
@@ -246,7 +256,9 @@
       h += '<button class="suite" type="button" data-agir="accueil">'
         + '<span class="long">Choisir un autre sujet →</span><span class="court">Autre sujet →</span></button>';
     } else {
-      h += '<a class="retour-accueil" href="index.html"><button class="suite" type="button">Choisir un autre sujet →</button></a>';
+      /* Un lien qui a l'allure d'un bouton, jamais un <button> dans un <a> :
+         l'imbrication est invalide et déroute les lecteurs d'écran. */
+      h += '<a class="suite" href="index.html">Choisir un autre sujet →</a>';
     }
     h += '<span class="spacer"></span>' + this.commandesVoix() + "</div>";
 
@@ -257,6 +269,7 @@
     this.zone().innerHTML = h;
     this.brancher();
     mesurerPied();
+    ajusterProjection();
     if (parler !== false && this.autorise) this.lire();
   };
 
@@ -281,6 +294,56 @@
     setTimeout(mesurerPied, 120);   /* la rotation n'est pas finie au moment de l'événement */
   });
 
+  /* PROJECTION SANS DÉFILEMENT — au tableau, une étape qui défile est une
+     étape que le fond de la salle ne voit pas. Après chaque rendu, on mesure
+     la hauteur réellement nécessaire (écran + barres) contre la fenêtre ;
+     si ça déborde, on réduit l'écran d'un facteur calculé pour qu'il tienne
+     en entier. Hors projection, la fonction ne fait que remettre à plat. */
+  function ajusterProjection() {
+    var ec = document.querySelector(".ecran");
+    if (!ec) return;
+    /* Remise à plat AVANT mesure : sinon on mesurerait un écran déjà réduit
+       et la réduction s'accumulerait à chaque recalcul. */
+    ec.style.transform = "";
+    ec.style.transformOrigin = "";
+    ec.style.marginBottom = "";
+    if (!document.documentElement.classList.contains("projection")) return;
+    /* requestAnimationFrame : la mise en page doit être terminée pour que
+       la mesure soit celle que l'œil verra. */
+    requestAnimationFrame(function () {
+      if (!document.body.contains(ec)) return;   /* l'écran a déjà changé */
+      var pied = 0;
+      var cmd = document.querySelector(".commandes");
+      if (cmd) pied += Math.ceil(cmd.getBoundingClientRect().height);
+      var rel = document.getElementById("barre-relecture");
+      if (rel) pied += Math.ceil(rel.getBoundingClientRect().height);
+      var haut = ec.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0);
+      var besoin = ec.getBoundingClientRect().height;
+      /* Sous l'écran, le flux garde des marges et le rembourrage qui réserve
+         la place des barres fixes : on le MESURE (scrollHeight − haut − écran)
+         au lieu de ne compter que les barres — c'était 42 px de défilement
+         restant à 1024×768. */
+      var dessous = document.documentElement.scrollHeight - haut - besoin;
+      var dispo = window.innerHeight - haut - Math.max(dessous, pied) - 8;   /* 8 px de respiration */
+      if (besoin > dispo && dispo > 0) {
+        var k = dispo / besoin;
+        ec.style.transformOrigin = "top center";
+        ec.style.transform = "scale(" + k + ")";
+        /* La réduction est purement visuelle : on rend au flux la place
+           libérée, sinon la page garderait un ascenseur pour du vide. */
+        ec.style.marginBottom = -(besoin - besoin * k) + "px";
+      }
+    });
+  }
+
+  window.addEventListener("resize", ajusterProjection);
+  /* La mesure du rendu part souvent AVANT que la planche ait fini de
+     charger : l'écran grandit ensuite, et sans ceci l'étape défilerait.
+     « load » d'une image ne bulle pas : on écoute en phase de capture. */
+  document.addEventListener("load", function (ev) {
+    if (ev.target && ev.target.tagName === "IMG") ajusterProjection();
+  }, true);
+
   Lecteur.prototype.zone = function () {
     var z = document.getElementById("capsule");
     if (!z) {
@@ -300,9 +363,19 @@
        derrière l'engrenage : à l'écran, l'essentiel est « Écouter ». On les
        règle une fois, pas à chaque écran. Sur ordinateur, tout est visible
        d'emblée — c'est le même HTML, seule la feuille de style diffère. */
+    var etat = this.etatVoix || "arret";
+    var lv = VOIX_LIBELLES[etat] || VOIX_LIBELLES.arret;
+    var e = this.ecran();
     return '<div class="voix' + (this.reglagesOuverts ? " ouvert" : "") + '">'
-      + '<button class="ecouter" type="button" data-agir="ecouter">'
-      + '<span class="long">🔊 Écouter</span><span class="court">🔊</span></button>'
+      + '<button class="ecouter' + (etat === "lecture" ? " parle" : "") + '" type="button"'
+      + ' data-agir="ecouter" aria-label="' + lv.aria + '">'
+      + '<span class="long">' + lv.long + '</span><span class="court">' + lv.court + "</span></button>"
+      + (etat !== "arret" ? boutonArreter() : "")
+      /* Badge d'honnêteté : la narration date d'un texte antérieur. Visible
+         en produit nu comme en relecture — on ne cache pas ça à l'élève. */
+      + (e.voixPerimee
+        ? '<span class="voix-perimee" title="La narration a été enregistrée sur une version antérieure de ce texte ; elle sera réenregistrée après validation.">voix : texte antérieur</span>'
+        : "")
       + '<button class="engrenage" type="button" data-agir="reglages-voix"'
       + ' aria-label="réglages de la voix" title="voix et vitesse">⚙</button>'
       + '<span class="reglages-voix">'
@@ -322,7 +395,61 @@
 
   /* -------------------------------------------------------------------
      LA VOIX
+     Un lecteur à TROIS états — arrêt, lecture, pause — et un seul bouton
+     principal qui fait le tour : Écouter → Pause → Reprendre. Le bouton
+     Arrêter n'existe que lorsqu'il y a quelque chose à arrêter. Libellé
+     et aria-label changent toujours ensemble : ce que voit l'œil est ce
+     qu'entend le lecteur d'écran.
      ------------------------------------------------------------------- */
+  var VOIX_LIBELLES = {
+    arret:   { long: "🔊 Écouter",   court: "🔊", aria: "écouter la narration de cet écran" },
+    lecture: { long: "⏸ Pause",     court: "⏸", aria: "mettre la narration en pause" },
+    pause:   { long: "▶ Reprendre", court: "▶", aria: "reprendre la narration" },
+  };
+
+  function boutonArreter() {
+    return '<button class="arreter" type="button" data-agir="arreter"'
+      + ' aria-label="arrêter la narration">'
+      + '<span class="long">⏹ Arrêter</span><span class="court">⏹</span></button>';
+  }
+
+  /* Changer d'état SANS repeindre l'écran : repeindre au milieu d'une
+     lecture ferait sursauter la page et perdrait le curseur de vitesse. */
+  Lecteur.prototype.majEtatVoix = function (etat) {
+    this.etatVoix = etat;
+    var b = document.querySelector('[data-agir="ecouter"]');
+    if (!b) return;
+    var lv = VOIX_LIBELLES[etat] || VOIX_LIBELLES.arret;
+    var l = b.querySelector(".long"), c = b.querySelector(".court");
+    if (l) l.textContent = lv.long;
+    if (c) c.textContent = lv.court;
+    b.setAttribute("aria-label", lv.aria);
+    b.classList.toggle("parle", etat === "lecture");
+    var arr = document.querySelector('[data-agir="arreter"]');
+    if (etat === "arret") {
+      if (arr) arr.remove();
+    } else if (!arr) {
+      b.insertAdjacentHTML("afterend", boutonArreter());
+    }
+  };
+
+  /* Le bouton principal : à l'arrêt il lance, en lecture il suspend, en
+     pause il reprend — pour le MP3 comme pour la voix de secours. */
+  Lecteur.prototype.basculerVoix = function () {
+    if (this.etatVoix === "lecture") {
+      if (this.audio) this.audio.pause();
+      else if ("speechSynthesis" in window && speechSynthesis.speaking) speechSynthesis.pause();
+      this.majEtatVoix("pause");
+    } else if (this.etatVoix === "pause") {
+      if (this.audio) this.audio.play();
+      else if ("speechSynthesis" in window) speechSynthesis.resume();
+      this.majEtatVoix("lecture");
+    } else {
+      this.autorise = true;
+      this.lire();
+    }
+  };
+
   Lecteur.prototype.lire = function () {
     this.taire();
     var e = this.ecran();
@@ -355,9 +482,14 @@
     a.playbackRate = reglages.vitesse;
     this.audio = a;
 
-    var b = document.querySelector(".ecouter");
-    a.addEventListener("playing", function () { if (b) b.classList.add("parle"); });
-    a.addEventListener("ended", function () { if (b) b.classList.remove("parle"); });
+    /* Les fins tardives d'un son remplacé ne doivent pas toucher l'état :
+       on vérifie que l'événement vient bien du son COURANT. */
+    a.addEventListener("playing", function () { if (self.audio === a) self.majEtatVoix("lecture"); });
+    a.addEventListener("ended", function () {
+      if (self.audio !== a) return;
+      self.audio = null;
+      self.majEtatVoix("arret");
+    });
 
     a.play().catch(function () {
       /* Pas de MP3 (pas encore fabriqué, ou fichier manquant) : plutôt que
@@ -385,18 +517,26 @@
     u.rate = reglages.vitesse;
     var vs = speechSynthesis.getVoices().filter(function (v) { return /^fr/i.test(v.lang); });
     if (vs.length) u.voice = vs[0];
-    var b = document.querySelector(".ecouter");
-    u.onstart = function () { if (b) b.classList.add("parle"); };
-    u.onend = function () { if (b) b.classList.remove("parle"); };
+    /* cancel() fait arriver un onend APRÈS coup sur l'énoncé annulé : on ne
+       tient compte que de l'énoncé courant, sinon l'état retomberait à
+       l'arrêt pendant que le suivant parle. */
+    var self = this;
+    this.utterance = u;
+    u.onstart = function () { if (self.utterance === u) self.majEtatVoix("lecture"); };
+    u.onend = function () {
+      if (self.utterance !== u) return;
+      self.utterance = null;
+      self.majEtatVoix("arret");
+    };
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
   };
 
   Lecteur.prototype.taire = function () {
     if (this.audio) { this.audio.pause(); this.audio = null; }
+    this.utterance = null;
     if ("speechSynthesis" in window) speechSynthesis.cancel();
-    var b = document.querySelector(".ecouter");
-    if (b) b.classList.remove("parle");
+    this.majEtatVoix("arret");
   };
 
   /* -------------------------------------------------------------------
@@ -517,13 +657,11 @@
         case "prec":    self.taire(); self.precedent(); break;
         case "revenir": self.taire(); self.revenir(); break;
         case "ecouter":
-          if (self.audio || (window.speechSynthesis && speechSynthesis.speaking)) {
-            self.taire();
-            self.autorise = false;   /* couper, c'est aussi dire « ne repars pas tout seul » */
-          } else {
-            self.autorise = true;
-            self.lire();
-          }
+          window.__lecteur.basculerVoix();
+          break;
+        case "arreter":
+          self.taire();
+          self.autorise = false;   /* couper, c'est aussi dire « ne repars pas tout seul » */
           break;
         case "rejouer": {
           /* Relancer une planche animée = recharger sa source. Il n'y a pas
@@ -589,7 +727,12 @@
     if (sel) sel.addEventListener("change", function () {
       reglages.voix = sel.value; ecrireReglages();
       self.repli = false;
-      self.taire(); self.lire();
+      /* On ne relance QUE si la voix parlait à l'instant : changer de voix
+         n'est pas une demande d'écoute. À l'arrêt ou en pause, le réglage
+         est retenu et vaudra au prochain « Écouter ». */
+      var ecoutait = self.etatVoix === "lecture";
+      self.taire();
+      if (ecoutait) self.lire();
     });
 
     var vit = document.querySelector('[data-agir="vitesse"]');

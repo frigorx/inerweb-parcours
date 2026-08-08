@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="La lecture d'une table de saturation : le manomètre donne la pression, l'en-tête de la table dit si elle attend une pression absolue ou relative, puis la ligne donne la température. Ajouter un bar machinalement est barré : interdit.">
+  <title>Lire la table : l'en-tête d'abord, jamais « +1 bar » machinal</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .a  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .r  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c0392b; }
+    .th { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#fffdf8; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .rr { fill:none; stroke:#c0392b; stroke-width:3; stroke-linecap:round; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Avant de lire la ligne : lire l'EN-TÊTE</text>
+
+  <!-- ① manomètre -->
+  <g>
+    <circle cx="110" cy="170" r="46" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <path class="p" d="M110,170 l24,-22"/>
+    <circle cx="110" cy="170" r="4" fill="#1b3a63"/>
+    <text class="l" x="110" y="248" text-anchor="middle">① Manomètre</text>
+    <text class="s" x="110" y="268" text-anchor="middle">une pression, en bar</text>
+  </g>
+  <path class="o" d="M168,170 h60"/>
+  <path d="M226,164 l12,6 -12,6 z" fill="#c9451a"/>
+
+  <!-- ② la table, en-tête mis en avant -->
+  <g>
+    <rect x="250" y="86" width="230" height="184" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <rect x="250" y="86" width="230" height="38" rx="6" fill="#1b3a63"/>
+    <text class="th" x="308" y="110" text-anchor="middle">pression : … ?</text>
+    <text class="th" x="424" y="110" text-anchor="middle">T° sat (°C)</text>
+    <!-- entourage de l'en-tête -->
+    <rect x="244" y="80" width="242" height="50" rx="8" fill="none" stroke="#c9451a" stroke-width="3" stroke-dasharray="9 5"/>
+    <text class="a" x="365" y="66" text-anchor="middle">② l'en-tête dit : ABSOLUE ou RELATIVE ?</text>
+    <path class="fil" d="M365,124 v146 M250,160 h230 M250,196 h230 M250,232 h230"/>
+    <text class="s" x="308" y="182" text-anchor="middle">…</text><text class="s" x="424" y="182" text-anchor="middle">…</text>
+    <text class="s" x="308" y="218" text-anchor="middle">…</text><text class="s" x="424" y="218" text-anchor="middle">…</text>
+    <text class="l" x="365" y="292" text-anchor="middle">la table du fluide présent</text>
+  </g>
+  <path class="o" d="M486,170 h60"/>
+  <path d="M544,164 l12,6 -12,6 z" fill="#c9451a"/>
+
+  <!-- ③ température -->
+  <g>
+    <rect x="560" y="136" width="116" height="68" rx="8" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2.4"/>
+    <text class="l" x="618" y="164" text-anchor="middle">③ T° de</text>
+    <text class="l" x="618" y="184" text-anchor="middle">saturation</text>
+    <text class="s" x="618" y="226" text-anchor="middle">seulement une fois</text>
+    <text class="s" x="618" y="244" text-anchor="middle">l'en-tête compris</text>
+  </g>
+
+  <!-- interdit : +1 bar machinal -->
+  <g>
+    <rect x="120" y="316" width="200" height="48" rx="8" fill="#fffdf8" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="8 5"/>
+    <text class="r" x="220" y="345" text-anchor="middle">« +1 bar » machinal</text>
+    <path class="rr" d="M132,358 L308,322"/>
+    <text class="r" x="360" y="345">✗ INTERDIT sans lire l'en-tête</text>
+  </g>
+  <text class="s" x="350" y="390" text-anchor="middle">La conversion dépend de ce que la table attend — c'est son en-tête qui commande.</text>
+</svg>

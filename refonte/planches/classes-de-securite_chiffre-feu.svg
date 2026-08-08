@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Quatre cases alignées de gauche à droite : 1, ne brûle pas, bordure verte pleine. 2L, faiblement inflammable, vitesse de combustion d'au plus dix centimètres par seconde, bordure ambre tiretée. 2, inflammable, bordure orange tiretée. 3, hautement inflammable, le gaz de camping, bordure rouge épaisse. Une flèche sous les cases : le risque d'incendie augmente vers la droite. Rappel : le 2L reste inflammable.">
+  <title>Le chiffre : 1, 2L, 2, 3 — le comportement au feu</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .big { font:700 34px Trebuchet MS,Calibri,sans-serif; }
+    .st  { font:700 16px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .bad { font:700 17px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">Le chiffre : le comportement au feu</text>
+
+  <!-- 1 : vert, trait plein -->
+  <g>
+    <rect x="30" y="70" width="145" height="190" rx="10" fill="#fffdf8" stroke="#1e7e54" stroke-width="3"/>
+    <text class="big" x="102" y="118" text-anchor="middle" fill="#1e7e54">1</text>
+    <text class="st" x="102" y="152" text-anchor="middle" fill="#1e7e54">ne brûle pas</text>
+    <text class="tx" x="102" y="184" text-anchor="middle">pas de</text>
+    <text class="tx" x="102" y="204" text-anchor="middle">propagation</text>
+    <text class="tx" x="102" y="224" text-anchor="middle">de flamme</text>
+  </g>
+
+  <!-- 2L : ambre, tireté -->
+  <g>
+    <rect x="195" y="70" width="145" height="190" rx="10" fill="#fffdf8" stroke="#b06a00" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="big" x="267" y="118" text-anchor="middle" fill="#b06a00">2L</text>
+    <text class="st" x="267" y="152" text-anchor="middle" fill="#b06a00">faiblement</text>
+    <text class="st" x="267" y="172" text-anchor="middle" fill="#b06a00">inflammable</text>
+    <text class="tx" x="267" y="204" text-anchor="middle">combustion</text>
+    <text class="tx" x="267" y="224" text-anchor="middle">≤ 10 cm/s</text>
+  </g>
+
+  <!-- 2 : orange, tireté -->
+  <g>
+    <rect x="360" y="70" width="145" height="190" rx="10" fill="#fffdf8" stroke="#c9451a" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="big" x="432" y="118" text-anchor="middle" fill="#c9451a">2</text>
+    <text class="st" x="432" y="152" text-anchor="middle" fill="#c9451a">inflammable</text>
+  </g>
+
+  <!-- 3 : rouge, trait épais -->
+  <g>
+    <rect x="525" y="70" width="145" height="190" rx="10" fill="#fbe7e4" stroke="#c0392b" stroke-width="5"/>
+    <text class="big" x="597" y="118" text-anchor="middle" fill="#c0392b">3</text>
+    <text class="st" x="597" y="152" text-anchor="middle" fill="#c0392b">hautement</text>
+    <text class="st" x="597" y="172" text-anchor="middle" fill="#c0392b">inflammable</text>
+    <text class="tx" x="597" y="204" text-anchor="middle">le domaine du</text>
+    <text class="tx" x="597" y="224" text-anchor="middle">gaz de camping</text>
+  </g>
+
+  <!-- Flèche de sens -->
+  <g fill="none" stroke="#1b3a63" stroke-width="2.4" stroke-linecap="round">
+    <path d="M60,300 h580"/>
+    <path d="M640,300 l-12,-7 m12,7 l-12,7"/>
+  </g>
+  <text class="st" x="350" y="330" text-anchor="middle" fill="#1b3a63">le risque d'incendie augmente →</text>
+  <text class="bad" x="350" y="372" text-anchor="middle">2L n'est pas « presque 1 » : le 2L reste inflammable.</text>
+</svg>

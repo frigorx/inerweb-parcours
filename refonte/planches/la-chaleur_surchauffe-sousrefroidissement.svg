@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="En haut, la sortie du condenseur : après la dernière bulle de vapeur, le liquide seul continue de céder de l'énergie — c'est le sous-refroidissement. En bas, la sortie de l'évaporateur : après la dernière goutte de liquide, la vapeur seule continue d'en recevoir — c'est la surchauffe. Les deux écarts se lisent en fin d'échangeur, sur le tube de sortie.">
+  <title>Surchauffe et sous-refroidissement : après le changement d'état, l'échange continue</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .mot { font:700 15px Calibri,Segoe UI,sans-serif; }
+    .lg  { font:400 13.5px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .rep { font:700 12.5px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .tube{ fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; }
+    .marq{ fill:none; stroke:#1b3a63; stroke-width:1.6; stroke-dasharray:5 5; }
+    .fcha{ fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; }
+    .ffro{ fill:none; stroke:#3d7fca; stroke-width:2.4; stroke-linecap:round; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">Après le changement d'état, l'échange continue — sur une seule phase</text>
+
+  <defs>
+    <marker id="pc" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M1,1 L7,4 L1,7" fill="none" stroke="#c9451a" stroke-width="1.6" stroke-linecap="round"/>
+    </marker>
+    <marker id="pf" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M1,1 L7,4 L1,7" fill="none" stroke="#3d7fca" stroke-width="1.6" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===================== CONDENSEUR (en haut) ===================== -->
+  <g>
+    <text class="st" x="24" y="66">Sortie du condenseur</text>
+
+    <!-- tube -->
+    <rect x="60" y="86" width="560" height="34" rx="6" fill="#fbe7e4" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- amont : liquide + dernières bulles (diphasique) -->
+    <g fill="#fffdf8" stroke="#c9451a" stroke-width="1.4">
+      <circle cx="105" cy="98" r="4.5"/>
+      <circle cx="140" cy="108" r="3.5"/>
+      <circle cx="180" cy="96" r="3"/>
+      <circle cx="222" cy="107" r="2.5"/>
+    </g>
+    <!-- repère : dernière bulle -->
+    <line class="marq" x1="270" y1="78" x2="270" y2="128"/>
+    <circle cx="258" cy="103" r="2.5" fill="#fffdf8" stroke="#c9451a" stroke-width="1.4"/>
+    <text class="rep" x="270" y="142" text-anchor="middle">la dernière bulle disparaît</text>
+
+    <!-- aval : liquide seul -->
+    <text class="lg" x="440" y="108" text-anchor="middle">liquide seul</text>
+
+    <!-- flèches : l'énergie sort encore -->
+    <path class="fcha" d="M400,80 v-18" marker-end="url(#pc)"/>
+    <path class="fcha" d="M470,80 v-18" marker-end="url(#pc)"/>
+    <path class="fcha" d="M540,80 v-18" marker-end="url(#pc)"/>
+    <text class="lg" x="472" y="52" text-anchor="middle">il cède encore de l'énergie</text>
+
+    <text class="mot" x="440" y="168" text-anchor="middle" fill="#c9451a">le liquide se refroidit → SOUS-REFROIDISSEMENT</text>
+  </g>
+
+  <!-- filet de séparation -->
+  <line class="marq" x1="40" y1="192" x2="660" y2="192"/>
+
+  <!-- ===================== ÉVAPORATEUR (en bas) ===================== -->
+  <g>
+    <text class="st" x="24" y="226">Sortie de l'évaporateur</text>
+
+    <!-- tube -->
+    <rect x="60" y="246" width="560" height="34" rx="6" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- amont : vapeur + dernières gouttes (diphasique) -->
+    <g fill="#3d7fca" stroke="none">
+      <path d="M105,256 q5,7 0,11 q-5,-4 0,-11"/>
+      <path d="M142,262 q4,6 0,9 q-4,-3 0,-9"/>
+      <path d="M182,257 q4,5 0,8 q-4,-3 0,-8"/>
+      <path d="M222,263 q3,5 0,7 q-3,-2 0,-7"/>
+    </g>
+    <!-- repère : dernière goutte -->
+    <line class="marq" x1="270" y1="238" x2="270" y2="288"/>
+    <path d="M258,261 q3,5 0,7 q-3,-2 0,-7" fill="#3d7fca"/>
+    <text class="rep" x="270" y="302" text-anchor="middle">la dernière goutte disparaît</text>
+
+    <!-- aval : vapeur seule -->
+    <text class="lg" x="440" y="268" text-anchor="middle">vapeur seule</text>
+
+    <!-- flèches : l'énergie entre encore -->
+    <path class="ffro" d="M400,222 v18" marker-end="url(#pf)"/>
+    <path class="ffro" d="M470,222 v18" marker-end="url(#pf)"/>
+    <path class="ffro" d="M540,222 v18" marker-end="url(#pf)"/>
+    <text class="lg" x="472" y="214" text-anchor="middle">elle reçoit encore de l'énergie</text>
+
+    <text class="mot" x="440" y="328" text-anchor="middle" fill="#1b3a63">la vapeur se réchauffe → SURCHAUFFE</text>
+  </g>
+
+  <!-- morale -->
+  <line class="marq" x1="40" y1="350" x2="660" y2="350"/>
+  <text class="st" x="350" y="378" text-anchor="middle">Les deux écarts se lisent en fin d'échangeur, sur le tube de sortie.</text>
+</svg>

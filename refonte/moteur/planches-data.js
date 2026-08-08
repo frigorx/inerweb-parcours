@@ -1,5 +1,5 @@
 /* Généré par build/planches.mjs — NE PAS ÉDITER À LA MAIN.
-   66 planches, familles : physique · fluides et classes · organes et circuit · gestes · sécurité · repères. */
+   132 planches, familles : physique · fluides et classes · organes et circuit · gestes · sécurité · repères. */
 window.PLANCHES = [
  {
   "id": "bulle-rosee",
@@ -146,7 +146,7 @@ window.PLANCHES = [
   "titre": "CFC et HCFC : le chlore les a condamnés",
   "famille": "fluides et classes",
   "chemin": "planches/interdits-cfc-hcfc.svg",
-  "ko": 5
+  "ko": 6
  },
  {
   "id": "classes-securite",
@@ -171,7 +171,7 @@ window.PLANCHES = [
  },
  {
   "id": "autorises-hfo-naturels",
-  "titre": "HFO et naturels : autorisés — chacun son revers",
+  "titre": "HFO et naturels : des alternatives possibles — chacun son revers",
   "famille": "fluides et classes",
   "chemin": "planches/autorises-hfo-naturels.svg",
   "ko": 6
@@ -450,6 +450,286 @@ window.PLANCHES = [
   "ko": 6
  },
  {
+  "id": "classes-de-securite_decomposition-hf",
+  "titre": "À la chaleur, le fluide se décompose — jamais de brasage sous fluide",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_decomposition-hf.svg",
+  "ko": 4
+ },
+ {
+  "id": "controle-etancheite_recontrole",
+  "titre": "Après la réparation : contrôle de suivi entre 24 h de fonctionnement et 1 mois — écrit conservé 5 ans",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_recontrole.svg",
+  "ko": 4
+ },
+ {
+  "id": "classes-de-securite_ashrae-en378",
+  "titre": "ASHRAE 34 classe · NF EN 378 encadre l'application",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_ashrae-en378.svg",
+  "ko": 3
+ },
+ {
+  "id": "controle-etancheite_deux-unites",
+  "titre": "Deux façons de compter : t éq. CO₂ (annexe I) ou kilogrammes (annexe II section 1)",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_deux-unites.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-surchauffe_sous-refroidissement",
+  "titre": "Deux marges, deux bouts du circuit : surchauffe et sous-refroidissement",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_sous-refroidissement.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-recuperation_deux-papiers",
+  "titre": "Deux papiers, deux rôles : CERFA 15497 et BSFF (Trackdéchets)",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_deux-papiers.svg",
+  "ko": 3
+ },
+ {
+  "id": "le-circuit_deux-pressions",
+  "titre": "Deux pressions — la frontière passe par le compresseur et le détendeur",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_deux-pressions.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_hydrolyse-acides",
+  "titre": "Eau + huile POE : la chaîne qui mène aux acides",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_hydrolyse-acides.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_huile-hygroscopique",
+  "titre": "Huile POE : fortement hygroscopique",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_huile-hygroscopique.svg",
+  "ko": 3
+ },
+ {
+  "id": "tirage-au-vide_air-condenseur",
+  "titre": "L'air dans le condenseur : il encombre",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_air-condenseur.svg",
+  "ko": 3
+ },
+ {
+  "id": "tirage-au-vide_deux-degats-eau",
+  "titre": "L'eau restante : deux dégâts possibles",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_deux-degats-eau.svg",
+  "ko": 4
+ },
+ {
+  "id": "le-circuit_etats",
+  "titre": "L'état du fluide, zone après zone",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_etats.svg",
+  "ko": 5
+ },
+ {
+  "id": "le-circuit_evaporateur",
+  "titre": "L'évaporateur : le fluide bout et absorbe la chaleur du local",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_evaporateur.svg",
+  "ko": 5
+ },
+ {
+  "id": "classes-de-securite_charge-en378",
+  "titre": "La charge admissible (NF EN 378) dépend de cinq choses à la fois",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_charge-en378.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_cible",
+  "titre": "La cible de surchauffe : la documentation du matériel",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_cible.svg",
+  "ko": 3
+ },
+ {
+  "id": "classes-de-securite_classe-methode",
+  "titre": "La classe pèse sur la charge, l'outillage et la ventilation — avec la notice",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_classe-methode.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_derniere-goutte",
+  "titre": "La dernière goutte : là où la surchauffe commence",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_derniere-goutte.svg",
+  "ko": 3
+ },
+ {
+  "id": "controle-etancheite_detection-fixe",
+  "titre": "La détection fixe : à demeure, elle alerte — et elle se vérifie au moins tous les 12 mois",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_detection-fixe.svg",
+  "ko": 3
+ },
+ {
+  "id": "classes-de-securite_lettre-toxicite",
+  "titre": "La lettre : A ou B — la toxicité, selon la limite d'exposition",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_lettre-toxicite.svg",
+  "ko": 3
+ },
+ {
+  "id": "lire-le-code_regle",
+  "titre": "La règle : plus un, moins un, tel quel",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_regle.svg",
+  "ko": 3
+ },
+ {
+  "id": "controle-etancheite_sonde",
+  "titre": "La sonde : lentement, par en dessous, sans courant d'air — la notice commande",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_sonde.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-recuperation_la-trace",
+  "titre": "La trace : quoi, combien, d'où, vers où — par qui, quel jour",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_la-trace.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_calcul",
+  "titre": "Le calcul de la surchauffe : une mesurée, une lue, une soustraction",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_calcul.svg",
+  "ko": 3
+ },
+ {
+  "id": "lire-le-code_valences",
+  "titre": "Le carbone : quatre prises. H, F, Cl : une seule.",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_valences.svg",
+  "ko": 4
+ },
+ {
+  "id": "classes-de-securite_chiffre-feu",
+  "titre": "Le chiffre : 1, 2L, 2, 3 — le comportement au feu",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_chiffre-feu.svg",
+  "ko": 4
+ },
+ {
+  "id": "lire-le-code_chlore-deduit",
+  "titre": "Le chlore ne se lit pas : il se déduit",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_chlore-deduit.svg",
+  "ko": 3
+ },
+ {
+  "id": "lire-le-code_convention",
+  "titre": "Le décalage est une convention, pas une loi de la nature",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_convention.svg",
+  "ko": 3
+ },
+ {
+  "id": "le-circuit_detendeur",
+  "titre": "Le détendeur : un passage étroit qui fait chuter la pression — et qui dose",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_detendeur.svg",
+  "ko": 4
+ },
+ {
+  "id": "le-circuit_logph",
+  "titre": "Le diagramme log p-h : le dôme, et le cycle en quatre transformations",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_logph.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-recuperation_retour-machine",
+  "titre": "Le fluide récupéré retourne-t-il dans sa machine ?",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_retour-machine.svg",
+  "ko": 4
+ },
+ {
+  "id": "classes-de-securite_vitesse-flamme",
+  "titre": "Le L mesure une vitesse : le front de flamme du 2L avance lentement",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_vitesse-flamme.svg",
+  "ko": 2
+ },
+ {
+  "id": "classes-de-securite_piege-a3",
+  "titre": "Le piège : R-290 et R-600a sont A3, jamais A2L",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_piege-a3.svg",
+  "ko": 3
+ },
+ {
+  "id": "controle-etancheite_registre",
+  "titre": "Le registre : quatre familles d'informations, conservées au moins 5 ans (article 7)",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_registre.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_courbes-remontee",
+  "titre": "Le test de remontée : trois formes de courbe, trois indices",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_courbes-remontee.svg",
+  "ko": 3
+ },
+ {
+  "id": "controle-etancheite_seuils",
+  "titre": "Les seuils du contrôle périodique — article 5 du règlement (UE) 2024/573",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_seuils.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-recuperation_liquide-vapeur",
+  "titre": "Liquide d'abord, vapeur ensuite — l'ordre courant",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_liquide-vapeur.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_lecture-table",
+  "titre": "Lire la table : l'en-tête d'abord, jamais « +1 bar » machinal",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_lecture-table.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_mano-vs-vacuometre",
+  "titre": "Manomètre BP contre vacuomètre : deux instruments, deux mondes",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_mano-vs-vacuometre.svg",
+  "ko": 3
+ },
+ {
+  "id": "les-bouteilles_brut-moins-tare",
+  "titre": "Masse de fluide = brut − tare",
+  "famille": "repères",
+  "chemin": "planches/les-bouteilles_brut-moins-tare.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_echelle-unites",
+  "titre": "Micron, torr, millibar : une seule descente vers zéro",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_echelle-unites.svg",
+  "ko": 3
+ },
+ {
   "id": "motif-flocon",
   "titre": "motif-flocon",
   "famille": "repères",
@@ -457,11 +737,193 @@ window.PLANCHES = [
   "ko": 1
  },
  {
+  "id": "controle-etancheite_ou-lire",
+  "titre": "Où lire la charge et le PRP : plaque, registre, annexe du règlement",
+  "famille": "repères",
+  "chemin": "planches/controle-etancheite_ou-lire.svg",
+  "ko": 4
+ },
+ {
+  "id": "tirage-au-vide_vacuometre-cible",
+  "titre": "Pas une durée : une valeur mesurée",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_vacuometre-cible.svg",
+  "ko": 3
+ },
+ {
   "id": "frise-histoire",
   "titre": "Quarante ans d'histoire — de l'ozone au climat",
   "famille": "repères",
   "chemin": "../fonds-origine/packs/fluides/res/svg/frise-histoire.svg",
   "ko": 5
+ },
+ {
+  "id": "lire-le-code_boules",
+  "titre": "Quatre boules suffisent : atome et molécule",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_boules.svg",
+  "ko": 3
+ },
+ {
+  "id": "classes-de-securite_quatre-exemples",
+  "titre": "Quatre étiquettes lues ensemble : A1 · A1 · A2L · B2L",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_quatre-exemples.svg",
+  "ko": 4
+ },
+ {
+  "id": "lire-le-code_isomeres",
+  "titre": "R-134 et R-134a : mêmes atomes, rangés autrement",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_isomeres.svg",
+  "ko": 5
+ },
+ {
+  "id": "lire-le-code_r134a-calcul",
+  "titre": "R-134a : toutes les places sont prises",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_r134a-calcul.svg",
+  "ko": 4
+ },
+ {
+  "id": "lire-le-code_r22-calcul",
+  "titre": "R-22 : on décode, et une place reste",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_r22-calcul.svg",
+  "ko": 3
+ },
+ {
+  "id": "lire-le-code_melange-404a",
+  "titre": "R-404A : trois fluides dans la même bouteille",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_melange-404a.svg",
+  "ko": 3
+ },
+ {
+  "id": "classes-de-securite_co2-risques",
+  "titre": "R-744 classé A1 — trois risques que la classe ne couvre pas",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_co2-risques.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-recuperation_trois-mots",
+  "titre": "Récupéré · recyclé · régénéré : trois niveaux de traitement",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_trois-mots.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-recuperation_transfert",
+  "titre": "Récupérer, c'est transférer : circuit → groupe → bouteille",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_transfert.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_regler",
+  "titre": "Régler la surchauffe : petits pas, notice, stabilisation",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_regler.svg",
+  "ko": 4
+ },
+ {
+  "id": "lire-le-code_series",
+  "titre": "Savoir lire, c'est aussi savoir quand ça ne se lit pas",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_series.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-chaleur_surchauffe-sousrefroidissement",
+  "titre": "Surchauffe et sous-refroidissement : après le changement d'état, l'échange continue",
+  "famille": "repères",
+  "chemin": "planches/la-chaleur_surchauffe-sousrefroidissement.svg",
+  "ko": 5
+ },
+ {
+  "id": "lire-le-code_trois-cases",
+  "titre": "Trois cases, toujours trois",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_trois-cases.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_trop",
+  "titre": "Trop de surchauffe : une partie de l'échangeur ne sert presque plus",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_trop.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_trop-peu",
+  "titre": "Trop peu de surchauffe : du liquide peut continuer vers le compresseur",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_trop-peu.svg",
+  "ko": 3
+ },
+ {
+  "id": "tirage-au-vide_compresseur-pas-pompe",
+  "titre": "Un compresseur n'est pas une pompe à vide",
+  "famille": "repères",
+  "chemin": "planches/tirage-au-vide_compresseur-pas-pompe.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-surchauffe_exemple",
+  "titre": "Un exemple en entier, avec les unités à chaque étape",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_exemple.svg",
+  "ko": 3
+ },
+ {
+  "id": "la-surchauffe_liquide",
+  "titre": "Un gaz se comprime, un liquide ne cède pratiquement pas",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_liquide.svg",
+  "ko": 4
+ },
+ {
+  "id": "familles-et-prp_prp-echelle",
+  "titre": "Un kilogramme n'égale pas un kilogramme",
+  "famille": "repères",
+  "chemin": "planches/familles-et-prp_prp-echelle.svg",
+  "ko": 2
+ },
+ {
+  "id": "la-recuperation_une-bouteille-un-fluide",
+  "titre": "Une bouteille = un fluide — jamais de mélange",
+  "famille": "repères",
+  "chemin": "planches/la-recuperation_une-bouteille-un-fluide.svg",
+  "ko": 3
+ },
+ {
+  "id": "classes-de-securite_fuite-traverse",
+  "titre": "Une fuite traverse la fourchette — et la ventilation la retraverse",
+  "famille": "repères",
+  "chemin": "planches/classes-de-securite_fuite-traverse.svg",
+  "ko": 3
+ },
+ {
+  "id": "le-circuit_croix-stable",
+  "titre": "Une image ne s'imprime que si elle est toujours la même",
+  "famille": "repères",
+  "chemin": "planches/le-circuit_croix-stable.svg",
+  "ko": 4
+ },
+ {
+  "id": "lire-le-code_fractionnement",
+  "titre": "Zéotrope : charge en liquide, jamais en vapeur",
+  "famille": "repères",
+  "chemin": "planches/lire-le-code_fractionnement.svg",
+  "ko": 4
+ },
+ {
+  "id": "la-surchauffe_deux-colonnes",
+  "titre": "Zéotrope : deux colonnes — la rosée pour la surchauffe",
+  "famille": "repères",
+  "chemin": "planches/la-surchauffe_deux-colonnes.svg",
+  "ko": 3
  }
 ];
 window.PLANCHES_FAMILLES = ["physique","fluides et classes","organes et circuit","gestes","sécurité","repères"];

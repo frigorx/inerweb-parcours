@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visite guidée — les parcours du froid</title>
+<link rel="stylesheet" href="../fonds-origine/moteur/charte-edu.css">
+<link rel="stylesheet" href="moteur/impression.css" media="print">
+<style>
+  /* La visite a son propre décor : crème, pour qu'on ne la confonde
+     jamais avec le produit qu'elle montre dans le cadre de droite. */
+  body{background:#f7f1e7; display:flex; flex-direction:column; min-height:100vh; margin:0}
+
+  .visite-tete{background:#fffdf8; border-bottom:3px solid #1b3a63; padding:14px 20px;
+    display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  .visite-tete h1{margin:0; font-size:21px; color:#1b3a63}
+  .visite-tete p{margin:0; color:var(--mut); font-size:14px}
+  .visite-tete .spacer{flex:1}
+  .visite-tete a.sortie{color:var(--bleu-clair); font-size:14px; text-decoration:none;
+    white-space:nowrap}
+  .visite-tete a.sortie:hover{text-decoration:underline}
+
+  .visite-corps{flex:1; display:flex; align-items:stretch; min-height:0}
+
+  /* ---- Le panneau des étapes, à gauche ---- */
+  .panneau{flex:0 0 360px; overflow-y:auto; padding:18px 16px;
+    border-right:1px solid var(--ligne); display:flex; flex-direction:column; gap:10px}
+  .etape{display:flex; gap:12px; align-items:flex-start; text-align:left;
+    font:inherit; font-size:15px; line-height:1.5; cursor:pointer; width:100%;
+    background:#fffdf8; color:var(--txt); border:1px solid var(--ligne);
+    border-left:4px solid var(--ligne); border-radius:var(--r); padding:12px 14px;
+    transition:.12s}
+  .etape:hover{border-color:var(--bleu-clair)}
+  .etape .num{flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+    background:#eef3f9; color:#1b3a63; font-weight:700; font-size:15px;
+    display:flex; align-items:center; justify-content:center; border:2px solid var(--ligne)}
+  .etape .tt{font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700;
+    color:#1b3a63; margin:2px 0 4px}
+  .etape .quoi{display:none; margin:0; color:var(--mut); font-size:14px}
+  /* L'étape courante : couleur + trait + numéro plein — jamais la couleur seule. */
+  .etape[aria-current="step"]{border-color:var(--orange); border-left:6px solid var(--orange);
+    background:#fffdf8; box-shadow:var(--ombre)}
+  .etape[aria-current="step"] .num{background:#1b3a63; color:#fff; border-color:var(--orange)}
+  .etape[aria-current="step"] .quoi{display:block}
+  .etape:focus-visible, .visite-pied button:focus-visible, .visite-tete a:focus-visible{
+    outline:3px solid var(--orange); outline-offset:2px}
+
+  /* ---- La zone de droite : le produit dans son cadre ---- */
+  .vue{flex:1; display:flex; min-width:0; background:#fff}
+  .vue iframe{flex:1; border:0; width:100%; min-height:0}
+  /* Les étapes sans page : une carte pleine, sur le crème. */
+  .vue .carte-visite{flex:1; overflow-y:auto; background:#f7f1e7; padding:34px 28px}
+  .carte-visite .dedans{max-width:62ch; margin:0 auto; background:#fffdf8;
+    border:1px solid var(--ligne); border-top:5px solid var(--orange);
+    border-radius:var(--r); box-shadow:var(--ombre); padding:26px 30px}
+  .carte-visite h2{margin:0 0 14px; font-size:24px; color:#1b3a63}
+  .carte-visite p{margin:0 0 12px; font-size:17px; line-height:1.65}
+  .carte-visite p:last-child{margin-bottom:0}
+  .carte-visite b{color:#1b3a63}
+
+  /* ---- Les commandes de la visite, en bas ---- */
+  .visite-pied{background:#fffdf8; border-top:1px solid var(--ligne);
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 20px}
+  .visite-pied .position{font-size:14px; font-weight:700; color:#1b3a63; white-space:nowrap}
+  .visite-pied .spacer{flex:1}
+  .visite-pied button{font:inherit; font-size:16px; cursor:pointer; padding:9px 20px;
+    border-radius:10px; border:2px solid var(--ligne); background:#fff; color:#1b3a63;
+    transition:.12s}
+  .visite-pied button:hover:not(:disabled){border-color:var(--orange)}
+  .visite-pied button:disabled{opacity:.4; cursor:default}
+  .visite-pied button.suivant{background:#1b3a63; color:#fff; border-color:#1b3a63;
+    font-weight:700}
+  .visite-pied button.suivant:hover:not(:disabled){background:var(--bleu-clair);
+    border-color:var(--bleu-clair)}
+
+  /* ---- Téléphone : le panneau au-dessus, le cadre en dessous ---- */
+  @media (max-width: 760px){
+    .visite-corps{flex-direction:column}
+    .panneau{flex:0 0 auto; max-height:38vh; border-right:0;
+      border-bottom:1px solid var(--ligne); padding:12px}
+    .etape{padding:10px 12px}
+    .vue{min-height:52vh}
+    .vue iframe{min-height:52vh}
+    .visite-pied button{min-height:44px; flex:1 1 auto}
+    .visite-pied .position{flex:1 1 100%; text-align:center}
+    .visite-pied .spacer{display:none}
+  }
+
+  @media print{
+    .panneau, .visite-pied{display:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="visite-tete">
+  <h1>Visite guidée</h1>
+  <p>Dix étapes pour voir ce que fait ce prototype — regardez le cadre de droite.</p>
+  <span class="spacer"></span>
+  <a class="sortie" href="../index.html">Quitter la visite →</a>
+</header>
+
+<div class="visite-corps">
+  <nav class="panneau" id="panneau" aria-label="Étapes de la visite"></nav>
+  <div class="vue" id="vue"></div>
+</div>
+
+<footer class="visite-pied">
+  <span class="position" id="position" aria-live="polite"></span>
+  <span class="spacer"></span>
+  <button type="button" id="prec">← Précédent</button>
+  <button type="button" id="suiv" class="suivant">Suivant →</button>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* Chaque étape : un titre court, un texte qui dit quoi regarder et quoi
+     voir, et la page réelle chargée dans le cadre — ou une carte quand il
+     n'y a rien à charger. */
+  var ETAPES = [
+    {
+      titre: "Ce que vous regardez",
+      quoi: "Le point de départ : ce qu'est ce prototype, avant de le voir tourner.",
+      carte: "<h2>Ce que vous regardez</h2>"
+        + "<p>Onze capsules de révision, <b>129 écrans</b> en tout. Chaque capsule suit "
+        + "un fil court, avec des détours qu'on ouvre seulement si l'on veut.</p>"
+        + "<p>Deux voix fabriquées lisent les textes à voix haute. Tout fonctionne "
+        + "<b>hors ligne</b>, sans compte et sans réseau.</p>"
+        + "<p>Le contenu est en cours de <b>relecture par des professionnels du métier</b> : "
+        + "c'est un prototype, pas encore une référence.</p>"
+        + "<p>Avancez avec le bouton <b>Suivant</b> : chaque étape charge une vraie page "
+        + "du produit dans le cadre.</p>"
+    },
+    {
+      titre: "L'accueil du site",
+      quoi: "Trois portes : réviser une notion, suivre le parcours, espace enseignant.",
+      src: "../index.html",
+      texte: "Regardez les trois portes. Un élève qui veut réviser une notion précise passe "
+        + "par la première ; celui qui découvre suit le parcours ; l'enseignant a la sienne. "
+        + "L'avertissement rouge rappelle que le contenu n'est pas encore validé."
+    },
+    {
+      titre: "Choisir un sujet",
+      quoi: "Les cartes des onze capsules, dans l'ordre pédagogique déclaré.",
+      src: "index.html",
+      texte: "Chaque carte annonce son niveau, son nombre d'écrans, sa durée et ses détours. "
+        + "L'ordre affiché est l'ordre pédagogique déclaré par l'auteur, pas l'ordre "
+        + "alphabétique des fichiers. On choisit un sujet, un seul."
+    },
+    {
+      titre: "Une capsule en marche",
+      quoi: "Un écran, une idée. La jauge ne compte que le fil principal.",
+      src: "capsule.html?sujet=la-chaleur",
+      texte: "Avancez de quelques écrans avec le bouton Continuer, dans le cadre. "
+        + "Chaque écran porte une seule idée, avec sa planche. La jauge du haut ne compte "
+        + "que le fil principal : elle dit où l'on en est, sans punir la curiosité."
+    },
+    {
+      titre: "Le détour",
+      quoi: "« Voulez-vous en savoir plus ? » — qui veut ouvre, le fil ne s'allonge pas.",
+      src: "capsule.html?sujet=la-chaleur",
+      texte: "Sous certains écrans, un encadré propose d'en savoir plus. Ouvrez-en un : "
+        + "le décor change pour dire qu'on est à côté du fil. La jauge ne recule pas. "
+        + "Au retour, on retrouve exactement l'écran d'où l'on était parti."
+    },
+    {
+      titre: "La voix et les mots",
+      quoi: "Écouter, régler la vitesse, changer de voix, cliquer un mot difficile.",
+      src: "capsule.html?sujet=la-chaleur",
+      texte: "En bas du cadre : Écouter, puis Pause, Reprendre, Arrêter. La vitesse se "
+        + "règle de 0,6 à 1,6 et deux voix sont proposées. Dans le texte, les mots "
+        + "difficiles soulignés de points s'expliquent d'un clic, sur place — jamais dans "
+        + "un glossaire de fin que personne n'ouvre."
+    },
+    {
+      titre: "Les planches",
+      quoi: "Toutes les planches animées, classées par famille, rejouables.",
+      src: "planches.html",
+      texte: "Les planches qui illustrent les capsules sont rassemblées ici, par famille. "
+        + "Chacune se rejoue et se télécharge. Un enseignant peut en montrer une en grand "
+        + "sans ouvrir de capsule."
+    },
+    {
+      titre: "Le parcours guidé",
+      quoi: "Six paliers dans l'ordre, l'avancement retenu par le navigateur.",
+      src: "parcours.html",
+      texte: "Six paliers, des bases jusqu'à l'examen. Ce qui est vu ou en cours se marque "
+        + "d'un mot, d'un trait et d'une couleur. L'avancement reste dans le navigateur "
+        + "de la machine : rien ne sort, il n'y a ni compte ni serveur."
+    },
+    {
+      titre: "L'espace enseignant",
+      quoi: "Projeter en salle, donner les liens, outils de relecture.",
+      src: "enseignant.html",
+      texte: "La porte de l'enseignant : projeter une capsule en grand pour la salle, "
+        + "récupérer le lien d'un sujet à donner à réviser, et accéder aux outils de "
+        + "relecture pour les collègues qui vérifient le contenu."
+    },
+    {
+      titre: "Et dans le centre",
+      quoi: "Où ce pack s'installe, et ce que la visite laisse derrière elle : rien.",
+      carte: "<h2>Et dans le centre</h2>"
+        + "<p>Ce pack devient la partie <b>Formation</b> d'inerWeb Habilitation, le "
+        + "logiciel du centre d'examen.</p>"
+        + "<p>Il y est recopié <b>par un outil</b>, jamais à la main : une seule source, "
+        + "pas de copies qui divergent.</p>"
+        + "<p>Il est servi aux formateurs sur le <b>poste maître uniquement</b> — jamais "
+        + "sur les tablettes des candidats, car un support de formation contient des "
+        + "corrigés.</p>"
+        + "<p>La visite est finie. <b>Fermez cet onglet</b> : la visite ne stocke rien.</p>"
+    }
+  ];
+
+  var panneau = document.getElementById("panneau");
+  var vue = document.getElementById("vue");
+  var position = document.getElementById("position");
+  var bPrec = document.getElementById("prec");
+  var bSuiv = document.getElementById("suiv");
+  var courante = 0;
+
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+
+  /* Le panneau : un bouton par étape. Le texte de l'étape courante
+     s'affiche sous son titre — les autres restent une ligne. */
+  function rendrePanneau() {
+    panneau.innerHTML = ETAPES.map(function (e, i) {
+      var actuel = (i === courante);
+      return '<button type="button" class="etape" data-i="' + i + '"'
+        + (actuel ? ' aria-current="step"' : "") + ">"
+        + '<span class="num" aria-hidden="true">' + (i + 1) + "</span>"
+        + "<span><span class=\"tt\">Étape " + (i + 1) + " — " + esc(e.titre) + "</span>"
+        + '<p class="quoi">' + esc(actuel && e.texte ? e.texte : e.quoi) + "</p>"
+        + "</span></button>";
+    }).join("");
+  }
+
+  function rendreVue() {
+    var e = ETAPES[courante];
+    if (e.carte) {
+      vue.innerHTML = '<div class="carte-visite"><div class="dedans">' + e.carte + "</div></div>";
+    } else {
+      vue.innerHTML = '<iframe src="' + esc(e.src) + '" title="Étape ' + (courante + 1)
+        + " — " + esc(e.titre) + '"></iframe>';
+    }
+  }
+
+  function aller(i) {
+    if (i < 0 || i >= ETAPES.length) { return; }
+    courante = i;
+    rendrePanneau();
+    rendreVue();
+    position.textContent = "Étape " + (courante + 1) + " sur " + ETAPES.length
+      + " — " + ETAPES[courante].titre;
+    bPrec.disabled = (courante === 0);
+    bSuiv.disabled = (courante === ETAPES.length - 1);
+    var actif = panneau.querySelector('[aria-current="step"]');
+    if (actif && actif.scrollIntoView) { actif.scrollIntoView({ block: "nearest" }); }
+  }
+
+  panneau.addEventListener("click", function (ev) {
+    var b = ev.target.closest ? ev.target.closest(".etape") : null;
+    if (b) { aller(Number(b.getAttribute("data-i"))); }
+  });
+  bPrec.addEventListener("click", function () { aller(courante - 1); });
+  bSuiv.addEventListener("click", function () { aller(courante + 1); });
+
+  aller(0);
+})();
+</script>
+<script src="moteur/lisibilite.js"></script>
+</body>
+</html>

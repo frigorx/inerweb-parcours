@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Chaîne de l'hydrolyse : eau plus huile POE donnent, lentement, des acides organiques ; les acides attaquent les vernis d'isolation du bobinage ; le moteur peut finir par claquer. Après un moteur claqué : procédure du fabricant — diagnostic, huile, déshydrateur, nettoyage.">
+  <title>Eau + huile POE : la chaîne qui mène aux acides</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">L'hydrolyse : une chaîne lente, difficile à inverser</text>
+
+  <!-- ========= ÉTAPE 1 : eau + huile ========= -->
+  <rect x="40" y="70" width="180" height="64" rx="8" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="130" y="98" text-anchor="middle">eau + huile POE</text>
+  <text class="lg" x="130" y="120" text-anchor="middle">dans le circuit</text>
+
+  <!-- flèche 1 -->
+  <path class="acc" d="M220,102 h56"/>
+  <path class="acc" d="M268,96 l10,6 l-10,6"/>
+  <text class="lg" x="248" y="88" text-anchor="middle">hydrolyse — lente</text>
+
+  <!-- ========= ÉTAPE 2 : acides ========= -->
+  <rect x="278" y="70" width="170" height="64" rx="8" fill="#fdf1ea" stroke="#c9451a" stroke-width="2.4"/>
+  <text class="bad" x="363" y="98" text-anchor="middle">acides organiques</text>
+  <text class="lg" x="363" y="120" text-anchor="middle">ils restent dans le circuit</text>
+
+  <!-- flèche 2 -->
+  <path class="acc" d="M448,102 h56"/>
+  <path class="acc" d="M496,96 l10,6 l-10,6"/>
+
+  <!-- ========= ÉTAPE 3 : vernis attaqués ========= -->
+  <rect x="506" y="70" width="164" height="64" rx="8" fill="#fdf1ea" stroke="#c9451a" stroke-width="2.4"/>
+  <text class="bad" x="588" y="94" text-anchor="middle">vernis d'isolation</text>
+  <text class="bad" x="588" y="112" text-anchor="middle">du bobinage attaqués</text>
+  <text class="lg" x="588" y="128" text-anchor="middle">le moteur peut claquer</text>
+
+  <!-- flèche descendante -->
+  <path class="acc" d="M588,134 v46"/>
+  <path class="acc" d="M582,168 l6,12 l6,-12"/>
+
+  <!-- ========= APRÈS LE CLAQUAGE : procédure ========= -->
+  <rect x="180" y="192" width="490" height="120" rx="8" fill="#eef7f1" stroke="#1e7e54" stroke-width="2.6"/>
+  <text class="ok" x="425" y="220" text-anchor="middle">Après un moteur claqué : une PROCÉDURE, pas d'improvisation</text>
+  <text class="st" x="425" y="250" text-anchor="middle">diagnostic  ·  remplacement de l'huile  ·  déshydrateur neuf  ·  nettoyage</text>
+  <text class="lg" x="425" y="278" text-anchor="middle">l'étendue exacte (rinçage, remplacement de pièces) suit</text>
+  <text class="ok" x="425" y="298" text-anchor="middle">les préconisations du fabricant</text>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,340 h620"/>
+  <text class="st" x="350" y="372" text-anchor="middle">Le tirage au vide correct coûte peu — cette panne-là peut coûter la machine.</text>
+</svg>

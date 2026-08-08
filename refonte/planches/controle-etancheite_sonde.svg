@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Un raccord sur une tuyauterie, une sonde de détecteur passée lentement par en dessous : le gaz, plus lourd que l'air, tombe. À droite, un ventilateur barré d'une croix : sans courant d'air. En bas, la notice du détecteur : c'est elle qui donne la vitesse de passage, et le contrôle avant usage se fait avec un gaz de référence.">
+  <title>La sonde : lentement, par en dessous, sans courant d'air — la notice commande</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .bad { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#c0392b; }
+    .amb { font:700 13px Calibri,"Segoe UI",Arial,sans-serif; fill:#b06a00; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acl { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .bcl { fill:none; stroke:#c0392b; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Lentement, par en dessous — et l'air ne bouge pas</text>
+
+  <!-- ===== Tuyauterie et raccord ===== -->
+  <path class="p" d="M40,120 h180 M280,120 h180" stroke-width="7"/>
+  <rect x="220" y="106" width="60" height="28" rx="5" fill="#eef3f9" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="sm" x="250" y="96" text-anchor="middle">raccord démontable</text>
+
+  <!-- le gaz tombe (tiretés vers le bas) -->
+  <path class="dash" d="M238,140 v46 m-6,-12 6,12 6,-12" stroke="#c9451a"/>
+  <path class="dash" d="M262,140 v58 m-6,-12 6,12 6,-12" stroke="#c9451a"/>
+  <text class="acc" x="330" y="186">le gaz tombe :</text>
+  <text class="sm" x="330" y="204">la plupart des fluides fluorés sont plus lourds que l'air</text>
+
+  <!-- la sonde, par en dessous -->
+  <path class="p" d="M180,262 q46,-24 66,-40" stroke-width="3.2"/>
+  <rect x="140" y="252" width="46" height="20" rx="6" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+  <text class="st" x="118" y="292">la sonde passe par en dessous</text>
+  <!-- flèche lente -->
+  <path class="acl" d="M120,236 q60,-30 108,-52 m-16,-2 16,2 -8,14"/>
+  <text class="acc" x="96" y="222" text-anchor="end">lentement</text>
+  <text class="sm" x="96" y="240" text-anchor="end">la vitesse ?</text>
+  <text class="sm" x="96" y="256" text-anchor="end">la notice la donne</text>
+
+  <!-- ===== Ventilateur barré ===== -->
+  <g>
+    <circle cx="580" cy="200" r="44" fill="#fffdf8" stroke="#c0392b" stroke-width="2.8"/>
+    <g stroke="#c0392b" stroke-width="2.4" fill="none" stroke-linecap="round">
+      <path d="M580,200 q-24,-24 -6,-38 M580,200 q32,-8 30,14 M580,200 q-8,30 -26,22"/>
+    </g>
+    <circle cx="580" cy="200" r="6" fill="#c0392b"/>
+    <path class="bcl" d="M544,164 l72,72 m0,-72 l-72,72"/>
+    <text class="bad" x="580" y="270" text-anchor="middle">ventilateur ARRÊTÉ</text>
+    <text class="sm" x="580" y="288" text-anchor="middle">un courant d'air disperse la fuite</text>
+  </g>
+
+  <!-- ===== La notice ===== -->
+  <path class="dash" d="M24,316 h652"/>
+  <g>
+    <path class="p" d="M40,336 h50 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-50 z" fill="#fffdf8" stroke="#b06a00"/>
+    <path d="M50,350 h36 M50,362 h36 M50,374 h24" stroke="#b06a00" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <text class="amb" x="112" y="354">La notice du détecteur commande : vitesse de passage, entretien.</text>
+    <text class="lg" x="112" y="376">Contrôle avant usage avec un gaz de référence — et un appareil adapté au fluide recherché.</text>
+  </g>
+</svg>

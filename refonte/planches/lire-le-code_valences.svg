@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le carbone possède quatre prises autour de lui, comme une multiprise à quatre places. L'hydrogène, le fluor et le chlore — les atomes de nos exemples — n'ont qu'une seule prise chacun. Décoder un code, c'est répondre à la question : qui occupe les quatre places ?">
+  <title>Le carbone : quatre prises. H, F, Cl : une seule.</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .acc { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .atom{ font:700 18px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .lien{ stroke:#1b3a63; stroke-width:2.4; }
+    .prise{ fill:#fffdf8; stroke:#3d7fca; stroke-width:2.2; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Qui a combien de prises ?</text>
+
+  <!-- ===== Carbone : 4 prises ===== -->
+  <g transform="translate(170,190)">
+    <line class="lien" x1="0" y1="0" x2="0" y2="-70"/>
+    <line class="lien" x1="0" y1="0" x2="70" y2="0"/>
+    <line class="lien" x1="0" y1="0" x2="0" y2="70"/>
+    <line class="lien" x1="0" y1="0" x2="-70" y2="0"/>
+    <circle class="p" cx="0" cy="0" r="32" fill="#eaf2fb"/>
+    <text class="atom" x="0" y="7" text-anchor="middle">C</text>
+    <rect class="prise" x="-11" y="-92" width="22" height="22" rx="4"/>
+    <rect class="prise" x="70" y="-11" width="22" height="22" rx="4"/>
+    <rect class="prise" x="-11" y="70" width="22" height="22" rx="4"/>
+    <rect class="prise" x="-92" y="-11" width="22" height="22" rx="4"/>
+    <text class="st" x="0" y="130" text-anchor="middle">le carbone :</text>
+    <text class="st" x="0" y="152" text-anchor="middle">quatre prises</text>
+  </g>
+
+  <!-- ===== H, F, Cl : 1 prise ===== -->
+  <g transform="translate(420,150)">
+    <g>
+      <line class="lien" x1="0" y1="0" x2="0" y2="34"/>
+      <circle class="p" cx="0" cy="-18" r="19" fill="#fffdf8"/>
+      <text class="atom" x="0" y="-12" text-anchor="middle">H</text>
+      <rect class="prise" x="-11" y="34" width="22" height="22" rx="4"/>
+    </g>
+    <g transform="translate(105,0)">
+      <line class="lien" x1="0" y1="0" x2="0" y2="34"/>
+      <circle class="p" cx="0" cy="-18" r="19" fill="#fffdf8"/>
+      <text class="atom" x="0" y="-12" text-anchor="middle">F</text>
+      <rect class="prise" x="-11" y="34" width="22" height="22" rx="4"/>
+    </g>
+    <g transform="translate(210,0)">
+      <line class="lien" x1="0" y1="0" x2="0" y2="34"/>
+      <circle class="p" cx="0" cy="-18" r="21" fill="#fffdf8"/>
+      <text class="atom" x="0" y="-12" text-anchor="middle">Cl</text>
+      <rect class="prise" x="-11" y="34" width="22" height="22" rx="4"/>
+    </g>
+    <text class="st" x="105" y="252" text-anchor="middle">une seule prise chacun</text>
+    <text class="lg" x="105" y="274" text-anchor="middle">(H, F, Cl : les atomes de nos exemples —</text>
+    <text class="lg" x="105" y="294" text-anchor="middle">d'autres atomes suivent d'autres règles)</text>
+  </g>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M40,352 h620"/>
+  <text class="acc" x="350" y="382" text-anchor="middle">Décoder, c'est répondre à une question : qui occupe les quatre places ?</text>
+</svg>

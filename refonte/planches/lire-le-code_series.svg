@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux panneaux. À gauche : R-22 et R-134a, le code décrit une molécule, la règle s'applique. À droite : R-404A et les séries 400 et 500, ce sont des mélanges, le numéro est un simple numéro d'ordre, la règle ne s'applique pas.">
+  <title>Savoir lire, c'est aussi savoir quand ça ne se lit pas</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .code{ font:700 20px Consolas,monospace; fill:#1b3a63; }
+    .ok  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1e7e54; }
+    .non { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#c0392b; }
+    .cadreok { fill:#fffdf8; stroke:#1e7e54; stroke-width:2.6; }
+    .cadrenon{ fill:#fffdf8; stroke:#c0392b; stroke-width:2.6; stroke-dasharray:8 6; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Deux sortes de codes</text>
+
+  <!-- ===== Panneau gauche : la règle s'applique ===== -->
+  <g>
+    <rect class="cadreok" x="40" y="66" width="295" height="240" rx="10"/>
+    <text class="st" x="187" y="100" text-anchor="middle">Le code décrit une molécule</text>
+    <text class="code" x="187" y="150" text-anchor="middle">R-22</text>
+    <text class="code" x="187" y="186" text-anchor="middle">R-134a</text>
+    <text class="lg" x="187" y="226" text-anchor="middle">trois cases, plus un,</text>
+    <text class="lg" x="187" y="246" text-anchor="middle">moins un, tel quel</text>
+    <text class="ok" x="187" y="288" text-anchor="middle">✔ la règle s'applique</text>
+  </g>
+
+  <!-- ===== Panneau droit : la règle ne s'applique pas ===== -->
+  <g>
+    <rect class="cadrenon" x="365" y="66" width="295" height="240" rx="10"/>
+    <text class="st" x="512" y="100" text-anchor="middle">Séries 400 et 500 : des mélanges</text>
+    <text class="code" x="512" y="150" text-anchor="middle">R-404A</text>
+    <text class="lg" x="512" y="190" text-anchor="middle">plusieurs fluides</text>
+    <text class="lg" x="512" y="210" text-anchor="middle">dans la même bouteille ;</text>
+    <text class="lg" x="512" y="230" text-anchor="middle">le numéro est un numéro d'ordre,</text>
+    <text class="lg" x="512" y="250" text-anchor="middle">comme un numéro de dossier</text>
+    <text class="non" x="512" y="288" text-anchor="middle">✘ la règle ne s'applique pas</text>
+  </g>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M40,336 h620"/>
+  <text class="st" x="350" y="368" text-anchor="middle">Savoir lire un code, c'est aussi savoir reconnaître ceux qui ne se lisent pas.</text>
+</svg>

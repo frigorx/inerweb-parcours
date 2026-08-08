@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux cartes côte à côte. Carte A, bordure bleue pleine : toxicité plus faible, la très grande majorité des fluides, mais A ne veut pas dire inoffensif. Carte B, bordure rouge tiretée : toxicité plus élevée, le plus connu est le R-717, l'ammoniac. Ce qui sépare les deux : la limite d'exposition. Jamais A égale sans danger, jamais B égale poison.">
+  <title>La lettre : A ou B — la toxicité, selon la limite d'exposition</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .big { font:700 46px Trebuchet MS,Calibri,sans-serif; }
+    .st  { font:700 17px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .mut { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#637285; }
+    .bad { font:700 16px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">La lettre : la toxicité</text>
+
+  <!-- Carte A : bordure bleue PLEINE -->
+  <g>
+    <rect x="40" y="62" width="290" height="180" rx="10" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+    <text class="big" x="80" y="120" fill="#1b3a63">A</text>
+    <text class="st" x="120" y="104">toxicité</text>
+    <text class="st" x="120" y="126">plus faible</text>
+    <text class="tx" x="60" y="164">La très grande majorité</text>
+    <text class="tx" x="60" y="186">des fluides : R-134a, R-32…</text>
+    <text class="bad" x="60" y="222">A ne veut pas dire inoffensif.</text>
+  </g>
+
+  <!-- Carte B : bordure rouge TIRETÉE -->
+  <g>
+    <rect x="370" y="62" width="290" height="180" rx="10" fill="#fffdf8" stroke="#c0392b" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="big" x="410" y="120" fill="#c0392b">B</text>
+    <text class="st" x="452" y="104" fill="#c0392b">toxicité</text>
+    <text class="st" x="452" y="126" fill="#c0392b">plus élevée</text>
+    <text class="tx" x="390" y="164">Le plus connu :</text>
+    <text class="tx" x="390" y="186">R-717 (ammoniac)</text>
+  </g>
+
+  <!-- Axe : la limite d'exposition -->
+  <g fill="none" stroke="#1b3a63" stroke-width="2.4" stroke-linecap="round">
+    <path d="M80,286 h540"/>
+    <path d="M620,286 l-12,-7 m12,7 l-12,7"/>
+  </g>
+  <text class="st" x="350" y="316" text-anchor="middle">limite d'exposition de plus en plus basse → fluide plus toxique</text>
+  <text class="mut" x="350" y="352" text-anchor="middle">C'est cette limite qui sépare A de B.</text>
+  <text class="bad" x="350" y="382" text-anchor="middle">Jamais « A = sans danger ». Jamais « B = poison ».</text>
+</svg>

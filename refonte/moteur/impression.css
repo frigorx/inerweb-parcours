@@ -1,0 +1,173 @@
+/* =====================================================================
+   IMPRESSION — la version papier de la charte, sobre en encre.
+   ---------------------------------------------------------------------
+   CONTRAT : feuille autonome, à inclure APRÈS la feuille de style de la
+   page. Elle ne s'applique qu'à l'impression et à l'export PDF :
+     <link rel="stylesheet" href=".../moteur/impression.css" media="print">
+   (le `media="print"` évite même de la télécharger à l'écran)
+
+   PRINCIPE : le TRAIT porte le sens, pas la SURFACE.
+   Un filet de 3 px coûte une goutte d'encre, un aplat de page en coûte
+   une cartouche. Tous les fonds colorés deviennent blancs ; ce qu'ils
+   signifiaient passe dans la bordure et dans le mot.
+
+   LA COULEUR EST CONSERVÉE — ce n'est pas une feuille « noir et blanc ».
+   Filets, titres et badges gardent leur couleur : quelques gouttes, et un
+   document imprimé en couleur reste agréable. Ce sont les SURFACES qui
+   partent, pas la couleur.
+
+   MAIS ELLE NE TRAVAILLE JAMAIS SEULE. Mesuré le 31/07/2026 : converties
+   en niveaux de gris, nos trois couleurs de sens tombent au même endroit —
+   vert #1e7e54 à 36 %, rouge #c0392b à 38 %, ambre #b06a00 à 45 %. Le vert
+   et le rouge sont à UN point d'écart : sur une photocopieuse, ils sont
+   strictement indiscernables. Chaque type d'encadré porte donc aussi un
+   STYLE DE TRAIT distinct (plein / double / tireté), qui survit à
+   n'importe quelle conversion — et le mot reste là, toujours.
+
+   Corollaire de contraste : l'orange d'écran #ff6b35 ne fait que 2,8:1 sur
+   blanc — insuffisant pour du texte. Sur papier, l'orange de TEXTE est
+   toujours #c9451a (4,8:1). #ff6b35 ne sert plus qu'en filet.
+
+   PIÈGE À CONNAÎTRE : par défaut les navigateurs n'impriment pas les
+   fonds — mais l'utilisateur peut cocher « Graphiques d'arrière-plan »,
+   et « Enregistrer au format PDF » le fait souvent. Le PDF produit garde
+   alors les aplats et les ressort chez QUI L'IMPRIME. On ne compte donc
+   jamais sur le défaut : on neutralise explicitement.
+   Ne JAMAIS écrire `print-color-adjust:exact` dans ce projet — c'est
+   l'instruction inverse, elle force l'impression des fonds.
+   ===================================================================== */
+
+/* ---- Page ---- */
+@page { margin: 15mm 14mm; }
+@page :first { margin-top: 12mm; }
+
+/* ---- Fond et encre ---- */
+html, body {
+  background: #fff !important;
+  color: #000 !important;
+}
+/* Aucune image de fond, aucune ombre, aucun dégradé : invisibles ou gris
+   sales à l'impression, et coûteux en toner. */
+*, *::before, *::after {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* ---- Les surfaces deviennent blanches, les filets restent ----
+   Les conteneurs de la charte (moteur + expériences) sont listés
+   nommément : une règle universelle sur `background` écraserait aussi
+   les pastilles porteuses de sens dans les schémas. */
+.carte, .scene, .bloc, .tuile, .pilote, .competences, .criteres .crit,
+.prog-groupe, .pc, .pst, .bilan-comp, .voile .modale, .hero, .hero .cap,
+.ressources a, .sw, .se, .r, .cl .dem, .cl .fiche, .cl .leg, .typo,
+.lesson-card, .interactive-zone, .question, .answer, .quiz-result,
+.sources-panel, .stepper, .family-card, .formula-piece, .decode-detail div,
+.note, table, th, td {
+  background: #fff !important;
+}
+
+/* ---- Ce qui portait le sens par la couleur le porte par le trait ----
+   DEUX canaux, pas un : la couleur (belle si on imprime en couleur) ET le
+   style de trait (qui survit au noir et blanc). Voir la mesure en tête de
+   fichier : nos trois couleurs de sens sortent au même gris, la couleur
+   seule ne peut donc rien distinguer sur une photocopieuse.
+     neutre → trait plein fin   ·  clé → trait DOUBLE  ·  piège → TIRETÉ
+   Et le mot est toujours là, troisième canal. */
+.bloc       { border-left: 2px solid  #1b3a63 !important; }
+.bloc.cle   { border-left: 5px double #1e7e54 !important; }
+.bloc.piege { border-left: 4px dashed #c9451a !important; }
+.pilote     { border: 1.5px dotted #c9451a !important; }
+.carte, .tuile, .competences, .sw, .r, .cl, .cl .fiche, .note {
+  border: 1px solid #999 !important;
+}
+/* Les états de « Ma progression » : même logique, sur le filet gauche. */
+.pc.acquis  { border-left: 5px double #1e7e54 !important; }
+.pc.fragile { border-left: 4px dotted #b06a00 !important; }
+.pc.revoir  { border-left: 4px dashed #c0392b !important; }
+.pc.vierge  { border-left: 2px solid  #999    !important; }
+
+/* ---- Badges et pastilles : du plein au contour, mais EN COULEUR ----
+   Un badge orange plein, c'est un rectangle d'encre par occurrence. Il
+   devient un contour : le fond part, la couleur reste. Coût quasi nul,
+   et la page imprimée en couleur garde ses repères. */
+.dc, .badge, .pst, .tp, .score-pill, .final-pillars span,
+.final-pillars strong, .criteres .etats button {
+  background: #fff !important;
+  color: #c9451a !important;          /* l'orange de TEXTE, pas #ff6b35 */
+  border: 1px solid #c9451a !important;
+}
+.pst.acquis, .criteres .etats button.sel.acquis {
+  color: #1e7e54 !important; border-color: #1e7e54 !important;
+}
+.pst.revoir, .criteres .etats button.sel.non {
+  color: #c0392b !important; border-color: #c0392b !important;
+}
+.pst.fragile, .criteres .etats button.sel.cours {
+  color: #b06a00 !important; border-color: #b06a00 !important;
+}
+.pst.vierge { color: #555 !important; border-color: #999 !important; }
+
+/* ---- Texte ----
+   Les titres restent bleu marine : c'est l'identité, et un titre par page
+   ne coûte rien. Le corps passe en NOIR PUR, et c'est un choix d'encre,
+   pas de tristesse : sur un jet d'encre, un bleu très foncé se fabrique
+   avec les quatre cartouches (cyan + magenta + jaune + noir) alors que le
+   noir n'en consomme qu'une. Sur un texte long, l'écart est réel.
+   La couleur vit dans les titres, les filets et les badges — là où elle se
+   voit — pas dans les 400 mots d'un paragraphe. */
+h1, h2, h3, h4, .tt, .sct { color: #1b3a63 !important; }
+p, li, td, .lib, .lesson-text, .hero p { color: #000 !important; }
+.muted, .mut, small, .cl .leg, figcaption { color: #444 !important; }
+/* Les intitulés d'encadré gardent la couleur de leur famille : c'est le
+   mot ET la couleur au même endroit, deux canaux pour un seul repère. */
+.bloc.cle .t   { color: #1e7e54 !important; }
+.bloc.piege .t { color: #c9451a !important; }
+.pilote .t     { color: #c9451a !important; }
+
+/* ---- Interface : tout ce qui ne se clique pas sur papier ---- */
+button, .liens, .btns, .barre, .fil, .pied, .voile, .topbar, .topbar-actions,
+.stepper, .lesson-footer, .nav-button, .start-button, .sound-toggle,
+.listen-button, .source-toggle, .son-reglage, nav, [role="dialog"],
+.interactive-only, #lisib-bouton, #lisib-panneau {
+  display: none !important;
+}
+
+/* ---- Ce qui ne doit pas être coupé en deux par un saut de page ---- */
+.carte, .bloc, .pilote, .competences, .planche, .sw, .se, .r, .cl,
+figure, svg, img, table, .question, .family-card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+h1, h2 { break-before: auto; }
+
+/* ---- Images et schémas ---- */
+img, svg { max-width: 100% !important; height: auto; }
+/* Les planches animées : le dessin AU REPOS est déjà l'image finale
+   (règle R2 de la charte), on retire seulement les éléments mobiles. */
+.mobile { display: none !important; }
+
+/* ---- Liens : l'adresse est perdue sur papier, on la rend ----
+   Seulement les liens externes ; un href interne (#, ./) donnerait une
+   adresse inutilisable et alourdirait la page. */
+a { color: #1b3a63 !important; text-decoration: underline; }
+a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 10pt;
+  color: #444;
+  word-break: break-all;
+}
+
+/* ---- Tableaux : lisibles sans zébrure ni aplat d'en-tête ----
+   Une ligne sur deux grisée, c'est la moitié du tableau à l'encre. Le
+   filet suffit ; l'en-tête se distingue par la graisse, la couleur et un
+   trait plus épais dessous. */
+table { border-collapse: collapse !important; }
+th, td { border: 1px solid #999 !important; }
+th {
+  font-weight: 700;
+  color: #1b3a63 !important;
+  border-bottom: 2px solid #1b3a63 !important;
+}
+tr:nth-child(even), tr:nth-child(odd) { background: #fff !important; }

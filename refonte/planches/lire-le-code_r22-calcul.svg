@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="R-022 : zéro plus un égale un carbone ; deux moins un égale un hydrogène ; deux tel quel égale deux fluors. Sur le carbone, quatre places : l'hydrogène et les deux fluors en occupent trois. Une place reste, marquée d'un point d'interrogation — elle n'est pas vide.">
+  <title>R-22 : on décode, et une place reste</title>
+  <style>
+    .t   { font:700 20px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,'Segoe UI',sans-serif; fill:#637285; }
+    .acc { font:700 14px Calibri,'Segoe UI',sans-serif; fill:#c9451a; }
+    .calc{ font:700 17px Consolas,monospace; fill:#1b3a63; }
+    .atom{ font:700 18px Calibri,'Segoe UI',sans-serif; fill:#1b3a63; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .lien{ stroke:#1b3a63; stroke-width:2.4; }
+    .myst{ fill:none; stroke:#c9451a; stroke-width:2.4; stroke-dasharray:6 5; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.6; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">R-022 : on décode</text>
+
+  <!-- ===== Calcul à gauche ===== -->
+  <g>
+    <text class="calc" x="40" y="110">0 + 1  =  1 carbone</text>
+    <text class="calc" x="40" y="160">2 − 1  =  1 hydrogène</text>
+    <text class="calc" x="40" y="210">2 tel quel = 2 fluors</text>
+    <text class="lg" x="40" y="252">Un carbone : quatre places autour de lui.</text>
+    <text class="lg" x="40" y="274">1 H + 2 F : trois places occupées.</text>
+  </g>
+
+  <!-- ===== Molécule à droite ===== -->
+  <g transform="translate(500,180)">
+    <!-- liaisons -->
+    <line class="lien" x1="0" y1="0" x2="0" y2="-62"/>
+    <line class="lien" x1="0" y1="0" x2="-62" y2="0"/>
+    <line class="lien" x1="0" y1="0" x2="0" y2="62"/>
+    <line class="lien" x1="0" y1="0" x2="62" y2="0"/>
+    <!-- carbone -->
+    <circle class="p" cx="0" cy="0" r="30" fill="#eaf2fb"/>
+    <text class="atom" x="0" y="6" text-anchor="middle">C</text>
+    <!-- H en haut -->
+    <circle class="p" cx="0" cy="-84" r="21" fill="#fffdf8"/>
+    <text class="atom" x="0" y="-78" text-anchor="middle">H</text>
+    <!-- F à gauche et en bas -->
+    <circle class="p" cx="-84" cy="0" r="21" fill="#fffdf8"/>
+    <text class="atom" x="-84" y="6" text-anchor="middle">F</text>
+    <circle class="p" cx="0" cy="84" r="21" fill="#fffdf8"/>
+    <text class="atom" x="0" y="90" text-anchor="middle">F</text>
+    <!-- place restante -->
+    <circle class="myst" cx="84" cy="0" r="21" fill="#fffdf8"/>
+    <text class="acc" x="84" y="6" text-anchor="middle">?</text>
+    <text class="acc" x="84" y="-34" text-anchor="middle">une place reste</text>
+  </g>
+
+  <text class="lg" x="500" y="316" text-anchor="middle">Schéma de principe — pas à l'échelle.</text>
+
+  <!-- ===== Morale ===== -->
+  <path class="dash" d="M40,340 h620"/>
+  <text class="st" x="350" y="370" text-anchor="middle">Un carbone · un hydrogène · deux fluors — et une place qui reste. Elle n'est pas vide.</text>
+</svg>

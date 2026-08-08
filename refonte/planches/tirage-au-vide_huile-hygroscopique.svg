@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux bidons d'huile POE : celui qui est resté ouvert attire l'humidité de l'air ambiant ; celui qui a été refermé aussitôt reste sec. Les huiles POE sont fortement hygroscopiques.">
+  <title>Huile POE : fortement hygroscopique</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 15px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .ok  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .hum { fill:none; stroke:#3d7fca; stroke-width:2.2; stroke-linecap:round; stroke-dasharray:6 4; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">L'huile POE attire l'humidité de l'air — bien plus que l'huile minérale</text>
+
+  <!-- ========= GAUCHE : bidon resté ouvert ========= -->
+  <g>
+    <text class="bad" x="175" y="72" text-anchor="middle">bidon resté ouvert</text>
+    <!-- bidon -->
+    <path class="p" d="M115,150 v130 h120 v-130 z" fill="#fffdf8"/>
+    <rect x="119" y="200" width="112" height="76" fill="#f3d9a8"/>
+    <!-- goulot ouvert -->
+    <path class="p" d="M160,150 v-22 h30 v22"/>
+    <!-- flèches d'humidité qui entrent (tiretées, bleues) -->
+    <path class="hum" d="M120,88 q28,18 46,42"/>
+    <path class="hum" d="M175,80 v46"/>
+    <path class="hum" d="M230,88 q-28,18 -46,42"/>
+    <path class="hum" d="M162,124 l8,10 l8,-10" stroke-dasharray="none"/>
+    <text class="st" x="175" y="248" text-anchor="middle" fill="#3d7fca">humidité de l'air</text>
+    <text class="lg" x="175" y="310" text-anchor="middle">l'huile se charge en eau</text>
+    <text class="lg" x="175" y="328" text-anchor="middle">un fond de bidon ne se réutilise pas</text>
+  </g>
+
+  <!-- séparation -->
+  <path class="dash" d="M350,56 v280"/>
+
+  <!-- ========= DROITE : bidon refermé aussitôt ========= -->
+  <g>
+    <text class="ok" x="525" y="72" text-anchor="middle">refermé aussitôt</text>
+    <path class="p" d="M465,150 v130 h120 v-130 z" fill="#fffdf8"/>
+    <rect x="469" y="200" width="112" height="76" fill="#f3d9a8"/>
+    <!-- goulot avec bouchon plein -->
+    <path class="p" d="M510,150 v-22 h30 v22"/>
+    <rect x="504" y="116" width="42" height="14" rx="3" fill="#1e7e54" stroke="#1e7e54"/>
+    <text class="ok" x="525" y="104" text-anchor="middle">bouchon en place</text>
+    <text class="lg" x="525" y="310" text-anchor="middle">l'huile reste sèche</text>
+    <text class="lg" x="525" y="328" text-anchor="middle">et le circuit aussi</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,350 h620"/>
+  <text class="st" x="350" y="380" text-anchor="middle">POE = fortement hygroscopique : on referme aussitôt, à chaque fois.</text>
+</svg>

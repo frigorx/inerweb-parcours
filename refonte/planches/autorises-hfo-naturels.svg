@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" role="img"
-     aria-label="Les deux familles autorisées, et le revers de chacune. Les HFO, comme le R-1234yf : une double liaison entre carbones qui casse en quelques jours dans l'air, d'où un PRP proche de un — mais souvent classés A2L, et la question des PFAS se pose. Les fluides naturels : R-290 propane et R-600a isobutane, classés A3 ; R-717 ammoniac, classé B2L ; R-744 CO2, qui travaille à haute pression. PRP minuscule, mais chacun son revers : le fluide qui ne réchauffe pas le climat demande davantage de métier.">
-  <title>HFO et naturels : autorisés — chacun son revers</title>
+     aria-label="Deux familles d'alternatives possibles, selon l'application, l'équipement et le calendrier — et le revers de chacune. Les HFO, comme le R-1234yf : une double liaison entre carbones qui casse en quelques jours dans l'air, d'où un PRP inférieur à un — 0,501 dans l'annexe du règlement. Souvent classés A2L ; et certains fluorés sont au cœur d'un débat réglementaire sur les PFAS — un dossier à suivre, pas un verdict. Les fluides naturels : R-290 propane et R-600a isobutane, classés A3 ; R-717 ammoniac, classé B2L ; R-744 CO2, qui travaille à haute pression. PRP minuscule, mais chacun son revers : le fluide qui ne réchauffe pas le climat demande davantage de métier.">
+  <title>HFO et naturels : des alternatives possibles — chacun son revers</title>
   <style>
     .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
     .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
@@ -13,7 +13,7 @@
   </style>
 
   <rect width="880" height="464" fill="#ffffff"/>
-  <text class="t" x="30" y="32">Les autorisés — mais le revers se lit sur chaque étiquette</text>
+  <text class="t" x="30" y="32">Des alternatives possibles — mais le revers se lit sur chaque étiquette</text>
 
   <!-- ============ HFO ============ -->
   <rect x="55" y="62" width="330" height="330" rx="12" fill="#f6f9fc" stroke="#1b3a63" stroke-width="2.4"/>
@@ -31,10 +31,10 @@
   </g>
   <text class="bad" x="220" y="252" text-anchor="middle">la double liaison C = C</text>
   <text class="lg" x="220" y="276" text-anchor="middle">casse en quelques jours dans l'air</text>
-  <text class="ok" x="220" y="300" text-anchor="middle">→ PRP ≈ 1</text>
+  <text class="ok" x="220" y="300" text-anchor="middle">→ PRP &lt; 1 (0,501)</text>
   <rect x="80" y="318" width="280" height="52" rx="8" fill="#fdeee8" stroke="#c9451a" stroke-width="1.8"/>
   <text class="bad" x="220" y="340" text-anchor="middle">le revers : souvent A2L —</text>
-  <text class="sm" x="220" y="358" text-anchor="middle">et la question PFAS se pose</text>
+  <text class="sm" x="220" y="358" text-anchor="middle">PFAS : un débat à suivre, pas un verdict</text>
 
   <!-- ============ NATURELS ============ -->
   <rect x="425" y="62" width="400" height="330" rx="12" fill="#f6f9fc" stroke="#1b3a63" stroke-width="2.4"/>

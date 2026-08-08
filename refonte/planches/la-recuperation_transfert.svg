@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le fluide passe du circuit à vider vers la bouteille de récupération, au moyen d'un groupe de récupération. Récupérer, c'est collecter et stocker : le fluide n'est ni détruit ni transformé, il est mis de côté.">
+  <title>Récupérer, c'est transférer : circuit → groupe → bouteille</title>
+  <style>
+    .t   { font:700 20px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 14px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .box { fill:#fffdf8; stroke:#1b3a63; stroke-width:2.6; }
+    .fl  { fill:none; stroke:#3d7fca; stroke-width:3.4; stroke-linecap:round; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Récupérer, c'est transférer — pas détruire</text>
+
+  <!-- circuit à vider -->
+  <rect class="box" x="40" y="110" width="160" height="120" rx="8"/>
+  <text class="st" x="120" y="160" text-anchor="middle">Circuit</text>
+  <text class="st" x="120" y="180" text-anchor="middle">à vider</text>
+  <text class="lg" x="120" y="252" text-anchor="middle">la machine sur laquelle</text>
+  <text class="lg" x="120" y="269" text-anchor="middle">on intervient</text>
+
+  <!-- flèche 1 -->
+  <path class="fl" d="M204,170 h66"/>
+  <path d="M270,170 l-12,-7 v14 z" fill="#3d7fca"/>
+  <text class="lg" x="238" y="152" text-anchor="middle">fluide</text>
+
+  <!-- groupe de récupération -->
+  <rect class="box" x="276" y="110" width="160" height="120" rx="8"/>
+  <text class="st" x="356" y="160" text-anchor="middle">Groupe de</text>
+  <text class="st" x="356" y="180" text-anchor="middle">récupération</text>
+  <text class="lg" x="356" y="252" text-anchor="middle">la pompe du transfert :</text>
+  <text class="lg" x="356" y="269" text-anchor="middle">il déplace, il ne traite pas</text>
+
+  <!-- flèche 2 -->
+  <path class="fl" d="M440,170 h66"/>
+  <path d="M506,170 l-12,-7 v14 z" fill="#3d7fca"/>
+  <text class="lg" x="474" y="152" text-anchor="middle">fluide</text>
+
+  <!-- bouteille de récupération -->
+  <g>
+    <path class="box" d="M552,132 h56 v-10 a8,8 0 0 1 8,-8 h-72 a8,8 0 0 1 8,8 z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <rect x="566" y="100" width="28" height="16" rx="4" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <rect class="box" x="544" y="132" width="72" height="100" rx="12"/>
+    <rect x="552" y="168" width="56" height="30" fill="#fffdf8" stroke="#1b3a63" stroke-width="1.4"/>
+    <text class="st" x="580" y="188" text-anchor="middle" style="font-size:12px">RÉCUP.</text>
+  </g>
+  <text class="st" x="580" y="256" text-anchor="middle">Bouteille de</text>
+  <text class="st" x="580" y="274" text-anchor="middle">récupération</text>
+  <text class="lg" x="580" y="292" text-anchor="middle">identifiée comme telle</text>
+
+  <!-- morale -->
+  <path d="M40,326 h620" fill="none" stroke="#8fa3b8" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <text class="acc" x="350" y="356" text-anchor="middle">Récupérer = COLLECTER et STOCKER.</text>
+  <text class="lg" x="350" y="378" text-anchor="middle">Le fluide n'est ni détruit ni transformé : il est mis de côté — réemploi, retraitement ou élimination viendront après.</text>
+</svg>

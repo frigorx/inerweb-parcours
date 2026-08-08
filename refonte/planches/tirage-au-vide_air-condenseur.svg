@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Un condenseur dont une partie est occupée par de l'air incondensable : la place manque au fluide pour se liquéfier. Au manomètre, la pression de condensation peut monter anormalement — un indice, à confirmer.">
+  <title>L'air dans le condenseur : il encombre</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">L'air ne se condense pas : il occupe la place du fluide</text>
+
+  <!-- ========= CONDENSEUR ========= -->
+  <g>
+    <text class="st" x="230" y="66" text-anchor="middle">Condenseur</text>
+    <!-- enveloppe -->
+    <rect x="80" y="80" width="300" height="180" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- poche d'air : contour tireté + mot -->
+    <rect x="84" y="84" width="292" height="56" fill="#eef3f8" stroke="#c9451a" stroke-width="2" stroke-dasharray="6 4"/>
+    <text class="bad" x="230" y="118" text-anchor="middle">air : incondensable — il reste gaz</text>
+    <!-- zone fluide qui se liquéfie -->
+    <rect x="84" y="140" width="292" height="116" fill="#cfe6f5"/>
+    <text class="st" x="230" y="188" text-anchor="middle">fluide : il doit se liquéfier ici</text>
+    <text class="lg" x="230" y="210" text-anchor="middle">la place utile d'échange est réduite</text>
+    <!-- entrée / sortie -->
+    <path class="p" d="M40,170 h40"/>
+    <path class="p" d="M380,170 h40"/>
+    <text class="lg" x="40" y="156">vapeur</text>
+    <text class="lg" x="384" y="156">liquide</text>
+  </g>
+
+  <!-- ========= MANOMÈTRE HP ========= -->
+  <g>
+    <text class="st" x="555" y="86" text-anchor="middle">Manomètre HP</text>
+    <circle cx="555" cy="170" r="62" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.4"/>
+    <!-- graduations -->
+    <path class="p" d="M513,212 l8,-8 M497,170 h12 M513,128 l8,8 M555,108 v12 M597,128 l-8,8 M613,170 h-12"/>
+    <!-- aiguille anormalement haute (vers la droite) -->
+    <path class="acc" d="M555,170 L603,138"/>
+    <circle cx="555" cy="170" r="5" fill="#c9451a"/>
+    <text class="bad" x="555" y="262" text-anchor="middle">pression de condensation</text>
+    <text class="bad" x="555" y="280" text-anchor="middle">anormalement haute</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,316 h620"/>
+  <text class="st" x="350" y="346" text-anchor="middle">Effets possibles : pression de condensation en hausse, échange dégradé, rendement en baisse.</text>
+  <text class="lg" x="350" y="372" text-anchor="middle">Une HP trop haute pour la température extérieure est un indice — pas une preuve à elle seule.</text>
+</svg>

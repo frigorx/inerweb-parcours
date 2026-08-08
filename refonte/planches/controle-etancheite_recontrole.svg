@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Frise dans le temps : une fuite est trouvée, elle est réparée, puis vient le contrôle de suivi — au plus tôt après 24 heures de fonctionnement, au plus tard dans le mois. Chaque étape est consignée dans le registre, et les enregistrements se conservent 5 ans.">
+  <title>Après la réparation : contrôle de suivi entre 24 h de fonctionnement et 1 mois — écrit conservé 5 ans</title>
+  <style>
+    .t   { font:700 19px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .sm  { font:400 12.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .bad { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#c0392b; }
+    .ok  { font:700 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#1e7e54; }
+    .amb { font:700 13px Calibri,"Segoe UI",Arial,sans-serif; fill:#b06a00; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text class="t" x="24" y="30">Réparer ne suffit pas : on revient vérifier, et on l'écrit</text>
+
+  <!-- ===== Ligne du temps ===== -->
+  <path class="p" d="M50,180 h600 m-12,-8 12,8 -12,8"/>
+  <text class="sm" x="650" y="204" text-anchor="end">le temps</text>
+
+  <!-- Étape 1 : fuite trouvée -->
+  <g>
+    <circle cx="110" cy="180" r="9" fill="#ffffff" stroke="#c0392b" stroke-width="2.8"/>
+    <path d="M104,174 l12,12 m0,-12 l-12,12" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <text class="bad" x="110" y="140" text-anchor="middle">fuite trouvée</text>
+    <text class="sm" x="110" y="158" text-anchor="middle">(contrôle direct)</text>
+  </g>
+
+  <!-- Étape 2 : réparation -->
+  <g>
+    <circle cx="250" cy="180" r="9" fill="#ffffff" stroke="#1b3a63" stroke-width="2.8"/>
+    <text class="st" x="250" y="140" text-anchor="middle">réparation</text>
+    <text class="sm" x="250" y="158" text-anchor="middle">consignée</text>
+  </g>
+
+  <!-- Fenêtre du contrôle de suivi -->
+  <g>
+    <rect x="330" y="214" width="270" height="56" rx="8" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <text class="ok" x="465" y="238" text-anchor="middle">✓ contrôle de suivi — obligatoire</text>
+    <text class="sm" x="465" y="258" text-anchor="middle">dans cette fenêtre, jamais avant, jamais après</text>
+    <!-- bornes -->
+    <path class="p" d="M330,168 v24" stroke="#1e7e54"/>
+    <path class="p" d="M600,168 v24" stroke="#1e7e54"/>
+    <text class="st" x="330" y="120" text-anchor="middle" fill="#1e7e54">au plus tôt :</text>
+    <text class="sm" x="330" y="138" text-anchor="middle">après 24 h de fonctionnement</text>
+    <text class="st" x="600" y="120" text-anchor="middle" fill="#1e7e54">au plus tard :</text>
+    <text class="sm" x="600" y="138" text-anchor="middle">dans le mois</text>
+  </g>
+
+  <!-- ===== Le registre ===== -->
+  <path class="dash" d="M24,300 h652"/>
+  <g>
+    <rect x="40" y="320" width="56" height="62" rx="5" fill="#fffdf8" stroke="#b06a00" stroke-width="2.4"/>
+    <path d="M50,336 h36 M50,348 h36 M50,360 h36 M50,372 h24" stroke="#b06a00" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <text class="amb" x="116" y="344">Tout est écrit : date, opérateur, méthode, résultat, suites.</text>
+    <text class="lg" x="116" y="366">Les enregistrements se conservent 5 ans — c'est eux qu'on présente en cas de contrôle.</text>
+  </g>
+</svg>

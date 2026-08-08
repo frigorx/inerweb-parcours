@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Trois marches qui montent : récupéré — collecté et stocké, rien d'autre ; recyclé — nettoyage de base, filtration et séchage ; régénéré — retraité en centre spécialisé jusqu'à une qualité équivalente au fluide neuf, contrôle à la clé. Plus on monte, plus le traitement est poussé.">
+  <title>Récupéré · recyclé · régénéré : trois niveaux de traitement</title>
+  <style>
+    .t   { font:700 20px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 14px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .m1  { fill:#fffdf8; stroke:#1b3a63; stroke-width:2.4; }
+    .m2  { fill:#fffdf8; stroke:#3d7fca; stroke-width:2.4; }
+    .m3  { fill:#fffdf8; stroke:#1e7e54; stroke-width:2.8; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Trois mots, trois niveaux de traitement</text>
+
+  <!-- marche 1 -->
+  <rect class="m1" x="50" y="250" width="190" height="90" rx="8"/>
+  <text class="st" x="145" y="280" text-anchor="middle">1. RÉCUPÉRÉ</text>
+  <text class="lg" x="145" y="302" text-anchor="middle">collecté et stocké</text>
+  <text class="lg" x="145" y="320" text-anchor="middle">en bouteille — rien d'autre</text>
+
+  <!-- marche 2 -->
+  <rect class="m2" x="256" y="180" width="190" height="160" rx="8"/>
+  <text class="st" x="351" y="210" text-anchor="middle" fill="#3d7fca">2. RECYCLÉ</text>
+  <text class="lg" x="351" y="232" text-anchor="middle">nettoyage de base :</text>
+  <text class="lg" x="351" y="250" text-anchor="middle">filtration, séchage</text>
+  <text class="lg" x="351" y="276" text-anchor="middle">il reste du même</text>
+  <text class="lg" x="351" y="294" text-anchor="middle">niveau qu'avant</text>
+
+  <!-- marche 3 -->
+  <rect class="m3" x="462" y="110" width="190" height="230" rx="8"/>
+  <text class="st" x="557" y="140" text-anchor="middle" fill="#1e7e54">3. RÉGÉNÉRÉ</text>
+  <text class="lg" x="557" y="164" text-anchor="middle">retraité en</text>
+  <text class="lg" x="557" y="182" text-anchor="middle">CENTRE SPÉCIALISÉ</text>
+  <text class="lg" x="557" y="208" text-anchor="middle">qualité équivalente</text>
+  <text class="lg" x="557" y="226" text-anchor="middle">au fluide neuf,</text>
+  <text class="lg" x="557" y="244" text-anchor="middle">contrôle à la clé</text>
+  <text class="lg" x="557" y="272" text-anchor="middle">revient sur le marché</text>
+  <text class="lg" x="557" y="290" text-anchor="middle">comme produit contrôlé</text>
+
+  <!-- flèche de progression -->
+  <path d="M70,228 q280,-140 560,-120" fill="none" stroke="#c9451a" stroke-width="2.6" stroke-dasharray="8 6" stroke-linecap="round"/>
+  <path d="M636,109 l-15,-3 8,13 z" fill="#c9451a"/>
+  <text class="acc" x="240" y="140">le traitement est de plus en plus poussé →</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="378" text-anchor="middle" style="font-size:14px">Trois mots précis — à ne pas confondre le jour de l'examen.</text>
+</svg>

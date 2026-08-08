@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Diagramme pression-enthalpie : un dôme de saturation en forme de cloche, avec la zone liquide à gauche, la zone vapeur à droite et le mélange liquide plus vapeur dessous. Le cycle frigorifique dessine une figure fermée en quatre transformations : évaporation horizontale en bas sur la ligne basse pression, compression oblique qui monte vers la droite, condensation horizontale en haut sur la ligne haute pression, détente verticale qui redescend à gauche.">
+  <title>Le diagramme log p-h : le dôme, et le cycle en quatre transformations</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .zone{ font:italic 700 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .hp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#c9451a; }
+    .bp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#3d7fca; }
+    .axe { fill:none; stroke:#1b3a63; stroke-width:2; stroke-linecap:round; }
+    .dome{ fill:none; stroke:#637285; stroke-width:2.5; stroke-linecap:round; }
+    .cyc { fill:none; stroke:#1b3a63; stroke-width:3.5; stroke-linecap:round; }
+    .ghp { fill:none; stroke:#c9451a; stroke-width:1.6; stroke-dasharray:6 6; }
+    .gbp { fill:none; stroke:#3d7fca; stroke-width:1.6; stroke-dasharray:6 6; }
+  </style>
+  <defs>
+    <marker id="fleche" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1b3a63"/>
+    </marker>
+    <marker id="fleche-axe" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1b3a63"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="30">Le diagramme log p-h : le dôme, et le cycle en quatre transformations</text>
+
+  <!-- axes -->
+  <path class="axe" d="M80,345 L80,62" marker-end="url(#fleche-axe)"/>
+  <path class="axe" d="M80,345 L662,345" marker-end="url(#fleche-axe)"/>
+  <text class="lg" transform="rotate(-90 52 210)" x="52" y="210" text-anchor="middle">pression (échelle log)</text>
+  <text class="lg" x="371" y="378" text-anchor="middle">énergie contenue dans le fluide (enthalpie)</text>
+
+  <!-- lignes de pression : couleur + trait tireté + mot -->
+  <path class="ghp" d="M82,155 H620"/>
+  <path class="gbp" d="M82,275 H555"/>
+  <text class="hp" x="86" y="147">HP — haute pression</text>
+  <text class="bp" x="86" y="267">BP — basse pression</text>
+
+  <!-- dôme de saturation -->
+  <path class="dome" d="M150,345 C230,130 320,95 385,95 C450,95 510,150 545,345"/>
+  <path class="axe" d="M385,80 L385,93" stroke="#637285" stroke-width="1.6"/>
+  <text class="st" x="385" y="72" text-anchor="middle" fill="#637285">dôme de saturation</text>
+  <text class="zone" x="150" y="122">liquide</text>
+  <text class="zone" x="655" y="122" text-anchor="end">vapeur</text>
+  <text class="zone" x="380" y="322" text-anchor="middle">liquide + vapeur</text>
+
+  <!-- cycle : quatre transformations -->
+  <path class="cyc" d="M250,275 L547,275" marker-end="url(#fleche)"/>
+  <path class="cyc" d="M555,275 L616,163" marker-end="url(#fleche)"/>
+  <path class="cyc" d="M620,155 L258,155" marker-end="url(#fleche)"/>
+  <path class="cyc" d="M250,155 L250,267" marker-end="url(#fleche)"/>
+  <circle cx="250" cy="275" r="4" fill="#1b3a63"/>
+  <circle cx="555" cy="275" r="4" fill="#1b3a63"/>
+  <circle cx="620" cy="155" r="4" fill="#1b3a63"/>
+  <circle cx="250" cy="155" r="4" fill="#1b3a63"/>
+
+  <!-- noms des transformations -->
+  <text class="st" x="400" y="262" text-anchor="middle">évaporation (horizontale)</text>
+  <text class="st" x="586" y="246">compression</text>
+  <text class="st" x="586" y="264">(oblique)</text>
+  <text class="st" x="435" y="140" text-anchor="middle">condensation (horizontale)</text>
+  <text class="st" x="238" y="208" text-anchor="end">détente (verticale)</text>
+</svg>

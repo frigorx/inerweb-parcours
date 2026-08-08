@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="À gauche, une flamme chauffe un tube de circuit contenant du fluide ; des fumées montent vers un cadre rouge : produits très toxiques et corrosifs, dont le fluorure d'hydrogène, HF. L'odeur piquante n'est pas une protection : quand on la sent, l'exposition a déjà commencé. À droite, un panneau d'interdiction barré : on ne brase jamais un circuit contenant du fluide.">
+  <title>À la chaleur, le fluide se décompose — jamais de brasage sous fluide</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 17px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .bad { font:700 17px Trebuchet MS,Calibri,sans-serif; fill:#c0392b; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .fum { fill:none; stroke:#637285; stroke-width:2.2; stroke-linecap:round; stroke-dasharray:6 6; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="36" text-anchor="middle">Chauffé, un fluide fluoré devient autre chose</text>
+
+  <!-- Tube de circuit contenant du fluide -->
+  <g>
+    <path class="p" d="M40,250 h240"/>
+    <path class="p" d="M40,286 h240"/>
+    <rect x="42" y="253" width="236" height="30" fill="#cfe6f5"/>
+    <text class="tx" x="160" y="316" text-anchor="middle">circuit contenant du fluide</text>
+  </g>
+
+  <!-- Flamme sous le tube -->
+  <g>
+    <path d="M150,352 q-16,-18 -4,-38 q4,10 12,12 q-4,-18 12,-30 q-2,16 10,24 q8,-8 6,-18 q14,16 6,36 q-8,20 -42,14 z"
+          fill="#ff6b35" stroke="#c9451a" stroke-width="2.4"/>
+    <text class="bad" x="216" y="344" text-anchor="start">flamme,</text>
+    <text class="bad" x="216" y="364" text-anchor="start">surface très chaude</text>
+  </g>
+
+  <!-- Fumées qui montent -->
+  <path class="fum" d="M130,244 q8,-22 -2,-40 q-6,-14 4,-28"/>
+  <path class="fum" d="M164,244 q10,-24 0,-44 q-6,-14 6,-26"/>
+  <path class="fum" d="M198,244 q8,-20 -2,-38 q-6,-14 4,-28"/>
+
+  <!-- Cadre HF -->
+  <g>
+    <rect x="46" y="66" width="300" height="90" rx="10" fill="#fbe7e4" stroke="#c0392b" stroke-width="3"/>
+    <text class="st" x="196" y="96" text-anchor="middle" fill="#c0392b">produits très toxiques et corrosifs</text>
+    <text class="st" x="196" y="120" text-anchor="middle" fill="#c0392b">dont le fluorure d'hydrogène (HF)</text>
+    <text class="tx" x="196" y="144" text-anchor="middle">attaque voies respiratoires, yeux, peau</text>
+  </g>
+
+  <!-- Odeur : pas une protection -->
+  <text class="tx" x="380" y="220">L'odeur piquante n'est <tspan font-weight="700">pas une protection</tspan> :</text>
+  <text class="tx" x="380" y="244">quand vous la sentez, l'exposition</text>
+  <text class="tx" x="380" y="268">a déjà commencé.</text>
+
+  <!-- Interdit brasage -->
+  <g>
+    <rect x="380" y="66" width="290" height="120" rx="10" fill="#fffdf8" stroke="#c0392b" stroke-width="5"/>
+    <circle cx="428" cy="126" r="26" fill="none" stroke="#c0392b" stroke-width="5"/>
+    <path d="M410,144 L446,108" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/>
+    <text class="bad" x="470" y="112">On ne brase JAMAIS</text>
+    <text class="bad" x="470" y="136">un circuit contenant</text>
+    <text class="bad" x="470" y="160">du fluide.</text>
+  </g>
+
+  <text class="st" x="380" y="330" fill="#1b3a63">Quelle que soit la classe :</text>
+  <text class="st" x="380" y="354" fill="#1b3a63">récupérer d'abord, braser ensuite.</text>
+</svg>

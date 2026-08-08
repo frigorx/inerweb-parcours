@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Trois courbes de pression après isolement de la pompe : courbe stable, trait plein vert, circuit sec et étanche ; montée qui ralentit et fait un palier, trait tireté ambre, humidité ou dégazage probable ; montée rapide et continue, trait pointillé rouge, fuite probable.">
+  <title>Le test de remontée : trois formes de courbe, trois indices</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .mid { font:700 14px Calibri,Segoe UI,sans-serif; fill:#b06a00; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c0392b; }
+    .axe { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; }
+    .c-ok { fill:none; stroke:#1e7e54; stroke-width:3; stroke-linecap:round; }
+    .c-mid{ fill:none; stroke:#b06a00; stroke-width:3; stroke-linecap:round; stroke-dasharray:10 6; }
+    .c-bad{ fill:none; stroke:#c0392b; stroke-width:3; stroke-linecap:round; stroke-dasharray:2 6; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">Pompe isolée : on regarde la FORME de la courbe</text>
+
+  <!-- ========= AXES ========= -->
+  <path class="axe" d="M70,70 V300 H560"/>
+  <path class="axe" d="M64,82 l6,-12 l6,12"/>
+  <path class="axe" d="M548,294 l12,6 l-12,6"/>
+  <text class="st" x="30" y="64">pression</text>
+  <text class="st" x="574" y="305">temps</text>
+  <text class="lg" x="70" y="322">pompe isolée</text>
+
+  <!-- ========= COURBE FUITE : montée rapide, continue ========= -->
+  <path class="c-bad" d="M70,286 C 180,240 330,160 540,86"/>
+  <text class="bad" x="418" y="120">montée rapide et continue</text>
+  <text class="bad" x="418" y="138">= fuite probable</text>
+
+  <!-- ========= COURBE HUMIDITÉ : monte puis palier ========= -->
+  <path class="c-mid" d="M70,286 C 140,250 200,222 260,212 C 330,202 440,200 540,200"/>
+  <text class="mid" x="360" y="182">ralentit puis fait un palier</text>
+  <text class="mid" x="360" y="200" >= humidité ou dégazage probable</text>
+
+  <!-- ========= COURBE STABLE ========= -->
+  <path class="c-ok" d="M70,286 H540"/>
+  <text class="ok" x="380" y="272">rien ne bouge = sec et étanche</text>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,340 h620"/>
+  <text class="st" x="350" y="366" text-anchor="middle">Ce sont des indices : température et volume du circuit modifient la courbe.</text>
+  <text class="lg" x="350" y="388" text-anchor="middle">Durée d'observation et critère d'acceptation : la documentation du constructeur.</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Courbe de la concentration de gaz dans le local au fil du temps. Une bande rouge horizontale marque la zone dangereuse, entre la LIE et la LSE. Pendant la fuite, la courbe monte et traverse la bande une première fois. Pendant la ventilation, elle redescend et la retraverse une seconde fois. Deux repères marquent la première et la seconde traversée.">
+  <title>Une fuite traverse la fourchette — et la ventilation la retraverse</title>
+  <style>
+    .t   { font:700 21px Trebuchet MS,Calibri,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Trebuchet MS,Calibri,sans-serif; }
+    .tx  { font:400 16px Trebuchet MS,Calibri,sans-serif; fill:#10233c; }
+    .ax  { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; }
+    .cb  { fill:none; stroke:#3d7fca; stroke-width:4; stroke-linecap:round; }
+    .lim { stroke:#c0392b; stroke-width:2; stroke-dasharray:8 6; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="350" y="34" text-anchor="middle">La concentration traverse deux fois la zone dangereuse</text>
+
+  <!-- Zone dangereuse LIE-LSE -->
+  <rect x="90" y="130" width="560" height="80" fill="#fbe7e4"/>
+  <line class="lim" x1="90" y1="130" x2="650" y2="130"/>
+  <line class="lim" x1="90" y1="210" x2="650" y2="210"/>
+  <text class="st" x="84" y="215" text-anchor="end" fill="#c0392b">LIE</text>
+  <text class="st" x="84" y="136" text-anchor="end" fill="#c0392b">LSE</text>
+  <text class="st" x="370" y="176" text-anchor="middle" fill="#c0392b">ZONE DANGEREUSE — une étincelle suffit</text>
+
+  <!-- Axes -->
+  <path class="ax" d="M90,330 v-268 m0,0 l-6,10 m6,-10 l6,10"/>
+  <path class="ax" d="M90,330 h560 m0,0 l-10,-6 m10,6 l-10,6"/>
+  <text class="tx" x="60" y="90" transform="rotate(-90 60 90)" text-anchor="end">concentration de gaz</text>
+  <text class="tx" x="640" y="356" text-anchor="end">temps</text>
+
+  <!-- Courbe : montée (fuite), palier haut, descente (ventilation) -->
+  <path class="cb" d="M90,330 C 150,326 190,280 230,190 C 258,128 292,96 350,92 C 400,90 420,96 450,120 C 496,158 540,260 590,320"/>
+
+  <!-- Traversées -->
+  <g>
+    <circle cx="243" cy="170" r="7" fill="#fffdf8" stroke="#c0392b" stroke-width="3"/>
+    <text class="st" x="150" y="248" fill="#1b3a63">fuite : ça monte</text>
+    <text class="st" x="150" y="270" fill="#c0392b">1re traversée</text>
+  </g>
+  <g>
+    <circle cx="513" cy="170" r="7" fill="#fffdf8" stroke="#c0392b" stroke-width="3"/>
+    <text class="st" x="470" y="248" fill="#1b3a63">ventilation : ça redescend</text>
+    <text class="st" x="470" y="270" fill="#c0392b">2e traversée</text>
+  </g>
+
+  <text class="tx" x="350" y="386" text-anchor="middle">D'où la méthode : sources d'inflammation supprimées, consignation, ventilation, zone évaluée, matériel adapté.</text>
+</svg>

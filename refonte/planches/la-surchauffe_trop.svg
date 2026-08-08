@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Évaporateur où l'ébullition finit très tôt : toute la fin de l'échangeur ne contient plus que de la vapeur et ne produit presque plus de froid. La vapeur arrive plus chaude au compresseur, à droite.">
+  <title>Trop de surchauffe : une partie de l'échangeur ne sert presque plus</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .a  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#c9451a; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .o  { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">L'ébullition finit trop tôt</text>
+
+  <!-- évaporateur (en bas, à gauche) -->
+  <rect x="50" y="220" width="400" height="80" rx="8" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+  <!-- petite zone où ça bout encore -->
+  <rect x="54" y="224" width="90" height="72" fill="#eaf2fb"/>
+  <g fill="#fffdf8" stroke="#1b3a63" stroke-width="1.4">
+    <circle cx="85" cy="268" r="6"/><circle cx="120" cy="252" r="5"/>
+  </g>
+  <text class="s" x="99" y="330" text-anchor="middle">ça bout ici…</text>
+  <!-- frontière précoce -->
+  <path class="o" d="M147,214 v92"/>
+  <!-- grande zone vapeur seule -->
+  <path class="fil" d="M160,238 h280 M160,258 h280 M160,278 h280"/>
+  <text class="a" x="297" y="266" text-anchor="middle">vapeur seule</text>
+  <text class="s" x="297" y="330" text-anchor="middle">…et toute cette longueur ne produit presque plus de froid</text>
+  <text class="l" x="250" y="356" text-anchor="middle">Évaporateur : puissance utile en baisse</text>
+
+  <!-- ligne d'aspiration vers le compresseur -->
+  <path class="p" d="M450,240 h100"/>
+  <path d="M548,234 l14,6 -14,6 z" fill="#1b3a63"/>
+  <text class="a" x="500" y="216" text-anchor="middle">plus chaude</text>
+
+  <!-- compresseur (à droite) -->
+  <circle cx="606" cy="240" r="42" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+  <text class="l" x="606" y="238" text-anchor="middle">Compresseur</text>
+  <text class="s" x="606" y="256" text-anchor="middle">refoule + chaud</text>
+
+  <!-- lecture -->
+  <rect x="60" y="70" width="420" height="86" rx="10" fill="#fffdf8" stroke="#c9451a" stroke-width="2.4" stroke-dasharray="8 5"/>
+  <text class="a" x="270" y="100" text-anchor="middle">Surchauffe élevée</text>
+  <text class="s" x="270" y="122" text-anchor="middle">PEUT INDIQUER un évaporateur insuffisamment alimenté —</text>
+  <text class="s" x="270" y="142" text-anchor="middle">on confirme avec les mesures et la documentation.</text>
+
+  <text class="l" x="350" y="390" text-anchor="middle">Trop : du rendement perdu · trop peu : un risque de casse. Le réglage vit entre les deux.</text>
+</svg>

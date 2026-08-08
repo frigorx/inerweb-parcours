@@ -136,6 +136,54 @@ node build/inventaire.mjs
 
 ---
 
+## 5 bis. ⭐ CHANTIER DU 08/08 AU SOIR — prototype clé en main (carte blanche de Franck)
+
+Sur carte blanche (« prototype clé en main, mode démonstration englobant la Formation,
+harmonisation à la charte, corrections des audits dans le bon sens »), en ultracode :
+**29 agents orchestrés + finitions**, tout vérifié produit en marche dans le navigateur.
+
+**La clé de voûte : `refonte/DOCTRINE-REFONTE-2026-08-08.md`** — le document qui FILTRE
+les deux audits du jour (GPT + Codex). À lire avant tout retour sur ces corrections :
+
+- **Réemploi du fluide récupéré** : les audits voulaient supprimer l'écran — REFUSÉ,
+  vérifié sur EUR-Lex (l'art. 8 du 2024/573 vise l'après mise hors service, pas le geste
+  d'intervention). Décision Franck du 22/07 reconfirmée le 08/08 : fluide encore autorisé
+  → retour dans SA machine ; fluide sous restriction (R-404A, PRP ≥ 2500) → filière.
+- **PRP** : la règle « le plus élevé » reste au logiciel Fluide ; dans les capsules
+  d'examen, c'est **l'annexe du règlement** qui fait foi (tranché par Franck le 08/08).
+- **Chiffres** : requalifiés « cible courante + la notice commande », jamais supprimés
+  (sauf liste § 0.3 : 250 microns, 15-20 min, 5-8 K en norme, 80 %, « un tour », +1 bar).
+
+**Fait** (détail écran par écran dans les fichiers eux-mêmes) :
+
+- 11 capsules corrigées (justesse métier + relevés Codex/GPT filtrés) ; chaque agent
+  correcteur suivi d'un **vérificateur adversarial**, 3 bloquants trouvés et corrigés.
+- **0 écran sans visuel** : ~46 planches SVG neuves (préfixées `<capsule>_`) + réemplois ;
+  catalogue régénéré → **132 planches** dans `planches-data.js`.
+- Moteur rechartés : détours **bleus tiretés** (violet supprimé), bandeaux **clairs**,
+  lecteur voix à **4 états** (Écouter/Pause/Reprendre/Arrêter, aria synchronisé), badge
+  honnête « voix : texte antérieur », jauge `progressbar`, `:focus-visible`, champ `alt`,
+  champ `renvoi` (doublons : rappel + renvoi vers la capsule propriétaire),
+  **projection sans défilement** (mesuré 1024×768 : 768/768), `impression.css` +
+  `lisibilite.js` + `lang="fr"` sur toutes les pages.
+- **`refonte/visite.html`** : le mode démonstration — visite guidée en 10 étapes qui
+  se clôt sur la partie FORMATION d'inerWeb Habilitation (lien sur les deux accueils).
+- `refonte/VOIX-A-REFAIRE.md` : **78 écrans** dont la narration a changé (156 MP3) —
+  badge affiché en attendant, **ne rien refabriquer avant validation des textes**.
+- `verifier` : de 70 points à **4 restants**, tous « décision plateau attendue ».
+- Module KV : rotation auto libérée de `prefers-reduced-motion` (règle R2).
+
+**Pas fait, volontairement** : aucun `git push` (dépôt public — feu vert de Franck
+exigé) ; aucun MP3 refabriqué ; aucune pièce du fonds supprimée (tri = décision Franck) ;
+`fonds-origine/` et `pilote-fluides` intacts.
+
+⚠️ Piège de banc d'essai consigné : `npx serve` réécrit `capsule.html?sujet=…` en 301
+qui PERD la chaîne de requête, et le navigateur met ce 301 en cache. Servir avec
+`npx http-server -c-1`. Et un onglet non affiché ne tire JAMAIS `requestAnimationFrame` :
+la réduction de projection ne se juge que sur un écran visible.
+
+---
+
 ## 6. Le cap — tranché le 06/08/2026
 
 **⭐ 06/08 au soir — la commande s'élargit : un véritable SITE INTERNET.** Franck (dictée) :

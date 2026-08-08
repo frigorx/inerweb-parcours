@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le circuit complet dessiné en croix du frigoriste : détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas. La moitié haute du circuit, du refoulement du compresseur à l'entrée du détendeur, est tracée en trait plein et marquée haute pression. La moitié basse, de la sortie du détendeur à l'aspiration du compresseur, est tracée en trait tireté et marquée basse pression. Le mot frontière est écrit sur le compresseur et sur le détendeur : ce sont les deux seuls organes où la pression change.">
+  <title>Deux pressions — la frontière passe par le compresseur et le détendeur</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .hp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#c9451a; }
+    .bp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#3d7fca; }
+    .fr  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .thp { fill:none; stroke:#c9451a; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .tbp { fill:none; stroke:#3d7fca; stroke-width:5; stroke-dasharray:12 8; stroke-linecap:round; stroke-linejoin:round; }
+    .frt { fill:none; stroke:#637285; stroke-width:1.8; stroke-dasharray:5 5; }
+  </style>
+  <defs>
+    <marker id="dp-hp" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c9451a"/>
+    </marker>
+    <marker id="dp-bp" markerWidth="9" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3d7fca"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="30">Deux pressions — la frontière passe par deux organes seulement</text>
+
+  <!-- tuyauterie HP : refoulement compresseur → condenseur → entrée détendeur -->
+  <path class="thp" d="M560,166 L560,90 L432,90"/>
+  <path class="thp" d="M268,90 L140,90 L140,176"/>
+  <path class="thp" d="M520,90 L490,90" marker-end="url(#dp-hp)"/>
+  <path class="thp" d="M228,90 L198,90" marker-end="url(#dp-hp)"/>
+  <text class="hp" x="180" y="72" text-anchor="middle">HP — haute pression</text>
+
+  <!-- tuyauterie BP : sortie détendeur → évaporateur → aspiration compresseur -->
+  <path class="tbp" d="M140,224 L140,310 L268,310"/>
+  <path class="tbp" d="M432,310 L560,310 L560,234"/>
+  <path class="tbp" d="M198,310 L228,310" marker-end="url(#dp-bp)"/>
+  <path class="tbp" d="M490,310 L520,310" marker-end="url(#dp-bp)"/>
+  <text class="bp" x="180" y="344" text-anchor="middle">BP — basse pression</text>
+
+  <!-- condenseur (à air simple), en haut -->
+  <rect x="268" y="62" width="164" height="56" fill="#fffdf8" stroke="#c9451a" stroke-width="3"/>
+  <g stroke="#c9451a" stroke-width="1.4">
+    <path d="M284,66 v48 M304,66 v48 M324,66 v48 M344,66 v48 M364,66 v48 M384,66 v48 M404,66 v48"/>
+  </g>
+  <text class="st" x="350" y="140" text-anchor="middle">condenseur</text>
+
+  <!-- évaporateur, en bas -->
+  <rect x="268" y="282" width="164" height="56" fill="#fffdf8" stroke="#3d7fca" stroke-width="3"/>
+  <g stroke="#3d7fca" stroke-width="1.4">
+    <path d="M284,286 v48 M304,286 v48 M324,286 v48 M344,286 v48 M364,286 v48 M384,286 v48 M404,286 v48"/>
+  </g>
+  <text class="st" x="350" y="272" text-anchor="middle">évaporateur</text>
+
+  <!-- compresseur, à droite (frontière) -->
+  <circle cx="560" cy="200" r="34" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>
+  <path class="p" d="M544,214 L576,200 L544,186"/>
+  <path class="frt" d="M602,148 L518,252"/>
+  <text class="st" x="514" y="205" text-anchor="end">compresseur</text>
+  <text class="fr" x="608" y="142">frontière</text>
+
+  <!-- détendeur, à gauche (frontière) -->
+  <path d="M124,184 L156,200 L124,216 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M156,184 L124,200 L156,216 Z" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6" stroke-linejoin="round"/>
+  <path class="frt" d="M98,148 L182,252"/>
+  <text class="st" x="168" y="205">détendeur</text>
+  <text class="fr" x="92" y="142" text-anchor="end">frontière</text>
+
+  <!-- morale -->
+  <text class="st" x="350" y="384" text-anchor="middle">La pression ne change qu'en traversant le compresseur ou le détendeur.</text>
+</svg>

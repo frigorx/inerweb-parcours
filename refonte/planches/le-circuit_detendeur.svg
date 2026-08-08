@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Coupe d'un détendeur, le fluide descend : en haut, du liquide sous haute pression arrive du condenseur ; au milieu, un passage étroit fermé partiellement par un pointeau mobile ; en bas, un mélange de liquide et de vapeur sous basse pression repart vers l'évaporateur. Deux manomètres encadrent le passage : l'aiguille est haute avant, basse après.">
+  <title>Le détendeur : un passage étroit qui fait chuter la pression — et qui dose</title>
+  <style>
+    .t   { font:700 20px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .st  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 16px Calibri,Trebuchet MS,sans-serif; fill:#637285; }
+    .hp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#c9451a; }
+    .bp  { font:700 16px Calibri,Trebuchet MS,sans-serif; fill:#3d7fca; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+  <defs>
+    <marker id="fd" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1b3a63"/>
+    </marker>
+    <marker id="fd2" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#c9451a"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="30">Le détendeur : un passage étroit qui fait chuter la pression — et qui dose</text>
+
+  <!-- tuyau haut : liquide HP -->
+  <rect x="290" y="56" width="60" height="84" fill="#84b7ec" stroke="#1b3a63" stroke-width="2.6"/>
+  <path d="M320,74 L320,116" class="p" marker-end="url(#fd)"/>
+  <text class="st" x="366" y="86">liquide — haute pression</text>
+  <text class="lg" x="366" y="106">il arrive du condenseur</text>
+
+  <!-- corps du détendeur : convergent, passage étroit, divergent -->
+  <path class="p" d="M290,140 L312,186 M350,140 L328,186"/>
+  <path class="p" d="M312,196 L290,242 M328,196 L350,242"/>
+  <!-- pointeau -->
+  <path class="acc" d="M232,191 L306,191"/>
+  <path d="M306,183 L320,191 L306,199 Z" fill="#c9451a"/>
+  <path class="acc" d="M244,214 L294,214" marker-end="url(#fd2)"/>
+  <path class="acc" d="M294,214 L248,214" marker-end="url(#fd2)"/>
+  <text class="st" x="228" y="240" text-anchor="end" fill="#c9451a">le pointeau avance ou recule :</text>
+  <text class="st" x="228" y="260" text-anchor="end" fill="#c9451a">le passage s'ouvre ou se ferme,</text>
+  <text class="st" x="228" y="280" text-anchor="end" fill="#c9451a">le débit est dosé</text>
+  <text class="lg" x="366" y="180">passage étroit :</text>
+  <text class="st" x="366" y="200">forte perte de charge —</text>
+  <text class="st" x="366" y="220">la pression chute d'un coup</text>
+
+  <!-- tuyau bas : mélange BP -->
+  <rect x="290" y="242" width="60" height="102" fill="#cfe6f5" stroke="#1b3a63" stroke-width="2.6"/>
+  <g fill="#fffdf8" stroke="#1b3a63" stroke-width="1.3">
+    <circle cx="305" cy="262" r="4"/>
+    <circle cx="332" cy="278" r="5"/>
+    <circle cx="310" cy="300" r="3.5"/>
+    <circle cx="335" cy="318" r="4"/>
+    <circle cx="306" cy="330" r="5"/>
+  </g>
+  <path d="M320,256 L320,322" class="p" marker-end="url(#fd)"/>
+  <text class="st" x="366" y="280">mélange liquide + vapeur —</text>
+  <text class="st" x="366" y="300">basse pression</text>
+  <text class="lg" x="366" y="320">il repart vers l'évaporateur</text>
+
+  <!-- manomètres HP et BP -->
+  <g>
+    <circle cx="120" cy="92" r="30" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <path class="acc" d="M120,92 L138,72"/>
+    <circle cx="120" cy="92" r="3" fill="#1b3a63"/>
+    <text class="hp" x="120" y="142" text-anchor="middle">HP — aiguille haute</text>
+  </g>
+  <g>
+    <circle cx="90" cy="312" r="30" fill="#fffdf8" stroke="#1b3a63" stroke-width="2.6"/>
+    <path d="M90,312 L72,332" fill="none" stroke="#3d7fca" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="90" cy="312" r="3" fill="#1b3a63"/>
+    <text class="bp" x="90" y="364" text-anchor="middle">BP — aiguille basse</text>
+  </g>
+
+  <!-- morale -->
+  <text class="st" x="350" y="384" text-anchor="middle">Le froid ne se fabrique pas ici : la chute de pression le rend possible, dans l'évaporateur.</text>
+</svg>

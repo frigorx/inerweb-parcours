@@ -15,22 +15,30 @@
    ===================================================================== */
 
 :root{
-  --detour:#6b4fa8;            /* le violet des détours : une couleur à eux,   */
-  --detour-bg:#f2eefb;         /* pour qu'on sache toujours si l'on est dans   */
-  --detour-ligne:#d9cdf0;      /* le fil ou à côté                             */
+  --detour:#3d7fca;            /* le bleu vif des détours : une couleur à eux, */
+  --detour-bg:#eaf2fb;         /* pour qu'on sache toujours si l'on est dans   */
+  --detour-ligne:#c7dcf5;      /* le fil ou à côté                             */
+  --detour-texte:#1d4a8f;      /* le même bleu, assez foncé pour du TEXTE :
+                                  #3d7fca ne fait que 4,1:1 sur blanc          */
 }
 
 body{background:var(--fond)}
 
-/* ---- Barre du haut : où je suis, et les commandes ---------------- */
+/* Le clavier se voit : un contour net sur TOUT ce qui reçoit le focus. */
+:focus-visible{outline:3px solid var(--orange); outline-offset:2px}
+
+/* ---- Barre du haut : où je suis, et les commandes ----------------
+   Bandeau CLAIR : fond de carte, texte bleu marine, filet bas plein.
+   En détour, le filet devient tireté bleu vif (couleur + trait + mot). */
 .tete{
   position:sticky; top:0; z-index:10;
-  background:var(--bleu); color:#fff;
+  background:var(--carte); color:var(--bleu);
+  border-bottom:3px solid var(--bleu);
   display:flex; align-items:center; gap:14px; flex-wrap:wrap;
   padding:10px 18px;
 }
-.tete a.retour{color:#cdd9e6; text-decoration:none; font-size:14px; white-space:nowrap}
-.tete a.retour:hover{color:#fff; text-decoration:underline}
+.tete a.retour{color:var(--bleu); text-decoration:underline; font-size:14px; white-space:nowrap}
+.tete a.retour:hover{color:var(--bleu-clair)}
 .tete .sujet{font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700; font-size:16px}
 .tete .spacer{flex:1}
 .tete .niveau{
@@ -83,7 +91,8 @@ body{background:var(--fond)}
   border-bottom:2px dotted var(--orange); cursor:help; font-weight:700; color:var(--bleu);
   background:none; border-top:0; border-left:0; border-right:0; font:inherit; padding:0;
 }
-.mot:hover, .mot:focus{background:var(--orange-clair); outline:none}
+/* Le fond s'ajoute au contour de focus global — il ne le remplace pas. */
+.mot:hover, .mot:focus{background:var(--orange-clair)}
 .explique{
   display:block; margin:10px 0; padding:10px 14px; font-size:16px;
   background:var(--orange-clair); border-left:4px solid var(--orange); border-radius:8px;
@@ -91,30 +100,31 @@ body{background:var(--fond)}
 .explique b{color:#a8410f}
 
 /* ---- L'insert « Voulez-vous en savoir plus ? » -------------------- */
-.plus{margin:22px 28px 0; padding-top:16px; border-top:2px dashed var(--detour-ligne)}
+.plus{margin:22px 28px 0; padding-top:16px; border-top:2px dashed var(--detour)}
 .plus > .t{
   font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:700;
-  color:var(--detour); font-size:16px; margin-bottom:10px;
+  color:var(--detour-texte); font-size:16px; margin-bottom:10px;
 }
-.plus > .t::before{content:"▸ "}
+.plus > .t::before{content:"▸ Détour — "}
 .plus .liste{display:flex; flex-direction:column; gap:8px}
 .plus button{
   text-align:left; font:inherit; font-size:16px; cursor:pointer;
   padding:12px 16px; background:var(--detour-bg); color:var(--txt);
-  border:2px solid var(--detour-ligne); border-radius:10px; transition:.12s;
+  border:2px dashed var(--detour); border-radius:10px; transition:.12s;
 }
-.plus button:hover{border-color:var(--detour); background:#ece5f8}
-.plus button .fleche{color:var(--detour); font-weight:700; margin-right:8px}
+.plus button:hover{border-color:var(--detour-texte); background:#dcebfa}
+.plus button .fleche{color:var(--detour-texte); font-weight:700; margin-right:8px}
 .plus button .vu{float:right; color:var(--ok); font-size:14px; font-weight:700}
 
 /* ---- Quand on EST dans un détour : le décor change ---------------
-   Sans signal net, on ne sait plus si l'on est dans le fil ou à côté. */
-body.dans-detour .tete{background:var(--detour)}
+   Sans signal net, on ne sait plus si l'on est dans le fil ou à côté.
+   Trois canaux : le bleu vif, le trait TIRETÉ, le mot « Détour ». */
+body.dans-detour .tete{background:var(--detour-bg); border-bottom:3px dashed var(--detour)}
 body.dans-detour .avance{background:var(--detour-bg)}
-body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid var(--detour)}
+body.dans-detour .ecran{border:2px dashed var(--detour)}
 .fil-ariane{
   padding:10px 18px; background:var(--detour-bg); border-bottom:1px solid var(--detour-ligne);
-  font-size:14px; color:var(--detour); font-weight:700;
+  font-size:14px; color:var(--detour-texte); font-weight:700;
 }
 .fil-ariane .petit{font-weight:400; color:var(--mut)}
 
@@ -134,8 +144,10 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 .commandes button:disabled{opacity:.4; cursor:default}
 .commandes .suite{background:var(--bleu); color:#fff; border-color:var(--bleu); font-weight:700}
 .commandes .suite:hover{background:var(--bleu-clair); border-color:var(--bleu-clair)}
-.commandes .revenir{background:var(--detour); color:#fff; border-color:var(--detour); font-weight:700}
-.commandes .revenir:hover{background:#5b3f95; border-color:#5b3f95}
+/* Le bouton du retour de détour : bleu du détour, mais assez foncé pour
+   que le blanc y tienne 4,5:1 (#3d7fca seul plafonnait à 4,1:1). */
+.commandes .revenir{background:var(--detour-texte); color:#fff; border-color:var(--detour-texte); font-weight:700}
+.commandes .revenir:hover{background:#16386c; border-color:#16386c}
 .commandes .spacer{flex:1}
 
 /* ---- La voix ------------------------------------------------------ */
@@ -161,6 +173,41 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 /* Libellés longs sur grand écran, courts sur téléphone — le même bouton. */
 .court{display:none}
 
+/* Le bouton « ⏹ Arrêter » : il n'existe que pendant la lecture ou la
+   pause — le JS le pose et le retire, le style est prêt ici. */
+.voix .arreter{
+  font:inherit; font-size:16px; cursor:pointer; padding:9px 14px; border-radius:10px;
+  border:2px solid var(--ko); background:#fff; color:var(--ko); font-weight:700;
+  white-space:nowrap; transition:.12s;
+}
+.voix .arreter:hover{background:var(--ko); color:#fff}
+
+/* Le badge « voix : texte antérieur » : le texte a changé, le MP3 pas
+   encore — on le dit honnêtement. Ambre + pointillé + le mot. */
+.voix-perimee{
+  display:inline-block; font-size:12px; font-weight:700; white-space:nowrap;
+  color:var(--attente); background:#fff; border:2px dotted var(--attente);
+  border-radius:999px; padding:3px 10px; cursor:help;
+}
+
+/* Le renvoi vers une autre capsule, en fin de corps d'écran :
+   un lien habillé en bouton, bleu, flèche incluse. */
+.renvoi-capsule{
+  display:inline-block; margin-top:14px; font:inherit; font-size:16px; font-weight:700;
+  padding:10px 16px; border:2px solid var(--bleu); border-radius:10px;
+  background:#eef3f9; color:var(--bleu); text-decoration:none; transition:.12s;
+}
+.renvoi-capsule:hover{background:var(--bleu); color:#fff}
+.renvoi-capsule::after{content:" →"}
+
+/* Le lien discret vers la visite guidée, sur les pages d'accueil. */
+.visite-lien{
+  display:inline-block; margin:6px 0 0; font-size:14px; font-weight:700;
+  padding:7px 14px; border:1px dashed var(--bleu); border-radius:999px;
+  background:#fff; color:var(--bleu); text-decoration:none; transition:.12s;
+}
+.visite-lien:hover{background:var(--bleu); color:#fff; border-style:solid}
+
 /* ---- L'écran de fin ---------------------------------------------- */
 .retenir{background:var(--ok-bg); border:1px solid #b8e0cc; border-left:5px solid var(--ok);
   border-radius:var(--r); padding:18px 24px; margin-top:18px}
@@ -174,11 +221,15 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
   border-radius:999px; padding:2px 9px; margin-right:5px; font-family:Consolas,monospace}
 .codes .hors{background:#f4f0e6; color:var(--attente)}
 
-/* ---- Accueil « Qu'est-ce que je veux réviser ? » ------------------ */
-.accueil-tete{background:var(--bleu); color:#fff; padding:26px 24px 30px}
-.accueil-tete h1{color:#fff; margin:0 0 8px; font-size:30px}
-.accueil-tete p{margin:0; color:#cdd9e6; max-width:70ch; font-size:17px}
-.accueil-tete b{color:var(--orange)}
+/* ---- Accueil « Qu'est-ce que je veux réviser ? » ------------------
+   Bandeau CLAIR : fond de carte, texte bleu marine, filet bas plein.
+   L'orange d'accent passe en #a8410f : #ff6b35 ne fait que 2,8:1 sur
+   fond clair — bon pour un filet, pas pour du texte. */
+.accueil-tete{background:var(--carte); color:var(--bleu);
+  border-bottom:3px solid var(--bleu); padding:26px 24px 30px}
+.accueil-tete h1{color:var(--bleu); margin:0 0 8px; font-size:30px}
+.accueil-tete p{margin:0; color:var(--txt); max-width:70ch; font-size:17px}
+.accueil-tete b{color:#a8410f}
 .sujets{max-width:1080px; margin:24px auto; padding:0 22px 70px;
   display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:18px}
 .sujet-carte{
@@ -276,11 +327,12 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 }
 .avis.incomplet .manque-remarque b{color:var(--ko)}
 
-/* Le rappel dans la barre du bas, et le bouton qui y mène */
+/* Le rappel dans la barre du bas, et le bouton qui y mène — le petit
+   bouton rouge à texte blanc reste permis (accent), son contour aussi. */
 .barre-relecture button.alerte{
-  background:var(--ko); color:#fff; border-color:#fff; font-weight:700;
+  background:var(--ko); color:#fff; border-color:var(--ko); font-weight:700;
 }
-.barre-relecture button.alerte:hover{background:#fff; color:var(--ko); border-color:#fff}
+.barre-relecture button.alerte:hover{background:#fff; color:var(--ko); border-color:var(--ko)}
 
 .alerte-releve{
   background:var(--ko-bg); border:1px solid #f0c9c2; border-left:5px solid var(--ko);
@@ -294,22 +346,25 @@ body.dans-detour .ecran{border-color:var(--detour-ligne); border-top:5px solid v
 }
 .alerte-releve button:hover{background:#fff; color:var(--ko)}
 
-/* ---- La barre du relecteur, tout en bas de l'écran ---------------- */
+/* ---- La barre du relecteur, tout en bas de l'écran ----------------
+   Claire elle aussi : fond de carte, texte bleu marine. Le filet de
+   charte passe en HAUT — c'est le bord visible d'une barre du bas. */
 .barre-relecture{
   position:fixed; left:0; right:0; bottom:0; z-index:12;
-  background:var(--bleu); color:#fff;
+  background:var(--carte); color:var(--bleu);
+  border-top:3px solid var(--bleu);
   display:flex; align-items:center; gap:12px; flex-wrap:wrap;
   padding:8px 16px; font-size:14px;
 }
-.barre-relecture b{color:var(--orange)}
+.barre-relecture b{color:#a8410f}
 .barre-relecture .spacer{flex:1}
 .barre-relecture button{
   font:inherit; font-size:14px; cursor:pointer; padding:6px 13px; border-radius:8px;
-  border:2px solid #fff; background:#fff; color:var(--bleu); font-weight:700;
+  border:2px solid var(--bleu); background:#fff; color:var(--bleu); font-weight:700;
 }
-.barre-relecture button:hover{background:var(--orange); border-color:var(--orange); color:#fff}
-.barre-relecture button.fantome{background:transparent; color:#fff}
-.barre-relecture button.fantome:hover{background:#fff; color:var(--bleu); border-color:#fff}
+.barre-relecture button:hover{background:var(--bleu); color:#fff}
+.barre-relecture button.fantome{background:transparent}
+.barre-relecture button.fantome:hover{background:var(--bleu); color:#fff}
 
 /* Les commandes se posent AU-DESSUS de la barre de relecture, sur sa
    hauteur RÉELLE — mesurée par le moteur, jamais devinée. Une valeur en
@@ -437,9 +492,13 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
   .sujets{grid-template-columns:repeat(2, 1fr)}
 }
 
-/* ---- Papier : la couleur reste, les surfaces partent ------------- */
+/* ---- Papier : la couleur reste, les surfaces partent -------------
+   Le gros du travail vit dans moteur/impression.css (media="print") ;
+   ici, seulement ce qui est propre aux capsules. Jamais
+   print-color-adjust : on n'impose pas l'encre des fonds. */
 @media print{
-  .tete, .commandes, .avance, .plus button, .rejouer{display:none !important}
+  .tete, .commandes, .avance, .plus button, .rejouer,
+  .barre-relecture, .visite-lien{display:none !important}
   .ecran{box-shadow:none; border:1px solid #999; page-break-inside:avoid}
   .visuel{background:none}
   body{background:#fff}
@@ -454,8 +513,8 @@ body.avec-relecture .commandes{bottom:var(--h-relecture, 0px)}
    ===================================================================== */
 
 .accueil-tete .ariane{margin:0 0 10px; font-size:14px}
-.accueil-tete .ariane a{color:#cdd9e6; text-decoration:none}
-.accueil-tete .ariane a:hover{color:#fff; text-decoration:underline}
+.accueil-tete .ariane a{color:var(--bleu); text-decoration:underline}
+.accueil-tete .ariane a:hover{color:var(--bleu-clair)}
 
 .zone-paliers{max-width:980px; margin:22px auto; padding:0 20px 80px}
 
@@ -529,9 +588,19 @@ a.entree:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(27,58,99,.
   font-size:14px; color:var(--mut)}
 
 /* ---- Projection (vidéoprojecteur) --------------------------------- */
-/* capsule.html?sujet=…&projection=1 : tout est grossi d'un tiers.
-   Indépendant du bouton Aa (qui garde le réglage personnel du poste). */
-html.projection body{zoom:1.32}
+/* capsule.html?sujet=…&projection=1 : la typographie grossit d'un tiers,
+   et AUCUNE étape ne défile — capsule.js mesure la hauteur de .ecran
+   après chaque rendu et l'écrase par transform:scale si ça déborde.
+   Indépendant du bouton Aa (qui garde le réglage personnel du poste).
+   L'ancien `zoom:1.32` sur body est abandonné : il grossissait tout,
+   barres comprises, et faisait défiler les grands écrans. */
+html.projection{font-size:132%; --facteur-projection:1.32}
+html.projection .ecran{transform-origin:top center}
+/* Les barres se font petites : la place est pour le contenu projeté. */
+html.projection .tete{padding:6px 18px}
+html.projection .tete .sujet{font-size:15px}
+html.projection .avance{padding:5px 18px}
+html.projection .commandes{padding:7px 18px}
 
 /* ---- Petits écrans ------------------------------------------------- */
 @media (max-width: 760px){

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Le geste de récupération en deux temps. Temps un : phase liquide d'abord, trait plein épais — rapide, la plus grande partie de la charge y passe. Temps deux : phase vapeur ensuite, trait fin tireté — pour aller chercher ce qui reste. Pendant tout le transfert, on surveille la pesée et la pression de la bouteille. C'est l'ordre courant : la station et sa notice commandent.">
+  <title>Liquide d'abord, vapeur ensuite — l'ordre courant</title>
+  <style>
+    .t   { font:700 20px "Trebuchet MS",Calibri,Arial,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,"Segoe UI",Arial,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 13.5px Calibri,"Segoe UI",Arial,sans-serif; fill:#637285; }
+    .acc { font:700 14px Calibri,"Segoe UI",Arial,sans-serif; fill:#c9451a; }
+    .box { fill:#fffdf8; stroke:#1b3a63; stroke-width:2.4; }
+    .liq { fill:none; stroke:#3d7fca; stroke-width:5; stroke-linecap:round; }
+    .vap { fill:none; stroke:#3d7fca; stroke-width:2; stroke-linecap:round; stroke-dasharray:5 6; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="36">Le geste, en deux temps</text>
+
+  <!-- temps 1 -->
+  <rect x="30" y="58" width="640" height="128" rx="10" fill="none" stroke="#1b3a63" stroke-width="2"/>
+  <text class="st" x="48" y="86">1 — PHASE LIQUIDE d'abord</text>
+  <rect class="box" x="60" y="100" width="120" height="60" rx="8"/>
+  <text class="st" x="120" y="128" text-anchor="middle" style="font-size:13px">circuit</text>
+  <text class="lg" x="120" y="146" text-anchor="middle">prise liquide</text>
+  <path class="liq" d="M186,130 h180"/>
+  <path d="M372,130 l-16,-9 v18 z" fill="#3d7fca"/>
+  <text class="lg" x="276" y="116" text-anchor="middle">trait plein épais : gros débit</text>
+  <rect class="box" x="386" y="100" width="52" height="66" rx="9"/>
+  <text class="lg" x="412" y="181" text-anchor="middle">bouteille</text>
+  <text class="lg" x="500" y="122">rapide : la plus grande</text>
+  <text class="lg" x="500" y="140">partie de la charge</text>
+  <text class="lg" x="500" y="158">y passe</text>
+
+  <!-- temps 2 -->
+  <rect x="30" y="192" width="640" height="128" rx="10" fill="none" stroke="#1b3a63" stroke-width="2" stroke-dasharray="9 7"/>
+  <text class="st" x="48" y="220">2 — PHASE VAPEUR ensuite</text>
+  <rect class="box" x="60" y="234" width="120" height="60" rx="8"/>
+  <text class="st" x="120" y="262" text-anchor="middle" style="font-size:13px">circuit</text>
+  <text class="lg" x="120" y="280" text-anchor="middle">prise vapeur</text>
+  <path class="vap" d="M186,264 h180"/>
+  <path d="M372,264 l-13,-7 v14 z" fill="#3d7fca"/>
+  <text class="lg" x="276" y="250" text-anchor="middle">trait fin tireté : ce qui reste</text>
+  <rect class="box" x="386" y="234" width="52" height="66" rx="9"/>
+  <text class="lg" x="412" y="315" text-anchor="middle">bouteille</text>
+  <text class="lg" x="500" y="256">on va chercher</text>
+  <text class="lg" x="500" y="274">le restant, jusqu'à</text>
+  <text class="lg" x="500" y="292">la valeur visée</text>
+
+  <!-- morale -->
+  <text class="acc" x="350" y="348" text-anchor="middle">Ordre COURANT — la station et sa NOTICE commandent.</text>
+  <text class="st" x="350" y="376" text-anchor="middle" style="font-size:14px">Pendant tout le transfert : on surveille pesée + pression, et on s'arrête au taux de remplissage.</text>
+</svg>

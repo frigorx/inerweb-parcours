@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux cylindres de compresseur côte à côte : rempli de gaz, le piston finit sa course, le volume diminue. Rempli de liquide, pratiquement incompressible, les efforts montent brutalement sur le clapet, la bielle et la culasse.">
+  <title>Un gaz se comprime, un liquide ne cède pratiquement pas</title>
+  <style>
+    .t  { font:700 20px "Trebuchet MS",Calibri,sans-serif; fill:#1b3a63; }
+    .l  { font:700 15px Calibri,"Segoe UI",sans-serif; fill:#1b3a63; }
+    .s  { font:400 14px Calibri,"Segoe UI",sans-serif; fill:#637285; }
+    .g  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#1e7e54; }
+    .r  { font:700 14px Calibri,"Segoe UI",sans-serif; fill:#c0392b; }
+    .p  { fill:none; stroke:#1b3a63; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .v  { fill:none; stroke:#1e7e54; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+    .rr { fill:none; stroke:#c0392b; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 5; }
+    .fil{ fill:none; stroke:#1b3a63; stroke-width:1.2; stroke-opacity:.16; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="30" y="34">Le même piston, deux contenus — deux issues</text>
+
+  <!-- ===== côté GAZ ===== -->
+  <g transform="translate(70,0)">
+    <text class="g" x="115" y="76" text-anchor="middle">GAZ — ça se comprime (cadre plein)</text>
+    <!-- cylindre -->
+    <rect x="55" y="96" width="120" height="180" fill="#fffdf8" stroke="#1e7e54" stroke-width="2.6"/>
+    <!-- piston descendu -->
+    <rect x="59" y="150" width="112" height="18" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2"/>
+    <path class="p" d="M115,150 v-54"/>
+    <!-- gaz comprimé : points espacés puis denses -->
+    <g fill="#1b3a63">
+      <circle cx="85" cy="190" r="2.6"/><circle cx="115" cy="184" r="2.6"/><circle cx="145" cy="192" r="2.6"/>
+      <circle cx="90" cy="220" r="2.6"/><circle cx="120" cy="214" r="2.6"/><circle cx="150" cy="224" r="2.6"/>
+      <circle cx="100" cy="250" r="2.6"/><circle cx="135" cy="248" r="2.6"/>
+    </g>
+    <path class="v" d="M115,300 v-14"/><path d="M109,290 l6,-12 6,12 z" fill="#1e7e54"/>
+    <text class="s" x="115" y="326" text-anchor="middle">le volume diminue,</text>
+    <text class="s" x="115" y="344" text-anchor="middle">le piston finit sa course</text>
+  </g>
+
+  <!-- ===== côté LIQUIDE ===== -->
+  <g transform="translate(400,0)">
+    <text class="r" x="115" y="76" text-anchor="middle">LIQUIDE — ça ne cède pas (cadre tireté)</text>
+    <!-- cylindre -->
+    <rect x="55" y="96" width="120" height="180" fill="#fffdf8" stroke="#c0392b" stroke-width="2.6" stroke-dasharray="8 5"/>
+    <!-- piston bloqué haut -->
+    <rect x="59" y="118" width="112" height="18" fill="#eaf2fb" stroke="#1b3a63" stroke-width="2"/>
+    <path class="p" d="M115,118 v-22"/>
+    <!-- liquide plein -->
+    <rect x="59" y="140" width="112" height="132" fill="#eaf2fb"/>
+    <text class="l" x="115" y="212" text-anchor="middle">liquide</text>
+    <!-- éclairs d'effort -->
+    <path class="rr" d="M47,127 l-22,-14 M183,127 l22,-14 M47,260 l-22,14 M183,260 l22,14"/>
+    <text class="r" x="115" y="326" text-anchor="middle">pratiquement incompressible :</text>
+    <text class="r" x="115" y="344" text-anchor="middle">clapet, bielle, culasse peuvent rompre</text>
+  </g>
+
+  <path class="fil" d="M40,364 h620"/>
+  <text class="s" x="350" y="388" text-anchor="middle">Même sans casse immédiate : le liquide lave l'huile des parois et dilue le carter — l'usure s'accélère.</text>
+</svg>

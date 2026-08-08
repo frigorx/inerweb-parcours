@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img"
+     aria-label="Deux dégâts possibles de l'eau restée dans le circuit : au détendeur, point froid, elle peut geler et former un bouchon de glace ; dans l'huile, elle peut réagir et produire des acides qui attaquent les vernis du moteur. Le vide profond évite les deux.">
+  <title>L'eau restante : deux dégâts possibles</title>
+  <style>
+    .t   { font:700 18px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .st  { font:700 15px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }
+    .lg  { font:400 14px Calibri,Segoe UI,sans-serif; fill:#637285; }
+    .bad { font:700 14px Calibri,Segoe UI,sans-serif; fill:#c9451a; }
+    .ok  { font:700 14px Calibri,Segoe UI,sans-serif; fill:#1e7e54; }
+    .p   { fill:none; stroke:#1b3a63; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .acc { fill:none; stroke:#c9451a; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+    .dash{ fill:none; stroke:#8fa3b8; stroke-width:1.5; stroke-dasharray:5 5; }
+  </style>
+
+  <rect width="700" height="400" fill="#fffdf8"/>
+  <text class="t" x="24" y="30">L'eau restée dans le circuit : deux dégâts possibles</text>
+
+  <!-- ========= GAUCHE : bouchon de glace au détendeur ========= -->
+  <g>
+    <text class="st" x="170" y="66" text-anchor="middle">Au détendeur — le point froid</text>
+    <!-- tube -->
+    <path class="p" d="M40,150 h90"/>
+    <path class="p" d="M40,180 h90"/>
+    <!-- corps du détendeur (triangles opposés) -->
+    <path class="p" d="M130,150 l40,15 l-40,15 z" fill="#fffdf8"/>
+    <path class="p" d="M210,150 l-40,15 l40,15 z" fill="#fffdf8"/>
+    <!-- tube aval -->
+    <path class="p" d="M210,150 h90"/>
+    <path class="p" d="M210,180 h90"/>
+    <!-- bouchon de glace : hachures bleu clair + contour tireté -->
+    <g>
+      <rect x="216" y="153" width="46" height="24" fill="#cfe6f5" stroke="#3d7fca" stroke-width="2" stroke-dasharray="4 3"/>
+      <path d="M222,175 l10,-20 M232,175 l10,-20 M242,175 l10,-20" stroke="#3d7fca" stroke-width="1.4" fill="none"/>
+    </g>
+    <path class="acc" d="M239,140 v-14"/>
+    <text class="bad" x="170" y="112" text-anchor="middle">bouchon de glace possible</text>
+    <text class="lg" x="170" y="215" text-anchor="middle">la machine marche par à-coups,</text>
+    <text class="lg" x="170" y="233" text-anchor="middle">puis plus du tout</text>
+  </g>
+
+  <!-- séparation -->
+  <path class="dash" d="M350,52 v240"/>
+
+  <!-- ========= DROITE : acides dans l'huile ========= -->
+  <g>
+    <text class="st" x="525" y="66" text-anchor="middle">Dans l'huile — lent et invisible</text>
+    <!-- carter d'huile -->
+    <path class="p" d="M430,120 v100 h190 v-100" fill="#fffdf8"/>
+    <rect x="434" y="164" width="182" height="52" fill="#f3d9a8"/>
+    <text class="st" x="525" y="152" text-anchor="middle">eau + huile de synthèse</text>
+    <!-- flèche de réaction -->
+    <path class="acc" d="M525,226 v26"/>
+    <path class="acc" d="M519,244 l6,10 l6,-10"/>
+    <text class="bad" x="525" y="278" text-anchor="middle">acides possibles</text>
+    <text class="lg" x="525" y="298" text-anchor="middle">ils attaquent les vernis du moteur</text>
+  </g>
+
+  <!-- ========= MORALE ========= -->
+  <path class="dash" d="M40,326 h620"/>
+  <text class="ok" x="350" y="356" text-anchor="middle">Le vide profond sort l'eau : il évite les deux dégâts à la fois.</text>
+  <text class="lg" x="350" y="380" text-anchor="middle">Deux risques possibles — pas une fatalité : c'est justement le rôle du tirage au vide.</text>
+</svg>
