@@ -1,34 +1,30 @@
 @echo off
 REM =====================================================================
-REM  LANCER.cmd — ouvrir l'atelier animations
+REM  LANCER.cmd - ouvrir les capsules (visite guidee de demonstration)
 REM ---------------------------------------------------------------------
-REM  POURQUOI CE FICHIER EXISTE
-REM  Ouvrir une page en double-cliquant sur le fichier .html marche
-REM  souvent, mais pas toujours : selon la configuration de Windows, le
-REM  .html part dans un editeur, ou le navigateur bloque les fichiers
-REM  voisins. Ce lanceur sert la page par un petit serveur local : c'est
-REM  le seul moyen d'avoir exactement le meme comportement partout.
+REM  Sert les pages par un petit serveur local ecrit en Node pur
+REM  (outils\servir.mjs) : aucune dependance, aucun telechargement,
+REM  fonctionne hors ligne. Node est deja exige par le logiciel du centre.
 REM
-REM  Il n'installe rien, ne modifie rien, n'envoie rien sur Internet.
+REM  Port 4190 : le notre. JAMAIS 8123, qui est l'administration
+REM  d'inerWeb Habilitation - les deux doivent pouvoir tourner ensemble.
+REM
 REM  Pour l'arreter : fermer cette fenetre noire.
 REM =====================================================================
 setlocal
 cd /d "%~dp0"
 
-REM 4190 : port a nous. JAMAIS 8123 — c'est l'administration d'inerWeb
-REM Habilitation, et lancer les deux en meme temps doit rester possible.
 set PORT=4190
 
 echo.
-echo   Atelier animations
-echo   ------------------
-echo   Demarrage du serveur local sur le port %PORT%...
-echo.
+echo   Capsules - visite guidee
+echo   ------------------------
 
-where python >nul 2>&1
+where node >nul 2>&1
 if errorlevel 1 (
-  echo   [!] Python est introuvable.
+  echo   [!] Node.js est introuvable sur ce poste.
   echo       Ouvrez alors directement refonte\visite.html en double-cliquant dessus.
+  echo       ^(certaines pages marchent moins bien ainsi, mais la visite s'affiche^)
   echo.
   pause
   exit /b 1
@@ -36,10 +32,8 @@ if errorlevel 1 (
 
 start "" http://localhost:%PORT%/refonte/visite.html
 
-echo   Le navigateur va s'ouvrir sur la page d'accueil.
 echo.
-echo   ^>^> LAISSEZ CETTE FENETRE OUVERTE pendant que vous testez.
-echo   ^>^> Fermez-la quand vous avez fini.
+echo   ^>^> LAISSEZ CETTE FENETRE OUVERTE pendant la demonstration.
 echo.
 
-python -m http.server %PORT% --bind 127.0.0.1
+node outils\servir.mjs %PORT% .
