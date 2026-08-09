@@ -30,14 +30,18 @@ avance sans s'alourdir, et l'approfondissement est **offert, jamais imposé**.
 | # | Sujet | Niveau | Fil | Détours | Écrans |
 |---|---|---|---|---|---|
 | 1 | Le circuit : quatre organes, deux pressions | découverte | 6 | 5 | 12 |
-| 2 | Lire le code d'un fluide | découverte | 6 | 7 | 18 |
-| 3 | A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 |
-| 4 | La surchauffe : la mesurer, la comprendre | métier | 6 | 5 | 11 |
-| 5 | Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 |
-| 6 | Le contrôle d'étanchéité : qui, quand, comment | examen | 6 | 5 | 11 |
-| 7 | Récupérer le fluide : le geste et la règle | examen | 6 | 3 | 10 |
+| 2 | La chaleur, sensible et latente | découverte | 6 | 3 | 9 |
+| 3 | Pression et température, le couple | découverte | 6 | 3 | 9 |
+| 4 | Lire le code d'un fluide | découverte | 6 | 7 | 18 |
+| 5 | Familles et PRP | métier | 6 | 4 | 10 |
+| 6 | A1, A2L, A3 : lire l'étiquette | métier | 6 | 8 | 16 |
+| 7 | Les bouteilles | métier | 6 | 3 | 9 |
+| 8 | Le tirage au vide : pourquoi, et jusqu'où | métier | 6 | 7 | 14 |
+| 9 | Récupérer le fluide : le geste et la règle | examen | 6 | 3 | 10 |
+| 10 | La surchauffe : la mesurer, la comprendre | métier | 6 | 5 | 11 |
+| 11 | Le contrôle d'étanchéité : qui, quand, comment | examen | 6 | 5 | 11 |
 
-**92 écrans · 40 détours · 184 narrations · 24 planches animées.**
+**11 capsules · 129 écrans · 53 détours · 258 narrations · 132 planches au catalogue.**
 
 ## Pour qui
 

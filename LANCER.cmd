@@ -15,7 +15,9 @@ REM =====================================================================
 setlocal
 cd /d "%~dp0"
 
-set PORT=8123
+REM 4190 : port a nous. JAMAIS 8123 — c'est l'administration d'inerWeb
+REM Habilitation, et lancer les deux en meme temps doit rester possible.
+set PORT=4190
 
 echo.
 echo   Atelier animations
@@ -26,13 +28,13 @@ echo.
 where python >nul 2>&1
 if errorlevel 1 (
   echo   [!] Python est introuvable.
-  echo       Ouvrez alors directement le fichier ACCUEIL.html en double-cliquant dessus.
+  echo       Ouvrez alors directement refonte\visite.html en double-cliquant dessus.
   echo.
   pause
   exit /b 1
 )
 
-start "" http://localhost:%PORT%/ACCUEIL.html
+start "" http://localhost:%PORT%/refonte/visite.html
 
 echo   Le navigateur va s'ouvrir sur la page d'accueil.
 echo.
