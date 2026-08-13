@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="vr-valve-svg" viewBox="0 0 1280 720" role="img"
+     aria-labelledby="still-parts-title still-parts-desc" data-position="mid" data-circuit="bp" data-mode="parts" data-static="true">
+  <title id="still-parts-title">Vanne de service Rotalock — repérage</title>
+  <desc id="still-parts-desc">Coupe pédagogique d’une vanne de service à deux prises. P reçoit le flexible du manifold. P1 reste reliée au compresseur pour le pressostat.</desc>
+  <defs>
+    <marker id="still-parts-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="context-stroke" />
+    </marker>
+    <marker id="still-parts-pressure-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#C9451A" />
+    </marker>
+    <marker id="still-parts-stop" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M2 2 L10 10 M10 2 L2 10" stroke="#637285" stroke-width="2.5" />
+    </marker>
+    <clipPath id="still-parts-clip"><rect x="320" y="270" width="820" height="180" rx="16" /></clipPath>
+    <pattern id="still-parts-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 0 V10" stroke="#637285" stroke-width="3" opacity=".42" />
+    </pattern>
+  </defs>
+  <style>
+    .vr-valve-svg{font-family:Calibri,'Segoe UI',Arial,sans-serif;color:#10233c;overflow:visible}
+    .vr-svg-title{font-family:'Trebuchet MS',Calibri,Arial,sans-serif;font-size:31px;font-weight:700;fill:#1b3a63}
+    .vr-svg-subtitle{font-size:15px;font-weight:700;letter-spacing:.08em;fill:#637285}
+    .vr-body,.vr-bonnet{fill:#fff4e0;stroke:#1b3a63;stroke-width:5;stroke-linejoin:round}
+    .vr-bonnet{fill:#f7f1e7}
+    .vr-cavity{fill:#fffdf8;stroke:#1b3a63;stroke-width:4;stroke-linejoin:round}
+    .vr-seat{fill:#b06a00;stroke:#1b3a63;stroke-width:3}
+    .vr-seal{fill:#10233c;stroke:#1b3a63;stroke-width:2}
+    .vr-ring{fill:#84b7ec;stroke:#1b3a63;stroke-width:2}
+    .vr-stem-clip{clip-path:url(#still-parts-clip)}
+    .vr-clapet,.vr-back-cone{fill:#ff6b35;stroke:#1b3a63;stroke-width:4;stroke-linejoin:round}
+    .vr-stem-rod{fill:#fff4e0;stroke:#1b3a63;stroke-width:4}
+    .vr-thread-lines path{stroke:#1b3a63;stroke-width:2;opacity:.58}
+    .vr-stem{transform-box:fill-box;transition:transform 1.15s cubic-bezier(.2,.75,.25,1)}
+    [data-position='front'] .vr-stem{transform:translateX(0)}
+    [data-position='mid'] .vr-stem{transform:translateX(120px)}
+    [data-position='back'] .vr-stem{transform:translateX(250px)}
+    .vr-stem-static{display:none}
+    .vr-square{fill:#1b3a63;stroke:#10233c;stroke-width:4}
+    .vr-square-cross{stroke:#fffdf8;stroke-width:5;stroke-linecap:round}
+    .vr-square-mobile{transform-origin:1176px 360px;transition:transform 1.15s cubic-bezier(.2,.75,.25,1)}
+    [data-position='front'] .vr-square-mobile{transform:rotate(0deg)}
+    [data-position='mid'] .vr-square-mobile{transform:rotate(-180deg)}
+    [data-position='back'] .vr-square-mobile{transform:rotate(-360deg)}
+    .vr-square-static{display:none}
+    [data-static='true'] .mobile{display:none!important}
+    [data-static='true'] .vr-stem-static,[data-static='true'] .vr-square-static{display:block!important}
+    .vr-flow{opacity:0;transition:opacity .28s ease}
+    [data-position='back'] .vr-flow-main,[data-position='mid'] .vr-flow-main{opacity:1}
+    [data-position='back'] .vr-flow-p1,[data-position='mid'] .vr-flow-p1,[data-position='front'] .vr-flow-p1{opacity:1}
+    [data-position='mid'] .vr-flow-p,[data-position='front'] .vr-flow-p{opacity:1}
+    [data-position='front'] .vr-flow-t-isolated,[data-position='back'] .vr-flow-p-off{opacity:1}
+    .vr-main-bp,.vr-main-hp{display:none}
+    [data-circuit='bp'] .vr-main-bp{display:inline}
+    [data-circuit='hp'] .vr-main-hp{display:inline}
+    .vr-flow-line{fill:none;stroke:#3d7fca;stroke-width:17;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+    .vr-hp-line{stroke:#c0392b;stroke-dasharray:28 10}
+    .vr-pressure-line{fill:none;stroke:#c9451a;stroke-width:10;stroke-dasharray:8 11;stroke-linecap:round;stroke-linejoin:round}
+    .vr-flow-pulse{fill:#fffdf8;stroke:#3d7fca;stroke-width:4;opacity:.92}
+    [data-circuit='hp'] .vr-flow-pulse{stroke:#c0392b}
+    .vr-pressure-line~.vr-flow-pulse,.vr-flow-p1 .vr-flow-pulse,.vr-flow-p .vr-flow-pulse{stroke:#c9451a}
+    .vr-flow-pulse-late{opacity:.65}
+    .vr-isolated-line{fill:none;stroke:#637285;stroke-width:10;stroke-dasharray:4 12;stroke-linecap:round}
+    .vr-isolated-word{font-size:15px;font-weight:800;letter-spacing:.08em;fill:#637285}
+    .vr-label-box{fill:#fffdf8;stroke:#1b3a63;stroke-width:2}
+    .vr-label-p1{stroke:#c9451a;stroke-dasharray:8 5;stroke-width:4}
+    .vr-label-p{stroke:#1e7e54;stroke-width:4;stroke-dasharray:14 4 3 4}
+    .vr-label-code{font-family:'Trebuchet MS',Calibri,Arial,sans-serif;font-size:25px;font-weight:800;fill:#1b3a63}
+    .vr-label-text{font-size:15px;font-weight:800;fill:#10233c}
+    .vr-label-sub{font-size:12px;font-weight:700;fill:#637285}
+    .vr-state-note{display:none}
+    [data-position='back'] .vr-note-back,[data-position='mid'] .vr-note-mid,[data-position='front'] .vr-note-front{display:block}
+    .vr-state-note rect{fill:#fffdf8;stroke:#1b3a63;stroke-width:2}
+    .vr-state-note text{font-size:15px;fill:#10233c}
+    .vr-note-strong{font-weight:800;fill:#1b3a63}
+    .vr-callout-line{fill:none;stroke:#3d7fca;stroke-width:2.5;stroke-dasharray:5 5}
+    .vr-callout-box{fill:#fffdf8;stroke:#3d7fca;stroke-width:2}
+    .vr-callout-title{font-size:14px;font-weight:800;fill:#1b3a63}
+    .vr-callout-sub{font-size:12px;font-weight:700;fill:#637285}
+    [data-mode='parts'] .vr-fluid-layer,[data-mode='parts'] .vr-state-note{display:none}
+    [data-mode='flow'] .vr-parts,[data-mode='safety'] .vr-parts{display:none}
+    .vr-safety-overlay{display:none}
+    [data-mode='safety'] .vr-safety-overlay{display:block}
+    .vr-danger-halo{fill:none;stroke:#c0392b;stroke-width:7;stroke-dasharray:12 8}
+    .vr-danger-line{fill:none;stroke:#c0392b;stroke-width:4;stroke-dasharray:8 6}
+    .vr-danger-box{fill:#fffdf8;stroke:#c0392b;stroke-width:5;stroke-dasharray:12 7}
+    .vr-danger-title{font-size:15px;font-weight:900;fill:#c0392b}
+    .vr-danger-text{font-size:14px;font-weight:700;fill:#10233c}
+    .vr-safe-halo{fill:none;stroke:#1e7e54;stroke-width:6;stroke-dasharray:18 5 4 5}
+    @media print{.mobile{display:none!important}.vr-stem-static,.vr-square-static{display:block!important}.vr-body,.vr-bonnet,.vr-cavity,.vr-label-box,.vr-state-note rect,.vr-callout-box,.vr-danger-box{fill:#fff!important}}
+  </style>
+  <rect class="vr-background" width="1280" height="720" fill="#fffdf8" />
+  <text class="vr-svg-title" x="38" y="34">Vanne de service Rotalock — repérage</text><text class="vr-svg-subtitle" x="38" y="60">COUPE PÉDAGOGIQUE · SCHÉMA DE PRINCIPE</text>
+  <g transform="translate(0 52) scale(1 0.91)">
+    
+      <g class="vr-body-shape" aria-label="Corps de vanne en coupe">
+        <rect class="vr-body" x="105" y="230" width="970" height="260" rx="52" />
+        <path class="vr-body" d="M30 302 H176 V418 H30 Q16 418 16 404 V316 Q16 302 30 302 Z" />
+        <path class="vr-body" d="M512 246 V98 Q512 76 534 76 H648 Q670 76 670 98 V246 Z" />
+        <path class="vr-body" d="M914 246 V98 Q914 76 936 76 H1048 Q1070 76 1070 98 V246 Z" />
+        <path class="vr-body" d="M470 474 V608 Q470 630 492 630 H646 Q668 630 668 608 V474 Z" />
+        <path class="vr-bonnet" d="M1040 258 H1170 L1225 300 V420 L1170 462 H1040 Z" />
+      </g>
+
+      <g class="vr-cavities" aria-label="Passages internes">
+        <rect class="vr-cavity" x="24" y="326" width="386" height="68" rx="18" />
+        <path class="vr-cavity" d="M350 286 H1044 V434 H350 Q328 434 328 412 V308 Q328 286 350 286 Z" />
+        <path class="vr-cavity" d="M526 286 V104 H656 V286 Z" />
+        <path class="vr-cavity" d="M928 286 V104 H1056 V286 Z" />
+        <path class="vr-cavity" d="M486 434 V614 H654 V434 Z" />
+        <path class="vr-cavity" d="M1034 318 H1182 V402 H1034 Z" />
+      </g>
+
+      <g class="vr-seats" aria-label="Sièges avant et arrière">
+        <path class="vr-seat vr-seat-front" d="M322 286 H365 L392 320 V400 L365 434 H322 V394 H348 L366 374 V346 L348 326 H322 Z" />
+        <path class="vr-seat vr-seat-back" d="M875 286 H918 L944 320 V400 L918 434 H875 V394 H899 L918 374 V346 L899 326 H875 Z" />
+      </g>
+
+      <g class="vr-seals" aria-label="Joints et bagues">
+        <rect class="vr-seal" x="1042" y="286" width="18" height="148" rx="7" />
+        <rect class="vr-ring" x="1071" y="286" width="22" height="148" rx="7" />
+      </g>
+
+      <g class="vr-stem-clip">
+        
+      <g class="vr-stem vr-stem-static">
+        <path class="vr-clapet" d="M340 360 L395 316 H438 V404 H395 Z" />
+        <rect class="vr-stem-rod" x="420" y="340" width="770" height="40" rx="13" />
+        <path class="vr-back-cone" d="M620 323 L655 340 H694 L718 360 L694 380 H655 L620 397 Z" />
+        <g class="vr-thread-lines">
+          <path d="M1000 340 l22 40 M1020 340 l22 40 M1040 340 l22 40 M1060 340 l22 40 M1080 340 l22 40" />
+        </g>
+      </g>
+        
+      <g class="vr-stem mobile vr-stem-mobile">
+        <path class="vr-clapet" d="M340 360 L395 316 H438 V404 H395 Z" />
+        <rect class="vr-stem-rod" x="420" y="340" width="770" height="40" rx="13" />
+        <path class="vr-back-cone" d="M620 323 L655 340 H694 L718 360 L694 380 H655 L620 397 Z" />
+        <g class="vr-thread-lines">
+          <path d="M1000 340 l22 40 M1020 340 l22 40 M1040 340 l22 40 M1060 340 l22 40 M1080 340 l22 40" />
+        </g>
+      </g>
+      </g>
+
+      <g class="mobile vr-square-mobile" aria-label="Carré de manœuvre">
+        <rect class="vr-square" x="1140" y="324" width="72" height="72" rx="8" />
+        <path class="vr-square-cross" d="M1154 338 L1198 382 M1198 338 L1154 382" />
+      </g>
+      <g class="vr-square-static" aria-hidden="true">
+        <rect class="vr-square" x="1140" y="324" width="72" height="72" rx="8" />
+        <path class="vr-square-cross" d="M1154 338 L1198 382 M1198 338 L1154 382" />
+      </g>
+    
+      <g class="vr-fluid-layer" aria-label="Chemins du fluide et de la pression">
+        <g class="vr-flow vr-flow-main vr-main-bp">
+          <path class="vr-flow-line vr-main-line" d="M42 360 H454 Q560 360 560 470 V606" marker-end="url(#still-parts-arrow)" />
+          
+      <circle class="mobile vr-flow-pulse" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion dur="2.6s" repeatCount="indefinite" path="M42 360 H454 Q560 360 560 470 V606" />
+      </circle>
+      <circle class="mobile vr-flow-pulse vr-flow-pulse-late" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion begin="-1.3s" dur="2.6s" repeatCount="indefinite" path="M42 360 H454 Q560 360 560 470 V606" />
+      </circle>
+        </g>
+        <g class="vr-flow vr-flow-main vr-main-hp">
+          <path class="vr-flow-line vr-main-line vr-hp-line" d="M560 606 V470 Q560 360 454 360 H42" marker-end="url(#still-parts-arrow)" />
+          
+      <circle class="mobile vr-flow-pulse" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion dur="2.6s" repeatCount="indefinite" path="M560 606 V470 Q560 360 454 360 H42" />
+      </circle>
+      <circle class="mobile vr-flow-pulse vr-flow-pulse-late" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion begin="-1.3s" dur="2.6s" repeatCount="indefinite" path="M560 606 V470 Q560 360 454 360 H42" />
+      </circle>
+        </g>
+
+        <g class="vr-flow vr-flow-p1">
+          <path class="vr-pressure-line" d="M560 606 V360 H590 V108" marker-end="url(#still-parts-pressure-arrow)" />
+          
+      <circle class="mobile vr-flow-pulse" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion dur="3.1s" repeatCount="indefinite" path="M560 606 V360 H590 V108" />
+      </circle>
+      <circle class="mobile vr-flow-pulse vr-flow-pulse-late" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion begin="-1.3s" dur="3.1s" repeatCount="indefinite" path="M560 606 V360 H590 V108" />
+      </circle>
+        </g>
+
+        <g class="vr-flow vr-flow-p">
+          <path class="vr-pressure-line" d="M560 606 V360 H992 V108" marker-end="url(#still-parts-pressure-arrow)" />
+          
+      <circle class="mobile vr-flow-pulse" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion dur="3.3s" repeatCount="indefinite" path="M560 606 V360 H992 V108" />
+      </circle>
+      <circle class="mobile vr-flow-pulse vr-flow-pulse-late" r="8" visibility="hidden" aria-hidden="true">
+        <set attributeName="visibility" to="visible" begin="0s" />
+        <animateMotion begin="-1.3s" dur="3.3s" repeatCount="indefinite" path="M560 606 V360 H992 V108" />
+      </circle>
+        </g>
+
+        <g class="vr-flow vr-flow-t-isolated">
+          <path class="vr-isolated-line" d="M42 360 H316" marker-end="url(#still-parts-stop)" />
+          <text class="vr-isolated-word" x="124" y="346">T ISOLÉE</text>
+        </g>
+
+        <g class="vr-flow vr-flow-p-off">
+          <path class="vr-isolated-line" d="M992 108 V270" marker-end="url(#still-parts-stop)" />
+          <text class="vr-isolated-word" x="1010" y="184">P ISOLÉE</text>
+        </g>
+      </g>
+    
+      <g class="vr-port-labels" aria-label="Repères des raccords">
+        <g transform="translate(18 258)">
+          <rect class="vr-label-box" width="176" height="56" rx="13" />
+          <text class="vr-label-code" x="16" y="24">T</text>
+          <text class="vr-label-text" x="48" y="23">TUYAUTERIE</text>
+          <text class="vr-label-sub" x="48" y="42">ligne frigorifique</text>
+        </g>
+        <g transform="translate(466 630)">
+          <rect class="vr-label-box" width="210" height="58" rx="13" />
+          <text class="vr-label-code" x="15" y="25">C</text>
+          <text class="vr-label-text" x="49" y="24">COMPRESSEUR</text>
+          <text class="vr-label-sub" x="49" y="44">raccord Rotalock</text>
+        </g>
+        <g transform="translate(484 12)">
+          <rect class="vr-label-box vr-label-p1" width="218" height="64" rx="13" />
+          <text class="vr-label-code" x="14" y="26">P1</text>
+          <text class="vr-label-text" x="57" y="24">PRESSOSTAT</text>
+          <text class="vr-label-sub" x="57" y="45">permanent · sous pression</text>
+        </g>
+        <g transform="translate(900 12)">
+          <rect class="vr-label-box vr-label-p" width="192" height="64" rx="13" />
+          <text class="vr-label-code" x="14" y="26">P</text>
+          <text class="vr-label-text" x="48" y="24">SERVICE</text>
+          <text class="vr-label-sub" x="48" y="45">flexible du manifold</text>
+        </g>
+        <g transform="translate(1084 245)">
+          <rect class="vr-label-box" width="174" height="60" rx="13" />
+          <text class="vr-label-text" x="14" y="24">CARRÉ</text>
+          <text class="vr-label-sub" x="14" y="44">de manœuvre</text>
+        </g>
+      </g>
+    
+      <g class="vr-parts" aria-label="Éléments constituants">
+        <path class="vr-callout-line" d="M424 300 L280 186" />
+        <g transform="translate(96 142)">
+          <rect class="vr-callout-box" width="230" height="52" rx="12" />
+          <text x="14" y="22" class="vr-callout-title">POINTEAU / CLAPET</text>
+          <text x="14" y="41" class="vr-callout-sub">pièce mobile d’obturation</text>
+        </g>
+
+        <path class="vr-callout-line" d="M345 288 L342 184" />
+        <g transform="translate(330 142)">
+          <rect class="vr-callout-box" width="176" height="52" rx="12" />
+          <text x="14" y="22" class="vr-callout-title">SIÈGE AVANT</text>
+          <text x="14" y="41" class="vr-callout-sub">isole T de C</text>
+        </g>
+
+        <path class="vr-callout-line" d="M902 288 L868 184" />
+        <g transform="translate(728 142)">
+          <rect class="vr-callout-box" width="188" height="52" rx="12" />
+          <text x="14" y="22" class="vr-callout-title">SIÈGE ARRIÈRE</text>
+          <text x="14" y="41" class="vr-callout-sub">isole la prise P</text>
+        </g>
+
+        <path class="vr-callout-line" d="M768 382 L846 548" />
+        <g transform="translate(762 540)">
+          <rect class="vr-callout-box" width="210" height="52" rx="12" />
+          <text x="14" y="22" class="vr-callout-title">TIGE FILETÉE</text>
+          <text x="14" y="41" class="vr-callout-sub">avance ou recule le clapet</text>
+        </g>
+
+        <path class="vr-callout-line" d="M1050 432 L1038 546" />
+        <g transform="translate(984 540)">
+          <rect class="vr-callout-box" width="224" height="52" rx="12" />
+          <text x="14" y="22" class="vr-callout-title">JOINT + BAGUE</text>
+          <text x="14" y="41" class="vr-callout-sub">étanchéité de la tige</text>
+        </g>
+      </g>
+    
+    
+  </g>
+</svg>

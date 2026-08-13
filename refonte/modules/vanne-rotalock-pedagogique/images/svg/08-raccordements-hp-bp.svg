@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="vr-connections-svg" viewBox="0 0 1280 720" role="img" aria-labelledby="still-connections-title still-connections-desc">
+  <title id="still-connections-title">Raccorder le manifold et les pressostats</title>
+  <desc id="still-connections-desc">Le flexible bleu du manifold se raccorde à la prise P de la vanne BP. Le flexible rouge se raccorde à la prise P de la vanne HP. La prise P1 de chaque vanne reste réservée au pressostat et demeure sous pression.</desc>
+  <defs>
+    <marker id="connections-flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="context-stroke" />
+    </marker>
+  </defs>
+  <style>
+    .vr-connections-svg{font-family:Calibri,'Segoe UI',Arial,sans-serif}
+    .cn-title{font-family:'Trebuchet MS',Calibri,Arial,sans-serif;font-size:31px;font-weight:800;fill:#1b3a63}
+    .cn-sub{font-size:14px;font-weight:800;letter-spacing:.08em;fill:#637285}
+    .cn-panel{fill:#fffdf8;stroke:#1b3a63;stroke-width:4}
+    .cn-gauge{fill:#fffdf8;stroke:#1b3a63;stroke-width:7}
+    .cn-gauge-label{font-size:20px;font-weight:900;text-anchor:middle;fill:#10233c}
+    .cn-bar{fill:#f7f1e7;stroke:#1b3a63;stroke-width:5}
+    .cn-knob{fill:#ff6b35;stroke:#1b3a63;stroke-width:4}
+    .cn-hose-bp{fill:none;stroke:#3d7fca;stroke-width:14;stroke-linecap:round}
+    .cn-hose-hp{fill:none;stroke:#c0392b;stroke-width:14;stroke-linecap:round;stroke-dasharray:22 10}
+    .cn-hose-service{fill:none;stroke:#b06a00;stroke-width:13;stroke-linecap:round;stroke-dasharray:3 12}
+    .cn-valve{fill:#fff4e0;stroke:#1b3a63;stroke-width:5}
+    .cn-port{fill:#fffdf8;stroke:#1b3a63;stroke-width:5;stroke-linejoin:round}
+    .cn-valve-title{font-family:'Trebuchet MS',Calibri,Arial,sans-serif;font-size:24px;font-weight:900;fill:#1b3a63}
+    .cn-valve-flow{font-size:15px;font-weight:900}
+    .cn-port-label{fill:#fffdf8;stroke-width:4}
+    .cn-port-p{stroke:#1e7e54;stroke-dasharray:15 5 3 5}
+    .cn-port-p1{stroke:#c0392b;stroke-dasharray:9 6}
+    .cn-port-label text{font-size:13px;font-weight:800;fill:#10233c}
+    .cn-code{font-size:18px;fill:#1b3a63}
+    .cn-small{font-size:17px;font-weight:900;fill:#1b3a63}
+    .cn-pressostat{fill:#fffdf8;stroke:#c0392b;stroke-width:5;stroke-dasharray:10 6}
+    .cn-pressostat-title{font-size:14px;font-weight:900;fill:#c0392b;text-anchor:middle}
+    .cn-pressostat-sub{font-size:12px;font-weight:700;fill:#10233c;text-anchor:middle}
+    .cn-permanent{fill:none;stroke:#c9451a;stroke-width:8;stroke-dasharray:7 9}
+    .cn-service-unit{fill:#fffdf8;stroke:#b06a00;stroke-width:5;stroke-dasharray:3 9}
+    .cn-service-title{font-size:15px;font-weight:900;fill:#10233c;text-anchor:middle}
+    .cn-service-sub{font-size:12px;font-weight:700;fill:#637285;text-anchor:middle}
+    .cn-legend{fill:#fffdf8;stroke:#1b3a63;stroke-width:2}
+    .cn-legend-text{font-size:14px;font-weight:800;fill:#10233c}
+    @media print{.cn-panel,.cn-gauge,.cn-bar,.cn-valve,.cn-port,.cn-port-label,.cn-pressostat,.cn-service-unit,.cn-legend{fill:#fff!important}}
+  </style>
+  <rect class="cn-background" width="1280" height="720" fill="#fffdf8" />
+  <text class="cn-title" x="36" y="38">Raccorder le manifold et les pressostats</text>
+  <text class="cn-sub" x="36" y="64">P = FLEXIBLE TEMPORAIRE · P1 = PRESSOSTAT PERMANENT</text>
+
+  <g aria-label="Manifold" transform="translate(432 68)">
+    <rect class="cn-panel" width="416" height="260" rx="28" />
+    
+      <g transform="translate(112 164)">
+        <circle class="cn-gauge" r="72" />
+        <path d="M-42 22 A48 48 0 1 1 42 22" fill="none" stroke="#3d7fca" stroke-width="7" />
+        <path d="M0 12 L30 -26" stroke="#10233c" stroke-width="7" stroke-linecap="round" />
+        <circle r="8" fill="#10233c" />
+        <text class="cn-gauge-label" x="0" y="48">BP · BLEU</text>
+      </g>
+    
+      <g transform="translate(304 164)">
+        <circle class="cn-gauge" r="72" />
+        <path d="M-42 22 A48 48 0 1 1 42 22" fill="none" stroke="#c0392b" stroke-width="7" stroke-dasharray="12 7"/>
+        <path d="M0 12 L30 -26" stroke="#10233c" stroke-width="7" stroke-linecap="round" />
+        <circle r="8" fill="#10233c" />
+        <text class="cn-gauge-label" x="0" y="48">HP · ROUGE</text>
+      </g>
+    <rect class="cn-bar" x="62" y="208" width="292" height="54" rx="18" />
+    <circle class="cn-knob" cx="108" cy="235" r="19" />
+    <circle class="cn-knob" cx="308" cy="235" r="19" />
+    <text class="cn-small" x="181" y="241">MANIFOLD</text>
+  </g>
+
+  
+      <g transform="translate(92 410)">
+        <rect class="cn-valve" x="0" y="46" width="292" height="126" rx="34" />
+        <path class="cn-port" d="M106 50 V0 H166 V50 M195 50 V0 H255 V50 M106 168 V222 H166 V168" />
+        <path d="M-28 110 H96 Q136 110 136 190" fill="none" stroke="#3d7fca" stroke-width="13" stroke-linecap="round" marker-end="url(#connections-flow-arrow)" />
+        <text class="cn-valve-title" x="0" y="254">VANNE BP</text>
+        <text class="cn-valve-flow" x="0" y="278" fill="#3d7fca">BP — ASPIRATION : T → C</text>
+        <g transform="translate(196 -32)">
+          <rect class="cn-port-label cn-port-p" width="106" height="42" rx="11" />
+          <text x="13" y="27"><tspan class="cn-code">P</tspan> · SERVICE</text>
+        </g>
+        <g transform="translate(58 -32)">
+          <rect class="cn-port-label cn-port-p1" width="126" height="42" rx="11" />
+          <text x="12" y="27"><tspan class="cn-code">P1</tspan> · PRESSOSTAT</text>
+        </g>
+        <text class="cn-small" x="111" y="218">C</text>
+        <text class="cn-small" x="-22" y="100">T</text>
+      </g>
+  
+      <g transform="translate(896 410)">
+        <rect class="cn-valve" x="0" y="46" width="292" height="126" rx="34" />
+        <path class="cn-port" d="M106 50 V0 H166 V50 M195 50 V0 H255 V50 M106 168 V222 H166 V168" />
+        <path d="M136 190 Q136 110 96 110 H-28" fill="none" stroke="#c0392b" stroke-width="13" stroke-linecap="round" marker-end="url(#connections-flow-arrow)" stroke-dasharray="16 8"/>
+        <text class="cn-valve-title" x="0" y="254">VANNE HP</text>
+        <text class="cn-valve-flow" x="0" y="278" fill="#c0392b">HP — REFOULEMENT : C → T</text>
+        <g transform="translate(196 -32)">
+          <rect class="cn-port-label cn-port-p" width="106" height="42" rx="11" />
+          <text x="13" y="27"><tspan class="cn-code">P</tspan> · SERVICE</text>
+        </g>
+        <g transform="translate(58 -32)">
+          <rect class="cn-port-label cn-port-p1" width="126" height="42" rx="11" />
+          <text x="12" y="27"><tspan class="cn-code">P1</tspan> · PRESSOSTAT</text>
+        </g>
+        <text class="cn-small" x="111" y="218">C</text>
+        <text class="cn-small" x="-22" y="100">T</text>
+      </g>
+
+  <path class="cn-hose-bp" d="M628 330 C540 374 438 360 340 410" />
+  <path class="cn-hose-hp" d="M742 330 C822 374 932 360 1090 410" />
+  <path class="cn-hose-service" d="M640 330 C640 414 640 454 640 520" />
+
+  <g transform="translate(36 312)">
+    <rect class="cn-pressostat" width="180" height="86" rx="15" />
+    <text class="cn-pressostat-title" x="90" y="31">PRESSOSTAT BP</text>
+    <text class="cn-pressostat-sub" x="90" y="55">branché sur P1</text>
+    <text class="cn-pressostat-sub" x="90" y="73">toujours sous pression</text>
+  </g>
+  <path class="cn-permanent" d="M216 355 C242 355 242 410 256 410" />
+
+  <g transform="translate(1064 312)">
+    <rect class="cn-pressostat" width="180" height="86" rx="15" />
+    <text class="cn-pressostat-title" x="90" y="31">PRESSOSTAT HP</text>
+    <text class="cn-pressostat-sub" x="90" y="55">branché sur P1</text>
+    <text class="cn-pressostat-sub" x="90" y="73">toujours sous pression</text>
+  </g>
+  <path class="cn-permanent" d="M1064 355 C1036 355 1036 410 1032 410" />
+
+  <g transform="translate(530 526)">
+    <rect class="cn-service-unit" width="220" height="126" rx="18" />
+    <text class="cn-service-title" x="110" y="38">FLEXIBLE JAUNE</text>
+    <text class="cn-service-sub" x="110" y="65">vers l’équipement de service :</text>
+    <text class="cn-service-sub" x="110" y="86">pompe à vide, station de</text>
+    <text class="cn-service-sub" x="110" y="107">récupération ou bouteille</text>
+  </g>
+
+  <g transform="translate(430 668)">
+    <rect class="cn-legend" width="420" height="38" rx="11" />
+    <text class="cn-legend-text" x="16" y="25">Bleu plein : BP · Rouge tireté : HP · Ocre pointillé : service</text>
+  </g>
+</svg>

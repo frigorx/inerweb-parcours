@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Comparaison entre fonctionnement normal et restriction possible du filtre-déshydrateur</title>
+  <desc id="desc">À gauche, le liquide traverse le filtre et le voyant sans bulles. À droite, une restriction possible est suivie de bulles dans le voyant. Il faut confirmer avec l’écart de température ou la chute de pression.</desc>
+  <defs>
+    <linearGradient id="copper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9c4828"/><stop offset=".25" stop-color="#f2bf81"/><stop offset=".58" stop-color="#bf6538"/><stop offset="1" stop-color="#7f3922"/></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#667582"/><stop offset=".18" stop-color="#eef2f4"/><stop offset=".42" stop-color="#4b5965"/><stop offset="1" stop-color="#172431"/></linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#93651d"/><stop offset=".28" stop-color="#f0d27c"/><stop offset=".58" stop-color="#c8962f"/><stop offset=".82" stop-color="#ffe8a5"/><stop offset="1" stop-color="#805515"/></linearGradient>
+    <radialGradient id="glass" cx="38%" cy="30%" r="72%"><stop stop-color="#fff"/><stop offset=".48" stop-color="#d7ecf4"/><stop offset="1" stop-color="#78a9bd"/></radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3d7fca"/></marker>
+  </defs>
+  <rect x="20" y="18" width="555" height="484" rx="28" fill="#fffdf8" stroke="#1e7e54" stroke-width="7"/>
+  <rect x="38" y="36" width="519" height="48" rx="18" fill="#fffdf8" stroke="#1e7e54" stroke-width="5"/>
+  <text x="297" y="68" fill="#1e7e54" font-family="Trebuchet MS,Calibri,Arial,sans-serif" font-size="27" font-weight="700" text-anchor="middle">ÉTAT NORMAL</text>
+  <path d="M62 282H535" stroke="url(#copper)" stroke-width="30" stroke-linecap="round"/>
+  <g>
+    <path d="M110 242H146L166 222H312L332 242H368V322H332L312 342H166L146 322H110Z" fill="url(#steel)" stroke="#1b3a63" stroke-width="5"/>
+    <path d="M190 282H282" stroke="#3d7fca" stroke-width="7" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <path d="M405 250H438L454 234H510L526 250H553V314H526L510 330H454L438 314H405Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="5"/>
+    <circle cx="479" cy="282" r="39" fill="url(#glass)" stroke="#1b3a63" stroke-width="5"/>
+    <path d="M452 282H506" stroke="#1e7e54" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <text x="238" y="385" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">Filtre traversé</text>
+  <text x="479" y="385" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">Liquide continu</text>
+  <text x="297" y="454" fill="#1e7e54" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle">Aucun indice local de restriction</text>
+
+  <rect x="625" y="18" width="555" height="484" rx="28" fill="#fffdf8" stroke="#c0392b" stroke-width="7" stroke-dasharray="18 11"/>
+  <rect x="643" y="36" width="519" height="48" rx="18" fill="#fffdf8" stroke="#c0392b" stroke-width="5" stroke-dasharray="13 8"/>
+  <text x="902" y="68" fill="#c0392b" font-family="Trebuchet MS,Calibri,Arial,sans-serif" font-size="27" font-weight="700" text-anchor="middle">RESTRICTION POSSIBLE</text>
+  <path d="M667 282H1140" stroke="url(#copper)" stroke-width="30" stroke-linecap="round"/>
+  <g>
+    <path d="M715 242H751L771 222H917L937 242H973V322H937L917 342H771L751 322H715Z" fill="url(#steel)" stroke="#1b3a63" stroke-width="5"/>
+    <g fill="#c9451a"><circle cx="838" cy="259" r="8"/><circle cx="862" cy="280" r="10"/><circle cx="833" cy="303" r="9"/><circle cx="892" cy="302" r="7"/></g>
+    <path d="M786 282H838" stroke="#3d7fca" stroke-width="7" marker-end="url(#arrow)"/>
+    <path d="M912 255V309" stroke="#c0392b" stroke-width="8" stroke-dasharray="12 8"/>
+  </g>
+  <g>
+    <path d="M1010 250H1043L1059 234H1115L1131 250H1158V314H1131L1115 330H1059L1043 314H1010Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="5"/>
+    <circle cx="1084" cy="282" r="39" fill="url(#glass)" stroke="#1b3a63" stroke-width="5"/>
+    <g fill="#fffdf8" stroke="#3d7fca" stroke-width="4"><circle cx="1069" cy="270" r="8"/><circle cx="1097" cy="293" r="7"/><circle cx="1089" cy="261" r="5"/><circle cx="1066" cy="299" r="5"/></g>
+  </g>
+  <text x="844" y="385" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">Filtre à contrôler</text>
+  <text x="1084" y="385" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">Bulles en aval</text>
+  <rect x="681" y="417" width="442" height="54" rx="16" fill="#fffdf8" stroke="#c9451a" stroke-width="4" stroke-dasharray="12 8"/>
+  <text x="902" y="440" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">INDICE À CONFIRMER</text>
+  <text x="902" y="462" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="17" text-anchor="middle">écart de température · chute de pression · sous-refroidissement</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-labelledby="title desc">
+  <title id="title">Voyant liquide sans indicateur d’humidité</title>
+  <desc id="desc">Illustration vectorielle originale en vue de trois-quarts : corps en laiton, embouts cuivre à braser et fenêtre surélevée montrant des bulles, sans pastille d’humidité.</desc>
+  <defs>
+    <linearGradient id="copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6f2f1d"/><stop offset=".16" stop-color="#d77c49"/>
+      <stop offset=".38" stop-color="#ffd0a2"/><stop offset=".56" stop-color="#c25f35"/>
+      <stop offset=".82" stop-color="#7d331f"/><stop offset="1" stop-color="#e59a63"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#76500f"/><stop offset=".18" stop-color="#ddb44f"/>
+      <stop offset=".38" stop-color="#fff0ab"/><stop offset=".58" stop-color="#c88f28"/>
+      <stop offset=".8" stop-color="#f6d777"/><stop offset="1" stop-color="#7c5313"/>
+    </linearGradient>
+    <linearGradient id="brassSide" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#edca69"/><stop offset=".52" stop-color="#b77b20"/><stop offset="1" stop-color="#6f480f"/>
+    </linearGradient>
+    <radialGradient id="glass" cx="35%" cy="25%" r="78%">
+      <stop stop-color="#fff" stop-opacity=".98"/><stop offset=".34" stop-color="#edf8fb" stop-opacity=".9"/>
+      <stop offset=".7" stop-color="#b7d6e1" stop-opacity=".84"/><stop offset="1" stop-color="#6d9caf" stop-opacity=".94"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="150%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#10233c" flood-opacity=".22"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="452" cy="393" rx="342" ry="24" fill="#1b3a63" opacity=".1"/>
+  <g filter="url(#shadow)" stroke-linejoin="round">
+    <path d="M54 328L318 245L343 310L79 397Z" fill="url(#copper)" stroke="#71341e" stroke-width="6"/>
+    <path d="M73 341L313 266" fill="none" stroke="#ffe0bc" stroke-width="10" stroke-linecap="round" opacity=".62"/>
+    <ellipse cx="65" cy="362" rx="25" ry="37" transform="rotate(-18 65 362)" fill="#9e4c2d" stroke="#71341e" stroke-width="6"/>
+    <ellipse cx="65" cy="362" rx="14" ry="24" transform="rotate(-18 65 362)" fill="#542719"/>
+
+    <path d="M557 199L824 69Q841 62 850 78L871 112Q879 127 862 135L585 270Z" fill="url(#copper)" stroke="#71341e" stroke-width="6"/>
+    <path d="M585 217L838 90" fill="none" stroke="#ffe0bc" stroke-width="10" stroke-linecap="round" opacity=".62"/>
+    <ellipse cx="850" cy="102" rx="24" ry="37" transform="rotate(-27 850 102)" fill="#9e4c2d" stroke="#71341e" stroke-width="6"/>
+    <ellipse cx="850" cy="102" rx="13" ry="24" transform="rotate(-27 850 102)" fill="#542719"/>
+
+    <path d="M285 239L337 222L366 298L313 317Z" fill="url(#brassSide)" stroke="#1b3a63" stroke-width="5"/>
+    <path d="M543 190L595 164L628 225L571 253Z" fill="url(#brassSide)" stroke="#1b3a63" stroke-width="5"/>
+
+    <path d="M318 190Q318 165 345 151L372 137H524L553 153Q582 169 586 198V298Q584 335 551 355Q512 380 450 382Q385 380 348 356Q318 337 315 302Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="7"/>
+    <path d="M315 286Q345 330 449 337Q544 333 586 292V315Q578 350 546 366Q506 386 450 387Q387 384 350 363Q321 346 315 315Z" fill="url(#brassSide)" opacity=".66"/>
+    <path d="M337 190Q353 164 389 157H520Q552 162 567 184" fill="none" stroke="#fff0a9" stroke-width="12" stroke-linecap="round" opacity=".58"/>
+
+    <ellipse cx="450" cy="180" rx="144" ry="101" fill="#866017" stroke="#1b3a63" stroke-width="7"/>
+    <ellipse cx="450" cy="173" rx="126" ry="88" fill="url(#brass)" stroke="#f6dfa0" stroke-width="7"/>
+    <ellipse cx="450" cy="170" rx="98" ry="66" fill="url(#glass)" stroke="#1b3a63" stroke-width="7"/>
+    <path d="M380 143Q418 112 469 116" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" opacity=".78"/>
+    <g fill="#fffdf8" fill-opacity=".95" stroke="#3d7fca" stroke-width="5">
+      <ellipse cx="408" cy="169" rx="17" ry="13"/><ellipse cx="462" cy="197" rx="12" ry="9"/>
+      <ellipse cx="492" cy="157" rx="10" ry="8"/><ellipse cx="438" cy="139" rx="8" ry="6"/>
+    </g>
+    <path d="M355 237Q445 272 547 232" fill="none" stroke="#8b5e16" stroke-width="5" opacity=".55"/>
+  </g>
+</svg>

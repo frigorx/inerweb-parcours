@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" font-family="Calibri, Segoe UI, Arial, sans-serif">
+  <title id="title">Une seule tige mobile</title>
+  <desc id="desc">Le presse-étoupe reste fixe ; l’ensemble orange se déplace. Quand on tourne le carré, sa position longitudinale change avec celle du pointeau.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1b3a63" flood-opacity=".14"/></filter>
+    <pattern id="isolated-hatch" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="22" height="22" fill="#edf1f3"/><line x1="0" y1="0" x2="0" y2="22" stroke="#9aaab4" stroke-width="8"/></pattern>
+    <marker id="arrow-ink" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M3 4L47 25L3 46Z" fill="#10233c"/></marker>
+    <marker id="arrow-blue" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto"><path d="M3 4L47 25L3 46Z" fill="#3d7fca"/></marker>
+    <marker id="arrow-red" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto"><path d="M3 4L47 25L3 46Z" fill="#c0392b"/></marker>
+  </defs>
+  <rect width="1920" height="1080" fill="#f7f1e7"/>
+  <rect x="70" y="48" width="174" height="58" rx="29" fill="#1b3a63"/>
+  <text x="157" y="88" font-size="30" font-weight="800" fill="#fffdf8" text-anchor="middle" font-family="Trebuchet MS, Calibri, Arial, sans-serif">ÉTAPE 3</text>
+  <text x="276" y="94" font-size="58" font-weight="850" fill="#1b3a63" font-family="Trebuchet MS, Calibri, Arial, sans-serif">Une seule tige mobile</text>
+  <text x="76" y="154" font-size="32" font-weight="600" fill="#637285">Le presse-étoupe reste fixe ; l’ensemble orange se déplace.</text>
+  
+      <rect x="105" y="218" width="1710" height="700" rx="42" fill="#fffdf8" stroke="#aab9c5" stroke-width="4" filter="url(#shadow)"/>
+      <rect x="245" y="420" width="1295" height="280" rx="82" fill="#dfe7ea" stroke="#10233c" stroke-width="8"/>
+      <rect x="320" y="500" width="1145" height="120" rx="60" fill="#fffdf8" stroke="#aab9c5" stroke-width="5"/>
+
+      <path d="M1030 560L980 510H915L865 560L915 610H980Z" fill="#ff6b35" stroke="#10233c" stroke-width="8"/>
+      <line x1="1030" y1="560" x2="1600" y2="560" stroke="#ff6b35" stroke-width="36"/>
+      <rect x="1600" y="490" width="112" height="140" rx="13" fill="#ff6b35" stroke="#10233c" stroke-width="8"/>
+
+      <rect x="1428" y="466" width="92" height="188" rx="24" fill="#b7c2c8" stroke="#10233c" stroke-width="8"/>
+      <rect x="1450" y="478" width="48" height="164" rx="14" fill="#f2b544" stroke="#10233c" stroke-width="5"/>
+
+      <path d="M760 350H1160" fill="none" stroke="#10233c" stroke-width="9" marker-start="url(#arrow-ink)" marker-end="url(#arrow-ink)"/>
+      <text x="960" y="318" text-anchor="middle" font-size="42" font-weight="850" fill="#10233c">TOUT L’ENSEMBLE AVANCE OU RECULE</text>
+      <path d="M1070 410H1580" fill="none" stroke="#ff6b35" stroke-width="6"/>
+      <path d="M1070 392V428M1580 392V428" stroke="#ff6b35" stroke-width="6"/>
+      <text x="1325" y="382" text-anchor="middle" font-size="31" font-weight="850" fill="#c9451a">TIGE : LONGUEUR CONSTANTE</text>
+
+      <text x="947" y="750" text-anchor="middle" font-size="32" font-weight="850" fill="#c9451a">POINTEAU / BOISSEAU</text>
+      <text x="1656" y="705" text-anchor="middle" font-size="31" font-weight="850" fill="#10233c">CARRÉ DE MANŒUVRE</text>
+      <path d="M1570 315L1502 458" fill="none" stroke="#10233c" stroke-width="5" marker-end="url(#arrow-ink)"/>
+      <text x="1570" y="292" text-anchor="middle" font-size="29" font-weight="850" fill="#10233c">PRESSE-ÉTOUPE FIXE</text>
+      <path d="M1570 440C1740 355 1790 505 1700 530" fill="none" stroke="#ff6b35" stroke-width="10" marker-end="url(#arrow-ink)"/>
+
+      <rect x="270" y="780" width="1380" height="90" rx="24" fill="#fff3df" stroke="#ff6b35" stroke-width="4"/>
+      <text x="960" y="837" text-anchor="middle" font-size="36" font-weight="850" fill="#10233c">Pointeau + tige + carré = un seul ensemble rigide mobile</text>
+  <rect x="70" y="963" width="1780" height="76" rx="22" fill="#fffdf8" stroke="#aab9c5" stroke-width="3"/><circle cx="112" cy="1001" r="16" fill="#ff6b35"/><text x="148" y="1012" font-size="34" font-weight="800" fill="#10233c">Quand on tourne le carré, sa position longitudinale change avec celle du pointeau.</text>
+</svg>

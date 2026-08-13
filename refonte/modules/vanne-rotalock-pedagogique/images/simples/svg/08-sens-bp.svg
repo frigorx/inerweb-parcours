@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" font-family="Calibri, Segoe UI, Arial, sans-serif">
+  <title id="title">BP : le compresseur aspire</title>
+  <desc id="desc">Dans la vanne BP, le fluide va de T vers C. BP : aspiration. Le fluide entre par T et rejoint le compresseur par C.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1b3a63" flood-opacity=".14"/></filter>
+    <pattern id="isolated-hatch" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="22" height="22" fill="#edf1f3"/><line x1="0" y1="0" x2="0" y2="22" stroke="#9aaab4" stroke-width="8"/></pattern>
+    <marker id="arrow-ink" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M3 4L47 25L3 46Z" fill="#10233c"/></marker>
+    <marker id="arrow-blue" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto"><path d="M3 4L47 25L3 46Z" fill="#3d7fca"/></marker>
+    <marker id="arrow-red" viewBox="0 0 50 50" refX="44" refY="25" markerWidth="50" markerHeight="50" markerUnits="userSpaceOnUse" orient="auto"><path d="M3 4L47 25L3 46Z" fill="#c0392b"/></marker>
+  </defs>
+  <rect width="1920" height="1080" fill="#f7f1e7"/>
+  <rect x="70" y="48" width="174" height="58" rx="29" fill="#1b3a63"/>
+  <text x="157" y="88" font-size="30" font-weight="800" fill="#fffdf8" text-anchor="middle" font-family="Trebuchet MS, Calibri, Arial, sans-serif">ÉTAPE 8</text>
+  <text x="276" y="94" font-size="58" font-weight="850" fill="#1b3a63" font-family="Trebuchet MS, Calibri, Arial, sans-serif">BP : le compresseur aspire</text>
+  <text x="76" y="154" font-size="32" font-weight="600" fill="#637285">Dans la vanne BP, le fluide va de T vers C.</text>
+  
+      <rect x="105" y="220" width="1710" height="695" rx="42" fill="#fffdf8" stroke="#aab9c5" stroke-width="4" filter="url(#shadow)"/>
+      <rect x="140" y="455" width="710" height="180" rx="88" fill="#dfe7ea" stroke="#10233c" stroke-width="9"/>
+      <rect x="850" y="630" width="140" height="250" rx="30" fill="#dfe7ea" stroke="#10233c" stroke-width="9"/>
+      <rect x="995" y="210" width="130" height="250" rx="28" fill="#dfe7ea" stroke="#10233c" stroke-width="9"/>
+      <rect x="1285" y="210" width="130" height="250" rx="28" fill="#dfe7ea" stroke="#10233c" stroke-width="9"/>
+      <rect x="250" y="350" width="1290" height="400" rx="115" fill="#dfe7ea" stroke="#10233c" stroke-width="9"/>
+      <rect x="160" y="480" width="1330" height="130" rx="65" fill="#fffdf8" stroke="#10233c" stroke-width="6"/>
+      <rect x="163" y="483" width="1324" height="124" rx="61" fill="#84b7ec"/>
+      <rect x="887" y="545" width="66" height="312" fill="#84b7ec"/>
+      <rect x="1027" y="240" width="66" height="305" fill="#84b7ec"/>
+      <rect x="1317" y="240" width="66" height="305" fill="#84b7ec"/>
+      <path d="M800 476L838 510H800Z" fill="#4f5f68"/><path d="M800 614L838 580H800Z" fill="#4f5f68"/>
+      <path d="M1220 476L1182 510H1220Z" fill="#4f5f68"/><path d="M1220 614L1182 580H1220Z" fill="#4f5f68"/>
+      <line x1="1085" y1="545" x2="1645" y2="545" stroke="#ff6b35" stroke-width="30"/><path d="M935 545L980 500H1040L1085 545L1040 590H980Z" fill="#ff6b35" stroke="#10233c" stroke-width="8"/>
+      <path d="M300 545H760C860 545 920 600 920 675V800" fill="none" stroke="#fffdf8" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M300 545H760C860 545 920 600 920 675V800" fill="none" stroke="#3d7fca" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"  marker-end="url(#arrow-blue)"/>
+      <rect x="1435" y="455" width="90" height="180" rx="23" fill="#b7c2c8" stroke="#10233c" stroke-width="8"/>
+      <rect x="1456" y="468" width="48" height="154" rx="13" fill="#f2b544" stroke="#10233c" stroke-width="5"/>
+      <rect x="1645" y="480" width="110" height="130" rx="16" fill="#ff6b35" stroke="#10233c" stroke-width="9"/>
+      <text x="1700" y="688" text-anchor="middle" font-size="27" font-weight="850" fill="#10233c">CARRÉ</text>
+      <text x="1480" y="416" text-anchor="middle" font-size="24" font-weight="850" fill="#10233c">PRESSE-ÉTOUPE FIXE</text>
+      <path d="M1480 426V451" stroke="#10233c" stroke-width="4" marker-end="url(#arrow-ink)"/>
+      <rect x="147" y="475" width="110" height="78" rx="20" fill="#1b3a63"/><text x="202" y="529" text-anchor="middle" font-size="43" font-weight="900" fill="#fffdf8">T</text>
+      <rect x="865" y="812" width="110" height="78" rx="20" fill="#1b3a63"/><text x="920" y="866" text-anchor="middle" font-size="43" font-weight="900" fill="#fffdf8">C</text>
+      <rect x="975" y="185" width="170" height="94" rx="20" fill="#1b3a63"/><text x="1060" y="225" text-anchor="middle" font-size="31" font-weight="900" fill="#fffdf8">P1</text><text x="1060" y="260" text-anchor="middle" font-size="23" font-weight="800" fill="#fffdf8">PRESSOSTAT</text>
+      <rect x="1220" y="185" width="260" height="94" rx="20" fill="#1b3a63"/><text x="1350" y="225" text-anchor="middle" font-size="31" font-weight="900" fill="#fffdf8">P</text><text x="1350" y="260" text-anchor="middle" font-size="24" font-weight="850" fill="#fffdf8">VOIE DE SERVICE</text>
+      <rect x="205" y="772" width="52" height="34" rx="8" fill="#84b7ec" stroke="#3d7fca" stroke-width="3"/><text x="278" y="800" font-size="27" font-weight="850" fill="#10233c">FLUIDE BP</text>
+      
+      
+      
+      <rect x="1070" y="752" width="510" height="112" rx="25" fill="#edf5fd" stroke="#3d7fca" stroke-width="6" />
+      <text x="1325" y="798" text-anchor="middle" font-size="29" font-weight="850" fill="#3d7fca">ASPIRATION · CÔTÉ BP</text>
+      <text x="1325" y="842" text-anchor="middle" font-size="38" font-weight="900" fill="#3d7fca">T  →  C</text>
+  <rect x="70" y="963" width="1780" height="76" rx="22" fill="#fffdf8" stroke="#aab9c5" stroke-width="3"/><circle cx="112" cy="1001" r="16" fill="#ff6b35"/><text x="148" y="1012" font-size="34" font-weight="800" fill="#10233c">BP : aspiration. Le fluide entre par T et rejoint le compresseur par C.</text>
+</svg>

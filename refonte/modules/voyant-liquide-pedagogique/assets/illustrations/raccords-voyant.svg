@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Deux familles de raccordement d’un voyant liquide</title>
+  <desc id="desc">Comparaison vectorielle originale. À gauche, un voyant à embouts cuivre à braser. À droite, un voyant compact avec épaulements hexagonaux et raccords flare mâles.</desc>
+  <defs>
+    <linearGradient id="copper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#76331f"/><stop offset=".24" stop-color="#f2b77b"/><stop offset=".48" stop-color="#c46539"/><stop offset=".78" stop-color="#7b341f"/><stop offset="1" stop-color="#df915e"/></linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76500f"/><stop offset=".2" stop-color="#dab04a"/><stop offset=".42" stop-color="#fff0aa"/><stop offset=".64" stop-color="#c58a25"/><stop offset=".84" stop-color="#f0cf69"/><stop offset="1" stop-color="#70480e"/></linearGradient>
+    <linearGradient id="brassSide" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f2d273"/><stop offset=".55" stop-color="#b4781d"/><stop offset="1" stop-color="#68420d"/></linearGradient>
+    <radialGradient id="glass" cx="35%" cy="25%" r="78%"><stop stop-color="#fff"/><stop offset=".42" stop-color="#e7f5f8"/><stop offset="1" stop-color="#7aa8ba"/></radialGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="150%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#10233c" flood-opacity=".2"/></filter>
+  </defs>
+
+  <rect x="20" y="20" width="550" height="430" rx="28" fill="#fffdf8" stroke="#1b3a63" stroke-width="5"/>
+  <rect x="630" y="20" width="550" height="430" rx="28" fill="#fffdf8" stroke="#1b3a63" stroke-width="5"/>
+  <text x="295" y="68" fill="#1b3a63" font-family="Trebuchet MS,Calibri,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="middle">RACCORDS À BRASER</text>
+  <text x="905" y="68" fill="#1b3a63" font-family="Trebuchet MS,Calibri,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="middle">RACCORDS FLARE</text>
+
+  <!-- Version à braser : vue trois-quarts compacte -->
+  <g filter="url(#shadow)" stroke-linejoin="round">
+    <path d="M70 301L215 253L232 300L87 349Z" fill="url(#copper)" stroke="#71341e" stroke-width="5"/>
+    <path d="M364 238L506 181L523 224L381 286Z" fill="url(#copper)" stroke="#71341e" stroke-width="5"/>
+    <ellipse cx="78" cy="326" rx="18" ry="25" transform="rotate(-18 78 326)" fill="#8c4027" stroke="#71341e" stroke-width="5"/>
+    <ellipse cx="511" cy="203" rx="17" ry="25" transform="rotate(-24 511 203)" fill="#8c4027" stroke="#71341e" stroke-width="5"/>
+    <path d="M205 221Q205 193 231 179L255 166H340L367 182Q390 196 392 221V310Q388 341 357 355Q328 369 295 369Q254 367 228 352Q205 337 203 310Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="6"/>
+    <path d="M203 294Q243 328 295 329Q349 328 392 290V318Q382 348 354 359Q326 371 295 371Q255 369 229 355Q209 343 203 318Z" fill="url(#brassSide)" opacity=".62"/>
+    <ellipse cx="295" cy="207" rx="101" ry="70" fill="#805914" stroke="#1b3a63" stroke-width="6"/>
+    <ellipse cx="295" cy="202" rx="84" ry="58" fill="url(#brass)" stroke="#f4dc94" stroke-width="6"/>
+    <ellipse cx="295" cy="200" rx="64" ry="42" fill="url(#glass)" stroke="#1b3a63" stroke-width="6"/>
+    <ellipse cx="295" cy="200" rx="22" ry="15" fill="#1e7e54" stroke="#0f5a39" stroke-width="5"/>
+    <path d="M247 183Q274 160 310 164" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+  </g>
+  <text x="295" y="417" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle">Protéger le corps pendant le brasage</text>
+
+  <!-- Version flare : corps compact, hexagones et raccords mâles -->
+  <g filter="url(#shadow)" stroke-linejoin="round">
+    <path d="M738 233L787 205H1019L1069 233V315L1019 344H787L738 315Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="6"/>
+    <path d="M703 224L752 224L780 251V297L752 324H703L679 301V247Z" fill="url(#brassSide)" stroke="#1b3a63" stroke-width="6"/>
+    <path d="M1058 224H1107L1131 247V301L1107 324H1058L1030 297V251Z" fill="url(#brassSide)" stroke="#1b3a63" stroke-width="6"/>
+
+    <path d="M647 250L703 234V314L647 298L633 284V264Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="6"/>
+    <path d="M1107 234L1163 250L1177 264V284L1163 298L1107 314Z" fill="url(#brass)" stroke="#1b3a63" stroke-width="6"/>
+    <ellipse cx="640" cy="274" rx="13" ry="24" fill="#6d470d" stroke="#1b3a63" stroke-width="5"/>
+    <ellipse cx="1170" cy="274" rx="13" ry="24" fill="#6d470d" stroke="#1b3a63" stroke-width="5"/>
+    <path d="M654 246V302M666 242V306M678 239V309M690 236V312" stroke="#7b5011" stroke-width="4"/>
+    <path d="M1120 238V310M1132 241V307M1144 244V304M1156 247V301" stroke="#7b5011" stroke-width="4"/>
+
+    <ellipse cx="905" cy="208" rx="105" ry="73" fill="#805914" stroke="#1b3a63" stroke-width="6"/>
+    <ellipse cx="905" cy="202" rx="88" ry="61" fill="url(#brass)" stroke="#f4dc94" stroke-width="6"/>
+    <ellipse cx="905" cy="199" rx="66" ry="44" fill="url(#glass)" stroke="#1b3a63" stroke-width="6"/>
+    <ellipse cx="905" cy="199" rx="23" ry="16" fill="#1e7e54" stroke="#0f5a39" stroke-width="5"/>
+    <path d="M854 181Q882 158 920 161" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+    <path d="M775 300Q842 332 1019 300" fill="none" stroke="#8a5b13" stroke-width="5" opacity=".55"/>
+  </g>
+  <text x="905" y="417" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle">Joint, portée et couple selon la notice</text>
+
+  <rect x="206" y="466" width="788" height="42" rx="18" fill="#fffdf8" stroke="#c9451a" stroke-width="4" stroke-dasharray="12 8"/>
+  <text x="600" y="494" fill="#10233c" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">IDENTIFIER LE MODÈLE AVANT DE CHOISIR LA MÉTHODE DE MONTAGE</text>
+</svg>

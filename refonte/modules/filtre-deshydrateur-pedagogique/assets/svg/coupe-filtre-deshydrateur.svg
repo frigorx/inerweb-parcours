@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Coupe pédagogique d’un filtre-déshydrateur</title>
+  <desc id="desc">Le fluide entre à gauche, traverse le noyau dessiccant, le média filtrant et la plaque perforée, puis sort à droite. Un ressort maintient l’ensemble.</desc>
+  <rect width="1400" height="720" rx="30" fill="#fffdf8"/>
+  <path d="M70 360h176" stroke="#bd7043" stroke-width="72" stroke-linecap="round"/>
+  <path d="M1154 360h176" stroke="#bd7043" stroke-width="72" stroke-linecap="round"/>
+  <path d="M210 196c46-66 100-96 166-96h648c66 0 120 30 166 96v328c-46 66-100 96-166 96H376c-66 0-120-30-166-96Z" fill="#eef3f7" stroke="#10233c" stroke-width="16"/>
+  <path d="M282 246c34-46 72-64 116-64h610c44 0 82 18 116 64v228c-34 46-72 64-116 64H398c-44 0-82-18-116-64Z" fill="#f7f1e7" stroke="#637285" stroke-width="6"/>
+  <path d="M332 294h74l24-38 30 76 32-76 32 76 30-76 28 76 28-38h28" fill="none" stroke="#c9451a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="616" y="236" width="326" height="248" rx="38" fill="#d4c7a7" stroke="#6f5c38" stroke-width="8"/>
+  <g fill="#fffdf8" stroke="#8b7a55" stroke-width="3">
+    <circle cx="674" cy="288" r="10"/><circle cx="730" cy="288" r="10"/><circle cx="786" cy="288" r="10"/><circle cx="842" cy="288" r="10"/><circle cx="898" cy="288" r="10"/>
+    <circle cx="646" cy="346" r="10"/><circle cx="702" cy="346" r="10"/><circle cx="758" cy="346" r="10"/><circle cx="814" cy="346" r="10"/><circle cx="870" cy="346" r="10"/><circle cx="926" cy="346" r="10"/>
+    <circle cx="674" cy="404" r="10"/><circle cx="730" cy="404" r="10"/><circle cx="786" cy="404" r="10"/><circle cx="842" cy="404" r="10"/><circle cx="898" cy="404" r="10"/>
+    <circle cx="646" cy="458" r="10"/><circle cx="702" cy="458" r="10"/><circle cx="758" cy="458" r="10"/><circle cx="814" cy="458" r="10"/><circle cx="870" cy="458" r="10"/><circle cx="926" cy="458" r="10"/>
+  </g>
+  <path d="M958 236h46v248h-46z" fill="#f4e8cf" stroke="#c9451a" stroke-width="6" stroke-dasharray="10 8"/>
+  <path d="M1022 224v272" stroke="#1b3a63" stroke-width="10"/>
+  <g fill="#fffdf8" stroke="#1b3a63" stroke-width="4">
+    <circle cx="1022" cy="260" r="10"/><circle cx="1022" cy="310" r="10"/><circle cx="1022" cy="360" r="10"/><circle cx="1022" cy="410" r="10"/><circle cx="1022" cy="460" r="10"/>
+  </g>
+  <path d="M112 360h154M278 360h254M548 360h46M1046 360h244" fill="none" stroke="#3d7fca" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#3d7fca">
+    <path d="m238 330 54 30-54 30z"/><path d="m512 330 54 30-54 30z"/><path d="m1074 330 54 30-54 30z"/>
+  </g>
+  <g font-family="Calibri, Segoe UI, Arial, sans-serif" fill="#10233c">
+    <text x="74" y="84" font-size="28" font-weight="700">COUPE DE PRINCIPE — LES CONSTRUCTIONS VARIENT SELON LES FABRICANTS</text>
+    <g font-size="20" font-weight="700">
+      <text x="382" y="658">Ressort</text>
+      <text x="742" y="658">Noyau dessiccant</text>
+      <text x="964" y="658">Média filtrant</text>
+      <text x="1144" y="658">Plaque perforée</text>
+    </g>
+    <g stroke="#637285" stroke-width="3">
+      <path d="M430 622 472 490"/><path d="M746 622 770 486"/><path d="M978 622 980 490"/><path d="M1100 622 1022 490"/>
+    </g>
+  </g>
+</svg>

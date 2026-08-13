@@ -1,0 +1,130 @@
+@page {
+  size: A4 landscape;
+  margin: 15mm;
+}
+
+html,
+body {
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.app-shell,
+.course-grid,
+.lesson {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.topbar,
+.stepper,
+.bottom-nav,
+.visual-controls,
+.source-button,
+.sources-dialog,
+.skip-link {
+  display: none !important;
+}
+
+.lesson {
+  display: grid !important;
+  grid-template-columns: 34% 66% !important;
+  gap: 8mm !important;
+}
+
+.lesson-copy,
+.visual-card,
+.visual-root,
+.fact,
+.key-box,
+.warning-box,
+.neutral-box,
+.compare-card,
+.mission-card,
+.composition-card,
+.symbol-card,
+.burnout-card,
+.quiz-choice,
+.quiz-feedback {
+  break-inside: avoid !important;
+  border-color: #1b3a63 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.installation-photo,
+.connection-photo-panel,
+.cutaway-media,
+.cartridge-lab,
+.real-image-compare figure {
+  break-inside: avoid !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.lesson-copy,
+.visual-card {
+  min-height: 160mm;
+  padding: 6mm !important;
+  border: 1.5pt solid #1b3a63 !important;
+  border-radius: 0 !important;
+}
+
+.visual-root {
+  min-height: 120mm;
+  border: 1pt solid #1b3a63 !important;
+}
+
+.visual-root img {
+  max-width: 100% !important;
+  max-height: 125mm !important;
+}
+
+.lesson-copy h1,
+.visual-heading h2,
+.compare-card strong,
+.mission-card strong,
+.composition-card strong,
+.symbol-card strong,
+.burnout-card strong {
+  color: #1b3a63 !important;
+}
+
+.lesson-intro,
+.lesson-detail,
+.visual-heading p,
+.visual-caption,
+.compare-card small,
+.mission-card small,
+.composition-card small,
+.symbol-card small,
+.burnout-card small {
+  color: #000 !important;
+}
+
+.takeaway,
+.key-box {
+  border-style: double !important;
+  border-color: #1e7e54 !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.warning-box,
+.quiz-choice.bad {
+  border-style: dashed !important;
+  border-color: #c0392b !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.mobile,
+.particle,
+.water-molecule {
+  display: none !important;
+}

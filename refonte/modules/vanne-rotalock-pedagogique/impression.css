@@ -1,0 +1,140 @@
+@page {
+  size: A4 landscape;
+  margin: 15mm;
+}
+
+html,
+body {
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.app-shell {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.topbar,
+.stepper,
+.bottom-nav,
+.controls,
+.visual-controls,
+.reading-tools,
+.skip-link,
+.gallery-button,
+.gallery-actions {
+  display: none !important;
+}
+
+.lesson {
+  display: grid !important;
+  grid-template-columns: 32% 68% !important;
+  gap: 8mm !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.lesson-copy,
+.visual-card,
+.visual-root,
+.fact,
+.state-row,
+.key-box,
+.danger-box,
+.neutral-box,
+.quiz-prompt,
+.scenario-choice,
+.scenario-mark {
+  break-inside: avoid !important;
+  border-color: #1b3a63 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.quiz-hotspot-layer {
+  display: none !important;
+}
+
+.scenario-choice,
+.scenario-mark {
+  border-color: #1b3a63 !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.lesson-copy,
+.visual-card {
+  min-height: 165mm;
+  border: 1.5pt solid #1b3a63 !important;
+}
+
+.lesson-copy h1,
+.visual-heading h2,
+.fact strong,
+.state-row strong {
+  color: #1b3a63 !important;
+}
+
+.lesson-intro,
+.fact small,
+.state-row small,
+.visual-caption,
+.visual-heading p {
+  color: #000 !important;
+}
+
+.visual-root {
+  min-height: 125mm;
+}
+
+.visual-root > svg,
+.visual-root > img {
+  max-width: 100%;
+  max-height: 135mm;
+}
+
+.mobile {
+  display: none !important;
+}
+
+.key-box {
+  border-style: double !important;
+  border-color: #1e7e54 !important;
+}
+
+.danger-box {
+  border-style: dashed !important;
+  border-color: #c0392b !important;
+}
+
+.gallery-shell {
+  display: block !important;
+}
+
+.gallery-stage {
+  display: block !important;
+}
+
+.viewer-shell,
+.stage {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.image-wrap {
+  border: 1.5pt solid #1b3a63 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  break-inside: avoid !important;
+}
+
+.image-wrap img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
