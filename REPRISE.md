@@ -295,6 +295,20 @@ normal ne porte pas une trace du dispositif.
 `BETA/` et le zip sont **hors dépôt** (`.gitignore`) : ce sont des produits, refaits d'une
 commande — `node build/paquet-beta.mjs`.
 
+### 🫙 Quatre composants du circuit rangés le 13/08 au soir (commit `cd8e579`, non poussé)
+
+Bouteille liquide · filtre déshydrateur · vanne Rotalock (la v5 mini-jeux, vérifiée par
+diff contre son zip) · voyant liquide — copiés du Bureau dans `refonte/modules/`, sur le
+modèle du module KV ci-dessous. Exclusions : `qa/` du filtre (8,5 Mo de captures non
+référencées), doublon interne et `build/` de la Rotalock. Branchés : palier 3 « Les
+organes » (champ `essai:`, la place « La vanne de service — existe, à raccorder au
+moteur » est servie) et l'espace enseignant, badge « à valider ». Vérifié servi en local :
+les 4 s'ouvrent sans erreur console. Côté pack pilote-fluides : bouteille, filtre et
+voyant y sont AUSSI (avec `couverture.json`, reliés g9/g9b, commit `ff60f12` poussé) ;
+la vanne y était déjà en version adaptée (`vanne-service-interactive`). Comme tout le
+reste : **à valider en relecture métier**. Restent à écrire : les capsules du moteur qui
+introduisent chacun des quatre.
+
 ### 🔬 Module régulateurs KV : reçu, essayé, PUBLIÉ le 07/08 au soir
 
 `REGULATEURS-KV-PEDAGOGIQUES-PROTOTYPE-2026-08-07.zip` (Bureau, « inerweb full ia\Livraisons »),
