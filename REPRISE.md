@@ -66,6 +66,21 @@ moment de la copie. C'est la référence à citer si l'on doit un jour prouver c
 **PUBLIÉ le 06/08/2026**, sur feu vert de F. Henninot, au titre de l'exception « écosystème
 habilitation fluides » de [[feedback_diffusion_gelee]].
 
+> ⚠️ **Piège de déploiement, payé du 06 au 14/08** : le site est resté figé HUIT JOURS alors
+> que les push passaient. Cause : un run GitHub Actions resté en « waiting » (06/08 17 h 54,
+> vraisemblablement une approbation d'environnement apparue en cours de route) **tenait le
+> verrou de concurrence `pages`** — tous les runs suivants s'empilaient en « pending » à
+> 0 job, puis mouraient annulés (l'un après 157 h). Levé le 14/08 au matin : `gh run cancel`
+> du run zombie, et toute la semaine est partie d'un coup en 40 s. **Réflexe à garder :
+> après tout push ici, vérifier `gh run list -R frigorx/inerweb-parcours --limit 1` — un
+> statut « pending » qui dure = chercher un run « waiting » plus ancien et l'annuler.**
+> Un push réussi ne prouve JAMAIS la page publiée ([[feedback_tableau_de_bord_non_indexe]]).
+
+**Palier 3 (« Les organes ») COMPLET depuis le 13/08 au soir** : bouteille liquide, filtre
+déshydrateur, vanne Rotalock, voyant, détendeur (version enrichie du 07/08), électrovanne —
+six modules dans `refonte/modules/`, tous « à valider en relecture », chacun son essai dans
+le parcours et sa carte enseignant. Les capsules d'introduction restent à écrire.
+
 - Dépôt : <https://github.com/frigorx/inerweb-parcours> — **public**
 - Site : <https://frigorx.github.io/inerweb-parcours/>
 - **Lien à envoyer aux relecteurs** :
