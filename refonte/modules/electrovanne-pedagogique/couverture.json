@@ -1,0 +1,14 @@
+{
+  "cours": "electrovanne-interactive",
+  "titre": "L'électrovanne de ligne liquide",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "ecrans": 14,
+  "codes": {
+    "1.05": ["ecran-1", "ecran-2", "ecran-3", "ecran-4", "ecran-5", "ecran-6", "ecran-7", "ecran-8", "ecran-10"]
+  },
+  "appui": {
+    "12.07": ["ecran-9", "ecran-12"],
+    "10.01": ["ecran-11"],
+    "9.09": ["ecran-13", "ecran-14"]
+  }
+}

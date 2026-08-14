@@ -1,0 +1,14 @@
+{
+  "cours": "detendeur-interactif",
+  "titre": "Le détendeur thermostatique en détail",
+  "reference": "règlement d’exécution (UE) 2024/2215, annexe I",
+  "ecrans": 14,
+  "codes": {
+    "1.04": ["ecran-1", "ecran-2", "ecran-3", "ecran-4", "ecran-5", "ecran-6", "ecran-7", "ecran-9"],
+    "9.10": ["ecran-8", "ecran-10", "ecran-11", "ecran-14"]
+  },
+  "appui": {
+    "10.01": ["ecran-12"],
+    "9.09": ["ecran-13"]
+  }
+}
