@@ -56,7 +56,7 @@ choix du lecteur), les mêmes commandes partout. On apprend l'outil une fois.
 | **2. Le fluide** | Lire le code d'un fluide ✅ · A1, A2L, A3 : lire l'étiquette ✅ · Familles et PRP 🔨 · Les bouteilles 🔨 (Mission Bouteilles) | fonds riche |
 | **3. Les organes** | Compresseur 🔨 · Condenseur 🔨 · Détendeur 🔨 · Évaporateur 🔨 · Vanne de service ✔ (récente, à raccorder) · **Électrovanne ⏳** | gisement : tome 3 + organe-par-organe |
 | **4. Les gestes** | Lecture de mano ⏳ · Tirage au vide ✅ · Récupérer le fluide ✅ · Balayage et épreuve d'azote 🔨 · Pesée et charge 🔨 | planches déjà là |
-| **5. La régulation** | Surchauffe ✅ · **Sous-refroidissement ⏳** · **KVP-KVL-KVR ⏳ (Franck, en cours)** · **Détendeur électronique ⏳** · Pressostats ⏳ | le grand absent du fonds — une seule planche existe |
+| **5. La régulation** | Surchauffe ✅ · **Sous-refroidissement ⏳** · **KVP-KVL-KVR ✅ (livré et intégré au pack le 18/08 — 8 écrans, vue 3D, 3 questions)** · **Détendeur électronique ⏳** · Pressostats ⏳ | le grand absent du fonds — une seule planche existe |
 | **6. La règle et l'examen** | Contrôle d'étanchéité ✅ · Intervenir sur A3 (hydrocarbures) 🔨 · Aptitude et capacité 🔨 · Bilan thermique et performance 🔨 · **La chaîne de l'intervention** ✔ (parcours de synthèse, en clôture) | fonds riche |
 
 **La sécurité n'est pas un palier : elle est partout** (règle établie — récurrente, jamais un
