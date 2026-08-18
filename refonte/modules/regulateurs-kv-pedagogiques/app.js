@@ -520,7 +520,7 @@
           <path class="circuit-direction hp-direction" d="M475 80H345V218H110" marker-end="url(#circuit-arrow-hp)"/>
           <path class="circuit-direction bp-direction" d="M100 320V402H410" marker-end="url(#circuit-arrow-bp)"/>
           <path class="circuit-direction bp-direction" d="M680 405H850V365H875" marker-end="url(#circuit-arrow-bp)"/>
-          ${flowDots("M930 275 V80 H85 V300", "hp-dot", 9)}
+          ${flowDots("M930 275 V80 H330 V235 H85 V300", "hp-dot", 9)}
           ${flowDots("M85 300 V420 H870 V355 H880", "bp-dot", 7)}
 
           <!-- Échangeurs : géométrie validée de la planche canonique regulateurs-pression.svg. -->
