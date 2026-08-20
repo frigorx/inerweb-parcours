@@ -925,9 +925,74 @@
   }
 
   function visualEclatementFilmSlot(v) {
-    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820b" title="' + esc(v.label) + '"></iframe>' +
+    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820c" title="' + esc(v.label) + '"></iframe>' +
       '<p class="sr-only">Huit scènes commandées par l’élève. Le gaz de refoulement entre par une buse de petite section, à grande vitesse, et frappe une plaque de choc placée en face. Les gouttes d’huile s’y écrasent et s’y rassemblent pendant que le gaz change de direction vers la sortie haute. Dans le corps, la section s’ouvre et la vitesse s’effondre : l’huile, bien plus dense, ne suit plus. Elle ruisselle sur la plaque et la paroi, s’accumule au fond, puis un flotteur commande un pointeau qui la renvoie vers le carter. Le brouillard le plus fin traverse : le rendement reste inférieur à celui d’un séparateur à coalescence.</p>';
   }
+
+  /* La chute de vitesse entre la buse et le corps. Les deux disques comparent les
+     sections de passage : c'est le point que le texte porte mal et que le dessin
+     montre d'un coup d'oeil. */
+  function visualBurstVelocity(v) {
+    var body = arrowMarker();
+    body += '<text class="svg-title" x="360" y="30" text-anchor="middle">LA SECTION S’OUVRE, LA VITESSE TOMBE</text>';
+    /* le corps du separateur */
+    body += '<rect class="component" x="250" y="72" width="310" height="250" rx="24"/>';
+    /* la buse : section etroite */
+    body += '<path class="pipe" d="M28 168 H250"/>';
+    body += '<rect x="250" y="154" width="86" height="28" rx="6" fill="#cbd5df" stroke="#1b3a63" stroke-width="3"/>';
+    body += '<path d="M318 154 L336 161 L336 175 L318 182 Z" fill="#8fa3b8"/>';
+    /* le jet, la plaque, les gouttes qui continuent tout droit */
+    body += '<path d="M340 168 H424" fill="none" stroke="#c0392b" stroke-width="6" stroke-linecap="round" stroke-dasharray="16 9"/>';
+    body += '<rect x="430" y="108" width="16" height="168" rx="5" fill="#8fa3b8" stroke="#1b3a63" stroke-width="3"/>';
+    body += oilDrop(458, 168, .7, "bob") + oilDrop(456, 196, .55, "bob") + oilDrop(460, 224, .5, "bob");
+    /* le gaz vire vers la sortie */
+    body += '<path d="M420 146 Q452 96 508 92 H560" fill="none" stroke="#c0392b" stroke-width="6" stroke-linecap="round" stroke-dasharray="12 8" marker-end="url(#arrow)"/>';
+    body += '<path class="pipe" d="M560 92 H688" marker-end="url(#arrow)"/>';
+    /* la nappe au fond */
+    body += '<rect x="258" y="288" width="294" height="26" rx="10" fill="#d69a16" opacity=".8"/>';
+    /* les deux sections comparees, a l'echelle */
+    body += '<circle cx="96" cy="300" r="14" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>';
+    body += '<circle cx="186" cy="300" r="44" fill="#fffdf8" stroke="#1b3a63" stroke-width="3"/>';
+    body += '<text class="svg-small" x="96" y="264" text-anchor="middle">section buse</text>';
+    body += '<text class="svg-small" x="186" y="240" text-anchor="middle">section corps</text>';
+    body += '<text class="svg-small" x="141" y="356" text-anchor="middle">même débit, sections différentes</text>';
+    /* legendes, toutes posees hors des traces */
+    body += '<text class="svg-label" x="28" y="146">refoulement</text>';
+    body += '<text class="svg-small" x="293" y="206" text-anchor="middle">buse</text>';
+    body += '<text class="svg-label" x="464" y="100">plaque de choc</text>';
+    body += '<text class="svg-small" x="688" y="72" text-anchor="end">vers le condenseur</text>';
+    body += '<text class="svg-small" x="552" y="264" text-anchor="end">l’huile continue tout droit</text>';
+    body += '<text class="svg-title" x="404" y="356" text-anchor="middle">LE GAZ TOURNE, L’HUILE NON</text>';
+    return svg(v.label, body);
+  }
+
+  /* Le choix de la famille se lit sur l'installation, pas sur une liste de criteres :
+     deux situations dessinees, et la famille que chacune appelle. */
+  function visualSeparatorChoice(v) {
+    var body = arrowMarker();
+    body += '<text class="svg-title" x="360" y="30" text-anchor="middle">LA FAMILLE SE CHOISIT SUR L’INSTALLATION</text>';
+    body += '<line x1="360" y1="52" x2="360" y2="330" stroke="#aab8c8" stroke-width="2" stroke-dasharray="8 8"/>';
+    /* petite installation : lignes courtes, un compresseur */
+    body += '<text class="svg-label" x="176" y="76" text-anchor="middle">UN POSTE, LIGNES COURTES</text>';
+    body += organe(28, 96, 128, 108, libraryCompressor, "COMPRESSEUR", "");
+    body += '<path class="pipe-thin" d="M156 132 H214"/>';
+    body += organe(214, 96, 118, 108, libraryOilSeparator, "SÉPARATEUR", "");
+    body += '<path class="oil-line" d="M273 204 V246 H92 V204" marker-end="url(#arrow)"/>';
+    body += component(44, 258, 264, 62, "ÉCLATEMENT", "sans cartouche, perte de charge faible", "good-shape");
+    /* centrale : deux compresseurs, longues lignes */
+    body += '<text class="svg-label" x="544" y="76" text-anchor="middle">CENTRALE, LIGNES LONGUES</text>';
+    body += organe(396, 96, 104, 50, libraryCompressor, "COMPR. 1", "");
+    body += organe(396, 154, 104, 50, libraryCompressor, "COMPR. 2", "");
+    body += '<path class="pipe-thin" d="M500 121 H528 V150"/>';
+    body += '<path class="pipe-thin" d="M500 179 H528 V150"/>';
+    body += '<path class="pipe-thin" d="M528 150 H566"/>';
+    body += organe(566, 96, 118, 108, libraryOilSeparator, "SÉPARATEUR", "");
+    body += '<path class="oil-line" d="M625 204 V246 H448 V204" marker-end="url(#arrow)"/>';
+    body += component(412, 258, 264, 62, "COALESCENCE", "plus fin sur le brouillard, cartouche", "warn-shape");
+    body += '<text class="svg-small" x="360" y="356" text-anchor="middle">Plus les lignes s’allongent, plus l’huile qui échappe au séparateur coûte cher.</text>';
+    return svg(v.label, body);
+  }
+
   function visualQuiz(v, question) {
     var code = question && question.code ? question.code : moduleData.codes.join(" · ");
     var body = '<circle class="accent pulse" cx="150" cy="190" r="92"/><text x="150" y="225" text-anchor="middle" fill="#c9451a" font-family="Trebuchet MS, sans-serif" font-size="104" font-weight="900">?</text>';
@@ -989,6 +1054,8 @@
       oilRiserClaudeSlot: visualOilRiserClaudeSlot,
       oilReturnFilmSlot: visualOilReturnFilmSlot,
       eclatementFilmSlot: visualEclatementFilmSlot,
+      burstVelocity: visualBurstVelocity,
+      separatorChoice: visualSeparatorChoice,
       quiz: function (item) { return visualQuiz(item, question); }
     };
     return (map[visual.kind] || visualQuiz)(visual);

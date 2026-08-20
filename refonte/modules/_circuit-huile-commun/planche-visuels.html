@@ -87,24 +87,28 @@
   (function () {
     "use strict";
 
-    var STATIONS = [
-      ["technologie-huiles-frigorifiques", "1 · Les familles d’huile"],
-      ["technologie-huiles-choix-controle", "2 · Choisir et contrôler"],
-      ["retour-huile-naturel", "3 · Le retour naturel"],
-      ["retour-huile-verifier", "4 · Vérifier le retour"],
-      ["elements-circuit-huile", "5 · Séparer et stocker"],
-      ["elements-circuit-huile-regler", "6 · Mettre sous pression"],
-      ["separateur-huile-pedagogique", "7 · Le séparateur"],
-      ["reservoir-huile-pedagogique", "8 · Le réservoir"],
-      ["clapet-differentiel-huile-pedagogique", "9 · Le clapet différentiel"],
-      ["regulateur-huile-mecanique-pedagogique", "10 · Le régulateur AC&R"],
-      ["traxoil-pedagogique", "11 · TraxOil"],
-      ["traxoil-installer", "12 · Monter le TraxOil"],
-      ["pressostat-differentiel-huile-pedagogique", "13 · Le pressostat"],
-      ["pressostat-huile-securite", "14 · Sécurité d’huile"],
-      ["diagnostic-circuit-huile", "15 · Diagnostiquer"],
-      ["diagnostic-circuit-huile-conclure", "16 · Conclure"]
-    ];
+    /* La liste des stations n'est plus tenue ici : elle est LUE dans la carte de la
+       rame, elle-même engendrée par outils/ordonner-ligne.js. Une liste en dur diverge
+       au premier ajout de station, et une planche qui ignore une station ment. */
+    var STATIONS = [];
+
+    function chargerStations() {
+      return fetch("../circuit-huile-interactif/app.js?planche=" + Date.now())
+        .then(function (r) { return r.text(); })
+        .then(function (src) {
+          /* Lecture sans expression régulière : le fichier est engendré, sa forme est
+             stable, et une regex de plus est une occasion de plus de se tromper. */
+          var out = [], bouts = src.split('url: "../');
+          for (var k = 1; k < bouts.length; k++) {
+            var id = bouts[k].slice(0, bouts[k].indexOf("/"));
+            var avant = bouts[k - 1], t = avant.lastIndexOf('title: "');
+            var titre = t < 0 ? id : avant.slice(t + 8, avant.indexOf('"', t + 8));
+            out.push([id, (out.length + 1) + " · " + titre]);
+          }
+          if (!out.length) throw new Error("aucune station lue dans la carte de la rame");
+          return out;
+        });
+    }
 
     var planche = document.getElementById("planche");
     var cage = document.getElementById("cage");
@@ -195,7 +199,9 @@
 
     document.getElementById("lancer").addEventListener("click", function () {
       planche.innerHTML = "";
-      suivant(0);
+      etat.textContent = "lecture de la carte de la rame…";
+      chargerStations().then(function (liste) { STATIONS = liste; suivant(0); })
+        .catch(function (e) { etat.textContent = "carte illisible : " + e.message; });
     });
     document.getElementById("imprimer").addEventListener("click", function () { window.print(); });
   })();

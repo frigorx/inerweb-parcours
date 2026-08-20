@@ -470,3 +470,101 @@ contre 6,7 pour le hasard pur : la nouvelle station tombe exactement au hasard.
   avec « groupe par groupe ». Elles sont sur la ligne des pressostats et
   préexistaient.
 - **Les 94 narrations n’ont toujours pas été écoutées par un humain.**
+
+---
+
+## 20/08 — audit de la rame : le défaut n'est pas où on le croyait
+
+Franck : « certaines animations ne sont pas conformes, des anciennes animations sont
+pourries, audit complet et remise à plat de toute la rame ». Audit mené sur les
+**94 visuels des 17 stations**, par la planche de relecture.
+
+### D'abord, la planche mentait
+
+Elle portait sa **propre liste de stations, en dur**. Elle rassemblait 89 visuels et
+16 stations alors que la rame en compte 94 et 17 : elle ignorait purement et
+simplement la station ajoutée le matin même. Une planche qui ignore une station ne
+peut pas servir de contrôle. Elle lit désormais la carte de la rame, elle-même
+engendrée par la liste ordonnée.
+
+### Ensuite, mon propre contrôle mentait
+
+Premier passage : **14 visuels signalés avec du texte hors cadre**. Vérification :
+les textes fautifs faisaient 5 à 9 pixels de large — « TC », « V », « bar ». Ce sont
+des libellés situés **à l'intérieur de symboles de bibliothèque imbriqués**, dont
+`getBBox()` renvoie les coordonnées dans le repère local du sous-SVG, pas dans celui
+du cadre.
+
+C'est exactement le piège déjà rencontré sur ce chantier, et il a été retendu.
+Remesuré en coordonnées écran (`getBoundingClientRect`), qui est insensible aux
+repères imbriqués :
+
+| Contrôle, sur les 94 visuels | Résultat |
+| --- | ---: |
+| Textes hors du cadre | **0** |
+| Chevauchements texte sur texte | **0** |
+
+**La rame n'a aucun défaut de géométrie.** Le contrôle du matin disait vrai.
+
+### Le vrai défaut, lui, est massif
+
+| | |
+| --- | ---: |
+| Écrans de la rame | 94 |
+| **Dessins distincts** | **43** |
+| Écrans qui réaffichent un dessin déjà vu ailleurs | **51, soit 54 %** |
+
+Les réemplois les plus lourds :
+
+| Dessin | Emplois | Formes | Stations |
+| --- | ---: | ---: | --- |
+| `differential` | 7 | 7 | 6, 9, 10 ×3, 11, 17 |
+| `diagnostic` | 7 | 21 | 6, 7, 9, 10, 11, 13, 17 |
+| `active` | 6 | 34 | 5, 7, 9, 10 ×2, 11 |
+| `drivers` | 4 | 9 | 3 ×2, 7, 8 |
+| `observe` | 4 | 6 | 4, 7, 11, 16 |
+| `decision` | 4 | 7 | 5, 10, 11, 17 |
+
+Et **14 dessins portent plus de mots que de traits** — ce ne sont pas des schémas,
+ce sont des tableaux de texte dans un cadre :
+
+`oilFamiliesHydrocarbon` 19 textes pour 9 formes · `oilFamiliesSynthetic` 19/9 ·
+`oilCompatibility` 17/10 · `oilViscosityTemperature` 15/7 · `oilMoisture` 14/9 ·
+`oilSelection` 14/11 · `oilIsoVg` **12 textes pour 4 formes**.
+
+C'est cela que Franck voit : un élève qui traverse la rame revoit sept fois le même
+cadre à sept propos différents, et lit des mots là où il attend un schéma.
+
+### Ce qui a été corrigé tout de suite : la station du matin
+
+**Elle aggravait le défaut.** Sur ses cinq écrans, quatre réutilisaient un dessin déjà
+vu, et l'un d'eux était franchement faux : l'écran « la chute de vitesse » affichait
+`floatReturn`, c'est-à-dire **un flotteur**, alors qu'il parle de section et d'inertie.
+
+Deux dessins lui ont été écrits :
+
+- `burstVelocity` — la buse, le jet, la plaque, et surtout **deux disques à l'échelle**
+  qui comparent la section de la buse à celle du corps. C'est le point que le texte
+  porte mal et que le dessin donne d'un coup d'œil. 14 formes pour 10 textes.
+- `separatorChoice` — deux installations dessinées, un poste à lignes courtes et une
+  centrale à lignes longues, chacune avec la famille qu'elle appelle. 63 formes pour
+  13 textes.
+
+`route` et `separatorMethods` restent partagés : sur un écran de rappel spiralé, revoir
+le même repère est voulu, pas subi.
+
+### Ce qui reste à décider
+
+La remise à plat des 47 autres écrans est un travail de fond, et surtout **une suite de
+décisions pédagogiques** : pour chacun, soit le dessin partagé est légitime (rappel,
+même propos), soit il faut un dessin propre. Ce n'est pas une manipulation de fichiers.
+Découpage proposé, par ordre de gain :
+
+1. Les **14 dessins bavards** — les six de la station des huiles en premier : ce sont
+   les plus lus, et les plus pauvres.
+2. `differential` ×7 et `decision` ×4 — sept et quatre propos différents sous le même
+   cadre à sept formes.
+3. `diagnostic` ×7 et `observe` ×4 — à différencier station par station.
+4. `active` ×6 et `drivers` ×4.
+
+Une station complète à valider avant de dérouler les suivantes, comme au premier tour.

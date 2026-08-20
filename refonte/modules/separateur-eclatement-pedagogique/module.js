@@ -60,7 +60,7 @@ window.OIL_MODULE = {
         "Beaucoup plus dense que le gaz, l’huile garde son élan quand le gaz ralentit et change de direction : elle continue tout droit, frappe la plaque, puis ruisselle vers le fond."
       ],
       box: { type: "warning", text: "Ne pas retenir de vitesse « normale » apprise par cœur : les valeurs de passage se lisent dans la notice de l’appareil et l’étude de l’installation." },
-      visual: { kind: "floatReturn", title: "Suivre l’huile jusqu’au retour", label: "Coupe pédagogique d’un séparateur à flotteur commandant un pointeau de retour" }
+      visual: { kind: "burstVelocity", title: "Comparer les deux sections", label: "Buse de petite section et corps de grande section : à débit égal, la vitesse s’effondre et l’huile ne suit plus le virage du gaz" }
     },
     {
       id: "choisir",
@@ -73,7 +73,7 @@ window.OIL_MODULE = {
         "Sur une centrale, ou dès que les tuyauteries s’allongent, l’huile qui échappe au séparateur devient un vrai problème : on préfère alors un coalescent, en acceptant sa cartouche et sa perte de charge."
       ],
       box: { type: "exam", text: "Le choix se fait sur l’installation complète — architecture, longueur des lignes, plage de débit — jamais sur le seul prix de l’appareil." },
-      visual: { kind: "drivers", title: "Croiser les paramètres", label: "Débit, couple huile-fluide et technologie du séparateur" }
+      visual: { kind: "separatorChoice", title: "Lire l’installation avant de choisir", label: "Un poste à lignes courtes appelle un séparateur à éclatement ; une centrale à lignes longues appelle un coalescent" }
     }
   ],
   quiz: [
