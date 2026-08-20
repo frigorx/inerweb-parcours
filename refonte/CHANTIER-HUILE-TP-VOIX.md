@@ -568,3 +568,70 @@ Découpage proposé, par ordre de gain :
 4. `active` ×6 et `drivers` ×4.
 
 Une station complète à valider avant de dérouler les suivantes, comme au premier tour.
+
+---
+
+## 20/08 — clôture : bon à tirer donné, la rame est poussée
+
+Franck, après relecture à l'écran : « là on est bon, touche plus à rien, on met à jour et
+c'est réglé ». C'est le bon à tirer, et il lève le gel de diffusion pour cette rame.
+
+### Sa doctrine, à garder pour la suite de la ligne
+
+> « C'est une ligne avec beaucoup beaucoup beaucoup de stations, mais c'est un domaine très
+> complexe qui nécessite énormément d'escales pour comprendre comment ça marche. Et
+> malheureusement j'ai très peu de temps à lui consacrer. D'où le volume important : une
+> mini-station porte de l'autoapprentissage. »
+
+Le nombre de stations n'est donc pas un défaut à corriger, c'est le **moyen** : le temps de
+classe manque, l'élève avance seul, et une station courte est une escale qu'il peut faire
+entre deux séances. Ne jamais chercher à « regrouper pour faire moins de stations ».
+
+### État livré
+
+| | |
+| --- | ---: |
+| Stations | 17 |
+| Écrans de cours | 94 |
+| Questions | 97 |
+| Durée totale | 1 h 55 |
+| Stations sous 10 min | 17 / 17 |
+| Narrations écrites | 94 |
+| Fichiers de voix | 188 à l'atelier, 94 dans le pack |
+| Banque, note en cochant la plus longue | 6,5 / 20 pour 6,7 au hasard |
+| Textes hors cadre, sur texte, sur tracé (station 8 et film) | 0 |
+| Gouttes hors de leur schéma, sur les 94 visuels | 0 |
+
+### Ce qui reste, et qui n'a pas été fait
+
+1. **Six dessins portent encore un texte barré par un trait**, relevés et localisés au
+   pixel : `route` (« ÉVAPORATEUR » 67 %), `levelZones` (« NIVEAU NORMAL » 100 %,
+   « INJECTION » 71 %, « ALARME BASSE » 43 %), `partload` (4 libellés à 14 %),
+   `bpHp` (2), `floatReturn` (1), `oilJourney` (« 4 » à 71 %). Le détail — coordonnées du
+   texte et tracé coupable — est dans le commit « Les deux appareils ouverts ».
+   Arrêté sur consigne de Franck en cours de correction.
+2. **47 écrans partagent leur dessin** avec un autre écran, et **14 dessins portent plus de
+   mots que de traits**. La planche de relecture les nomme un par un et les filtre.
+   Chaque cas est une décision pédagogique : un rappel spiralé doit revoir le même repère,
+   `differential` sept fois pour sept propos ne le doit pas.
+3. **Personne n'a écouté les 94 narrations.** Le contrôle vérifie qu'aucun écran n'est muet
+   et qu'aucune narration ne vise un écran disparu. Il ne dit rien de la justesse métier, du
+   rythme ni de la prononciation.
+4. **La phrase « en France l'éclatement, ailleurs en Europe le coalescent »** vient de Franck
+   et n'a pas de source écrite. Elle est formulée comme un constat d'usage, pas comme une
+   statistique. À sourcer ou à retirer.
+5. **Claude Design** : `BRIEF-coupes-separateurs.md` est déposé dans le projet Design pour
+   un rendu plus fin des deux coupes. Non lancé — une itération Design se paie sur le même
+   quota, et la version Code passe tous les contrôles.
+
+### Le piège technique de la journée, à ne pas retendre
+
+En SVG, la **propriété CSS `transform` écrase l'attribut `transform`**. Un élément placé par
+attribut et animé par une classe CSS perd sa position dès la première image et saute à
+l'origine du dessin. C'est ce qui vidait toutes les animations de la rame. Règle :
+**le placement sur un groupe, l'animation sur l'enfant** — ou `transform-box: fill-box`.
+
+Corollaire pour les contrôles : `getBBox()` rend des coordonnées **locales** dès qu'il y a un
+SVG imbriqué, et la boîte d'un tracé en L couvre tout le coude. Un contrôle géométrique
+honnête passe par `getBoundingClientRect()` et `getScreenCTM()`, et ne teste le contact que
+sur le **trait**, jamais sur un aplat clair.

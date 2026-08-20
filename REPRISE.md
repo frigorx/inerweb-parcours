@@ -5,6 +5,35 @@
 
 ---
 
+## 0. Où en est la rame « Le circuit d’huile » — 20 août 2026
+
+**Bon à tirer donné par Franck le 20/08 ; gel de diffusion levé pour cette rame : poussée.**
+
+17 stations · 94 écrans · 97 questions · 1 h 55 · toutes les stations sous 10 minutes ·
+94 narrations écrites, 188 fichiers de voix à l’atelier et 94 embarqués dans le pack ·
+banque à 6,5 / 20 en cochant la proposition qui se détache, pour 6,7 au hasard pur.
+
+Doctrine de Franck, à ne pas contredire : **le nombre de stations n’est pas un défaut à
+corriger, c’est le moyen.** Le domaine est complexe, le temps de classe manque, l’élève
+avance seul : une mini-station est une escale qu’il peut faire entre deux séances.
+Ne jamais chercher à regrouper pour faire moins de stations.
+
+La vérité du chantier vit dans **`refonte/CHANTIER-HUILE-TP-VOIX.md`**. Trois outils
+tiennent la rame, au dépôt :
+
+    node outils/ordonner-ligne.js           rangs, enchaînements, carte, branche du plan
+    node outils/copier-ligne-vers-pack.mjs  recopie dans pilote-fluides, liens recollés
+    node outils/extraire-banque-huile.mjs   sort les QCM pour mesurer-banque.mjs
+
+Ajouter une station = **une ligne dans `outils/ordonner-ligne.js`**, puis relancer les trois.
+
+⚠️ **Ce qui reste et n’est pas fait** : six dessins portent un texte barré par un trait
+(`route`, `levelZones`, `partload`, `bpHp`, `floatReturn`, `oilJourney`) ; 47 écrans
+partagent leur dessin avec un autre écran et 14 portent plus de mots que de traits — la
+planche de relecture les nomme et les filtre ; **personne n’a écouté les 94 narrations**.
+
+---
+
 ## 1. Ce que c'est, et pourquoi il existe
 
 Une **zone de travail séparée** pour refondre les planches animées et les tutos guidés
@@ -80,6 +109,41 @@ habilitation fluides » de [[feedback_diffusion_gelee]].
 déshydrateur, vanne Rotalock, voyant, détendeur (version enrichie du 07/08), électrovanne —
 six modules dans `refonte/modules/`, tous « à valider en relecture », chacun son essai dans
 le parcours et sa carte enseignant. Les capsules d'introduction restent à écrire.
+
+**Ligne complète « Le circuit d’huile »** *(état du 19/08, dépassé : elle comptait alors dix stations et 89 écrans — voir le § 0 en tête pour l’état livré)* : une entrée
+interactive unique dans `refonte/modules/circuit-huile-interactif/index.html` présente les
+dix modules comme une ligne de métro. Elle est reliée au parcours et à l’espace enseignant ;
+chaque bilan ouvre la station suivante et le terminus revient à la carte. La progression comprend la
+technologie des huiles, le retour naturel, la carte des éléments, puis les modules
+détaillés du séparateur, du réservoir, du clapet différentiel, du régulateur mécanique
+AC&R, du TraxOil et du pressostat différentiel d’huile. Elle se termine par une synthèse
+de diagnostic à indices croisés. Ensemble : 89 stations de cours et 91 questions de préparation au niveau habilitation
+fluides. Aucun de ces modules n’est encore validé, publié ou versé au RAG actif.
+
+**Tracés et sources d’huile** : le retour naturel traite la pente, le siphon en pied, le
+contre-siphon, le circuit complet et la double colonne aux charges minimale/maximale. Les
+schémas utilisent en ligne les symboles validés du compresseur, de l’échangeur à air et du
+séparateur d’huile ; les organes absents du catalogue restent des enveloppes fonctionnelles
+explicitement légendées. Les architectures de pression, BP/HP et de régulation ont été
+recoupées avec les cours locaux et les documentations fabricants listés dans
+`refonte/modules/_circuit-huile-commun/PARCOURS-COMPLET.md`.
+Le module « Retour d’huile naturel » intègre maintenant deux adaptations natives du projet
+Claude Design transmis dans `Réponses sur le projet.zip` : un calcul manipulable à la station 7
+et les onze scènes complètes à la station 8. Les deux attendent un clic, fonctionnent hors ligne,
+utilisent les symboles techniques inerWeb et distinguent le repère de l’exercice de la valeur
+prescrite pour l’installation. Provenance et SHA-256 sont consignés dans les deux dossiers
+`assets/claude-retour-huile*`.
+Le module pressostat intègre à la station 5 une adaptation hors ligne de la version v2
+fournie dans le ZIP Claude du 19/08 : deux soufflets opposés, T1–T2, résistance, bilame et
+ouverture L–M, avec trois états commandés au clic. L’original n’est pas embarqué tel quel
+car son lecteur charge React et Babel depuis Internet. La provenance et le SHA-256 sont
+consignés dans `assets/claude-pressostat/PROVENANCE.md`. La carte générale distingue désormais
+niveau d’huile et pression nette de lubrification. QA locale verte : 356 écrans
+de cours et 364 écrans de questions contrôlés sur 10 modules × 4 formats, avec
+la ligne complète, les liens de station à station, les deux adaptations du retour d’huile,
+leurs cadres internes sans débordement, les trois états Claude du pressostat, le hors-ligne,
+le clavier, les sources, le mode DYS, l’impression, le stockage bloqué, la stabilité
+des zones et la voix sans autoplay.
 
 - Dépôt : <https://github.com/frigorx/inerweb-parcours> — **public**
 - Site : <https://frigorx.github.io/inerweb-parcours/>
