@@ -45,6 +45,20 @@
     figure svg { display: block; width: 100%; height: auto; }
     figcaption { font-size: 12px; color: var(--muted); line-height: 1.35; }
     .kind { font-family: Consolas, monospace; font-size: 11px; color: var(--orange-dark); }
+    .verdict { font-size: 12px; font-weight: 700; border-radius: 6px; padding: 4px 8px; line-height: 1.3; }
+    .v-ok { background: #e3f5ec; color: #14603e; }
+    .v-reemploi { background: #fff4e0; color: #8b4c00; }
+    .v-bavard { background: #fdece8; color: #a3301a; }
+    figure.masque { display: none; }
+    .bilan { background: #fff; border: 2px solid var(--navy); border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
+    .bilan h2 { margin: 0 0 10px; font-size: 17px; color: var(--navy); }
+    .bilan table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    .bilan th, .bilan td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #e6ecf2; }
+    .bilan td.n { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+    .filtres { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 0; }
+    .filtres button { border: 1px solid var(--navy); background: #fff; color: var(--navy);
+      border-radius: 8px; padding: 6px 12px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .filtres button[aria-pressed="true"] { background: var(--navy); color: #fff; }
     iframe { position: absolute; left: -9999px; top: 0; width: 1280px; height: 860px; border: 0; }
 
     /* Les SVG sortent de leur module : sans ces règles ils tomberaient au noir.
@@ -176,6 +190,7 @@
       if (i >= STATIONS.length) {
         etat.textContent = "planche complète — " +
           document.querySelectorAll("figure").length + " visuels";
+        analyser();
         cage.innerHTML = "";
         return;
       }
@@ -197,6 +212,72 @@
       cage.appendChild(f);
     }
 
+    /* Un dessin qui ressert pour un autre propos est le defaut principal de la rame :
+       la planche le NOMME au lieu de laisser le relecteur le deviner d'un ecran a l'autre. */
+    function analyser() {
+      var figs = [].slice.call(document.querySelectorAll("figure"));
+      var stations = [].slice.call(document.querySelectorAll("h2.station"))
+        .map(function (h) { return h.textContent.split(" — ")[0]; });
+      var rang = [], i = -1;
+      [].forEach.call(document.querySelectorAll("h2.station, figure"), function (n) {
+        if (n.tagName === "H2") i++; else rang.push(i);
+      });
+      var par = {};
+      figs.forEach(function (f, k) {
+        var kind = (f.querySelector(".kind") || {}).textContent || "?";
+        (par[kind] = par[kind] || []).push(stations[rang[k]].split(" · ")[0]);
+      });
+      var reemplois = 0, bavards = 0, propres = 0;
+      figs.forEach(function (f, k) {
+        var kind = (f.querySelector(".kind") || {}).textContent || "?";
+        var svg = f.querySelector("svg");
+        var formes = svg ? svg.querySelectorAll("path,rect,circle,ellipse,line,polyline,polygon,use,image").length : 0;
+        var textes = svg ? svg.querySelectorAll("text").length : 0;
+        var n = par[kind].length;
+        var d = document.createElement("div");
+        var etats = [];
+        if (n > 1) { d.className = "verdict v-reemploi"; etats.push("réemploi");
+          d.textContent = "⟳ ce dessin sert " + n + " fois — stations " + par[kind].join(", "); reemplois++; }
+        else if (textes > formes && formes > 0) { d.className = "verdict v-bavard"; etats.push("bavard");
+          d.textContent = "✎ plus de mots que de traits — " + textes + " textes pour " + formes + " formes"; bavards++; }
+        else { d.className = "verdict v-ok";
+          d.textContent = "✔ dessin propre à cet écran — " + formes + " formes, " + textes + " textes"; propres++; }
+        if (textes > formes && formes > 0 && n > 1) { etats.push("bavard");
+          d.textContent += " · et " + textes + " textes pour " + formes + " formes"; }
+        f.setAttribute("data-etat", etats.join(" ") || "ok");
+        f.appendChild(d);
+      });
+      var distincts = Object.keys(par).length;
+      var b = document.createElement("div");
+      b.className = "bilan";
+      var lignes = Object.keys(par).filter(function (k) { return par[k].length > 1; })
+        .sort(function (a, c) { return par[c].length - par[a].length; })
+        .map(function (k) {
+          return "<tr><td><span class='kind'>" + k + "</span></td><td class='n'>" + par[k].length +
+                 "</td><td>stations " + par[k].join(", ") + "</td></tr>";
+        }).join("");
+      b.innerHTML = "<h2>Ce qu'il y a à trancher</h2>" +
+        "<p style='margin:0 0 10px'>" + figs.length + " écrans pour <strong>" + distincts +
+        " dessins distincts</strong>, soit <strong>" + (figs.length - distincts) +
+        " écrans de plus que de dessins</strong>. " + reemplois +
+        " écrans partagent leur dessin avec au moins un autre écran, " + bavards +
+        " portent plus de mots que de traits, " + propres + " ont un dessin qui n'est qu'à eux.</p>" +
+        "<div class='filtres'><button data-f='tout' aria-pressed='true'>Tout voir</button>" +
+        "<button data-f='reemploi' aria-pressed='false'>Réemplois seuls</button>" +
+        "<button data-f='bavard' aria-pressed='false'>Bavards seuls</button></div>" +
+        "<table><thead><tr><th>Dessin</th><th class='n'>Emplois</th><th>Où</th></tr></thead><tbody>" +
+        lignes + "</tbody></table>";
+      planche.parentNode.insertBefore(b, planche);
+      b.querySelector(".filtres").addEventListener("click", function (e) {
+        var bt = e.target.closest("button"); if (!bt) return;
+        var f = bt.getAttribute("data-f");
+        [].forEach.call(b.querySelectorAll(".filtres button"), function (x) {
+          x.setAttribute("aria-pressed", x === bt ? "true" : "false"); });
+        figs.forEach(function (fig) {
+          fig.classList.toggle("masque", f !== "tout" && fig.getAttribute("data-etat").indexOf(f) < 0); });
+      });
+    }
+
     document.getElementById("lancer").addEventListener("click", function () {
       planche.innerHTML = "";
       etat.textContent = "lecture de la carte de la rame…";
@@ -204,6 +285,10 @@
         .catch(function (e) { etat.textContent = "carte illisible : " + e.message; });
     });
     document.getElementById("imprimer").addEventListener("click", function () { window.print(); });
+
+    /* La planche se rassemble seule a l'ouverture : arriver sur une page vide et
+       devoir deviner qu'il faut cliquer, c'est un premier pas de trop. */
+    document.getElementById("lancer").click();
   })();
   </script>
 </body>
