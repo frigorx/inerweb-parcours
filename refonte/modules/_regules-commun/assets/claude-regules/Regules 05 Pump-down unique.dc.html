@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"Trois lignes dans l armoire : ligne liquide, memoire de la demande, compresseur derriere ses deux securites"},{"name":"Fermeture","dur":7,"desc":"B1 ferme : Y1 ouvre et le relais KA1 s excite, se tient lui-meme, puis KM1 colle"},{"name":"Circulation","dur":10,"desc":"La croix du frigoriste : BP de regulation sur l aspiration, BP de securite qui veille"},{"name":"Consigne","dur":8,"desc":"B1 ouvre, Y1 se ferme, KA1 tient : tirage au vide jusqu a 0,3 bar puis KA1 et KM1 tombent"},{"name":"ArretUnique","dur":7,"desc":"La pression remonte au-dela de 1,8 bar et rien ne recolle : la memoire est effacee"},{"name":"Chronologie","dur":6,"desc":"Chronogramme 5 pistes : air, B1 et Y1, pression BP, memoire KA1, KM1"},{"name":"LaCle","dur":3,"desc":"Carte de synthese : un seul tirage au vide par arret, la securite reste disponible"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "zooms": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesPumpDownUnique" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-kit.jsx ./regules-05.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>

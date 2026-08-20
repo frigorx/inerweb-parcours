@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Arret","dur":5,"desc":"Installation a l arret : le thermostat est satisfait, rien ne circule"},{"name":"Migration","dur":10,"desc":"Le fluide migre vers le point le plus froid et le liquide s accumule dans le serpentin de l evaporateur"},{"name":"Carter","dur":6,"desc":"Zoom carter : le liquide frigorigene s accumule au-dessus de l huile, le graissage n est plus assure"},{"name":"Redemarrage","dur":7,"desc":"KM1 colle, le piston aspire du liquide qui ne se comprime pas"},{"name":"Casse","dur":6,"desc":"Coup de liquide, casse du compresseur et carte de synthese"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": true,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesMigrationLiquide" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-02b.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>

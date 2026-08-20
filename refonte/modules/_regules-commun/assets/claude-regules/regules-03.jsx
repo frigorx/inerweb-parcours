@@ -1,0 +1,321 @@
+/* Les régules · Station 3 — Le pump-down automatique
+   Deux commandes séparées : B1 → Y1, pressostat BP de régulation → KM1. */
+(function () {
+  var useComposition = window.useComposition;
+  var CompositionStage = window.CompositionStage;
+  var Captions = window.Captions;
+  var Easing = window.Easing;
+  var animate = window.animate;
+  var clamp = window.clamp;
+  var RK = window.RK;
+  var C = RK.C, MOTION = RK.MOTION;
+  var Chip = RK.Chip, Croix = RK.Croix, CroixLabels = RK.CroixLabels, ChambreFond = RK.ChambreFond;
+  var Pipes = RK.Pipes, Chambre = RK.Chambre, Machine = RK.Machine, PipeChips = RK.PipeChips;
+  var ContactNO = RK.ContactNO, ContactNF = RK.ContactNF, Disjoncteur = RK.Disjoncteur, Bobine = RK.Bobine, Manometre = RK.Manometre;
+
+  function pw(T, pts) {
+    if (T <= pts[0][0]) return pts[0][1];
+    for (var i = 1; i < pts.length; i++) {
+      if (T <= pts[i][0]) {
+        var a = pts[i - 1], b = pts[i];
+        var u = (T - a[0]) / Math.max(b[0] - a[0], 0.0001);
+        return a[1] + (b[1] - a[1]) * u;
+      }
+    }
+    return pts[pts.length - 1][1];
+  }
+
+  function inIvs(T, ivs) {
+    for (var i = 0; i < ivs.length; i++) if (T >= ivs[i][0] && T < ivs[i][1]) return true;
+    return false;
+  }
+
+  function rampIvs(T, ivs, up, down) {
+    var m = 0;
+    for (var i = 0; i < ivs.length; i++) {
+      var a = ivs[i][0], b = ivs[i][1], v = 0;
+      if (T >= a && T < b) v = clamp((T - a) / up, 0, 1);
+      else if (T >= b) v = clamp(1 - (T - b) / down, 0, 1);
+      m = Math.max(m, v);
+    }
+    return m;
+  }
+
+  function accumIvs(T, ivs) {
+    var s = 0;
+    for (var i = 0; i < ivs.length; i++) s += Math.max(0, clamp(T, ivs[i][0], ivs[i][1]) - ivs[i][0]);
+    return s;
+  }
+
+  function Cabinet(p) {
+    return (
+      <g transform="translate(0,330)">
+        <rect x="70" y="1030" width="2470" height="790" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="620" y="1106" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN AUTOMATIQUE</text>
+        <text x="2500" y="1106" textAnchor="end" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">DEUX COMMANDES SÉPARÉES</text>
+
+        <line x1="340" y1="1200" x2="340" y2="1720" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
+        <line x1="90" y1="1200" x2="140" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
+        <line x1="292" y1="1200" x2="340" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
+        <Disjoncteur x={140} y={1200} live={true} above={true} code="Q1" />
+        <line x1="2270" y1="1200" x2="2270" y2="1720" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
+        <text x="340" y="1784" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="2270" y="1784" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+
+        {/* ligne 1 · le thermostat commande l'électrovanne */}
+        <text x="392" y="1218" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">1 · LIGNE LIQUIDE</text>
+        <path d="M 340 1260 L 760 1260 M 900 1260 L 1780 1260 M 1940 1260 L 2270 1260"
+              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
+        <path d="M 340 1260 L 760 1260" fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
+              strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity="0.85" />
+        <g opacity={p.y1Live ? 1 : 0}>
+          <path d="M 900 1260 L 1780 1260 M 1940 1260 L 2270 1260" fill="none" stroke={C.orange} strokeWidth="13"
+                strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} />
+        </g>
+        <ContactNO x={760} y={1260} arm={p.arm} live={p.y1Live} glyph="θ" code="B1" sub="thermostat" />
+        <Bobine x={1780} y={1260} code="Y1" sub="ÉLECTROVANNE LIGNE LIQUIDE" live={p.y1Live} above={true} />
+
+        {/* ligne 2 · la basse pression commande le compresseur */}
+        <text x="392" y="1618" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">2 · COMPRESSEUR</text>
+        <path d="M 340 1660 L 760 1660 M 980 1660 L 1180 1660 M 1320 1660 L 1780 1660 M 1940 1660 L 2270 1660"
+              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
+        <path d="M 340 1660 L 760 1660 M 980 1660 L 1180 1660" fill="none" stroke={C.orange} strokeWidth="13"
+              strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity="0.85" />
+        <g opacity={p.kmLive ? 1 : 0}>
+          <path d="M 1320 1660 L 1780 1660 M 1940 1660 L 2270 1660 L 2270 1720" fill="none" stroke={C.orange}
+                strokeWidth="13" strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} />
+        </g>
+        <ContactNF x={760} y={1660} live={true} code="HP" sub="sécurité · contact NF" />
+        <ContactNO x={1180} y={1660} arm={p.bpArm} live={p.kmLive} glyph="p" code="BP" sub="régulation · contact NO" />
+        {p.fault && <circle cx="1250" cy="1660" r="104" fill="none" stroke={C.red} strokeWidth="7" strokeDasharray="20 16" />}
+        <Bobine x={1780} y={1660} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={p.kmLive} />
+      </g>
+    );
+  }
+
+  var CH = { x0: 700, x1: 2420, tempTop: 1990, tempBot: 2180 };
+  function chx(f) { return CH.x0 + (CH.x1 - CH.x0) * f; }
+  function chTemp(v) { return CH.tempTop + ((-13 - v) / 6) * (CH.tempBot - CH.tempTop); }
+  function chBp(v) { return 2490 - clamp(v / 3, 0, 1) * 120; }
+
+  function Chrono(p) {
+    var r = MOTION.draw(38.25, 4.6)(p.T);
+    var tempPts = [[0, -15.4], [0.10, -14], [0.42, -18], [0.50, -17.6], [0.72, -16.6], [1, -15.2]];
+    var bpPts = [[0, 1.55], [0.10, 1.75], [0.13, 3.0], [0.20, 2.35], [0.42, 2.25], [0.50, 0.3],
+                 [0.72, 1.8], [0.76, 0.32], [0.82, 1.8], [0.86, 0.32], [1, 1.1]];
+    var tempPath = tempPts.map(function (q, i) { return (i ? 'L ' : 'M ') + chx(q[0]) + ' ' + chTemp(q[1]); }).join(' ');
+    var bpPath = bpPts.map(function (q, i) { return (i ? 'L ' : 'M ') + chx(q[0]) + ' ' + chBp(q[1]); }).join(' ');
+    function square(hi, lo, spans) {
+      var d = 'M ' + chx(0) + ' ' + lo;
+      spans.forEach(function (sp) {
+        d += ' L ' + chx(sp[0]) + ' ' + lo + ' L ' + chx(sp[0]) + ' ' + hi + ' L ' + chx(sp[1]) + ' ' + hi + ' L ' + chx(sp[1]) + ' ' + lo;
+      });
+      return d + ' L ' + chx(1) + ' ' + lo;
+    }
+    var note = clamp((p.T - 41.6) / 0.6, 0, 1);
+    return (
+      <g transform="translate(0,700)">
+        <rect x="70" y="1860" width="2470" height="820" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · UN CYCLE, PUIS LE COURT CYCLE</text>
+        {[['AIR DE LA', 2060], ['CHAMBRE', 2106], ['B1 ET Y1', 2296], ['PRESSION BP', 2440], ['KM1', 2586]].map(function (l) {
+          return <text key={l[1]} x="118" y={l[1]} fill={C.blue} fontSize="38" fontWeight="800">{l[0]}</text>;
+        })}
+        <rect x={chx(0.70)} y="2230" width={chx(0.90) - chx(0.70)} height="400" fill={C.red} opacity="0.07" />
+        {[[-14, '−14 · enclenchement'], [-18, '−18 · consigne']].map(function (l) {
+          return (
+            <g key={l[0]}>
+              <line x1={CH.x0} y1={chTemp(l[0])} x2={CH.x1} y2={chTemp(l[0])} stroke={C.line} strokeWidth="3" strokeDasharray="14 12" />
+              <text x={CH.x0} y={chTemp(l[0]) - 14} fill={C.mute} fontSize="28" fontWeight="700">{l[1]}</text>
+            </g>
+          );
+        })}
+        {[[1.8, '1,8 bar · enclenchement BP', C.orangeText], [0.3, '0,3 bar · coupure BP', C.blue]].map(function (l) {
+          return (
+            <g key={l[0]}>
+              <line x1={CH.x0} y1={chBp(l[0])} x2={CH.x1} y2={chBp(l[0])} stroke={l[2]} strokeWidth="3" strokeDasharray="14 12" opacity="0.7" />
+              <text x={CH.x0} y={chBp(l[0]) - 12} fill={l[2]} fontSize="26" fontWeight="800">{l[1]}</text>
+            </g>
+          );
+        })}
+        <clipPath id="chclip3">
+          <rect x={CH.x0 - 40} y="1960" width={(chx(r) - CH.x0) + 40} height="700" />
+        </clipPath>
+        <g clipPath="url(#chclip3)">
+          <path d={tempPath} fill="none" stroke={C.blue} strokeWidth="10" strokeLinejoin="round" />
+          <path d={square(2250, 2330, [[0.10, 0.42]])} fill="none" stroke={C.green} strokeWidth="10" strokeLinejoin="round" />
+          <path d={bpPath} fill="none" stroke={C.red} strokeWidth="9" strokeLinejoin="round" />
+          <path d={square(2540, 2620, [[0.13, 0.50], [0.72, 0.76], [0.82, 0.86]])} fill="none" stroke={C.orangeText} strokeWidth="10" strokeLinejoin="round" />
+        </g>
+        {r > 0.02 && r < 0.995 && (
+          <line x1={chx(r)} y1="1960" x2={chx(r)} y2="2630" stroke={C.orange} strokeWidth="6" opacity="0.85" />
+        )}
+        <g opacity={note}>
+          <text x={chx(0.31)} y="2662" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">Y1 D’ABORD, KM1 ENSUITE</text>
+          <text x={chx(0.80)} y="2662" textAnchor="middle" fill={C.red} fontSize="34" fontWeight="900">COURT CYCLE · SANS DEMANDE DE FROID</text>
+        </g>
+      </g>
+    );
+  }
+
+  function Piece(props) {
+    var c = useComposition();
+    var T = c.T, CUES = c.CUES;
+    var tY1c = CUES.Fermeture + 1.6;
+    var tKMc = CUES.Fermeture + 2.4;
+    var tY1o = CUES.Consigne + 3.4;
+    var tKMo = CUES.Consigne + 5.6;
+    var s1 = [CUES.CourtCycle + 4.4, CUES.CourtCycle + 5.3];
+    var s2 = [CUES.CourtCycle + 6.0, CUES.CourtCycle + 6.7];
+    var kmIvs = [[tKMc, tKMo], s1, s2];
+
+    var kmLive = inIvs(T, kmIvs);
+    var y1Live = T >= tY1c && T < tY1o;
+    var flow = rampIvs(T, kmIvs, 0.9, 0.7);
+    var phase = accumIvs(T, kmIvs);
+    var energy = kmLive ? 1 : 0;
+
+    var temp = pw(T, [[0, -15.4], [tY1c, -14.0], [tY1o, -18.0], [c.authoredTotal, -15.4]]);
+    var bp = pw(T, [[0, 1.55], [tY1c, 1.72], [tY1c + 0.6, 3.0], [tY1c + 1.8, 2.35], [tY1o, 2.25],
+                    [tY1o + 1.1, 1.0], [tKMo, 0.30], [s1[0], 1.80], [s1[1], 0.32],
+                    [s2[0], 1.80], [s2[1], 0.32], [c.authoredTotal, 1.05]]);
+
+    var charge = T < tY1c ? 0
+      : (T < tY1o ? clamp((T - tY1c) / 1.2, 0, 1) * 0.34
+        : 0.34 * clamp(1 - (T - tY1o) / (tKMo - tY1o), 0, 1));
+    var frostU = clamp((clamp(T, tY1c, tY1o) - tY1c) / (tY1o - tY1c), 0, 1);
+    var arm = T < tY1c ? -30
+      : (T < tY1o ? -30 + 30 * clamp(MOTION.pop(tY1c)(T), 0, 1.08) : -30 * clamp((T - tY1o) / 0.18, 0, 1));
+    var bpArm = kmLive ? 0 : -30;
+    var fault = T >= CUES.CourtCycle + 4.0 && T < CUES.Chronologie - 0.4;
+
+    var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
+    var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
+    var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
+    var propre = clamp((T - CUES.CourtCycle - 0.4) / 0.7, 0, 1) * clamp(1 - (T - CUES.CourtCycle - 3.4) / 0.6, 0, 1);
+    var alerte = clamp((T - CUES.CourtCycle - 4.2) / 0.6, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
+
+    return (
+      <div data-screen-label={'t=' + Math.floor(T) + 's'}
+           style={{ position: 'absolute', inset: 0, background: C.paper, fontFamily: font }}>
+        <svg viewBox="0 0 1920 1080" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+          <g fontFamily={font}
+             transform={'translate(' + (960 - cam.cx * cam.z) + ',' + (540 - cam.cy * cam.z) + ') scale(' + cam.z + ')'}>
+            <Croix T={T} />
+            <ChambreFond />
+            <Pipes phase={phase} flow={flow} />
+            <Chambre T={T} temp={temp} spin={phase * 300} flow={flow} phase={phase} energy={energy}
+                     frostU={frostU} liquid={charge} cid="s3" />
+            <Machine T={T} carter={0} spin={phase * 300} flow={flow} phase={phase} live={y1Live} />
+            <PipeChips T={T} />
+            <CroixLabels T={T} />
+            <g opacity={clamp((T - 14.6) / 0.8, 0, 1)}>
+              <Manometre x={2320} y={700} val={bp} cutOut={0.3} cutIn={1.8} label="BP · ASPIRATION" />
+              <rect x="2200" y="880" width="240" height="80" rx="10" fill={kmLive ? '#fff0e9' : C.blueSoft}
+                    stroke={kmLive ? C.orangeText : C.blue} strokeWidth="6" />
+              <text x="2320" y="934" textAnchor="middle" fill={kmLive ? C.orangeText : C.blue} fontSize="34" fontWeight="900">
+                {kmLive ? 'KM1 ALIMENTÉ' : 'KM1 AU REPOS'}
+              </text>
+            </g>
+            <Cabinet T={T} arm={arm} bpArm={bpArm} y1Live={y1Live} kmLive={kmLive} fault={fault} />
+            <Chrono T={T} />
+          </g>
+        </svg>
+
+        <div style={{
+          position: 'absolute', left: '3%', width: '29%', bottom: '17%', opacity: propre * (1 - keyIn),
+          background: 'rgba(255,253,248,0.96)', border: '4px solid #287a62', borderRadius: 14,
+          padding: '16px 26px', textAlign: 'center', pointerEvents: 'none'
+        }}>
+          <div style={{ color: '#287a62', font: '900 32px ' + font, letterSpacing: 2 }}>ÉVAPORATEUR VIDÉ · RIEN NE MIGRE</div>
+          <div style={{ color: C.mute, font: '700 26px ' + font, marginTop: 6 }}>le tirage au vide a fait le travail avant l’arrêt</div>
+        </div>
+
+        <div style={{
+          position: 'absolute', left: '3%', width: '29%', bottom: '17%', opacity: alerte * (1 - keyIn),
+          background: 'rgba(255,253,248,0.96)', border: '4px solid ' + C.red, borderRadius: 14,
+          padding: '16px 26px', textAlign: 'center', pointerEvents: 'none'
+        }}>
+          <div style={{ color: C.red, font: '900 32px ' + font, letterSpacing: 2 }}>COURT CYCLE · KM1 RECOLLE SANS DEMANDE DE FROID</div>
+          <div style={{ color: C.mute, font: '700 26px ' + font, marginTop: 6 }}>la seule remontée de BP suffit : le thermostat est toujours ouvert</div>
+        </div>
+
+        <div style={{ position: 'absolute', inset: 0, background: C.paper, opacity: keyIn * 0.58, pointerEvents: 'none' }} />
+
+        <div style={{
+          position: 'absolute', left: '6%', right: '6%', top: '7%', opacity: keyIn,
+          transform: 'translateY(' + (1 - keyIn) * -26 + 'px)', pointerEvents: 'none'
+        }}>
+          <div style={{
+            background: 'rgba(255,253,248,0.95)', border: '3px solid ' + C.blue, borderLeft: '16px solid ' + C.orange,
+            borderRadius: 18, padding: '26px 38px', boxShadow: '0 18px 50px rgba(27,58,99,0.18)'
+          }}>
+            <div style={{ color: C.orangeText, font: '900 24px ' + font, letterSpacing: 3 }}>STATION 3 · LE PUMP-DOWN AUTOMATIQUE</div>
+            <div style={{ color: C.blue, font: '900 54px ' + font, lineHeight: 1.1, marginTop: 8 }}>
+              Le thermostat commande Y1, la basse pression commande KM1.
+            </div>
+            <div style={{ color: C.ink, font: '700 30px ' + font, marginTop: 12 }}>
+              L’évaporateur est vidé à chaque arrêt — mais une remontée de BP suffit à faire recoller le compresseur.
+            </div>
+          </div>
+        </div>
+
+        {props.captions && (
+          <Captions
+            style={{
+              bottom: 0, left: 0, right: 0, padding: '30px 8% 28px',
+              font: '800 40px ' + font, color: C.blue, textShadow: 'none',
+              background: C.paper, borderTop: '3px solid ' + C.line
+            }}
+            items={[
+              { at: 0.4, text: 'Ici, deux commandes séparées : le thermostat sur Y1, la BP sur le compresseur.' },
+              { at: 3.2, text: 'L’installation est à l’arrêt, l’air de la chambre se réchauffe.' },
+              { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme : l’électrovanne Y1 s’ouvre seule.' },
+              { at: CUES.Fermeture + 2.4, text: 'Le liquide arrive à l’évaporateur, la pression d’aspiration monte.' },
+              { at: CUES.Fermeture + 4.2, text: 'À 1,8 bar, le pressostat BP ferme son contact : KM1 colle.' },
+              { at: CUES.Fermeture + 5.8, text: 'Le compresseur démarre après l’électrovanne, jamais avant.' },
+              { at: CUES.Circulation + 0.5, text: 'La croix du frigoriste : BP en bas, HP en haut.' },
+              { at: CUES.Circulation + 2.6, text: 'Bielle et piston : le compresseur aspire en BP et refoule en HP.' },
+              { at: CUES.Circulation + 5.2, text: 'Le pressostat BP est piqué sur l’aspiration : il suit l’évaporateur.' },
+              { at: CUES.Circulation + 7.4, text: 'Le détendeur thermostatique fait tomber la pression.' },
+              { at: CUES.Circulation + 9.0, text: 'Dans le serpentin, le liquide s’évapore : le givre se dépose.' },
+              { at: CUES.Consigne + 0.4, text: 'L’air atteint la consigne : le thermostat ouvre.' },
+              { at: CUES.Consigne + 2.0, text: 'Y1 se ferme, mais le compresseur continue de tourner.' },
+              { at: CUES.Consigne + 3.8, text: 'Tirage au vide : il vide l’évaporateur et la pression chute.' },
+              { at: CUES.Consigne + 5.8, text: 'À 0,3 bar, la BP ouvre : KM1 tombe, l’évaporateur est vide.' },
+              { at: CUES.CourtCycle + 0.4, text: 'Plus de liquide dans l’évaporateur : rien ne migre vers le carter.' },
+              { at: CUES.CourtCycle + 2.6, text: 'Mais à l’arrêt, la pression remonte doucement.' },
+              { at: CUES.CourtCycle + 4.4, text: 'À 1,8 bar, la BP referme : KM1 recolle sans demande de froid.' },
+              { at: CUES.CourtCycle + 6.0, text: 'Il tire au vide, retombe, recolle : c’est le court cycle.' },
+              { at: CUES.Chronologie + 0.4, text: 'Le chronogramme montre le décalage : Y1 d’abord, KM1 ensuite.' },
+              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: 'Et à la fin, deux redémarrages parasites sans demande de froid.' }
+            ]}
+          />
+        )}
+      </div>
+    );
+  }
+
+  function RegulesPumpDownAuto() {
+    var tw = window.useTweaks(window.OM_TWEAKS || { motionEditor: true, legendes: true, dys: false });
+    var t = tw[0], setTweak = tw[1];
+    var TweaksPanel = window.TweaksPanel, TweakToggle = window.TweakToggle, TweakSection = window.TweakSection;
+    return (
+      <React.Fragment>
+        <CompositionStage width={1920} height={1080} bg={C.paper}
+                          scenes={window.OM_SCENES} playback={window.OM_PLAYBACK}>
+          <Piece captions={t.legendes !== false} dys={!!t.dys} fixedCam={t.zooms !== true} />
+        </CompositionStage>
+        <TweaksPanel>
+          <TweakSection label="Diffusion" />
+          <TweakToggle label="Légendes à l’écran" value={t.legendes !== false} onChange={function (v) { setTweak('legendes', v); }} />
+          <TweakToggle label="Police Lexend (DYS)" value={!!t.dys} onChange={function (v) { setTweak('dys', v); }} />
+          <TweakToggle label="Zooms de caméra" value={t.zooms === true} onChange={function (v) { setTweak('zooms', v); }} />
+          <TweakSection label="Outils" />
+          <TweakToggle label="Motion editor" value={t.motionEditor !== false} onChange={function (v) { setTweak('motionEditor', v); }} />
+        </TweaksPanel>
+      </React.Fragment>
+    );
+  }
+
+  window.RegulesPumpDownAuto = RegulesPumpDownAuto;
+})();

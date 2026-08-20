@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"La chambre negative se rechauffe, le thermostat surveille et l afficheur monte vers -14"},{"name":"Fermeture","dur":7,"desc":"Le contact B1 se ferme, le courant part du rail L et excite la bobine KM1"},{"name":"Circulation","dur":10,"desc":"Le fluide fait le tour du circuit : aspiration froide, refoulement chaud, detente, retour du froid"},{"name":"Consigne","dur":8,"desc":"L air atteint -18, le thermostat ouvre et toutes les charges tombent au meme instant"},{"name":"Chronologie","dur":6,"desc":"Le chronogramme se trace : temperature, contact B1 et compresseur ont le meme profil"},{"name":"LaCle","dur":3,"desc":"Plan large et carte de synthese : une seule cause, un seul effet, aucune securite"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesCommandeDirecte" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-video.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>
