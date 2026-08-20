@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "regulateur-huile-mecanique-pedagogique",
   title: "Le régulateur d’huile mécanique AC&R",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 10",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 11",
   codes: ["1.05", "6.05"],
   voix: true,
   nextStep: "Poursuivre avec TraxOil : la régulation électronique reprend la mesure et l’admission d’huile, puis ajoute une temporisation et une sortie d’alarme.",
   nextUrl: "../traxoil-pedagogique/index.html",
-  nextLabel: "Station 11 · TraxOil : comment il travaille",
+  nextLabel: "Station 12 · TraxOil : comment il travaille",
   summaryVisual: { kind: "mechanical", label: "Régulateur mécanique de niveau avec voyant, flotteur, levier et pointeau d’admission" },
   lessons: [
     { id: "rappel", short: "Rappel", kicker: "Station 1 · Retour spiralé", recall: true, title: "Le réservoir fournit ; le régulateur dose pour un carter", lead: "Chaque compresseur possède son propre besoin de niveau.", details: ["Le réservoir et le clapet différentiel rendent l’huile disponible.", "Le régulateur mécanique, souvent appelé « pot AC&R » en atelier, admet l’huile seulement quand son flotteur détecte un niveau trop bas."], box: { type: "key", text: "Une réserve commune peut alimenter plusieurs décisions locales de niveau." }, visual: { kind: "active", title: "Replacer le régulateur", label: "Réservoir alimentant un régulateur monté sur le carter" } },

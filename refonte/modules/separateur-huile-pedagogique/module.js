@@ -5,8 +5,8 @@ window.OIL_MODULE = {
   codes: ["1.05", "6.05", "9.07"],
   voix: true,
   nextStep: "Poursuivre avec le réservoir d’huile : l’huile séparée doit être stockée et rendue disponible sans envoyer la pression de refoulement vers les carters.",
-  nextUrl: "../reservoir-huile-pedagogique/index.html",
-  nextLabel: "Station 8 · Le réservoir d’huile",
+  nextUrl: "../separateur-eclatement-pedagogique/index.html",
+  nextLabel: "Station 8 · Le séparateur à éclatement",
   summaryVisual: { kind: "separator", label: "Séparateur d’huile sur le refoulement avec sortie gaz vers condenseur et retour d’huile" },
   lessons: [
     {

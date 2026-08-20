@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "reservoir-huile-pedagogique",
   title: "Le réservoir d’huile",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 8",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 9",
   codes: ["1.05", "6.05"],
   voix: true,
   nextStep: "Poursuivre avec le clapet différentiel : le réservoir doit rester à une pression qui permet l’alimentation des régulateurs sans transmettre directement la pression de refoulement.",
   nextUrl: "../clapet-differentiel-huile-pedagogique/index.html",
-  nextLabel: "Station 9 · Le clapet différentiel d’huile",
+  nextLabel: "Station 10 · Le clapet différentiel d’huile",
   summaryVisual: { kind: "reservoirLevels", label: "Réservoir d’huile avec voyants haut et bas, entrée d’huile, sortie vers régulateurs et branche de pression" },
   lessons: [
     { id: "rappel", short: "Rappel", kicker: "Station 1 · Retour spiralé", recall: true, title: "Le séparateur récupère ; le réservoir rend disponible", lead: "Dans une centrale, l’huile séparée n’est pas envoyée au hasard vers le premier compresseur.", details: ["Elle rejoint une réserve commune placée entre le séparateur et les régulateurs de niveau.", "Le réservoir absorbe les variations d’entraînement et de retour entre plusieurs compresseurs."], box: { type: "key", text: "Séparer et stocker sont deux fonctions différentes." }, visual: { kind: "active", title: "Reprendre la chaîne", label: "Séparateur, réservoir puis distribution vers les régulateurs" } },

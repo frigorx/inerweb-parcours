@@ -52,6 +52,13 @@
       topics: ["implantation au refoulement", "flotteur et pointeau", "limites d’efficacité"]
     },
     {
+      short: "Éclatement",
+      title: "Le séparateur à éclatement",
+      url: "../separateur-eclatement-pedagogique/index.html",
+      summary: "Reconnaître la seconde famille de séparateurs : le jet frappe une plaque, la vitesse s’écroule et l’huile tombe, sans aucun élément filtrant.",
+      topics: ["les deux familles", "le choc et la chute de vitesse", "quand préférer un coalescent"]
+    },
+    {
       short: "Réservoir",
       title: "Le réservoir d’huile",
       url: "../reservoir-huile-pedagogique/index.html",

@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "pressostat-differentiel-huile-pedagogique",
   title: "Le pressostat d’huile : la pression nette",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 13",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 14",
   codes: ["1.05", "6.03", "6.05", "9.07"],
   voix: true,
   nextStep: "Poursuivre avec la séquence : la temporisation au démarrage, la surveillance en marche, la coupure de sécurité et le diagnostic.",
   nextUrl: "../pressostat-huile-securite/index.html",
-  nextLabel: "Station 14 · Le pressostat d’huile : temporisation et sécurité",
+  nextLabel: "Station 15 · Le pressostat d’huile : temporisation et sécurité",
   summaryVisual: { kind: "oilPressureDiagnostic", label: "Synthèse du pressostat différentiel d’huile : mesurer deux pressions, respecter le délai, diagnostiquer puis décider" },
   lessons: [
     {

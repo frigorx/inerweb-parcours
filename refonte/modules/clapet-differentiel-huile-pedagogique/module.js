@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "clapet-differentiel-huile-pedagogique",
   title: "Le clapet différentiel d’huile",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 9",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 10",
   codes: ["1.05", "6.05"],
   voix: true,
   nextStep: "Poursuivre avec le régulateur mécanique : une pression d’huile disponible ne suffit pas, il faut encore admettre uniquement la quantité demandée par chaque carter.",
   nextUrl: "../regulateur-huile-mecanique-pedagogique/index.html",
-  nextLabel: "Station 10 · Le régulateur mécanique AC&R",
+  nextLabel: "Station 11 · Le régulateur mécanique AC&R",
   summaryVisual: { kind: "differential", label: "Clapet taré entre la partie haute du réservoir et l’aspiration pour maintenir un différentiel prévu" },
   lessons: [
     { id: "rappel", short: "Rappel", kicker: "Station 1 · Retour spiralé", recall: true, title: "Le réservoir doit pousser l’huile vers le carter", lead: "L’écoulement exige une pression disponible supérieure à celle du carter.", details: ["Cette différence doit aussi vaincre les pertes de charge de la conduite, de la vanne, du filtre et du régulateur.", "Dans un système basse pression, le clapet taré contrôle la pression du réservoir par rapport à l’aspiration."], box: { type: "key", text: "Le clapet crée une condition de circulation ; il ne règle pas directement le niveau du carter." }, visual: { kind: "active", title: "Distinguer pression et niveau", label: "Réservoir, branche de pression vers aspiration et conduite d’huile vers régulateur" } },

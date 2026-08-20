@@ -1,89 +1,97 @@
-# Ligne pédagogique complète — Le circuit d’huile
+# La rame complète — Le circuit d’huile
 
-Statut : brouillon technique et pédagogique du 19 août 2026. La ligne est
-intégrée localement au parcours inerWeb et à l’espace enseignant. Elle n’est ni
-validée par bon à tirer, ni publiée, ni importée dans le RAG actif.
+Statut : brouillon technique et pédagogique, révisé le 20 août 2026. La rame est
+intégrée localement au parcours inerWeb, à l’espace enseignant et au plan de
+formation de `pilote-fluides`. Elle n’est ni validée par bon à tirer, ni indexée
+dans le RAG actif.
 
-Entrée interactive unique :
+Entrée unique, la carte de la rame :
 
 `../circuit-huile-interactif/index.html`
 
-Cette carte de métro affiche les dix modules dans leur ordre pédagogique. Chaque bilan de
-module contient aussi un lien direct vers la station suivante ; le terminus revient à la
-carte complète.
+Chaque bilan de station porte aussi un lien direct vers la suivante ; le terminus
+revient à la carte.
 
-## Cheminement
+## Ce qui décide de l’ordre
 
-| Station | Module | Cours | Questions | Fonction pédagogique |
-| ---: | --- | ---: | ---: | --- |
-| 1 | Technologie des huiles frigorifiques | 12 | 10 | Suivre le circuit réel, développer les six familles, relier huiles et fluides, lire ISO VG, humidité et acidité |
-| 2 | Retour d’huile naturel | 10 | 12 | Relier vitesse, pente, siphons, charge partielle et double colonne, et calculer la vitesse du gaz |
-| 3 | Éléments du circuit d’huile | 8 | 9 | Lire la chaîne complète avant d’ouvrir chaque organe |
-| 4 | Séparateur d’huile | 8 | 8 | Comprendre séparation, flotteur et chemins de retour |
-| 5 | Réservoir d’huile | 8 | 8 | Comprendre réserve tampon, pression et niveaux visibles |
-| 6 | Clapet différentiel d’huile | 7 | 7 | Distinguer la branche de pression de la conduite d’huile |
-| 7 | Régulateur mécanique AC&R | 8 | 8 | Lire flotteur-pointeau, alimentation et limites de fonctionnement |
-| 8 | Régulation électronique TraxOil | 9 | 9 | Lire capteur, électrovanne, zones, alarmes et architectures BP/HP |
-| 9 | Pressostat différentiel d’huile | 10 | 10 | Protéger la pression nette de lubrification et diagnostiquer un déclenchement |
-| 10 | Diagnostic du circuit d’huile | 9 | 10 | Croiser architecture, mesures et indices avant de conclure |
-| **Total** | **10 modules** | **89** | **91** | **Progression spiralée complète** |
+`outils/ordonner-ligne.js` porte **une seule liste ordonnée**. En découlent le rang
+affiché dans chaque station, l’enchaînement d’une station à la suivante, la carte de
+la rame et la branche du plan de formation. Ajouter une station, c’est une ligne dans
+cette liste, puis relancer :
 
-Chaque station réactive une notion antérieure. Le terminus ne propose jamais
-« une valeur = une panne » : il demande d’identifier l’architecture, de relever
-les faits, de croiser plusieurs indices, puis de choisir le prochain contrôle.
+    node outils/ordonner-ligne.js          rangs, enchaînements, carte, plan
+    node outils/copier-ligne-vers-pack.mjs recopie dans le pack public
+    node outils/extraire-banque-huile.mjs  sort les QCM pour la mesure
+
+## Les dix-sept stations
+
+| # | Station | Écrans | Questions | Durée | Ce qu’elle installe |
+| ---: | --- | ---: | ---: | ---: | --- |
+| 1 | Les familles d’huile | 6 | 5 | 7,9 | à quoi sert l’huile, où elle passe, MO/AB/PAO et POE/PAG/PVE |
+| 2 | Choisir et contrôler l’huile | 6 | 5 | 8,8 | méthode de choix, miscibilité, grade ISO VG, humidité, acidité |
+| 3 | Le retour d’huile naturel | 5 | 5 | 6,1 | vitesse d’entraînement, pente, points bas, siphon et contre-siphon |
+| 4 | Vérifier le retour d’huile | 5 | 7 | 7,4 | charge réduite, double colonne, calcul de vitesse, lecture de plan |
+| 5 | La chaîne : séparer et stocker | 4 | 4 | 5,0 | vue d’ensemble de la chaîne, le séparateur, le réservoir |
+| 6 | La chaîne : mettre sous pression | 4 | 5 | 5,5 | clapet taré, régulateurs de niveau, chaîne de preuve |
+| 7 | Le séparateur d’huile | 8 | 8 | 9,1 | implantation au refoulement, flotteur et pointeau, limites |
+| 8 | **Le séparateur à éclatement** | **5** | **5** | **7,3** | **les deux familles, le choc, la chute de vitesse, quand préférer un coalescent** |
+| 9 | Le réservoir d’huile | 8 | 8 | 9,2 | réserve tampon, lecture des voyants, sécurité avant démontage |
+| 10 | Le clapet différentiel d’huile | 7 | 7 | 8,1 | branche de pression contre conduite d’huile, rôle du tarage |
+| 11 | Le régulateur mécanique AC&R | 8 | 8 | 8,7 | montage au carter, flotteur et admission, limites |
+| 12 | TraxOil : comment il travaille | 4 | 4 | 4,5 | capteur, électrovanne d’admission, alarme de niveau |
+| 13 | TraxOil : monter et diagnostiquer | 5 | 5 | 5,7 | OM3/OM4/OM5, architectures BP et HP, chaîne de preuve |
+| 14 | Le pressostat : la pression nette | 5 | 5 | 6,0 | pompe et raccordements, P1 moins P2, lecture des seuils |
+| 15 | Le pressostat : temporisation | 5 | 5 | 5,9 | délai au démarrage, coupure de sécurité, relevé |
+| 16 | Diagnostic : lire l’architecture | 5 | 5 | 5,6 | identifier l’architecture avant de conclure |
+| 17 | Diagnostic : conclure | 4 | 5 | 4,9 | croiser plusieurs indices, décider le prochain contrôle |
+| **Total** | **17 stations** | **94** | **96** | **1 h 55** | progression spiralée complète |
+
+Les durées sont mesurées sur le texte réellement affiché : 130 mots par minute en
+lecture attentive, 8 secondes de pause par écran, 30 secondes par question. Le cap
+retenu avec Franck est **moins de dix minutes par station** ; les dix-sept y sont.
+
+## La bande son
+
+94 narrations, une par écran, dans `refonte/voix/narrations/<station>.js` — jamais
+dans les modules : un texte pour l’oreille et un texte pour l’œil ne sont pas le même
+texte. Deux voix fabriquées à l’atelier, une seule (Henri) embarquée dans le pack.
+
+**Personne n’a encore écouté ces narrations.** Le contrôle automatique vérifie
+qu’aucun écran n’est muet et qu’aucune narration ne vise un écran disparu. Il ne dit
+rien de la justesse métier, du rythme ni de la prononciation.
+
+## Les questions
+
+96 questions, mesurées par `inerweb-habilitation/outils/mesurer-banque.mjs` :
+
+| | |
+| --- | ---: |
+| Note en cochant la proposition qui se détache | **6,5 / 20** |
+| Hasard pur (référence basse) | 6,7 / 20 |
+| Bonne réponse en position A | 34 % |
+
+La banque est **sous le hasard** : aucune stratégie de forme ne paie.
 
 ## Sources techniques principales
 
 - Fonds local inerWeb : cours « Technologie séparateur d’huile », « Réservoir
   d’huile », « Clapet d’huile », « Régulateur d’huile mécanique » et
   « Régulateur d’huile électronique ».
-- Parker Sporlan, *Oil Level Control System — SD-129* :
-  <https://www.parker.com/content/dam/Parker-com/Literature/Sporlan/Sporlan-pdf-files/Sporlan-pdf-110/SD-129_-Oil-Level-Control-System-Installation.pdf>
-- Copeland, *OM3/OM4/OM5 TraxOil Oil Level Management System* :
-  <https://media.copeland.com/d8f801b5-15db-4430-bbda-b16b01022eae/OM3_OM4_OM5_TB_EN_0820_R08.pdf>
-- BITZER, *Oil level controllers* :
-  <https://www.bitzer.de/shared_media/html/kt-600/en-GB/313846411313848587.html>
-- BITZER, *Optimized suction header* :
-  <https://www.bitzer.de/shared_media/html/kt-600/en-GB/313843723313845515.html>
-- Danfoss, *Differential pressure switch MP54 / MP55 / MP55A* :
-  <https://assets.danfoss.com/documents/latest/561042/AI545031222570en-000101.pdf>
+- Parker Sporlan, *Oil Level Control System — SD-129*.
+- Copeland, *OM3/OM4/OM5 TraxOil Oil Level Management System*.
+- BITZER, *Oil level controllers* et *Optimized suction header*.
+- Danfoss, *Differential pressure switch MP54 / MP55 / MP55A*.
 
-Les valeurs de réglage, compatibilités et domaines d’emploi restent ceux de la
-notice exacte du composant installé. Les modules n’inventent aucun tarage ni
-dimensionnement.
+Les valeurs de réglage, compatibilités et domaines d’emploi restent ceux de la notice
+exacte du composant installé. Les stations n’inventent aucun tarage ni dimensionnement.
 
 ## Provenance graphique et accessibilité
 
-Les symboles validés, leurs empreintes et la provenance du tracé de tuyauterie
-sont documentés dans `SOURCES-SCHEMAS.md`. Les organes non disponibles dans la
-bibliothèque sont représentés par des enveloppes fonctionnelles légendées, pas
-par un symbole détourné. Le moteur commun fournit un texte équivalent, une
-navigation clavier et tactile, une voix déclenchée uniquement au clic, un mode
-DYS, un mode impression et un fonctionnement hors ligne.
+Les symboles validés, leurs empreintes et la provenance du tracé de tuyauterie sont
+documentés dans `SOURCES-SCHEMAS.md`. Les organes non disponibles dans la bibliothèque
+sont représentés par des enveloppes fonctionnelles légendées, jamais par un symbole
+détourné. Le moteur commun fournit un texte équivalent pour chaque visuel.
 
-Les stations 7 et 8 de « Retour d’huile naturel » intègrent deux adaptations locales hors
-ligne du projet Claude Design « Retour d’huile » : un calcul manipulable (diamètre, régime,
-débit et repère d’étude → vitesse du gaz) puis les onze scènes complètes commandées par
-l’élève. Provenance et empreintes dans les fichiers `PROVENANCE.md` de
-`../retour-huile-naturel/assets/claude-retour-huile/` et
-`../retour-huile-naturel/assets/claude-retour-huile-film/`.
-
-La station 5 du pressostat intègre désormais une adaptation locale de l’animation Claude
-fournie par Franck. Les trois états sont commandés explicitement et la provenance du ZIP est
-consignée dans `../pressostat-differentiel-huile-pedagogique/assets/claude-pressostat/PROVENANCE.md`.
-
-## Validation attendue
-
-QA locale du 19 août 2026 : la ligne complète, 356 écrans de cours et 364 écrans de questions
-contrôlés sur 10 modules × 4 formats (1366×768, 1024×768, 390×844 et 360×640).
-Le contrôle couvre débordements, zones décalées, hors-ligne, clavier, sources,
-mode DYS, impression, stockage indisponible, voix au clic, absence d’autoplay, liens de
-station à station, les deux adaptations du retour d’huile avec contrôle de leurs cadres
-internes et les trois états de l’adaptation Claude du pressostat.
-
-La QA automatisée ne remplace pas :
-
-1. la relecture métier de chaque schéma et formulation ;
-2. l’écoute humaine de la voix ;
-3. le bon à tirer pédagogique de Franck ;
-4. l’autorisation séparée de publier et d’indexer dans le RAG.
+Les trois animations issues de Claude Design sont adaptées hors ligne, sans dépendance
+distante, avec lecture commandée par l’élève ; chacune porte son `PROVENANCE.md` avec
+les empreintes de ses sources.

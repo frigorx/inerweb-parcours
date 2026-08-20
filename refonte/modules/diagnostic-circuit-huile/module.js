@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "diagnostic-circuit-huile",
   title: "Diagnostic : lire l’architecture et le retour",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 15",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 16",
   codes: ["1.05", "6.05", "9.07"],
   voix: true,
   nextStep: "Poursuivre avec la seconde moitié du diagnostic : le différentiel, la ligne d’huile, le croisement des indices et la conclusion.",
   nextUrl: "../diagnostic-circuit-huile-conclure/index.html",
-  nextLabel: "Station 16 · Diagnostic : pression, distribution et conclusion",
+  nextLabel: "Station 17 · Diagnostic : pression, distribution et conclusion",
   summaryVisual: { kind: "diagnostic", label: "Synthèse : observer, suivre l’huile, mesurer les pressions, interpréter puis décider" },
   lessons: [
     { id: "lire", short: "Schéma", kicker: "Station 1 · Vue d’ensemble", recall: true, title: "Le diagnostic commence par identifier l’architecture", lead: "Retour naturel, retour direct, réservoir basse pression ou réserve haute pression n’emploient pas les mêmes organes.", details: ["Repérer compresseurs actifs, séparateur, réservoir, branche de pression, filtre et régulateurs.", "Tracer ensuite deux chemins distincts : celui de l’huile liquide et celui de la pression ou du dégazage."], box: { type: "key", text: "Nommer l’architecture avant d’interpréter une mesure." }, visual: { kind: "bpHp", title: "Comparer les architectures", label: "Circuit basse pression avec réservoir séparé et circuit haute pression avec régulateur compatible" } },

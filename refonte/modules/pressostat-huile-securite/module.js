@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "pressostat-huile-securite",
   title: "Le pressostat d’huile : temporisation et sécurité",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 14",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 15",
   codes: ["1.05", "6.03", "6.05", "9.07"],
   voix: true,
   nextStep: "Terminer par le diagnostic du circuit d’huile : replacer la sécurité de lubrification dans la chaîne complète et justifier le prochain contrôle.",
   nextUrl: "../diagnostic-circuit-huile/index.html",
-  nextLabel: "Station 15 · Diagnostic : lire l’architecture et le retour",
+  nextLabel: "Station 16 · Diagnostic : lire l’architecture et le retour",
   summaryVisual: { kind: "oilPressureDiagnostic", label: "Synthèse du pressostat différentiel d’huile : mesurer deux pressions, respecter le délai, diagnostiquer puis décider" },
   lessons: [
     {

@@ -385,3 +385,88 @@ sans que le bouton perde le fil. La vitesse du sélecteur s'applique aussi au fi
 écran n'est muet et qu'aucune narration ne vise un écran disparu. Il ne dit rien de la
 justesse métier, du rythme, ni de la prononciation — notamment des sigles et des
 références de fluides, là où la synthèse trébuche le plus souvent.
+
+---
+
+## 20/08, après-midi — le séparateur à éclatement entre dans la rame
+
+Franck a validé les trois animations Claude Design et donné carte blanche pour
+compléter la rame. Marque retenue : **inerWeb Édu**, comme les seize stations déjà
+gravées.
+
+### Le manque était réel, il a été mesuré
+
+`grep -ri "éclatement"` sur les seize stations : **zéro occurrence**. La station
+« Le séparateur d’huile » traitait les principes de séparation en une seule phrase
+— « ralentir, changer de direction, traverser un élément de coalescence » — sans
+jamais nommer les deux familles ni montrer la plaque de choc. L’animation ne double
+donc rien : elle comble un trou.
+
+### Ce qui a été posé
+
+| Élément | État |
+| --- | --- |
+| Film adapté hors ligne, 8 scènes | `separateur-eclatement-pedagogique/assets/claude-eclatement/` |
+| Provenance et empreintes SHA-256 | `assets/claude-eclatement/PROVENANCE.md` |
+| Station : 5 écrans, 5 questions, 7,3 min | `separateur-eclatement-pedagogique/module.js` |
+| Emplacement `eclatementFilmSlot` | `engine.js` + `styles.css` du commun |
+| Narration des 5 écrans | `voix/narrations/separateur-eclatement-pedagogique.js` |
+| Voix fabriquées | 10 fichiers, 0 raté |
+| Rang, enchaînement, carte, plan | rame passée de 16 à **17 stations** |
+| Recopie dans le pack public | 34 fichiers |
+
+L’adaptation retire les vitesses chiffrées du film d’origine (« ≈ 12 m/s »,
+« ≈ 1 m/s ») et le rapport de densité « 700 × » : ils deviennent une comparaison de
+section, avec mention explicite que la notice du constructeur fait foi. La couleur
+est toujours doublée par le mot.
+
+### Trois outils rapatriés ou écrits, parce qu’ils manquaient
+
+- `outils/ordonner-ligne.js` — **il vivait dans un dossier temporaire de session** et
+  aurait disparu à la première purge. C’est pourtant lui qui tient la rame : rang,
+  enchaînement, carte et branche du plan. Rapatrié au dépôt. Son contrôle de rang a
+  été corrigé : il criait « rang faux » sur le terminus, qui ajoute « · TERMINUS »
+  après son numéro.
+- `outils/extraire-banque-huile.mjs` — sort les 96 QCM au format attendu par
+  `mesurer-banque.mjs`. La mesure était refaite à la main à chaque station.
+- `outils/copier-ligne-vers-pack.mjs` — la copie vers le pack n’est pas brute : deux
+  liens sortants changent de profondeur et la voix féminine reste à l’atelier. Fait à
+  la main, cela se rate et ne se voit qu’au clic.
+
+### Ce que les contrôles ont trouvé, et qui a été corrigé
+
+**Le film.** Quatre défauts au premier passage : deux lignes de titre qui se
+touchaient, une légende posée au milieu de la nappe d’huile, un libellé « voyant »
+sous un autre texte, un libellé « pointeau » noyé dans la nappe. Le contrôle par
+boîtes englobantes signalait aussi un faux positif — la boîte d’un tracé en L couvre
+tout le coude. Il a été remplacé par un test de contact réel, `isPointInFill` et
+`isPointInStroke`, échantillonné sur la boîte de chaque texte. Résultat après
+correction : **0 texte hors cadre, 0 texte sur texte, 0 texte sur tracé, 0 erreur de
+console** sur les huit scènes.
+
+**Le plan de formation.** Passer de 16 à 17 stations resserre le pas de 63,3 px à
+59,4 px. Neuf collisions de libellés sont apparues sur la branche huile — et la
+mesure montre que la branche débordait **déjà** avant cet ajout : « Temporisation et
+sécurité » faisait 159 px pour 117 disponibles, « rôles, MO/AB/PAO, POE/PAG/PVE »
+164 px. Dix libellés du plan ont été recalibrés à la source, dans la liste ordonnée ;
+les titres complets restent dans les modules. **0 collision** sur la branche après
+correction.
+
+**Le cache.** `engine.js` et `styles.css` du commun ont changé. Sans reprise du
+jeton `?v=`, un élève ayant déjà ouvert une station aurait reçu l’ancien moteur, qui
+ignore le nouvel emplacement de film : l’écran 3 serait retombé sur le visuel de
+secours. Les 20 fichiers de la rame sont passés en `v=20260820b`.
+
+### La rame après cette passe
+
+17 stations · 94 écrans · 96 questions · **1 h 55** · toutes les stations sous
+10 minutes. Banque mesurée à **6,5 / 20** en cochant la proposition qui se détache,
+contre 6,7 pour le hasard pur : la nouvelle station tombe exactement au hasard.
+
+### Deux choses qui restent, et qui ne sont pas de cette passe
+
+- **Deux collisions subsistent sur le plan**, hors branche huile : « s’entraîner
+  seul, KP1 et KP5 » avec « 🔒 Échauffement niv. 1 », et « 🏁 Réglages maîtrisés »
+  avec « groupe par groupe ». Elles sont sur la ligne des pressostats et
+  préexistaient.
+- **Les 94 narrations n’ont toujours pas été écoutées par un humain.**

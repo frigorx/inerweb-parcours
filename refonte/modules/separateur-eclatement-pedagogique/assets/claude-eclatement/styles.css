@@ -1,0 +1,73 @@
+:root {
+  --navy:#1b3a63; --ink:#10233c; --orange:#c9451a; --paper:#fffdf8;
+  --cream:#f7f1e7; --muted:#637285; --line:#cbd5df; --green:#1e7e54;
+  --amber:#9a6500; --red:#c0392b;
+}
+* { box-sizing:border-box; }
+html,body { width:100%; height:100%; margin:0; }
+body { overflow:hidden; background:var(--paper); color:var(--ink); font-family:Calibri,"Segoe UI",Arial,sans-serif; }
+button { font:inherit; }
+.player { display:grid; grid-template-rows:31px minmax(0,1fr) 42px 39px; width:100%; height:100%; background:var(--paper); }
+.scene-head { display:grid; grid-template-columns:auto minmax(0,1fr) minmax(70px,22%); align-items:center; gap:8px; padding:0 8px; border-bottom:1px solid rgba(27,58,99,.16); }
+.scene-head strong { color:var(--orange); font-size:11px; }
+.scene-head > span { overflow:hidden; color:var(--navy); font:900 12px "Trebuchet MS",Calibri,sans-serif; text-overflow:ellipsis; white-space:nowrap; }
+.progress { height:6px; overflow:hidden; border-radius:999px; background:#e2e8f0; }
+.progress span { display:block; width:0; height:100%; background:var(--orange); }
+.stage { min-height:0; overflow:hidden; background:linear-gradient(145deg,var(--paper),#f3f7fb); }
+.stage svg { display:block; width:100%; height:100%; }
+.description { display:grid; align-items:center; margin:0; padding:3px 10px; border-top:1px solid rgba(27,58,99,.12); font-size:11px; font-weight:700; line-height:1.14; text-align:center; }
+.controls { display:grid; grid-template-columns:1fr minmax(92px,1.15fr) 1fr; gap:5px; padding:4px 6px; border-top:1px solid rgba(27,58,99,.16); }
+.controls button { min-width:0; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--navy); font-size:11px; font-weight:900; cursor:pointer; }
+.controls .play { border:2px solid var(--navy); background:var(--navy); color:#fff; }
+.controls .play[aria-pressed="true"] { border:3px double var(--orange); background:#fff4e0; color:#8b4c00; }
+.controls button:disabled { cursor:not-allowed; opacity:.38; }
+.controls button:focus-visible { outline:3px solid rgba(255,107,53,.5); outline-offset:1px; }
+.heading { fill:var(--navy); font:900 18px "Trebuchet MS",Calibri,sans-serif; letter-spacing:.02em; }
+.hero { fill:var(--navy); font:900 32px "Trebuchet MS",Calibri,sans-serif; }
+.label { fill:var(--ink); font:800 14px Calibri,"Segoe UI",sans-serif; }
+.small { fill:var(--muted); font:700 11px Calibri,"Segoe UI",sans-serif; }
+.warn-text { fill:var(--amber); font:900 13px "Trebuchet MS",Calibri,sans-serif; }
+.good-text { fill:var(--green); font:900 13px "Trebuchet MS",Calibri,sans-serif; }
+.pipe { fill:none; stroke:var(--navy); stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+.pipe.thick { stroke-width:15; }
+.pipe.thin { stroke-width:5; }
+.pipe.slow { stroke-dasharray:11 8; opacity:.64; }
+.oil-flow { fill:none; stroke:var(--amber); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:11 7; animation:dash 2.4s linear infinite; }
+.oil-pool { fill:none; stroke:#d69a16; stroke-width:15; stroke-linecap:round; }
+.oil-fill { fill:#d69a16; opacity:.82; }
+.drop { fill:#d69a16; stroke:#805900; stroke-width:1.5; }
+.drop.up { animation:rise 2.7s linear infinite; }
+.drop.down { animation:fall 2.7s linear infinite; }
+.drop.along { animation:along 2.9s linear infinite; }
+.d2 { animation-delay:-.9s!important; } .d3 { animation-delay:-1.8s!important; }
+.panel { fill:var(--paper); stroke:var(--navy); stroke-width:3; }
+.accent-panel { fill:#fff0e9; stroke:var(--orange); stroke-width:3; }
+.good-panel { fill:#e3f5ec; stroke:var(--green); stroke-width:4; }
+.warn-panel { fill:#fff4e0; stroke:var(--amber); stroke-width:3; stroke-dasharray:8 5; }
+.red-cross { stroke:var(--red); stroke-width:6; stroke-linecap:round; }
+.divider { stroke:#aab8c8; stroke-width:2; stroke-dasharray:8 8; }
+/* Éclatement : buse, plaque de choc, jet et gouttes écrasées. */
+.metal { fill:#b6c2cf; stroke:var(--navy); stroke-width:2.5; }
+.pipe.hot { stroke:var(--red); }
+.jet { fill:none; stroke:var(--red); stroke-width:5; stroke-linecap:round; stroke-dasharray:15 9; animation:dash .75s linear infinite; }
+.gas-turn { fill:none; stroke:var(--red); stroke-width:5; stroke-linecap:round; stroke-dasharray:12 8; animation:dash 2.6s linear infinite; }
+.burst { fill:#d69a16; stroke:#805900; stroke-width:1.5; transform-box:fill-box; transform-origin:center; animation:burst 1.7s ease-out infinite; }
+.film-oil { fill:#d69a16; opacity:.72; }
+.mist { fill:#c8b48a; opacity:.75; animation:along 3.4s linear infinite; }
+@keyframes burst { from { transform:translate(0,0) scale(.35); opacity:.15; } 22% { opacity:1; } to { transform:translate(9px,66px) scale(1.05); opacity:0; } }
+.player:not(.is-playing) .oil-flow,.player:not(.is-playing) .drop,.player:not(.is-playing) .jet,.player:not(.is-playing) .gas-turn,.player:not(.is-playing) .burst,.player:not(.is-playing) .mist { animation-play-state:paused; }
+@keyframes dash { to { stroke-dashoffset:-36; } }
+@keyframes rise { from { transform:translateY(40px); opacity:.2; } 20% { opacity:1; } to { transform:translateY(-130px); opacity:.2; } }
+@keyframes fall { from { transform:translateY(-45px); opacity:.2; } 20% { opacity:1; } to { transform:translateY(70px); opacity:.2; } }
+@keyframes along { from { transform:translateX(-45px); } to { transform:translateX(175px); } }
+.sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+@media (max-width:520px),(max-height:280px) {
+  .player { grid-template-rows:27px minmax(0,1fr) 37px 34px; }
+  .scene-head { gap:5px; padding:0 5px; }
+  .scene-head strong { font-size:9px; } .scene-head>span { font-size:10px; }
+  .description { padding:2px 6px; font-size:8.5px; }
+  .controls { gap:3px; padding:3px; } .controls button { font-size:9px; }
+}
+@media (max-width:330px) { .controls button span { display:none; } }
+@media (prefers-reduced-motion:reduce) { .oil-flow,.drop,.jet,.gas-turn,.burst,.mist { animation-duration:7s; } }
+@media print { body { overflow:visible; background:#fff; } .player { height:170mm; grid-template-rows:12mm minmax(0,1fr) 18mm; } .controls { display:none; } }

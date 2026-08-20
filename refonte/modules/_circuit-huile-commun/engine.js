@@ -924,6 +924,10 @@
       '<p class="sr-only">Onze scènes commandées par l’élève suivent l’huile depuis le carter dans le circuit frigorifique, puis expliquent les points bas, la vitesse du gaz, le siphon, le contre-siphon, la charge réduite, la double colonne et le compromis entre section et perte de charge.</p>';
   }
 
+  function visualEclatementFilmSlot(v) {
+    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820b" title="' + esc(v.label) + '"></iframe>' +
+      '<p class="sr-only">Huit scènes commandées par l’élève. Le gaz de refoulement entre par une buse de petite section, à grande vitesse, et frappe une plaque de choc placée en face. Les gouttes d’huile s’y écrasent et s’y rassemblent pendant que le gaz change de direction vers la sortie haute. Dans le corps, la section s’ouvre et la vitesse s’effondre : l’huile, bien plus dense, ne suit plus. Elle ruisselle sur la plaque et la paroi, s’accumule au fond, puis un flotteur commande un pointeau qui la renvoie vers le carter. Le brouillard le plus fin traverse : le rendement reste inférieur à celui d’un séparateur à coalescence.</p>';
+  }
   function visualQuiz(v, question) {
     var code = question && question.code ? question.code : moduleData.codes.join(" · ");
     var body = '<circle class="accent pulse" cx="150" cy="190" r="92"/><text x="150" y="225" text-anchor="middle" fill="#c9451a" font-family="Trebuchet MS, sans-serif" font-size="104" font-weight="900">?</text>';
@@ -984,6 +988,7 @@
       oilPressureClaudeSlot: visualOilPressureClaudeSlot,
       oilRiserClaudeSlot: visualOilRiserClaudeSlot,
       oilReturnFilmSlot: visualOilReturnFilmSlot,
+      eclatementFilmSlot: visualEclatementFilmSlot,
       quiz: function (item) { return visualQuiz(item, question); }
     };
     return (map[visual.kind] || visualQuiz)(visual);

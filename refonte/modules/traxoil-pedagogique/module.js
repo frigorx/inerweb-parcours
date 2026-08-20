@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "traxoil-pedagogique",
   title: "TraxOil : comment il travaille",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 11",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 12",
   codes: ["1.05", "6.05"],
   voix: true,
   nextStep: "Poursuivre avec le montage : les modèles, l’installation, les architectures BP et HP, puis la chaîne de preuve.",
   nextUrl: "../traxoil-installer/index.html",
-  nextLabel: "Station 12 · TraxOil : monter et diagnostiquer",
+  nextLabel: "Station 13 · TraxOil : monter et diagnostiquer",
   summaryVisual: { kind: "levelZones", label: "TraxOil avec zones de niveau, injection par électrovanne et contact d’alarme" },
   lessons: [
     { id: "rappel", short: "Rappel", kicker: "Station 1 · Retour spiralé", recall: true, title: "TraxOil mesure, alimente et protège", lead: "Le régulateur électronique reprend la fonction d’admission d’huile au carter.", details: ["Il ajoute une mesure électronique du niveau, une électrovanne pilotée et une sortie d’alarme.", "Le séparateur, le réservoir ou la réserve haute pression et la qualité du tracé restent indispensables."], box: { type: "key", text: "Électronique ne signifie pas autonome du reste du circuit." }, visual: { kind: "traxoil", title: "Replacer les trois fonctions", label: "TraxOil mesurant le niveau, alimentant le carter et déclenchant une alarme" } },

@@ -1,7 +1,7 @@
 window.OIL_MODULE = {
   id: "diagnostic-circuit-huile-conclure",
   title: "Diagnostic : pression, distribution et conclusion",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 16 · TERMINUS",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 17 · TERMINUS",
   codes: ["1.05", "6.05", "9.07"],
   voix: true,
   nextStep: "La ligne est complète. Sur une installation réelle, reprendre le schéma constructeur, relever les mesures dans le temps et justifier le prochain contrôle avant toute correction.",

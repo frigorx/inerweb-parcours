@@ -1,12 +1,12 @@
 window.OIL_MODULE = {
   id: "traxoil-installer",
   title: "TraxOil : monter et diagnostiquer",
-  subtitle: "LE CIRCUIT D’HUILE · STATION 12",
+  subtitle: "LE CIRCUIT D’HUILE · STATION 13",
   codes: ["1.05", "6.05"],
   voix: true,
   nextStep: "Poursuivre avec le pressostat différentiel d’huile : après le niveau du carter, il faut encore protéger la pression nette de lubrification des compresseurs équipés d’une pompe.",
   nextUrl: "../pressostat-differentiel-huile-pedagogique/index.html",
-  nextLabel: "Station 13 · Le pressostat d’huile : la pression nette",
+  nextLabel: "Station 14 · Le pressostat d’huile : la pression nette",
   summaryVisual: { kind: "levelZones", label: "TraxOil avec zones de niveau, injection par électrovanne et contact d’alarme" },
   lessons: [
     { id: "modeles", short: "Modèles", kicker: "Station 1 · Domaine", title: "OM3, OM4 et OM5 ne sont pas interchangeables", lead: "Leur domaine de pression, leurs fluides et leurs joints correspondent à des applications différentes.", details: ["La gamme OM3/OM4 couvre des applications HFC/HFO sélectionnées ; l’OM4 possède aussi des usages R744 subcritiques.", "L’OM5 vise les applications R744 transcritiques. Pour A2L ou A3, employer uniquement la version, l’adaptateur et le câblage approuvés."], box: { type: "exam", text: "Toujours relever la référence complète avant de chercher la signification d’une LED." }, visual: { kind: "triple", title: "Croiser modèle, fluide et compresseur", label: "Triplet fluide, compresseur et régulateur électronique compatible" } },
