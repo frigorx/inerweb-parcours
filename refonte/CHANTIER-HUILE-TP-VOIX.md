@@ -635,3 +635,65 @@ Corollaire pour les contrôles : `getBBox()` rend des coordonnées **locales** d
 SVG imbriqué, et la boîte d'un tracé en L couvre tout le coude. Un contrôle géométrique
 honnête passe par `getBoundingClientRect()` et `getScreenCTM()`, et ne teste le contact que
 sur le **trait**, jamais sur un aplat clair.
+
+---
+
+## 20/08, fin d'après-midi — la voix gagne les questions
+
+Franck teste une question et signale deux choses : « elle m'a rappelé toutes les règles »
+et « le vocal est de très mauvaise qualité ». **Les deux avaient la même cause, et ce
+n'était pas la voix fabriquée.**
+
+### Le constat, mesuré avant de corriger
+
+Sur inerweb.fr : `choc.mp3` (écran de cours) répond **200**, `q1.mp3` (question) répond
+**404**. La voix fabriquée n'était servie que si `state.phase === "lesson"`. Sur une
+question, le moteur retombait sur la synthèse du navigateur — d'où la qualité — et
+celle-ci lisait **tout le panneau** : le compteur « 1 / 6 » dit « un slash six », le
+rappel « Entraînement — jamais un sujet officiel », et le code de compétence. Les règles
+du module avant la question.
+
+### Ce qui a été posé
+
+| | |
+| --- | ---: |
+| Enregistrements de questions | **194** (97 × 2) |
+| Fichiers produits, deux voix | 388 · 0 raté |
+| Poids ajouté au pack, une voix | **15,6 Mo** |
+| Symboles imprononçables restants sur 194 textes | **0** |
+
+**Deux fichiers par question, jamais un seul.** `q<N>.mp3` dit l'énoncé et les
+propositions ; `q<N>-reponse.mp3` dit la bonne réponse puis l'explication. Le premier est
+joué **avant** que l'élève réponde : il ne doit pas livrer la réponse. Le moteur choisit
+sur `state.answered`. Vérifié au navigateur, puis en ligne.
+
+**Le texte se dérive des données du module** — aucune rédaction. Mais il passe par une
+normalisation pour l'oreille, reprise **quatre fois** : `m³/s`, `m²`, `mm²/s`, la barre de
+fraction et le signe égal manquaient au premier jet. « S = π × d² / 4 » se dit désormais
+« S égale pi fois d au carré divisé par 4 ».
+
+**Le repli est corrigé lui aussi**, car un fichier peut toujours manquer : le badge, le
+code de compétence et le compteur ne sont plus dits, les propositions sont remises en
+phrase, les blocs séparés par un point.
+
+**Le bilan reste dit par le navigateur, volontairement** : il annonce le score réel et une
+phrase qui en dépend. Un enregistrement figé dirait « les repères sont en place » à un
+élève qui a 2 sur 6.
+
+### Sur la qualité
+
+L'en-tête d'encodage d'une question et celle d'un écran de cours sont **identiques**
+(`fff364c4`) : même voix Henri, même réglage. La mauvaise qualité entendue était celle de
+la synthèse du navigateur, pas de la voix fabriquée.
+
+### La leçon de méthode
+
+Franck a testé **en ligne** un travail qui n'était **ni copié dans le pack ni poussé**.
+Le réflexe qui a permis de trancher en deux minutes : mesurer ce que le serveur répond
+(`curl` sur les deux fichiers) au lieu de discuter du ressenti.
+
+### Ce qui reste
+
+Les 94 narrations de cours **et maintenant les 194 des questions** n'ont été écoutées par
+personne. Le contrôle vérifie qu'aucun écran n'est muet et qu'aucun symbole ne reste ; il
+ne dit rien du rythme ni de la prononciation.
