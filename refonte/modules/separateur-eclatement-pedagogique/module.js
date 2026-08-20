@@ -35,7 +35,7 @@ window.OIL_MODULE = {
         "Les deux familles se reconnaissent à ce détail. Cherchez la cartouche : si elle existe, c’est un coalescent. Le reste du raccordement est identique."
       ],
       box: { type: "exam", text: "À l’oral : nommer la famille avant de décrire le fonctionnement. « Séparateur d’huile » ne suffit pas à désigner l’appareil." },
-      visual: { kind: "separatorMethods", title: "Comparer les principes", label: "Impact sur chicanes, effet centrifuge et coalescence : trois principes, souvent combinés" }
+      visual: { kind: "separateursEnCoupe", title: "Les deux appareils, ouverts", label: "Coupes des deux familles : à gauche la plaque de choc face au piquage d’entrée, à droite la cartouche coalescente ; dans les deux cas la nappe d’huile, le flotteur, le pointeau et le retour" }
     },
     {
       id: "choc",

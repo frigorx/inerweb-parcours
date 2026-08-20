@@ -720,18 +720,60 @@
   }
 
   function visualSeparatorMethods(v) {
-    var body = '<text class="svg-title" x="360" y="38" text-anchor="middle">LA TECHNOLOGIE CHANGE, LA MISSION RESTE LA MÊME</text>';
-    body += component(35, 82, 200, 205, "IMPACT · CHICANES", "changer la direction et ralentir", "component");
-    body += component(260, 82, 200, 205, "CENTRIFUGE", "écarter les gouttelettes du gaz", "good-shape");
-    body += component(485, 82, 200, 205, "COALESCENCE", "réunir les fines gouttelettes", "warn-shape");
-    body += '<path d="M72 190 H195" stroke="#3d7fca" stroke-width="6" stroke-dasharray="10 7"/><path d="M110 155 L165 225" stroke="#1b3a63" stroke-width="7"/>';
-    body += '<path d="M315 230 C400 225 405 140 335 145 C280 150 300 205 370 195" fill="none" stroke="#3d7fca" stroke-width="6"/>';
-    body += oilDrop(360, 170, .48, "bob") + oilDrop(565, 175, .42, "bob") + oilDrop(610, 205, .62, "bob");
-    body += '<path d="M530 145 H640 M530 165 H640 M530 185 H640 M530 205 H640 M530 225 H640" stroke="#1b3a63" stroke-width="2"/>';
-    body += '<text class="svg-label" x="360" y="335" text-anchor="middle">Le rendement dépend du débit, de la taille des gouttes et de la technologie.</text>';
-    body += '<text class="svg-small" x="360" y="360" text-anchor="middle">Toujours sélectionner et monter selon la notice.</text>';
+    /* Le dessin occupe la moitie haute de chaque case, le texte la moitie basse.
+       Auparavant component() posait le titre au MILIEU de la boite et les traces
+       etaient dessines par-dessus : le trait barrait « IMPACT · CHICANES » et une
+       goutte se posait sur « CENTRIFUGE ». */
+    var body = '<defs><pattern id="tamis" width="9" height="9" patternUnits="userSpaceOnUse">' +
+      '<path d="M0 9 L9 0" stroke="#7d8fa3" stroke-width="2"/><path d="M0 0 L9 9" stroke="#7d8fa3" stroke-width="2"/></pattern></defs>';
+    body += '<text class="svg-title" x="360" y="34" text-anchor="middle">TROIS FAÇONS DE FAIRE TOMBER L’HUILE</text>';
+
+    function corps(cx, cls) {
+      return '<rect class="' + cls + '" x="' + (cx - 100) + '" y="56" width="200" height="228" rx="16"/>' +
+        '<rect x="' + (cx - 48) + '" y="76" width="96" height="112" rx="10" fill="#ffffff" stroke="#1b3a63" stroke-width="3"/>';
+    }
+    function legende(cx, titre, sous) {
+      return '<text class="svg-label" x="' + cx + '" y="228" text-anchor="middle">' + esc(titre) + '</text>' +
+        '<text class="svg-small" x="' + cx + '" y="252" text-anchor="middle">' + esc(sous) + '</text>';
+    }
+    function entreeSortie(cx) {
+      return '<path d="M' + (cx - 96) + ' 108 H' + (cx - 48) + '" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/>' +
+        '<path d="M' + (cx + 24) + ' 76 V60 H' + (cx + 82) + '" fill="none" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/>';
+    }
+    function nappe(cx) {
+      return '<rect x="' + (cx - 44) + '" y="164" width="88" height="20" rx="6" fill="#d69a16" opacity=".85"/>';
+    }
+
+    /* 1 — impact sur une chicane : le jet frappe une plaque placee en face. */
+    var c1 = 135;
+    body += corps(c1, "component") + entreeSortie(c1) + nappe(c1);
+    body += '<path d="M' + (c1 - 44) + ' 108 H' + (c1 + 4) + '" stroke="#c0392b" stroke-width="4" stroke-dasharray="9 6" stroke-linecap="round"/>';
+    body += '<rect x="' + (c1 + 10) + '" y="88" width="8" height="66" rx="3" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+    body += oilDrop(c1 + 26, 126, .34, "bob") + oilDrop(c1 + 30, 150, .3, "bob");
+    body += legende(c1, "IMPACT · CHICANE", "le jet frappe une plaque");
+
+    /* 2 — effet centrifuge : le gaz tourne, les gouttes sont plaquees a la paroi. */
+    var c2 = 360;
+    body += corps(c2, "good-shape") + entreeSortie(c2) + nappe(c2);
+    body += '<path d="M' + (c2 - 30) + ' 96 C' + (c2 + 34) + ' 96 ' + (c2 + 34) + ' 130 ' + (c2 - 26) + ' 130 C' +
+      (c2 - 34) + ' 130 ' + (c2 - 34) + ' 158 ' + (c2 + 28) + ' 158" fill="none" stroke="#3d7fca" stroke-width="4"/>';
+    body += oilDrop(c2 + 36, 120, .32, "bob") + oilDrop(c2 - 36, 146, .3, "bob");
+    body += legende(c2, "CENTRIFUGE", "le gaz tourne, l’huile est plaquée");
+
+    /* 3 — coalescence : le gaz traverse une cartouche qui rassemble les gouttelettes. */
+    var c3 = 585;
+    body += corps(c3, "warn-shape") + entreeSortie(c3) + nappe(c3);
+    body += '<rect x="' + (c3 - 26) + '" y="90" width="52" height="66" fill="url(#tamis)"/>';
+    body += '<rect x="' + (c3 - 26) + '" y="90" width="52" height="66" fill="none" stroke="#7d8fa3" stroke-width="3"/>';
+    body += '<path d="M' + (c3 - 44) + ' 108 H' + (c3 - 28) + '" stroke="#c0392b" stroke-width="4" stroke-dasharray="7 5" stroke-linecap="round"/>';
+    body += oilDrop(c3 + 34, 124, .34, "bob") + oilDrop(c3 + 30, 150, .3, "bob");
+    body += legende(c3, "COALESCENCE", "une cartouche à remplacer");
+
+    body += '<text class="svg-label" x="360" y="316" text-anchor="middle">Le rendement dépend du débit, de la taille des gouttes et de la technologie.</text>';
+    body += '<text class="svg-small" x="360" y="344" text-anchor="middle">Toujours sélectionner et monter selon la notice du constructeur.</text>';
     return svg(v.label, body);
   }
+
 
   function visualFloatReturn(v) {
     var body = arrowMarker();
@@ -950,7 +992,7 @@
   }
 
   function visualEclatementFilmSlot(v) {
-    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820e" title="' + esc(v.label) + '"></iframe>' +
+    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820i" title="' + esc(v.label) + '"></iframe>' +
       '<p class="sr-only">Huit scènes commandées par l’élève. Le gaz de refoulement entre par une buse de petite section, à grande vitesse, et frappe une plaque de choc placée en face. Les gouttes d’huile s’y écrasent et s’y rassemblent pendant que le gaz change de direction vers la sortie haute. Dans le corps, la section s’ouvre et la vitesse s’effondre : l’huile, bien plus dense, ne suit plus. Elle ruisselle sur la plaque et la paroi, s’accumule au fond, puis un flotteur commande un pointeau qui la renvoie vers le carter. Le brouillard le plus fin traverse : le rendement reste inférieur à celui d’un séparateur à coalescence.</p>';
   }
 
@@ -984,7 +1026,7 @@
     /* legendes, toutes posees hors des traces */
     body += '<text class="svg-label" x="28" y="146">refoulement</text>';
     body += '<text class="svg-small" x="293" y="206" text-anchor="middle">buse</text>';
-    body += '<text class="svg-label" x="464" y="100">plaque de choc</text>';
+    body += '<text class="svg-label" x="464" y="66">plaque de choc</text>';
     body += '<text class="svg-small" x="688" y="72" text-anchor="end">vers le condenseur</text>';
     body += '<text class="svg-small" x="552" y="264" text-anchor="end">l’huile continue tout droit</text>';
     body += '<text class="svg-title" x="404" y="356" text-anchor="middle">LE GAZ TOURNE, L’HUILE NON</text>';
@@ -1018,6 +1060,71 @@
     return svg(v.label, body);
   }
 
+  /* Les deux appareils en coupe, cote a cote. Tout est trace ici : la structure
+     technique vient de la documentation constructeur, aucun dessin n'en est repris. */
+  function visualSeparateursEnCoupe(v) {
+    var body = '<defs><pattern id="cartouche-media" width="8" height="8" patternUnits="userSpaceOnUse">' +
+      '<path d="M0 8 L8 0" stroke="#7d8fa3" stroke-width="1.8"/><path d="M0 0 L8 8" stroke="#7d8fa3" stroke-width="1.8"/></pattern>' +
+      '<linearGradient id="acier" x1="0" y1="0" x2="1" y2="0">' +
+      '<stop offset="0" stop-color="#e8eef4"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#d6dfe8"/></linearGradient></defs>';
+    body += '<text class="svg-title" x="360" y="26" text-anchor="middle">LES DEUX APPAREILS, OUVERTS</text>';
+    body += '<line x1="360" y1="44" x2="360" y2="350" stroke="#aab8c8" stroke-width="2" stroke-dasharray="8 8"/>';
+
+    /* La virole commune : corps, brides, piquages, nappe, flotteur et pointeau. */
+    function virole(cx) {
+      var g = '';
+      g += '<path d="M' + (cx - 52) + ' 100 V272 Q' + (cx - 52) + ' 300 ' + cx + ' 300 Q' + (cx + 52) + ' 300 ' + (cx + 52) + ' 272 V100 Q' + (cx + 52) + ' 76 ' + cx + ' 76 Q' + (cx - 52) + ' 76 ' + (cx - 52) + ' 100 Z" fill="url(#acier)" stroke="#1b3a63" stroke-width="3"/>';
+      g += '<rect x="' + (cx - 58) + '" y="72" width="116" height="9" rx="3" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+      g += '<rect x="' + (cx - 11) + '" y="48" width="22" height="26" fill="#dfe7ee" stroke="#1b3a63" stroke-width="3"/>';
+      g += '<rect x="' + (cx - 92) + '" y="112" width="40" height="22" fill="#dfe7ee" stroke="#1b3a63" stroke-width="3"/>';
+      g += '<path d="M' + (cx - 51) + ' 254 V272 Q' + (cx - 51) + ' 298 ' + cx + ' 298 Q' + (cx + 51) + ' 298 ' + (cx + 51) + ' 272 V254 Z" fill="#d69a16" opacity=".85"/>';
+      g += '<line x1="' + (cx - 51) + '" y1="254" x2="' + (cx + 51) + '" y2="254" stroke="#9c6a08" stroke-width="3"/>';
+      g += '<circle cx="' + (cx - 18) + '" cy="240" r="15" fill="#eef3f7" stroke="#1b3a63" stroke-width="3"/>';
+      g += '<line x1="' + (cx - 4) + '" y1="244" x2="' + (cx + 32) + '" y2="266" stroke="#1b3a63" stroke-width="4" stroke-linecap="round"/>';
+      g += '<path d="M' + (cx + 26) + ' 262 L' + (cx + 44) + ' 262 L' + (cx + 35) + ' 278 Z" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+      g += '<rect x="' + (cx + 52) + '" y="272" width="34" height="14" fill="#dfe7ee" stroke="#1b3a63" stroke-width="3"/>';
+      g += '<rect x="' + (cx - 40) + '" y="298" width="14" height="16" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+      g += '<rect x="' + (cx + 26) + '" y="298" width="14" height="16" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+      return g;
+    }
+
+    /* A gauche : l'eclatement. La plaque de choc fait face au piquage d'entree. */
+    var A = 176;
+    body += virole(A);
+    body += '<rect x="' + (A + 14) + '" y="98" width="9" height="96" rx="3" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+    body += '<path d="M' + (A - 50) + ' 123 H' + (A + 10) + '" stroke="#c0392b" stroke-width="5" stroke-dasharray="11 7" stroke-linecap="round"/>';
+    body += '<path d="M' + (A + 4) + ' 110 Q' + (A - 8) + ' 86 ' + A + ' 76" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>';
+    body += '<rect x="' + (A + 24) + '" y="118" width="7" height="132" fill="#d69a16" opacity=".8"/>';
+    body += oilDrop(A + 36, 172, .4, "bob") + oilDrop(A + 32, 212, .34, "bob");
+    body += '<text class="svg-label" x="' + A + '" y="340" text-anchor="middle">À ÉCLATEMENT</text>';
+    body += '<text class="svg-small" x="' + (A - 94) + '" y="98" text-anchor="start">gaz + huile</text>';
+    body += '<text class="svg-small" x="' + A + '" y="40" text-anchor="middle">gaz déshuilé</text>';
+    body += '<line x1="' + (A + 34) + '" y1="140" x2="' + (A + 86) + '" y2="152" stroke="#637285" stroke-width="1.5"/>';
+    body += '<text class="svg-small" x="' + (A + 90) + '" y="156" text-anchor="start">plaque de choc</text>';
+    body += '<line x1="' + (A - 32) + '" y1="236" x2="' + (A - 78) + '" y2="222" stroke="#637285" stroke-width="1.5"/>';
+    body += '<text class="svg-small" x="' + (A - 82) + '" y="220" text-anchor="end">flotteur</text>';
+    body += '<text class="svg-small" x="' + (A + 92) + '" y="296" text-anchor="start">retour</text>';
+
+    /* A droite : le coalescent. La cartouche occupe tout le passage du gaz. */
+    var B = 544;
+    body += virole(B);
+    body += '<rect x="' + (B - 34) + '" y="104" width="68" height="126" fill="url(#cartouche-media)"/>';
+    body += '<rect x="' + (B - 34) + '" y="104" width="68" height="126" fill="none" stroke="#7d8fa3" stroke-width="3"/>';
+    body += '<rect x="' + (B - 38) + '" y="98" width="76" height="8" rx="3" fill="#8fa3b8" stroke="#1b3a63" stroke-width="2"/>';
+    body += '<path d="M' + (B - 50) + ' 123 H' + (B - 36) + '" stroke="#c0392b" stroke-width="5" stroke-dasharray="11 7" stroke-linecap="round"/>';
+    body += '<path d="M' + (B + 36) + ' 118 Q' + (B + 18) + ' 88 ' + B + ' 76" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>';
+    body += oilDrop(B + 42, 156, .42, "bob") + oilDrop(B + 38, 200, .36, "bob");
+    body += '<text class="svg-label" x="' + B + '" y="340" text-anchor="middle">À COALESCENCE</text>';
+    body += '<text class="svg-small" x="' + (B - 94) + '" y="98" text-anchor="start">gaz + huile</text>';
+    body += '<text class="svg-small" x="' + B + '" y="40" text-anchor="middle">gaz déshuilé</text>';
+    body += '<line x1="' + (B + 34) + '" y1="146" x2="' + (B + 86) + '" y2="152" stroke="#637285" stroke-width="1.5"/>';
+    body += '<text class="svg-small" x="' + (B + 90) + '" y="150" text-anchor="start">cartouche</text>';
+    body += '<text class="svg-small" x="' + (B + 90) + '" y="172" text-anchor="start">à remplacer</text>';
+    body += '<text class="svg-small" x="' + (B + 92) + '" y="296" text-anchor="start">retour</text>';
+
+    body += '<text class="svg-small" x="360" y="372" text-anchor="middle">Coupes de principe : forme réelle, dimensions et raccordements sont ceux de la notice du constructeur.</text>';
+    return svg(v.label, body);
+  }
   function visualQuiz(v, question) {
     var code = question && question.code ? question.code : moduleData.codes.join(" · ");
     var body = '<circle class="accent pulse" cx="150" cy="190" r="92"/><text x="150" y="225" text-anchor="middle" fill="#c9451a" font-family="Trebuchet MS, sans-serif" font-size="104" font-weight="900">?</text>';
@@ -1081,6 +1188,7 @@
       eclatementFilmSlot: visualEclatementFilmSlot,
       burstVelocity: visualBurstVelocity,
       separatorChoice: visualSeparatorChoice,
+      separateursEnCoupe: visualSeparateursEnCoupe,
       quiz: function (item) { return visualQuiz(item, question); }
     };
     return (map[visual.kind] || visualQuiz)(visual);
