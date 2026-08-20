@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fonctionnement du pressostat différentiel d’huile</title>
+  <link rel="stylesheet" href="styles.css?v=20260819a">
+</head>
+<body>
+  <main class="explainer state-start" id="explainer">
+    <header class="state-head">
+      <p><strong>Δp huile = P1 OIL − P2 BP</strong></p>
+      <p class="state-word" id="state-word">DÉMARRAGE · DÉLAI EN COURS</p>
+    </header>
+
+    <section class="mechanism" aria-labelledby="mechanism-title">
+      <h1 class="sr-only" id="mechanism-title">Chaîne mécanique et électrique du pressostat différentiel d’huile</h1>
+      <svg viewBox="0 0 720 300" role="img" aria-labelledby="svg-title svg-desc">
+        <title id="svg-title">Pressostat différentiel d’huile à deux soufflets opposés</title>
+        <desc id="svg-desc">P1 OIL et P2 BP agissent en opposition sur une tige. Lorsque le différentiel est insuffisant, le contact T1-T2 alimente une résistance. Si le défaut persiste, le bilame temporisé ouvre L-M et arrête le compresseur.</desc>
+        <defs>
+          <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1b3a63"/></marker>
+          <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#c9451a"/></marker>
+          <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#f2f5f8"/><stop offset=".65" stop-color="#c2cad4"/><stop offset="1" stop-color="#e3e8ee"/></linearGradient>
+        </defs>
+
+        <g class="measurement">
+          <text class="group-title" x="150" y="24" text-anchor="middle">1 · DEUX PRESSIONS OPPOSÉES</text>
+          <rect class="pressure bp" x="18" y="46" width="91" height="57" rx="10"/>
+          <text class="label-strong" x="63" y="68" text-anchor="middle">P2 · BP</text>
+          <text class="label-small" x="63" y="87" text-anchor="middle">carter</text>
+          <path class="force bp-force" d="M110 75 H148" marker-end="url(#arrow-blue)"/>
+
+          <rect class="bellows" x="151" y="43" width="84" height="63" rx="8"/>
+          <path class="fold" d="M151 55 H235 M151 68 H235 M151 81 H235 M151 94 H235"/>
+          <line class="rod" x1="236" y1="75" x2="286" y2="75"/>
+
+          <rect class="pressure oil" x="18" y="170" width="91" height="57" rx="10"/>
+          <text class="label-strong oil-text" x="63" y="192" text-anchor="middle">P1 · OIL</text>
+          <text class="label-small" x="63" y="211" text-anchor="middle">sortie pompe</text>
+          <path class="force oil-force" d="M110 198 H148" marker-end="url(#arrow-orange)"/>
+
+          <rect class="bellows" x="151" y="167" width="84" height="63" rx="8"/>
+          <path class="fold" d="M151 179 H235 M151 192 H235 M151 205 H235 M151 218 H235"/>
+          <line class="rod" x1="236" y1="198" x2="286" y2="198"/>
+
+          <path class="common-rod" d="M286 75 V198 M286 136 H319"/>
+          <path class="spring" d="M239 113 l8 8 -16 8 16 8 -16 8 16 8 -8 8"/>
+          <text class="label-small" x="201" y="141" text-anchor="end">ressort de consigne</text>
+          <text class="label-small" x="211" y="257" text-anchor="middle">une tige commune</text>
+        </g>
+
+        <g class="safety-contact">
+          <text class="group-title" x="383" y="24" text-anchor="middle">2 · CONTACT T1–T2</text>
+          <rect class="case" x="318" y="45" width="137" height="187" rx="12"/>
+          <circle class="terminal" cx="341" cy="90" r="7"/>
+          <circle class="terminal" cx="432" cy="90" r="7"/>
+          <line class="contact fixed" x1="432" y1="90" x2="410" y2="90"/>
+          <line class="contact moving safety-blade" x1="341" y1="90" x2="397" y2="75"/>
+          <text class="label-small" x="341" y="69" text-anchor="middle">T1</text>
+          <text class="label-small" x="432" y="69" text-anchor="middle">T2</text>
+          <path class="signal" d="M383 105 V135" marker-end="url(#arrow-orange)"/>
+          <path class="heater" d="M337 148 l10 -11 10 11 10 -11 10 11 10 -11 10 11 10 -11 10 11"/>
+          <text class="label-strong heater-label" x="383" y="178" text-anchor="middle">RÉSISTANCE</text>
+          <text class="label-small" x="383" y="201" text-anchor="middle">chauffe si Δp reste trop faible</text>
+        </g>
+
+        <g class="timed-contact">
+          <text class="group-title" x="588" y="24" text-anchor="middle">3 · TEMPORISATION</text>
+          <rect class="case" x="478" y="45" width="222" height="187" rx="12"/>
+          <path class="heat-flow" d="M485 151 H513" marker-end="url(#arrow-orange)"/>
+          <path class="bimetal" d="M521 150 C556 150 566 150 590 150"/>
+          <text class="label-small" x="554" y="179" text-anchor="middle">bilame</text>
+          <circle class="terminal" cx="612" cy="102" r="7"/>
+          <circle class="terminal" cx="672" cy="102" r="7"/>
+          <line class="contact fixed" x1="672" y1="102" x2="657" y2="102"/>
+          <line class="contact moving main-blade" x1="612" y1="102" x2="650" y2="102"/>
+          <text class="label-small" x="612" y="82" text-anchor="middle">L</text>
+          <text class="label-small" x="672" y="82" text-anchor="middle">M</text>
+          <rect class="command" x="524" y="192" width="133" height="25" rx="12"/>
+          <text class="command-text" x="590" y="209" text-anchor="middle">MARCHE AUTORISÉE</text>
+        </g>
+
+        <path class="chain" d="M299 136 H316 M455 136 H477"/>
+        <text class="state-description" id="svg-state-description" x="360" y="286" text-anchor="middle">Au démarrage, le faible différentiel lance le délai. La pression doit s’établir avant son terme.</text>
+      </svg>
+    </section>
+
+    <nav class="state-controls" aria-label="Choisir l’état du pressostat">
+      <button type="button" data-state="start" aria-pressed="true">1 · Démarrage</button>
+      <button type="button" data-state="ok" aria-pressed="false">2 · Pression suffisante</button>
+      <button type="button" data-state="fault" aria-pressed="false">3 · Défaut persistant</button>
+    </nav>
+    <p class="sr-only" id="live-state" aria-live="polite"></p>
+  </main>
+  <script src="app.js?v=20260819a"></script>
+</body>
+</html>

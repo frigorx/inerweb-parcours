@@ -1,0 +1,65 @@
+:root { --navy:#10233c; --blue:#1b3a63; --orange:#c9451a; --paper:#fffdf8; --muted:#637285; --line:#cbd5df; --green:#1e7e54; --red:#c0392b; }
+* { box-sizing: border-box; }
+html, body { width:100%; height:100%; margin:0; }
+body { overflow:hidden; background:var(--paper); color:var(--navy); font-family:Calibri,"Segoe UI",Arial,sans-serif; }
+.explainer { display:grid; height:100%; grid-template-rows:36px minmax(0,1fr) 39px; background:var(--paper); }
+.state-head { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 10px; border-bottom:1px solid rgba(27,58,99,.16); }
+.state-head p { margin:0; font-size:12px; }
+.state-word { color:var(--orange); font-family:"Trebuchet MS",Calibri,Arial,sans-serif; font-weight:900; text-align:right; }
+.mechanism { min-height:0; overflow:hidden; }
+svg { display:block; width:100%; height:100%; }
+.group-title { fill:var(--blue); font:800 13px "Trebuchet MS",Calibri,sans-serif; letter-spacing:.04em; }
+.label-strong { fill:var(--blue); font:800 14px Calibri,"Segoe UI",sans-serif; }
+.label-small { fill:var(--muted); font:700 10px Calibri,"Segoe UI",sans-serif; }
+.oil-text,.heater-label { fill:var(--orange); }
+.pressure,.case { fill:#fff; stroke:var(--line); stroke-width:2; }
+.pressure.bp { stroke:var(--blue); }
+.pressure.oil { stroke:var(--orange); stroke-dasharray:6 3; }
+.bellows { fill:url(#metal); stroke:#8b97a4; stroke-width:2; }
+.fold { fill:none; stroke:#8b97a4; stroke-width:1.5; }
+.force,.signal,.heat-flow { fill:none; stroke-width:4; }
+.bp-force { stroke:var(--blue); }
+.oil-force,.signal,.heat-flow { stroke:var(--orange); stroke-dasharray:7 4; }
+.rod,.common-rod,.chain { fill:none; stroke:var(--blue); stroke-width:6; stroke-linecap:round; transition:transform .25s ease; }
+.spring { fill:none; stroke:#8b97a4; stroke-width:3; }
+.terminal { fill:#fff; stroke:var(--blue); stroke-width:3; }
+.contact { stroke:var(--blue); stroke-width:5; stroke-linecap:round; transform-box:fill-box; transform-origin:left center; transition:transform .25s ease; }
+.heater { fill:none; stroke:#a9b2bd; stroke-width:5; transition:stroke .25s ease; }
+.bimetal { fill:none; stroke:#8b97a4; stroke-width:8; stroke-linecap:round; transition:d .25s ease, stroke .25s ease; }
+.command { fill:#e3f5ec; stroke:var(--green); stroke-width:2; }
+.command-text { fill:var(--green); font:900 10px Calibri,"Segoe UI",sans-serif; }
+.state-description { fill:var(--navy); font:800 12px Calibri,"Segoe UI",sans-serif; }
+.state-controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; padding:4px 6px; border-top:1px solid rgba(27,58,99,.16); }
+.state-controls button { min-width:0; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--navy); font:800 11px Calibri,"Segoe UI",sans-serif; cursor:pointer; }
+.state-controls button[aria-pressed="true"] { border:3px double var(--orange); background:#fff4e0; color:#8b4c00; }
+.state-controls button:focus-visible { outline:3px solid rgba(255,107,53,.48); outline-offset:1px; }
+
+.state-ok .safety-blade { transform:rotate(-25deg); }
+.state-ok .signal,.state-ok .heat-flow { opacity:.22; }
+.state-ok .heater { stroke:#a9b2bd; }
+.state-ok .state-word { color:var(--green); }
+.state-ok .command { fill:#e3f5ec; stroke:var(--green); }
+.state-ok .command-text { fill:var(--green); }
+
+.state-start .safety-blade,.state-fault .safety-blade { transform:rotate(14deg); }
+.state-start .heater,.state-fault .heater { stroke:var(--orange); }
+.state-start .heater { stroke-dasharray:8 4; }
+.state-start .command { fill:#fff4e0; stroke:#b06a00; stroke-dasharray:6 3; }
+.state-start .command-text { fill:#8b5400; }
+
+.state-fault .bimetal { d:path("M521 150 C556 150 565 125 602 119"); stroke:var(--orange); }
+.state-fault .main-blade { transform:rotate(-28deg); }
+.state-fault .state-word { color:var(--red); }
+.state-fault .command { fill:#fbe7e4; stroke:var(--red); stroke-dasharray:6 3; }
+.state-fault .command-text { fill:var(--red); }
+
+.sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+@media (max-width:520px), (max-height:260px) {
+  .explainer { grid-template-rows:30px minmax(0,1fr) 34px; }
+  .state-head { padding:0 6px; }
+  .state-head p { font-size:9px; }
+  .state-controls { gap:3px; padding:3px; }
+  .state-controls button { font-size:8px; }
+}
+@media (prefers-reduced-motion:reduce) { .rod,.common-rod,.contact,.heater,.bimetal { transition:none; } }
+@media print { body { overflow:visible; background:#fff; } .explainer { height:170mm; } .state-controls { display:none; } }

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f1e7">
+  <title>Le circuit d’huile — ligne interactive inerWeb</title>
+  <link rel="stylesheet" href="styles.css?v=20260820a">
+</head>
+<body>
+  <a class="skip-link" href="#station-detail">Aller à la station sélectionnée</a>
+  <div class="line-shell">
+    <header class="line-header">
+      <a class="brand" href="../../parcours.html" aria-label="Retour au parcours inerWeb">
+        <span class="brand-mark" aria-hidden="true">iW</span>
+        <span class="brand-copy"><strong>inerWeb</strong><span>PARCOURS DU FROID</span></span>
+      </a>
+      <div class="line-title">
+        <p>PARCOURS INTERACTIF · LIGNE COMPLÈTE</p>
+        <h1>Le circuit d’huile</h1>
+      </div>
+      <p class="line-count"><strong id="station-count">10</strong><span>stations liées</span></p>
+    </header>
+
+    <main class="line-main">
+      <section class="map-card" aria-labelledby="map-title">
+        <div class="map-heading">
+          <div>
+            <p class="kicker">CARTE PÉDAGOGIQUE</p>
+            <h2 id="map-title">Choisissez une station</h2>
+          </div>
+          <p>Le tracé montre l’ordre du cours. Ce n’est pas un schéma fluidique.</p>
+        </div>
+        <nav class="metro-map" id="metro-map" aria-label="Les dix stations du circuit d’huile">
+          <svg class="route" viewBox="0 0 1000 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M70 62 H918 Q962 62 962 106 V134 Q962 178 918 178 H70"/>
+          </svg>
+          <div class="station-grid" id="station-grid"></div>
+        </nav>
+        <p class="map-help">Touchez une station, ou utilisez les flèches du clavier.</p>
+      </section>
+
+      <article class="detail-card" id="station-detail" tabindex="-1" aria-live="polite">
+        <div class="detail-topline">
+          <p class="station-position" id="station-position">STATION 1 SUR 10</p>
+          <span class="draft-badge">brouillon à relire</span>
+        </div>
+        <h2 id="station-title">Technologie des huiles frigorifiques</h2>
+        <p class="station-summary" id="station-summary"></p>
+        <div class="learn-box">
+          <strong>Dans cette station</strong>
+          <ul id="station-topics"></ul>
+        </div>
+        <p class="quiz-note"><strong>Fin de station :</strong> questions possibles au niveau habilitation fluides, avec correction expliquée.</p>
+        <a class="station-open" id="station-open" href="../technologie-huiles-frigorifiques/index.html">Entrer dans la station <span aria-hidden="true">→</span></a>
+      </article>
+    </main>
+
+    <footer class="line-footer">
+      <button class="line-button" id="previous-station" type="button">← Station précédente</button>
+      <p class="line-status" id="line-status">Station 1 sur 10 · Technologie des huiles</p>
+      <button class="line-button primary" id="next-station" type="button">Station suivante →</button>
+    </footer>
+  </div>
+
+  <section class="print-list" aria-labelledby="print-title">
+    <h1 id="print-title">Le circuit d’huile — parcours inerWeb</h1>
+    <p>Les dix modules sont conçus pour être suivis dans cet ordre.</p>
+    <ol id="print-stations"></ol>
+    <p><strong>Statut :</strong> brouillon à relire. Aucun bon à tirer métier ou pédagogique n’a encore été donné.</p>
+  </section>
+
+  <noscript>
+    <p class="noscript">JavaScript est désactivé. Ouvrez directement la première station :
+      <a href="../technologie-huiles-frigorifiques/index.html">Technologie des huiles frigorifiques</a>.
+    </p>
+  </noscript>
+  <div class="sr-only" id="live-status" aria-live="polite"></div>
+
+  <script src="app.js?v=20260820a"></script>
+  <script src="../../moteur/lisibilite.js"></script>
+</body>
+</html>

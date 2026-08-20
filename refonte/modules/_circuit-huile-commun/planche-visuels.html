@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Planche des visuels — Le circuit d’huile</title>
+  <style>
+    :root {
+      --navy: #1b3a63; --ink: #10233c; --orange: #ff6b35; --orange-dark: #c9451a;
+      --cream: #f7f1e7; --paper: #fffdf8; --muted: #637285;
+      --line: rgba(27, 58, 99, .18); --red: #c0392b; --green: #1e7e54; --amber: #b06a00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 20px 24px 60px;
+      background: var(--cream); color: var(--ink);
+      font-family: Calibri, "Segoe UI", system-ui, Arial, sans-serif;
+    }
+    h1 { color: var(--navy); font-family: "Trebuchet MS", Calibri, sans-serif; margin: 0 0 4px; }
+    .intro { color: var(--muted); max-width: 70ch; margin: 0 0 18px; line-height: 1.4; }
+    .barre { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+    button {
+      font: inherit; padding: 6px 12px; border: 1.5px solid var(--line);
+      border-radius: 8px; background: var(--paper); color: var(--navy); cursor: pointer;
+    }
+    button:hover { border-color: var(--orange-dark); }
+    #etat { color: var(--muted); font-size: 14px; }
+    h2.station {
+      color: var(--navy); font-family: "Trebuchet MS", Calibri, sans-serif;
+      font-size: 19px; margin: 26px 0 10px; padding-bottom: 5px;
+      border-bottom: 3px solid var(--orange);
+    }
+    .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+    figure {
+      margin: 0; background: var(--paper); border: 1.5px solid var(--line);
+      border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 6px;
+    }
+    figure .repere {
+      font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    figure .titre { font-weight: 700; color: var(--navy); font-size: 15px; line-height: 1.2; }
+    figure .cadre { background: #fff; border-radius: 8px; overflow: hidden; }
+    figure svg { display: block; width: 100%; height: auto; }
+    figcaption { font-size: 12px; color: var(--muted); line-height: 1.35; }
+    .kind { font-family: Consolas, monospace; font-size: 11px; color: var(--orange-dark); }
+    iframe { position: absolute; left: -9999px; top: 0; width: 1280px; height: 860px; border: 0; }
+
+    /* Les SVG sortent de leur module : sans ces règles ils tomberaient au noir.
+       Recopiées à l'identique de styles.css — si la charte du moteur bouge,
+       ces lignes bougent avec elle. */
+    .svg-title { fill: var(--navy); font: 800 20px "Trebuchet MS", Calibri, sans-serif; }
+    .svg-label { fill: var(--ink); font: 700 14px Calibri, "Segoe UI", sans-serif; }
+    .svg-small { fill: var(--muted); font: 700 11px Calibri, "Segoe UI", sans-serif; }
+    .svg-code { fill: var(--orange-dark); font: 900 14px Consolas, monospace; }
+    .pipe { fill: none; stroke: var(--navy); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .pipe-thin { fill: none; stroke: var(--navy); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .oil-line { fill: none; stroke: #9a6500; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 10 6; }
+    .vessel { fill: #fff8df; stroke: var(--navy); stroke-width: 4; }
+    .component { fill: #f3f7fb; stroke: var(--navy); stroke-width: 3; }
+    .accent { fill: #ffe2d6; stroke: var(--orange-dark); stroke-width: 3; }
+    .good-shape { fill: #e3f5ec; stroke: var(--green); stroke-width: 4; }
+    .warn-shape { fill: #fff4e0; stroke: var(--amber); stroke-width: 3; stroke-dasharray: 8 5; }
+    .bad-shape { fill: #fbe7e4; stroke: var(--red); stroke-width: 3; stroke-dasharray: 8 5; }
+    .oil-drop { fill: #d69a16; stroke: #805900; stroke-width: 1.5; }
+    .flow-dot { fill: var(--orange-dark); }
+  </style>
+</head>
+<body>
+  <h1>Planche des visuels — la ligne « Le circuit d’huile »</h1>
+  <p class="intro">Tous les schémas de la branche, sortis de leur module et posés côte à côte
+  pour être relus d’affilée. Chaque vignette porte sa station, son écran et le nom interne du
+  visuel, de sorte qu’un défaut se retrouve directement dans <code>engine.js</code>.
+  Rien n’est modifié ici : c’est une page de relecture.</p>
+
+  <div class="barre">
+    <button type="button" id="lancer">Rassembler les visuels</button>
+    <button type="button" id="imprimer">Imprimer</button>
+    <span id="etat">en attente</span>
+  </div>
+
+  <div id="planche"></div>
+  <div id="cage"></div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var STATIONS = [
+      ["technologie-huiles-frigorifiques", "1 · Les familles d’huile"],
+      ["technologie-huiles-choix-controle", "2 · Choisir et contrôler"],
+      ["retour-huile-naturel", "3 · Le retour naturel"],
+      ["retour-huile-verifier", "4 · Vérifier le retour"],
+      ["elements-circuit-huile", "5 · Séparer et stocker"],
+      ["elements-circuit-huile-regler", "6 · Mettre sous pression"],
+      ["separateur-huile-pedagogique", "7 · Le séparateur"],
+      ["reservoir-huile-pedagogique", "8 · Le réservoir"],
+      ["clapet-differentiel-huile-pedagogique", "9 · Le clapet différentiel"],
+      ["regulateur-huile-mecanique-pedagogique", "10 · Le régulateur AC&R"],
+      ["traxoil-pedagogique", "11 · TraxOil"],
+      ["traxoil-installer", "12 · Monter le TraxOil"],
+      ["pressostat-differentiel-huile-pedagogique", "13 · Le pressostat"],
+      ["pressostat-huile-securite", "14 · Sécurité d’huile"],
+      ["diagnostic-circuit-huile", "15 · Diagnostiquer"],
+      ["diagnostic-circuit-huile-conclure", "16 · Conclure"]
+    ];
+
+    var planche = document.getElementById("planche");
+    var cage = document.getElementById("cage");
+    var etat = document.getElementById("etat");
+
+    function texte(el, sel) {
+      var n = el.querySelector(sel);
+      return n ? n.textContent.trim() : "";
+    }
+
+    /* Le moteur rend l'écran de façon synchrone au clic : on peut lire le SVG
+       juste après, sans attendre. Les visuels des questions ne sont pas repris —
+       ils partagent tous le même dessin. */
+    function collecter(doc, mod) {
+      var out = [];
+      var boutons = [].slice.call(doc.querySelectorAll("#stations button"))
+        .filter(function (b) { return !b.hasAttribute("data-quiz"); });
+      boutons.forEach(function (b, i) {
+        b.click();
+        var panneau = doc.querySelector(".visual-panel");
+        if (!panneau) return;
+        var svg = panneau.querySelector(".visual-stage svg");
+        var donnees = doc.defaultView.OIL_MODULE;
+        var lecon = donnees && donnees.lessons ? donnees.lessons[i] : null;
+        out.push({
+          ecran: i + 1,
+          kicker: texte(doc, ".copy-panel .kicker"),
+          titre: texte(panneau, "h2"),
+          legende: texte(panneau, ".visual-caption"),
+          kind: lecon && lecon.visual ? lecon.visual.kind : "?",
+          svg: svg ? svg.outerHTML : null
+        });
+      });
+      return out;
+    }
+
+    function poser(mod, libelle, items) {
+      var h2 = document.createElement("h2");
+      h2.className = "station";
+      h2.textContent = libelle + " — " + items.length + " visuels";
+      planche.appendChild(h2);
+
+      var g = document.createElement("div");
+      g.className = "grille";
+      items.forEach(function (it) {
+        var f = document.createElement("figure");
+        var r = document.createElement("div");
+        r.className = "repere";
+        r.textContent = "écran " + it.ecran + " · " + it.kicker;
+        var t = document.createElement("div");
+        t.className = "titre";
+        t.textContent = it.titre;
+        var c = document.createElement("div");
+        c.className = "cadre";
+        c.innerHTML = it.svg || '<p style="padding:14px;color:#c0392b">aucun SVG rendu</p>';
+        var cap = document.createElement("figcaption");
+        cap.innerHTML = '<span class="kind">' + it.kind + "</span> — " + it.legende;
+        f.appendChild(r); f.appendChild(t); f.appendChild(c); f.appendChild(cap);
+        g.appendChild(f);
+      });
+      planche.appendChild(g);
+    }
+
+    function suivant(i) {
+      if (i >= STATIONS.length) {
+        etat.textContent = "planche complète — " +
+          document.querySelectorAll("figure").length + " visuels";
+        cage.innerHTML = "";
+        return;
+      }
+      var mod = STATIONS[i][0], libelle = STATIONS[i][1];
+      etat.textContent = "station " + (i + 1) + " sur " + STATIONS.length + " — " + mod;
+      var f = document.createElement("iframe");
+      /* Un jeton neuf à chaque passage : sans lui, l’iframe ressort du cache
+         avec la version précédente du module et la planche ment. */
+      f.src = "../" + mod + "/index.html?planche=" + Date.now();
+      f.addEventListener("load", function () {
+        var doc = f.contentDocument;
+        var items = [];
+        try { items = collecter(doc, mod); }
+        catch (e) { etat.textContent = "erreur sur " + mod + " : " + e.message; }
+        poser(mod, libelle, items);
+        f.remove();
+        suivant(i + 1);
+      });
+      cage.appendChild(f);
+    }
+
+    document.getElementById("lancer").addEventListener("click", function () {
+      planche.innerHTML = "";
+      suivant(0);
+    });
+    document.getElementById("imprimer").addEventListener("click", function () { window.print(); });
+  })();
+  </script>
+</body>
+</html>

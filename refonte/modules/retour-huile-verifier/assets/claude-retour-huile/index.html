@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Colonne montante d’aspiration — la vitesse du gaz commande le retour d’huile</title>
+  <link rel="stylesheet" href="styles.css?v=20260819b">
+</head>
+<body>
+  <main class="sim">
+
+    <div class="controls">
+      <div class="control">
+        <label class="control-label" for="regime">Régime</label>
+        <select id="regime">
+          <option value="100" selected>Pleine charge</option>
+          <option value="40">Charge réduite</option>
+          <option value="0">À l’arrêt</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label class="control-label" for="trace">Tracé</label>
+        <select id="trace">
+          <option value="simple" selected>Colonne simple</option>
+          <option value="double">Double colonne</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label class="control-label" for="diam">Diamètre intérieur</label>
+        <select id="diam">
+          <option value="16">16 mm</option>
+          <option value="20">20 mm</option>
+          <option value="26" selected>26 mm</option>
+          <option value="32">32 mm</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <span class="control-label">Débit aspiré à pleine charge</span>
+        <select id="debit">
+          <option value="12">12 m³/h</option>
+          <option value="18" selected>18 m³/h</option>
+          <option value="26">26 m³/h</option>
+        </select>
+      </div>
+      <div class="control">
+        <label class="control-label" for="repere">Repère de l’étude</label>
+        <select id="repere">
+          <option value="6">6 m/s</option>
+          <option value="8" selected>8 m/s</option>
+          <option value="10">10 m/s</option>
+        </select>
+      </div>
+      <div class="control">
+        <span class="control-label">Mouvement</span>
+        <button class="motion-button" id="toggle-motion" type="button" aria-pressed="false">▶ Animer</button>
+      </div>
+    </div>
+
+    <div class="stage">
+      <svg viewBox="0 0 520 360" role="img" aria-labelledby="svg-title svg-desc">
+        <title id="svg-title">Colonne montante d’aspiration entre l’évaporateur et le compresseur</title>
+        <desc id="svg-desc">L’huile quitte l’évaporateur avec le gaz aspiré, franchit un siphon en pied de colonne, monte le long de la colonne verticale, passe le contre-siphon en tête et rejoint le compresseur. La vitesse du gaz décide si l’huile monte ou retombe.</desc>
+
+        <defs>
+          <symbol id="library-compressor" viewBox="-24 -20 50 40">
+            <circle cx="0" cy="0" r="15" fill="#fffdf8" stroke="#000"/><line x1="-15" y1="0" x2="-16" y2="0" stroke="#000"/><line x1="15" y1="0" x2="16" y2="0" stroke="#000"/>
+            <line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000"/><line x1="-7" y1="13" x2="13" y2="7" stroke="#000"/>
+            <circle cx="-16" cy="0" r="1.5"/><circle cx="16" cy="0" r="1.5"/><circle cx="-10" cy="10" r="1.5"/><circle cx="2" cy="11" r="1.5"/><circle cx="-10" cy="-10" r="1.5"/>
+          </symbol>
+          <symbol id="library-exchanger" viewBox="-25 -25 60 60">
+            <rect x="-18" y="-20" width="36" height="48" fill="none" stroke="#000"/><line x1="-19" y1="20" x2="19" y2="20" stroke="#000"/>
+            <line x1="-14" y1="16" x2="-14" y2="24" stroke="#000"/><line x1="-7" y1="16" x2="-7" y2="24" stroke="#000"/><line x1="0" y1="16" x2="0" y2="24" stroke="#000"/><line x1="7" y1="16" x2="7" y2="24" stroke="#000"/><line x1="14" y1="16" x2="14" y2="24" stroke="#000"/>
+            <circle cx="0" cy="-2" r="15" fill="none" stroke="#000"/><path d="M0 -2 C5 -15 13 -14 13 5 C2 5 -2 1 0 -2 C-5 10 -13 9 -13 5 C-5 -4 -2 -4 0 -2" fill="none" stroke="#000"/>
+          </symbol>
+        </defs>
+
+        <!-- tuyauterie fixe -->
+        <g id="pipes"></g>
+
+        <!-- évaporateur -->
+        <g role="img" aria-label="Évaporateur, symbole d’échangeur à air de la bibliothèque technique inerWeb">
+          <use href="#library-exchanger" x="26" y="238" width="96" height="72"/>
+          <text class="label" x="74" y="320" text-anchor="middle">Évaporateur</text>
+        </g>
+
+        <!-- compresseur -->
+        <g role="img" aria-label="Compresseur de la bibliothèque technique inerWeb">
+          <use href="#library-compressor" x="435" y="46" width="70" height="60"/>
+          <text class="label" x="470" y="128" text-anchor="middle">Compresseur</text>
+        </g>
+
+        <!-- couches variables -->
+        <g id="oil-layer"></g>
+        <g id="flow-layer"></g>
+        <g id="annot-layer"></g>
+      </svg>
+    </div>
+
+    <dl class="readout">
+      <div class="cell">
+        <dt>Section de passage</dt>
+        <dd id="out-section">— <small>mm²</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Débit aspiré</dt>
+        <dd id="out-debit">— <small>m³/h</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Vitesse du gaz</dt>
+        <dd id="out-vitesse">— <small>m/s</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Colonne qui travaille</dt>
+        <dd id="out-colonne">—</dd>
+      </div>
+
+      <p class="verdict good" id="verdict" role="status">
+        <strong>—</strong> <span id="verdict-text">—</span>
+      </p>
+
+      <p class="note">
+        <strong>v = q<sub>v</sub> / S</strong>, avec <strong>S = π · d² / 4</strong>.
+        Le repère de l’exercice n’est pas universel : utiliser la notice et l’étude.
+      </p>
+    </dl>
+
+    <p class="sr-only" id="equivalent"></p>
+  </main>
+
+  <script src="app.js?v=20260819b"></script>
+</body>
+</html>

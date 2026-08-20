@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Le retour d’huile — animation guidée</title>
+  <link rel="stylesheet" href="styles.css?v=20260819b">
+</head>
+<body>
+  <main class="player" id="player" data-scene-count="11">
+    <header class="scene-head">
+      <strong id="scene-count">1 / 11</strong>
+      <span id="scene-name">Ouverture</span>
+      <div class="progress" id="progress" role="progressbar" aria-label="Progression dans la scène" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+    </header>
+    <section class="stage" id="svg-host" aria-label="Scène animée"></section>
+    <p class="description" id="scene-description"></p>
+    <nav class="controls" aria-label="Commandes de l’animation">
+      <button type="button" id="previous-scene" aria-label="Scène précédente">← <span>Précédent</span></button>
+      <button type="button" class="play" id="toggle-play" aria-pressed="false">▶ Lire</button>
+      <button type="button" id="next-scene"><span>Suivant</span> →</button>
+    </nav>
+    <p class="sr-only" id="live-scene" aria-live="polite"></p>
+  </main>
+  <script src="app.js?v=20260819b"></script>
+</body>
+</html>
