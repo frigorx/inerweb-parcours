@@ -28,10 +28,11 @@ window.OIL_MODULE = {
       short: "Familles",
       kicker: "Station 2 · Les deux familles",
       title: "À coalescence, ou à éclatement",
-      lead: "Dans un séparateur à coalescence, le gaz traverse un élément filtrant qui rassemble les fines gouttelettes jusqu’à ce qu’elles tombent.",
+      lead: "Dans un séparateur à coalescence, le gaz traverse une cartouche filtrante : les fines gouttelettes s’y accrochent, se rassemblent, grossissent et finissent par tomber.",
       details: [
-        "Dans un séparateur à éclatement, il n’y a pas d’élément à traverser : le gaz est projeté par une buse sur une plaque de choc placée en face.",
-        "Les deux familles se reconnaissent à ce détail : une cartouche à remplacer d’un côté, un obstacle fixe de l’autre. Le reste du raccordement est identique."
+        "Cette cartouche s’use et se remplace : c’est une pièce d’entretien, à surveiller et à changer selon la notice. Tant qu’elle travaille, elle freine aussi le gaz — c’est sa perte de charge.",
+        "Dans un séparateur à éclatement, il n’y a rien à traverser : le gaz est projeté par une buse sur une plaque de choc placée en face. Aucune pièce à remplacer, et une perte de charge faible.",
+        "Les deux familles se reconnaissent à ce détail. Cherchez la cartouche : si elle existe, c’est un coalescent. Le reste du raccordement est identique."
       ],
       box: { type: "exam", text: "À l’oral : nommer la famille avant de décrire le fonctionnement. « Séparateur d’huile » ne suffit pas à désigner l’appareil." },
       visual: { kind: "separatorMethods", title: "Comparer les principes", label: "Impact sur chicanes, effet centrifuge et coalescence : trois principes, souvent combinés" }
@@ -41,13 +42,13 @@ window.OIL_MODULE = {
       short: "Le choc",
       kicker: "Station 3 · Animation guidée",
       title: "Suivre le jet, de la buse à la plaque",
-      lead: "L’animation déroule huit scènes commandées par l’élève : la buse, le jet, la plaque de choc, la chute de vitesse, le film d’huile, le retour par flotteur et les limites de l’appareil.",
+      lead: "L’animation déroule dix scènes commandées par l’élève : les deux familles, la cartouche du coalescent, la buse, le jet, la plaque de choc, la chute de vitesse, le retour par flotteur, la comparaison et l’emploi de chacun.",
       details: [
         "Le gaz de refoulement entre par une buse de petite section, donc à grande vitesse, et frappe une plaque placée juste en face.",
         "Les gouttes s’écrasent sur la plaque et s’y rassemblent ; le gaz, lui, change brutalement de direction et repart vers la sortie haute."
       ],
       box: { type: "key", text: "L’huile ne tombe pas parce qu’elle est filtrée : elle tombe parce qu’elle a été arrêtée net par un obstacle." },
-      visual: { kind: "eclatementFilmSlot", title: "Animation guidée : le choc et l’éclatement", label: "Animation inerWeb adaptée du projet Claude Design « Séparateur à éclatement », huit scènes commandées par l’élève", caption: "Adaptation complète et hors ligne du projet Claude fourni par Franck : lecture manuelle, texte visible et symboles de la bibliothèque technique inerWeb." }
+      visual: { kind: "eclatementFilmSlot", title: "Animation guidée : le choc et l’éclatement", label: "Animation inerWeb adaptée du projet Claude Design « Séparateur à éclatement », dix scènes commandées par l’élève", caption: "Adaptation complète et hors ligne du projet Claude fourni par Franck : lecture manuelle, texte visible et symboles de la bibliothèque technique inerWeb." }
     },
     {
       id: "vitesse",
@@ -66,13 +67,14 @@ window.OIL_MODULE = {
       id: "choisir",
       short: "Choisir",
       kicker: "Station 5 · Décision",
-      title: "Ce qu’il sait faire, et ce qu’il ne sait pas",
-      lead: "L’éclatement est simple et robuste : aucun élément filtrant à remplacer, une perte de charge faible et un coût modeste.",
+      title: "Lequel choisir, et pourquoi",
+      lead: "Les deux ne se valent pas. Le coalescent sépare mieux : c’est le plus efficace des deux. Mais il coûte plus cher, il freine davantage le gaz, et sa cartouche est une pièce d’entretien.",
       details: [
-        "En contrepartie, le brouillard le plus fin traverse : le rendement de séparation reste inférieur à celui d’un coalescent.",
-        "Sur une centrale, ou dès que les tuyauteries s’allongent, l’huile qui échappe au séparateur devient un vrai problème : on préfère alors un coalescent, en acceptant sa cartouche et sa perte de charge."
+        "L’éclatement, lui, est simple et robuste : rien à remplacer, une perte de charge faible et stable, un prix modeste. Sa limite est réelle : le brouillard le plus fin le traverse.",
+        "En France, l’éclatement équipe le plus souvent les installations classiques ; d’autres pays européens emploient plus largement le coalescent, précisément pour son rendement de séparation.",
+        "Sur les centrales au CO₂, le coalescent s’impose. La raison est technique : la densité du CO₂ se rapproche de celle de l’huile et les gouttelettes sont très fines. Or l’éclatement sépare grâce à l’écart de densité — ici cet écart s’amenuise, et son moteur faiblit."
       ],
-      box: { type: "exam", text: "Le choix se fait sur l’installation complète — architecture, longueur des lignes, plage de débit — jamais sur le seul prix de l’appareil." },
+      box: { type: "exam", text: "Le choix se fait sur l’installation complète — fluide, architecture, longueur des lignes, plage de débit — jamais sur le seul prix de l’appareil." },
       visual: { kind: "separatorChoice", title: "Lire l’installation avant de choisir", label: "Un poste à lignes courtes appelle un séparateur à éclatement ; une centrale à lignes longues appelle un coalescent" }
     }
   ],
@@ -111,6 +113,13 @@ window.OIL_MODULE = {
       correct: 1,
       why: "Plus les lignes s’allongent et plus la centrale est importante, plus l’huile qui échappe au séparateur pose problème. Le coalescent est alors préféré, cartouche et perte de charge acceptées.",
       code: "6.05 · 9.07"
+    },
+    {
+      prompt: "Pourquoi le coalescent s’impose-t-il sur les centrales au CO₂ ?",
+      options: ["Sa densité approche celle de l’huile", "Il attaque la plaque de choc en acier", "Il circule beaucoup plus lentement"],
+      correct: 0,
+      why: "L’éclatement sépare grâce à l’écart de densité entre le gaz et l’huile. En CO₂ cet écart s’amenuise, et les gouttelettes sont très fines : le coalescent, qui les rassemble au lieu de compter sur leur inertie, reprend l’avantage. Le CO₂ n’attaque pas l’acier, et il ne circule pas plus lentement.",
+      code: "1.05 · 6.05"
     }
   ],
   sources: [
@@ -128,6 +137,16 @@ window.OIL_MODULE = {
       title: "Danfoss — Industrial Refrigeration Application Handbook",
       url: "https://assets.danfoss.com/documents/latest/470491/AB137786416217en-000801.pdf",
       use: "principes de séparation de l’huile et limites de rendement"
+    },
+    {
+      title: "Carly — séparateurs d’huile TURBOIL-R-P14 pour CO₂ transcritique",
+      url: "https://www.carly-sa.fr/la-deshydratation-dun-circuit-frigorifique/",
+      use: "coalescent haute pression sur CO₂, cartouche et efficacité selon le taux de charge"
+    },
+    {
+      title: "Profroid — centrales booster CO₂ transcritiques",
+      url: "https://www.shareddocs.com/hvac/docs/2004/Public/02/profroid-maxico2ol-compact-brochure-a-fr-en-de-211019.pdf",
+      use: "séparateur haute pression et haute efficacité de type coalescent, livré avec cartouche"
     },
     {
       title: "Légifrance — Attestation d’aptitude fluides",

@@ -367,8 +367,8 @@ a:focus-visible {
 .flow-dot { fill: var(--orange-dark); }
 
 .flowing { animation: flow 2.8s linear infinite; }
-.pulse { animation: pulse 2.2s ease-in-out infinite; transform-origin: center; }
-.bob { animation: bob 2.6s ease-in-out infinite; }
+.pulse { animation: pulse 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.bob { animation: bob 2.6s ease-in-out infinite; transform-box: fill-box; }
 
 @keyframes flow { to { stroke-dashoffset: -32; } }
 @keyframes pulse { 50% { opacity: .55; transform: scale(.96); } }

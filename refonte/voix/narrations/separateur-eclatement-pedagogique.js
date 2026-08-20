@@ -11,14 +11,15 @@ NARRATION("separateur-eclatement-pedagogique", {
     "l’huile. Le retour naturel de vos tuyauteries reste nécessaire dans tous les cas.",
 
   "familles":
-    "Première famille : le séparateur à coalescence. Le gaz traverse un élément filtrant. Les " +
-    "fines gouttelettes s’y accrochent, se rassemblent, grossissent, et finissent par tomber. " +
-    "Deuxième famille : le séparateur à éclatement. Là, il n’y a rien à traverser. Le gaz est " +
-    "projeté par une buse sur une plaque placée juste en face. Comment les reconnaître devant " +
-    "la machine ? Cherchez la cartouche. S’il y a une cartouche à remplacer, c’est un " +
-    "coalescent. S’il n’y en a pas, c’est un éclatement. Le reste du raccordement est " +
-    "identique. Un conseil pour l’oral : ne dites jamais seulement « séparateur d’huile ». " +
-    "Nommez la famille d’abord, décrivez ensuite.",
+    "Première famille : le séparateur à coalescence. Le gaz traverse une cartouche filtrante. " +
+    "Les fines gouttelettes s’y accrochent, se rassemblent, grossissent, et finissent par tomber. " +
+    "Retenez bien ce mot : cartouche. C’est une pièce d’entretien. Elle s’use, elle se surveille, " +
+    "et elle se remplace selon la notice. Et tant qu’elle travaille, elle freine le gaz : c’est sa " +
+    "perte de charge. Deuxième famille : le séparateur à éclatement. Là, il n’y a rien à traverser. " +
+    "Le gaz est projeté par une buse sur une plaque placée juste en face. Aucune pièce à remplacer, " +
+    "et une perte de charge faible. Comment les reconnaître devant la machine ? Cherchez la " +
+    "cartouche. Si elle existe, c’est un coalescent. Sinon, c’est un éclatement. Un conseil pour " +
+    "l’oral : ne dites jamais seulement « séparateur d’huile ». Nommez la famille d’abord.",
 
   "choc":
     "Regardez l’animation, scène par scène, à votre rythme. Voici ce qu’elle montre. Le gaz de " +
@@ -40,15 +41,20 @@ NARRATION("separateur-eclatement-pedagogique", {
     "dans la notice de l’appareil et dans l’étude de l’installation.",
 
   "choisir":
-    "Alors, lequel choisir ? L’éclatement a de vrais avantages. Il est simple. Il est robuste. " +
-    "Il n’a aucun élément filtrant à remplacer. Sa perte de charge est faible et son prix est " +
-    "modeste. Mais il a une limite, et elle est réelle : le brouillard le plus fin le traverse. " +
-    "Son rendement de séparation reste inférieur à celui d’un coalescent. Cela se voit surtout " +
-    "sur les grandes installations. Sur une centrale, ou dès que les tuyauteries s’allongent, " +
-    "l’huile qui échappe au séparateur devient un vrai problème. On préfère alors un " +
-    "coalescent, en acceptant sa cartouche et sa perte de charge. Une dernière chose, et c’est " +
-    "celle qui compte devant un client : ce choix se fait sur l’installation complète. " +
-    "L’architecture, la longueur des lignes, la plage de débit. Jamais sur le seul prix de " +
-    "l’appareil.",
+    "Alors, lequel choisir ? Disons-le franchement : les deux ne se valent pas. Le coalescent " +
+    "sépare mieux. C’est le plus efficace des deux, et c’est sa vraie force. Mais il coûte plus " +
+    "cher. Il freine davantage le gaz. Et sa cartouche est une pièce d’entretien, à surveiller et " +
+    "à changer. L’éclatement, lui, est simple et robuste. Rien à remplacer. Une perte de charge " +
+    "faible, et qui reste faible. Un prix modeste. Sa limite est réelle : le brouillard le plus " +
+    "fin le traverse. En France, vous rencontrerez surtout l’éclatement sur les installations " +
+    "classiques. D’autres pays européens emploient plus largement le coalescent, justement pour " +
+    "son rendement de séparation. Et puis il y a un cas à part : les centrales au C O deux. " +
+    "Là, le coalescent s’impose, et la raison est technique. La densité du C O deux se rapproche " +
+    "de celle de l’huile, et les gouttelettes sont très fines. Or l’éclatement sépare grâce à " +
+    "l’écart de densité entre le gaz et l’huile. Si cet écart s’amenuise, son moteur faiblit. " +
+    "Voilà pourquoi les constructeurs équipent ces centrales de coalescents haute pression. " +
+    "Une dernière chose, et c’est celle qui compte devant un client : ce choix se fait sur " +
+    "l’installation complète. Le fluide, l’architecture, la longueur des lignes, la plage de " +
+    "débit. Jamais sur le seul prix de l’appareil.",
 
 });

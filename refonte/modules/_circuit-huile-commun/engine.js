@@ -71,7 +71,11 @@
 
   function oilDrop(x, y, size, extraClass) {
     var s = size || 1;
-    return '<path class="oil-drop ' + (extraClass || "") + '" transform="translate(' + x + " " + y + ") scale(" + s + ')" d="M0 -13 C9 -2 13 4 13 11 A13 13 0 1 1 -13 11 C-13 4 -9 -2 0 -13 Z"/>';
+    /* Le placement vit sur le groupe, l'animation sur le tracé : en SVG, la propriété
+       CSS « transform » écrase l'attribut « transform ». Placer et animer le même
+       élément fait sauter la goutte à l'origine du dessin dès la première image. */
+    return '<g transform="translate(' + x + " " + y + ") scale(" + s + ')">' +
+      '<path class="oil-drop ' + (extraClass || "") + '" d="M0 -13 C9 -2 13 4 13 11 A13 13 0 1 1 -13 11 C-13 4 -9 -2 0 -13 Z"/></g>';
   }
 
   // Géométrie reprise à l'identique de la bibliothèque technique inerWeb.
@@ -530,18 +534,39 @@
 
   function visualRoute(v) {
     var body = arrowMarker();
+    /* Le circuit du fluide. */
     body += '<path class="pipe" d="M560 210 C565 92 475 55 360 55 C245 55 155 92 160 210 C165 325 260 348 360 348 C470 348 555 310 560 210"/>';
+    /* Le trajet de l'huile : le tour COMPLET, a l'interieur du circuit. Il etait
+       auparavant coupe en deux arcs — compresseur vers condenseur, puis evaporateur
+       vers compresseur — et l'huile ne bouclait jamais. */
+    body += '<path id="oil-loop-route" class="oil-line flowing" d="M546 210 C551 106 466 69 360 69 C254 69 169 106 174 210 C179 311 266 334 360 334 C456 334 541 300 546 210"/>';
     body += '<rect class="accent" x="505" y="145" width="160" height="118" rx="16"/>';
     body += libraryCompressor(530, 155, 110, 88, "Compresseur de la bibliothèque technique inerWeb");
     body += '<text class="svg-label" x="585" y="248" text-anchor="middle">COMPRESSEUR</text>';
     body += organe(275, 12, 170, 104, libraryAirExchanger, "CONDENSEUR", "HP");
     body += organe(52, 148, 156, 112, libraryExpansionValve, "DÉTENDEUR", "chute de pression");
     body += organe(275, 274, 170, 104, libraryAirExchanger, "ÉVAPORATEUR", "BP");
-    body += '<path class="oil-line flowing" d="M535 165 C500 105 445 82 400 76 M225 310 C310 350 430 340 500 250"/>';
-    body += oilDrop(525, 150, .65, "bob") + oilDrop(470, 300, .65, "bob") + oilDrop(315, 330, .55, "bob");
-    body += '<text class="svg-title" x="360" y="195" text-anchor="middle">PARTIR</text><text class="svg-label" x="360" y="220" text-anchor="middle">puis revenir au carter</text>';
+    /* Trois gouttes qui parcourent reellement la boucle, decalees dans le temps.
+       Le mouvement PORTE le contenu — c'est lui qui dit « l'huile fait le tour » —
+       il n'est donc jamais supprime. */
+    body += goutteEnRoute("oil-loop-route", .62, 11, "0s") +
+            goutteEnRoute("oil-loop-route", .52, 11, "-3.7s") +
+            goutteEnRoute("oil-loop-route", .44, 11, "-7.4s");
+    body += '<text class="svg-title" x="360" y="196" text-anchor="middle">L’HUILE FAIT LE TOUR</text>';
+    body += '<text class="svg-label" x="360" y="222" text-anchor="middle">elle quitte le carter, elle doit y revenir</text>';
+    body += '<text class="svg-small" x="360" y="248" text-anchor="middle">trait plein : le fluide · pointillé : la fraction d’huile entraînée</text>';
     return svg(v.label, body);
   }
+
+  /* Une goutte qui suit un trace, au lieu d'osciller sur place a un point fixe.
+     Le placement vit sur le groupe anime, l'echelle sur un groupe interieur : sans
+     cette separation, l'echelle serait ecrasee par l'animation de deplacement. */
+  function goutteEnRoute(idTrace, taille, duree, depart) {
+    return '<g><animateMotion dur="' + duree + 's" repeatCount="indefinite" begin="' + depart +
+      '" rotate="auto"><mpath href="#' + idTrace + '"/></animateMotion>' +
+      '<g transform="scale(' + taille + ')"><path class="oil-drop" d="M0 -13 C9 -2 13 4 13 11 A13 13 0 1 1 -13 11 C-13 4 -9 -2 0 -13 Z"/></g></g>';
+  }
+
 
   function visualDrivers(v) {
     var body = component(35, 75, 205, 220, "VITESSE DU GAZ", "entraîne le film d’huile", "good-shape");
@@ -925,7 +950,7 @@
   }
 
   function visualEclatementFilmSlot(v) {
-    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820c" title="' + esc(v.label) + '"></iframe>' +
+    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820e" title="' + esc(v.label) + '"></iframe>' +
       '<p class="sr-only">Huit scènes commandées par l’élève. Le gaz de refoulement entre par une buse de petite section, à grande vitesse, et frappe une plaque de choc placée en face. Les gouttes d’huile s’y écrasent et s’y rassemblent pendant que le gaz change de direction vers la sortie haute. Dans le corps, la section s’ouvre et la vitesse s’effondre : l’huile, bien plus dense, ne suit plus. Elle ruisselle sur la plaque et la paroi, s’accumule au fond, puis un flotteur commande un pointeau qui la renvoie vers le carter. Le brouillard le plus fin traverse : le rendement reste inférieur à celui d’un séparateur à coalescence.</p>';
   }
 
