@@ -992,7 +992,7 @@
   }
 
   function visualEclatementFilmSlot(v) {
-    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820i" title="' + esc(v.label) + '"></iframe>' +
+    return '<iframe class="claude-eclatement-frame" src="assets/claude-eclatement/index.html?v=20260820m" title="' + esc(v.label) + '"></iframe>' +
       '<p class="sr-only">Huit scènes commandées par l’élève. Le gaz de refoulement entre par une buse de petite section, à grande vitesse, et frappe une plaque de choc placée en face. Les gouttes d’huile s’y écrasent et s’y rassemblent pendant que le gaz change de direction vers la sortie haute. Dans le corps, la section s’ouvre et la vitesse s’effondre : l’huile, bien plus dense, ne suit plus. Elle ruisselle sur la plaque et la paroi, s’accumule au fond, puis un flotteur commande un pointeau qui la renvoie vers le carter. Le brouillard le plus fin traverse : le rendement reste inférieur à celui d’un séparateur à coalescence.</p>';
   }
 
@@ -1349,7 +1349,35 @@
 
   function visibleSpeechText() {
     var copy = ui.lessonCard.querySelector(".copy-panel");
-    return copy ? copy.innerText.replace(/\s+/g, " ").trim() : "";
+    if (!copy) return "";
+    /* La voix de secours lisait TOUT le panneau : le rappel « Entraînement —
+       jamais un sujet officiel », le code de compétence, le compteur « 1 / 6 »
+       dit « un slash six ». Sur une question, l'élève entendait les règles du
+       module avant sa question. On ne garde que ce qu'il doit entendre. */
+    var copie = copy.cloneNode(true);
+    var aRetirer = copie.querySelectorAll(".recall-badge, .exam-box, .svg-code");
+    for (var i = 0; i < aRetirer.length; i++) aRetirer[i].parentNode.removeChild(aRetirer[i]);
+    var kicker = copie.querySelector(".kicker");
+    if (kicker) {
+      /* « Questions d'habilitation · 3 / 6 » devient « Question 3 sur 6 ». */
+      var m = /(\d+)\s*\/\s*(\d+)/.exec(kicker.textContent || "");
+      kicker.textContent = m ? "Question " + m[1] + " sur " + m[2] + "." : "";
+    }
+    /* Les propositions collent leur lettre au texte — « AUn tamis magnétique ».
+       On les remet en phrase, comme dans les enregistrements. */
+    var props = copie.querySelectorAll(".option-list button");
+    for (var j = 0; j < props.length; j++) {
+      var t = (props[j].textContent || "").trim();
+      var lettre = t.slice(0, 1);
+      props[j].textContent = " Proposition " + lettre + " : " + t.slice(1).trim() + ". ";
+    }
+    /* Un bloc suivi d'un autre sans ponctuation se dit d'un trait : on sépare. */
+    var blocs = copie.querySelectorAll("h1, h2, p, div");
+    for (var k = 0; k < blocs.length; k++) {
+      var fin = (blocs[k].textContent || "").trim().slice(-1);
+      if (fin && ".?!:".indexOf(fin) < 0) blocs[k].appendChild(document.createTextNode(". "));
+    }
+    return copie.innerText.replace(/\s+/g, " ").replace(/\s+\./g, ".").replace(/\.(?=[A-ZÀ-Ý])/g, ". ").trim();
   }
 
   function bestFrenchVoice() {
@@ -1383,9 +1411,22 @@
   }
 
   function voixFabriquee() {
-    if (!moduleData.voix || state.phase !== "lesson") return null;
-    var lecon = moduleData.lessons[state.lesson];
-    return lecon ? "voix/" + genreVoix() + "/" + lecon.id + ".mp3" : null;
+    if (!moduleData.voix) return null;
+    var g = genreVoix();
+    if (state.phase === "lesson") {
+      var lecon = moduleData.lessons[state.lesson];
+      return lecon ? "voix/" + g + "/" + lecon.id + ".mp3" : null;
+    }
+    /* Les questions ont deux enregistrements : l'énoncé avec ses propositions,
+       et l'explication. Tant que l'élève n'a pas répondu on ne joue QUE l'énoncé,
+       sinon la voix lui donnerait la réponse. */
+    if (state.phase === "quiz") {
+      var n = state.quiz + 1;
+      return "voix/" + g + "/q" + n + (state.answered ? "-reponse" : "") + ".mp3";
+    }
+    /* Le bilan reste dit par le navigateur : il annonce le score réel et une
+       phrase qui en dépend. Un enregistrement figé y mentirait. */
+    return null;
   }
 
   function jouerFichier(src) {
