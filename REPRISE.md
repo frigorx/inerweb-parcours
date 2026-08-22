@@ -59,11 +59,20 @@ Contrôlés au pixel en ligne (armoire cadrée, duo élec+fluidique, étiquettes
 plan large aux trois vues, curseur). ⚠️ Piège vécu : le CDN de GitHub Pages sert un
 film périmé ~10 min — vérifier avec un `?nc=` NEUF à chaque contrôle.
 
-⚠️ **Ce qui reste** : le VISIONNAGE humain des six films (le contrôle au pixel ne juge
-ni le rythme ni la lisibilité réelle) ; la voix du film 8, la seule fabriquée, reste à
-écouter — sa scène CycleComplet est muette (narration à écrire si Franck la veut
-parlée) ; les narrations des cinq autres films restent à faire. Films et voix-films
-toujours hors du pack.
+**Relecture métier du 22/08 (après-midi) intégrée** : les cinq armoires passent au
+schéma VERTICAL aux normes (phase en haut, neutre en bas, colonnes ; contacts au bon
+sens — pivot sur la borne basse, lame à gauche, butée du NF ; porte-fusible en tête ;
+rouge = phase, orange = RETOUR NEUTRE nommé), définition de la chambre froide négative
+au début de chaque film, et BARRE DE LECTURE sur les sept films (lecture/pause,
+⟲ Rejouer, progression — le film restait figé après une lecture, c'était le
+« ça ne se lance pas en intégralité »). Briques dans `regules-kit.jsx`
+(PorteFusible, ContactV, BobineV, Potentiel), désormais chargé par les 7 films.
+
+⚠️ **Ce qui reste** : le VISIONNAGE humain des six films ; la voix du film 8 à
+écouter (sa scène CycleComplet est muette) ; les narrations des cinq autres films ;
+la logique fine de l'auto-maintien du 05 reproduit le film existant (flux narratifs),
+à confronter au schéma du document source si Franck veut le potentiel rigoureux
+partout. Films et voix-films toujours hors du pack.
 Après toute retouche de la rame : relancer l'outil de copie, puis `node build/build.mjs`
 dans pilote-fluides (liste crawlable + casse-cache), et re-vérifier le site.
 
