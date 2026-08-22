@@ -1,5 +1,12 @@
 # REPRISE — mettre la ligne « Régulation » en ligne sur inerweb.fr
 
+> ✅ **CHANTIER SOLDÉ le 22 août 2026** — la ligne 🔌 LA RÉGULATION est en ligne et
+> vérifiée sur https://inerweb.fr en contre-cache : 13 pages en 200, liste crawlable à
+> 15 lignes / 108 stations, statut servi « Version en ligne — relecture métier en
+> cours ». Trace : `REPRISE.md` de pilote-fluides (bloc 22/08), section « Les régules »
+> du `REPRISE.md` de ce dépôt, et poste de pilotage (bloc pilote — les validations en
+> attente y sont). Ce brief reste comme archive de la méthode.
+
 > Brief écrit le **22 août 2026 au matin**, pour être repris par une session neuve.
 > Tout ce qui suit a été vérifié sur la machine, pas supposé.
 

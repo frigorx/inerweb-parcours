@@ -34,6 +34,25 @@ planche de relecture les nomme et les filtre ; **personne n’a écouté les 94 
 
 ---
 
+## Où en est la rame « Les régules » — 22 août 2026
+
+**En ligne sur inerweb.fr depuis le 22/08** : la ligne 🔌 LA RÉGULATION porte les dix
+stations (commande directe → protection minimum → trois pump-down → quatre dégivrages)
+et deux correspondances vers 🎛 CE QUI SE RÈGLE (pressostat BP, régulateur électronique).
+La copie vers le pack passe par `outils/copier-ligne-regules-vers-pack.mjs` (liste
+blanche, trois recollages, garde contre tout lien d'atelier survivant) — l'outil de
+l'huile reste intact. Le brief du chantier, soldé, reste lisible :
+`REPRISE-LIGNE-REGULATION-2026-08-22.md`.
+
+⚠️ **Ce qui reste** : les six films Claude Design sont corrigés mais UN SEUL parle (la
+station 8, dégivrage électrique) et personne n'a écouté sa voix ; les narrations des
+cinq autres restent à faire ; films (3,5 Mo) et voix (1,5 Mo) restent à l'atelier tant
+que Franck n'a pas écouté — les stations du pack ne les appellent pas encore.
+Après toute retouche de la rame : relancer l'outil de copie, puis `node build/build.mjs`
+dans pilote-fluides (liste crawlable + casse-cache), et re-vérifier le site.
+
+---
+
 ## 1. Ce que c'est, et pourquoi il existe
 
 Une **zone de travail séparée** pour refondre les planches animées et les tutos guidés
