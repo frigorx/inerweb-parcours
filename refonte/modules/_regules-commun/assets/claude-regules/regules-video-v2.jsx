@@ -64,17 +64,18 @@
     return CAM[CAM.length - 1];
   }
 
-  /* Refonte du 22/08 (brief F. Henninot) : une étape par plan, l'armoire à
-     droite de la croix, le chronogramme dessous, puis le PLAN LARGE total
-     pour la scène CycleComplet — les trois vues en même temps. */
+  /* Refonte du 22/08 : armoire VERTICALE à droite de la croix, chronogramme
+     dessous, plan large final — l'armoire étroite d'une seule colonne rend
+     le duo et le plan large encore plus lisibles. */
   function camFixed(T) {
     var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var large = { cx: 2645, cy: 1210, z: 0.40 };
+    var duo = { cx: 2030, cy: 830, z: 0.52 };
+    var large = { cx: 2030, cy: 1240, z: 0.465 };
     var V = [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
-      { t: 6, v: { cx: 3755, cy: 1010, z: 0.70 } },
+      { t: 6, v: { cx: 3140, cy: 820, z: 0.66 } },
       { t: 13, v: croix },
-      { t: 23, v: { cx: 2650, cy: 1000, z: 0.40 } },
+      { t: 23, v: duo },
       { t: 31, v: croix },
       { t: 38, v: { cx: 2235, cy: 1980, z: 0.70 } },
       { t: 44, v: large },
@@ -487,49 +488,53 @@
     var T = p.T;
     var reveal = clamp((T - p.tClose) / 0.45, 0, 1) * (T < p.tOpen ? 1 : clamp(1 - (T - p.tOpen) / 0.2, 0, 1));
     var ghost = clamp(clamp((T - 28.8) / 0.7, 0, 1) - clamp((T - 31.2) / 0.5, 0, 1) + clamp((T - 37.6) / 0.5, 0, 1), 0, 1);
+    var RK2 = window.RK;
+    /* Schéma VERTICAL (22/08) : une seule colonne — c'est toute la leçon de
+       la station. Rouge = phase, orange = retour neutre. Les sécurités
+       absentes se montrent en fantômes à côté de la chaîne. */
+    var ouvB1 = clamp(-p.arm / 30, 0, 1);
+    var live = reveal > 0.4;
+    var mAval = live ? 'courant' : 'retour';
     return (
-      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
-      <g transform="translate(2450,-400)">
-        <rect x="70" y="1100" width="2470" height="620" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="118" y="1170" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">ARMOIRE · COMMANDE DIRECTE</text>
+      <g transform="translate(2520,100)">
+        <rect x="0" y="0" width="1240" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">ARMOIRE · COMMANDE DIRECTE</text>
 
-        <line x1="340" y1="1230" x2="340" y2="1650" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <line x1="2270" y1="1230" x2="2270" y2="1650" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <text x="340" y="1700" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">L</text>
-        <text x="2270" y="1700" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+        <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
+        <RK2.PorteFusible x={170} y={150} />
+        <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
+        <line x1="170" y1="300" x2="1070" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="1300" x2="1070" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
         <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
-          <path d="M 340 1400 L 620 1400" />
-          <path d="M 772 1400 L 1060 1400" />
-          <path d="M 1200 1400 L 1620 1400" />
-          <path d="M 1782 1400 L 2270 1400" />
+          <path d="M 520 300 L 520 780" />
+          <path d="M 520 930 L 520 1041" />
+          <path d="M 520 1099 L 520 1300" />
         </g>
+        <RK2.Potentiel d="M 520 300 L 520 780" mode={live ? 'courant' : 'phase'} t={p.phaseAll} />
+        <RK2.Potentiel d="M 520 930 L 520 1041" mode={mAval} t={p.phaseAll} />
+        <RK2.Potentiel d="M 520 1099 L 520 1300" mode={mAval} t={p.phaseAll} />
+        <RK2.ContactV x={520} y={780} ouv={ouvB1} live={live} glyph="θ" code="B1" sub="thermostat d’ambiance" />
+        <RK2.BobineV x={520} y={1070} code="KM1" sub="COMPRESSEUR" live={live} />
 
-        <path d="M 340 1400 L 620 1400" fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-              strokeDasharray="26 22" strokeDashoffset={-p.phaseAll * 200} opacity="0.85" />
-        <path d="M 772 1400 L 1060 1400" fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-              strokeDasharray="26 22" strokeDashoffset={-p.phaseAll * 200} opacity="0.85" />
-        <g opacity={reveal}>
-          <path d="M 1200 1400 L 1620 1400 M 1782 1400 L 2270 1400 L 2270 1650" fill="none" stroke={C.orange}
-                strokeWidth="13" strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.phaseAll * 200} />
-        </g>
-
-        <Disjoncteur x={620} y={1400} live={true} />
-        <ContactNO x={1060} y={1400} arm={p.arm} live={reveal > 0.4} code="B1" sub="thermostat d’ambiance" glyph="θ" />
-        <Bobine x={1620} y={1400} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={reveal > 0.4} />
+        {ouvB1 >= 0.5 && (
+          <text x="556" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+        )}
 
         <g opacity={ghost}>
-          {[[820, 'HP'], [1240, 'BP']].map(function (g) {
+          {[[820, 460, 'HP'], [820, 620, 'BP']].map(function (g) {
             return (
-              <g key={g[1]}>
-                <rect x={g[0]} y="1560" width="180" height="86" fill={C.card} stroke={C.red} strokeWidth="5" strokeDasharray="18 14" />
-                <text x={g[0] + 90} y="1616" textAnchor="middle" fill={C.red} fontSize="40" fontWeight="900">{g[1]}</text>
+              <g key={g[2]}>
+                <rect x={g[0]} y={g[1]} width="180" height="86" fill={C.card} stroke={C.red} strokeWidth="5" strokeDasharray="18 14" />
+                <text x={g[0] + 90} y={g[1] + 56} textAnchor="middle" fill={C.red} fontSize="40" fontWeight="900">{g[2]}</text>
               </g>
             );
           })}
-          <text x="1620" y="1616" fill={C.red} fontSize="32" fontWeight="900" letterSpacing="2">absents de la chaîne</text>
-          <rect x="700" y="1236" width="1200" height="56" rx="8" fill={C.card} />
-          <text x="1300" y="1278" textAnchor="middle" fill={C.red} fontSize="34" fontWeight="900" letterSpacing="2">AUCUNE SÉCURITÉ DE PRESSION EN SÉRIE</text>
+          <text x="910" y="796" textAnchor="middle" fill={C.red} fontSize="28" fontWeight="900" letterSpacing="1.5">absents de la chaîne</text>
+          <rect x="120" y="1352" width="1000" height="56" rx="8" fill={C.card} />
+          <text x="620" y="1394" textAnchor="middle" fill={C.red} fontSize="30" fontWeight="900" letterSpacing="2">AUCUNE SÉCURITÉ DE PRESSION EN SÉRIE</text>
         </g>
       </g>
     );
@@ -685,8 +690,8 @@
               background: C.paper, borderTop: '3px solid ' + C.line
             }}
             items={[
-              { at: 0.4, text: 'Chambre négative : l’air se réchauffe, le thermostat surveille.' },
-              { at: 3.2, text: 'Trop chaud pour la consigne : l’enclenchement approche.' },
+              { at: 0.4, text: 'Une chambre froide NÉGATIVE : l’air y est maintenu sous zéro degré — ici, consigne −18 °C.' },
+              { at: 3.2, text: 'L’air se réchauffe, le thermostat surveille : l’enclenchement approche.' },
               { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme son contact.' },
               { at: CUES.Fermeture + 3.2, text: 'Le courant traverse B1 et excite la bobine KM1.' },
               { at: CUES.Fermeture + 5.6, text: 'Le contacteur colle : le compresseur démarre.' },

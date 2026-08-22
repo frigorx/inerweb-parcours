@@ -73,7 +73,7 @@
   function camFixed(T) {
     var croix = { cx: 1400, cy: 720, z: 0.74 };
     var duo = { cx: 2240, cy: 830, z: 0.49 };
-    var large = { cx: 2240, cy: 1210, z: 0.465 };
+    var large = { cx: 2240, cy: 1240, z: 0.465 };
     var V = [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
       { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },

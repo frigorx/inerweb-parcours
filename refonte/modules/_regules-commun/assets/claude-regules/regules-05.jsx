@@ -43,67 +43,94 @@
   }
 
   function Cabinet(p) {
-    var flux = function (d, on) {
-      return (
-        <path d={d} fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-              strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity={on ? 0.9 : 0} />
-      );
+    var RK2 = window.RK;
+    /* Schéma VERTICAL (22/08) : trois colonnes — Y1, la mémoire KA1 et son
+       auto-maintien, le compresseur derrière ses deux sécurités. Rouge =
+       phase, orange = retour neutre. La logique des flux reproduit le film
+       validé, tronçon par tronçon. */
+    var ouvB1 = clamp(-p.arm / 30, 0, 1);
+    var ouvBPr = clamp(-p.bprArm / 30, 0, 1);
+    var mC1aval = p.y1Live ? 'courant' : 'retour';
+    var mAuxAmont = (p.kaLive && !p.y1Live) ? 'courant' : 'phase';
+    var mAuxAval = (p.kaLive && !p.y1Live) ? 'courant' : 'off';
+    var mPont = p.y1Live ? 'courant' : 'off';
+    var mKA = p.kaLive ? 'courant' : 'retour';
+    var mC3 = function (troncon) {
+      if (p.kmLive) return 'courant';
+      return troncon <= 2 ? 'phase' : 'retour';
     };
     return (
-      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
-      <g transform="translate(2450,-400)">
-        <rect x="70" y="1030" width="2470" height="890" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="620" y="1106" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN UNIQUE</text>
-        <text x="2500" y="1106" textAnchor="end" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">TROIS LIGNES · UNE MÉMOIRE</text>
+      <g transform="translate(2520,100)">
+        <rect x="0" y="0" width="2200" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN UNIQUE</text>
+        <text x="2160" y="66" textAnchor="end" fill={C.blue} fontSize="26" fontWeight="900" letterSpacing="2">TROIS COLONNES · UNE MÉMOIRE</text>
 
-        <line x1="340" y1="1140" x2="340" y2="1860" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <line x1="90" y1="1140" x2="140" y2="1140" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <line x1="292" y1="1140" x2="340" y2="1140" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <Disjoncteur x={140} y={1140} live={true} above={true} code="Q1" />
-        <line x1="2270" y1="1120" x2="2270" y2="1860" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <text x="340" y="1900" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">L</text>
-        <text x="2270" y="1900" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+        <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
+        <RK2.PorteFusible x={170} y={150} />
+        <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
+        <line x1="170" y1="300" x2="2030" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="1300" x2="2030" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
-        {/* ligne 1 · la demande de froid ouvre l'électrovanne */}
-        <text x="392" y="1168" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">1 · LIGNE LIQUIDE</text>
-        <path d="M 340 1210 L 760 1210 M 900 1210 L 1780 1210 M 1940 1210 L 2270 1210"
-              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        {flux('M 340 1210 L 760 1210', true)}
-        {flux('M 900 1210 L 1780 1210 M 1940 1210 L 2270 1210', p.y1Live)}
-        <ContactNO x={760} y={1210} arm={p.arm} live={p.y1Live} glyph="θ" code="B1" sub="thermostat" />
-        <Bobine x={1780} y={1210} code="Y1" sub="ÉLECTROVANNE LIGNE LIQUIDE" live={p.y1Live} above={true} />
+        {/* colonne 1 : le thermostat commande l'électrovanne */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 480 300 L 480 780" />
+          <path d="M 480 930 L 480 1041" />
+          <path d="M 480 1099 L 480 1300" />
+        </g>
+        <RK2.Potentiel d="M 480 300 L 480 780" mode={ouvB1 < 0.5 && p.y1Live ? 'courant' : 'phase'} t={p.T} />
+        <RK2.Potentiel d="M 480 930 L 480 1041" mode={mC1aval} t={p.T} />
+        <RK2.Potentiel d="M 480 1099 L 480 1300" mode={mC1aval} t={p.T} />
+        <RK2.ContactV x={480} y={780} ouv={ouvB1} live={p.y1Live} glyph="θ" code="B1" sub="thermostat" />
+        <RK2.BobineV x={480} y={1070} code="Y1" sub="ÉLECTROVANNE" live={p.y1Live} />
 
-        {/* ligne 2 · la mémoire de la demande */}
-        <text x="392" y="1438" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">2 · MÉMOIRE DE LA DEMANDE</text>
-        <path d="M 900 1210 L 900 1380 L 700 1380 L 700 1480 L 1040 1480 M 1180 1480 L 1780 1480 M 1940 1480 L 2270 1480"
-              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <path d="M 340 1480 L 400 1480 M 540 1480 L 700 1480" fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        {flux('M 900 1210 L 900 1380 L 700 1380 L 700 1480 L 1040 1480', p.y1Live)}
-        {flux('M 340 1480 L 400 1480', true)}
-        {flux('M 540 1480 L 700 1480 L 1040 1480', p.kaLive && !p.y1Live)}
-        {flux('M 1180 1480 L 1780 1480 M 1940 1480 L 2270 1480', p.kaLive)}
-        <ContactAux x={400} y={1480} live={p.kaLive} code="KA1" sub="auto-maintien" />
-        <ContactNO x={1040} y={1480} arm={p.bprArm} live={p.kaLive} glyph="p" code="BPr" sub="BP de régulation · NO" />
-        <Bobine x={1780} y={1480} code="KA1" sub="RELAIS DE MÉMOIRE" live={p.kaLive} />
-        <path d="M 1780 1424 L 1700 1424 L 1700 1398 L 470 1398 L 470 1424"
+        {/* colonne 2 : la mémoire — deux arrivées (B1, ou l'auto-maintien) */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 1180 300 L 1180 380" />
+          <path d="M 1180 530 L 1180 780" />
+          <path d="M 480 960 L 780 960 L 780 640 L 1180 640" />
+          <path d="M 1180 930 L 1180 1041" />
+          <path d="M 1180 1099 L 1180 1300" />
+        </g>
+        <RK2.Potentiel d="M 1180 300 L 1180 380" mode={mAuxAmont} t={p.T} />
+        <RK2.Potentiel d="M 1180 530 L 1180 780" mode={mAuxAval} t={p.T} />
+        <RK2.Potentiel d="M 480 960 L 780 960 L 780 640 L 1180 640" mode={mPont} t={p.T} />
+        <RK2.Potentiel d="M 1180 930 L 1180 1041" mode={mKA} t={p.T} />
+        <RK2.Potentiel d="M 1180 1099 L 1180 1300" mode={mKA} t={p.T} />
+        <RK2.ContactV aux={true} x={1180} y={380} ouv={p.kaLive ? 0 : 1} live={p.kaLive && !p.y1Live} code="KA1" sub="auto-maintien" />
+        <RK2.ContactV x={1180} y={780} ouv={ouvBPr} live={p.kaLive} glyph="p" code="BPr" sub="BP de régulation · NO" />
+        <RK2.BobineV x={1180} y={1070} code="KA1" sub="RELAIS DE MÉMOIRE" live={p.kaLive} />
+        <path d="M 1242 1070 L 1330 1070 L 1330 455 L 1214 455"
               fill="none" stroke={C.green} strokeWidth="5" strokeDasharray="18 12" opacity="0.85" />
-        <text x="1420" y="1388" textAnchor="middle" fill={C.green} fontSize="28" fontWeight="900" letterSpacing="2">
+        <text x="1560" y="430" textAnchor="middle" fill={C.green} fontSize="24" fontWeight="900" letterSpacing="1.5">
           LE RELAIS SE TIENT LUI-MÊME
         </text>
 
-        {/* ligne 3 · le compresseur, protégé par ses sécurités */}
-        <text x="392" y="1698" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">3 · COMPRESSEUR</text>
-        <path d="M 340 1740 L 760 1740 M 912 1740 L 1360 1740 M 1512 1740 L 1600 1740 M 1740 1740 L 1840 1740 M 2000 1740 L 2270 1740"
-              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        {flux('M 340 1740 L 760 1740 M 912 1740 L 1360 1740 M 1512 1740 L 1600 1740', true)}
-        {flux('M 1740 1740 L 1840 1740 M 2000 1740 L 2270 1740 L 2270 1860', p.kmLive)}
-        <ContactNF x={760} y={1740} live={true} code="HP" sub="sécurité · NF" />
-        <ContactNF x={1360} y={1740} live={true} code="BPs" sub="BP de sécurité · NF" />
-        <ContactAux x={1600} y={1740} live={p.kmLive} code="KA1" sub="contact du relais" />
-        <Bobine x={1840} y={1740} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={p.kmLive} />
+        {/* colonne 3 : le compresseur, derrière ses deux sécurités */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 1880 300 L 1880 380" />
+          <path d="M 1880 530 L 1880 580" />
+          <path d="M 1880 730 L 1880 780" />
+          <path d="M 1880 930 L 1880 1041" />
+          <path d="M 1880 1099 L 1880 1300" />
+        </g>
+        <RK2.Potentiel d="M 1880 300 L 1880 380" mode={mC3(0)} t={p.T} />
+        <RK2.Potentiel d="M 1880 530 L 1880 580" mode={mC3(1)} t={p.T} />
+        <RK2.Potentiel d="M 1880 730 L 1880 780" mode={mC3(2)} t={p.T} />
+        <RK2.Potentiel d="M 1880 930 L 1880 1041" mode={mC3(3)} t={p.T} />
+        <RK2.Potentiel d="M 1880 1099 L 1880 1300" mode={mC3(3)} t={p.T} />
+        <RK2.ContactV nf={true} x={1880} y={380} ouv={0} live={p.kmLive} glyph="p" code="HP" sub="sécurité · NF" />
+        <RK2.ContactV nf={true} x={1880} y={580} ouv={0} live={p.kmLive} glyph="p" code="BPs" sub="BP de sécurité · NF" />
+        <RK2.ContactV aux={true} x={1880} y={780} ouv={p.kaLive ? 0 : 1} live={p.kmLive} code="KA1" sub="contact du relais" />
+        <RK2.BobineV x={1880} y={1070} code="KM1" sub="COMPRESSEUR" live={p.kmLive} />
+
+        {ouvB1 >= 0.5 && (
+          <text x="516" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+        )}
         <g opacity={p.secu}>
-          <rect x="1180" y="1830" width="620" height="56" rx="10" fill={C.card} stroke={C.green} strokeWidth="4" />
-          <text x="1490" y="1868" textAnchor="middle" fill={C.green} fontSize="30" fontWeight="900">LA SÉCURITÉ RESTE DISPONIBLE</text>
+          <rect x="1520" y="1360" width="620" height="56" rx="10" fill={C.card} stroke={C.green} strokeWidth="4" />
+          <text x="1830" y="1398" textAnchor="middle" fill={C.green} fontSize="30" fontWeight="900">LA SÉCURITÉ RESTE DISPONIBLE</text>
         </g>
       </g>
     );
@@ -221,7 +248,7 @@
     var bprArm = bp > 0.34 ? 0 : -30;
     var secu = clamp((T - CUES.ArretUnique - 6.0) / 0.7, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
 
-    var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
+    var cam = props.fixedCam !== false ? RK.camFixed(T, 4720) : RK.camAt(T);
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var propre = clamp((T - CUES.ArretUnique - 0.4) / 0.7, 0, 1) * clamp(1 - (T - CUES.ArretUnique - 3.6) / 0.6, 0, 1);
@@ -305,8 +332,8 @@
               background: C.paper, borderTop: '3px solid ' + C.line
             }}
             items={[
-              { at: 0.4, text: 'Installation à l’arrêt : Y1 est fermée, le compresseur ne tourne pas.' },
-              { at: 3.2, text: 'L’air de la chambre se réchauffe et remonte vers −14 °C.' },
+              { at: 0.4, text: 'Une chambre froide NÉGATIVE : l’air y est maintenu sous zéro degré — ici, consigne −18 °C.' },
+              { at: 3.2, text: 'À l’arrêt, Y1 est fermée ; l’air remonte vers −14 °C.' },
               { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme : Y1 s’ouvre et le relais KA1 s’excite.' },
               { at: CUES.Fermeture + 2.4, text: 'KA1 se tient lui-même : la demande est mémorisée.' },
               { at: CUES.Fermeture + 4.2, text: 'Son contact ferme la ligne 3 : KM1 colle derrière les deux sécurités.' },

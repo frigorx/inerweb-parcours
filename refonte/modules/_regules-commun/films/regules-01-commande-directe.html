@@ -4210,5 +4210,36 @@ a:hover { color: #1b3a63; }
 </x-dc>
 
 
+<script>
+(function () {
+  var barre = document.createElement("div");
+  barre.setAttribute("style", "position:fixed;top:14px;right:14px;z-index:9998;display:flex;align-items:center;gap:10px;background:rgba(255,253,248,0.95);border:2px solid #1b3a63;border-radius:12px;padding:8px 14px;font:700 15px system-ui,sans-serif;color:#1b3a63");
+  var rejouer = document.createElement("button");
+  rejouer.textContent = "⟲ Rejouer";
+  rejouer.setAttribute("style", "border:none;background:#1b3a63;color:#fffdf8;border-radius:8px;padding:6px 10px;cursor:pointer;font:700 14px system-ui,sans-serif");
+  rejouer.onclick = function () { location.reload(); };
+  var pl = document.createElement("button");
+  pl.textContent = "⏸";
+  pl.setAttribute("style", "border:none;background:#c9451a;color:#fffdf8;border-radius:8px;padding:6px 12px;cursor:pointer;font:700 14px system-ui,sans-serif");
+  pl.onclick = function () { if (!window.__filmCtl) return; if (window.__filmCtl.enLecture()) window.__filmCtl.pause(); else window.__filmCtl.lecture(); };
+  var piste = document.createElement("div");
+  piste.setAttribute("style", "width:150px;height:8px;background:#c9d2dc;border-radius:4px;overflow:hidden");
+  var rempli = document.createElement("div");
+  rempli.setAttribute("style", "width:0%;height:100%;background:#ff6b35");
+  piste.appendChild(rempli);
+  var lbl = document.createElement("span");
+  lbl.textContent = "0:00";
+  barre.appendChild(rejouer); barre.appendChild(pl); barre.appendChild(piste); barre.appendChild(lbl);
+  document.body.appendChild(barre);
+  function mmss(v) { return Math.floor(v / 60) + ":" + ("0" + Math.floor(v % 60)).slice(-2); }
+  setInterval(function () {
+    if (!window.__filmCtl) return;
+    var t = window.__filmCtl.temps(), d = window.__filmCtl.duree || 1;
+    rempli.style.width = Math.min(100, t / d * 100) + "%";
+    lbl.textContent = mmss(t) + " / " + mmss(d);
+    pl.textContent = window.__filmCtl.enLecture() ? "⏸" : "▶";
+  }, 300);
+})();
+</script>
 </body>
 </html>

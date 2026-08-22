@@ -72,7 +72,7 @@
     var croix = { cx: 1400, cy: 720, z: 0.74 };
     var zTout = Math.min(1920 / (D - 260), 0.465);
     var duo = { cx: (300 + D) / 2, cy: 830, z: Math.min(1920 / (D - 260), 0.52) };
-    var large = { cx: (300 + D) / 2, cy: 1210, z: zTout };
+    var large = { cx: (300 + D) / 2, cy: 1240, z: zTout };
     var V = [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
       { t: 6, v: { cx: 2520 + (D - 2520) / 2, cy: 820, z: 0.66 } },

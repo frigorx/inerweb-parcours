@@ -98,85 +98,88 @@
   }
 
   function Cabinet(p) {
-    var Y = { liq: 1260, comp: 1480, deg: 1700, vent: 1920 };
-    function wire(d, live) {
+    var RK2 = window.RK;
+    /* Schéma VERTICAL (22/08) : quatre colonnes — Y1, le compresseur, les
+       résistances, les ventilateurs différés. Rouge = phase, orange = retour
+       neutre (l'aval d'un contact ouvert). */
+    var ouvB1 = clamp(-p.armB1 / 30, 0, 1);
+    var ouvBP = clamp(-p.armBP / 30, 0, 1);
+    var ouvKT = clamp(-p.armKT / 30, 0, 1);
+    function colonne(contactsOuverts, courant) {
+      var premier = contactsOuverts.indexOf(true);
+      return function (troncon) {
+        if (premier === -1) return courant ? 'courant' : 'courant';
+        return troncon <= premier ? 'phase' : 'retour';
+      };
+    }
+    var m1 = colonne([ouvB1 >= 0.5, p.degLive > 0.5], p.y1Live > 0.5);
+    var m2 = colonne([false, ouvBP >= 0.5, p.kt >= 0.5], p.kmLive > 0.5);
+    var m3 = colonne([ouvKT >= 0.5, p.s1Ouvert >= 0.5], p.degLive > 0.5);
+    var m4 = colonne([p.ventLive < 0.5], p.ventLive > 0.5);
+    function fils(x, hauts) {
       return (
-        <g>
-          <path d={d} fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-          {live > 0.05 && (
-            <path d={d} fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-                  strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity={0.9 * live} />
-          )}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          {hauts.map(function (d, i) { return <path key={i} d={d} />; })}
         </g>
       );
     }
     return (
-      /* Refonte 22/08 : l'armoire vit À DROITE de la croix (remontée : elle
-         est plus profonde que celles des autres stations). */
-      <g transform="translate(2450,-480)">
-        <rect x="70" y="1100" width="2470" height="920" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="118" y="1074" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">
-          ARMOIRE · PUMP-DOWN ET DÉGIVRAGE ÉLECTRIQUE
-        </text>
-        <line x1="340" y1="1200" x2="340" y2="1970" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <line x1="90" y1="1200" x2="140" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <line x1="292" y1="1200" x2="340" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <Disjoncteur x={140} y={1200} live={true} above={true} code="Q1" />
-        <line x1="2270" y1="1200" x2="2270" y2="1970" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <text x="340" y="2004" textAnchor="middle" fill={C.blue} fontSize="32" fontWeight="900">L</text>
-        <text x="2270" y="2004" textAnchor="middle" fill={C.blue} fontSize="32" fontWeight="900">N</text>
+      <g transform="translate(2520,100)">
+        <rect x="0" y="0" width="2520" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN ET DÉGIVRAGE ÉLECTRIQUE</text>
+        <text x="2480" y="66" textAnchor="end" fill={C.blue} fontSize="24" fontWeight="900" letterSpacing="2">LE DÉGIVRAGE PREND LA MAIN</text>
 
-        {/* 1 · ligne liquide : thermostat, puis contact d'horloge qui ouvre pendant le dégivrage */}
-        {wire('M 340 ' + Y.liq + ' L 700 ' + Y.liq, 1)}
-        <ContactNO compact={true} x={700} y={Y.liq} arm={p.armB1} live={p.y1Live > 0.5} code="B1" sub="thermostat" glyph="θ" />
-        {wire('M 840 ' + Y.liq + ' L 1120 ' + Y.liq, p.b1 > 0.5 ? 1 : 0)}
-        <ContactNF compact={true} x={1120} y={Y.liq} live={p.y1Live > 0.5} code="KT" sub="horloge · ouvre au dégivrage"
-                   glyph="t" open={p.degLive > 0.5} />
-        {wire('M 1272 ' + Y.liq + ' L 1900 ' + Y.liq, p.y1Live)}
-        <Bobine x={1900} y={Y.liq} code="Y1" sub="ÉLECTROVANNE LIGNE LIQUIDE" live={p.y1Live > 0.5} />
-        {wire('M 2060 ' + Y.liq + ' L 2270 ' + Y.liq, p.y1Live)}
+        <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
+        <RK2.PorteFusible x={170} y={150} />
+        <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
+        <line x1="170" y1="300" x2="2380" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="1300" x2="2380" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
-        {/* 2 · compresseur : sécurités puis BP de régulation */}
-        {wire('M 340 ' + Y.comp + ' L 700 ' + Y.comp, 1)}
-        <ContactNF compact={true} x={700} y={Y.comp} live={true} code="HP" sub="sécurité haute pression" glyph="p" />
-        {wire('M 852 ' + Y.comp + ' L 1120 ' + Y.comp, 1)}
-        <ContactNO compact={true} x={1120} y={Y.comp} arm={p.armBP} live={p.kmLive > 0.5} code="BP" sub="régulation · tirage au vide" glyph="p" />
-        {wire('M 1260 ' + Y.comp + ' L 1420 ' + Y.comp, p.kmLive)}
-        {/* Verrouillage : sans lui, la pression remonte sous l'effet des résistances, le
-            pressostat BP referme et le compresseur repart en plein dégivrage. */}
-        <ContactNF compact={true} x={1420} y={Y.comp} live={p.kmLive > 0.5} code="KT" sub="verrouillage au dégivrage"
-                   glyph="t" open={p.kt} />
-        {wire('M 1572 ' + Y.comp + ' L 1900 ' + Y.comp, p.kmLive)}
-        <Bobine x={1900} y={Y.comp} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={p.kmLive > 0.5} />
-        {wire('M 2060 ' + Y.comp + ' L 2270 ' + Y.comp, p.kmLive)}
+        {/* colonne 1 : Y1 — le thermostat, puis l'horloge qui ouvre au dégivrage */}
+        {fils(430, ['M 430 300 L 430 380', 'M 430 530 L 430 580', 'M 430 730 L 430 1041', 'M 430 1099 L 430 1300'])}
+        <RK2.Potentiel d="M 430 300 L 430 380" mode={m1(0)} t={p.T} />
+        <RK2.Potentiel d="M 430 530 L 430 580" mode={m1(1)} t={p.T} />
+        <RK2.Potentiel d="M 430 730 L 430 1041" mode={m1(2)} t={p.T} />
+        <RK2.Potentiel d="M 430 1099 L 430 1300" mode={m1(2)} t={p.T} />
+        <RK2.ContactV x={430} y={380} ouv={ouvB1} live={p.y1Live > 0.5} glyph="θ" code="B1" sub="thermostat" />
+        <RK2.ContactV nf={true} x={430} y={580} ouv={p.degLive > 0.5 ? 1 : 0} live={p.y1Live > 0.5} glyph="t" code="KT" sub="ouvre au dégivrage" />
+        <RK2.BobineV x={430} y={1070} code="Y1" sub="ÉLECTROVANNE" live={p.y1Live > 0.5} />
 
-        {/* 3 · dégivrage : horloge, sonde de fin, résistances */}
-        {wire('M 340 ' + Y.deg + ' L 700 ' + Y.deg, 1)}
-        <ContactNO compact={true} x={700} y={Y.deg} arm={p.armKT} live={p.degLive > 0.5} code="KT" sub="horloge de dégivrage" glyph="t" />
-        {wire('M 840 ' + Y.deg + ' L 1120 ' + Y.deg, p.kt > 0.5 ? 1 : 0)}
-        <ContactNF compact={true} x={1120} y={Y.deg} live={p.degLive > 0.5} code="S1" sub="sonde de fin · ouvre à +10 °C"
-                   glyph="θ" open={p.s1Ouvert} />
-        {wire('M 1272 ' + Y.deg + ' L 1900 ' + Y.deg, p.degLive)}
-        <Bobine x={1900} y={Y.deg} code="KM2" sub="RÉSISTANCES DE DÉGIVRAGE" live={p.degLive > 0.5} />
-        {wire('M 2060 ' + Y.deg + ' L 2270 ' + Y.deg, p.degLive)}
+        {/* colonne 2 : KM1 — sécurité, régulation, verrouillage au dégivrage */}
+        {fils(1080, ['M 1080 300 L 1080 380', 'M 1080 530 L 1080 580', 'M 1080 730 L 1080 780', 'M 1080 930 L 1080 1041', 'M 1080 1099 L 1080 1300'])}
+        <RK2.Potentiel d="M 1080 300 L 1080 380" mode={m2(0)} t={p.T} />
+        <RK2.Potentiel d="M 1080 530 L 1080 580" mode={m2(1)} t={p.T} />
+        <RK2.Potentiel d="M 1080 730 L 1080 780" mode={m2(2)} t={p.T} />
+        <RK2.Potentiel d="M 1080 930 L 1080 1041" mode={m2(3)} t={p.T} />
+        <RK2.Potentiel d="M 1080 1099 L 1080 1300" mode={m2(3)} t={p.T} />
+        <RK2.ContactV nf={true} x={1080} y={380} ouv={0} live={p.kmLive > 0.5} glyph="p" code="HP" sub="sécurité HP" />
+        <RK2.ContactV x={1080} y={580} ouv={ouvBP} live={p.kmLive > 0.5} glyph="p" code="BP" sub="régulation · tirage" />
+        <RK2.ContactV nf={true} x={1080} y={780} ouv={p.kt} live={p.kmLive > 0.5} glyph="t" code="KT" sub="verrouillage" />
+        <RK2.BobineV x={1080} y={1070} code="KM1" sub="COMPRESSEUR" live={p.kmLive > 0.5} />
 
-        {/* 4 · ventilateurs : arrêtés au dégivrage, redémarrage différé après égouttage */}
-        {wire('M 340 ' + Y.vent + ' L 1120 ' + Y.vent, 1)}
-        <g>
-          <rect x="1120" y={Y.vent - 44} width="152" height="88" rx="6" fill={C.card} stroke={C.wire} strokeWidth="6" />
-          <path d={'M 1120 ' + (Y.vent - 44) + ' L 1272 ' + (Y.vent + 44)} stroke={C.wire} strokeWidth="5" />
-          <text x="1300" y={Y.vent - 34} fill={C.blue} fontSize="30" fontWeight="900">KT · TEMPO</text>
-          <text x="1196" y={Y.vent + 76} textAnchor="middle" fill={C.mute} fontSize="24" fontWeight="700">
-            égouttage puis reprise différée
-          </text>
-        </g>
-        {wire('M 1272 ' + Y.vent + ' L 1900 ' + Y.vent, p.ventLive)}
-        <Bobine x={1900} y={Y.vent} code="KM3" sub="VENTILATEURS D’ÉVAPORATEUR" live={p.ventLive > 0.5} />
-        {wire('M 2060 ' + Y.vent + ' L 2270 ' + Y.vent, p.ventLive)}
+        {/* colonne 3 : KM2 — l'horloge lance, la sonde de fin coupe */}
+        {fils(1730, ['M 1730 300 L 1730 380', 'M 1730 530 L 1730 580', 'M 1730 730 L 1730 1041', 'M 1730 1099 L 1730 1300'])}
+        <RK2.Potentiel d="M 1730 300 L 1730 380" mode={m3(0)} t={p.T} />
+        <RK2.Potentiel d="M 1730 530 L 1730 580" mode={m3(1)} t={p.T} />
+        <RK2.Potentiel d="M 1730 730 L 1730 1041" mode={m3(2)} t={p.T} />
+        <RK2.Potentiel d="M 1730 1099 L 1730 1300" mode={m3(2)} t={p.T} />
+        <RK2.ContactV x={1730} y={380} ouv={ouvKT} live={p.degLive > 0.5} glyph="t" code="KT" sub="horloge de dégivrage" />
+        <RK2.ContactV nf={true} x={1730} y={580} ouv={p.s1Ouvert} live={p.degLive > 0.5} glyph="θ" code="S1" sub="fin · ouvre à +10 °C" />
+        <RK2.BobineV x={1730} y={1070} code="KM2" sub="RÉSISTANCES" live={p.degLive > 0.5} />
 
-        <text x="1360" y="1074" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">
-          LE DÉGIVRAGE PREND LA MAIN SUR LE FROID
-        </text>
+        {/* colonne 4 : KM3 — la temporisation retient les ventilateurs */}
+        {fils(2380, ['M 2380 300 L 2380 580', 'M 2380 730 L 2380 1041', 'M 2380 1099 L 2380 1300'])}
+        <RK2.Potentiel d="M 2380 300 L 2380 580" mode={m4(0)} t={p.T} />
+        <RK2.Potentiel d="M 2380 730 L 2380 1041" mode={m4(1)} t={p.T} />
+        <RK2.Potentiel d="M 2380 1099 L 2380 1300" mode={m4(1)} t={p.T} />
+        <RK2.ContactV aux={true} x={2380} y={580} ouv={p.ventLive > 0.5 ? 0 : 1} live={p.ventLive > 0.5} code="KT" sub="tempo · reprise différée" />
+        <RK2.BobineV x={2380} y={1070} code="KM3" sub="VENTILATEURS" live={p.ventLive > 0.5} />
+
+        {ouvB1 >= 0.5 && p.y1Live <= 0.5 && (
+          <text x="466" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+        )}
       </g>
     );
   }
@@ -321,7 +324,7 @@
                  [tKM2, 0.52], [tFin, 0.74], [tReprise, 0.80], [tVent, 0.86], [tVent + 2, 0.88]], Tm)
       : 0;
 
-    var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
+    var cam = props.fixedCam !== false ? RK.camFixed(T, 5040) : RK.camAt(T);
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var banniere = clamp((T - CUES.Consigne - 4.4) / 0.6, 0, 1) * clamp(1 - (T - tFin) / 0.6, 0, 1) * (1 - keyIn);
@@ -403,8 +406,8 @@
               background: C.paper, borderTop: '3px solid ' + C.line
             }}
             items={[
-              { at: 0.4, text: 'Installation à l’arrêt : Y1 fermée, batterie propre.' },
-              { at: 3.2, text: 'L’air de la chambre remonte vers −14 °C.' },
+              { at: 0.4, text: 'Une chambre froide NÉGATIVE : l’air y est maintenu sous zéro degré — ici, consigne −18 °C.' },
+              { at: 3.2, text: 'À l’arrêt, batterie propre : l’air remonte vers −14 °C.' },
               { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme : Y1 s’ouvre, le liquide arrive.' },
               { at: CUES.Fermeture + 2.6, text: 'La pression monte : à 1,8 bar la BP ferme et KM1 colle.' },
               { at: CUES.Fermeture + 4.6, text: 'Les ventilateurs brassent l’air : le froid est produit.' },

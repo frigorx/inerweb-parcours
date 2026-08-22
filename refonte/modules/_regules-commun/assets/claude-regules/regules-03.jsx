@@ -48,48 +48,66 @@
   }
 
   function Cabinet(p) {
+    var RK2 = window.RK;
+    /* Schéma VERTICAL (22/08) : porte-fusible en tête, deux colonnes — le
+       thermostat vers Y1, les pressions vers KM1. Rouge = phase, orange =
+       retour neutre (l'aval d'un contact ouvert). */
+    var ouvB1 = clamp(-p.arm / 30, 0, 1);
+    var ouvBP = clamp(-p.bpArm / 30, 0, 1);
+    var modeC1 = function (troncon) {
+      if (ouvB1 < 0.5) return 'courant';
+      return troncon === 0 ? 'phase' : 'retour';
+    };
+    var contactsC2 = [false, ouvBP >= 0.5];
+    var premierOuvertC2 = contactsC2.indexOf(true);
+    var modeC2 = function (troncon) {
+      if (premierOuvertC2 === -1) return 'courant';
+      return troncon <= premierOuvertC2 ? 'phase' : 'retour';
+    };
     return (
-      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
-      <g transform="translate(2450,-400)">
-        <rect x="70" y="1030" width="2470" height="790" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="620" y="1106" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN AUTOMATIQUE</text>
-        <text x="2500" y="1106" textAnchor="end" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">DEUX COMMANDES SÉPARÉES</text>
+      <g transform="translate(2520,100)">
+        <rect x="0" y="0" width="1660" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN AUTOMATIQUE</text>
+        <text x="1620" y="66" textAnchor="end" fill={C.blue} fontSize="26" fontWeight="900" letterSpacing="2">DEUX COMMANDES SÉPARÉES</text>
 
-        <line x1="340" y1="1200" x2="340" y2="1720" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <line x1="90" y1="1200" x2="140" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <line x1="292" y1="1200" x2="340" y2="1200" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <Disjoncteur x={140} y={1200} live={true} above={true} code="Q1" />
-        <line x1="2270" y1="1200" x2="2270" y2="1720" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <text x="340" y="1784" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">L</text>
-        <text x="2270" y="1784" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+        <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
+        <RK2.PorteFusible x={170} y={150} />
+        <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
+        <line x1="170" y1="300" x2="1490" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="1300" x2="1490" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
-        {/* ligne 1 · le thermostat commande l'électrovanne */}
-        <text x="392" y="1218" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">1 · LIGNE LIQUIDE</text>
-        <path d="M 340 1260 L 760 1260 M 900 1260 L 1780 1260 M 1940 1260 L 2270 1260"
-              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <path d="M 340 1260 L 760 1260" fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-              strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity="0.85" />
-        <g opacity={p.y1Live ? 1 : 0}>
-          <path d="M 900 1260 L 1780 1260 M 1940 1260 L 2270 1260" fill="none" stroke={C.orange} strokeWidth="13"
-                strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} />
+        {/* colonne 1 : le thermostat commande l'électrovanne */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 520 300 L 520 780" />
+          <path d="M 520 930 L 520 1041" />
+          <path d="M 520 1099 L 520 1300" />
         </g>
-        <ContactNO x={760} y={1260} arm={p.arm} live={p.y1Live} glyph="θ" code="B1" sub="thermostat" />
-        <Bobine x={1780} y={1260} code="Y1" sub="ÉLECTROVANNE LIGNE LIQUIDE" live={p.y1Live} above={true} />
+        <RK2.Potentiel d="M 520 300 L 520 780" mode={modeC1(0)} t={p.T} />
+        <RK2.Potentiel d="M 520 930 L 520 1041" mode={modeC1(1)} t={p.T} />
+        <RK2.Potentiel d="M 520 1099 L 520 1300" mode={modeC1(1)} t={p.T} />
+        <RK2.ContactV x={520} y={780} ouv={ouvB1} live={p.y1Live} glyph="θ" code="B1" sub="thermostat" />
+        <RK2.BobineV x={520} y={1070} code="Y1" sub="ÉLECTROVANNE" live={p.y1Live} />
 
-        {/* ligne 2 · la basse pression commande le compresseur */}
-        <text x="392" y="1618" fill={C.mute} fontSize="26" fontWeight="900" letterSpacing="2">2 · COMPRESSEUR</text>
-        <path d="M 340 1660 L 760 1660 M 980 1660 L 1180 1660 M 1320 1660 L 1780 1660 M 1940 1660 L 2270 1660"
-              fill="none" stroke={C.wire} strokeWidth="9" strokeLinecap="round" />
-        <path d="M 340 1660 L 760 1660 M 980 1660 L 1180 1660" fill="none" stroke={C.orange} strokeWidth="13"
-              strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} opacity="0.85" />
-        <g opacity={p.kmLive ? 1 : 0}>
-          <path d="M 1320 1660 L 1780 1660 M 1940 1660 L 2270 1660 L 2270 1720" fill="none" stroke={C.orange}
-                strokeWidth="13" strokeLinecap="round" strokeDasharray="26 22" strokeDashoffset={-p.T * 200} />
+        {/* colonne 2 : la basse pression commande le compresseur */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 1180 300 L 1180 380" />
+          <path d="M 1180 530 L 1180 580" />
+          <path d="M 1180 730 L 1180 1041" />
+          <path d="M 1180 1099 L 1180 1300" />
         </g>
-        <ContactNF x={760} y={1660} live={true} code="HP" sub="sécurité · contact NF" />
-        <ContactNO x={1180} y={1660} arm={p.bpArm} live={p.kmLive} glyph="p" code="BP" sub="régulation · contact NO" />
-        {p.fault && <circle cx="1250" cy="1660" r="104" fill="none" stroke={C.red} strokeWidth="7" strokeDasharray="20 16" />}
-        <Bobine x={1780} y={1660} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={p.kmLive} />
+        <RK2.Potentiel d="M 1180 300 L 1180 380" mode={modeC2(0)} t={p.T} />
+        <RK2.Potentiel d="M 1180 530 L 1180 580" mode={modeC2(1)} t={p.T} />
+        <RK2.Potentiel d="M 1180 730 L 1180 1041" mode={modeC2(2)} t={p.T} />
+        <RK2.Potentiel d="M 1180 1099 L 1180 1300" mode={modeC2(2)} t={p.T} />
+        <RK2.ContactV nf={true} x={1180} y={380} ouv={0} live={p.kmLive} glyph="p" code="HP" sub="sécurité · NF" />
+        <RK2.ContactV x={1180} y={580} ouv={ouvBP} live={p.kmLive} glyph="p" code="BP" sub="régulation · NO" fault={p.fault} />
+        <RK2.BobineV x={1180} y={1070} code="KM1" sub="COMPRESSEUR" live={p.kmLive} />
+
+        {premierOuvertC2 >= 0 && (
+          <text x="1216" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+        )}
       </g>
     );
   }
@@ -287,8 +305,8 @@
               background: C.paper, borderTop: '3px solid ' + C.line
             }}
             items={[
-              { at: 0.4, text: 'Ici, deux commandes séparées : le thermostat sur Y1, la BP sur le compresseur.' },
-              { at: 3.2, text: 'L’installation est à l’arrêt, l’air de la chambre se réchauffe.' },
+              { at: 0.4, text: 'Une chambre froide NÉGATIVE : l’air y est maintenu sous zéro degré — ici, consigne −18 °C.' },
+              { at: 3.2, text: 'Deux commandes séparées : le thermostat sur Y1, la BP sur le compresseur.' },
               { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme : l’électrovanne Y1 s’ouvre seule.' },
               { at: CUES.Fermeture + 2.4, text: 'Le liquide arrive à l’évaporateur, la pression d’aspiration monte.' },
               { at: CUES.Fermeture + 4.2, text: 'À 1,8 bar, le pressostat BP ferme son contact : KM1 colle.' },
