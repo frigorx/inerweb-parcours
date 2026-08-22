@@ -18,8 +18,7 @@
     quizIndex: 0,
     score: 0,
     answered: false,
-    sequenceStep: 0,
-    utterance: null
+    sequenceStep: 0
   };
 
   function escapeHtml(value) {
@@ -37,10 +36,9 @@
       '      <span class="brand-name">inerWeb</span><span class="brand-edition">ÉDU</span>',
       '    </a>',
       '    <div class="module-heading"><p>' + escapeHtml(module.family) + ' · Station ' + module.number + '</p><h1>' + escapeHtml(module.title) + '</h1></div>',
+    /* Pas de bouton « Écouter » : la doctrine voix (VOIX-DES-FILMS.md) interdit la
+       synthèse du navigateur — un écran sans MP3 fabriqué reste muet. */
       '    <div class="tools" aria-label="Outils de lecture">',
-      '      <button id="voice-button" class="tool-button" type="button" aria-pressed="false" title="Écouter l’écran">▶ <span>Écouter</span></button>',
-      '      <button id="stop-voice" class="tool-button" type="button" disabled title="Arrêter la voix">■ <span>Stop</span></button>',
-      '      <label class="rate-label" for="voice-rate">Vitesse</label><select id="voice-rate" aria-label="Vitesse de lecture"><option value="0.85">Lente</option><option value="1" selected>Normale</option><option value="1.15">Rapide</option></select>',
       '      <button id="sources-button" class="tool-button" type="button">ⓘ <span>Sources</span></button>',
       '    </div>',
       '  </header>',
@@ -206,7 +204,6 @@
 
   function goTo(index) {
     if (index < 0 || index > module.lessons.length) { return; }
-    stopVoice();
     state.screen = index;
     state.furthest = Math.max(state.furthest, index);
     if (index < module.lessons.length) { renderLesson(); } else { renderQuiz(); }
@@ -245,52 +242,11 @@
     return '<p class="status-chip">' + escapeHtml(catalog.status) + '</p><p>Les schémas sont des synthèses fonctionnelles originales. Ils ne remplacent ni la notice constructeur ni la vérification sur l’installation réelle.</p>' + items + '<p class="terminology-note"><strong>Repère de vocabulaire :</strong> les supports locaux emploient « pump-down amélioré », « single pump-down » et « tirage au vide unique amélioré ». Cette rame sépare leurs fonctions pour éviter de confondre relais anti-redémarrage et pressostat BP de sécurité.</p>';
   }
 
-  function visibleText() {
-    var content = document.getElementById("lesson-card").cloneNode(true);
-    content.querySelectorAll("button, code, .visual-note, figcaption").forEach(function (node) { node.remove(); });
-    return (module.title + ". " + content.innerText).replace(/\s+/g, " ").trim();
-  }
-
-  function speak() {
-    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
-      announce("La synthèse vocale n’est pas disponible dans ce navigateur.");
-      return;
-    }
-    stopVoice();
-    var utterance = new SpeechSynthesisUtterance(visibleText());
-    utterance.lang = "fr-FR";
-    utterance.rate = Number(document.getElementById("voice-rate").value);
-    var voices = window.speechSynthesis.getVoices();
-    var french = voices.find(function (voice) { return /^fr(-|_)/i.test(voice.lang); });
-    if (french) { utterance.voice = french; }
-    utterance.onend = voiceEnded;
-    utterance.onerror = voiceEnded;
-    state.utterance = utterance;
-    document.getElementById("voice-button").setAttribute("aria-pressed", "true");
-    document.getElementById("stop-voice").disabled = false;
-    window.speechSynthesis.speak(utterance);
-  }
-
-  function voiceEnded() {
-    state.utterance = null;
-    var button = document.getElementById("voice-button");
-    if (button) { button.setAttribute("aria-pressed", "false"); }
-    var stop = document.getElementById("stop-voice");
-    if (stop) { stop.disabled = true; }
-  }
-
-  function stopVoice() {
-    if ("speechSynthesis" in window) { window.speechSynthesis.cancel(); }
-    voiceEnded();
-  }
-
   function announce(text) { document.getElementById("live-status").textContent = text; }
 
   function bindControls() {
     document.getElementById("previous-button").addEventListener("click", function () { goTo(state.screen - 1); });
     document.getElementById("next-button").addEventListener("click", function () { goTo(state.screen + 1); });
-    document.getElementById("voice-button").addEventListener("click", speak);
-    document.getElementById("stop-voice").addEventListener("click", stopVoice);
     var dialog = document.getElementById("sources-dialog");
     document.getElementById("sources-content").innerHTML = sourceMarkup();
     document.getElementById("sources-button").addEventListener("click", function () { dialog.showModal(); });
@@ -301,8 +257,6 @@
       if (event.key === "ArrowRight") { goTo(state.screen + 1); }
       if (event.key === "ArrowLeft") { goTo(state.screen - 1); }
     });
-    document.addEventListener("visibilitychange", function () { if (document.hidden) { stopVoice(); } });
-    window.addEventListener("beforeunload", stopVoice);
     window.addEventListener("load", function () {
       var accessibilityButton = document.getElementById("lisib-bouton");
       var tools = document.querySelector(".tools");

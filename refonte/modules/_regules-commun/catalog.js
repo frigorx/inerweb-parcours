@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-22a",
+    version: "2026-08-22b",
     status: "Version en ligne — relecture métier en cours",
     sources: sources,
     modules: [
@@ -128,8 +128,8 @@
         quiz: [
           { prompt: "Dans cette commande directe, quel organe décide la marche du compresseur ?", options: ["Le thermostat", "L’électrovanne", "Le pressostat HP"], correct: 0, why: "Le thermostat alimente directement la commande du compresseur." },
           { prompt: "Que se passe-t-il quand la consigne est atteinte ?", options: ["Le compresseur accélère", "Le thermostat ouvre et le compresseur s’arrête", "La pression HP commande seule"], correct: 1, why: "L’arrêt vient de l’ouverture du thermostat." },
-          { prompt: "Que montre volontairement ce premier schéma ?", options: ["Une installation complète", "La fonction la plus simple, sans sécurité représentée", "Un pump-down"], correct: 1, why: "La station isole la commande de température pour poser le vocabulaire." },
-          { prompt: "Pourquoi faut-il lire la notice du matériel réel ?", options: ["Pour choisir les protections et réglages applicables", "Pour supprimer le thermostat", "Pour remplacer le compresseur par une vanne"], correct: 0, why: "Les protections et réglages dépendent de l’installation réelle." }
+          { prompt: "Que montre volontairement ce premier schéma ?", options: ["Une installation complète", "Un pump-down", "La fonction la plus simple, sans sécurité représentée"], correct: 2, why: "La station isole la commande de température pour poser le vocabulaire." },
+          { prompt: "Pourquoi faut-il lire la notice du matériel réel ?", options: ["Pour supprimer le thermostat", "Pour choisir les protections et réglages applicables", "Pour remplacer le compresseur par une vanne"], correct: 1, why: "Les protections et réglages dépendent de l’installation réelle." }
         ]
       },
       {
@@ -202,9 +202,9 @@
         ],
         quiz: [
           { prompt: "Dans une chaîne en série, que provoque l’ouverture d’un seul contact ?", options: ["Aucun effet", "L’arrêt de la bobine située après la chaîne", "L’ouverture du détendeur"], correct: 1, why: "Une seule ouverture interrompt toute la chaîne." },
-          { prompt: "Pourquoi Y1 se ferme-t-elle quand KM1 retombe ?", options: ["Elle lit la pression", "Elle est commandée par un auxiliaire de KM1", "Elle devient un thermostat"], correct: 1, why: "Le contact auxiliaire suit l’état du contacteur." },
-          { prompt: "Pourquoi ce montage n’est-il pas un pump-down ?", options: ["Il n’a pas de compresseur", "Le compresseur ne poursuit pas l’aspiration après la fermeture de Y1", "Il utilise un thermostat"], correct: 1, why: "Le décalage entre fermeture de Y1 et arrêt compresseur fait la séquence pump-down." },
-          { prompt: "Un pressostat ouvre. Que doit faire la chaîne montrée ?", options: ["Maintenir Y1 ouverte", "Arrêter KM1 et fermer Y1", "Démarrer les résistances"], correct: 1, why: "La protection minimum arrête la production de froid et ferme la ligne liquide." }
+          { prompt: "Pourquoi Y1 se ferme-t-elle quand KM1 retombe ?", options: ["Elle lit la pression", "Elle devient un thermostat", "Elle est commandée par un auxiliaire de KM1"], correct: 2, why: "Le contact auxiliaire suit l’état du contacteur." },
+          { prompt: "Pourquoi ce montage n’est-il pas un pump-down ?", options: ["Le compresseur ne poursuit pas l’aspiration après la fermeture de Y1", "Il n’a pas de compresseur", "Il utilise un thermostat"], correct: 0, why: "Le décalage entre fermeture de Y1 et arrêt compresseur fait la séquence pump-down." },
+          { prompt: "Un pressostat ouvre. Que doit faire la chaîne montrée ?", options: ["Maintenir Y1 ouverte", "Démarrer les résistances", "Arrêter KM1 et fermer Y1"], correct: 2, why: "La protection minimum arrête la production de froid et ferme la ligne liquide." }
         ]
       },
       {
@@ -276,9 +276,9 @@
           }
         ],
         quiz: [
-          { prompt: "Dans le pump-down automatique, que commande le thermostat ?", options: ["Y1, l’électrovanne", "KM1 directement", "Le pressostat HP"], correct: 0, why: "La demande de température agit sur la ligne liquide." },
+          { prompt: "Dans le pump-down automatique, que commande le thermostat ?", options: ["KM1 directement", "Le pressostat HP", "Y1, l’électrovanne"], correct: 2, why: "La demande de température agit sur la ligne liquide." },
           { prompt: "Pourquoi KM1 continue-t-il après la fermeture de Y1 ?", options: ["Pour vider le côté évaporateur", "Pour chauffer la chambre", "Pour ouvrir le détendeur"], correct: 0, why: "Il abaisse la BP jusqu’à l’ouverture du pressostat de régulation." },
-          { prompt: "Qu’est-ce qui arrête finalement KM1 ?", options: ["Le pressostat BP de régulation", "Le voyant", "Le ventilateur"], correct: 0, why: "L’arrêt compresseur vient de la baisse de pression mesurée par le BP de régulation." },
+          { prompt: "Qu’est-ce qui arrête finalement KM1 ?", options: ["Le voyant", "Le pressostat BP de régulation", "Le ventilateur"], correct: 1, why: "L’arrêt compresseur vient de la baisse de pression mesurée par le BP de régulation." },
           { prompt: "Quel défaut peut provoquer des courts cycles à l’arrêt ?", options: ["Une Y1 fuyarde", "Un titre trop long", "Une consigne écrite en degrés"], correct: 0, why: "Une fuite de la ligne liquide peut faire remonter la BP et réenclencher le pressostat." }
         ]
       },
@@ -353,9 +353,9 @@
         ],
         quiz: [
           { prompt: "Quel organe mémorise la demande de froid ?", options: ["Le relais KA", "Le voyant H1", "Le moteur ventilateur"], correct: 0, why: "KA porte l’autorisation liée au thermostat." },
-          { prompt: "Pourquoi KM1 peut-il finir le tirage après la retombée de KA ?", options: ["Grâce à son circuit de maintien", "Grâce au voyant", "Parce que Y1 reste ouverte"], correct: 0, why: "Le maintien conserve KM1 uniquement jusqu’à l’ouverture du BP." },
-          { prompt: "Après l’arrêt, la BP remonte sans demande. Que doit faire KM1 ?", options: ["Redémarrer", "Rester arrêté", "Inverser le cycle"], correct: 1, why: "La mémoire de demande est tombée, donc la BP seule ne suffit pas." },
-          { prompt: "Comment prouver la fonction du relais ?", options: ["Lire le câblage et tester la séquence", "Regarder sa couleur", "Compter ses vis uniquement"], correct: 0, why: "La fonction vient des contacts réellement utilisés et de leur séquence." }
+          { prompt: "Pourquoi KM1 peut-il finir le tirage après la retombée de KA ?", options: ["Grâce au voyant", "Grâce à son circuit de maintien", "Parce que Y1 reste ouverte"], correct: 1, why: "Le maintien conserve KM1 uniquement jusqu’à l’ouverture du BP." },
+          { prompt: "Après l’arrêt, la BP remonte sans demande. Que doit faire KM1 ?", options: ["Redémarrer", "Inverser le cycle", "Rester arrêté"], correct: 2, why: "La mémoire de demande est tombée, donc la BP seule ne suffit pas." },
+          { prompt: "Comment prouver la fonction du relais ?", options: ["Regarder sa couleur", "Lire le câblage et tester la séquence", "Compter ses vis uniquement"], correct: 1, why: "La fonction vient des contacts réellement utilisés et de leur séquence." }
         ]
       },
       {
@@ -429,10 +429,10 @@
           }
         ],
         quiz: [
-          { prompt: "Quel pressostat termine le tirage au vide normal ?", options: ["Le BP de régulation", "Le BP de sécurité", "Le HP de sécurité"], correct: 0, why: "Le BP de régulation travaille dans la séquence normale." },
-          { prompt: "Quel organe traite la basse pression anormale ?", options: ["Le BP de sécurité", "Le thermostat d’ambiance", "Le ventilateur"], correct: 0, why: "La sécurité BP est distincte de la régulation." },
+          { prompt: "Quel pressostat termine le tirage au vide normal ?", options: ["Le BP de sécurité", "Le BP de régulation", "Le HP de sécurité"], correct: 1, why: "Le BP de régulation travaille dans la séquence normale." },
+          { prompt: "Quel organe traite la basse pression anormale ?", options: ["Le thermostat d’ambiance", "Le ventilateur", "Le BP de sécurité"], correct: 2, why: "La sécurité BP est distincte de la régulation." },
           { prompt: "Pourquoi prévoir une signalisation H6 ?", options: ["Pour indiquer le défaut BP", "Pour chauffer l’évaporateur", "Pour ouvrir Y1"], correct: 0, why: "Le voyant rend visible l’arrêt dû à la chaîne BP de sécurité." },
-          { prompt: "Face à un nom de montage ambigu, quelle méthode est fiable ?", options: ["Suivre le schéma et raconter la séquence", "Deviner d’après l’année", "Choisir le nom le plus long"], correct: 0, why: "Les fonctions viennent du câblage et de l’ordre des états." }
+          { prompt: "Face à un nom de montage ambigu, quelle méthode est fiable ?", options: ["Deviner d’après l’année", "Choisir le nom le plus long", "Suivre le schéma et raconter la séquence"], correct: 2, why: "Les fonctions viennent du câblage et de l’ordre des états." }
         ]
       },
       {
@@ -500,9 +500,9 @@
           }
         ],
         quiz: [
-          { prompt: "Sans cycle dédié, quand une fonte peut-elle se produire ?", options: ["Pendant un arrêt si l’air et la température le permettent", "Uniquement pendant la marche du compresseur", "Jamais"], correct: 0, why: "Un arrêt naturel peut réchauffer une batterie positive." },
+          { prompt: "Sans cycle dédié, quand une fonte peut-elle se produire ?", options: ["Uniquement pendant la marche du compresseur", "Jamais", "Pendant un arrêt si l’air et la température le permettent"], correct: 2, why: "Un arrêt naturel peut réchauffer une batterie positive." },
           { prompt: "Quel signe montre qu’il faut réexaminer la stratégie ?", options: ["Une batterie qui se charge de givre", "Un titre bleu", "Un voyant éteint au repos"], correct: 0, why: "Le givre qui persiste réduit l’échange et le débit d’air." },
-          { prompt: "Quelle donnée faut-il éviter de copier aveuglément ?", options: ["La fréquence de dégivrage d’une autre installation", "Le repère du thermostat du même schéma", "Le sens de lecture"], correct: 0, why: "La fréquence dépend des conditions réelles et des prescriptions." },
+          { prompt: "Quelle donnée faut-il éviter de copier aveuglément ?", options: ["Le repère du thermostat du même schéma", "La fréquence de dégivrage d’une autre installation", "Le sens de lecture"], correct: 1, why: "La fréquence dépend des conditions réelles et des prescriptions." },
           { prompt: "Quel est le premier geste de diagnostic ?", options: ["Observer batterie, air et écoulement", "Changer le compresseur", "Ajouter une résistance au hasard"], correct: 0, why: "Le besoin se fonde sur des observations croisées." }
         ]
       },
@@ -576,9 +576,9 @@
         ],
         quiz: [
           { prompt: "Quelle est la source de chaleur du dégivrage naturel ?", options: ["L’air de l’enceinte positive", "Une résistance électrique", "Le refoulement compresseur"], correct: 0, why: "Aucun apport de chaleur dédié n’est utilisé." },
-          { prompt: "Que fait le ventilateur évaporateur pendant ce principe ?", options: ["Il peut continuer à brasser l’air", "Il inverse le cycle", "Il ferme Y1"], correct: 0, why: "La circulation d’air apporte la chaleur disponible à la batterie." },
-          { prompt: "Quel organe peut forcer le début du dégivrage ?", options: ["Une horloge ou un régulateur", "Le voyant", "Le filtre déshydrateur"], correct: 0, why: "La commande périodique impose l’arrêt du froid." },
-          { prompt: "Quel avantage apporte une sonde de fin ?", options: ["Terminer selon l’état thermique de la batterie", "Augmenter toujours la durée", "Supprimer l’écoulement"], correct: 0, why: "Elle évite de prolonger le cycle après la fonte." }
+          { prompt: "Que fait le ventilateur évaporateur pendant ce principe ?", options: ["Il inverse le cycle", "Il peut continuer à brasser l’air", "Il ferme Y1"], correct: 1, why: "La circulation d’air apporte la chaleur disponible à la batterie." },
+          { prompt: "Quel organe peut forcer le début du dégivrage ?", options: ["Le voyant", "Le filtre déshydrateur", "Une horloge ou un régulateur"], correct: 2, why: "La commande périodique impose l’arrêt du froid." },
+          { prompt: "Quel avantage apporte une sonde de fin ?", options: ["Augmenter toujours la durée", "Terminer selon l’état thermique de la batterie", "Supprimer l’écoulement"], correct: 1, why: "Elle évite de prolonger le cycle après la fonte." }
         ]
       },
       {
@@ -647,10 +647,10 @@
           }
         ],
         quiz: [
-          { prompt: "Pourquoi arrêter les ventilateurs pendant les résistances ?", options: ["Pour ne pas souffler l’air chaud vers les produits", "Pour augmenter la HP", "Pour ouvrir le détendeur"], correct: 0, why: "Le chauffage doit rester concentré sur la batterie." },
-          { prompt: "À quoi sert l’égouttage ?", options: ["Laisser l’eau s’évacuer avant la reprise du froid", "Augmenter le givre", "Redémarrer immédiatement les ventilateurs"], correct: 0, why: "L’eau doit quitter la batterie avant de pouvoir regeler." },
+          { prompt: "Pourquoi arrêter les ventilateurs pendant les résistances ?", options: ["Pour augmenter la HP", "Pour ne pas souffler l’air chaud vers les produits", "Pour ouvrir le détendeur"], correct: 1, why: "Le chauffage doit rester concentré sur la batterie." },
+          { prompt: "À quoi sert l’égouttage ?", options: ["Augmenter le givre", "Redémarrer immédiatement les ventilateurs", "Laisser l’eau s’évacuer avant la reprise du froid"], correct: 2, why: "L’eau doit quitter la batterie avant de pouvoir regeler." },
           { prompt: "Pourquoi retarder les ventilateurs après la reprise ?", options: ["Attendre que la batterie soit froide", "Faire monter la température", "Remplacer la sonde"], correct: 0, why: "On évite de projeter humidité et air chaud dans l’enceinte." },
-          { prompt: "Quelle est la fin normale du dégivrage ?", options: ["La sonde de batterie", "Toujours le temps maximal", "Le pressostat HP"], correct: 0, why: "Le temps maximal reste un garde-fou." }
+          { prompt: "Quelle est la fin normale du dégivrage ?", options: ["Toujours le temps maximal", "Le pressostat HP", "La sonde de batterie"], correct: 2, why: "Le temps maximal reste un garde-fou." }
         ]
       },
       {
@@ -719,9 +719,9 @@
           }
         ],
         quiz: [
-          { prompt: "D’où vient la chaleur du dégivrage par gaz chauds ?", options: ["Du refoulement du compresseur", "De l’air extérieur seulement", "D’une résistance dans tous les cas"], correct: 0, why: "Le montage dérive des gaz chauds de refoulement." },
+          { prompt: "D’où vient la chaleur du dégivrage par gaz chauds ?", options: ["De l’air extérieur seulement", "D’une résistance dans tous les cas", "Du refoulement du compresseur"], correct: 2, why: "Le montage dérive des gaz chauds de refoulement." },
           { prompt: "Quel organe automatise la voie de gaz chauds ?", options: ["Une électrovanne dédiée", "Le voyant", "Le filtre à huile"], correct: 0, why: "La vanne s’ouvre pour le dégivrage et se ferme en froid." },
-          { prompt: "Pourquoi contrôler le retour vers le compresseur ?", options: ["Le gaz chaud peut se condenser dans la batterie", "Le thermostat devient liquide", "Le ventilateur crée de l’huile"], correct: 0, why: "Le liquide formé doit être géré pour éviter un coup de liquide." },
+          { prompt: "Pourquoi contrôler le retour vers le compresseur ?", options: ["Le thermostat devient liquide", "Le gaz chaud peut se condenser dans la batterie", "Le ventilateur crée de l’huile"], correct: 1, why: "Le liquide formé doit être géré pour éviter un coup de liquide." },
           { prompt: "Quelle différence avec l’inversion de cycle ?", options: ["Ici on dérive le refoulement sans retourner tout le circuit", "Il n’y en a aucune", "L’inversion utilise toujours des résistances"], correct: 0, why: "Le by-pass de gaz chauds et la vanne 4 voies sont deux architectures différentes." }
         ]
       },
@@ -792,9 +792,9 @@
         ],
         quiz: [
           { prompt: "Que devient la batterie intérieure pendant l’inversion ?", options: ["Un condenseur temporaire", "Un filtre", "Un réservoir d’huile"], correct: 0, why: "Elle reçoit le refoulement chaud et cède la chaleur au givre." },
-          { prompt: "Quel organe change le sens fonctionnel du cycle ?", options: ["La vanne 4 voies", "Le voyant liquide", "Le pressostat d’huile"], correct: 0, why: "La vanne 4 voies redistribue aspiration et refoulement." },
-          { prompt: "Pourquoi la vanne 4 voies ne suffit-elle pas seule ?", options: ["La détente et les clapets doivent fonctionner dans les deux modes", "Elle n’a pas de couleur", "Elle remplace le compresseur"], correct: 0, why: "Toute l’architecture fluidique doit accepter le cycle inversé." },
-          { prompt: "Quand redémarrer les ventilateurs ?", options: ["Après retour au froid et refroidissement suffisant de la batterie", "Pendant le chauffage", "Avant la fin sur sonde"], correct: 0, why: "Le délai évite de souffler de l’air chaud et des gouttelettes." }
+          { prompt: "Quel organe change le sens fonctionnel du cycle ?", options: ["Le voyant liquide", "La vanne 4 voies", "Le pressostat d’huile"], correct: 1, why: "La vanne 4 voies redistribue aspiration et refoulement." },
+          { prompt: "Pourquoi la vanne 4 voies ne suffit-elle pas seule ?", options: ["Elle n’a pas de couleur", "Elle remplace le compresseur", "La détente et les clapets doivent fonctionner dans les deux modes"], correct: 2, why: "Toute l’architecture fluidique doit accepter le cycle inversé." },
+          { prompt: "Quand redémarrer les ventilateurs ?", options: ["Pendant le chauffage", "Après retour au froid et refroidissement suffisant de la batterie", "Avant la fin sur sonde"], correct: 1, why: "Le délai évite de souffler de l’air chaud et des gouttelettes." }
         ]
       }
     ]
