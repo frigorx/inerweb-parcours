@@ -14,7 +14,7 @@
 //
 // Lancer :  node outils/copier-ligne-regules-vers-pack.mjs [--controle]
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, copyFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
@@ -53,8 +53,26 @@ function poser(relatif, contenu) {
   journal.push("  maj  " + relatif);
 }
 
+function poserBinaire(source, relatif) {
+  const destination = join(PACK, relatif);
+  if (existsSync(destination) && statSync(destination).size === statSync(source).size) { inchanges++; return; }
+  if (!CONTROLE) { mkdirSync(dirname(destination), { recursive: true }); copyFileSync(source, destination); }
+  ecrits++;
+  journal.push("  maj  " + relatif);
+}
+
 for (const id of [...stations, "regules-interactif"]) {
   poser(id + "/index.html", recollerIndex(readFileSync(join(SOURCE, id, "index.html"), "utf8")));
+}
+
+// La voix masculine suit chaque station ; la féminine reste à l'atelier, comme
+// pour l'huile (le pack est publié, aucun bouton ne permet encore d'en changer).
+for (const id of stations) {
+  const dossierVoix = join(SOURCE, id, "voix", "masculine");
+  if (!existsSync(dossierVoix)) continue;
+  for (const f of readdirSync(dossierVoix)) {
+    if (f.endsWith(".mp3")) poserBinaire(join(dossierVoix, f), id + "/voix/masculine/" + f);
+  }
 }
 poser("_regules-commun/catalog.js", readFileSync(join(SOURCE, "_regules-commun", "catalog.js"), "utf8"));
 poser("_regules-commun/engine.js", recollerEngine(readFileSync(join(SOURCE, "_regules-commun", "engine.js"), "utf8")));

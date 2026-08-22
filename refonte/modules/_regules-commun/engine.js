@@ -36,9 +36,15 @@
       '      <span class="brand-name">inerWeb</span><span class="brand-edition">ÉDU</span>',
       '    </a>',
       '    <div class="module-heading"><p>' + escapeHtml(module.family) + ' · Station ' + module.number + '</p><h1>' + escapeHtml(module.title) + '</h1></div>',
-    /* Pas de bouton « Écouter » : la doctrine voix (VOIX-DES-FILMS.md) interdit la
-       synthèse du navigateur — un écran sans MP3 fabriqué reste muet. */
+    /* La voix est FABRIQUÉE (MP3 posés par voix/fabriquer-regules.mjs) : le
+       bouton n'existe que si le catalogue déclare voixFabriquee. Jamais de
+       synthèse navigateur, même en repli (doctrine VOIX-DES-FILMS.md) : un
+       fichier manquant reste muet. */
       '    <div class="tools" aria-label="Outils de lecture">',
+      (catalog.voixFabriquee
+        ? '      <button id="voice-button" class="tool-button" type="button" aria-pressed="false" title="Écouter l’écran">▶ <span>Écouter</span></button>' +
+          '<button id="stop-voice" class="tool-button" type="button" disabled title="Arrêter la voix">■ <span>Stop</span></button>'
+        : ""),
       '      <button id="sources-button" class="tool-button" type="button">ⓘ <span>Sources</span></button>',
       '    </div>',
       '  </header>',
@@ -140,6 +146,7 @@
   }
 
   function renderLesson() {
+    stopVoix();
     var lesson = module.lessons[state.screen];
     state.sequenceStep = 0;
     var article = document.getElementById("lesson-card");
@@ -160,6 +167,7 @@
   }
 
   function renderQuiz() {
+    stopVoix();
     var article = document.getElementById("lesson-card");
     article.className = "lesson-card quiz-screen";
     if (state.quizIndex >= module.quiz.length) {
@@ -176,6 +184,7 @@
   function answerQuiz(event) {
     var button = event.target.closest("[data-option]");
     if (!button || state.answered) { return; }
+    stopVoix();
     state.answered = true;
     var question = module.quiz[state.quizIndex];
     var choice = Number(button.getAttribute("data-option"));
@@ -244,9 +253,63 @@
 
   function announce(text) { document.getElementById("live-status").textContent = text; }
 
+  /* ── la voix fabriquée — des MP3 embarqués, jamais la synthèse du navigateur.
+     Écrans : voix/<genre>/<écran>.mp3. Questions : q<n>.mp3 avant la réponse
+     (l'énoncé seul, sans la livrer), q<n>-reponse.mp3 après. Le bilan reste
+     muet : il annonce un score réel, un enregistrement figé mentirait. ── */
+  var lecteur = null;
+
+  function genreVoix() {
+    try { return localStorage.getItem("regules_voix") === "feminine" ? "feminine" : "masculine"; }
+    catch (err) { return "masculine"; }
+  }
+
+  function fichierVoix() {
+    if (state.screen < module.lessons.length) {
+      return "voix/" + genreVoix() + "/" + module.lessons[state.screen].id + ".mp3";
+    }
+    if (state.quizIndex < module.quiz.length) {
+      return "voix/" + genreVoix() + "/q" + (state.quizIndex + 1) + (state.answered ? "-reponse" : "") + ".mp3";
+    }
+    return null;
+  }
+
+  function majBoutonVoix(texte, enCours) {
+    var bouton = document.getElementById("voice-button");
+    if (bouton) { bouton.innerHTML = texte; bouton.setAttribute("aria-pressed", enCours ? "true" : "false"); }
+    var stop = document.getElementById("stop-voice");
+    if (stop) { stop.disabled = !enCours; }
+  }
+
+  function stopVoix() {
+    if (lecteur) { lecteur.pause(); lecteur = null; }
+    majBoutonVoix("▶ <span>Écouter</span>", false);
+  }
+
+  function ecouter() {
+    if (lecteur && !lecteur.paused) { lecteur.pause(); majBoutonVoix("▶ <span>Reprendre</span>", true); return; }
+    if (lecteur && lecteur.paused) { lecteur.play(); majBoutonVoix("Ⅱ <span>Pause</span>", true); return; }
+    var src = fichierVoix();
+    if (!src) { return; }
+    lecteur = new Audio(src);
+    lecteur.addEventListener("ended", stopVoix);
+    lecteur.addEventListener("error", function () {
+      lecteur = null;
+      majBoutonVoix("▶ <span>Écouter</span>", false);
+      announce("Le son de cet écran n’est pas disponible.");
+    });
+    var promesse = lecteur.play();
+    if (promesse && promesse.catch) { promesse.catch(function () {}); }
+    majBoutonVoix("Ⅱ <span>Pause</span>", true);
+  }
+
   function bindControls() {
     document.getElementById("previous-button").addEventListener("click", function () { goTo(state.screen - 1); });
     document.getElementById("next-button").addEventListener("click", function () { goTo(state.screen + 1); });
+    if (catalog.voixFabriquee) {
+      document.getElementById("voice-button").addEventListener("click", ecouter);
+      document.getElementById("stop-voice").addEventListener("click", stopVoix);
+    }
     var dialog = document.getElementById("sources-dialog");
     document.getElementById("sources-content").innerHTML = sourceMarkup();
     document.getElementById("sources-button").addEventListener("click", function () { dialog.showModal(); });
