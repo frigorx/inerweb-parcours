@@ -44,10 +44,18 @@ blanche, trois recollages, garde contre tout lien d'atelier survivant) — l'out
 l'huile reste intact. Le brief du chantier, soldé, reste lisible :
 `REPRISE-LIGNE-REGULATION-2026-08-22.md`.
 
-⚠️ **Ce qui reste** : les six films Claude Design sont corrigés mais UN SEUL parle (la
-station 8, dégivrage électrique) et personne n'a écouté sa voix ; les narrations des
-cinq autres restent à faire ; films (3,5 Mo) et voix (1,5 Mo) restent à l'atelier tant
-que Franck n'a pas écouté — les stations du pack ne les appellent pas encore.
+**La rame PARLE depuis le 22/08 après-midi** : 220 MP3 fabriqués sur feu vert de Franck
+(`voix/fabriquer-regules.mjs`, narrations dans `voix/narrations/`, doctrine orale
+respectée), 110 masculins embarqués au pack, bouton Écouter vérifié sur inerweb.fr.
+Personne n'a encore écouté ces voix.
+
+⚠️ **Ce qui reste** : la refonte des films selon le brief du 22/08
+(`assets/claude-regules/REFONTE-FILMS-BRIEF-2026-08-22.md`) est faite sur le **film 02**
+(gabarit de la formule : étiquettes éphémères, armoire à droite de la croix, chronogramme
+dessous, scène CycleComplet en plan large) — contrôlée au pixel, en attente du regard de
+Franck avant transposition aux cinq autres (01 = `regules-video-v2.jsx`, 02b sans
+armoire ni chrono, 03/05/08 au même gabarit que le 02). La voix du film 8, la seule
+fabriquée, reste à écouter. Films et voix-films toujours hors du pack.
 Après toute retouche de la rame : relancer l'outil de copie, puis `node build/build.mjs`
 dans pilote-fluides (liste crawlable + casse-cache), et re-vérifier le site.
 
