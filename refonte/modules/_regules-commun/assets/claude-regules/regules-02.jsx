@@ -68,14 +68,17 @@
      l'armoire (désormais À DROITE de la croix), la croix, les deux ensemble,
      le chronogramme (dessous) — puis le PLAN LARGE total pour la scène
      CycleComplet : électrique, fluidique et graphique en même temps. */
+  /* L'armoire VERTICALE (22/08) est plus étroite : le duo et le plan large
+     gagnent en taille de rendu — c'était l'argument du schéma vertical. */
   function camFixed(T) {
     var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var large = { cx: 2645, cy: 1210, z: 0.40 };
+    var duo = { cx: 2240, cy: 830, z: 0.49 };
+    var large = { cx: 2240, cy: 1210, z: 0.465 };
     var V = [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
-      { t: 6, v: { cx: 3755, cy: 1010, z: 0.70 } },
+      { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },
       { t: 13, v: croix },
-      { t: 23, v: { cx: 2650, cy: 1000, z: 0.40 } },
+      { t: 23, v: duo },
       { t: 31, v: croix },
       { t: 38, v: { cx: 2235, cy: 1980, z: 0.70 } },
       { t: 44, v: large },
@@ -350,8 +353,8 @@
           <rect x="1010" y="1215" width="96" height="66" rx="8" fill={C.card} stroke={C.orangeText} strokeWidth="4" />
           <text x="1058" y="1261" textAnchor="middle" fill={C.orangeText} fontSize="34" fontWeight="900">B1</text>
           {/* La sonde rejoint son contact dans l'armoire, désormais à droite :
-             le pointillé passe SOUS la croix, sans traverser aucun tracé. */}
-          <path d="M 1058 1281 L 1058 1450 L 2600 1450 L 2600 1320" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
+             le pointillé passe SOUS la croix et s'arrête au flanc de l'armoire. */}
+          <path d="M 1058 1281 L 1058 1445 L 2508 1445" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
         </g>
         <Chip T={p.T} at={22.4} hold={5} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
         <g>
@@ -537,58 +540,78 @@
     var live = reveal > 0.4;
     /* Le defaut haute pression que le chronogramme annonce : ici on le voit couper. */
     var hpDefaut = clamp((T - 41.6) / 0.4, 0, 1);
-    var flux = function (d, on) {
-      return (
-        <path d={d} fill="none" stroke={C.orange} strokeWidth="13" strokeLinecap="round"
-              strokeDasharray="26 22" strokeDashoffset={-p.phaseAll * 200} opacity={on} />
-      );
+    var RK = window.RK;
+
+    /* Schéma VERTICAL (retour F. Henninot 22/08) : phase en haut, neutre en
+       bas, porte-fusible en tête, deux colonnes — la chaîne série vers KM1,
+       l'auxiliaire vers Y1. Le potentiel se lit en couleur : rouge = phase,
+       orange = RETOUR NEUTRE (l'aval d'un contact ouvert, au potentiel du
+       neutre à travers la bobine). */
+    var ouvB1 = clamp(-p.arm / 30, 0, 1);
+    var contactsC1 = [hpDefaut >= 0.5, false, ouvB1 >= 0.5];
+    var premierOuvert = contactsC1.indexOf(true);
+    var modeC1 = function (troncon) {
+      if (premierOuvert === -1) return 'courant';
+      return troncon <= premierOuvert ? 'phase' : 'retour';
     };
+    var auxOuvert = !(live && hpDefaut < 0.5);
+    var modeC2 = function (troncon) {
+      if (!auxOuvert) return 'courant';
+      return troncon === 0 ? 'phase' : 'retour';
+    };
+
     return (
-      /* Refonte 22/08 : l'armoire vit À DROITE de la croix — électrique et
-         fluidique se lisent ensemble, sur la même page. */
-      <g transform="translate(2450,-400)">
-        <rect x="70" y="1100" width="2470" height="620" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="118" y="1170" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">ARMOIRE · PROTECTION MINIMUM</text>
+      <g transform="translate(2520,100)">
+        <rect x="0" y="0" width="1660" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">ARMOIRE · PROTECTION MINIMUM</text>
+        <text x="1620" y="66" textAnchor="end" fill={C.blue} fontSize="26" fontWeight="900" letterSpacing="2">KM1 ET Y1 EN PARALLÈLE</text>
 
-        <line x1="340" y1="1230" x2="340" y2="1650" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <line x1="2270" y1="1230" x2="2270" y2="1650" stroke={C.blue} strokeWidth="14" strokeLinecap="round" />
-        <text x="340" y="1700" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">L</text>
-        <text x="2270" y="1700" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+        {/* arrivée et protection en tête : le porte-fusible, puis les deux rails */}
+        <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
+        <RK.PorteFusible x={170} y={150} />
+        <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
+        <line x1="170" y1="300" x2="1490" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="1300" x2="1490" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
+        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
-        {/* La chaine se lit comme on la cable : protection, securites, puis regulation. */}
+        {/* colonne 1 : les deux sécurités puis le thermostat, en série vers KM1 */}
         <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
-          <path d="M 340 1400 L 420 1400" />
-          <path d="M 572 1400 L 760 1400" />
-          <path d="M 912 1400 L 1100 1400" />
-          <path d="M 1252 1400 L 1440 1400" />
-          <path d="M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500" />
-          <path d="M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1500" />
+          <path d="M 520 300 L 520 380" />
+          <path d="M 520 530 L 520 580" />
+          <path d="M 520 730 L 520 780" />
+          <path d="M 520 930 L 520 1041" />
+          <path d="M 520 1099 L 520 1300" />
         </g>
+        <RK.Potentiel d="M 520 300 L 520 380" mode={modeC1(0)} t={p.phaseAll} />
+        <RK.Potentiel d="M 520 530 L 520 580" mode={modeC1(1)} t={p.phaseAll} />
+        <RK.Potentiel d="M 520 730 L 520 780" mode={modeC1(2)} t={p.phaseAll} />
+        <RK.Potentiel d="M 520 930 L 520 1041" mode={modeC1(3)} t={p.phaseAll} />
+        <RK.Potentiel d="M 520 1099 L 520 1300" mode={modeC1(3)} t={p.phaseAll} />
+        <RK.ContactV nf={true} x={520} y={380} ouv={hpDefaut} live={live} glyph="p" code="HP" sub="sécurité HP" fault={hpDefaut > 0.5} />
+        <RK.ContactV nf={true} x={520} y={580} ouv={0} live={live && hpDefaut < 0.5} glyph="p" code="BP" sub="sécurité BP" />
+        <RK.ContactV x={520} y={780} ouv={ouvB1} live={live && hpDefaut < 0.5} glyph="θ" code="B1" sub="thermostat" />
+        <RK.BobineV x={520} y={1070} code="KM1" sub="COMPRESSEUR" live={live && hpDefaut < 0.5} />
 
-        {flux("M 340 1400 L 420 1400", 0.85)}
-        {flux("M 572 1400 L 760 1400", 0.85 * (1 - hpDefaut))}
-        <g opacity={reveal * (1 - hpDefaut)}>
-          {flux("M 912 1400 L 1100 1400 M 1252 1400 L 1440 1400 M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500 M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1650", 1)}
+        {/* colonne 2 : l'auxiliaire de KM1 commande Y1 — les deux charges en parallèle */}
+        <g stroke={C.wire} strokeWidth="9" fill="none" strokeLinecap="round">
+          <path d="M 1180 300 L 1180 780" />
+          <path d="M 1180 930 L 1180 1041" />
+          <path d="M 1180 1099 L 1180 1300" />
         </g>
+        <RK.Potentiel d="M 1180 300 L 1180 780" mode={modeC2(0)} t={p.phaseAll} />
+        <RK.Potentiel d="M 1180 930 L 1180 1041" mode={modeC2(1)} t={p.phaseAll} />
+        <RK.Potentiel d="M 1180 1099 L 1180 1300" mode={modeC2(1)} t={p.phaseAll} />
+        <RK.ContactV aux={true} x={1180} y={780} ouv={auxOuvert ? 1 : 0} live={!auxOuvert} code="KM1" sub="auxiliaire" />
+        <RK.BobineV x={1180} y={1070} code="Y1" sub="ÉLECTROVANNE" live={!auxOuvert} />
 
-        <Disjoncteur x={420} y={1400} live={true} code="Q1" sub="protection de la commande" />
+        {/* le retour neutre, nommé quand il se voit */}
+        {premierOuvert >= 0 && (
+          <text x="556" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+        )}
 
-        {/* Les deux securites, en tete : elles coupent quoi que demande le thermostat. */}
-        <ContactNF x={760} y={1400} live={live} code="HP" sub="sécurité haute pression"
-                   glyph="p" open={hpDefaut} fault={hpDefaut > 0.5} />
-        <ContactNF x={1100} y={1400} live={live && hpDefaut < 0.5} code="BP" sub="sécurité basse pression" glyph="p" />
-
-        {/* Le thermostat vient apres : il demande le froid, il ne protege rien. */}
-        <ContactNO x={1440} y={1400} arm={p.arm} live={live && hpDefaut < 0.5} code="B1" sub="thermostat" glyph="θ" />
-
-        {/* Les deux charges, en parallele : elles tombent ensemble. */}
-        <Bobine x={1820} y={1300} code="KM1" sub="CONTACTEUR COMPRESSEUR" live={live && hpDefaut < 0.5} above={true} />
-        <Bobine x={1820} y={1500} code="Y1" sub="ÉLECTROVANNE LIGNE LIQUIDE" live={live && hpDefaut < 0.5} />
-        <text x="2100" y="1170" textAnchor="middle" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">
-          LES DEUX CHARGES EN PARALLÈLE
-        </text>
         <g opacity={clamp((T - 42.0) / 0.5, 0, 1)}>
-          <text x="1300" y="1660" textAnchor="middle" fill={C.red} fontSize="32" fontWeight="900" letterSpacing="2">
+          <text x="830" y="1400" textAnchor="middle" fill={C.red} fontSize="32" fontWeight="900" letterSpacing="2">
             DÉFAUT HP · RÉARMEMENT MANUEL : RIEN NE REPART SEUL
           </text>
         </g>
@@ -753,8 +776,8 @@
               background: C.paper, borderTop: '3px solid ' + C.line
             }}
             items={[
-              { at: 0.4, text: 'Chambre négative : l’air se réchauffe, le thermostat surveille.' },
-              { at: 3.2, text: 'Trop chaud pour la consigne : l’enclenchement approche.' },
+              { at: 0.4, text: 'Une chambre froide NÉGATIVE : l’air y est maintenu sous zéro degré — ici, consigne −18 °C.' },
+              { at: 3.2, text: 'L’air se réchauffe, le thermostat surveille : l’enclenchement approche.' },
               { at: CUES.Fermeture + 0.4, text: 'Le thermostat ferme son contact.' },
               { at: CUES.Fermeture + 2.6, text: 'Mais le courant doit encore traverser les deux sécurités.' },
               { at: CUES.Fermeture + 4.4, text: 'HP et BP sont fermés : la chaîne série est complète.' },

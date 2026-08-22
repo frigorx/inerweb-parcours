@@ -65,14 +65,19 @@
      l'armoire (désormais À DROITE de la croix), la croix, les deux ensemble,
      le chronogramme (dessous) — puis le PLAN LARGE total pour la scène
      CycleComplet : électrique, fluidique et graphique en même temps. */
-  function camFixed(T) {
+  /* `droite` = bord droit du canvas du film (l'armoire VERTICALE du 22/08
+     n'a pas la même largeur partout : 2 colonnes au 03, 4 au 08). */
+  function camFixed(T, droite) {
+    var D = droite || 4180;
     var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var large = { cx: 2645, cy: 1210, z: 0.40 };
+    var zTout = Math.min(1920 / (D - 260), 0.465);
+    var duo = { cx: (300 + D) / 2, cy: 830, z: Math.min(1920 / (D - 260), 0.52) };
+    var large = { cx: (300 + D) / 2, cy: 1210, z: zTout };
     var V = [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
-      { t: 6, v: { cx: 3755, cy: 1010, z: 0.70 } },
+      { t: 6, v: { cx: 2520 + (D - 2520) / 2, cy: 820, z: 0.66 } },
       { t: 13, v: croix },
-      { t: 23, v: { cx: 2650, cy: 1000, z: 0.40 } },
+      { t: 23, v: duo },
       { t: 31, v: croix },
       { t: 38, v: { cx: 2235, cy: 1980, z: 0.70 } },
       { t: 44, v: large },
@@ -347,8 +352,8 @@
           <rect x="1010" y="1215" width="96" height="66" rx="8" fill={C.card} stroke={C.orangeText} strokeWidth="4" />
           <text x="1058" y="1261" textAnchor="middle" fill={C.orangeText} fontSize="34" fontWeight="900">B1</text>
           {/* La sonde rejoint son contact dans l'armoire, désormais à droite :
-             le pointillé passe SOUS la croix, sans traverser aucun tracé. */}
-          <path d="M 1058 1281 L 1058 1445 L 2600 1445 L 2600 1425" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
+             le pointillé passe SOUS la croix et s'arrête au flanc de l'armoire. */}
+          <path d="M 1058 1281 L 1058 1445 L 2508 1445" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
         </g>
         <Chip T={p.T} at={22.4} hold={5} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
         <g>
@@ -602,11 +607,96 @@
     );
   }
 
+  /* ---- appareillage VERTICAL (retour F. Henninot du 22/08) ----------------
+     Le schéma de commande se lit à la française : phase en haut, neutre en
+     bas, circuits en colonnes. Les symboles suivent la page de référence
+     `symboles-normalises.html` tournée d'un quart de tour : PIVOT DE LA LAME
+     SUR LA BORNE BASSE, la lame s'écarte à GAUCHE en s'ouvrant, la butée du
+     contact à ouverture marque la borne haute, l'organe de commande encadré
+     vit à gauche, relié par la liaison mécanique en tirets. ---------------- */
+
+  /* Porte-fusible (EN 60617) : le rectangle traversé par le conducteur. */
+  function PorteFusible(p) {
+    var x = +p.x, y = +p.y;
+    return (
+      <g>
+        <line x1={x} y1={y} x2={x} y2={y + 96} stroke={C.wire} strokeWidth="9" />
+        <rect x={x - 17} y={y + 10} width="34" height="76" fill={C.card} stroke={C.wire} strokeWidth="6" />
+        <text x={x + 34} y={y + 58} fill={C.blue} fontSize="30" fontWeight="900">{p.code || 'F1'}</text>
+      </g>
+    );
+  }
+
+  /* Contact vertical. `nf` ajoute la butée (la marque « à ouverture ») ;
+     `aux` retire l'organe de commande (contact d'un relais ou contacteur).
+     `ouv` 0..1 : 0 fermé, 1 ouvert — la lame pivote sur la borne BASSE. */
+  function ContactV(p) {
+    var x = +p.x, y = +p.y, h = 150;
+    var ouv = p.ouv === true ? 1 : (p.ouv === false ? 0 : clamp(+p.ouv || 0, 0, 1));
+    var vif = p.live && ouv < 0.5;
+    var mid = y + h / 2;
+    return (
+      <g>
+        <circle cx={x} cy={y} r="8" fill={C.wire} />
+        <circle cx={x} cy={y + h} r="8" fill={C.wire} />
+        {p.nf && <line x1={x} y1={y} x2={x - 32} y2={y} stroke={C.wire} strokeWidth="7" strokeLinecap="round" />}
+        <g transform={'rotate(' + (-24 * ouv) + ',' + x + ',' + (y + h) + ')'}>
+          <line x1={x} y1={y + h} x2={x} y2={p.nf ? y - 8 : y}
+                stroke={vif ? C.orangeText : C.wire} strokeWidth="10" strokeLinecap="round" />
+        </g>
+        {!p.aux && (
+          <g>
+            <line x1={x - 96} y1={mid} x2={x - 8} y2={mid} stroke={C.wire} strokeWidth="4" strokeDasharray="12 10" />
+            <rect x={x - 156} y={mid - 30} width="60" height="60" fill={C.card} stroke={C.wire} strokeWidth="5" />
+            <text x={x - 126} y={mid + 16} textAnchor="middle" fill={C.blue} fontSize="42" fontWeight="900">{p.glyph || 'θ'}</text>
+          </g>
+        )}
+        <text x={x - 16} y={y + 6} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">{p.nf ? '11' : '13'}</text>
+        <text x={x + 16} y={y + h + 8} fill={C.mute} fontSize="22" fontWeight="700">{p.nf ? '12' : '14'}</text>
+        <text x={x + 34} y={mid - 2} fill={p.fault ? C.red : C.blue} fontSize="34" fontWeight="900">{p.code}</text>
+        <text x={x + 34} y={mid + 30} fill={C.mute} fontSize="22" fontWeight="700">{p.sub}</text>
+        {p.fault && <circle cx={x} cy={mid} r="96" fill="none" stroke={C.red} strokeWidth="6" strokeDasharray="18 14" opacity="0.85" />}
+      </g>
+    );
+  }
+
+  /* Bobine verticale : le rectangle traversé, A1 en haut, A2 en bas. */
+  function BobineV(p) {
+    var x = +p.x, y = +p.y;
+    return (
+      <g>
+        <rect x={x - 62} y={y - 29} width="124" height="58" fill={p.live ? '#fff0e9' : C.blueSoft}
+              stroke={p.live ? C.orangeText : C.blue} strokeWidth="7" />
+        <text x={x - 74} y={y - 40} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">A1</text>
+        <text x={x - 74} y={y + 52} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">A2</text>
+        <text x={x + 80} y={y + 2} fill={p.live ? C.orangeText : C.blue} fontSize="36" fontWeight="900">{p.code}</text>
+        <text x={x + 80} y={y + 32} fill={C.mute} fontSize="22" fontWeight="700">{p.sub}</text>
+      </g>
+    );
+  }
+
+  /* Le potentiel d'un tronçon, par-dessus le fil gris :
+     « courant »  rouge animé (le circuit est fermé, le courant circule) ;
+     « phase »    rouge statique (tension présente, circuit ouvert en aval) ;
+     « retour »   orange statique — LE RETOUR NEUTRE : le potentiel du neutre
+                  remonte à travers la bobine jusqu'au contact ouvert. */
+  function Potentiel(p) {
+    if (!p.mode || p.mode === 'off') return null;
+    var couleur = p.mode === 'retour' ? C.orange : C.red;
+    var anime = p.mode === 'courant';
+    return (
+      <path d={p.d} fill="none" stroke={couleur} strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"
+            strokeDasharray={anime ? '24 20' : 'none'} strokeDashoffset={anime ? -(+p.t || 0) * 200 : 0}
+            opacity={anime ? 0.9 : 0.7} />
+    );
+  }
+
   window.RK = {
     C: C, MOTION: MOTION, camAt: camAt, camFixed: camFixed, Chip: Chip, Coil: Coil, Fan: Fan,
     SymCompresseur: SymCompresseur, SymDetendeur: SymDetendeur, Compresseur: Compresseur,
     Pipes: Pipes, MigrationFlux: MigrationFlux, Croix: Croix, CroixLabels: CroixLabels,
     ChambreFond: ChambreFond, Chambre: Chambre, Machine: Machine, PipeChips: PipeChips,
-    ContactNO: ContactNO, ContactNF: ContactNF, Disjoncteur: Disjoncteur, Bobine: Bobine, Manometre: Manometre
+    ContactNO: ContactNO, ContactNF: ContactNF, Disjoncteur: Disjoncteur, Bobine: Bobine, Manometre: Manometre,
+    PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, Potentiel: Potentiel
   };
 })();
