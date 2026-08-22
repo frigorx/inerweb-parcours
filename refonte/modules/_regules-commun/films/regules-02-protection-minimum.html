@@ -1898,12 +1898,16 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
     function camFixed(T) {
       var croix = { cx: 1400, cy: 720, z: 0.74 };
+      var large = { cx: 2645, cy: 1210, z: 0.4 };
       var V = [
-        { t: 0, v: croix },
-        { t: 6, v: { cx: 1305, cy: 1740, z: 0.74 } },
+        { t: 0, v: { cx: 1420, cy: 1010, z: 0.9 } },
+        { t: 6, v: { cx: 3755, cy: 1010, z: 0.7 } },
         { t: 13, v: croix },
-        { t: 38, v: { cx: 1300, cy: 2960, z: 0.74 } },
-        { t: 44, v: croix }
+        { t: 23, v: { cx: 2650, cy: 1e3, z: 0.4 } },
+        { t: 31, v: croix },
+        { t: 38, v: { cx: 2235, cy: 1980, z: 0.7 } },
+        { t: 44, v: large },
+        { t: 60, v: large }
       ];
       var k = V[0].v;
       for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
@@ -1911,6 +1915,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
     function Chip(p) {
       var s = MOTION.pop(p.at)(p.T);
+      var sortie = p.hold ? clamp(1 - (p.T - (+p.at + +p.hold)) / 0.8, 0, 1) : 1;
+      s = s * sortie;
       if (s <= 1e-3) return null;
       var fs = +p.fs || 34;
       var w = Math.max(String(p.text).length * fs * 0.62, p.sub ? String(p.sub).length * fs * 0.7 * 0.56 : 0) + 40;
@@ -2078,7 +2084,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         var op = p.flow * (0.35 + 0.5 * (0.5 + 0.5 * Math.sin(p.phase * 3 - i)));
         var d = (p.phase * 70 + i * 30) % 80;
         return /* @__PURE__ */ React.createElement("g", { key: i, opacity: op }, /* @__PURE__ */ React.createElement("line", { x1: 1380 + d + i * 96, y1: "1246", x2: 1430 + d + i * 96, y2: "1246", stroke: C.blue, strokeWidth: "7", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M " + (1424 + d + i * 96) + " 1234 L " + (1446 + d + i * 96) + " 1246 L " + (1424 + d + i * 96) + " 1258 Z", fill: C.blue }));
-      }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1010", y: "1215", width: "96", height: "66", rx: "8", fill: C.card, stroke: C.orangeText, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1058", y: "1261", textAnchor: "middle", fill: C.orangeText, fontSize: "34", fontWeight: "900" }, "B1"), /* @__PURE__ */ React.createElement("path", { d: "M 1058 1281 L 1058 1360 L 836 1360 L 836 1520", fill: "none", stroke: "#93a3b4", strokeWidth: "4", strokeDasharray: "14 12" })), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 22.4, x: "1300", y: "712", text: "\xC9VAPORATEUR", sub: "le liquide s\u2019\xE9vapore, il prend la chaleur", fs: "34" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1800", y: "1030", width: "560", height: "220", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1082", fill: C.orangeText, fontSize: "28", fontWeight: "900", letterSpacing: "2.5" }, "AIR DE LA CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1178", fill: p.temp > -14.6 ? C.red : C.blue, fontSize: "88", fontWeight: "900" }, p.temp.toFixed(1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1226", fill: C.mute, fontSize: "24", fontWeight: "700" }, "CONSIGNE \u221218 \xB7 ENCLENCHEMENT \u221214"), /* @__PURE__ */ React.createElement("circle", { cx: "2326", cy: "1072", r: "14", fill: p.energy > 0.5 ? C.orange : "#d6dde5" })));
+      }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1010", y: "1215", width: "96", height: "66", rx: "8", fill: C.card, stroke: C.orangeText, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1058", y: "1261", textAnchor: "middle", fill: C.orangeText, fontSize: "34", fontWeight: "900" }, "B1"), /* @__PURE__ */ React.createElement("path", { d: "M 1058 1281 L 1058 1450 L 2600 1450 L 2600 1320", fill: "none", stroke: "#93a3b4", strokeWidth: "4", strokeDasharray: "14 12" })), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 22.4, hold: 5, x: "1300", y: "712", text: "\xC9VAPORATEUR", sub: "le liquide s\u2019\xE9vapore, il prend la chaleur", fs: "34" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1800", y: "1030", width: "560", height: "220", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1082", fill: C.orangeText, fontSize: "28", fontWeight: "900", letterSpacing: "2.5" }, "AIR DE LA CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1178", fill: p.temp > -14.6 ? C.red : C.blue, fontSize: "88", fontWeight: "900" }, p.temp.toFixed(1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1226", fill: C.mute, fontSize: "24", fontWeight: "700" }, "CONSIGNE \u221218 \xB7 ENCLENCHEMENT \u221214"), /* @__PURE__ */ React.createElement("circle", { cx: "2326", cy: "1072", r: "14", fill: p.energy > 0.5 ? C.orange : "#d6dde5" })));
     }
     function Machine(p) {
       var hot = [0, 1, 2];
@@ -2086,7 +2092,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         var op = p.flow * (0.3 + 0.5 * (0.5 + 0.5 * Math.sin(p.phase * 2.6 - i * 1.2)));
         var d = (p.phase * 60 + i * 26) % 80;
         return /* @__PURE__ */ React.createElement("g", { key: i, opacity: op }, /* @__PURE__ */ React.createElement("line", { x1: 1160 + i * 150, y1: 120 - d, x2: 1160 + i * 150, y2: 60 - d, stroke: C.red, strokeWidth: "7", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M " + (1147 + i * 150) + " " + (72 - d) + " L " + (1160 + i * 150) + " " + (48 - d) + " L " + (1173 + i * 150) + " " + (72 - d) + " Z", fill: C.red }));
-      }), /* @__PURE__ */ React.createElement(SymDetendeur, { x: "700", y: "620", s: "7" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("polygon", { points: "458,348 542,348 500,400", fill: p.live ? "#fff0e9" : C.card, stroke: C.orangeText, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("polygon", { points: "458,452 542,452 500,400", fill: p.live ? "#fff0e9" : C.card, stroke: C.orangeText, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("rect", { x: "542", y: "368", width: "86", height: "64", fill: p.live ? "#fff0e9" : C.card, stroke: p.live ? C.orangeText : C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "542", y1: "432", x2: "628", y2: "368", stroke: p.live ? C.orangeText : C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("text", { x: "648", y: "392", fill: C.blue, fontSize: "38", fontWeight: "900" }, "Y1"), /* @__PURE__ */ React.createElement("text", { x: "648", y: "436", fill: p.live ? C.orangeText : C.mute, fontSize: "28", fontWeight: "800" }, p.live ? "OUVERTE" : "FERM\xC9E")), /* @__PURE__ */ React.createElement("g", { opacity: clamp((p.T - 14.6) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement("circle", { cx: "1700", cy: "410", r: "15", fill: C.card, stroke: C.red, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "1700", y1: "425", x2: "1700", y2: "486", stroke: C.red, strokeWidth: "5", strokeDasharray: "14 10" }), /* @__PURE__ */ React.createElement("text", { x: "1726", y: "496", fill: C.red, fontSize: "28", fontWeight: "800" }, "PRISE HP"), /* @__PURE__ */ React.createElement("circle", { cx: "1700", cy: "880", r: "15", fill: C.card, stroke: C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "1715", y1: "880", x2: "1786", y2: "880", stroke: C.blue, strokeWidth: "5", strokeDasharray: "14 10" }), /* @__PURE__ */ React.createElement("text", { x: "1798", y: "890", fill: C.blue, fontSize: "28", fontWeight: "800" }, "PRISE BP")), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 13.9, x: "500", y: "252", text: "\xC9LECTROVANNE Y1", sub: "elle ouvre la ligne liquide", fs: "34", tone: C.orangeText }), /* @__PURE__ */ React.createElement("g", { opacity: clamp((p.T - 20.2) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement(
+      }), /* @__PURE__ */ React.createElement(SymDetendeur, { x: "700", y: "620", s: "7" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("polygon", { points: "458,348 542,348 500,400", fill: p.live ? "#fff0e9" : C.card, stroke: C.orangeText, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("polygon", { points: "458,452 542,452 500,400", fill: p.live ? "#fff0e9" : C.card, stroke: C.orangeText, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("rect", { x: "542", y: "368", width: "86", height: "64", fill: p.live ? "#fff0e9" : C.card, stroke: p.live ? C.orangeText : C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "542", y1: "432", x2: "628", y2: "368", stroke: p.live ? C.orangeText : C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("text", { x: "648", y: "392", fill: C.blue, fontSize: "38", fontWeight: "900" }, "Y1"), /* @__PURE__ */ React.createElement("text", { x: "648", y: "436", fill: p.live ? C.orangeText : C.mute, fontSize: "28", fontWeight: "800" }, p.live ? "OUVERTE" : "FERM\xC9E")), /* @__PURE__ */ React.createElement("g", { opacity: clamp((p.T - 14.6) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement("circle", { cx: "1700", cy: "410", r: "15", fill: C.card, stroke: C.red, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "1700", y1: "425", x2: "1700", y2: "486", stroke: C.red, strokeWidth: "5", strokeDasharray: "14 10" }), /* @__PURE__ */ React.createElement("circle", { cx: "1700", cy: "880", r: "15", fill: C.card, stroke: C.blue, strokeWidth: "6" }), /* @__PURE__ */ React.createElement("line", { x1: "1715", y1: "880", x2: "1786", y2: "880", stroke: C.blue, strokeWidth: "5", strokeDasharray: "14 10" }), /* @__PURE__ */ React.createElement("g", { opacity: clamp(1 - (p.T - 26) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "1726", y: "496", fill: C.red, fontSize: "28", fontWeight: "800" }, "PRISE HP"), /* @__PURE__ */ React.createElement("text", { x: "1798", y: "890", fill: C.blue, fontSize: "28", fontWeight: "800" }, "PRISE BP"))), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 13.9, hold: 5, x: "500", y: "252", text: "\xC9LECTROVANNE Y1", sub: "elle ouvre la ligne liquide", fs: "34", tone: C.orangeText }), /* @__PURE__ */ React.createElement("g", { opacity: clamp((p.T - 20.2) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement(
         "path",
         {
           d: "M 1730 1050 L 1820 1050 L 1820 770 L 880 770 L 880 440 L 700 440 L 700 478",
@@ -2095,10 +2101,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           strokeWidth: "5",
           strokeDasharray: "16 12"
         }
-      ), /* @__PURE__ */ React.createElement("rect", { x: "1674", y: "1018", width: "52", height: "64", rx: "22", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("line", { x1: "1678", y1: "1034", x2: "1722", y2: "1034", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("line", { x1: "1678", y1: "1066", x2: "1722", y2: "1066", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1700", y: "1002", textAnchor: "middle", fill: C.blue, fontSize: "30", fontWeight: "900" }, "BULBE"), /* @__PURE__ */ React.createElement("text", { x: "908", y: "600", fill: C.mute, fontSize: "26", fontWeight: "700" }, "capillaire")), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 16, x: "1970", y: "1000", text: "COMPRESSEUR", sub: "bielle-piston : la pression monte", fs: "34" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 18.6, x: "1300", y: "520", text: "CONDENSEUR", sub: "la vapeur redevient liquide", fs: "34" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 20.8, x: "700", y: "760", text: "D\xC9TENDEUR THERMOSTATIQUE", sub: "bulbe TC \xB7 la pression tombe", fs: "34", tone: C.orangeText }));
+      ), /* @__PURE__ */ React.createElement("rect", { x: "1674", y: "1018", width: "52", height: "64", rx: "22", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("line", { x1: "1678", y1: "1034", x2: "1722", y2: "1034", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("line", { x1: "1678", y1: "1066", x2: "1722", y2: "1066", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("g", { opacity: clamp(1 - (p.T - 26) / 0.8, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "1700", y: "1002", textAnchor: "middle", fill: C.blue, fontSize: "30", fontWeight: "900" }, "BULBE"), /* @__PURE__ */ React.createElement("text", { x: "908", y: "600", fill: C.mute, fontSize: "26", fontWeight: "700" }, "capillaire"))), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 16, hold: 5, x: "1970", y: "1000", text: "COMPRESSEUR", sub: "bielle-piston : la pression monte", fs: "34" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 18.6, hold: 5, x: "1300", y: "520", text: "CONDENSEUR", sub: "la vapeur redevient liquide", fs: "34" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 20.8, hold: 5, x: "700", y: "760", text: "D\xC9TENDEUR THERMOSTATIQUE", sub: "bulbe TC \xB7 la pression tombe", fs: "34", tone: C.orangeText }));
     }
     function PipeChips(p) {
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 15, x: "1920", y: "1322", text: "BP \xB7 VAPEUR FROIDE", tone: C.blue, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 17.6, x: "1820", y: "330", text: "HP \xB7 GAZ CHAUD", tone: C.red, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 19.6, x: "920", y: "108", text: "HP \xB7 LIQUIDE", tone: C.orangeText, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 21.6, x: "600", y: "920", text: "BP \xB7 M\xC9LANGE FROID", tone: C.blue, fs: "30" }));
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 15, hold: 5, x: "1920", y: "1322", text: "BP \xB7 VAPEUR FROIDE", tone: C.blue, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 17.6, hold: 5, x: "1820", y: "330", text: "HP \xB7 GAZ CHAUD", tone: C.red, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 19.6, hold: 5, x: "920", y: "108", text: "HP \xB7 LIQUIDE", tone: C.orangeText, fs: "30" }), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 21.6, hold: 5, x: "600", y: "920", text: "BP \xB7 M\xC9LANGE FROID", tone: C.blue, fs: "30" }));
     }
     function OrganeCmd(p) {
       var x = +p.x, y = +p.y, cote = p.compact ? 58 : 88;
@@ -2171,7 +2177,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var T = p.T;
       var reveal = clamp((T - p.tClose) / 0.45, 0, 1) * (T < p.tOpen ? 1 : clamp(1 - (T - p.tOpen) / 0.2, 0, 1));
       var live = reveal > 0.4;
-      var hpDefaut = clamp((T - 34.6) / 0.4, 0, 1);
+      var hpDefaut = clamp((T - 41.6) / 0.4, 0, 1);
       var flux = function(d, on) {
         return /* @__PURE__ */ React.createElement(
           "path",
@@ -2187,19 +2193,23 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           }
         );
       };
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(0,330)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1100", width: "2470", height: "620", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1170", fill: C.orangeText, fontSize: "34", fontWeight: "900", letterSpacing: "3" }, "ARMOIRE \xB7 PROTECTION MINIMUM"), /* @__PURE__ */ React.createElement("line", { x1: "340", y1: "1230", x2: "340", y2: "1650", stroke: C.blue, strokeWidth: "14", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "2270", y1: "1230", x2: "2270", y2: "1650", stroke: C.blue, strokeWidth: "14", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "340", y: "1700", textAnchor: "middle", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "2270", y: "1700", textAnchor: "middle", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 340 1400 L 420 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 572 1400 L 760 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 912 1400 L 1100 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 1252 1400 L 1440 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500" }), /* @__PURE__ */ React.createElement("path", { d: "M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1500" })), flux("M 340 1400 L 420 1400", 0.85), flux("M 572 1400 L 760 1400", 0.85 * (1 - hpDefaut)), /* @__PURE__ */ React.createElement("g", { opacity: reveal * (1 - hpDefaut) }, flux("M 912 1400 L 1100 1400 M 1252 1400 L 1440 1400 M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500 M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1650", 1)), /* @__PURE__ */ React.createElement(Disjoncteur, { x: 420, y: 1400, live: true, code: "Q1", sub: "protection de la commande" }), /* @__PURE__ */ React.createElement(
-        ContactNF,
-        {
-          x: 760,
-          y: 1400,
-          live,
-          code: "HP",
-          sub: "s\xE9curit\xE9 haute pression",
-          glyph: "p",
-          open: hpDefaut,
-          fault: hpDefaut > 0.5
-        }
-      ), /* @__PURE__ */ React.createElement(ContactNF, { x: 1100, y: 1400, live: live && hpDefaut < 0.5, code: "BP", sub: "s\xE9curit\xE9 basse pression", glyph: "p" }), /* @__PURE__ */ React.createElement(ContactNO, { x: 1440, y: 1400, arm: p.arm, live: live && hpDefaut < 0.5, code: "B1", sub: "thermostat", glyph: "\u03B8" }), /* @__PURE__ */ React.createElement(Bobine, { x: 1820, y: 1300, code: "KM1", sub: "CONTACTEUR COMPRESSEUR", live: live && hpDefaut < 0.5, above: true }), /* @__PURE__ */ React.createElement(Bobine, { x: 1820, y: 1500, code: "Y1", sub: "\xC9LECTROVANNE LIGNE LIQUIDE", live: live && hpDefaut < 0.5 }), /* @__PURE__ */ React.createElement("text", { x: "2100", y: "1170", textAnchor: "middle", fill: C.orangeText, fontSize: "30", fontWeight: "900", letterSpacing: "2" }, "LES DEUX CHARGES EN PARALL\xC8LE"), /* @__PURE__ */ React.createElement("g", { opacity: clamp((T - 35) / 0.5, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "1300", y: "1660", textAnchor: "middle", fill: C.red, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 R\xC9ARMEMENT MANUEL : RIEN NE REPART SEUL")));
+      return (
+        /* Refonte 22/08 : l'armoire vit À DROITE de la croix — électrique et
+           fluidique se lisent ensemble, sur la même page. */
+        /* @__PURE__ */ React.createElement("g", { transform: "translate(2450,-400)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1100", width: "2470", height: "620", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1170", fill: C.orangeText, fontSize: "34", fontWeight: "900", letterSpacing: "3" }, "ARMOIRE \xB7 PROTECTION MINIMUM"), /* @__PURE__ */ React.createElement("line", { x1: "340", y1: "1230", x2: "340", y2: "1650", stroke: C.blue, strokeWidth: "14", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "2270", y1: "1230", x2: "2270", y2: "1650", stroke: C.blue, strokeWidth: "14", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "340", y: "1700", textAnchor: "middle", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "2270", y: "1700", textAnchor: "middle", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 340 1400 L 420 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 572 1400 L 760 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 912 1400 L 1100 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 1252 1400 L 1440 1400" }), /* @__PURE__ */ React.createElement("path", { d: "M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500" }), /* @__PURE__ */ React.createElement("path", { d: "M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1500" })), flux("M 340 1400 L 420 1400", 0.85), flux("M 572 1400 L 760 1400", 0.85 * (1 - hpDefaut)), /* @__PURE__ */ React.createElement("g", { opacity: reveal * (1 - hpDefaut) }, flux("M 912 1400 L 1100 1400 M 1252 1400 L 1440 1400 M 1580 1400 L 1700 1400 M 1700 1300 L 1700 1500 M 1700 1300 L 1820 1300 M 1700 1500 L 1820 1500 M 1982 1300 L 2270 1300 M 1982 1500 L 2270 1500 M 2270 1300 L 2270 1650", 1)), /* @__PURE__ */ React.createElement(Disjoncteur, { x: 420, y: 1400, live: true, code: "Q1", sub: "protection de la commande" }), /* @__PURE__ */ React.createElement(
+          ContactNF,
+          {
+            x: 760,
+            y: 1400,
+            live,
+            code: "HP",
+            sub: "s\xE9curit\xE9 haute pression",
+            glyph: "p",
+            open: hpDefaut,
+            fault: hpDefaut > 0.5
+          }
+        ), /* @__PURE__ */ React.createElement(ContactNF, { x: 1100, y: 1400, live: live && hpDefaut < 0.5, code: "BP", sub: "s\xE9curit\xE9 basse pression", glyph: "p" }), /* @__PURE__ */ React.createElement(ContactNO, { x: 1440, y: 1400, arm: p.arm, live: live && hpDefaut < 0.5, code: "B1", sub: "thermostat", glyph: "\u03B8" }), /* @__PURE__ */ React.createElement(Bobine, { x: 1820, y: 1300, code: "KM1", sub: "CONTACTEUR COMPRESSEUR", live: live && hpDefaut < 0.5, above: true }), /* @__PURE__ */ React.createElement(Bobine, { x: 1820, y: 1500, code: "Y1", sub: "\xC9LECTROVANNE LIGNE LIQUIDE", live: live && hpDefaut < 0.5 }), /* @__PURE__ */ React.createElement("text", { x: "2100", y: "1170", textAnchor: "middle", fill: C.orangeText, fontSize: "30", fontWeight: "900", letterSpacing: "2" }, "LES DEUX CHARGES EN PARALL\xC8LE"), /* @__PURE__ */ React.createElement("g", { opacity: clamp((T - 42) / 0.5, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "1300", y: "1660", textAnchor: "middle", fill: C.red, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 R\xC9ARMEMENT MANUEL : RIEN NE REPART SEUL")))
+      );
     }
     var CH = { x0: 700, x1: 2420, tempTop: 1990, tempBot: 2180 };
     function chx(f) {
@@ -2209,7 +2219,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return CH.tempTop + (-13 - v) / 6 * (CH.tempBot - CH.tempTop);
     }
     function Chrono(p) {
-      var r = MOTION.draw(31.25, 4.6)(p.T);
+      var r = MOTION.draw(38.3, 4.6)(p.T);
       var pts = [[0, -15.4], [0.1, -14], [0.38, -18], [0.55, -14], [0.78, -16.4], [1, -13.2]];
       var tempPath = pts.map(function(q, i) {
         return (i ? "L " : "M ") + chx(q[0]) + " " + chTemp(q[1]);
@@ -2221,27 +2231,34 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         });
         return d + " L " + chx(1) + " " + lo;
       }
-      var note = clamp((p.T - 34.6) / 0.6, 0, 1);
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(0,700)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1860", width: "2470", height: "800", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1936", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 DEUX CYCLES, PUIS UN D\xC9FAUT"), [["AIR DE LA", 2060], ["CHAMBRE", 2106], ["CONTACT B1", 2290], ["S\xC9CURIT\xC9S HP\xB7BP", 2400], ["KM1 ET Y1", 2510]].map(function(l) {
-        return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "118", y: l[1], fill: C.blue, fontSize: "38", fontWeight: "800" }, l[0]);
-      }), [[-14, "\u221214 \xB7 enclenchement"], [-18, "\u221218 \xB7 consigne"]].map(function(l) {
-        return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: chTemp(l[0]), x2: CH.x1, y2: chTemp(l[0]), stroke: C.line, strokeWidth: "3", strokeDasharray: "14 12" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0, y: chTemp(l[0]) - 14, fill: C.mute, fontSize: "28", fontWeight: "700" }, l[1]));
-      }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip2" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 40, y: "1960", width: chx(r) - CH.x0 + 40, height: "700" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip2)" }, /* @__PURE__ */ React.createElement("path", { d: tempPath, fill: "none", stroke: C.blue, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2250, 2320, [[0.1, 0.38], [0.55, 1]]), fill: "none", stroke: C.green, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2370, 2440, [[0, 0.78]]), fill: "none", stroke: C.blue, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2480, 2550, [[0.1, 0.38], [0.55, 0.78]]), fill: "none", stroke: C.orangeText, strokeWidth: "10", strokeLinejoin: "round" })), /* @__PURE__ */ React.createElement("g", { opacity: note }, /* @__PURE__ */ React.createElement("line", { x1: chx(0.78), y1: "1970", x2: chx(0.78), y2: "2560", stroke: C.red, strokeWidth: "6", strokeDasharray: "18 14" }), /* @__PURE__ */ React.createElement("rect", { x: chx(0.78) - 300, y: "2586", width: "600", height: "56", rx: "8", fill: C.card }), /* @__PURE__ */ React.createElement("text", { x: chx(0.78), y: "2628", textAnchor: "middle", fill: C.red, fontSize: "34", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 TOUT TOMBE")), r > 0.02 && r < 0.995 && /* @__PURE__ */ React.createElement("line", { x1: chx(r), y1: "1960", x2: chx(r), y2: "2560", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), /* @__PURE__ */ React.createElement("text", { x: "1560", y: "2700", textAnchor: "middle", fill: C.orangeText, fontSize: "38", fontWeight: "900", opacity: note }, "LE FROID EST DEMAND\xC9, MAIS LES DEUX CHARGES SONT TOMB\xC9ES ENSEMBLE"));
+      var note = clamp((p.T - 41.6) / 0.6, 0, 1);
+      return (
+        /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
+        /* @__PURE__ */ React.createElement("g", { transform: "translate(930,-300)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1860", width: "2470", height: "800", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1936", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 DEUX CYCLES, PUIS UN D\xC9FAUT"), [["AIR DE LA", 2060], ["CHAMBRE", 2106], ["CONTACT B1", 2290], ["S\xC9CURIT\xC9S HP\xB7BP", 2400], ["KM1 ET Y1", 2510]].map(function(l) {
+          return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "118", y: l[1], fill: C.blue, fontSize: "38", fontWeight: "800" }, l[0]);
+        }), [[-14, "\u221214 \xB7 enclenchement"], [-18, "\u221218 \xB7 consigne"]].map(function(l) {
+          return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: chTemp(l[0]), x2: CH.x1, y2: chTemp(l[0]), stroke: C.line, strokeWidth: "3", strokeDasharray: "14 12" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0, y: chTemp(l[0]) - 14, fill: C.mute, fontSize: "28", fontWeight: "700" }, l[1]));
+        }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip2" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 40, y: "1960", width: chx(r) - CH.x0 + 40, height: "700" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip2)" }, /* @__PURE__ */ React.createElement("path", { d: tempPath, fill: "none", stroke: C.blue, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2250, 2320, [[0.1, 0.38], [0.55, 1]]), fill: "none", stroke: C.green, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2370, 2440, [[0, 0.78]]), fill: "none", stroke: C.blue, strokeWidth: "10", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: square(2480, 2550, [[0.1, 0.38], [0.55, 0.78]]), fill: "none", stroke: C.orangeText, strokeWidth: "10", strokeLinejoin: "round" })), /* @__PURE__ */ React.createElement("g", { opacity: note }, /* @__PURE__ */ React.createElement("line", { x1: chx(0.78), y1: "1970", x2: chx(0.78), y2: "2560", stroke: C.red, strokeWidth: "6", strokeDasharray: "18 14" }), /* @__PURE__ */ React.createElement("rect", { x: chx(0.78) - 300, y: "2586", width: "600", height: "56", rx: "8", fill: C.card }), /* @__PURE__ */ React.createElement("text", { x: chx(0.78), y: "2628", textAnchor: "middle", fill: C.red, fontSize: "34", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 TOUT TOMBE")), r > 0.02 && r < 0.995 && /* @__PURE__ */ React.createElement("line", { x1: chx(r), y1: "1960", x2: chx(r), y2: "2560", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), p.replayF > 0 && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("line", { x1: chx(p.replayF), y1: "1960", x2: chx(p.replayF), y2: "2560", stroke: C.orange, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: chx(p.replayF), cy: "1960", r: "16", fill: C.orange })), /* @__PURE__ */ React.createElement("text", { x: "1560", y: "2700", textAnchor: "middle", fill: C.orangeText, fontSize: "38", fontWeight: "900", opacity: note }, "LE FROID EST DEMAND\xC9, MAIS LES DEUX CHARGES SONT TOMB\xC9ES ENSEMBLE"))
+      );
     }
     function Piece(props) {
       var c = useComposition();
       var T = c.T, CUES = c.CUES;
       var tClose = CUES.Fermeture + 1.6;
       var tOpen = CUES.Consigne + 3.4;
+      var enRejeu = CUES.CycleComplet !== void 0 && T >= CUES.CycleComplet && T < CUES.LaCle;
+      var kRejeu = (tOpen + 3 - (tClose - 1)) / 16;
+      var Tm = enRejeu ? tClose - 1 + (T - CUES.CycleComplet) * kRejeu : T;
       var rise = animate({ from: -15.4, to: -14, start: 0, end: tClose, ease: Easing.linear });
       var fall = animate({ from: -14, to: -18, start: tClose, end: tOpen, ease: Easing.easeInOutSine });
       var drift = animate({ from: -18, to: -17.1, start: tOpen, end: c.authoredTotal, ease: Easing.linear });
-      var temp = T < tClose ? rise(T) : T < tOpen ? fall(T) : drift(T);
-      var energy = T < tClose ? 0 : T < tOpen ? clamp((T - tClose) / 0.3, 0, 1) : clamp(1 - (T - tOpen) / 0.25, 0, 1);
-      var flow = T < tClose ? 0 : T < tOpen ? clamp((T - tClose) / 0.9, 0, 1) : clamp(1 - (T - tOpen) / 0.7, 0, 1);
-      var phase = clamp(T, tClose, tOpen) - tClose;
+      var temp = Tm < tClose ? rise(Tm) : Tm < tOpen ? fall(Tm) : drift(Tm);
+      var energy = Tm < tClose ? 0 : Tm < tOpen ? clamp((Tm - tClose) / 0.3, 0, 1) : clamp(1 - (Tm - tOpen) / 0.25, 0, 1);
+      var flow = Tm < tClose ? 0 : Tm < tOpen ? clamp((Tm - tClose) / 0.9, 0, 1) : clamp(1 - (Tm - tOpen) / 0.7, 0, 1);
+      var phase = clamp(Tm, tClose, tOpen) - tClose;
       var frostU = clamp(phase / (tOpen - tClose), 0, 1);
-      var arm = T < tClose ? -30 : T < tOpen ? -30 + 30 * clamp(MOTION.pop(tClose)(T), 0, 1.08) : -30 * clamp((T - tOpen) / 0.18, 0, 1);
+      var arm = Tm < tClose ? -30 : Tm < tOpen ? -30 + 30 * clamp(MOTION.pop(tClose)(Tm), 0, 1.08) : -30 * clamp((Tm - tOpen) / 0.18, 0, 1);
+      var replayF = enRejeu ? 0.1 + 0.28 * clamp((Tm - tClose) / (tOpen - tClose), 0, 1) + 0.02 * clamp((Tm - tOpen) / 3, 0, 1) : 0;
       var mig = animate({ from: 0, to: 1, start: CUES.Migration + 0.6, end: CUES.Migration + 5.5, ease: Easing.easeInOutSine })(T);
       var migO = clamp((T - CUES.Migration) / 0.8, 0, 1) * clamp(1 - (T - CUES.Migration - 6.4) / 0.8, 0, 1);
       var risque = clamp((T - CUES.Migration - 5) / 0.8, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
@@ -2268,8 +2285,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           /* @__PURE__ */ React.createElement(Machine, { T, carter: mig * 0.08, spin: phase * 300, flow, phase, live: energy > 0.5 }),
           /* @__PURE__ */ React.createElement(PipeChips, { T }),
           /* @__PURE__ */ React.createElement(CroixLabels, { T }),
-          /* @__PURE__ */ React.createElement(Cabinet, { T, arm, tClose, tOpen, phaseAll: T }),
-          /* @__PURE__ */ React.createElement(Chrono, { T })
+          /* @__PURE__ */ React.createElement(Cabinet, { T: Tm, arm, tClose, tOpen, phaseAll: T }),
+          /* @__PURE__ */ React.createElement(Chrono, { T, replayF })
         )),
         /* @__PURE__ */ React.createElement("div", { style: {
           position: "absolute",
@@ -2335,7 +2352,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               { at: CUES.Migration + 4.4, text: "Il n\u2019en migre qu\u2019un peu, dans la partie la plus froide." },
               { at: CUES.Migration + 6.2, text: "Le carter reste propre : le risque de coup de liquide est limit\xE9." },
               { at: CUES.Chronologie + 0.4, text: "Deux cycles, puis un d\xE9faut de haute pression." },
-              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: "La s\xE9curit\xE9 coupe tout, m\xEAme si le froid est encore demand\xE9." }
+              { at: CUES.Chronologie + 3.4, until: CUES.CycleComplet, text: "La s\xE9curit\xE9 coupe tout, m\xEAme si le froid est encore demand\xE9." },
+              { at: CUES.CycleComplet + 0.5, text: "Le cycle complet, d\u2019un seul regard : l\u2019\xE9lectrique commande, le fluide ob\xE9it." },
+              { at: CUES.CycleComplet + 4.5, text: "B1 ferme : la cha\xEEne s\xE9rie alimente KM1 et Y1 \u2014 le froid s\u2019installe." },
+              { at: CUES.CycleComplet + 9, text: "Suivez le curseur orange : le chronogramme dit la m\xEAme chose que les sch\xE9mas." },
+              { at: CUES.CycleComplet + 13, until: CUES.LaCle, text: "Consigne atteinte : les deux charges tombent au m\xEAme instant." }
             ]
           }
         )
@@ -4304,7 +4325,7 @@ html, body { margin: 0; padding: 0; background: #f7f1e7; }
 a { color: #c9451a; text-decoration: none; }
 a:hover { color: #1b3a63; }
 </style>
-<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"La chambre negative se rechauffe, la sonde B1 surveille et l afficheur monte vers -14"},{"name":"Fermeture","dur":7,"desc":"B1 ferme, le courant traverse les pressostats HP et BP en serie puis alimente KM1 et Y1 en parallele"},{"name":"Circulation","dur":10,"desc":"La croix : l electrovanne Y1 ouvre la ligne liquide, prises de pression HP au refoulement et BP a l aspiration"},{"name":"Consigne","dur":8,"desc":"L air atteint -18, B1 ouvre et les deux charges tombent au meme instant"},{"name":"Migration","dur":7,"desc":"Installation a l arret : le fluide migre vers le point le plus froid et le liquide s accumule"},{"name":"Chronologie","dur":6,"desc":"Chronogramme : deux cycles puis un defaut HP qui coupe tout malgre la demande de froid"},{"name":"LaCle","dur":3,"desc":"Plan large et carte de synthese : une seule chaine en serie"}]';</script>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"La chambre negative se rechauffe, la sonde B1 surveille et l afficheur monte vers -14"},{"name":"Fermeture","dur":7,"desc":"B1 ferme, le courant traverse les pressostats HP et BP en serie puis alimente KM1 et Y1 en parallele"},{"name":"Circulation","dur":10,"desc":"La croix : l electrovanne Y1 ouvre la ligne liquide, prises de pression HP au refoulement et BP a l aspiration"},{"name":"Consigne","dur":8,"desc":"L air atteint -18, B1 ouvre et les deux charges tombent au meme instant"},{"name":"Migration","dur":7,"desc":"Installation a l arret : le fluide migre vers le point le plus froid et le liquide s accumule"},{"name":"Chronologie","dur":6,"desc":"Chronogramme : deux cycles puis un defaut HP qui coupe tout malgre la demande de froid"},{"name":"CycleComplet","dur":16,"desc":"Plan large total : le cycle se rejoue, electrique fluidique et chronogramme synchrones, curseur sur le chronogramme"},{"name":"LaCle","dur":4,"desc":"Plan large et carte de synthese : une seule chaine en serie"}]';</script>
 <script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
 <script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
   "legendes": true,
