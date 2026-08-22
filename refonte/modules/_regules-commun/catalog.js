@@ -53,8 +53,8 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-20a",
-    status: "Brouillon local — non validé, non publié, non indexé",
+    version: "2026-08-22a",
+    status: "Version en ligne — relecture métier en cours",
     sources: sources,
     modules: [
       {

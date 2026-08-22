@@ -26,7 +26,7 @@
     '<header class="hub-head">',
     '  <a class="brand" href="../../../index.html"><span class="brand-name">inerWeb</span><span class="brand-edition">ÉDU</span></a>',
     '  <div class="hub-title"><p>' + escapeHtml(catalog.subtitle) + '</p><h1>' + escapeHtml(catalog.title) + '</h1></div>',
-    '  <div class="hub-end"><p class="hub-status">Brouillon local<br>à valider avec Franck</p></div>',
+    '  <div class="hub-end"></div>',
     '</header>',
     '<section class="rails" aria-label="Parcours des dix stations">',
     '  <section class="rail-group"><h2>1 · Commander le froid</h2>' + command.map(card).join("") + '</section>',
