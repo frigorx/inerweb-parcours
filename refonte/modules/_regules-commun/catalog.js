@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-22c",
+    version: "2026-08-22d",
     status: "Version en ligne — relecture métier en cours",
     /* Posé après la fabrication du 22/08 (220 MP3, deux voix, 0 raté) :
        c'est lui qui fait exister le bouton « Écouter » dans le moteur. */
@@ -68,6 +68,7 @@
         shortTitle: "Thermostat direct",
         promise: "Voir le thermostat alimenter directement le compresseur, comme sur un froid ménager très simple.",
         sourceKeys: ["types"],
+        films: [{ fichier: "regules-01-commande-directe-v2.html", titre: "Le film" }],
         lessons: [
           {
             id: "qui-commande",
@@ -143,6 +144,10 @@
         shortTitle: "Tout en série",
         promise: "Comprendre pourquoi le thermostat et les pressostats arrêtent ensemble le compresseur et l’électrovanne.",
         sourceKeys: ["types"],
+        films: [
+          { fichier: "regules-02-protection-minimum.html", titre: "Le film" },
+          { fichier: "regules-02b-migration-de-liquide.html", titre: "La migration" }
+        ],
         lessons: [
           {
             id: "serie",
@@ -218,6 +223,7 @@
         shortTitle: "Pump-down",
         promise: "Séparer la demande de froid et l’arrêt compresseur pour vider l’évaporateur à chaque arrêt.",
         sourceKeys: ["types", "pumpdown"],
+        films: [{ fichier: "regules-03-pump-down-automatique.html", titre: "Le film" }],
         lessons: [
           {
             id: "deux-commandes",
@@ -369,6 +375,7 @@
         shortTitle: "Unique + sécurité",
         promise: "Distinguer le BP de régulation du BP de sécurité dans la variante unique améliorée.",
         sourceKeys: ["single", "improved"],
+        films: [{ fichier: "regules-05-pump-down-unique.html", titre: "Le film" }],
         lessons: [
           {
             id: "deux-bp",
@@ -592,6 +599,7 @@
         shortTitle: "Résistances",
         promise: "Lire toute la séquence : arrêt froid, résistances, fin, égouttage puis reprise différée des ventilateurs.",
         sourceKeys: ["defrost", "electric", "givre"],
+        films: [{ fichier: "regules-08-pump-down-et-degivrage-electrique.html", titre: "Le film narré" }],
         lessons: [
           {
             id: "organes",

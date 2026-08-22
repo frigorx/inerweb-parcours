@@ -45,6 +45,12 @@
         ? '      <button id="voice-button" class="tool-button" type="button" aria-pressed="false" title="Écouter l’écran">▶ <span>Écouter</span></button>' +
           '<button id="stop-voice" class="tool-button" type="button" disabled title="Arrêter la voix">■ <span>Stop</span></button>'
         : ""),
+      /* Les films validés le 22/08 : le lien vit dans le catalogue (films par
+         module), le chemin est le même à l'atelier et dans le pack. */
+      (module.films || []).map(function (film) {
+        return '      <a class="tool-button" style="text-decoration:none" href="../_regules-commun/films/' +
+          escapeHtml(film.fichier) + '" target="_blank" rel="noopener">🎬 <span>' + escapeHtml(film.titre) + '</span></a>';
+      }).join(""),
       '      <button id="sources-button" class="tool-button" type="button">ⓘ <span>Sources</span></button>',
       '    </div>',
       '  </header>',

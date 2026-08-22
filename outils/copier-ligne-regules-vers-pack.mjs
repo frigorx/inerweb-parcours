@@ -74,6 +74,23 @@ for (const id of stations) {
     if (f.endsWith(".mp3")) poserBinaire(join(dossierVoix, f), id + "/voix/masculine/" + f);
   }
 }
+
+// Les films validés par F. Henninot (22/08 : « on pousse sur inerweb.fr ») —
+// les six retenus, pas la v1 de la commande directe. Autonomes et en noindex,
+// ils partent tels quels : aucun recollage.
+const FILMS = [
+  "regules-01-commande-directe-v2.html",
+  "regules-02-protection-minimum.html",
+  "regules-02b-migration-de-liquide.html",
+  "regules-03-pump-down-automatique.html",
+  "regules-05-pump-down-unique.html",
+  "regules-08-pump-down-et-degivrage-electrique.html",
+];
+for (const f of FILMS) {
+  const source = join(SOURCE, "_regules-commun", "films", f);
+  if (!existsSync(source)) { console.error("FILM ABSENT : " + f); process.exit(1); }
+  poserBinaire(source, "_regules-commun/films/" + f);
+}
 poser("_regules-commun/catalog.js", readFileSync(join(SOURCE, "_regules-commun", "catalog.js"), "utf8"));
 poser("_regules-commun/engine.js", recollerEngine(readFileSync(join(SOURCE, "_regules-commun", "engine.js"), "utf8")));
 poser("_regules-commun/hub.js", recollerHub(readFileSync(join(SOURCE, "_regules-commun", "hub.js"), "utf8")));
