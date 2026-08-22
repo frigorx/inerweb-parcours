@@ -50,7 +50,8 @@
       );
     };
     return (
-      <g transform="translate(0,330)">
+      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
+      <g transform="translate(2450,-400)">
         <rect x="70" y="1030" width="2470" height="890" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="620" y="1106" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN UNIQUE</text>
         <text x="2500" y="1106" textAnchor="end" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">TROIS LIGNES · UNE MÉMOIRE</text>
@@ -128,7 +129,8 @@
     }
     var note = clamp((p.T - 41.6) / 0.6, 0, 1);
     return (
-      <g transform="translate(0,700)">
+      /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
+      <g transform="translate(930,-300)">
         <rect x="70" y="1860" width="2470" height="960" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · UN SEUL TIRAGE AU VIDE</text>
         {[['AIR DE LA', 2060], ['CHAMBRE', 2106], ['B1 ET Y1', 2296], ['PRESSION BP', 2440], ['KA1 MÉMOIRE', 2590], ['KM1', 2704]].map(function (l) {
@@ -164,6 +166,13 @@
         {r > 0.02 && r < 0.995 && (
           <line x1={chx(r)} y1="1960" x2={chx(r)} y2="2748" stroke={C.orange} strokeWidth="6" opacity="0.85" />
         )}
+        {/* Pendant la scène CycleComplet, le curseur suit le cycle rejoué. */}
+        {p.replayF > 0 && (
+          <g>
+            <line x1={chx(p.replayF)} y1="1960" x2={chx(p.replayF)} y2="2748" stroke={C.orange} strokeWidth="9" />
+            <circle cx={chx(p.replayF)} cy="1960" r="16" fill={C.orange} />
+          </g>
+        )}
         <g opacity={note}>
           <text x={chx(0.26)} y="2790" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">Y1, PUIS LE TIRAGE AU VIDE</text>
           <text x={chx(0.78)} y="2790" textAnchor="middle" fill={C.green} fontSize="34" fontWeight="900">1,8 BAR DÉPASSÉ · RIEN NE RECOLLE</text>
@@ -180,25 +189,35 @@
     var tB1o = CUES.Consigne + 3.4;
     var tKAo = CUES.Consigne + 5.6;
 
-    var y1Live = T >= tB1c && T < tB1o;
-    var kaLive = T >= tB1c && T < tKAo;
-    var kmLive = T >= tKMc && T < tKAo;
-    var flow = kmLive ? clamp((T - tKMc) / 0.9, 0, 1) : clamp(1 - (T - tKAo) / 0.7, 0, 1);
-    flow = T < tKMc ? 0 : clamp(flow, 0, 1);
-    var phase = clamp(T, tKMc, tKAo) - tKMc;
+    /* Scène CycleComplet (brief 22/08) : la séquence nominale se REJOUE en
+       plan large — la mémoire s'arme, le tirage au vide, l'effacement. La
+       remontée finale et l'habillage restent au temps réel, donc éteints. */
+    var enRejeu = CUES.CycleComplet !== undefined && T >= CUES.CycleComplet && T < CUES.LaCle;
+    var kRejeu = (tKAo + 3 - (tB1c - 1)) / 16;
+    var Tm = enRejeu ? (tB1c - 1) + (T - CUES.CycleComplet) * kRejeu : T;
+
+    var y1Live = Tm >= tB1c && Tm < tB1o;
+    var kaLive = Tm >= tB1c && Tm < tKAo;
+    var kmLive = Tm >= tKMc && Tm < tKAo;
+    var flow = kmLive ? clamp((Tm - tKMc) / 0.9, 0, 1) : clamp(1 - (Tm - tKAo) / 0.7, 0, 1);
+    flow = Tm < tKMc ? 0 : clamp(flow, 0, 1);
+    var phase = clamp(Tm, tKMc, tKAo) - tKMc;
     var energy = kmLive ? 1 : 0;
 
-    var temp = pw(T, [[0, -15.4], [tB1c, -14.0], [tB1o, -18.0], [c.authoredTotal, -14.8]]);
-    var bp = pw(T, [[0, 1.55], [tB1c, 1.72], [tB1c + 0.6, 3.0], [tB1c + 1.8, 2.35], [tB1o, 2.25],
+    var temp = pw(Tm, [[0, -15.4], [tB1c, -14.0], [tB1o, -18.0], [c.authoredTotal, -14.8]]);
+    var bp = pw(Tm, [[0, 1.55], [tB1c, 1.72], [tB1c + 0.6, 3.0], [tB1c + 1.8, 2.35], [tB1o, 2.25],
                     [tB1o + 1.1, 1.0], [tKAo, 0.30], [CUES.ArretUnique + 4.4, 1.80],
                     [CUES.ArretUnique + 6.6, 2.05], [c.authoredTotal, 2.15]]);
 
-    var charge = T < tB1c ? 0
-      : (T < tB1o ? clamp((T - tB1c) / 1.2, 0, 1) * 0.34
-        : 0.34 * clamp(1 - (T - tB1o) / (tKAo - tB1o), 0, 1));
-    var frostU = clamp((clamp(T, tB1c, tB1o) - tB1c) / (tB1o - tB1c), 0, 1);
-    var arm = T < tB1c ? -30
-      : (T < tB1o ? -30 + 30 * clamp(MOTION.pop(tB1c)(T), 0, 1.08) : -30 * clamp((T - tB1o) / 0.18, 0, 1));
+    var charge = Tm < tB1c ? 0
+      : (Tm < tB1o ? clamp((Tm - tB1c) / 1.2, 0, 1) * 0.34
+        : 0.34 * clamp(1 - (Tm - tB1o) / (tKAo - tB1o), 0, 1));
+    var frostU = clamp((clamp(Tm, tB1c, tB1o) - tB1c) / (tB1o - tB1c), 0, 1);
+    var arm = Tm < tB1c ? -30
+      : (Tm < tB1o ? -30 + 30 * clamp(MOTION.pop(tB1c)(Tm), 0, 1.08) : -30 * clamp((Tm - tB1o) / 0.18, 0, 1));
+    var replayF = enRejeu
+      ? pw(Tm, [[tB1c - 1, 0.08], [tB1c, 0.10], [tKMc, 0.11], [tB1o, 0.42], [tKAo, 0.50], [tKAo + 3, 0.53]])
+      : 0;
     var bprArm = bp > 0.34 ? 0 : -30;
     var secu = clamp((T - CUES.ArretUnique - 6.0) / 0.7, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
 
@@ -236,7 +255,7 @@
               </text>
             </g>
             <Cabinet T={T} arm={arm} bprArm={bprArm} y1Live={y1Live} kaLive={kaLive} kmLive={kmLive} secu={secu} />
-            <Chrono T={T} />
+            <Chrono T={T} replayF={replayF} />
           </g>
         </svg>
 
@@ -306,7 +325,11 @@
               { at: CUES.ArretUnique + 4.6, text: 'Elle dépasse 1,8 bar — et pourtant rien ne recolle.' },
               { at: CUES.ArretUnique + 6.2, text: 'Un seul tirage au vide par arrêt : le court cycle a disparu.' },
               { at: CUES.Chronologie + 0.4, text: 'Le chronogramme : Y1, puis le tirage au vide, puis plus rien.' },
-              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: 'Seul le thermostat pourra relancer le cycle.' }
+              { at: CUES.Chronologie + 3.4, until: CUES.CycleComplet, text: 'Seul le thermostat pourra relancer le cycle.' },
+              { at: CUES.CycleComplet + 0.5, text: 'Le cycle complet, d’un seul regard : la mémoire commande, le fluide obéit.' },
+              { at: CUES.CycleComplet + 4.5, text: 'B1 arme KA1 : Y1 s’ouvre, KM1 colle derrière ses deux sécurités.' },
+              { at: CUES.CycleComplet + 9.0, text: 'À la consigne, KA1 tient seul le tirage au vide : suivez le curseur orange.' },
+              { at: CUES.CycleComplet + 13.0, until: CUES.LaCle, text: 'À 0,3 bar, tout tombe — et la mémoire est effacée.' }
             ]}
           />
         )}

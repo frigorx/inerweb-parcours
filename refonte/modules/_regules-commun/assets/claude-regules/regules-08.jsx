@@ -111,7 +111,9 @@
       );
     }
     return (
-      <g transform="translate(0,330)">
+      /* Refonte 22/08 : l'armoire vit À DROITE de la croix (remontée : elle
+         est plus profonde que celles des autres stations). */
+      <g transform="translate(2450,-480)">
         <rect x="70" y="1100" width="2470" height="920" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1074" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">
           ARMOIRE · PUMP-DOWN ET DÉGIVRAGE ÉLECTRIQUE
@@ -200,7 +202,8 @@
     }
     var note = clamp((p.T - 41.6) / 0.6, 0, 1);
     return (
-      <g transform="translate(0,700)">
+      /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
+      <g transform="translate(930,-260)">
         <rect x="70" y="1860" width="2470" height="940" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">
           CHRONOLOGIE · UN CYCLE DE FROID, UN DÉGIVRAGE, LA REPRISE
@@ -241,6 +244,13 @@
         {r > 0.02 && r < 0.995 && (
           <line x1={chx(r)} y1="1960" x2={chx(r)} y2="2740" stroke={C.orange} strokeWidth="6" opacity="0.85" />
         )}
+        {/* Pendant la scène CycleComplet, le curseur suit le cycle rejoué. */}
+        {p.replayF > 0 && (
+          <g>
+            <line x1={chx(p.replayF)} y1="1960" x2={chx(p.replayF)} y2="2740" stroke={C.orange} strokeWidth="9" />
+            <circle cx={chx(p.replayF)} cy="1960" r="16" fill={C.orange} />
+          </g>
+        )}
         <g opacity={note}>
           <line x1={chx(0.74)} y1="2520" x2={chx(0.74)} y2="2760" stroke={C.green} strokeWidth="6" strokeDasharray="18 14" />
           <line x1={chx(0.86)} y1="2640" x2={chx(0.86)} y2="2760" stroke={C.blue} strokeWidth="6" strokeDasharray="18 14" />
@@ -264,41 +274,52 @@
     var tReprise = CUES.Degivrage + 5.5;
     var tVent = CUES.Chronologie + 0.2;
 
-    var b1 = (T >= tB1 && T < tKT) || T >= tReprise ? 1 : 0;
+    /* Scène CycleComplet (brief 22/08) : la séquence ENTIÈRE se rejoue en
+       plan large — froid, dégivrage, égouttage, reprise, ventilateurs
+       différés — les trois vues synchrones. L'habillage reste au temps réel. */
+    var enRejeu = CUES.CycleComplet !== undefined && T >= CUES.CycleComplet && T < CUES.LaCle;
+    var kRejeu = (tVent + 2 - (tB1 - 1)) / 16;
+    var Tm = enRejeu ? (tB1 - 1) + (T - CUES.CycleComplet) * kRejeu : T;
+
+    var b1 = (Tm >= tB1 && Tm < tKT) || Tm >= tReprise ? 1 : 0;
     var y1Ivs = [[tB1, tKT], [tReprise, c.authoredTotal]];
     var kmIvs = [[tKMc, tKMo], [tReprise + 0.4, c.authoredTotal]];
     var degIvs = [[tKM2, tFin]];
     var ventIvs = [[tKMc, tKMo + 0.2], [tVent, c.authoredTotal]];
 
-    var y1Live = onIvs(T, y1Ivs, 0.25, 0.2);
-    var kmLive = onIvs(T, kmIvs, 0.25, 0.2);
-    var degLive = onIvs(T, degIvs, 0.3, 0.3);
-    var ventLive = onIvs(T, ventIvs, 0.3, 0.2);
-    var kt = (T >= tKT && T < tFin) ? 1 : 0;
+    var y1Live = onIvs(Tm, y1Ivs, 0.25, 0.2);
+    var kmLive = onIvs(Tm, kmIvs, 0.25, 0.2);
+    var degLive = onIvs(Tm, degIvs, 0.3, 0.3);
+    var ventLive = onIvs(Tm, ventIvs, 0.3, 0.2);
+    var kt = (Tm >= tKT && Tm < tFin) ? 1 : 0;
 
-    var flow = onIvs(T, kmIvs, 0.9, 0.7);
-    var phase = accum(T, kmIvs);
-    var spinFans = accum(T, ventIvs) * 300;
+    var flow = onIvs(Tm, kmIvs, 0.9, 0.7);
+    var phase = accum(Tm, kmIvs);
+    var spinFans = accum(Tm, ventIvs) * 300;
 
-    var frost = clamp(accum(T, [[tKMc, tKT]]) / (tKT - tKMc), 0, 1) *
-      clamp(1 - accum(T, [[tKM2, tFin]]) / ((tFin - tKM2) * 0.8), 0, 1);
-    var melt = degLive * 0.9 + (T >= tFin && T < tReprise ? 0.8 : 0);
+    var frost = clamp(accum(Tm, [[tKMc, tKT]]) / (tKT - tKMc), 0, 1) *
+      clamp(1 - accum(Tm, [[tKM2, tFin]]) / ((tFin - tKM2) * 0.8), 0, 1);
+    var melt = degLive * 0.9 + (Tm >= tFin && Tm < tReprise ? 0.8 : 0);
 
     var evapT = lerpPts([[0, -16], [tB1, -15], [tKMc, -14], [tKT, -19], [tKMo, -18], [tKM2, -17],
-      [tFin, 10], [tReprise, 3], [tVent, -8], [c.authoredTotal, -17]], T);
+      [tFin, 10], [tReprise, 3], [tVent, -8], [c.authoredTotal, -17]], Tm);
     var airT = lerpPts([[0, -15.4], [tB1, -14], [tKT, -18], [tFin, -13.6], [tReprise, -13.2],
-      [c.authoredTotal, -16.2]], T);
+      [c.authoredTotal, -16.2]], Tm);
     var bp = lerpPts([[0, 1.5], [tB1, 1.7], [tB1 + 0.5, 3.0], [tB1 + 1.6, 2.3], [tKT, 2.2],
-      [tKMo, 0.3], [tFin, 2.6], [tReprise, 2.4], [c.authoredTotal, 2.2]], T);
+      [tKMo, 0.3], [tFin, 2.6], [tReprise, 2.4], [c.authoredTotal, 2.2]], Tm);
 
     /* La sonde de fin de dégivrage ouvre à +10 °C et se referme quand l'évaporateur
        est redescendu : c'est elle qui met fin au dégivrage, il faut la voir couper. */
-    var s1Ouvert = clamp((T - tFin) / 0.3, 0, 1) * clamp(1 - (T - tReprise) / 0.3, 0, 1);
+    var s1Ouvert = clamp((Tm - tFin) / 0.3, 0, 1) * clamp(1 - (Tm - tReprise) / 0.3, 0, 1);
 
-    var armB1 = b1 ? -30 + 30 * clamp((T - tB1) / 0.3, 0, 1) : (T < tB1 ? -30 : -30 * clamp((T - tKT) / 0.2, 0, 1));
-    if (T >= tReprise) armB1 = 0;
+    var armB1 = b1 ? -30 + 30 * clamp((Tm - tB1) / 0.3, 0, 1) : (Tm < tB1 ? -30 : -30 * clamp((Tm - tKT) / 0.2, 0, 1));
+    if (Tm >= tReprise) armB1 = 0;
     var armBP = kmLive > 0.5 ? 0 : -30;
     var armKT = kt ? 0 : -30;
+    var replayF = enRejeu
+      ? lerpPts([[tB1 - 1, 0.06], [tB1, 0.08], [tKMc, 0.10], [tKT, 0.44], [tKMo, 0.50],
+                 [tKM2, 0.52], [tFin, 0.74], [tReprise, 0.80], [tVent, 0.86], [tVent + 2, 0.88]], Tm)
+      : 0;
 
     var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
@@ -332,7 +353,7 @@
             <Cabinet T={T} b1={b1} kt={kt} armB1={armB1} armBP={armBP} armKT={armKT}
                      s1Ouvert={s1Ouvert}
                      y1Live={y1Live} kmLive={kmLive} degLive={degLive} ventLive={ventLive} />
-            <Chrono T={T} />
+            <Chrono T={T} replayF={replayF} />
           </g>
         </svg>
 
@@ -401,7 +422,11 @@
               { at: CUES.Degivrage + 4.0, text: 'Égouttage : on laisse l’eau partir avant de reprendre.' },
               { at: CUES.Degivrage + 5.6, text: 'Reprise du froid : Y1 s’ouvre, la BP referme, KM1 colle.' },
               { at: CUES.Chronologie + 0.4, text: 'Les ventilateurs ne repartent qu’après, pour éviter le regel.' },
-              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: 'Fin sur sonde, égouttage, reprise différée : la séquence complète.' }
+              { at: CUES.Chronologie + 3.4, until: CUES.CycleComplet, text: 'Fin sur sonde, égouttage, reprise différée : la séquence complète.' },
+              { at: CUES.CycleComplet + 0.5, text: 'La séquence entière, d’un seul regard : froid, dégivrage, reprise.' },
+              { at: CUES.CycleComplet + 4.0, text: 'Le froid s’installe, le givre aussi — puis l’horloge prend la main.' },
+              { at: CUES.CycleComplet + 8.5, text: 'Tirage au vide, résistances, fin sur sonde : suivez le curseur orange.' },
+              { at: CUES.CycleComplet + 12.5, until: CUES.LaCle, text: 'Égouttage, reprise du froid, et les ventilateurs en dernier.' }
             ]}
           />
         )}

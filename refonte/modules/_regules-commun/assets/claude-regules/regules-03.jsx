@@ -49,7 +49,8 @@
 
   function Cabinet(p) {
     return (
-      <g transform="translate(0,330)">
+      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
+      <g transform="translate(2450,-400)">
         <rect x="70" y="1030" width="2470" height="790" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="620" y="1106" fill={C.orangeText} fontSize="30" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN AUTOMATIQUE</text>
         <text x="2500" y="1106" textAnchor="end" fill={C.blue} fontSize="30" fontWeight="900" letterSpacing="2">DEUX COMMANDES SÉPARÉES</text>
@@ -114,7 +115,8 @@
     }
     var note = clamp((p.T - 41.6) / 0.6, 0, 1);
     return (
-      <g transform="translate(0,700)">
+      /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
+      <g transform="translate(930,-300)">
         <rect x="70" y="1860" width="2470" height="820" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · UN CYCLE, PUIS LE COURT CYCLE</text>
         {[['AIR DE LA', 2060], ['CHAMBRE', 2106], ['B1 ET Y1', 2296], ['PRESSION BP', 2440], ['KM1', 2586]].map(function (l) {
@@ -149,6 +151,13 @@
         {r > 0.02 && r < 0.995 && (
           <line x1={chx(r)} y1="1960" x2={chx(r)} y2="2630" stroke={C.orange} strokeWidth="6" opacity="0.85" />
         )}
+        {/* Pendant la scène CycleComplet, le curseur suit le cycle rejoué. */}
+        {p.replayF > 0 && (
+          <g>
+            <line x1={chx(p.replayF)} y1="1960" x2={chx(p.replayF)} y2="2630" stroke={C.orange} strokeWidth="9" />
+            <circle cx={chx(p.replayF)} cy="1960" r="16" fill={C.orange} />
+          </g>
+        )}
         <g opacity={note}>
           <text x={chx(0.31)} y="2662" textAnchor="middle" fill={C.blue} fontSize="34" fontWeight="900">Y1 D’ABORD, KM1 ENSUITE</text>
           <text x={chx(0.80)} y="2662" textAnchor="middle" fill={C.red} fontSize="34" fontWeight="900">COURT CYCLE · SANS DEMANDE DE FROID</text>
@@ -168,23 +177,34 @@
     var s2 = [CUES.CourtCycle + 6.0, CUES.CourtCycle + 6.7];
     var kmIvs = [[tKMc, tKMo], s1, s2];
 
-    var kmLive = inIvs(T, kmIvs);
-    var y1Live = T >= tY1c && T < tY1o;
-    var flow = rampIvs(T, kmIvs, 0.9, 0.7);
-    var phase = accumIvs(T, kmIvs);
+    /* Scène CycleComplet (brief 22/08) : la séquence nominale se REJOUE en
+       plan large — Y1 d'abord, le compresseur sur la pression, le tirage au
+       vide, la coupure BP. Les courts cycles et l'habillage restent au temps
+       réel, donc éteints pendant le rejeu. */
+    var enRejeu = CUES.CycleComplet !== undefined && T >= CUES.CycleComplet && T < CUES.LaCle;
+    var kRejeu = (tKMo + 3 - (tY1c - 1)) / 16;
+    var Tm = enRejeu ? (tY1c - 1) + (T - CUES.CycleComplet) * kRejeu : T;
+
+    var kmLive = inIvs(Tm, kmIvs);
+    var y1Live = Tm >= tY1c && Tm < tY1o;
+    var flow = rampIvs(Tm, kmIvs, 0.9, 0.7);
+    var phase = accumIvs(Tm, kmIvs);
     var energy = kmLive ? 1 : 0;
 
-    var temp = pw(T, [[0, -15.4], [tY1c, -14.0], [tY1o, -18.0], [c.authoredTotal, -15.4]]);
-    var bp = pw(T, [[0, 1.55], [tY1c, 1.72], [tY1c + 0.6, 3.0], [tY1c + 1.8, 2.35], [tY1o, 2.25],
+    var temp = pw(Tm, [[0, -15.4], [tY1c, -14.0], [tY1o, -18.0], [c.authoredTotal, -15.4]]);
+    var bp = pw(Tm, [[0, 1.55], [tY1c, 1.72], [tY1c + 0.6, 3.0], [tY1c + 1.8, 2.35], [tY1o, 2.25],
                     [tY1o + 1.1, 1.0], [tKMo, 0.30], [s1[0], 1.80], [s1[1], 0.32],
                     [s2[0], 1.80], [s2[1], 0.32], [c.authoredTotal, 1.05]]);
 
-    var charge = T < tY1c ? 0
-      : (T < tY1o ? clamp((T - tY1c) / 1.2, 0, 1) * 0.34
-        : 0.34 * clamp(1 - (T - tY1o) / (tKMo - tY1o), 0, 1));
-    var frostU = clamp((clamp(T, tY1c, tY1o) - tY1c) / (tY1o - tY1c), 0, 1);
-    var arm = T < tY1c ? -30
-      : (T < tY1o ? -30 + 30 * clamp(MOTION.pop(tY1c)(T), 0, 1.08) : -30 * clamp((T - tY1o) / 0.18, 0, 1));
+    var charge = Tm < tY1c ? 0
+      : (Tm < tY1o ? clamp((Tm - tY1c) / 1.2, 0, 1) * 0.34
+        : 0.34 * clamp(1 - (Tm - tY1o) / (tKMo - tY1o), 0, 1));
+    var frostU = clamp((clamp(Tm, tY1c, tY1o) - tY1c) / (tY1o - tY1c), 0, 1);
+    var arm = Tm < tY1c ? -30
+      : (Tm < tY1o ? -30 + 30 * clamp(MOTION.pop(tY1c)(Tm), 0, 1.08) : -30 * clamp((Tm - tY1o) / 0.18, 0, 1));
+    var replayF = enRejeu
+      ? pw(Tm, [[tY1c - 1, 0.08], [tY1c, 0.10], [tKMc, 0.13], [tY1o, 0.42], [tKMo, 0.50], [tKMo + 3, 0.52]])
+      : 0;
     var bpArm = kmLive ? 0 : -30;
     var fault = T >= CUES.CourtCycle + 4.0 && T < CUES.Chronologie - 0.4;
 
@@ -217,7 +237,7 @@
               </text>
             </g>
             <Cabinet T={T} arm={arm} bpArm={bpArm} y1Live={y1Live} kmLive={kmLive} fault={fault} />
-            <Chrono T={T} />
+            <Chrono T={T} replayF={replayF} />
           </g>
         </svg>
 
@@ -287,7 +307,11 @@
               { at: CUES.CourtCycle + 4.4, text: 'À 1,8 bar, la BP referme : KM1 recolle sans demande de froid.' },
               { at: CUES.CourtCycle + 6.0, text: 'Il tire au vide, retombe, recolle : c’est le court cycle.' },
               { at: CUES.Chronologie + 0.4, text: 'Le chronogramme montre le décalage : Y1 d’abord, KM1 ensuite.' },
-              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: 'Et à la fin, deux redémarrages parasites sans demande de froid.' }
+              { at: CUES.Chronologie + 3.4, until: CUES.CycleComplet, text: 'Et à la fin, deux redémarrages parasites sans demande de froid.' },
+              { at: CUES.CycleComplet + 0.5, text: 'Le cycle complet, d’un seul regard : deux commandes séparées, un seul fluide.' },
+              { at: CUES.CycleComplet + 4.5, text: 'B1 ouvre Y1, la pression monte, la BP fait coller KM1 — jamais l’inverse.' },
+              { at: CUES.CycleComplet + 9.0, text: 'À la consigne, Y1 ferme et le compresseur tire au vide : suivez le curseur orange.' },
+              { at: CUES.CycleComplet + 13.0, until: CUES.LaCle, text: 'À 0,3 bar, la BP coupe : l’évaporateur est vide.' }
             ]}
           />
         )}
