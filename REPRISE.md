@@ -49,13 +49,21 @@ l'huile reste intact. Le brief du chantier, soldé, reste lisible :
 respectée), 110 masculins embarqués au pack, bouton Écouter vérifié sur inerweb.fr.
 Personne n'a encore écouté ces voix.
 
-⚠️ **Ce qui reste** : la refonte des films selon le brief du 22/08
-(`assets/claude-regules/REFONTE-FILMS-BRIEF-2026-08-22.md`) est faite sur le **film 02**
-(gabarit de la formule : étiquettes éphémères, armoire à droite de la croix, chronogramme
-dessous, scène CycleComplet en plan large) — contrôlée au pixel, en attente du regard de
-Franck avant transposition aux cinq autres (01 = `regules-video-v2.jsx`, 02b sans
-armoire ni chrono, 03/05/08 au même gabarit que le 02). La voix du film 8, la seule
-fabriquée, reste à écouter. Films et voix-films toujours hors du pack.
+**Les SIX films sont refondus au brief du 22/08**
+(`assets/claude-regules/REFONTE-FILMS-BRIEF-2026-08-22.md`) : étiquettes éphémères
+partout, et pour les cinq films de régulation (01, 02, 03, 05, 08) armoire à droite de
+la croix, chronogramme dessous, scène CycleComplet de 16 s en plan large avec curseur
+sur le chronogramme. Le 02b (migration, comparatif) garde son langage à zooms. Le kit
+partagé (`regules-kit.jsx`) porte la caméra et les étiquettes des films 03/05/08.
+Contrôlés au pixel en ligne (armoire cadrée, duo élec+fluidique, étiquettes retirées,
+plan large aux trois vues, curseur). ⚠️ Piège vécu : le CDN de GitHub Pages sert un
+film périmé ~10 min — vérifier avec un `?nc=` NEUF à chaque contrôle.
+
+⚠️ **Ce qui reste** : le VISIONNAGE humain des six films (le contrôle au pixel ne juge
+ni le rythme ni la lisibilité réelle) ; la voix du film 8, la seule fabriquée, reste à
+écouter — sa scène CycleComplet est muette (narration à écrire si Franck la veut
+parlée) ; les narrations des cinq autres films restent à faire. Films et voix-films
+toujours hors du pack.
 Après toute retouche de la rame : relancer l'outil de copie, puis `node build/build.mjs`
 dans pilote-fluides (liste crawlable + casse-cache), et re-vérifier le site.
 
