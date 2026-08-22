@@ -134,7 +134,7 @@
     var note = clamp((p.T - 41.6) / 0.6, 0, 1);
     return (
       /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
-      <g transform="translate(930,-300)">
+      <g transform="translate(200,-300)">
         <rect x="70" y="1860" width="2470" height="820" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · UN CYCLE, PUIS LE COURT CYCLE</text>
         {[['AIR DE LA', 2060], ['CHAMBRE', 2106], ['B1 ET Y1', 2296], ['PRESSION BP', 2440], ['KM1', 2586]].map(function (l) {

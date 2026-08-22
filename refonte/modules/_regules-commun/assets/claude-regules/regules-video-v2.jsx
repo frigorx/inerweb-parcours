@@ -77,7 +77,7 @@
       { t: 13, v: croix },
       { t: 23, v: duo },
       { t: 31, v: croix },
-      { t: 38, v: { cx: 2235, cy: 1980, z: 0.70 } },
+      { t: 38, v: { cx: 1505, cy: 1980, z: 0.70 } },
       { t: 44, v: large },
       { t: 60, v: large }
     ];
@@ -559,7 +559,7 @@
     var note = clamp((p.T - 41.9) / 0.6, 0, 1);
     return (
       /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
-      <g transform="translate(930,-300)">
+      <g transform="translate(200,-300)">
         <rect x="70" y="1860" width="2470" height="740" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · DEUX CYCLES</text>
         {[['AIR DE LA', 2090], ['CHAMBRE', 2140], ['CONTACT B1', 2330], ['COMPRESSEUR', 2455], ['KM1', 2505]].map(function (l) {

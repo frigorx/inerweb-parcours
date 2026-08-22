@@ -1905,7 +1905,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { t: 13, v: croix },
         { t: 23, v: duo },
         { t: 31, v: croix },
-        { t: 38, v: { cx: 2235, cy: 1980, z: 0.7 } },
+        { t: 38, v: { cx: 1505, cy: 1980, z: 0.7 } },
         { t: 44, v: large },
         { t: 60, v: large }
       ];
@@ -2439,7 +2439,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { t: 13, v: croix },
         { t: 23, v: duo },
         { t: 31, v: croix },
-        { t: 38, v: { cx: 2235, cy: 1980, z: 0.7 } },
+        { t: 38, v: { cx: 1505, cy: 1980, z: 0.7 } },
         { t: 44, v: large },
         { t: 60, v: large }
       ];
@@ -2750,7 +2750,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var note = clamp((p.T - 41.6) / 0.6, 0, 1);
       return (
         /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
-        /* @__PURE__ */ React.createElement("g", { transform: "translate(930,-300)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1860", width: "2470", height: "800", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1936", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 DEUX CYCLES, PUIS UN D\xC9FAUT"), [["AIR DE LA", 2060], ["CHAMBRE", 2106], ["CONTACT B1", 2290], ["S\xC9CURIT\xC9S HP\xB7BP", 2400], ["KM1 ET Y1", 2510]].map(function(l) {
+        /* @__PURE__ */ React.createElement("g", { transform: "translate(200,-300)" }, /* @__PURE__ */ React.createElement("rect", { x: "70", y: "1860", width: "2470", height: "800", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "118", y: "1936", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 DEUX CYCLES, PUIS UN D\xC9FAUT"), [["AIR DE LA", 2060], ["CHAMBRE", 2106], ["CONTACT B1", 2290], ["S\xC9CURIT\xC9S HP\xB7BP", 2400], ["KM1 ET Y1", 2510]].map(function(l) {
           return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "118", y: l[1], fill: C.blue, fontSize: "38", fontWeight: "800" }, l[0]);
         }), [[-14, "\u221214 \xB7 enclenchement"], [-18, "\u221218 \xB7 consigne"]].map(function(l) {
           return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: chTemp(l[0]), x2: CH.x1, y2: chTemp(l[0]), stroke: C.line, strokeWidth: "3", strokeDasharray: "14 12" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0, y: chTemp(l[0]) - 14, fill: C.mute, fontSize: "28", fontWeight: "700" }, l[1]));
@@ -4860,7 +4860,7 @@ a:hover { color: #1b3a63; }
 <script>
 (function () {
   var barre = document.createElement("div");
-  barre.setAttribute("style", "position:fixed;top:14px;right:14px;z-index:9998;display:flex;align-items:center;gap:10px;background:rgba(255,253,248,0.95);border:2px solid #1b3a63;border-radius:12px;padding:8px 14px;font:700 15px system-ui,sans-serif;color:#1b3a63");
+  barre.setAttribute("style", "position:fixed;top:10px;right:10px;z-index:9998;display:flex;align-items:center;gap:8px;background:rgba(255,253,248,0.92);border:2px solid #1b3a63;border-radius:10px;padding:5px 10px;font:700 13px system-ui,sans-serif;color:#1b3a63");
   var rejouer = document.createElement("button");
   rejouer.textContent = "⟲ Rejouer";
   rejouer.setAttribute("style", "border:none;background:#1b3a63;color:#fffdf8;border-radius:8px;padding:6px 10px;cursor:pointer;font:700 14px system-ui,sans-serif");
@@ -4870,7 +4870,7 @@ a:hover { color: #1b3a63; }
   pl.setAttribute("style", "border:none;background:#c9451a;color:#fffdf8;border-radius:8px;padding:6px 12px;cursor:pointer;font:700 14px system-ui,sans-serif");
   pl.onclick = function () { if (!window.__filmCtl) return; if (window.__filmCtl.enLecture()) window.__filmCtl.pause(); else window.__filmCtl.lecture(); };
   var piste = document.createElement("div");
-  piste.setAttribute("style", "width:150px;height:8px;background:#c9d2dc;border-radius:4px;overflow:hidden");
+  piste.setAttribute("style", "width:110px;height:7px;background:#c9d2dc;border-radius:4px;overflow:hidden");
   var rempli = document.createElement("div");
   rempli.setAttribute("style", "width:0%;height:100%;background:#ff6b35");
   piste.appendChild(rempli);

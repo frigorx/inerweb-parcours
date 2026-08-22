@@ -124,64 +124,88 @@
       );
     }
     return (
-      <g transform="translate(2520,100)">
-        <rect x="0" y="0" width="2520" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+      /* Retour F. Henninot (22/08 soir) : l'armoire se RESSERRE en largeur et
+         s'ÉTEND sur toute la hauteur de la page — colonnes aérées, le
+         chronogramme étant parti à gauche sous la croix. */
+      <g transform="translate(2820,100)">
+        <rect x="0" y="0" width="2240" height="2160" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">ARMOIRE · PUMP-DOWN ET DÉGIVRAGE ÉLECTRIQUE</text>
-        <text x="2480" y="66" textAnchor="end" fill={C.blue} fontSize="24" fontWeight="900" letterSpacing="2">LE DÉGIVRAGE PREND LA MAIN</text>
+        <text x="40" y="108" fill={C.blue} fontSize="24" fontWeight="900" letterSpacing="2">LE DÉGIVRAGE PREND LA MAIN SUR LE FROID</text>
 
         <line x1="170" y1="104" x2="170" y2="150" stroke={C.wire} strokeWidth="9" />
         <RK2.PorteFusible x={170} y={150} />
         <line x1="170" y1="246" x2="170" y2="300" stroke={C.wire} strokeWidth="9" />
-        <line x1="170" y1="300" x2="2380" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
-        <line x1="170" y1="1300" x2="2380" y2="1300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="300" x2="2100" y2="300" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
+        <line x1="170" y1="2040" x2="2100" y2="2040" stroke={C.blue} strokeWidth="12" strokeLinecap="round" />
         <text x="132" y="312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">L</text>
-        <text x="132" y="1312" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
+        <text x="132" y="2052" textAnchor="end" fill={C.blue} fontSize="34" fontWeight="900">N</text>
 
         {/* colonne 1 : Y1 — le thermostat, puis l'horloge qui ouvre au dégivrage */}
-        {fils(430, ['M 430 300 L 430 380', 'M 430 530 L 430 580', 'M 430 730 L 430 1041', 'M 430 1099 L 430 1300'])}
-        <RK2.Potentiel d="M 430 300 L 430 380" mode={m1(0)} t={p.T} />
-        <RK2.Potentiel d="M 430 530 L 430 580" mode={m1(1)} t={p.T} />
-        <RK2.Potentiel d="M 430 730 L 430 1041" mode={m1(2)} t={p.T} />
-        <RK2.Potentiel d="M 430 1099 L 430 1300" mode={m1(2)} t={p.T} />
-        <RK2.ContactV x={430} y={380} ouv={ouvB1} live={p.y1Live > 0.5} glyph="θ" code="B1" sub="thermostat" />
-        <RK2.ContactV nf={true} x={430} y={580} ouv={p.degLive > 0.5 ? 1 : 0} live={p.y1Live > 0.5} glyph="t" code="KT" sub="ouvre au dégivrage" />
-        <RK2.BobineV x={430} y={1070} code="Y1" sub="ÉLECTROVANNE" live={p.y1Live > 0.5} />
+        {fils(340, ['M 340 300 L 340 400', 'M 340 550 L 340 700', 'M 340 850 L 340 1691', 'M 340 1749 L 340 2040'])}
+        <RK2.Potentiel d="M 340 300 L 340 400" mode={m1(0)} t={p.T} />
+        <RK2.Potentiel d="M 340 550 L 340 700" mode={m1(1)} t={p.T} />
+        <RK2.Potentiel d="M 340 850 L 340 1691" mode={m1(2)} t={p.T} />
+        <RK2.Potentiel d="M 340 1749 L 340 2040" mode={m1(2)} t={p.T} />
+        <RK2.ContactV x={340} y={400} ouv={ouvB1} live={p.y1Live > 0.5} glyph="θ" code="B1" sub="thermostat" />
+        <RK2.ContactV nf={true} x={340} y={700} ouv={p.degLive > 0.5 ? 1 : 0} live={p.y1Live > 0.5} glyph="t" code="KT" sub="ouvre au dégivrage" />
+        <RK2.BobineV x={340} y={1720} code="Y1" sub="ÉLECTROVANNE" live={p.y1Live > 0.5} />
 
         {/* colonne 2 : KM1 — sécurité, régulation, verrouillage au dégivrage */}
-        {fils(1080, ['M 1080 300 L 1080 380', 'M 1080 530 L 1080 580', 'M 1080 730 L 1080 780', 'M 1080 930 L 1080 1041', 'M 1080 1099 L 1080 1300'])}
-        <RK2.Potentiel d="M 1080 300 L 1080 380" mode={m2(0)} t={p.T} />
-        <RK2.Potentiel d="M 1080 530 L 1080 580" mode={m2(1)} t={p.T} />
-        <RK2.Potentiel d="M 1080 730 L 1080 780" mode={m2(2)} t={p.T} />
-        <RK2.Potentiel d="M 1080 930 L 1080 1041" mode={m2(3)} t={p.T} />
-        <RK2.Potentiel d="M 1080 1099 L 1080 1300" mode={m2(3)} t={p.T} />
-        <RK2.ContactV nf={true} x={1080} y={380} ouv={0} live={p.kmLive > 0.5} glyph="p" code="HP" sub="sécurité HP" />
-        <RK2.ContactV x={1080} y={580} ouv={ouvBP} live={p.kmLive > 0.5} glyph="p" code="BP" sub="régulation · tirage" />
-        <RK2.ContactV nf={true} x={1080} y={780} ouv={p.kt} live={p.kmLive > 0.5} glyph="t" code="KT" sub="verrouillage" />
-        <RK2.BobineV x={1080} y={1070} code="KM1" sub="COMPRESSEUR" live={p.kmLive > 0.5} />
+        {fils(900, ['M 900 300 L 900 400', 'M 900 550 L 900 700', 'M 900 850 L 900 1000', 'M 900 1150 L 900 1691', 'M 900 1749 L 900 2040'])}
+        <RK2.Potentiel d="M 900 300 L 900 400" mode={m2(0)} t={p.T} />
+        <RK2.Potentiel d="M 900 550 L 900 700" mode={m2(1)} t={p.T} />
+        <RK2.Potentiel d="M 900 850 L 900 1000" mode={m2(2)} t={p.T} />
+        <RK2.Potentiel d="M 900 1150 L 900 1691" mode={m2(3)} t={p.T} />
+        <RK2.Potentiel d="M 900 1749 L 900 2040" mode={m2(3)} t={p.T} />
+        <RK2.ContactV nf={true} x={900} y={400} ouv={0} live={p.kmLive > 0.5} glyph="p" code="HP" sub="sécurité HP" />
+        <RK2.ContactV x={900} y={700} ouv={ouvBP} live={p.kmLive > 0.5} glyph="p" code="BP" sub="régulation · tirage" />
+        <RK2.ContactV nf={true} x={900} y={1000} ouv={p.kt} live={p.kmLive > 0.5} glyph="t" code="KT" sub="verrouillage" />
+        <RK2.BobineV x={900} y={1720} code="KM1" sub="COMPRESSEUR" live={p.kmLive > 0.5} />
 
         {/* colonne 3 : KM2 — l'horloge lance, la sonde de fin coupe */}
-        {fils(1730, ['M 1730 300 L 1730 380', 'M 1730 530 L 1730 580', 'M 1730 730 L 1730 1041', 'M 1730 1099 L 1730 1300'])}
-        <RK2.Potentiel d="M 1730 300 L 1730 380" mode={m3(0)} t={p.T} />
-        <RK2.Potentiel d="M 1730 530 L 1730 580" mode={m3(1)} t={p.T} />
-        <RK2.Potentiel d="M 1730 730 L 1730 1041" mode={m3(2)} t={p.T} />
-        <RK2.Potentiel d="M 1730 1099 L 1730 1300" mode={m3(2)} t={p.T} />
-        <RK2.ContactV x={1730} y={380} ouv={ouvKT} live={p.degLive > 0.5} glyph="t" code="KT" sub="horloge de dégivrage" />
-        <RK2.ContactV nf={true} x={1730} y={580} ouv={p.s1Ouvert} live={p.degLive > 0.5} glyph="θ" code="S1" sub="fin · ouvre à +10 °C" />
-        <RK2.BobineV x={1730} y={1070} code="KM2" sub="RÉSISTANCES" live={p.degLive > 0.5} />
+        {fils(1460, ['M 1460 300 L 1460 400', 'M 1460 550 L 1460 700', 'M 1460 850 L 1460 1691', 'M 1460 1749 L 1460 2040'])}
+        <RK2.Potentiel d="M 1460 300 L 1460 400" mode={m3(0)} t={p.T} />
+        <RK2.Potentiel d="M 1460 550 L 1460 700" mode={m3(1)} t={p.T} />
+        <RK2.Potentiel d="M 1460 850 L 1460 1691" mode={m3(2)} t={p.T} />
+        <RK2.Potentiel d="M 1460 1749 L 1460 2040" mode={m3(2)} t={p.T} />
+        <RK2.ContactV x={1460} y={400} ouv={ouvKT} live={p.degLive > 0.5} glyph="t" code="KT" sub="horloge de dégivrage" />
+        <RK2.ContactV nf={true} x={1460} y={700} ouv={p.s1Ouvert} live={p.degLive > 0.5} glyph="θ" code="S1" sub="fin · ouvre à +10 °C" />
+        <RK2.BobineV x={1460} y={1720} code="KM2" sub="RÉSISTANCES" live={p.degLive > 0.5} />
 
         {/* colonne 4 : KM3 — la temporisation retient les ventilateurs */}
-        {fils(2380, ['M 2380 300 L 2380 580', 'M 2380 730 L 2380 1041', 'M 2380 1099 L 2380 1300'])}
-        <RK2.Potentiel d="M 2380 300 L 2380 580" mode={m4(0)} t={p.T} />
-        <RK2.Potentiel d="M 2380 730 L 2380 1041" mode={m4(1)} t={p.T} />
-        <RK2.Potentiel d="M 2380 1099 L 2380 1300" mode={m4(1)} t={p.T} />
-        <RK2.ContactV aux={true} x={2380} y={580} ouv={p.ventLive > 0.5 ? 0 : 1} live={p.ventLive > 0.5} code="KT" sub="tempo · reprise différée" />
-        <RK2.BobineV x={2380} y={1070} code="KM3" sub="VENTILATEURS" live={p.ventLive > 0.5} />
+        {fils(2020, ['M 2020 300 L 2020 700', 'M 2020 850 L 2020 1691', 'M 2020 1749 L 2020 2040'])}
+        <RK2.Potentiel d="M 2020 300 L 2020 700" mode={m4(0)} t={p.T} />
+        <RK2.Potentiel d="M 2020 850 L 2020 1691" mode={m4(1)} t={p.T} />
+        <RK2.Potentiel d="M 2020 1749 L 2020 2040" mode={m4(1)} t={p.T} />
+        <RK2.ContactV aux={true} x={2020} y={700} ouv={p.ventLive > 0.5 ? 0 : 1} live={p.ventLive > 0.5} code="KT" sub="tempo · reprise différée" />
+        <RK2.BobineV x={2020} y={1720} code="KM3" sub="VENTILATEURS" live={p.ventLive > 0.5} />
 
         {ouvB1 >= 0.5 && p.y1Live <= 0.5 && (
-          <text x="466" y="1230" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
+          <text x="376" y="1950" fill={C.orangeText} fontSize="26" fontWeight="800" opacity="0.9">retour neutre</text>
         )}
       </g>
     );
+  }
+
+  /* Caméra propre au 08 : son armoire étirée (2820→5060 × 100→2260) et son
+     chronogramme parti à gauche demandent leurs propres cadrages. */
+  function camFixed08(T) {
+    var croix = { cx: 1400, cy: 720, z: 0.74 };
+    var duo = { cx: 2680, cy: 1160, z: 0.40 };
+    var large = { cx: 2665, cy: 1300, z: 0.40 };
+    var V = [
+      { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
+      { t: 6, v: { cx: 3940, cy: 1000, z: 0.58 } },
+      { t: 13, v: croix },
+      { t: 23, v: duo },
+      { t: 31, v: croix },
+      { t: 38, v: { cx: 1505, cy: 2020, z: 0.70 } },
+      { t: 44, v: large },
+      { t: 60, v: large }
+    ];
+    var k = V[0].v;
+    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
+    return k;
   }
 
   var CH = { x0: 700, x1: 2420 };
@@ -206,7 +230,7 @@
     var note = clamp((p.T - 41.6) / 0.6, 0, 1);
     return (
       /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
-      <g transform="translate(930,-260)">
+      <g transform="translate(200,-260)">
         <rect x="70" y="1860" width="2470" height="940" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">
           CHRONOLOGIE · UN CYCLE DE FROID, UN DÉGIVRAGE, LA REPRISE
@@ -324,7 +348,7 @@
                  [tKM2, 0.52], [tFin, 0.74], [tReprise, 0.80], [tVent, 0.86], [tVent + 2, 0.88]], Tm)
       : 0;
 
-    var cam = props.fixedCam !== false ? RK.camFixed(T, 5040) : RK.camAt(T);
+    var cam = props.fixedCam !== false ? camFixed08(T) : RK.camAt(T);
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var banniere = clamp((T - CUES.Consigne - 4.4) / 0.6, 0, 1) * clamp(1 - (T - tFin) / 0.6, 0, 1) * (1 - keyIn);
