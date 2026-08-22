@@ -76,11 +76,15 @@ du 08 sorti du coin où elle flotte. Vérifié en ligne : au plan large, croix
 haut-gauche + chronologie bas-gauche + armoire pleine hauteur à droite, sans
 aucun chevauchement, curseur du rejeu présent.
 
-⚠️ **Ce qui reste** : le VISIONNAGE humain des six films ; la voix du film 8 à
-écouter (sa scène CycleComplet est muette) ; les narrations des cinq autres films ;
-la logique fine de l'auto-maintien du 05 reproduit le film existant (flux narratifs),
-à confronter au schéma du document source si Franck veut le potentiel rigoureux
-partout. Films et voix-films toujours hors du pack.
+**Les films sont VALIDÉS et sur inerweb.fr (22/08 soir)** : les six au pack
+(`_regules-commun/films/`, 3,3 Mo, noindex, copiés par l'outil), bouton 🎬 dans les
+stations 1, 2 (deux films), 3, 5 et 8 — le lien vit dans `catalog.js` (champ `films`
+par module), le chemin est identique atelier/pack.
+
+⚠️ **Ce qui reste** : la voix du film 8 à écouter (sa scène CycleComplet est muette) ;
+les narrations des cinq autres films ; la logique fine de l'auto-maintien du 05
+reproduit le film existant (flux narratifs), à confronter au schéma du document
+source si Franck veut le potentiel rigoureux partout.
 Après toute retouche de la rame : relancer l'outil de copie, puis `node build/build.mjs`
 dans pilote-fluides (liste crawlable + casse-cache), et re-vérifier le site.
 
