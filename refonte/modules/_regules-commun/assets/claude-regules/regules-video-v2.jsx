@@ -64,14 +64,21 @@
     return CAM[CAM.length - 1];
   }
 
+  /* Refonte du 22/08 (brief F. Henninot) : une étape par plan, l'armoire à
+     droite de la croix, le chronogramme dessous, puis le PLAN LARGE total
+     pour la scène CycleComplet — les trois vues en même temps. */
   function camFixed(T) {
     var croix = { cx: 1400, cy: 720, z: 0.74 };
+    var large = { cx: 2645, cy: 1210, z: 0.40 };
     var V = [
-      { t: 0, v: croix },
-      { t: 6, v: { cx: 1305, cy: 1740, z: 0.74 } },
+      { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
+      { t: 6, v: { cx: 3755, cy: 1010, z: 0.70 } },
       { t: 13, v: croix },
-      { t: 38, v: { cx: 1300, cy: 2930, z: 0.74 } },
-      { t: 44, v: croix }
+      { t: 23, v: { cx: 2650, cy: 1000, z: 0.40 } },
+      { t: 31, v: croix },
+      { t: 38, v: { cx: 2235, cy: 1980, z: 0.70 } },
+      { t: 44, v: large },
+      { t: 60, v: large }
     ];
     var k = V[0].v;
     for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
@@ -79,7 +86,10 @@
   }
 
   function Chip(p) {
+    /* Brief du 22/08 : une étiquette se montre UNE fois puis se retire. */
     var s = MOTION.pop(p.at)(p.T);
+    var sortie = p.hold ? clamp(1 - (p.T - (+p.at + +p.hold)) / 0.8, 0, 1) : 1;
+    s = s * sortie;
     if (s <= 0.001) return null;
     var fs = +p.fs || 34;
     var w = Math.max(String(p.text).length * fs * 0.62, p.sub ? String(p.sub).length * fs * 0.7 * 0.56 : 0) + 40;
@@ -338,7 +348,7 @@
           <text x="1058" y="1261" textAnchor="middle" fill={C.orangeText} fontSize="34" fontWeight="900">B1</text>
           <path d="M 1058 1281 L 1058 1360 L 836 1360 L 836 1520" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
         </g>
-        <Chip T={p.T} at={22.4} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
+        <Chip T={p.T} at={22.4} hold={5} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
         <g>
           <rect x="1800" y="1030" width="560" height="220" rx="16" fill={C.card} stroke={C.blue} strokeWidth="5" />
           <text x="1830" y="1082" fill={C.orangeText} fontSize="28" fontWeight="900" letterSpacing="2.5">AIR DE LA CHAMBRE</text>
@@ -374,12 +384,14 @@
           <rect x="1674" y="1018" width="52" height="64" rx="22" fill={C.card} stroke={C.blue} strokeWidth="5" />
           <line x1="1678" y1="1034" x2="1722" y2="1034" stroke={C.blue} strokeWidth="4" />
           <line x1="1678" y1="1066" x2="1722" y2="1066" stroke={C.blue} strokeWidth="4" />
-          <text x="1700" y="1002" textAnchor="middle" fill={C.blue} fontSize="30" fontWeight="900">BULBE</text>
-          <text x="908" y="600" fill={C.mute} fontSize="26" fontWeight="700">capillaire</text>
+          <g opacity={clamp(1 - (p.T - 26) / 0.8, 0, 1)}>
+            <text x="1700" y="1002" textAnchor="middle" fill={C.blue} fontSize="30" fontWeight="900">BULBE</text>
+            <text x="908" y="600" fill={C.mute} fontSize="26" fontWeight="700">capillaire</text>
+          </g>
         </g>
-        <Chip T={p.T} at={16.0} x="1970" y="930" text="COMPRESSEUR" sub="bielle-piston : la pression monte" fs="34" />
-        <Chip T={p.T} at={18.6} x="1300" y="520" text="CONDENSEUR" sub="la vapeur redevient liquide" fs="34" />
-        <Chip T={p.T} at={20.8} x="700" y="760" text="DÉTENDEUR THERMOSTATIQUE" sub="bulbe TC · la pression tombe" fs="34" tone={C.orangeText} />
+        <Chip T={p.T} at={16.0} hold={5} x="1970" y="930" text="COMPRESSEUR" sub="bielle-piston : la pression monte" fs="34" />
+        <Chip T={p.T} at={18.6} hold={5} x="1300" y="520" text="CONDENSEUR" sub="la vapeur redevient liquide" fs="34" />
+        <Chip T={p.T} at={20.8} hold={5} x="700" y="760" text="DÉTENDEUR THERMOSTATIQUE" sub="bulbe TC · la pression tombe" fs="34" tone={C.orangeText} />
       </g>
     );
   }
@@ -387,10 +399,10 @@
   function PipeChips(p) {
     return (
       <g>
-        <Chip T={p.T} at={15.0} x="1920" y="1322" text="BP · VAPEUR FROIDE" tone={C.blue} fs="30" />
-        <Chip T={p.T} at={17.6} x="1820" y="330" text="HP · GAZ CHAUD" tone={C.red} fs="30" />
-        <Chip T={p.T} at={19.6} x="920" y="108" text="HP · LIQUIDE" tone={C.orangeText} fs="30" />
-        <Chip T={p.T} at={21.6} x="600" y="920" text="BP · MÉLANGE FROID" tone={C.blue} fs="30" />
+        <Chip T={p.T} at={15.0} hold={5} x="1920" y="1322" text="BP · VAPEUR FROIDE" tone={C.blue} fs="30" />
+        <Chip T={p.T} at={17.6} hold={5} x="1820" y="330" text="HP · GAZ CHAUD" tone={C.red} fs="30" />
+        <Chip T={p.T} at={19.6} hold={5} x="920" y="108" text="HP · LIQUIDE" tone={C.orangeText} fs="30" />
+        <Chip T={p.T} at={21.6} hold={5} x="600" y="920" text="BP · MÉLANGE FROID" tone={C.blue} fs="30" />
       </g>
     );
   }
@@ -476,7 +488,8 @@
     var reveal = clamp((T - p.tClose) / 0.45, 0, 1) * (T < p.tOpen ? 1 : clamp(1 - (T - p.tOpen) / 0.2, 0, 1));
     var ghost = clamp(clamp((T - 28.8) / 0.7, 0, 1) - clamp((T - 31.2) / 0.5, 0, 1) + clamp((T - 37.6) / 0.5, 0, 1), 0, 1);
     return (
-      <g transform="translate(0,330)">
+      /* Refonte 22/08 : l'armoire vit À DROITE de la croix. */
+      <g transform="translate(2450,-400)">
         <rect x="70" y="1100" width="2470" height="620" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1170" fill={C.orangeText} fontSize="34" fontWeight="900" letterSpacing="3">ARMOIRE · COMMANDE DIRECTE</text>
 
@@ -527,7 +540,7 @@
   function chTemp(v) { return CH.tempTop + ((-13 - v) / 6) * (CH.tempBot - CH.tempTop); }
 
   function Chrono(p) {
-    var r = MOTION.draw(31.25, 4.6)(p.T);
+    var r = MOTION.draw(38.3, 4.6)(p.T);
     var pts = [[0, -15.4], [0.13, -14], [0.44, -18], [0.62, -14], [0.90, -18], [1, -16.6]];
     var tempPath = pts.map(function (q, i) { return (i ? 'L ' : 'M ') + chx(q[0]) + ' ' + chTemp(q[1]); }).join(' ');
     var closed = [[0.13, 0.44], [0.62, 0.90]];
@@ -538,9 +551,10 @@
       });
       return d + ' L ' + chx(1) + ' ' + lo;
     }
-    var note = clamp((p.T - 34.9) / 0.6, 0, 1);
+    var note = clamp((p.T - 41.9) / 0.6, 0, 1);
     return (
-      <g transform="translate(0,700)">
+      /* Refonte 22/08 : le graphique vit SOUS les deux schémas. */
+      <g transform="translate(930,-300)">
         <rect x="70" y="1860" width="2470" height="740" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
         <text x="118" y="1936" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">CHRONOLOGIE · DEUX CYCLES</text>
         {[['AIR DE LA', 2090], ['CHAMBRE', 2140], ['CONTACT B1', 2330], ['COMPRESSEUR', 2455], ['KM1', 2505]].map(function (l) {
@@ -565,6 +579,13 @@
         {r > 0.02 && r < 0.995 && (
           <line x1={chx(r)} y1="1960" x2={chx(r)} y2="2545" stroke={C.orange} strokeWidth="6" opacity="0.85" />
         )}
+        {/* Pendant la scène CycleComplet, le curseur suit le cycle rejoué. */}
+        {p.replayF > 0 && (
+          <g>
+            <line x1={chx(p.replayF)} y1="1960" x2={chx(p.replayF)} y2="2545" stroke={C.orange} strokeWidth="9" />
+            <circle cx={chx(p.replayF)} cy="1960" r="16" fill={C.orange} />
+          </g>
+        )}
         <text x="1530" y="2578" textAnchor="middle" fill={C.orangeText} fontSize="40" fontWeight="900" opacity={note}>
           CONTACT B1 ET KM1 · EXACTEMENT LE MÊME PROFIL
         </text>
@@ -578,17 +599,27 @@
     var tClose = CUES.Fermeture + 1.6;
     var tOpen = CUES.Consigne + 3.4;
 
+    /* Scène CycleComplet (brief 22/08) : la séquence se REJOUE en plan large,
+       les trois vues ensemble. L'habillage reste au temps réel — le rappel
+       « aucune sécurité », lui, reste visible : c'est la leçon de la station. */
+    var enRejeu = CUES.CycleComplet !== undefined && T >= CUES.CycleComplet && T < CUES.LaCle;
+    var kRejeu = (tOpen + 3 - (tClose - 1)) / 16;
+    var Tm = enRejeu ? (tClose - 1) + (T - CUES.CycleComplet) * kRejeu : T;
+
     var rise = animate({ from: -15.4, to: -14.0, start: 0, end: tClose, ease: Easing.linear });
     var fall = animate({ from: -14.0, to: -18.0, start: tClose, end: tOpen, ease: Easing.easeInOutSine });
     var drift = animate({ from: -18.0, to: -17.1, start: tOpen, end: c.authoredTotal, ease: Easing.linear });
-    var temp = T < tClose ? rise(T) : (T < tOpen ? fall(T) : drift(T));
+    var temp = Tm < tClose ? rise(Tm) : (Tm < tOpen ? fall(Tm) : drift(Tm));
 
-    var energy = T < tClose ? 0 : (T < tOpen ? clamp((T - tClose) / 0.3, 0, 1) : clamp(1 - (T - tOpen) / 0.25, 0, 1));
-    var flow = T < tClose ? 0 : (T < tOpen ? clamp((T - tClose) / 0.9, 0, 1) : clamp(1 - (T - tOpen) / 0.7, 0, 1));
-    var phase = clamp(T, tClose, tOpen) - tClose;
+    var energy = Tm < tClose ? 0 : (Tm < tOpen ? clamp((Tm - tClose) / 0.3, 0, 1) : clamp(1 - (Tm - tOpen) / 0.25, 0, 1));
+    var flow = Tm < tClose ? 0 : (Tm < tOpen ? clamp((Tm - tClose) / 0.9, 0, 1) : clamp(1 - (Tm - tOpen) / 0.7, 0, 1));
+    var phase = clamp(Tm, tClose, tOpen) - tClose;
     var frostU = clamp(phase / (tOpen - tClose), 0, 1);
-    var arm = T < tClose ? -30
-      : (T < tOpen ? -30 + 30 * clamp(MOTION.pop(tClose)(T), 0, 1.08) : -30 * clamp((T - tOpen) / 0.18, 0, 1));
+    var arm = Tm < tClose ? -30
+      : (Tm < tOpen ? -30 + 30 * clamp(MOTION.pop(tClose)(Tm), 0, 1.08) : -30 * clamp((Tm - tOpen) / 0.18, 0, 1));
+    var replayF = enRejeu
+      ? 0.13 + 0.31 * clamp((Tm - tClose) / (tOpen - tClose), 0, 1) + 0.02 * clamp((Tm - tOpen) / 3, 0, 1)
+      : 0;
 
     var mig = animate({ from: 0, to: 1, start: CUES.Migration + 0.6, end: CUES.Migration + 5.5, ease: Easing.easeInOutSine })(T);
     var migO = clamp((T - CUES.Migration) / 0.8, 0, 1) * clamp(1 - (T - CUES.Migration - 6.4) / 0.8, 0, 1);
@@ -612,8 +643,8 @@
             <Machine T={T} carter={mig * 0.92} spin={phase * 300} flow={flow} phase={phase} />
             <PipeChips T={T} />
             <CroixLabels T={T} />
-            <Cabinet T={T} arm={arm} tClose={tClose} tOpen={tOpen} phaseAll={T} />
-            <Chrono T={T} />
+            <Cabinet T={Tm} arm={arm} tClose={tClose} tOpen={tOpen} phaseAll={T} />
+            <Chrono T={T} replayF={replayF} />
           </g>
         </svg>
 
@@ -672,7 +703,11 @@
               { at: CUES.Migration + 4.4, text: '… puis dans le carter du compresseur, au-dessus de l’huile.' },
               { at: CUES.Migration + 6.2, text: 'Au redémarrage : coup de liquide, et casse du compresseur.' },
               { at: CUES.Chronologie + 0.4, text: 'Contact B1 et compresseur ont exactement le même profil.' },
-              { at: CUES.Chronologie + 3.4, until: CUES.LaCle, text: 'Le cycle repart dès que l’air remonte à −14 °C.' }
+              { at: CUES.Chronologie + 3.4, until: CUES.CycleComplet, text: 'Le cycle repart dès que l’air remonte à −14 °C.' },
+              { at: CUES.CycleComplet + 0.5, text: 'Le cycle complet, d’un seul regard : une seule cause, un seul effet.' },
+              { at: CUES.CycleComplet + 4.5, text: 'B1 ferme, KM1 colle, le froid s’installe — suivez le curseur orange.' },
+              { at: CUES.CycleComplet + 9.0, text: 'Aucun pressostat sur la chaîne : rien ne surveille les pressions.' },
+              { at: CUES.CycleComplet + 13.0, until: CUES.LaCle, text: 'Consigne atteinte : tout tombe au même instant.' }
             ]}
           />
         )}

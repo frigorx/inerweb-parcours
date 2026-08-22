@@ -55,7 +55,10 @@
   }
 
   function Chip(p) {
+    /* Brief du 22/08 : une étiquette se montre UNE fois puis se retire. */
     var s = MOTION.pop(p.at)(p.T);
+    var sortie = p.hold ? clamp(1 - (p.T - (+p.at + +p.hold)) / 0.8, 0, 1) : 1;
+    s = s * sortie;
     if (s <= 0.001) return null;
     var fs = +p.fs || 34;
     var w = Math.max(String(p.text).length * fs * 0.62, p.sub ? String(p.sub).length * fs * 0.7 * 0.56 : 0) + 40;
@@ -328,7 +331,7 @@
           <text x="1058" y="1261" textAnchor="middle" fill={C.orangeText} fontSize="34" fontWeight="900">B1</text>
           <path d="M 1058 1281 L 1058 1360 L 836 1360 L 836 1520" fill="none" stroke="#93a3b4" strokeWidth="4" strokeDasharray="14 12" />
         </g>
-        <Chip T={p.T} at={6.0} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
+        <Chip T={p.T} at={6.0} hold={5} x="1300" y="712" text="ÉVAPORATEUR" sub="le liquide s’évapore, il prend la chaleur" fs="34" />
         <g>
           <rect x="1800" y="1030" width="560" height="220" rx="16" fill={C.card} stroke={C.blue} strokeWidth="5" />
           <text x="1830" y="1082" fill={C.orangeText} fontSize="28" fontWeight="900" letterSpacing="2.5">AIR DE LA CHAMBRE</text>
@@ -369,24 +372,29 @@
         <g opacity={clamp((p.T - 2.8) / 0.8, 0, 1)}>
           <circle cx="1700" cy="410" r="15" fill={C.card} stroke={C.red} strokeWidth="6" />
           <line x1="1700" y1="425" x2="1700" y2="486" stroke={C.red} strokeWidth="5" strokeDasharray="14 10" />
-          <text x="1726" y="496" fill={C.red} fontSize="28" fontWeight="800">PRISE HP</text>
           <circle cx="1700" cy="880" r="15" fill={C.card} stroke={C.blue} strokeWidth="6" />
           <line x1="1715" y1="880" x2="1786" y2="880" stroke={C.blue} strokeWidth="5" strokeDasharray="14 10" />
-          <text x="1798" y="890" fill={C.blue} fontSize="28" fontWeight="800">PRISE BP</text>
+          {/* Les piquages restent ; leurs noms se retirent — brief du 22/08. */}
+          <g opacity={clamp(1 - (p.T - 24) / 0.8, 0, 1)}>
+            <text x="1726" y="496" fill={C.red} fontSize="28" fontWeight="800">PRISE HP</text>
+            <text x="1798" y="890" fill={C.blue} fontSize="28" fontWeight="800">PRISE BP</text>
+          </g>
         </g>
-        <Chip T={p.T} at={2.4} x="500" y="252" text="ÉLECTROVANNE Y1" sub="elle ouvre la ligne liquide" fs="34" tone={C.orangeText} />
+        <Chip T={p.T} at={2.4} hold={5} x="500" y="252" text="ÉLECTROVANNE Y1" sub="elle ouvre la ligne liquide" fs="34" tone={C.orangeText} />
         <g opacity={clamp((p.T - 20.2) / 0.8, 0, 1)}>
           <path d="M 1730 1050 L 1820 1050 L 1820 770 L 880 770 L 880 440 L 700 440 L 700 478"
                 fill="none" stroke="#7d8b9a" strokeWidth="5" strokeDasharray="16 12" />
           <rect x="1674" y="1018" width="52" height="64" rx="22" fill={C.card} stroke={C.blue} strokeWidth="5" />
           <line x1="1678" y1="1034" x2="1722" y2="1034" stroke={C.blue} strokeWidth="4" />
           <line x1="1678" y1="1066" x2="1722" y2="1066" stroke={C.blue} strokeWidth="4" />
-          <text x="1700" y="1002" textAnchor="middle" fill={C.blue} fontSize="30" fontWeight="900">BULBE</text>
-          <text x="908" y="600" fill={C.mute} fontSize="26" fontWeight="700">capillaire</text>
+          <g opacity={clamp(1 - (p.T - 24) / 0.8, 0, 1)}>
+            <text x="1700" y="1002" textAnchor="middle" fill={C.blue} fontSize="30" fontWeight="900">BULBE</text>
+            <text x="908" y="600" fill={C.mute} fontSize="26" fontWeight="700">capillaire</text>
+          </g>
         </g>
-        <Chip T={p.T} at={13.4} x="1970" y="960" text="COMPRESSEUR" sub="carter : huile et liquide" fs="34" />
-        <Chip T={p.T} at={1.2} x="1300" y="520" text="CONDENSEUR" sub="la vapeur redevient liquide" fs="34" />
-        <Chip T={p.T} at={1.8} x="700" y="760" text="DÉTENDEUR THERMOSTATIQUE" sub="bulbe TC · la pression tombe" fs="34" tone={C.orangeText} />
+        <Chip T={p.T} at={13.4} hold={7} x="1970" y="960" text="COMPRESSEUR" sub="carter : huile et liquide" fs="34" />
+        <Chip T={p.T} at={1.2} hold={5} x="1300" y="520" text="CONDENSEUR" sub="la vapeur redevient liquide" fs="34" />
+        <Chip T={p.T} at={1.8} hold={5} x="700" y="760" text="DÉTENDEUR THERMOSTATIQUE" sub="bulbe TC · la pression tombe" fs="34" tone={C.orangeText} />
       </g>
     );
   }
@@ -394,10 +402,10 @@
   function PipeChips(p) {
     return (
       <g>
-        <Chip T={p.T} at={15.0} x="1920" y="1322" text="BP · VAPEUR FROIDE" tone={C.blue} fs="30" />
-        <Chip T={p.T} at={17.6} x="1820" y="330" text="HP · GAZ CHAUD" tone={C.red} fs="30" />
-        <Chip T={p.T} at={19.6} x="920" y="108" text="HP · LIQUIDE" tone={C.orangeText} fs="30" />
-        <Chip T={p.T} at={21.6} x="600" y="920" text="BP · MÉLANGE FROID" tone={C.blue} fs="30" />
+        <Chip T={p.T} at={15.0} hold={5} x="1920" y="1322" text="BP · VAPEUR FROIDE" tone={C.blue} fs="30" />
+        <Chip T={p.T} at={17.6} hold={5} x="1820" y="330" text="HP · GAZ CHAUD" tone={C.red} fs="30" />
+        <Chip T={p.T} at={19.6} hold={5} x="920" y="108" text="HP · LIQUIDE" tone={C.orangeText} fs="30" />
+        <Chip T={p.T} at={21.6} hold={5} x="600" y="920" text="BP · MÉLANGE FROID" tone={C.blue} fs="30" />
       </g>
     );
   }
