@@ -68,6 +68,14 @@ au début de chaque film, et BARRE DE LECTURE sur les sept films (lecture/pause,
 « ça ne se lance pas en intégralité »). Briques dans `regules-kit.jsx`
 (PorteFusible, ContactV, BobineV, Potentiel), désormais chargé par les 7 films.
 
+**Deuxième passe de mise en page (22/08 soir, retour sur le 08)** : le schéma
+fluidique ne bouge pas ; la CHRONOLOGIE passe à GAUCHE sous la croix (les cinq
+films) ; l'armoire du 08 se resserre en largeur et s'étend sur TOUTE la hauteur
+(colonnes aérées, caméra dédiée `camFixed08`) ; barre de lecture compacte, sous-titre
+du 08 sorti du coin où elle flotte. Vérifié en ligne : au plan large, croix
+haut-gauche + chronologie bas-gauche + armoire pleine hauteur à droite, sans
+aucun chevauchement, curseur du rejeu présent.
+
 ⚠️ **Ce qui reste** : le VISIONNAGE humain des six films ; la voix du film 8 à
 écouter (sa scène CycleComplet est muette) ; les narrations des cinq autres films ;
 la logique fine de l'auto-maintien du 05 reproduit le film existant (flux narratifs),
