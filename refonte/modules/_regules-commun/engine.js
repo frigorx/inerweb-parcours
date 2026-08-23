@@ -14,7 +14,11 @@
 
   var filmScreenCount = (module.films || []).length ? 1 : 0;
   var lessonOffset = filmScreenCount;
-  var quizScreen = lessonOffset + module.lessons.length;
+  /* L'écran « S'entraîner » (mini-jeux, 23/08) s'insère entre le cours et le
+     questionnaire, seulement si le catalogue déclare des jeux. */
+  var jeuxScreenCount = (module.jeux || []).length && window.REGULES_JEUX ? 1 : 0;
+  var jeuxScreen = lessonOffset + module.lessons.length;
+  var quizScreen = jeuxScreen + jeuxScreenCount;
   var totalScreens = quizScreen + 1;
 
   var state = {
@@ -81,7 +85,10 @@
       var number = filmScreenCount ? "2." + (index + 1) : String(index + 1);
       items.push('<button type="button" class="station-tab" data-screen="' + screen + '" aria-label="Cours, écran ' + (index + 1) + ' : ' + escapeHtml(lesson.short) + '"><span>' + number + '</span><b>' + escapeHtml(lesson.short) + '</b></button>');
     });
-    items.push('<button type="button" class="station-tab quiz-tab" data-screen="' + quizScreen + '" aria-label="Questionnaire final"><span>' + (filmScreenCount ? "3" : "✓") + '</span><b>Questionnaire</b></button>');
+    if (jeuxScreenCount) {
+      items.push('<button type="button" class="station-tab jeux-tab" data-screen="' + jeuxScreen + '" aria-label="S’entraîner : mini-jeux"><span>' + (filmScreenCount ? "3" : "🎲") + '</span><b>S’entraîner</b></button>');
+    }
+    items.push('<button type="button" class="station-tab quiz-tab" data-screen="' + quizScreen + '" aria-label="Questionnaire final"><span>' + (filmScreenCount ? (jeuxScreenCount ? "4" : "3") : "✓") + '</span><b>Questionnaire</b></button>');
     nav.innerHTML = items.join("");
     nav.style.setProperty("--screen-count", items.length);
     nav.addEventListener("click", function (event) {
@@ -210,6 +217,14 @@
     });
   }
 
+  function renderJeux() {
+    stopVoix();
+    var article = document.getElementById("lesson-card");
+    article.className = "lesson-card jeux-screen";
+    if (window.REGULES_JEUX) { window.REGULES_JEUX.rendre(article, module); }
+    else { article.innerHTML = "<p>Les jeux ne sont pas chargés sur cette page.</p>"; }
+  }
+
   function renderQuiz() {
     stopVoix();
     var article = document.getElementById("lesson-card");
@@ -260,7 +275,8 @@
     state.screen = index;
     state.furthest = Math.max(state.furthest, index);
     if (filmScreenCount && index === 0) { renderFilm(); }
-    else if (index < quizScreen) { renderLesson(); }
+    else if (jeuxScreenCount && index === jeuxScreen) { renderJeux(); }
+    else if (index < jeuxScreen) { renderLesson(); }
     else { renderQuiz(); }
     updateChrome();
     focusContent();
@@ -315,9 +331,10 @@
   window.REGULE_VOICE_STATUS = { state: "stopped", src: "", currentTime: 0, error: "" };
 
   function fichierVoix() {
-    if (state.screen >= lessonOffset && state.screen < quizScreen) {
+    if (state.screen >= lessonOffset && state.screen < jeuxScreen) {
       return "voix/masculine/" + module.lessons[state.screen - lessonOffset].id + ".mp3";
     }
+    if (jeuxScreenCount && state.screen === jeuxScreen) { return null; /* les jeux sont muets : pas de MP3, jamais de synthèse */ }
     if (state.quizIndex < module.quiz.length) {
       return "voix/masculine/q" + (state.quizIndex + 1) + (state.answered ? "-reponse" : "") + ".mp3";
     }

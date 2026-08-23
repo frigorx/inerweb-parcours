@@ -95,9 +95,9 @@ poser("_regules-commun/catalog.js", readFileSync(join(SOURCE, "_regules-commun",
 poser("_regules-commun/engine.js", recollerEngine(readFileSync(join(SOURCE, "_regules-commun", "engine.js"), "utf8")));
 poser("_regules-commun/hub.js", recollerHub(readFileSync(join(SOURCE, "_regules-commun", "hub.js"), "utf8")));
 poser("_regules-commun/styles.css", readFileSync(join(SOURCE, "_regules-commun", "styles.css"), "utf8"));
-// Accessibilité des films et logo (apports du 22/08) : dans la liste blanche,
-// sans quoi une copie les laisserait diverger entre l'atelier et le pack.
-for (const f of ["film-accessible.css", "film-accessible.js", "logo-inerweb-edu.svg"]) {
+// Accessibilité des films, logo, et le moteur des mini-jeux (23/08) : dans la
+// liste blanche, sans quoi une copie les laisserait diverger.
+for (const f of ["film-accessible.css", "film-accessible.js", "logo-inerweb-edu.svg", "jeux.js"]) {
   const source = join(SOURCE, "_regules-commun", f);
   if (existsSync(source)) poser("_regules-commun/" + f, readFileSync(source, "utf8"));
 }

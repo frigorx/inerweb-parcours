@@ -719,3 +719,52 @@ dialog::backdrop { background: rgba(27, 58, 99, 0.28); }
   .quiz-option { background: #fff !important; color: #000 !important; }
   svg * { animation: none !important; }
 }
+
+/* ---- S'entraîner : les mini-jeux (23/08) --------------------------------- */
+.jeux-panel { padding: 8px 4px; }
+.jeux-onglets { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0 18px; }
+.jeu-onglet { border: 2px solid var(--bleu, #1b3a63); background: var(--carte, #fffdf8); color: var(--bleu, #1b3a63); border-radius: 10px; padding: 8px 14px; font-weight: 800; cursor: pointer; }
+.jeu-onglet.active { background: var(--bleu, #1b3a63); color: #fffdf8; }
+.jeu-consigne { font-weight: 700; margin: 6px 0 14px; }
+.jeu-reponse, .jeu-reserve { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; padding: 12px; border-radius: 12px; }
+.jeu-reponse { border: 2px dashed #98a6b3; min-height: 58px; }
+.jeu-reserve { background: #eef2f6; }
+.jeu-vide { color: #52657a; margin: 4px; font-size: 15px; }
+.jeu-etape { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #1b3a63; background: #fffdf8; color: #233044; border-radius: 10px; padding: 8px 12px; font-weight: 700; cursor: pointer; text-align: left; }
+.jeu-etape span { background: #1b3a63; color: #fffdf8; border-radius: 50%; min-width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; }
+.jeu-etape.posee { border-color: #c9451a; }
+.jeu-etape.corrigee { cursor: default; flex-direction: column; align-items: flex-start; }
+.jeu-etape.corrigee.juste { border-color: #287a62; background: #e4f2ec; }
+.jeu-etape.corrigee.fausse { border-color: #b73535; background: #fdeeee; }
+.jeu-etape.corrigee small { color: #b73535; font-weight: 700; }
+.jeu-retour { margin: 14px 0; font-weight: 700; min-height: 24px; }
+.jeu-colonnes { display: flex; gap: 26px; flex-wrap: wrap; margin: 12px 0; }
+.jeu-colonne { display: flex; flex-direction: column; align-items: center; gap: 0; border: 2px solid #c9d2dc; border-radius: 14px; padding: 12px 18px; background: #fffdf8; }
+.jeu-colonne h4 { margin: 0 0 8px; color: #c9451a; letter-spacing: 1px; }
+.jeu-rail { font-weight: 900; color: #1b3a63; border-top: 4px solid #1b3a63; border-bottom: 4px solid #1b3a63; padding: 1px 22px; }
+.jeu-fil { width: 5px; height: 22px; background: #98a6b3; }
+.jeu-fil.courant { background: repeating-linear-gradient(180deg, #b73535 0 8px, #f3c6c6 8px 14px); animation: jeu-courant 0.8s linear infinite; }
+@keyframes jeu-courant { to { background-position: 0 14px; } }
+.jeu-case { width: 150px; min-height: 54px; border: 2px dashed #98a6b3; border-radius: 10px; background: #f7f9fb; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; color: #52657a; }
+.jeu-case.pleine { border-style: solid; border-color: #1b3a63; background: #fffdf8; color: #1b3a63; }
+.jeu-case.juste { border-color: #287a62; background: #e4f2ec; }
+.jeu-case.fausse { border-color: #b73535; background: #fdeeee; }
+.jeu-case small, .jeu-organe small { font-weight: 600; color: #52657a; }
+.jeu-organe { display: inline-flex; flex-direction: column; align-items: center; border: 2px solid #1b3a63; background: #fffdf8; border-radius: 10px; padding: 8px 14px; cursor: pointer; font-weight: 900; color: #1b3a63; }
+.jeu-organe.enmain { background: #1b3a63; color: #fffdf8; }
+.jeu-organe.enmain small { color: #d5e2ef; }
+.jeu-colonne.alimentee { border-color: #287a62; box-shadow: 0 0 0 3px #e4f2ec; }
+.jeu-panne { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+.jeu-schema { flex: 1 1 260px; max-width: 380px; }
+.jeu-schema svg { width: 100%; height: auto; }
+.jeu-choix { flex: 1 1 240px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.jsvg-rail { stroke: #1b3a63; stroke-width: 8; }
+.jsvg-phase { stroke: #b73535; stroke-width: 9; }
+.jsvg-retour { stroke: #ff6b35; stroke-width: 9; }
+.jsvg-courant { stroke: #b73535; stroke-width: 9; stroke-dasharray: 14 10; }
+.jsvg-boite { fill: #fffdf8; stroke: #35495f; stroke-width: 5; }
+.jsvg-boite.fautif { stroke: #b73535; stroke-width: 7; }
+.jsvg-bobine { fill: #e8f0f7; stroke: #1b3a63; stroke-width: 5; }
+.jsvg-code { font: 900 24px "Trebuchet MS", sans-serif; fill: #1b3a63; }
+.jsvg-mini { font: 700 15px "Trebuchet MS", sans-serif; fill: #52657a; }
+.jeu-rejouer { margin-top: 6px; }

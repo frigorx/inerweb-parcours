@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-23a",
+    version: "2026-08-23b",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -224,6 +224,40 @@
         promise: "Séparer la demande de froid et l’arrêt compresseur pour vider l’évaporateur à chaque arrêt.",
         sourceKeys: ["types", "pumpdown"],
         films: [{ fichier: "regules-03-pump-down-automatique.html", titre: "Le film" }],
+        /* Pilote des mini-jeux (23/08) : trois gabarits, données seulement —
+           la mécanique vit dans jeux.js. La séquence pioche les étapes de
+           l'écran « tirage », jamais recopiées. */
+        jeux: [
+          { type: "sequence", court: "La séquence", ecran: "tirage",
+            titre: "Remets le tirage au vide dans l’ordre",
+            consigne: "La consigne vient d’être atteinte. Touche les étapes dans l’ordre où elles se produisent." },
+          { type: "cablage", court: "Le câblage",
+            titre: "Câble les deux commandes séparées",
+            consigne: "Place chaque organe dans sa colonne, du rail de phase vers le neutre.",
+            bravo: "Le thermostat pilote Y1, la pression pilote KM1 : c’est le pump-down.",
+            colonnes: [
+              { nom: "Ligne liquide", ordre: ["B1", "Y1"] },
+              { nom: "Compresseur", ordre: ["HP", "BP", "KM1"] }
+            ],
+            organes: [
+              { code: "B1", role: "thermostat" },
+              { code: "Y1", role: "électrovanne" },
+              { code: "HP", role: "sécurité" },
+              { code: "BP", role: "régulation" },
+              { code: "KM1", role: "contacteur" }
+            ] },
+          { type: "panne", court: "La panne",
+            titre: "Trouve le contact ouvert",
+            consigne: "Le compresseur ne démarre pas. Lis les couleurs de la colonne.",
+            explication: "La BP de régulation est ouverte : la pression d’aspiration n’a pas atteint le seuil d’enclenchement.",
+            scenario: {
+              bobine: "KM1",
+              contacts: [
+                { code: "HP", role: "sécurité" },
+                { code: "BP", role: "régulation", ouvert: true }
+              ]
+            } }
+        ],
         lessons: [
           {
             id: "deux-commandes",
