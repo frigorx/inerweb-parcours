@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 50" role="img" aria-labelledby="title desc">
+  <title id="title">inerWeb — Parcours du froid</title>
+  <desc id="desc">Logo textuel inerWeb Édu, bleu marine et orange.</desc>
+  <rect x="1" y="1" width="48" height="48" rx="14" fill="#fffdf8" stroke="#1b3a63" stroke-width="2"/>
+  <path d="M14 25h22M25 14v22" stroke="#3d7fca" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="25" cy="25" r="6" fill="#ff6b35" stroke="#1b3a63" stroke-width="2"/>
+  <text x="60" y="27" fill="#1b3a63" font-family="Trebuchet MS,Calibri,Arial,sans-serif" font-size="23" font-weight="700">inerWeb</text>
+  <text x="61" y="41" fill="#637285" font-family="Calibri,Segoe UI,Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">PARCOURS DU FROID</text>
+</svg>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f1e7">
+  <title>La Rame CO₂ — vers la catégorie B · inerWeb</title>
+  <link rel="stylesheet" href="styles.css?v=20260820d">
+</head>
+<body>
+  <a class="skip-link" href="#station-detail">Aller à la gare sélectionnée</a>
+  <div class="line-shell">
+    <header class="line-header">
+      <a class="brand" href="../../parcours.html" aria-label="Retour au parcours inerWeb">
+        <img src="../_co2-commun/logo-inerweb.svg?v=20260820d" alt="inerWeb — Parcours du froid" width="268" height="50">
+      </a>
+      <div class="line-title">
+        <p>ATLAS INTERACTIF R744 · 8 GARES RELIÉES</p>
+        <h1>La Rame CO₂ <span>vers la catégorie B</span></h1>
+      </div>
+      <p class="line-count"><strong id="station-count">8</strong><span>gares liées</span></p>
+    </header>
+
+    <main class="line-main">
+      <section class="map-card" aria-labelledby="map-title">
+        <div class="map-heading">
+          <div>
+            <p class="kicker">UNE MOLÉCULE · UN SYSTÈME · DES DÉCISIONS</p>
+            <h2 id="map-title">Embarquez dans la matière</h2>
+          </div>
+          <p>Du comportement du CO₂ jusqu’à la lecture d’une centrale réelle.</p>
+        </div>
+        <nav class="metro-map" id="metro-map" aria-label="Les huit gares du parcours CO₂">
+          <div class="molecule-field" aria-hidden="true"></div>
+          <svg class="route" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true">
+            <path class="route-shadow" d="M82 118 H760 C850 118 900 160 900 222 C900 300 842 330 750 330 H252"/>
+            <path class="route-rail" d="M82 118 H760 C850 118 900 160 900 222 C900 300 842 330 750 330 H252"/>
+            <path class="route-energy" d="M82 118 H760 C850 118 900 160 900 222 C900 300 842 330 750 330 H252"/>
+          </svg>
+          <div class="station-grid" id="station-grid"></div>
+          <div class="route-legend" aria-hidden="true"><span></span> progression conseillée</div>
+        </nav>
+        <p class="map-help">Touchez une gare. Au clavier : flèches, Début et Fin.</p>
+      </section>
+
+      <article class="detail-card" id="station-detail" tabindex="-1" aria-live="polite">
+        <div class="detail-topline">
+          <p class="station-position" id="station-position">GARE 1 SUR 8</p>
+          <span class="draft-badge">brouillon à relire</span>
+        </div>
+        <div class="detail-portrait" aria-hidden="true">
+          <span class="detail-number" id="detail-number">01</span>
+          <span class="detail-tag" id="detail-tag">IDENTITÉ</span>
+        </div>
+        <h2 id="station-title">Pourquoi le R744 ?</h2>
+        <p class="station-summary" id="station-summary"></p>
+        <div class="learn-box"><strong>Les trois repères</strong><ul id="station-topics"></ul></div>
+        <p class="quiz-note"><strong>Fin de gare :</strong> cinq questions corrigées. Ce parcours ne remplace pas l’évaluation catégorie B.</p>
+        <div class="detail-actions">
+          <a class="station-open" id="station-open" href="../co2-pourquoi-r744/index.html">Entrer dans la gare <span aria-hidden="true">→</span></a>
+          <a class="habilitation-link" href="../../capsule.html?sujet=classes-de-securite">Lien Habilitation Fluides</a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="line-footer">
+      <button class="line-button" id="previous-station" type="button">← Gare précédente</button>
+      <p class="line-status" id="line-status">Gare 1 sur 8 · Pourquoi</p>
+      <button class="line-button primary" id="next-station" type="button">Gare suivante →</button>
+    </footer>
+  </div>
+
+  <section class="print-list" aria-labelledby="print-title">
+    <h1 id="print-title">La Rame CO₂ — vers la catégorie B</h1>
+    <p>Huit gares de découverte, à suivre dans cet ordre.</p>
+    <ol id="print-stations"></ol>
+    <p><strong>Limite :</strong> ce parcours n’inclut ni pratique sur matériel R744, ni évaluation réglementaire, ni bon à tirer métier.</p>
+  </section>
+
+  <noscript><p class="noscript">JavaScript est désactivé. Ouvrez la première gare : <a href="../co2-pourquoi-r744/index.html">Pourquoi le R744 ?</a>.</p></noscript>
+  <div class="sr-only" id="live-status" aria-live="polite"></div>
+  <script src="app.js?v=20260820d"></script>
+  <script src="../../moteur/lisibilite.js"></script>
+</body>
+</html>
