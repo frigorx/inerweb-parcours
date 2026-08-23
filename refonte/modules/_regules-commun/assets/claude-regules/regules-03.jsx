@@ -226,7 +226,7 @@
     var bpArm = kmLive ? 0 : -30;
     var fault = T >= CUES.CourtCycle + 4.0 && T < CUES.Chronologie - 0.4;
 
-    var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
+    var cam = RK.camFixed(T); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var propre = clamp((T - CUES.CourtCycle - 0.4) / 0.7, 0, 1) * clamp(1 - (T - CUES.CourtCycle - 3.4) / 0.6, 0, 1);
@@ -256,6 +256,7 @@
             </g>
             <Cabinet T={T} arm={arm} bpArm={bpArm} y1Live={y1Live} kmLive={kmLive} fault={fault} />
             <Chrono T={T} replayF={replayF} />
+            <RK.Spot T={T} V={RK.camPaliers()} cam={cam} />
           </g>
         </svg>
 

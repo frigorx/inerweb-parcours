@@ -188,25 +188,22 @@
   }
 
   /* Caméra propre au 08 : son armoire étirée (2820→5060 × 100→2260) et son
-     chronogramme parti à gauche demandent leurs propres cadrages. */
+     chronogramme parti à gauche demandent leur propre plan général.
+     23/08 : la caméra ne bouge plus (mal au cœur) — les anciens cadrages
+     (PALIERS08) alimentent le surligneur RK.Spot. */
   function camFixed08(T) {
-    var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var duo = { cx: 2680, cy: 1160, z: 0.40 };
-    var large = { cx: 2665, cy: 1300, z: 0.40 };
-    var V = [
-      { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
-      { t: 6, v: { cx: 3940, cy: 1000, z: 0.58 } },
-      { t: 13, v: croix },
-      { t: 23, v: duo },
-      { t: 31, v: croix },
-      { t: 38, v: { cx: 1505, cy: 2020, z: 0.70 } },
-      { t: 44, v: large },
-      { t: 60, v: large }
-    ];
-    var k = V[0].v;
-    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-    return k;
+    return { cx: 2665, cy: 1300, z: 0.40 };
   }
+  var PALIERS08 = [
+    { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
+    { t: 6, v: { cx: 3940, cy: 1000, z: 0.58 } },
+    { t: 13, v: { cx: 1400, cy: 720, z: 0.74 } },
+    { t: 23, v: { cx: 2680, cy: 1160, z: 0.40 } },
+    { t: 31, v: { cx: 1400, cy: 720, z: 0.74 } },
+    { t: 38, v: { cx: 1505, cy: 2020, z: 0.70 } },
+    { t: 44, v: { cx: 2665, cy: 1300, z: 0.40 } },
+    { t: 60, v: { cx: 2665, cy: 1300, z: 0.40 } }
+  ];
 
   var CH = { x0: 700, x1: 2420 };
   function chx(f) { return CH.x0 + (CH.x1 - CH.x0) * f; }
@@ -348,7 +345,7 @@
                  [tKM2, 0.52], [tFin, 0.74], [tReprise, 0.80], [tVent, 0.86], [tVent + 2, 0.88]], Tm)
       : 0;
 
-    var cam = props.fixedCam !== false ? camFixed08(T) : RK.camAt(T);
+    var cam = camFixed08(T); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var banniere = clamp((T - CUES.Consigne - 4.4) / 0.6, 0, 1) * clamp(1 - (T - tFin) / 0.6, 0, 1) * (1 - keyIn);
@@ -381,6 +378,7 @@
                      s1Ouvert={s1Ouvert}
                      y1Live={y1Live} kmLive={kmLive} degLive={degLive} ventLive={ventLive} />
             <Chrono T={T} replayF={replayF} />
+            <RK.Spot T={T} V={PALIERS08} cam={cam} />
           </g>
         </svg>
 

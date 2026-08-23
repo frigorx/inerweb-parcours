@@ -7,6 +7,7 @@
   var Easing = window.Easing;
   var animate = window.animate;
   var clamp = window.clamp;
+  var RK = window.RK; /* le kit est chargé avant : Spot (surligneur du 23/08) */
 
   var C = {
     paper: '#f7f1e7', card: '#fffdf8', ink: '#233044', blue: '#1b3a63',
@@ -69,25 +70,22 @@
      le chronogramme (dessous) — puis le PLAN LARGE total pour la scène
      CycleComplet : électrique, fluidique et graphique en même temps. */
   /* L'armoire VERTICALE (22/08) est plus étroite : le duo et le plan large
-     gagnent en taille de rendu — c'était l'argument du schéma vertical. */
+     gagnent en taille de rendu — c'était l'argument du schéma vertical.
+     23/08 : la caméra ne bouge plus (mal au cœur) — plan général permanent,
+     les anciens cadrages (PALIERS) alimentent le surligneur RK.Spot. */
   function camFixed(T) {
-    var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var duo = { cx: 2240, cy: 830, z: 0.49 };
-    var large = { cx: 2240, cy: 1240, z: 0.465 };
-    var V = [
-      { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
-      { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },
-      { t: 13, v: croix },
-      { t: 23, v: duo },
-      { t: 31, v: croix },
-      { t: 38, v: { cx: 1505, cy: 1980, z: 0.70 } },
-      { t: 44, v: large },
-      { t: 60, v: large }
-    ];
-    var k = V[0].v;
-    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-    return k;
+    return { cx: 2240, cy: 1240, z: 0.465 };
   }
+  var PALIERS = [
+    { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
+    { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },
+    { t: 13, v: { cx: 1400, cy: 720, z: 0.74 } },
+    { t: 23, v: { cx: 2240, cy: 830, z: 0.49 } },
+    { t: 31, v: { cx: 1400, cy: 720, z: 0.74 } },
+    { t: 38, v: { cx: 1505, cy: 1980, z: 0.70 } },
+    { t: 44, v: { cx: 2240, cy: 1240, z: 0.465 } },
+    { t: 60, v: { cx: 2240, cy: 1240, z: 0.465 } }
+  ];
 
   function Chip(p) {
     /* Brief du 22/08 : une étiquette se montre UNE fois puis se retire —
@@ -716,7 +714,7 @@
     var migO = clamp((T - CUES.Migration) / 0.8, 0, 1) * clamp(1 - (T - CUES.Migration - 6.4) / 0.8, 0, 1);
     var risque = clamp((T - CUES.Migration - 5.0) / 0.8, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
 
-    var cam = props.fixedCam !== false ? camFixed(T) : camAt(T);
+    var cam = camFixed(T); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
 
@@ -736,6 +734,7 @@
             <CroixLabels T={T} />
             <Cabinet T={Tm} arm={arm} tClose={tClose} tOpen={tOpen} phaseAll={T} />
             <Chrono T={T} replayF={replayF} />
+            <RK.Spot T={T} V={PALIERS} cam={cam} />
           </g>
         </svg>
 

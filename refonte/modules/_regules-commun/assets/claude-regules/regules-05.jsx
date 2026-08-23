@@ -248,7 +248,7 @@
     var bprArm = bp > 0.34 ? 0 : -30;
     var secu = clamp((T - CUES.ArretUnique - 6.0) / 0.7, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
 
-    var cam = props.fixedCam !== false ? RK.camFixed(T, 4720) : RK.camAt(T);
+    var cam = RK.camFixed(T, 4720); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
     var propre = clamp((T - CUES.ArretUnique - 0.4) / 0.7, 0, 1) * clamp(1 - (T - CUES.ArretUnique - 3.6) / 0.6, 0, 1);
@@ -283,6 +283,7 @@
             </g>
             <Cabinet T={T} arm={arm} bprArm={bprArm} y1Live={y1Live} kaLive={kaLive} kmLive={kmLive} secu={secu} />
             <Chrono T={T} replayF={replayF} />
+            <RK.Spot T={T} V={RK.camPaliers(4720)} cam={cam} />
           </g>
         </svg>
 

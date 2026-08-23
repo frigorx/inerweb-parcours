@@ -7,6 +7,7 @@
   var Easing = window.Easing;
   var animate = window.animate;
   var clamp = window.clamp;
+  var RK = window.RK; /* le kit est chargé avant : Spot (surligneur du 23/08) */
 
   var C = {
     paper: '#f7f1e7', card: '#fffdf8', ink: '#233044', blue: '#1b3a63',
@@ -27,32 +28,20 @@
     }
   };
 
-  var CAM = [
-    { t: 0.0, cx: 1330, cy: 700, z: 0.70 },
-    { t: 4.4, cx: 1330, cy: 720, z: 0.74 },
-    { t: 5.6, cx: 1330, cy: 1030, z: 0.96 },
-    { t: 10.5, cx: 1330, cy: 1010, z: 1.02 },
-    { t: 13.0, cx: 1960, cy: 700, z: 0.90 },
-    { t: 15.6, cx: 1960, cy: 800, z: 1.30 },
-    { t: 19.0, cx: 1970, cy: 790, z: 1.40 },
-    { t: 21.5, cx: 1970, cy: 660, z: 1.32 },
-    { t: 25.0, cx: 1975, cy: 640, z: 1.48 },
-    { t: 28.2, cx: 1970, cy: 660, z: 1.24 },
-    { t: 31.0, cx: 1400, cy: 800, z: 0.58 },
-    { t: 34.0, cx: 1410, cy: 790, z: 0.61 }
-  ];
-
+  /* 23/08 (F. Henninot) : la caméra ne bouge plus — le travelling continu
+     donnait mal au cœur. Plan général permanent ; l'ancien parcours, réduit
+     à ses stations utiles (l'évaporateur qui se remplit, puis le compresseur
+     qui encaisse le coup de liquide), alimente le surligneur RK.Spot. */
   function camAt(T) {
-    if (T <= CAM[0].t) return CAM[0];
-    for (var i = 1; i < CAM.length; i++) {
-      if (T <= CAM[i].t) {
-        var a = CAM[i - 1], b = CAM[i];
-        var u = Easing.easeInOutCubic((T - a.t) / (b.t - a.t));
-        return { cx: a.cx + (b.cx - a.cx) * u, cy: a.cy + (b.cy - a.cy) * u, z: a.z * Math.pow(b.z / a.z, u) };
-      }
-    }
-    return CAM[CAM.length - 1];
+    return { cx: 1400, cy: 800, z: 0.58 };
   }
+  var ZONES = [
+    { t: 0, v: { cx: 1400, cy: 800, z: 0.58 } },
+    { t: 5.6, v: { cx: 1330, cy: 1010, z: 0.96 } },
+    { t: 13.0, v: { cx: 1960, cy: 700, z: 0.90 } },
+    { t: 15.6, v: { cx: 1970, cy: 700, z: 1.30 } },
+    { t: 31.0, v: { cx: 1400, cy: 800, z: 0.58 } }
+  ];
 
   function Chip(p) {
     /* Brief du 22/08 : une étiquette se montre UNE fois puis se retire. */
@@ -430,7 +419,7 @@
     var post = animate({ from: -7.5, to: -5.4, start: tStart, end: c.authoredTotal, ease: Easing.linear });
     var temp = T < tStart ? riseA(T) : post(T);
 
-    var cam = camAt(T);
+    var cam = camAt(T); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
     var keyIn = MOTION.enter(0, 1, CUES.Casse + 2.6, 0.9)(T);
 
@@ -449,6 +438,7 @@
             <Machine T={T} spin={phase * 300} flow={flow} phase={phase} live={energy > 0.5}
                      carter={carterLiq} slug={slug} broke={broke} />
             <CroixLabels T={T} />
+            <RK.Spot T={T} V={ZONES} cam={cam} />
           </g>
         </svg>
 

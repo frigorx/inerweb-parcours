@@ -1897,11 +1897,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
     function camFixed(T, droite) {
       var D = droite || 4180;
+      return { cx: (300 + D) / 2, cy: 1240, z: Math.min(1920 / (D - 260), 0.465) };
+    }
+    function camPaliers(droite) {
+      var D = droite || 4180;
       var croix = { cx: 1400, cy: 720, z: 0.74 };
-      var zTout = Math.min(1920 / (D - 260), 0.465);
       var duo = { cx: (300 + D) / 2, cy: 830, z: Math.min(1920 / (D - 260), 0.52) };
-      var large = { cx: (300 + D) / 2, cy: 1240, z: zTout };
-      var V = [
+      var large = camFixed(0, D);
+      return [
         { t: 0, v: { cx: 1420, cy: 1010, z: 0.9 } },
         { t: 6, v: { cx: 2520 + (D - 2520) / 2, cy: 820, z: 0.66 } },
         { t: 13, v: croix },
@@ -1911,9 +1914,41 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { t: 44, v: large },
         { t: 60, v: large }
       ];
-      var k = V[0].v;
-      for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-      return k;
+    }
+    function Spot(p) {
+      var T = p.T, V = p.V, cam = p.cam, m = p.marge || 0.86;
+      var idx = 0;
+      for (var i = 0; i < V.length; i++) if (T >= V[i].t) idx = i;
+      function zone(v) {
+        var w = 1920 / v.z * m, h = 1080 / v.z * m;
+        return { x: v.cx - w / 2, y: v.cy - h / 2, w, h };
+      }
+      var a = zone(V[idx > 0 ? idx - 1 : 0].v), b = zone(V[idx].v);
+      var u = idx === 0 ? 1 : Easing.easeInOutCubic(clamp((T - V[idx].t) / 0.9, 0, 1));
+      var r = {
+        x: a.x + (b.x - a.x) * u,
+        y: a.y + (b.y - a.y) * u,
+        w: a.w + (b.w - a.w) * u,
+        h: a.h + (b.h - a.h) * u
+      };
+      var vis = clamp((0.985 - r.w / (1920 / cam.z * m)) / 0.06, 0, 1);
+      if (vis <= 2e-3) return null;
+      var ep = 9 / cam.z, rx = 24 / cam.z;
+      return /* @__PURE__ */ React.createElement("g", { opacity: vis, pointerEvents: "none" }, /* @__PURE__ */ React.createElement(
+        "rect",
+        {
+          x: r.x,
+          y: r.y,
+          width: r.w,
+          height: r.h,
+          rx,
+          fill: "#f5c84c",
+          fillOpacity: "0.10",
+          stroke: "#e6a817",
+          strokeWidth: ep,
+          strokeOpacity: 0.78 + 0.17 * Math.sin(T * 2.4)
+        }
+      ));
     }
     function Chip(p) {
       var s = MOTION.pop(p.at)(p.T);
@@ -2333,6 +2368,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       MOTION,
       camAt,
       camFixed,
+      camPaliers,
+      Spot,
       Chip,
       Coil,
       Fan,
@@ -2509,7 +2546,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var replayF = enRejeu ? pw(Tm, [[tY1c - 1, 0.08], [tY1c, 0.1], [tKMc, 0.13], [tY1o, 0.42], [tKMo, 0.5], [tKMo + 3, 0.52]]) : 0;
       var bpArm = kmLive ? 0 : -30;
       var fault = T >= CUES.CourtCycle + 4 && T < CUES.Chronologie - 0.4;
-      var cam = props.fixedCam !== false ? RK.camFixed(T) : RK.camAt(T);
+      var cam = RK.camFixed(T);
       var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
       var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
       var propre = clamp((T - CUES.CourtCycle - 0.4) / 0.7, 0, 1) * clamp(1 - (T - CUES.CourtCycle - 3.4) / 0.6, 0, 1);
@@ -2560,7 +2597,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             }
           ), /* @__PURE__ */ React.createElement("text", { x: "2320", y: "934", textAnchor: "middle", fill: kmLive ? C.orangeText : C.blue, fontSize: "34", fontWeight: "900" }, kmLive ? "KM1 ALIMENT\xC9" : "KM1 AU REPOS")),
           /* @__PURE__ */ React.createElement(Cabinet, { T, arm, bpArm, y1Live, kmLive, fault }),
-          /* @__PURE__ */ React.createElement(Chrono, { T, replayF })
+          /* @__PURE__ */ React.createElement(Chrono, { T, replayF }),
+          /* @__PURE__ */ React.createElement(RK.Spot, { T, V: RK.camPaliers(), cam })
         )),
         /* @__PURE__ */ React.createElement("div", { style: {
           position: "absolute",

@@ -61,19 +61,26 @@
     return CAM[CAM.length - 1];
   }
 
-  /* Refonte du 22/08 (brief F. Henninot) : une étape par plan — la chambre,
-     l'armoire (désormais À DROITE de la croix), la croix, les deux ensemble,
-     le chronogramme (dessous) — puis le PLAN LARGE total pour la scène
-     CycleComplet : électrique, fluidique et graphique en même temps. */
+  /* Refonte du 23/08 (F. Henninot : « une page qui reprend tout, et tu
+     surlignes ») : la caméra NE BOUGE PLUS — les changements de vue donnaient
+     mal au cœur. Plan général en permanence ; les anciens cadrages par étape
+     (camPaliers) servent désormais de zones au SURLIGNEUR (Spot). */
   /* `droite` = bord droit du canvas du film (l'armoire VERTICALE du 22/08
      n'a pas la même largeur partout : 2 colonnes au 03, 4 au 08). */
   function camFixed(T, droite) {
     var D = droite || 4180;
+    return { cx: (300 + D) / 2, cy: 1240, z: Math.min(1920 / (D - 260), 0.465) };
+  }
+
+  /* Les étapes du brief du 22/08 — la chambre, l'armoire, la croix, le duo,
+     le chronogramme, le plan large — gardées telles quelles : ce sont elles
+     que le surligneur parcourt, aux mêmes instants qu'avant. */
+  function camPaliers(droite) {
+    var D = droite || 4180;
     var croix = { cx: 1400, cy: 720, z: 0.74 };
-    var zTout = Math.min(1920 / (D - 260), 0.465);
     var duo = { cx: (300 + D) / 2, cy: 830, z: Math.min(1920 / (D - 260), 0.52) };
-    var large = { cx: (300 + D) / 2, cy: 1240, z: zTout };
-    var V = [
+    var large = camFixed(0, D);
+    return [
       { t: 0, v: { cx: 1420, cy: 1010, z: 0.90 } },
       { t: 6, v: { cx: 2520 + (D - 2520) / 2, cy: 820, z: 0.66 } },
       { t: 13, v: croix },
@@ -83,9 +90,36 @@
       { t: 44, v: large },
       { t: 60, v: large }
     ];
-    var k = V[0].v;
-    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-    return k;
+  }
+
+  /* Le surligneur du 23/08 : il remplace les déplacements de caméra. Cadre
+     ambre + voile jaune très léger sur la zone dont la voix parle — jamais
+     rouge ni orange, qui disent déjà « phase » et « retour neutre ». Il
+     glisse d'une zone à l'autre (0,9 s) ; l'image, elle, reste plein cadre,
+     et il s'efface quand la zone est le plan entier. */
+  function Spot(p) {
+    var T = p.T, V = p.V, cam = p.cam, m = p.marge || 0.86;
+    var idx = 0;
+    for (var i = 0; i < V.length; i++) if (T >= V[i].t) idx = i;
+    function zone(v) {
+      var w = 1920 / v.z * m, h = 1080 / v.z * m;
+      return { x: v.cx - w / 2, y: v.cy - h / 2, w: w, h: h };
+    }
+    var a = zone(V[idx > 0 ? idx - 1 : 0].v), b = zone(V[idx].v);
+    var u = idx === 0 ? 1 : Easing.easeInOutCubic(clamp((T - V[idx].t) / 0.9, 0, 1));
+    var r = { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u,
+              w: a.w + (b.w - a.w) * u, h: a.h + (b.h - a.h) * u };
+    var vis = clamp((0.985 - r.w / (1920 / cam.z * m)) / 0.06, 0, 1);
+    if (vis <= 0.002) return null;
+    var ep = 9 / cam.z, rx = 24 / cam.z;
+    return (
+      <g opacity={vis} pointerEvents="none">
+        <rect x={r.x} y={r.y} width={r.w} height={r.h} rx={rx}
+              fill="#f5c84c" fillOpacity="0.10"
+              stroke="#e6a817" strokeWidth={ep}
+              strokeOpacity={0.78 + 0.17 * Math.sin(T * 2.4)} />
+      </g>
+    );
   }
 
   function Chip(p) {
@@ -692,7 +726,7 @@
   }
 
   window.RK = {
-    C: C, MOTION: MOTION, camAt: camAt, camFixed: camFixed, Chip: Chip, Coil: Coil, Fan: Fan,
+    C: C, MOTION: MOTION, camAt: camAt, camFixed: camFixed, camPaliers: camPaliers, Spot: Spot, Chip: Chip, Coil: Coil, Fan: Fan,
     SymCompresseur: SymCompresseur, SymDetendeur: SymDetendeur, Compresseur: Compresseur,
     Pipes: Pipes, MigrationFlux: MigrationFlux, Croix: Croix, CroixLabels: CroixLabels,
     ChambreFond: ChambreFond, Chambre: Chambre, Machine: Machine, PipeChips: PipeChips,

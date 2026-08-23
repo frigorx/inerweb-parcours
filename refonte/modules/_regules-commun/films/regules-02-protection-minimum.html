@@ -1897,11 +1897,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
     function camFixed(T, droite) {
       var D = droite || 4180;
+      return { cx: (300 + D) / 2, cy: 1240, z: Math.min(1920 / (D - 260), 0.465) };
+    }
+    function camPaliers(droite) {
+      var D = droite || 4180;
       var croix = { cx: 1400, cy: 720, z: 0.74 };
-      var zTout = Math.min(1920 / (D - 260), 0.465);
       var duo = { cx: (300 + D) / 2, cy: 830, z: Math.min(1920 / (D - 260), 0.52) };
-      var large = { cx: (300 + D) / 2, cy: 1240, z: zTout };
-      var V = [
+      var large = camFixed(0, D);
+      return [
         { t: 0, v: { cx: 1420, cy: 1010, z: 0.9 } },
         { t: 6, v: { cx: 2520 + (D - 2520) / 2, cy: 820, z: 0.66 } },
         { t: 13, v: croix },
@@ -1911,9 +1914,41 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { t: 44, v: large },
         { t: 60, v: large }
       ];
-      var k = V[0].v;
-      for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-      return k;
+    }
+    function Spot(p) {
+      var T = p.T, V = p.V, cam = p.cam, m = p.marge || 0.86;
+      var idx = 0;
+      for (var i = 0; i < V.length; i++) if (T >= V[i].t) idx = i;
+      function zone(v) {
+        var w = 1920 / v.z * m, h = 1080 / v.z * m;
+        return { x: v.cx - w / 2, y: v.cy - h / 2, w, h };
+      }
+      var a = zone(V[idx > 0 ? idx - 1 : 0].v), b = zone(V[idx].v);
+      var u = idx === 0 ? 1 : Easing.easeInOutCubic(clamp((T - V[idx].t) / 0.9, 0, 1));
+      var r = {
+        x: a.x + (b.x - a.x) * u,
+        y: a.y + (b.y - a.y) * u,
+        w: a.w + (b.w - a.w) * u,
+        h: a.h + (b.h - a.h) * u
+      };
+      var vis = clamp((0.985 - r.w / (1920 / cam.z * m)) / 0.06, 0, 1);
+      if (vis <= 2e-3) return null;
+      var ep = 9 / cam.z, rx = 24 / cam.z;
+      return /* @__PURE__ */ React.createElement("g", { opacity: vis, pointerEvents: "none" }, /* @__PURE__ */ React.createElement(
+        "rect",
+        {
+          x: r.x,
+          y: r.y,
+          width: r.w,
+          height: r.h,
+          rx,
+          fill: "#f5c84c",
+          fillOpacity: "0.10",
+          stroke: "#e6a817",
+          strokeWidth: ep,
+          strokeOpacity: 0.78 + 0.17 * Math.sin(T * 2.4)
+        }
+      ));
     }
     function Chip(p) {
       var s = MOTION.pop(p.at)(p.T);
@@ -2333,6 +2368,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       MOTION,
       camAt,
       camFixed,
+      camPaliers,
+      Spot,
       Chip,
       Coil,
       Fan,
@@ -2368,6 +2405,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     var Easing = window.Easing;
     var animate = window.animate;
     var clamp = window.clamp;
+    var RK = window.RK;
     var C = {
       paper: "#f7f1e7",
       card: "#fffdf8",
@@ -2432,23 +2470,18 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return CAM[CAM.length - 1];
     }
     function camFixed(T) {
-      var croix = { cx: 1400, cy: 720, z: 0.74 };
-      var duo = { cx: 2240, cy: 830, z: 0.49 };
-      var large = { cx: 2240, cy: 1240, z: 0.465 };
-      var V = [
-        { t: 0, v: { cx: 1420, cy: 1010, z: 0.9 } },
-        { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },
-        { t: 13, v: croix },
-        { t: 23, v: duo },
-        { t: 31, v: croix },
-        { t: 38, v: { cx: 1505, cy: 1980, z: 0.7 } },
-        { t: 44, v: large },
-        { t: 60, v: large }
-      ];
-      var k = V[0].v;
-      for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = V[i].v;
-      return k;
+      return { cx: 2240, cy: 1240, z: 0.465 };
     }
+    var PALIERS = [
+      { t: 0, v: { cx: 1420, cy: 1010, z: 0.9 } },
+      { t: 6, v: { cx: 3350, cy: 820, z: 0.66 } },
+      { t: 13, v: { cx: 1400, cy: 720, z: 0.74 } },
+      { t: 23, v: { cx: 2240, cy: 830, z: 0.49 } },
+      { t: 31, v: { cx: 1400, cy: 720, z: 0.74 } },
+      { t: 38, v: { cx: 1505, cy: 1980, z: 0.7 } },
+      { t: 44, v: { cx: 2240, cy: 1240, z: 0.465 } },
+      { t: 60, v: { cx: 2240, cy: 1240, z: 0.465 } }
+    ];
     function Chip(p) {
       var s = MOTION.pop(p.at)(p.T);
       var sortie = p.hold ? clamp(1 - (p.T - (+p.at + +p.hold)) / 0.8, 0, 1) : 1;
@@ -2714,7 +2747,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var reveal = clamp((T - p.tClose) / 0.45, 0, 1) * (T < p.tOpen ? 1 : clamp(1 - (T - p.tOpen) / 0.2, 0, 1));
       var live = reveal > 0.4;
       var hpDefaut = clamp((T - 41.6) / 0.4, 0, 1);
-      var RK = window.RK;
+      var RK2 = window.RK;
       var ouvB1 = clamp(-p.arm / 30, 0, 1);
       var contactsC1 = [hpDefaut >= 0.5, false, ouvB1 >= 0.5];
       var premierOuvert = contactsC1.indexOf(true);
@@ -2727,7 +2760,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         if (!auxOuvert) return "courant";
         return troncon === 0 ? "phase" : "retour";
       };
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "1660", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "34", fontWeight: "900", letterSpacing: "3" }, "ARMOIRE \xB7 PROTECTION MINIMUM"), /* @__PURE__ */ React.createElement("text", { x: "1620", y: "66", textAnchor: "end", fill: C.blue, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "KM1 ET Y1 EN PARALL\xC8LE"), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "104", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "1490", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "1490", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 520 300 L 520 380" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 530 L 520 580" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 730 L 520 780" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 930 L 520 1041" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 1099 L 520 1300" })), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 520 300 L 520 380", mode: modeC1(0), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 520 530 L 520 580", mode: modeC1(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 520 730 L 520 780", mode: modeC1(2), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 520 930 L 520 1041", mode: modeC1(3), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 520 1099 L 520 1300", mode: modeC1(3), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.ContactV, { nf: true, x: 520, y: 380, ouv: hpDefaut, live, glyph: "p", code: "HP", sub: "s\xE9curit\xE9 HP", fault: hpDefaut > 0.5 }), /* @__PURE__ */ React.createElement(RK.ContactV, { nf: true, x: 520, y: 580, ouv: 0, live: live && hpDefaut < 0.5, glyph: "p", code: "BP", sub: "s\xE9curit\xE9 BP" }), /* @__PURE__ */ React.createElement(RK.ContactV, { x: 520, y: 780, ouv: ouvB1, live: live && hpDefaut < 0.5, glyph: "\u03B8", code: "B1", sub: "thermostat" }), /* @__PURE__ */ React.createElement(RK.BobineV, { x: 520, y: 1070, code: "KM1", sub: "COMPRESSEUR", live: live && hpDefaut < 0.5 }), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 1180 300 L 1180 780" }), /* @__PURE__ */ React.createElement("path", { d: "M 1180 930 L 1180 1041" }), /* @__PURE__ */ React.createElement("path", { d: "M 1180 1099 L 1180 1300" })), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 1180 300 L 1180 780", mode: modeC2(0), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 1180 930 L 1180 1041", mode: modeC2(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.Potentiel, { d: "M 1180 1099 L 1180 1300", mode: modeC2(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK.ContactV, { aux: true, x: 1180, y: 780, ouv: auxOuvert ? 1 : 0, live: !auxOuvert, code: "KM1", sub: "auxiliaire" }), /* @__PURE__ */ React.createElement(RK.BobineV, { x: 1180, y: 1070, code: "Y1", sub: "\xC9LECTROVANNE", live: !auxOuvert }), premierOuvert >= 0 && /* @__PURE__ */ React.createElement("text", { x: "556", y: "1230", fill: C.orangeText, fontSize: "26", fontWeight: "800", opacity: "0.9" }, "retour neutre"), /* @__PURE__ */ React.createElement("g", { opacity: clamp((T - 42) / 0.5, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "830", y: "1400", textAnchor: "middle", fill: C.red, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 R\xC9ARMEMENT MANUEL : RIEN NE REPART SEUL")));
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "1660", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "34", fontWeight: "900", letterSpacing: "3" }, "ARMOIRE \xB7 PROTECTION MINIMUM"), /* @__PURE__ */ React.createElement("text", { x: "1620", y: "66", textAnchor: "end", fill: C.blue, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "KM1 ET Y1 EN PARALL\xC8LE"), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "104", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK2.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "1490", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "1490", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 520 300 L 520 380" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 530 L 520 580" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 730 L 520 780" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 930 L 520 1041" }), /* @__PURE__ */ React.createElement("path", { d: "M 520 1099 L 520 1300" })), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 520 300 L 520 380", mode: modeC1(0), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 520 530 L 520 580", mode: modeC1(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 520 730 L 520 780", mode: modeC1(2), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 520 930 L 520 1041", mode: modeC1(3), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 520 1099 L 520 1300", mode: modeC1(3), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 520, y: 380, ouv: hpDefaut, live, glyph: "p", code: "HP", sub: "s\xE9curit\xE9 HP", fault: hpDefaut > 0.5 }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 520, y: 580, ouv: 0, live: live && hpDefaut < 0.5, glyph: "p", code: "BP", sub: "s\xE9curit\xE9 BP" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 520, y: 780, ouv: ouvB1, live: live && hpDefaut < 0.5, glyph: "\u03B8", code: "B1", sub: "thermostat" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 520, y: 1070, code: "KM1", sub: "COMPRESSEUR", live: live && hpDefaut < 0.5 }), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M 1180 300 L 1180 780" }), /* @__PURE__ */ React.createElement("path", { d: "M 1180 930 L 1180 1041" }), /* @__PURE__ */ React.createElement("path", { d: "M 1180 1099 L 1180 1300" })), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 1180 300 L 1180 780", mode: modeC2(0), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 1180 930 L 1180 1041", mode: modeC2(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.Potentiel, { d: "M 1180 1099 L 1180 1300", mode: modeC2(1), t: p.phaseAll }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: 1180, y: 780, ouv: auxOuvert ? 1 : 0, live: !auxOuvert, code: "KM1", sub: "auxiliaire" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 1180, y: 1070, code: "Y1", sub: "\xC9LECTROVANNE", live: !auxOuvert }), premierOuvert >= 0 && /* @__PURE__ */ React.createElement("text", { x: "556", y: "1230", fill: C.orangeText, fontSize: "26", fontWeight: "800", opacity: "0.9" }, "retour neutre"), /* @__PURE__ */ React.createElement("g", { opacity: clamp((T - 42) / 0.5, 0, 1) }, /* @__PURE__ */ React.createElement("text", { x: "830", y: "1400", textAnchor: "middle", fill: C.red, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "D\xC9FAUT HP \xB7 R\xC9ARMEMENT MANUEL : RIEN NE REPART SEUL")));
     }
     var CH = { x0: 700, x1: 2420, tempTop: 1990, tempBot: 2180 };
     function chx(f) {
@@ -2780,7 +2813,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var mig = animate({ from: 0, to: 1, start: CUES.Migration + 0.6, end: CUES.Migration + 5.5, ease: Easing.easeInOutSine })(T);
       var migO = clamp((T - CUES.Migration) / 0.8, 0, 1) * clamp(1 - (T - CUES.Migration - 6.4) / 0.8, 0, 1);
       var risque = clamp((T - CUES.Migration - 5) / 0.8, 0, 1) * clamp(1 - (T - CUES.Chronologie + 0.4) / 0.6, 0, 1);
-      var cam = props.fixedCam !== false ? camFixed(T) : camAt(T);
+      var cam = camFixed(T);
       var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
       var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
       return /* @__PURE__ */ React.createElement(
@@ -2804,7 +2837,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           /* @__PURE__ */ React.createElement(PipeChips, { T }),
           /* @__PURE__ */ React.createElement(CroixLabels, { T }),
           /* @__PURE__ */ React.createElement(Cabinet, { T: Tm, arm, tClose, tOpen, phaseAll: T }),
-          /* @__PURE__ */ React.createElement(Chrono, { T, replayF })
+          /* @__PURE__ */ React.createElement(Chrono, { T, replayF }),
+          /* @__PURE__ */ React.createElement(RK.Spot, { T, V: PALIERS, cam })
         )),
         /* @__PURE__ */ React.createElement("div", { style: {
           position: "absolute",
