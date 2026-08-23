@@ -2,9 +2,11 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Regules 02b Migration de liquide — inerWeb</title>
+<title>Régulation 2b · Migration de liquide — inerWeb Édu</title>
+<link rel="stylesheet" href="../film-accessible.css">
+<script>try { localStorage.removeItem("animstage-v3:t"); } catch (err) {}</script>
 </head>
 <body>
 <script type="text/plain" id="vendor0" data-url="https://unpkg.com/react@18.3.1/umd/react.production.min.js">/**
@@ -4186,7 +4188,7 @@ a:hover { color: #1b3a63; }
   var rejouer = document.createElement("button");
   rejouer.textContent = "⟲ Rejouer";
   rejouer.setAttribute("style", "border:none;background:#1b3a63;color:#fffdf8;border-radius:8px;padding:6px 10px;cursor:pointer;font:700 14px system-ui,sans-serif");
-  rejouer.onclick = function () { location.reload(); };
+  rejouer.onclick = function () { if (window.__filmCtl) { window.__filmCtl.allerA(0); window.__filmCtl.lecture(); } };
   var pl = document.createElement("button");
   pl.textContent = "⏸";
   pl.setAttribute("style", "border:none;background:#c9451a;color:#fffdf8;border-radius:8px;padding:6px 12px;cursor:pointer;font:700 14px system-ui,sans-serif");
@@ -4210,5 +4212,6 @@ a:hover { color: #1b3a63; }
   }, 300);
 })();
 </script>
+<script src="../film-accessible.js"></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 50" role="img" aria-labelledby="title desc">
+  <title id="title">inerWeb Édu</title>
+  <desc id="desc">Logo inerWeb avec flocon, ligne et cartouche Édu orange.</desc>
+  <text fill="#1b3a63" font-size="28" x="4" y="34">❄️</text>
+  <text fill="#1b3a63" font-family="Trebuchet MS, Trebuchet, sans-serif" font-size="26" font-weight="700" x="44" y="32">iner</text>
+  <text fill="#1b3a63" font-family="Segoe Script, Brush Script MT, cursive" font-size="26" x="94" y="32">Web</text>
+  <line stroke="#e8914a" stroke-width="2" x1="44" x2="150" y1="35" y2="35"/>
+  <rect fill="#e8914a" x="155" y="10" rx="5" ry="5" width="56" height="24"/>
+  <text fill="#fff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" x="183" y="27" text-anchor="middle">Édu</text>
+</svg>

@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  background: #f7f1e7;
+  color: #10233c;
+  font-family: Calibri, "Segoe UI", system-ui, Arial, sans-serif;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(255, 107, 53, 0.65) !important;
+  outline-offset: 3px !important;
+}
+
+.inerweb-film-controls {
+  padding: 4px 8px !important;
+  font-family: Calibri, "Segoe UI", system-ui, Arial, sans-serif !important;
+}
+
+.inerweb-film-controls button,
+button[title="Play/pause (space)"],
+button[title="Return to start (0)"],
+button[title="Export video"],
+button[title="Lecture ou pause"],
+button[title="Revenir au début"],
+button[title="Télécharger la vidéo"] {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+.inerweb-film-orientation {
+  display: none;
+}
+
+.inerweb-film-parent-large .inerweb-film-orientation {
+  display: none !important;
+}
+
+@media (max-width: 620px) and (orientation: portrait) {
+  .inerweb-film-orientation {
+    position: fixed;
+    top: calc(66px + env(safe-area-inset-top));
+    left: 10px;
+    right: 10px;
+    z-index: 9997;
+    display: block;
+    margin: 0;
+    padding: 9px 12px;
+    border: 2px solid #1b3a63;
+    border-left: 7px solid #ff6b35;
+    border-radius: 10px;
+    background: rgba(255, 253, 248, 0.96);
+    color: #10233c;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .inerweb-film-controls {
+    top: calc(8px + env(safe-area-inset-top)) !important;
+    right: 8px !important;
+    max-width: calc(100vw - 16px);
+  }
+
+  .inerweb-film-controls > div {
+    width: min(80px, 21vw) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

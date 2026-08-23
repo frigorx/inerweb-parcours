@@ -12,9 +12,15 @@
 
   window.REGULE_MODULE = module;
 
+  var filmScreenCount = (module.films || []).length ? 1 : 0;
+  var lessonOffset = filmScreenCount;
+  var quizScreen = lessonOffset + module.lessons.length;
+  var totalScreens = quizScreen + 1;
+
   var state = {
     screen: 0,
     furthest: 0,
+    filmIndex: 0,
     quizIndex: 0,
     score: 0,
     answered: false,
@@ -33,7 +39,7 @@
       '<main class="app" id="app">',
       '  <header class="topbar">',
       '    <a class="brand" href="../regules-interactif/index.html" aria-label="Revenir à la carte Les régules">',
-      '      <span class="brand-name">inerWeb</span><span class="brand-edition">ÉDU</span>',
+      '      <img class="brand-logo" src="../_regules-commun/logo-inerweb-edu.svg" alt="inerWeb Édu">',
       '    </a>',
       '    <div class="module-heading"><p>' + escapeHtml(module.family) + ' · Station ' + module.number + '</p><h1>' + escapeHtml(module.title) + '</h1></div>',
     /* La voix est FABRIQUÉE (MP3 posés par voix/fabriquer-regules.mjs) : le
@@ -42,16 +48,11 @@
        fichier manquant reste muet. */
       '    <div class="tools" aria-label="Outils de lecture">',
       (catalog.voixFabriquee
-        ? '      <button id="voice-button" class="tool-button" type="button" aria-pressed="false" title="Écouter l’écran">▶ <span>Écouter</span></button>' +
-          '<button id="stop-voice" class="tool-button" type="button" disabled title="Arrêter la voix">■ <span>Stop</span></button>'
+        ? '      <button id="voice-button" class="tool-button" type="button" aria-label="Écouter cet écran" aria-pressed="false" title="Écouter l’écran">▶ <span>Écouter</span></button>' +
+          '<button id="stop-voice" class="tool-button" type="button" aria-label="Arrêter la voix" disabled title="Arrêter la voix">■ <span>Stop</span></button>' +
+          '<span id="voice-status" class="voice-status" role="status">Voix arrêtée</span>'
         : ""),
-      /* Les films validés le 22/08 : le lien vit dans le catalogue (films par
-         module), le chemin est le même à l'atelier et dans le pack. */
-      (module.films || []).map(function (film) {
-        return '      <a class="tool-button" style="text-decoration:none" href="../_regules-commun/films/' +
-          escapeHtml(film.fichier) + '" target="_blank" rel="noopener">🎬 <span>' + escapeHtml(film.titre) + '</span></a>';
-      }).join(""),
-      '      <button id="sources-button" class="tool-button" type="button">ⓘ <span>Sources</span></button>',
+      '      <button id="sources-button" class="tool-button" type="button" aria-label="Ouvrir les sources">ⓘ <span>Sources</span></button>',
       '    </div>',
       '  </header>',
       '  <div class="workbench">',
@@ -71,11 +72,18 @@
 
   function buildNav() {
     var nav = document.getElementById("stations");
-    var items = module.lessons.map(function (lesson, index) {
-      return '<button type="button" class="station-tab" data-screen="' + index + '" aria-label="Écran ' + (index + 1) + ' : ' + escapeHtml(lesson.short) + '"><span>' + (index + 1) + '</span><b>' + escapeHtml(lesson.short) + '</b></button>';
+    var items = [];
+    if (filmScreenCount) {
+      items.push('<button type="button" class="station-tab film-tab" data-screen="0" aria-label="Étape 1 : regarder le film"><span>1</span><b>Film</b></button>');
+    }
+    module.lessons.forEach(function (lesson, index) {
+      var screen = lessonOffset + index;
+      var number = filmScreenCount ? "2." + (index + 1) : String(index + 1);
+      items.push('<button type="button" class="station-tab" data-screen="' + screen + '" aria-label="Cours, écran ' + (index + 1) + ' : ' + escapeHtml(lesson.short) + '"><span>' + number + '</span><b>' + escapeHtml(lesson.short) + '</b></button>');
     });
-    items.push('<button type="button" class="station-tab quiz-tab" data-screen="' + module.lessons.length + '" aria-label="Quiz final"><span>✓</span><b>Quiz</b></button>');
+    items.push('<button type="button" class="station-tab quiz-tab" data-screen="' + quizScreen + '" aria-label="Questionnaire final"><span>' + (filmScreenCount ? "3" : "✓") + '</span><b>Questionnaire</b></button>');
     nav.innerHTML = items.join("");
+    nav.style.setProperty("--screen-count", items.length);
     nav.addEventListener("click", function (event) {
       var button = event.target.closest("[data-screen]");
       if (button) { goTo(Number(button.getAttribute("data-screen"))); }
@@ -86,6 +94,14 @@
     return '<aside class="lesson-box ' + escapeHtml(box.type) + '"><strong>' + escapeHtml(box.label) + '</strong><p>' + escapeHtml(box.text) + '</p></aside>';
   }
 
+  /* ⚠️ NE PAS REMPLACER CE SCHÉMA PAR DU TEXTE.
+     Le 22/08, une passe extérieure a converti ce dessin en liste de puces
+     (« les symboles électriques non validés ont été retirés »). Ils l'étaient :
+     F. Henninot a relu et validé les symboles le 22/08 — pivot des contacts,
+     butée du contact à ouverture, organe de commande encadré. Un frigoriste
+     apprend à LIRE UN SCHÉMA ; une chaîne de puces ne l'enseigne pas.
+     Restauré le 23/08. La version en puces vit sur la branche
+     `gpt-regules-2026-08-22` si on veut la reprendre pour l'accessibilité. */
   function ladderVisual(visual) {
     var count = visual.rungs.length;
     var gap = count > 2 ? 92 : 118;
@@ -137,10 +153,10 @@
     var modeTitle = { offcycle: "Sans dégivrage commandé", electric: "Dégivrage électrique", hotgas: "Dégivrage par gaz chauds", reverse: "Dégivrage par inversion de cycle" }[mode] || "Circuit frigorifique";
     var directionClass = mode === "reverse" ? "flow reverse-flow" : "flow";
     return '<figure class="visual-figure circuit-figure"><svg viewBox="0 0 690 390" role="img" aria-label="' + escapeHtml(visual.label) + '"><title>' + escapeHtml(visual.label) + '</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="arrow-fill"/></marker></defs><text x="345" y="27" text-anchor="middle" class="svg-title">' + modeTitle + '</text><path d="M151 103 H510 Q565 103 565 158 V250 Q565 290 520 290 H170 Q110 290 110 236 V145 Q110 103 151 103" class="circuit-pipe"/><path d="M165 103 H480" class="' + directionClass + '" marker-end="url(#arrow)"/><path d="M565 155 V232" class="' + directionClass + '" marker-end="url(#arrow)"/><path d="M500 290 H188" class="' + directionClass + '" marker-end="url(#arrow)"/><path d="M110 232 V155" class="' + directionClass + '" marker-end="url(#arrow)"/>' +
-      '<g class="component"><rect x="248" y="62" width="194" height="82" rx="15"/><image href="../../../fonds-origine/packs/fluides/res/symboles/echangeur_a_air.svg" x="270" y="68" width="58" height="58"/><text x="350" y="94" class="svg-code">CONDENSEUR</text><text x="350" y="119" class="svg-mini">échangeur extérieur</text></g>' +
-      '<g class="component"><rect x="218" y="248" width="216" height="84" rx="15"/><image href="../../../fonds-origine/packs/fluides/res/symboles/echangeur_a_air.svg" x="234" y="258" width="58" height="58"/><text x="312" y="280" class="svg-code">ÉVAPORATEUR</text><text x="312" y="306" class="svg-mini">batterie à dégivrer</text></g>' +
-      '<g class="component small"><rect x="70" y="164" width="80" height="74" rx="15"/><image href="../../../fonds-origine/packs/fluides/res/symboles/detendeur_thermo_ext.svg" x="84" y="173" width="48" height="48"/><text x="110" y="231" text-anchor="middle" class="svg-mini">DÉTENDEUR</text></g>' +
-      '<g class="component small"><rect x="522" y="218" width="86" height="83" rx="15"/><image href="../../../fonds-origine/packs/fluides/res/symboles/compresseur_general.svg" x="539" y="228" width="52" height="52"/><text x="565" y="293" text-anchor="middle" class="svg-mini">COMPRESSEUR</text></g>' + electric + hotgas + reverse + off + '</svg><figcaption>Repérage fonctionnel simplifié — les flèches et les mots indiquent le mode étudié.</figcaption></figure>';
+      '<g class="component"><rect x="248" y="62" width="194" height="82" rx="15"/><image href="../symboles/echangeur_a_air.svg" x="270" y="68" width="58" height="58"/><text x="350" y="94" class="svg-code">CONDENSEUR</text><text x="350" y="119" class="svg-mini">échangeur extérieur</text></g>' +
+      '<g class="component"><rect x="218" y="248" width="216" height="84" rx="15"/><image href="../symboles/echangeur_a_air.svg" x="234" y="258" width="58" height="58"/><text x="312" y="280" class="svg-code">ÉVAPORATEUR</text><text x="312" y="306" class="svg-mini">batterie à dégivrer</text></g>' +
+      '<g class="component small"><rect x="70" y="164" width="80" height="74" rx="15"/><image href="../symboles/detendeur_thermo_ext.svg" x="84" y="173" width="48" height="48"/><text x="110" y="231" text-anchor="middle" class="svg-mini">DÉTENDEUR</text></g>' +
+      '<g class="component small"><rect x="522" y="218" width="86" height="83" rx="15"/><image href="../symboles/compresseur_general.svg" x="539" y="228" width="52" height="52"/><text x="565" y="293" text-anchor="middle" class="svg-mini">COMPRESSEUR</text></g>' + electric + hotgas + reverse + off + '</svg><figcaption>Repérage fonctionnel simplifié — les flèches et les mots indiquent le mode étudié.</figcaption></figure>';
   }
 
   function visualMarkup(visual) {
@@ -153,12 +169,34 @@
 
   function renderLesson() {
     stopVoix();
-    var lesson = module.lessons[state.screen];
+    var lesson = module.lessons[state.screen - lessonOffset];
     state.sequenceStep = 0;
     var article = document.getElementById("lesson-card");
     article.className = "lesson-card";
     article.innerHTML = '<section class="copy-panel"><p class="kicker">' + escapeHtml(lesson.kicker) + '</p><h2>' + escapeHtml(lesson.title) + '</h2><p class="lead">' + escapeHtml(lesson.lead) + '</p><ul class="details">' + lesson.details.map(function (item) { return '<li>' + escapeHtml(item) + '</li>'; }).join("") + '</ul>' + boxMarkup(lesson.box) + '</section><section class="visual-panel" aria-label="Illustration pédagogique">' + visualMarkup(lesson.visual) + '</section>';
     bindSequence(lesson.visual);
+  }
+
+  function renderFilm() {
+    stopVoix();
+    var films = module.films || [];
+    var film = films[state.filmIndex] || films[0];
+    var article = document.getElementById("lesson-card");
+    article.className = "lesson-card film-screen";
+    var choices = films.length > 1
+      ? '<div class="film-choices" aria-label="Choisir le film">' + films.map(function (item, index) {
+          return '<button type="button" class="film-choice' + (index === state.filmIndex ? ' active' : '') + '" data-film-index="' + index + '">' + escapeHtml(item.titre) + '</button>';
+        }).join("") + '</div>'
+      : "";
+    var hasNarration = /08-pump-down-et-degivrage-electrique/.test(film.fichier);
+    article.innerHTML = '<section class="film-intro"><p class="kicker">1 · Commencer par le film</p><h2>' + escapeHtml(module.title) + '</h2><p class="lead">Regarde d’abord le fonctionnement complet : circuit fluidique, commande électrique et actions restent visibles ensemble.</p>' + choices + '<p class="film-audio-note">' + (hasNarration ? 'La voix du film se lance uniquement avec le bouton « Écouter les explications ».' : 'Ce film est visuel. La voix du cours est disponible à l’écran suivant.') + '</p><a class="film-open" href="../_regules-commun/films/' + escapeHtml(film.fichier) + '" target="_blank" rel="noopener">Ouvrir le film en grand ↗</a></section><section class="film-stage"><iframe id="film-frame" src="../_regules-commun/films/' + escapeHtml(film.fichier) + '" title="Film : ' + escapeHtml(film.titre) + '" loading="eager"></iframe></section>';
+    article.querySelectorAll("[data-film-index]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        state.filmIndex = Number(button.getAttribute("data-film-index"));
+        renderFilm();
+        updateChrome();
+      });
+    });
   }
 
   function bindSequence(visual) {
@@ -218,10 +256,12 @@
   }
 
   function goTo(index) {
-    if (index < 0 || index > module.lessons.length) { return; }
+    if (index < 0 || index > quizScreen) { return; }
     state.screen = index;
     state.furthest = Math.max(state.furthest, index);
-    if (index < module.lessons.length) { renderLesson(); } else { renderQuiz(); }
+    if (filmScreenCount && index === 0) { renderFilm(); }
+    else if (index < quizScreen) { renderLesson(); }
+    else { renderQuiz(); }
     updateChrome();
     focusContent();
   }
@@ -239,14 +279,22 @@
       tab.classList.toggle("visited", index <= state.furthest);
       tab.setAttribute("aria-current", active ? "step" : "false");
     });
-    var total = module.lessons.length + 1;
     var current = state.screen + 1;
-    document.getElementById("progress-text").textContent = "Écran " + current + " / " + total;
-    document.getElementById("progress-bar").style.width = (current / total * 100) + "%";
+    document.getElementById("progress-text").textContent = "Étape " + current + " / " + totalScreens;
+    document.getElementById("progress-bar").style.width = (current / totalScreens * 100) + "%";
     document.getElementById("previous-button").disabled = state.screen === 0;
     var next = document.getElementById("next-button");
-    next.disabled = state.screen === module.lessons.length;
-    next.textContent = state.screen === module.lessons.length - 1 ? "Lancer le quiz →" : "Suivant →";
+    next.disabled = state.screen === quizScreen;
+    next.textContent = filmScreenCount && state.screen === 0
+      ? "Passer au cours →"
+      : state.screen === quizScreen - 1
+        ? "Questionnaire final →"
+        : "Suivant →";
+    var voice = document.getElementById("voice-button");
+    if (voice) {
+      voice.disabled = filmScreenCount && state.screen === 0;
+      if (voice.disabled) { setVoiceStatus("Voix du cours à l’écran suivant"); }
+    }
   }
 
   function sourceMarkup() {
@@ -259,53 +307,92 @@
 
   function announce(text) { document.getElementById("live-status").textContent = text; }
 
-  /* ── la voix fabriquée — des MP3 embarqués, jamais la synthèse du navigateur.
-     Écrans : voix/<genre>/<écran>.mp3. Questions : q<n>.mp3 avant la réponse
+  /* ── la voix fabriquée — 110 MP3 masculins embarqués, jamais la synthèse du navigateur.
+     Écrans : voix/masculine/<écran>.mp3. Questions : q<n>.mp3 avant la réponse
      (l'énoncé seul, sans la livrer), q<n>-reponse.mp3 après. Le bilan reste
      muet : il annonce un score réel, un enregistrement figé mentirait. ── */
   var lecteur = null;
-
-  function genreVoix() {
-    try { return localStorage.getItem("regules_voix") === "feminine" ? "feminine" : "masculine"; }
-    catch (err) { return "masculine"; }
-  }
+  window.REGULE_VOICE_STATUS = { state: "stopped", src: "", currentTime: 0, error: "" };
 
   function fichierVoix() {
-    if (state.screen < module.lessons.length) {
-      return "voix/" + genreVoix() + "/" + module.lessons[state.screen].id + ".mp3";
+    if (state.screen >= lessonOffset && state.screen < quizScreen) {
+      return "voix/masculine/" + module.lessons[state.screen - lessonOffset].id + ".mp3";
     }
     if (state.quizIndex < module.quiz.length) {
-      return "voix/" + genreVoix() + "/q" + (state.quizIndex + 1) + (state.answered ? "-reponse" : "") + ".mp3";
+      return "voix/masculine/q" + (state.quizIndex + 1) + (state.answered ? "-reponse" : "") + ".mp3";
     }
     return null;
   }
 
+  function setVoiceStatus(text) {
+    var status = document.getElementById("voice-status");
+    if (status) { status.textContent = text; }
+  }
+
   function majBoutonVoix(texte, enCours) {
     var bouton = document.getElementById("voice-button");
-    if (bouton) { bouton.innerHTML = texte; bouton.setAttribute("aria-pressed", enCours ? "true" : "false"); }
+    if (bouton) {
+      bouton.innerHTML = texte;
+      bouton.setAttribute("aria-pressed", enCours ? "true" : "false");
+      bouton.setAttribute("aria-label", texte.indexOf("Pause") >= 0
+        ? "Mettre la voix en pause"
+        : texte.indexOf("Reprendre") >= 0
+          ? "Reprendre la voix"
+          : "Écouter cet écran");
+    }
     var stop = document.getElementById("stop-voice");
     if (stop) { stop.disabled = !enCours; }
   }
 
   function stopVoix() {
     if (lecteur) { lecteur.pause(); lecteur = null; }
+    window.REGULE_VOICE_STATUS.state = "stopped";
+    window.REGULE_VOICE_STATUS.currentTime = 0;
     majBoutonVoix("▶ <span>Écouter</span>", false);
+    setVoiceStatus("Voix arrêtée");
   }
 
   function ecouter() {
-    if (lecteur && !lecteur.paused) { lecteur.pause(); majBoutonVoix("▶ <span>Reprendre</span>", true); return; }
-    if (lecteur && lecteur.paused) { lecteur.play(); majBoutonVoix("Ⅱ <span>Pause</span>", true); return; }
+    if (lecteur && !lecteur.paused) { lecteur.pause(); window.REGULE_VOICE_STATUS.state = "paused"; majBoutonVoix("▶ <span>Reprendre</span>", true); setVoiceStatus("Voix en pause"); return; }
+    if (lecteur && lecteur.paused) {
+      lecteur.play().catch(function () { setVoiceStatus("Lecture bloquée"); });
+      majBoutonVoix("Ⅱ <span>Pause</span>", true);
+      return;
+    }
     var src = fichierVoix();
     if (!src) { return; }
     lecteur = new Audio(src);
+    lecteur.preload = "auto";
+    lecteur.volume = 1;
+    lecteur.muted = false;
+    window.REGULE_VOICE_STATUS = { state: "loading", src: src, currentTime: 0, error: "" };
+    setVoiceStatus("Chargement de la voix…");
+    lecteur.addEventListener("playing", function () {
+      window.REGULE_VOICE_STATUS.state = "playing";
+      setVoiceStatus("Voix en lecture · volume 100 %");
+      announce("Lecture audio en cours.");
+    });
+    lecteur.addEventListener("timeupdate", function () { window.REGULE_VOICE_STATUS.currentTime = lecteur ? lecteur.currentTime : 0; });
     lecteur.addEventListener("ended", stopVoix);
     lecteur.addEventListener("error", function () {
+      window.REGULE_VOICE_STATUS.state = "error";
+      window.REGULE_VOICE_STATUS.error = "audio-unavailable";
       lecteur = null;
       majBoutonVoix("▶ <span>Écouter</span>", false);
+      setVoiceStatus("Voix indisponible");
       announce("Le son de cet écran n’est pas disponible.");
     });
     var promesse = lecteur.play();
-    if (promesse && promesse.catch) { promesse.catch(function () {}); }
+    if (promesse && promesse.catch) {
+      promesse.catch(function () {
+        window.REGULE_VOICE_STATUS.state = "error";
+        window.REGULE_VOICE_STATUS.error = "playback-blocked";
+        lecteur = null;
+        majBoutonVoix("▶ <span>Écouter</span>", false);
+        setVoiceStatus("Lecture bloquée");
+        announce("La lecture audio a été bloquée par le navigateur.");
+      });
+    }
     majBoutonVoix("Ⅱ <span>Pause</span>", true);
   }
 
@@ -331,11 +418,13 @@
       var tools = document.querySelector(".tools");
       if (accessibilityButton && tools) { tools.appendChild(accessibilityButton); }
     });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) { stopVoix(); } });
+    window.addEventListener("pagehide", stopVoix);
   }
 
   shell();
   buildNav();
   bindControls();
-  renderLesson();
+  if (filmScreenCount) { renderFilm(); } else { renderLesson(); }
   updateChrome();
 })();

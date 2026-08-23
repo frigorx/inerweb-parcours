@@ -53,10 +53,10 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-22d",
+    version: "2026-08-22h",
     status: "Version en ligne — relecture métier en cours",
-    /* Posé après la fabrication du 22/08 (220 MP3, deux voix, 0 raté) :
-       c'est lui qui fait exister le bouton « Écouter » dans le moteur. */
+    /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
+       4 questions et 4 corrections dans chacune des 10 stations. */
     voixFabriquee: true,
     sources: sources,
     modules: [

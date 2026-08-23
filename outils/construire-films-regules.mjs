@@ -164,7 +164,9 @@ function barreLecture() {
     '  var rejouer = document.createElement("button");',
     '  rejouer.textContent = "⟲ Rejouer";',
     '  rejouer.setAttribute("style", "border:none;background:#1b3a63;color:#fffdf8;border-radius:8px;padding:6px 10px;cursor:pointer;font:700 14px system-ui,sans-serif");',
-    '  rejouer.onclick = function () { location.reload(); };',
+    /* Rejouer SANS recharger la page (correctif repris de la passe du 22/08) :
+       recharger refaisait tout le décodage des sources embarquées. */
+    '  rejouer.onclick = function () { if (window.__filmCtl) { window.__filmCtl.allerA(0); window.__filmCtl.lecture(); } };',
     '  var pl = document.createElement("button");',
     '  pl.textContent = "⏸";',
     '  pl.setAttribute("style", "border:none;background:#c9451a;color:#fffdf8;border-radius:8px;padding:6px 12px;cursor:pointer;font:700 14px system-ui,sans-serif");',
@@ -246,14 +248,25 @@ function construire(fichierDc) {
   /* 3 bis · la voix, si elle a été fabriquée pour ce film */
   const voix = voixDe(fichierDc, html);
 
+  /* Entête et accessibilité repris de la passe du 22/08 : viewport-fit pour les
+     écrans à encoche, titre lisible, feuille et script d'accessibilité (libellés
+     français des commandes), et purge de la position mémorisée — sans elle, le
+     film rouvrait sur sa dernière image au lieu de son début. */
+  const nomLisible = titre
+    .replace(/^Regules\s+0?(\w+)\s+/i, (m, n) => "Régulation " + n + " · ")
+    .replace(/\bdegivrage\b/gi, "dégivrage")
+    .replace(/\belectrique\b/gi, "électrique");
+
   const page = [
     "<!DOCTYPE html>",
     '<html lang="fr">',
     "<head>",
     '<meta charset="utf-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
     '<meta name="robots" content="noindex, nofollow">',
-    "<title>" + titre + " — inerWeb</title>",
+    "<title>" + nomLisible + " — inerWeb Édu</title>",
+    '<link rel="stylesheet" href="../film-accessible.css">',
+    '<script>try { localStorage.removeItem("animstage-v3:t"); } catch (err) {}</script>',
     "</head>",
     "<body>",
     reactBlocs,
@@ -264,6 +277,7 @@ function construire(fichierDc) {
     voix ? voix.map((p, i) => '<script type="text/plain" id="voix' + i + '">' + p.son + "</script>").join("\n") : "",
     voix ? lecteurVoix(voix) : "",
     barreLecture(),
+    '<script src="../film-accessible.js"></script>',
     "</body>",
     "</html>",
   ].join("\n");
