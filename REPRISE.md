@@ -3,6 +3,14 @@
 > **À LIRE EN PREMIER** dans toute nouvelle session sur ce dépôt.
 > Créé le **6 août 2026**.
 
+> ⚠️ **Note pour la session CO₂ / vanne de service (23/08)** : vos fichiers de travail
+> (`_co2-commun`, `co2-*`, `vanne-de-service`, SVG retouchés) ont été **commités et
+> poussés par accident** le 23/08 (commit `e29a573`, indexation trop large pendant une
+> restauration de la rame régules). Rien n'est perdu ni modifié — votre travail est
+> simplement versionné plus tôt que prévu, ce qui le met à l'abri. Reprenez votre
+> chantier normalement ; aucune donnée sensible dans le lot (vérifié : crédits d'auteur
+> seulement).
+
 ---
 
 ## 0. Où en est la rame « Le circuit d’huile » — 20 août 2026
