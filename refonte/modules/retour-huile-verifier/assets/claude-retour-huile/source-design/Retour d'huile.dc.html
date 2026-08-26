@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f2f6fa; }
+  a { color: #1b3a63; }
+  a:hover { color: #ff6b35; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Ouverture","dur":4,"desc":"Le titre apparaît sur fond clair"},{"name":"Huile","dur":9,"desc":"Coupe du compresseur à piston : le carter d'huile et l'huile qui part avec le gaz refoulé"},{"name":"Circuit","dur":12,"desc":"Les gouttes d'huile font le tour de la croix du frigoriste (HP/BP, symboles normalisés)"},{"name":"Blocage","dur":9,"desc":"L'huile s'accumule aux points bas et le niveau du carter baisse"},{"name":"Vitesse","dur":11,"desc":"Colonne montante : la vitesse du gaz entraîne l'huile, repères 4 et 8 m/s"},{"name":"Siphon","dur":11,"desc":"Le siphon en pied de colonne se remplit puis un bouchon d'huile monte"},{"name":"ContreSiphon","dur":9,"desc":"À l'arrêt, le contre-siphon empêche l'huile de redescendre"},{"name":"ChargeReduite","dur":9,"desc":"À charge réduite la vitesse chute et l'huile retombe"},{"name":"DoubleColonne","dur":15,"desc":"La petite colonne apparaît, le bouchon obture la grande, la vitesse est rétablie"},{"name":"Retrecissement","dur":8,"desc":"Variante : réduire la section, au prix de la perte de charge"},{"name":"Recap","dur":8,"desc":"Trois points à retenir"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "sousTitres": true,
+  "vitesses": true,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<x-import component-from-global-scope="OilReturnVideo" from="./animations-v3.jsx ./tweaks-panel.jsx ./oil-return.jsx" hint-size="100%,100%"></x-import>
+</x-dc>
+</body>
+</html>

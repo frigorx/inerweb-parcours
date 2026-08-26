@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f2f6fa; }
+  a { color: #1b3a63; }
+  a:hover { color: #ff6b35; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Ouverture","dur":4,"desc":"Titre : le séparateur à éclatement"},{"name":"DeuxFamilles","dur":9,"desc":"Planche comparative : coalescence (élément filtrant) et éclatement (plaque de choc)"},{"name":"Eclatement","dur":13,"desc":"Coupe : buse, jet à grande vitesse, plaque de choc, éclatement des gouttes, virage du gaz"},{"name":"Vitesse","dur":10,"desc":"Chute de vitesse buse → corps, inertie des gouttes qui ne suivent pas le virage"},{"name":"Paroi","dur":9,"desc":"Film d\u0027huile sur la plaque et la paroi, accumulation au fond"},{"name":"Retour","dur":10,"desc":"Flotteur et pointeau : retour d\u0027huile au carter, voyant"},{"name":"Limites","dur":11,"desc":"Tableau comparatif : sans cartouche, faible perte de charge, mais brouillard fin qui passe"},{"name":"Recap","dur":8,"desc":"Trois points à retenir"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "sousTitres": true,
+  "valeurs": true,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<x-import component-from-global-scope="EclatementVideo" from="./animations-v3.jsx ./tweaks-panel.jsx ./eclatement.jsx" hint-size="100%,100%"></x-import>
+</x-dc>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#e30613"/>
+  <rect x="236" y="110" width="26" height="180" rx="10" fill="#ffffff"/>
+  <path d="M110 200 h96" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="286" cy="150" r="15" fill="#ffe100"/>
+  <circle cx="292" cy="212" r="19" fill="#ffe100"/>
+  <circle cx="284" cy="266" r="13" fill="#ffe100"/>
+</svg>
+</template>
+</body>
+</html>
