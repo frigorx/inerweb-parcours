@@ -4,6 +4,7 @@ node_modules/
 Thumbs.db
 BETA/
 CAPSULES-BETA.zip
+_paquets/
 
 # Prototypes a l'essai — JAMAIS pousses (droits a arbitrer, ex. maillage 3D derive d'un STEP constructeur)
 modules-essai/

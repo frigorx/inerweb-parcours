@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -19 80 40" overflow="visible">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>qet llave rotalock</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
+<line x1="-17" y1="-5" x2="-17" y2="0" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<path d="M 0 1 A 1.5 1 0 0 0 -3 1" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="26" y1="-4" x2="26" y2="1" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="28" y1="-4" x2="28" y2="1" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="-2" y1="-14.82" x2="-2" y2="-10.2" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="4" y1="1" x2="4" y2="4" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M 7 1 A 1.5 1 0 0 0 4 1" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-10" y="-8" width="30" height="12" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-19" y="-6" width="9" height="7" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-27" y="-4" width="8" height="3" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-24" y1="-1" x2="-24" y2="-3" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-5" y="-9" width="4" height="1" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-7" y="-15" width="8" height="5" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="20" y="-6" width="10" height="8" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-10" y="4" width="30" height="4" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-3" y="0" width="10" height="4" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="0" y1="1" x2="0" y2="4" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-5" y1="-14.82" x2="-5" y2="-10.2" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<polygon points="-20,-6 -32,-4 -32,-1 -20,1" fill="none" stroke="#1b3a63" stroke-width="0.6" stroke-dasharray="3 3"/>
+<path d="M 4 1 A 2 1 0 0 0 0 1" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="5" y="8" width="7" height="2" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-15" y1="-5" x2="-15" y2="0" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<circle cx="9" cy="11" r="1.5" fill="#1b3a63"/>
+<circle cx="30" cy="-2" r="1.5" fill="#1b3a63"/>
+</svg>

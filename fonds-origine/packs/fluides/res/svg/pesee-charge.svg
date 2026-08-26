@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 466" role="img"
      aria-label="Trois vignettes : la même bouteille sur la même balance de charge. 1, avant : la bouteille est pleine, on relève une première pesée et on la note. 2, pendant : une flèche orange animée conduit le fluide vers l'installation, le niveau baisse et une flèche vers le bas indique que la masse diminue. 3, après : on pèse à nouveau et on relève la seconde valeur. Une accolade relie les deux pesées : leur différence est la charge introduite. En bas, le rappel que toute quantité introduite ou récupérée se note au registre — date, quantité, intervenant — et qu'une récupération suit la même méthode dans l'autre sens, la bouteille gagnant ce que le circuit perd. Les afficheurs ne portent que des tirets : aucune valeur n'est donnée.">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>Trois vignettes : la même bouteille sur la même balance de charge</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
   <title>La pesée : ce qui est parti dans la machine, c'est ce que la balance a perdu</title>
   <style>
     .t    { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }

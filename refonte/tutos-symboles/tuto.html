@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tuto guidé — symboles et raccordements</title>
+<meta name="description" content="Tuto guidé étape par étape, construit avec les symboles normalisés de la bibliothèque.">
+<link rel="stylesheet" href="moteur/tuto.css">
+</head>
+<body>
+
+<header class="bandeau">
+  <div id="marque" class="marque"></div>
+  <div class="titres">
+    <h1 id="titre-tuto">…</h1>
+    <p class="sous" id="sous-titre"></p>
+  </div>
+  <div class="outils">
+    <button type="button" class="bouton" id="aa" title="Changer la taille du texte">Aa</button>
+    <button type="button" class="bouton" id="imprimer" title="Imprimer le livret complet">🖨 Livret</button>
+    <a class="bouton" href="index.html">Sommaire</a>
+  </div>
+</header>
+
+<main>
+  <section class="scene">
+    <svg id="scene" viewBox="0 0 1000 640"></svg>
+    <div class="legende" id="legende"></div>
+  </section>
+
+  <aside class="panneau">
+    <div class="rail" id="rail"></div>
+    <p class="kicker" id="kicker"></p>
+    <h2 id="titre-etape"></h2>
+    <p id="texte-etape"></p>
+    <div id="encadres"></div>
+    <div id="controle"></div>
+    <nav class="pas">
+      <button type="button" class="bouton" id="precedent">‹ Précédent</button>
+      <button type="button" class="bouton plein" id="suivant">Suivant ›</button>
+    </nav>
+  </aside>
+</main>
+
+<footer class="pied">
+  <span class="compteur" id="compteur"></span>
+  <span>Flèches ← → au clavier</span>
+  <span class="grandir">
+    <button type="button" class="bouton" id="lien">🔗 Copier le lien exact</button>
+  </span>
+</footer>
+
+<div class="livret" id="livret"></div>
+
+<script src="moteur/tuto.js"></script>
+<script src="donnees/gestes.js"></script>
+<script src="donnees/decors.js"></script>
+<script>
+(function () {
+  var p = new URLSearchParams(window.location.search);
+  var id = (p.get('t') || 'circuit-4-organes').replace(/[^a-z0-9-]/g, '');
+  var s = document.createElement('script');
+  s.src = 'donnees/' + id + '.js';
+  s.onload = function () { window.demarrerTuto(id); };
+  s.onerror = function () {
+    document.body.innerHTML = '<p style="padding:40px">Aucun tuto nommé <strong>' + id +
+      '</strong>. <a href="index.html">Revenir au sommaire</a>.</p>';
+  };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

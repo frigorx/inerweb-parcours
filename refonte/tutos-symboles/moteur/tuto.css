@@ -1,0 +1,253 @@
+/* =====================================================================
+   TUTOS SYMBOLES — la charte, unique.
+   Aucune feuille par tuto. Aucun thème sombre (doctrine).
+   Palette inerWeb : crème #f7f1e7 · bleu #1b3a63 · orange d'accent #ff6b35
+   ===================================================================== */
+
+:root{
+  --creme:#f7f1e7;
+  --feuille:#fffdf8;
+  --bleu:#1b3a63;
+  --bleu-clair:#2d5a8e;
+  --orange:#ff6b35;
+  --orange-logo:#e8914a;
+  --gris:#637285;
+  --trait:rgba(27,58,99,.16);
+  --hp:#c62828;
+  --bp:#1565c0;
+  --neutre:#8d99a6;
+  --corps:17px;
+  --titre:1.5rem;
+}
+
+*{box-sizing:border-box}
+
+html,body{margin:0;padding:0}
+
+body{
+  font-family:"Segoe UI",system-ui,Helvetica,Arial,sans-serif;
+  font-size:var(--corps);
+  line-height:1.6;
+  color:var(--bleu);
+  background:var(--creme);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* --- lisibilité : bouton Aa, trois crans, mémorisés --------------- */
+html.lis-1 body{--corps:19px;--titre:1.65rem}
+html.lis-2 body{--corps:22px;--titre:1.85rem}
+
+/* --- mode projection : tout grossit d'un tiers -------------------- */
+body.projection{--corps:23px;--titre:2.1rem}
+body.projection .pied{display:none}
+/* En salle, c'est le SCHÉMA qui doit être grand, et il ne doit jamais
+   sortir de l'écran : le panneau se resserre et défile seul. */
+body.projection main{grid-template-columns:minmax(0,1fr) 340px}
+body.projection .panneau{max-height:calc(100vh - 150px);overflow-y:auto}
+/* le bandeau ne mange pas l'écran de projection */
+body.projection .bandeau{padding:6px 20px}
+body.projection .bandeau .sous,
+body.projection .bandeau .outils{display:none}
+body.projection .bandeau h1{font-size:1.4rem}
+
+/* ================= BANDEAU ======================================== */
+.bandeau{
+  display:flex;align-items:center;gap:18px;
+  padding:10px 20px;
+  background:var(--feuille);
+  border-bottom:2px solid var(--trait);
+  flex-wrap:wrap;
+}
+.bandeau .marque{flex:0 0 auto}
+.bandeau .marque svg{display:block;height:44px;width:auto}
+.bandeau .marque-texte{
+  font-weight:700;color:var(--bleu);line-height:1.2;font-size:.95rem;
+  border-left:4px solid var(--orange-logo);padding-left:12px;
+}
+.bandeau .marque-texte small{display:block;font-weight:400;color:var(--gris);font-size:.8em}
+.bandeau .titres{flex:1 1 240px;min-width:0}
+.bandeau h1{margin:0;font-size:var(--titre);line-height:1.2}
+.bandeau .sous{margin:2px 0 0;color:var(--gris);font-size:.85em}
+.bandeau .outils{display:flex;gap:8px;flex:0 0 auto}
+
+button{font:inherit;cursor:pointer}
+
+.bouton{
+  border:1.5px solid var(--bleu);background:var(--feuille);color:var(--bleu);
+  border-radius:9px;padding:8px 14px;font-weight:600;
+}
+.bouton:hover{background:#eef3f9}
+.bouton:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.bouton.plein{background:var(--bleu);color:#fff}
+.bouton.plein:hover{background:var(--bleu-clair)}
+.bouton[disabled]{opacity:.4;cursor:not-allowed}
+
+/* ================= CORPS ========================================== */
+main{
+  flex:1 1 auto;display:grid;
+  grid-template-columns:minmax(0,1fr) 400px;
+  gap:18px;padding:18px;align-items:start;
+}
+
+/* --- la scène ----------------------------------------------------- */
+.scene{
+  background:var(--feuille);
+  border:1px solid var(--trait);border-radius:14px;
+  padding:10px;box-shadow:0 2px 10px rgba(27,58,99,.08);
+}
+.scene svg{display:block;width:100%;height:auto}
+
+/* la légende des traits, sous le schéma : couleur + style + mot */
+.legende{
+  display:flex;flex-wrap:wrap;gap:6px 18px;
+  padding:8px 10px 2px;border-top:1px dotted var(--trait);margin-top:6px;
+}
+.legende-item{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.82em;color:var(--gris);white-space:nowrap;
+}
+.legende-item svg{flex:0 0 auto}
+body.projection .legende{display:none}
+
+/* étiquette d'organe */
+.etiq{font:600 15px "Segoe UI",sans-serif;fill:var(--bleu)}
+.etiq-fond{fill:var(--feuille);stroke:var(--trait);stroke-width:1}
+/* étiquette de tuyau : le MOT, jamais la couleur seule */
+.mot-tuyau{font:700 13px "Segoe UI",sans-serif}
+
+.halo{fill:none;stroke:var(--orange);stroke-width:4;opacity:.9}
+.halo-fond{fill:#fff3ec;stroke:none}
+
+/* --- le panneau --------------------------------------------------- */
+.panneau{
+  background:var(--feuille);
+  border:1px solid var(--trait);border-radius:14px;
+  padding:18px;box-shadow:0 2px 10px rgba(27,58,99,.08);
+  position:sticky;top:18px;
+}
+.rail{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.rail button{
+  width:30px;height:30px;border-radius:8px;
+  border:1.5px solid var(--trait);background:#fff;color:var(--gris);
+  font-size:.8rem;font-weight:700;padding:0;
+}
+.rail button.vu{border-color:var(--bleu);color:var(--bleu)}
+.rail button.ici{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.rail button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+
+.panneau h2{margin:0 0 4px;font-size:var(--titre);line-height:1.25}
+.kicker{
+  margin:0 0 10px;font-size:.78em;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--orange);font-weight:700;
+}
+.panneau p{margin:0 0 12px}
+
+.encadre{
+  border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:.95em;line-height:1.55;
+}
+.encadre .cle{display:block;font-weight:700;margin-bottom:3px;letter-spacing:.5px;font-size:.85em;text-transform:uppercase}
+.encadre.geste{background:#eef4fb;border-left:5px solid var(--bleu)}
+.encadre.geste .cle{color:var(--bleu)}
+.encadre.danger{background:#fdeceb;border-left:5px double var(--hp)}
+.encadre.danger .cle{color:var(--hp)}
+.encadre.verif{background:#fff6ec;border-left:5px dashed var(--orange);color:#8a4a12}
+.encadre.verif .cle{color:#a8501a}
+
+/* --- la vue annotée (l'élément réel, fléché) ---------------------- */
+.vue{
+  margin:0 0 12px;padding:10px 10px 6px;
+  background:#fff;border:1px solid var(--trait);border-radius:10px;
+}
+.vue figcaption{
+  font-size:.78em;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gris);font-weight:700;margin-bottom:6px;
+}
+.vue svg{display:block;width:100%;height:auto}
+.vue-mot{font:6.4px "Segoe UI",sans-serif;fill:var(--bleu);font-weight:600}
+
+/* --- le contrôle -------------------------------------------------- */
+.controle{border-top:2px dotted var(--trait);padding-top:14px;margin-top:6px}
+.controle .q{font-weight:600;margin-bottom:10px}
+.choix{display:flex;flex-direction:column;gap:7px}
+.choix button{
+  text-align:left;border:1.5px solid var(--trait);background:#fff;color:var(--bleu);
+  border-radius:9px;padding:9px 12px;line-height:1.4;
+}
+.choix button:hover:not([disabled]){border-color:var(--bleu)}
+.choix button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.choix button.juste{border:2px solid #1b7a3d;background:#eaf6ee;font-weight:700}
+.choix button.juste::before{content:"✓ Juste — ";color:#1b7a3d}
+.choix button.faux{border:2px dashed var(--hp);background:#fdeceb}
+.choix button.faux::before{content:"✗ Non — ";color:var(--hp)}
+.explication{margin-top:10px;padding:11px 13px;background:#eef4fb;border-left:5px solid var(--bleu);border-radius:8px;font-size:.95em}
+
+nav.pas{display:flex;gap:10px;margin-top:16px}
+nav.pas .bouton{flex:1}
+
+/* ================= PIED =========================================== */
+.pied{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 20px;border-top:1px solid var(--trait);
+  color:var(--gris);font-size:.85em;background:var(--feuille);
+}
+.pied .compteur{font-weight:700;color:var(--bleu)}
+.pied .grandir{margin-left:auto;display:flex;gap:8px}
+
+/* ================= SOMMAIRE ======================================= */
+.sommaire{max-width:1000px;margin:0 auto;padding:22px}
+.cartes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.carte{
+  display:block;text-decoration:none;color:inherit;
+  background:var(--feuille);border:1px solid var(--trait);border-radius:14px;
+  padding:18px;box-shadow:0 2px 10px rgba(27,58,99,.08);
+}
+.carte:hover{border-color:var(--bleu)}
+.carte:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.carte h3{margin:0 0 6px;font-size:1.15rem}
+.carte p{margin:0 0 10px;color:var(--gris);font-size:.92em}
+.carte .compte{font-size:.8em;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px}
+
+/* ================= LA POPUP DU GESTE ============================== */
+.voir-geste{width:100%;margin:0 0 12px;border-width:2px;font-weight:700}
+.popup-fond{
+  position:fixed;inset:0;background:rgba(16,35,60,.55);
+  display:flex;align-items:center;justify-content:center;z-index:50;padding:20px;
+}
+.popup{
+  background:var(--feuille);border-radius:14px;overflow:hidden;
+  width:min(1100px,96vw);height:min(760px,92vh);
+  display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(16,35,60,.45);
+}
+.popup-barre{
+  display:flex;align-items:center;gap:12px;padding:10px 16px;
+  border-bottom:2px solid var(--trait);
+}
+.popup-barre strong{flex:1;color:var(--bleu);font-size:1.05em}
+.popup iframe{flex:1;border:0;width:100%}
+
+/* ================= PETIT ÉCRAN ==================================== */
+@media (max-width:1000px){
+  main{grid-template-columns:1fr}
+  .panneau{position:static}
+}
+
+/* ================= IMPRESSION (le livret) ========================= */
+.livret{display:none}
+
+@media print{
+  @page{size:A4 portrait;margin:12mm}
+  body{background:#fff;display:block;font-size:11.5pt}
+  .bandeau .outils,.pied,main{display:none !important}
+  .livret{display:block}
+  .livret .fiche{
+    page-break-inside:avoid;break-inside:avoid;
+    border:1px solid #b9c4d1;border-radius:8px;padding:10px 12px;margin-bottom:10px;
+  }
+  .livret .fiche h3{margin:0 0 4px;font-size:12.5pt;color:#1b3a63}
+  .livret .fiche .num{font-weight:700;color:#c9451a}
+  .livret .fiche svg{width:100%;height:auto;max-height:78mm}
+  /* la couleur est gardée, mais rien ne repose sur elle seule */
+  .livret .encadre{border-left-width:4px;background:#fff !important}
+}

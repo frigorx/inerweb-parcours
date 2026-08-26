@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
      aria-label="La boucle de régulation du détendeur thermostatique : l'évaporateur en bas, le détendeur à gauche en entrée d'évaporateur, le bulbe fixé sur la ligne d'aspiration en sortie d'évaporateur et le capillaire remontant vers la tête du détendeur. L'animation tourne en boucle en quatre temps : la charge thermique augmente et la surchauffe monte sur l'échelle ; le bulbe se réchauffe et la pression du capillaire bombe la membrane ; la membrane pousse la tige, le pointeau quitte son siège et le débit augmente ; la surchauffe redescend, le pointeau se rapproche de son siège, et la boucle recommence.">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>La boucle de régulation du détendeur thermostatique : l'évaporateur en bas, le détendeur à gauche en entrée d'évaporateur, le bulbe fixé sur</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
   <title>Le détendeur thermostatique : une boucle qui se corrige toute seule</title>
 
   <style>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-9 -27 30 50" overflow="visible">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>qet botella refrig</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
+<path d="M -4 -10 A 9.5 3 0 0 0 15 -10" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<polyline points="11,15 12,16 15,15 14,14" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -7 16.5 A 12.5 4.5 0 0 0 18 16.5" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M 16 -12.5 A 10.5 3.5 0 0 0 -5 -12.5" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-5" y1="-12" x2="-5" y2="11" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<path d="M -5 11.5 A 10.5 3.5 0 0 0 16 11.5" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="16" y1="-12" x2="16" y2="11" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-5,12 -7,14 -7,16" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="16,12 18,13 18,16" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-3,14 -4,15 -1,16 0,15" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="4,15 4,17 8,17 8,15" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="10,-13 9,-17 12,-18 13,-14" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-3,-14 -2,-18 2,-19 2,-16" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polygon points="3,-21 3,-14 4,-13 5,-13 6,-13 7,-14 7,-21" fill="white" stroke="#1b3a63" stroke-width="1"/>
+<ellipse cx="5" cy="-21.5" rx="2" ry="0.5" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="6,-20 10,-20 10,-19 6,-19" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<circle cx="10" cy="-20" r="1.5" fill="#1b3a63"/>
+</svg>

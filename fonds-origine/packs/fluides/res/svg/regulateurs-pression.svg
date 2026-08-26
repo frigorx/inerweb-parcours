@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" role="img"
      aria-label="Sur un circuit dessiné selon la croix du frigoriste — détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas — trois emplacements de régulateur de pression sont repérés. Repère 1, en sortie de condenseur, côté haute pression : le régulateur de pression de condensation, couramment appelé KVR, empêche la pression de condensation de trop descendre quand il fait froid dehors. Repère 2, en sortie d'évaporateur, côté basse pression : le régulateur de pression d'évaporation, couramment appelé KVP, empêche la pression d'évaporation de descendre sous la valeur réglée, ce qui protège le produit ou permet de faire coexister plusieurs évaporateurs sur un même compresseur. Repère 3, sur la ligne d'aspiration juste avant le compresseur : le régulateur de pression de carter, couramment appelé KVL, limite la pression d'aspiration, notamment au redémarrage après un arrêt long, pour ne pas surcharger le moteur. Aucun des trois ne coupe le compresseur : un régulateur maintient une pression, un pressostat coupe un circuit électrique.">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>Sur un circuit dessiné selon la croix du frigoriste</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
   <title>Les trois régulateurs de pression : où ils se montent, ce qu'ils protègent</title>
   <desc>Circuit frigorifique de principe. Symboles issus de la bibliothèque inerWeb
         (compresseur général, détendeur thermostatique à égalisation externe,

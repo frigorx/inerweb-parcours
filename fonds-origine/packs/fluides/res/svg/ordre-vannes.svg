@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img"
  aria-label="L'ordre des vannes à la déconnexion. On voit l'installation et ses deux vannes de service (aspiration, liquide), le manifold avec ses manomètres et ses vannes, le raccord du flexible, puis le groupe de récupération et la bouteille avec sa vanne. L'animation allume les étapes une à une : 1 fermer côté circuit puis côté appareil, 2 laisser la pression se stabiliser en observant le manomètre dont l'aiguille s'immobilise, 3 desserrer lentement le raccord par petites touches, 4 récupérer par l'appareil le fluide resté dans le flexible, 5 déconnecter seulement quand la pression est retombée. À la fin tout est allumé.">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>L'ordre des vannes à la déconnexion</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
  <title>L'ordre des vannes : une chorégraphie, jamais une improvisation</title>
  <style>
   .t   { font:700 19px Calibri,Segoe UI,sans-serif; fill:#1b3a63; }

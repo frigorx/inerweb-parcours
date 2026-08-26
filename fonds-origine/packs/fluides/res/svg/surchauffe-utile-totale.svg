@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img"
      aria-label="Dans l'évaporateur, le fluide venu du détendeur bout : les gouttes de liquide rapetissent le long du tube et la dernière disparaît en un point marqué d'un repère. Au-delà, il n'y a plus que de la vapeur, dont la température remonte : ce qu'elle gagne encore dans l'évaporateur est la surchauffe utile, puisqu'elle a servi à refroidir le local ; ce qu'elle gagne ensuite dans la ligne d'aspiration s'y ajoute et forme la surchauffe totale. Deux accolades les montrent l'une après l'autre. La surchauffe se mesure toujours par différence : la pression au manomètre donne, par la table de saturation, la température d'évaporation ; la sonde de contact donne la température réelle du tube ; l'écart entre les deux est la surchauffe, en kelvins. Le passage du fluide se répète sans fin, le phénomène étant permanent.">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>Dans l'évaporateur, le fluide venu du détendeur bout : les gouttes de liquide rapetissent le long du tube et la dernière disparaît en un poi</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
   <title>Surchauffe utile et surchauffe totale : où elles se prennent, comment on les mesure</title>
   <desc>Symboles de la bibliothèque inerWeb : détendeur thermostatique à égalisation
         externe, échangeur à air, compresseur. Basse pression en bleu. Les instruments

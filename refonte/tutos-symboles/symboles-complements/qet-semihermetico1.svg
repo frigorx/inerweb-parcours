@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-37 -42 80 60" overflow="visible">
+<metadata>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <cc:Work rdf:about="">
+      <dc:title>qet semihermetico1</dc:title>
+      <dc:creator><cc:Agent><dc:title>inerWeb — F. Henninot</dc:title></cc:Agent></dc:creator>
+      <dc:rights><cc:Agent><dc:title>© 2026 inerWeb — F. Henninot — tous droits réservés sur l’illustration</dc:title></cc:Agent></dc:rights>
+      <dc:publisher><cc:Agent><dc:title>inerWeb</dc:title></cc:Agent></dc:publisher>
+      <dc:date>2026</dc:date>
+      <dc:identifier>inerweb.fh@gmail.com</dc:identifier>
+      <cc:license rdf:resource="https://creativecommons.org/licenses/by-nc-nd/4.0/"/>
+    </cc:Work>
+    <cc:License rdf:about="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+      <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+      <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#CommercialUse"/>
+      <cc:prohibits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+    </cc:License>
+  </rdf:RDF>
+</metadata>
+<line x1="-14.5" y1="-34" x2="-13.5" y2="-34" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="15" y1="-13" x2="15" y2="7.7" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="7.5" y1="-13" x2="7.5" y2="7.7" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="-26" y1="-19.9" x2="-8" y2="-19.9" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="19" y1="10" x2="24" y2="10" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-26" y1="-17.6" x2="-8" y2="-17.6" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="3" y1="-13" x2="3" y2="7.7" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="11" y1="-13" x2="11" y2="7.7" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<ellipse cx="-15" cy="-13" rx="1" ry="1.15" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-7,-15.3 -5,-17.6 -7,-18.75 -5,-21.05 -7,-22.2 -5,-24.5 -5,-31.4 -6,-33.7 -9,-36 -25,-36 -28,-33.7 -29,-31.4 -29,-24.5 -27,-22.2 -29,-21.05 -27,-18.75 -29,-17.6 -27,-15.3 -27,-10.7 -31,-10.7 -31,3.1 -27,3.1 -27,12.3 -21,12.3 -21,7.7 -2,7.7 -1,10 1,7.7 3,10 5,7.7 7,10 9,7.7 11,10 13,7.7 15,10 17,7.7 19,7.7 19,12.3 25,12.3 25,6.55 28,6.55 28,3.1 29,3.1 29,-7.25 28,-7.25 28,-11.85 25,-11.85 25,-16.45 20,-16.45 18,-14.15 17,-16.45 15,-14.15 13,-16.45 11,-14.15 9,-16.45 7,-14.15 5,-16.45 3,-13 1,-15.3 0,-13 -1,-15.3 -6,-15.3" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="9,-16.45 9,-20.59 22,-20.59 22,-17.28 22,-16.45" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="9" y="-23.07" width="13" height="2.48" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-14,-18.75 -20,-14.15 -18,-11.85 -12,-16.45 -13,-18.75" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="-29" y="-27.95" width="24" height="2.3" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<ellipse cx="-17" cy="-17.6" rx="1" ry="1.15" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="-13,-19.9 -10,-19.9 -12,-16.45" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<ellipse cx="-15" cy="1.95" rx="2" ry="2.3" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="0" y1="-13" x2="0" y2="7.7" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="25" y1="-11.85" x2="25" y2="5.4" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="22" y="-21.42" width="2" height="1.66" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<rect x="30" y="-8.4" width="2" height="9.2" rx="0" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<polyline points="32,-8.4 31,-11.85 30,-8.4" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-29" y1="-10.7" x2="-29" y2="3.1" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-27" y1="8.85" x2="-22" y2="8.85" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<line x1="-26" y1="-22.2" x2="-8" y2="-22.2" fill="none" stroke="#1b3a63" stroke-width="0.6"/>
+<line x1="-23" y1="-34" x2="-22" y2="-34" fill="none" stroke="#1b3a63" stroke-width="1"/>
+<circle cx="31" cy="-12" r="1.5" fill="#1b3a63"/>
+<circle cx="-11" cy="-21" r="1.5" fill="#1b3a63"/>
+<circle cx="24" cy="-21" r="1.5" fill="#1b3a63"/>
+</svg>

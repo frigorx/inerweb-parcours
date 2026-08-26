@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tutos guidés par les symboles — sommaire</title>
+<link rel="stylesheet" href="moteur/tuto.css">
+</head>
+<body>
+
+<header class="bandeau">
+  <div id="marque" class="marque"></div>
+  <div class="titres">
+    <h1>Tutos guidés par les symboles</h1>
+    <p class="sous">Un moteur, un fichier de données par tuto — les symboles normalisés de la bibliothèque</p>
+  </div>
+</header>
+
+<main style="display:block">
+  <div class="sommaire">
+    <div class="cartes" id="cartes"></div>
+
+    <div class="encadre verif" style="margin-top:26px">
+      <span class="cle">Prototype — à valider</span>
+      Le contenu métier de ces tutos n’a pas été relu par un frigoriste. Les points signalés
+      dans les étapes portent la mention « à vérifier ». Pour ajouter un tuto, il n’y a
+      qu’un fichier à écrire : voir <code>LIRE-MOI.md</code>.
+    </div>
+  </div>
+</main>
+
+<script src="moteur/tuto.js"></script>
+<script src="donnees/decors.js"></script>
+<!-- une ligne par tuto : c'est la seule chose à ajouter ici -->
+<script src="donnees/circuit-4-organes.js"></script>
+<script src="donnees/methode-01-pose-manos.js"></script>
+<script src="donnees/methode-02-depose-evm.js"></script>
+<script src="donnees/methode-03-msp-azote.js"></script>
+<script src="donnees/methode-04-tirage-au-vide.js"></script>
+<script src="donnees/methode-05-charge.js"></script>
+<script src="donnees/methode-06-recuperation.js"></script>
+<script>
+(function () {
+  var z = document.getElementById('cartes');
+  Object.keys(window.TUTOS || {}).forEach(function (id) {
+    var t = window.TUTOS[id];
+    var a = document.createElement('a');
+    a.className = 'carte';
+    a.href = 'tuto.html?t=' + id;
+    var h = document.createElement('h3'); h.textContent = t.titre;
+    var p = document.createElement('p'); p.textContent = t.sousTitre;
+    var c = document.createElement('span');
+    c.className = 'compte';
+    var decor = (window.DECORS || {})[t.decor] || {};
+    var nbSym = ((decor.elements || []).length) + ((t.elements || []).length);
+    c.textContent = t.etapes.length + ' étapes · ' + nbSym + ' symboles';
+    a.appendChild(h); a.appendChild(p); a.appendChild(c);
+    z.appendChild(a);
+  });
+
+  /* le bandeau est dessiné par le moteur ; ici sans tuto chargé */
+  document.getElementById('marque').innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 50" height="44">' +
+    '<text fill="#1b3a63" font-size="28" x="4" y="34">❄️</text>' +
+    '<text fill="#1b3a63" font-family="Trebuchet MS, Trebuchet, sans-serif" font-size="26" font-weight="bold" x="44" y="32">iner</text>' +
+    '<text fill="#1b3a63" font-family="Segoe Script, Brush Script MT, cursive" font-size="26" x="94" y="32">Web</text>' +
+    '<line stroke="#e8914a" stroke-width="2" x1="44" x2="150" y1="35" y2="35"/>' +
+    '<rect fill="#e8914a" x="155" y="10" rx="5" ry="5" width="80" height="24"/>' +
+    '<text fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" x="195" y="27" text-anchor="middle">Tutos</text>' +
+    '</svg>';
+})();
+</script>
+</body>
+</html>

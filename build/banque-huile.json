@@ -1,0 +1,1360 @@
+[
+ {
+  "id": "technologie-huiles-frigorifiques-q1",
+  "dc": "Les familles d’huile",
+  "code": "6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Dans quel ordre la fraction d’huile entraînée parcourt-elle le circuit de base après le compresseur ?",
+  "choix": [
+   "Évaporateur, condenseur, détendeur, aspiration",
+   "Détendeur, condenseur, aspiration, évaporateur",
+   "Condenseur, détendeur, évaporateur, aspiration"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "technologie-huiles-frigorifiques-q2",
+  "dc": "Les familles d’huile",
+  "code": "1.05 · 6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que signifie le sigle POE ?",
+  "choix": [
+   "Un ester de polyol de synthèse",
+   "Une polyoléfine émulsionnée",
+   "Une pression d’huile estimée"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "technologie-huiles-frigorifiques-q3",
+  "dc": "Les familles d’huile",
+  "code": "1.05 · 6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel repère est le plus courant pour de nombreux compresseurs aux HFC ou HFO ?",
+  "choix": [
+   "Une huile minérale, quel que soit le compresseur",
+   "Une huile POE approuvée, avec des cas PVE ou PAG",
+   "N’importe quelle huile de même nombre ISO VG"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "technologie-huiles-frigorifiques-q4",
+  "dc": "Les familles d’huile",
+  "code": "6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Avec R717 et un évaporateur noyé, quelles huiles sont courantes ?",
+  "choix": [
+   "POE de climatisation automobile",
+   "PVE seul, sans dispositif de retour",
+   "MO, PAO ou AB, avec un retour adapté"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "technologie-huiles-frigorifiques-q5",
+  "dc": "Les familles d’huile",
+  "code": "1.05 · 6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pour un compresseur au R744, quelle affirmation est exacte ?",
+  "choix": [
+   "Une huile POE de climatisation automobile convient",
+   "La formulation dépend du compresseur retenu",
+   "Le nombre ISO VG suffit à trancher l’huile"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "technologie-huiles-choix-controle-q1",
+  "dc": "Choisir et contrôler l’huile",
+  "code": "6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que signifie principalement ISO VG 46 ?",
+  "choix": [
+   "Une température limite d’emploi de 46 °C",
+   "Une compatibilité avec 46 fluides listés",
+   "Une viscosité proche de 46 mm²/s à 40 °C"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "technologie-huiles-choix-controle-q2",
+  "dc": "Choisir et contrôler l’huile",
+  "code": "6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que devient généralement la viscosité de l’huile quand sa température augmente ?",
+  "choix": [
+   "Elle augmente avec la température",
+   "Elle diminue : l’huile se fluidifie",
+   "Elle reste égale au nombre ISO VG"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "technologie-huiles-choix-controle-q3",
+  "dc": "Choisir et contrôler l’huile",
+  "code": "5.08 · 6.01",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi un bidon de POE, PAG ou PVE doit-il rester fermé ?",
+  "choix": [
+   "Ces huiles captent l’humidité de l’air",
+   "Ces huiles s’oxydent sous l’effet de la lumière",
+   "Ces huiles s’évaporent en quelques heures"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "technologie-huiles-choix-controle-q4",
+  "dc": "Choisir et contrôler l’huile",
+  "code": "5.08 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que mesure un kit de test acide pour huile frigorifique ?",
+  "choix": [
+   "Un pH, comme sur un prélèvement d’eau",
+   "La teneur en eau de l’huile, en ppm",
+   "Une indication d’acidité, selon la notice"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "technologie-huiles-choix-controle-q5",
+  "dc": "Choisir et contrôler l’huile",
+  "code": "1.05 · 6.01 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle est la bonne méthode avant d’ajouter de l’huile ?",
+  "choix": [
+   "Choisir la famille la plus récente du marché",
+   "Relever modèle et fluide, puis lire l’approbation",
+   "Reprendre l’huile déjà ouverte dans l’atelier"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "retour-huile-naturel-q1",
+  "dc": "Le retour d’huile naturel",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Dans une colonne d’aspiration, qu’est-ce qui entraîne principalement l’huile vers le haut ?",
+  "choix": [
+   "La vitesse du gaz aspiré",
+   "La pente de la colonne",
+   "La gravité seule, en descente"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "retour-huile-naturel-q2",
+  "dc": "Le retour d’huile naturel",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel défaut de tracé peut retenir l’huile ?",
+  "choix": [
+   "Un coude à grand rayon",
+   "Une poche non prévue au tracé",
+   "Une pente vers le compresseur"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "retour-huile-naturel-q3",
+  "dc": "Le retour d’huile naturel",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "À quoi sert une double colonne correctement dimensionnée ?",
+  "choix": [
+   "Supprimer le contrôle de niveau",
+   "Doubler le débit d’huile admis",
+   "Garder une vitesse utile à bas débit"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "retour-huile-naturel-q4",
+  "dc": "Le retour d’huile naturel",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quand faut-il prévoir un contre-siphon en tête de colonne ?",
+  "choix": [
+   "Quand le tracé et la notice le disent",
+   "À chaque coude de la tuyauterie",
+   "Dès que la colonne dépasse 2 m"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "retour-huile-naturel-q5",
+  "dc": "Le retour d’huile naturel",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle affirmation est correcte ?",
+  "choix": [
+   "Un siphon va à chaque coude du tube",
+   "Le retour dépend du tracé et des débits",
+   "Le séparateur rend le retour inutile"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "retour-huile-verifier-q1",
+  "dc": "Vérifier le retour d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi vérifier le fonctionnement à charge minimale ?",
+  "choix": [
+   "Le débit et la vitesse y baissent",
+   "La pression du carter y est plus haute",
+   "L’huile se fige à basse température"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "retour-huile-verifier-q2",
+  "dc": "Vérifier le retour d’huile",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "À charge réduite, comment la double colonne maintient-elle une vitesse utile ?",
+  "choix": [
+   "Une vanne électrique ferme la petite montée",
+   "L’huile bouche la grande, le gaz file dans la petite",
+   "Le débit se répartit également dans les deux"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "retour-huile-verifier-q3",
+  "dc": "Vérifier le retour d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le voyant de carter indique un niveau bas juste après un changement de régime. Que faire d’abord ?",
+  "choix": [
+   "Observer l’évolution et vérifier le régime",
+   "Ajouter de l’huile sans autre contrôle",
+   "Arrêter l’installation immédiatement"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "retour-huile-verifier-q4",
+  "dc": "Vérifier le retour d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Niveau bas avec une colonne d’aspiration : que lire d’abord ?",
+  "choix": [
+   "La référence de l’huile du carter",
+   "La température de la salle des machines",
+   "Le trajet : pente, points bas, siphon"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "retour-huile-verifier-q5",
+  "dc": "Vérifier le retour d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Une colonne montante a 26 mm de diamètre intérieur. Quelle est sa section de passage ?",
+  "choix": [
+   "2 124 mm²",
+   "531 mm²",
+   "82 mm²"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "retour-huile-verifier-q6",
+  "dc": "Vérifier le retour d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le débit aspiré est de 18 m³/h dans cette section de 531 mm². Quelle vitesse de gaz ?",
+  "choix": [
+   "environ 0,009 m/s",
+   "environ 5,6 m/s",
+   "environ 9,4 m/s"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "retour-huile-verifier-q7",
+  "dc": "Vérifier le retour d’huile",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "À 40 % de charge, la vitesse calculée tombe à 3,8 m/s. Que faire ?",
+  "choix": [
+   "Conclure que le tube est trop petit",
+   "Comparer au repère validé du tracé",
+   "Ignorer la baisse due au débit"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "elements-circuit-huile-q1",
+  "dc": "La chaîne de l’huile : séparer et stocker",
+  "code": "1.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Où place-t-on le séparateur d’huile dans la chaîne frigorifique ?",
+  "choix": [
+   "Sur la ligne liquide, après le condenseur",
+   "Sur la ligne d’aspiration, avant le carter",
+   "Sur le refoulement, en sortie compresseur"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "elements-circuit-huile-q2",
+  "dc": "La chaîne de l’huile : séparer et stocker",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle est la fonction principale du réservoir d’huile ?",
+  "choix": [
+   "Détendre le fluide frigorigène",
+   "Constituer une réserve tampon d’huile",
+   "Mesurer la surchauffe à l’aspiration"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "elements-circuit-huile-q3",
+  "dc": "La chaîne de l’huile : séparer et stocker",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi utilise-t-on un clapet différentiel sur un réservoir basse pression ?",
+  "choix": [
+   "Pour tenir une pression au-dessus du carter",
+   "Pour équilibrer le réservoir sur le refoulement",
+   "Pour vidanger le réservoir vers l’aspiration"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "elements-circuit-huile-q4",
+  "dc": "La chaîne de l’huile : séparer et stocker",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment agit un régulateur mécanique de type AC&R ?",
+  "choix": [
+   "Une électrovanne s’ouvre à intervalle fixe",
+   "Un thermostat mesure la température d’huile",
+   "Un flotteur commande un pointeau d’admission"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "elements-circuit-huile-regler-q1",
+  "dc": "La chaîne de l’huile : mettre sous pression et régler",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que peut faire un TraxOil équipé pour la régulation ?",
+  "choix": [
+   "Mesurer le niveau, commander l’admission, alerter",
+   "Remplacer le séparateur et le réservoir d’huile",
+   "Choisir la famille d’huile selon le fluide"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "elements-circuit-huile-regler-q2",
+  "dc": "La chaîne de l’huile : mettre sous pression et régler",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le carter reste bas alors que la réserve contient de l’huile. Quel contrôle est pertinent ?",
+  "choix": [
+   "Température extérieure et hygrométrie du local",
+   "Différentiel, vannes, filtre et régulateur",
+   "Couleur de l’huile et propreté du carter"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "elements-circuit-huile-regler-q3",
+  "dc": "La chaîne de l’huile : mettre sous pression et régler",
+  "code": "9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment vérifier le fonctionnement du séparateur ?",
+  "choix": [
+   "En touchant le tube de retour une seule fois",
+   "En ajoutant de l’huile jusqu’au bon niveau",
+   "En croisant niveaux, températures, régimes"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "elements-circuit-huile-regler-q4",
+  "dc": "La chaîne de l’huile : mettre sous pression et régler",
+  "code": "1.05 · 6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Après le réservoir d’un circuit actif basse pression, quelles sont les deux branches ?",
+  "choix": [
+   "Toute l’huile traverse le clapet taré d’abord",
+   "Huile vers le régulateur ; pression à l’aspiration",
+   "Deux conduites identiques vers le condenseur"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "elements-circuit-huile-regler-q5",
+  "dc": "La chaîne de l’huile : mettre sous pression et régler",
+  "code": "1.05 · 6.03 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que surveille le pressostat différentiel d’huile sur un compresseur à pompe ?",
+  "choix": [
+   "Le niveau d’huile dans le réservoir tampon",
+   "La pression de condensation du circuit",
+   "L’écart entre pression de pompe et de carter"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "separateur-huile-pedagogique-q1",
+  "dc": "Le séparateur d’huile",
+  "code": "1.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Où se place le séparateur d’huile ?",
+  "choix": [
+   "Sur le refoulement, avant le condenseur",
+   "Sur la ligne liquide, après le condenseur",
+   "Sur l’aspiration, avant le compresseur"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "separateur-huile-pedagogique-q2",
+  "dc": "Le séparateur d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelles sont ses trois voies fonctionnelles ?",
+  "choix": [
+   "Liquide entrant, vapeur sortante, purge d’air",
+   "Mélange entrant, gaz sortant, huile retournée",
+   "Gaz entrant, condensats sortants, drain d’eau"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "separateur-huile-pedagogique-q3",
+  "dc": "Le séparateur d’huile",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "De quoi dépend l’efficacité de séparation d’un séparateur d’huile ?",
+  "choix": [
+   "Elle dépend du modèle et du régime de marche",
+   "Elle atteint la totalité de l’huile entraînée",
+   "Elle ne dépend que du diamètre des tubes"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "separateur-huile-pedagogique-q4",
+  "dc": "Le séparateur d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que commande le flotteur interne ?",
+  "choix": [
+   "Le ventilateur du condenseur à air",
+   "Le détendeur thermostatique du poste",
+   "Le pointeau de retour d’huile au carter"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "separateur-huile-pedagogique-q5",
+  "dc": "Le séparateur d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi le pointeau doit-il se refermer ?",
+  "choix": [
+   "Pour ne pas laisser passer le gaz chaud",
+   "Pour garder l’huile chaude dans la cuve",
+   "Pour arrêter le ventilateur du condenseur"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "separateur-huile-pedagogique-q6",
+  "dc": "Le séparateur d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que vérifier pour sélectionner un séparateur ?",
+  "choix": [
+   "Diamètre extérieur et longueur du corps",
+   "Fluide, huile, pressions et plage de débit",
+   "Marque du compresseur et année de pose"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "separateur-huile-pedagogique-q7",
+  "dc": "Le séparateur d’huile",
+  "code": "9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment vérifier son fonctionnement ?",
+  "choix": [
+   "Toucher le tube de retour une seule fois",
+   "Ajouter de l’huile et observer le voyant",
+   "Croiser niveaux, retour, températures, régimes"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "separateur-huile-pedagogique-q8",
+  "dc": "Le séparateur d’huile",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le niveau du carter reste bas. Quelle méthode est correcte ?",
+  "choix": [
+   "Remplacer le séparateur avant tout contrôle",
+   "Suivre le chemin : retour, séparateur, réserve",
+   "Supprimer la conduite de retour d’huile"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q1",
+  "dc": "Le séparateur à éclatement",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Dans un séparateur à éclatement, qu’est-ce qui arrête l’huile ?",
+  "choix": [
+   "Un tamis magnétique en partie basse",
+   "Une plaque de choc placée face au jet",
+   "Une cartouche filtrante à remplacer"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q2",
+  "dc": "Le séparateur à éclatement",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi les gouttes d’huile ne suivent-elles pas le virage du gaz ?",
+  "choix": [
+   "Parce que le gaz se refroidit sur la paroi",
+   "Parce que la plaque de choc est aimantée",
+   "Parce que l’huile est bien plus dense"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q3",
+  "dc": "Le séparateur à éclatement",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que devient la vitesse du gaz entre la buse et le corps ?",
+  "choix": [
+   "Elle chute, car la section s’ouvre",
+   "Elle monte, car le gaz se détend",
+   "Elle ne bouge pas, le débit est le même"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q4",
+  "dc": "Le séparateur à éclatement",
+  "code": "1.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel avantage l’éclatement a-t-il sur la coalescence ?",
+  "choix": [
+   "Il retient le brouillard le plus fin",
+   "Il rend le retour naturel inutile",
+   "Il n’a pas d’élément à remplacer"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q5",
+  "dc": "Le séparateur à éclatement",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Sur une centrale à longues lignes, que choisit-on plutôt ?",
+  "choix": [
+   "Un éclatement, moins cher à installer",
+   "Un coalescent, plus fin au brouillard",
+   "Aucun séparateur, la pente suffira"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "separateur-eclatement-pedagogique-q6",
+  "dc": "Le séparateur à éclatement",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi le coalescent s’impose-t-il sur les centrales au CO₂ ?",
+  "choix": [
+   "Sa densité approche celle de l’huile",
+   "Il attaque la plaque de choc en acier",
+   "Il circule beaucoup plus lentement"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q1",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Où se place le réservoir d’huile ?",
+  "choix": [
+   "Entre le séparateur et les régulateurs",
+   "Entre le détendeur et l’évaporateur",
+   "Entre le condenseur et la ligne liquide"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q2",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi est-il appelé réserve tampon ?",
+  "choix": [
+   "Il refroidit l’huile avant son retour au carter",
+   "Il compense les écarts de départ et de retour",
+   "Il détend le fluide avant l’évaporateur"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q3",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "En quoi le réservoir d’huile diffère-t-il d’une bouteille liquide ?",
+  "choix": [
+   "Par sa fonction et ses raccordements",
+   "Il n’en diffère pas : c’est le même organe",
+   "Par sa seule position, verticale au sol"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q4",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Qu’est-ce qui fait circuler l’huile vers le carter ?",
+  "choix": [
+   "La seule gravité, réservoir en hauteur",
+   "Le débit du ventilateur de condenseur",
+   "Une différence de pression suffisante"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q5",
+  "dc": "Le réservoir d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment interpréter les deux voyants ?",
+  "choix": [
+   "Comme un feu vert et rouge universel",
+   "Avec l’évolution, le régime et la notice",
+   "En comparant au carter d’à côté"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q6",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle huile utiliser au remplissage ?",
+  "choix": [
+   "Une huile de même nombre ISO VG",
+   "Celle qui reste ouverte dans l’atelier",
+   "La référence approuvée du compresseur"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q7",
+  "dc": "Le réservoir d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Avant de démonter un voyant, que faut-il faire ?",
+  "choix": [
+   "Consigner, isoler, vérifier l’absence de pression",
+   "Attendre l’arrêt du compresseur, puis dévisser",
+   "Mettre le réservoir côté refoulement"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "reservoir-huile-pedagogique-q8",
+  "dc": "Le réservoir d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le réservoir reste plein alors qu’un carter est bas. Que contrôler ?",
+  "choix": [
+   "Le séparateur d’huile, en priorité",
+   "Pression, vannes, filtre et régulateur",
+   "La température extérieure du local"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q1",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle est la mission du clapet taré ?",
+  "choix": [
+   "Maintenir un différentiel de pression prévu",
+   "Mesurer la surchauffe à l’aspiration",
+   "Limiter la pression de condensation"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q2",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Dans quelle conduite se trouve-t-il ?",
+  "choix": [
+   "La ligne liquide, après le détendeur",
+   "La branche de pression vers l’aspiration",
+   "La conduite d’huile vers chaque régulateur"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q3",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que signifie le tarage ?",
+  "choix": [
+   "Une température fixe d’enclenchement",
+   "La quantité d’huile du réservoir",
+   "Une différence de pression d’ouverture"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q4",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "De quoi dépend la valeur de tarage retenue ?",
+  "choix": [
+   "Du système, des organes et des régimes",
+   "Du modèle de compresseur seulement",
+   "D’une valeur unique donnée par la norme"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q5",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que vérifier sur le montage ?",
+  "choix": [
+   "Diamètre du tube et longueur de la ligne",
+   "Sens, raccordement, plage et compatibilité",
+   "Position verticale et hauteur au sol"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q6",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Un différentiel trop faible provoque surtout…",
+  "choix": [
+   "Une hausse du débit d’air au condenseur",
+   "Une surchauffe excessive à l’aspiration",
+   "Une alimentation d’huile insuffisante"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "clapet-differentiel-huile-pedagogique-q7",
+  "dc": "Le clapet différentiel d’huile",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment vérifier le clapet ?",
+  "choix": [
+   "Comparer les pressions à la valeur prescrite",
+   "Régler jusqu’à ce que le voyant se remplisse",
+   "Ajouter de l’huile avant toute mesure"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q1",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que désigne souvent « pot AC&R » en atelier ?",
+  "choix": [
+   "Un régulateur de niveau à flotteur",
+   "Un filtre déshydrateur de ligne liquide",
+   "Un détendeur électronique d’évaporateur"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q2",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Où se monte-t-il ?",
+  "choix": [
+   "Sur la sortie du condenseur",
+   "Au raccord du voyant du carter",
+   "Sur la ligne liquide, après le détendeur"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q3",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment agit-il ?",
+  "choix": [
+   "Le flotteur commande un pointeau",
+   "Une pompe aspire l’huile du bac",
+   "Un ressort taré ouvre par pression"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q4",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi doit-il être horizontal ?",
+  "choix": [
+   "Pour faciliter la purge du carter",
+   "Pour limiter les vibrations du bloc",
+   "Pour que le flotteur suive le vrai niveau"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q5",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Qui fixe le niveau cible ?",
+  "choix": [
+   "La moitié de la hauteur du voyant",
+   "Les notices du compresseur et du bloc",
+   "Une valeur unique, la même partout"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q6",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi installer un filtre en amont ?",
+  "choix": [
+   "Pour ralentir le débit vers le carter",
+   "Pour retenir l’humidité de l’huile",
+   "Pour protéger le pointeau des impuretés"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q7",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que peut faire le régulateur mécanique face à un excès d’huile ?",
+  "choix": [
+   "Fermer son admission, sans plus",
+   "Renvoyer l’excès vers le réservoir",
+   "Purger l’huile vers l’aspiration"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "regulateur-huile-mecanique-pedagogique-q8",
+  "dc": "Le régulateur d’huile mécanique AC&R",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Le carter reste bas : que vérifier d’abord ?",
+  "choix": [
+   "Remplacer le flotteur sans mesurer",
+   "Réserve, différentiel, vannes et filtre",
+   "Ajouter une huile d’un autre type"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "traxoil-pedagogique-q1",
+  "dc": "TraxOil : comment il travaille",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelles fonctions TraxOil réunit-il ?",
+  "choix": [
+   "Mesure, admission d’huile et alarme",
+   "Condensation, détente et évaporation",
+   "Pesée, tirage au vide et charge"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "traxoil-pedagogique-q2",
+  "dc": "TraxOil : comment il travaille",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que suit le capteur à effet Hall ?",
+  "choix": [
+   "La température de l’huile au carter",
+   "La position du flotteur magnétique",
+   "La pression de condensation du poste"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "traxoil-pedagogique-q3",
+  "dc": "TraxOil : comment il travaille",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel est le rôle de l’électrovanne du TraxOil ?",
+  "choix": [
+   "Ouvrir un passage alimenté en amont",
+   "Créer la pression d’huile nécessaire",
+   "Réguler la pression du réservoir"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "traxoil-pedagogique-q4",
+  "dc": "TraxOil : comment il travaille",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que signifie une alarme de niveau bas persistante ?",
+  "choix": [
+   "Le condenseur est encrassé, à coup sûr",
+   "Le contrôleur est en panne, à changer",
+   "Le niveau n’est pas revenu à temps"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "traxoil-installer-q1",
+  "dc": "TraxOil : monter et diagnostiquer",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que vérifier avant de remplacer un OM3 par un OM4 ou un OM5 ?",
+  "choix": [
+   "La couleur du boîtier et sa hauteur",
+   "Pression, fluide, joints et alimentation",
+   "Rien : les trois sont équivalents"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "traxoil-installer-q2",
+  "dc": "TraxOil : monter et diagnostiquer",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que contrôler lors du montage ?",
+  "choix": [
+   "Longueur du câble et tension du réseau",
+   "Repère du voyant et sens du regard",
+   "Orientation, adaptateur, joints, filtre"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "traxoil-installer-q3",
+  "dc": "TraxOil : monter et diagnostiquer",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Dans un circuit BP, où agit le clapet taré ?",
+  "choix": [
+   "Sur la branche de pression vers l’aspiration",
+   "Sur la conduite d’huile vers le carter",
+   "Sur la ligne liquide, après le détendeur"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "traxoil-installer-q4",
+  "dc": "TraxOil : monter et diagnostiquer",
+  "code": "1.05 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel risque accompagne un retour HP direct ?",
+  "choix": [
+   "Gel de la ligne liquide au condenseur",
+   "Dégazage et mousse à la détente au carter",
+   "Perte totale de l’huile du carter"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "traxoil-installer-q5",
+  "dc": "TraxOil : monter et diagnostiquer",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "La LED rouge du TraxOil est allumée. Que faire ?",
+  "choix": [
+   "Remplacer le contrôleur sans mesurer",
+   "Ajouter de l’huile jusqu’à extinction",
+   "Vérifier toute la chaîne d’alimentation"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "pressostat-differentiel-huile-pedagogique-q1",
+  "dc": "Le pressostat d’huile : la pression nette",
+  "code": "6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle est la mission du pressostat différentiel d’huile ?",
+  "choix": [
+   "Arrêter le compresseur si la pression manque",
+   "Maintenir le niveau d’huile du réservoir",
+   "Séparer l’huile du gaz de refoulement"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "pressostat-differentiel-huile-pedagogique-q2",
+  "dc": "Le pressostat d’huile : la pression nette",
+  "code": "1.05 · 6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "En quoi diffère-t-il d’un régulateur de niveau TraxOil ?",
+  "choix": [
+   "Il agit plus vite sur le même niveau",
+   "Il surveille une pression, pas un niveau",
+   "Il remplit la même fonction, autrement"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "pressostat-differentiel-huile-pedagogique-q3",
+  "dc": "Le pressostat d’huile : la pression nette",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Où se raccorde normalement P1 côté OIL ?",
+  "choix": [
+   "À la bouteille liquide du circuit",
+   "Sur l’aspiration, avant le carter",
+   "À la sortie de la pompe à huile"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "pressostat-differentiel-huile-pedagogique-q4",
+  "dc": "Le pressostat d’huile : la pression nette",
+  "code": "6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment obtenir la pression nette d’huile ?",
+  "choix": [
+   "P1 moins P2",
+   "P1 plus P2",
+   "P2 divisée par P1"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "pressostat-differentiel-huile-pedagogique-q5",
+  "dc": "Le pressostat d’huile : la pression nette",
+  "code": "6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Pourquoi une temporisation existe-t-elle au démarrage ?",
+  "choix": [
+   "Pour éviter les à-coups sur le moteur",
+   "Pour laisser chauffer l’huile du carter",
+   "Pour laisser la pompe monter en pression"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "pressostat-huile-securite-q1",
+  "dc": "Le pressostat d’huile : temporisation et sécurité",
+  "code": "6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Qu’arrive-t-il si le différentiel devient suffisant avant la fin du délai ?",
+  "choix": [
+   "La temporisation cesse, la marche continue",
+   "Le compresseur s’arrête en fin de délai",
+   "Le réservoir se vide vers l’aspiration"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "pressostat-huile-securite-q2",
+  "dc": "Le pressostat d’huile : temporisation et sécurité",
+  "code": "6.03 · 6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Une chute persistante en fonctionnement doit conduire à quoi ?",
+  "choix": [
+   "Un réarmement manuel immédiat",
+   "L’arrêt de sécurité prévu au câblage",
+   "Une hausse du seuil de déclenchement"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "pressostat-huile-securite-q3",
+  "dc": "Le pressostat d’huile : temporisation et sécurité",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que faire après un déclenchement ?",
+  "choix": [
+   "Rechercher la cause avant de réarmer",
+   "Réarmer et observer si cela revient",
+   "Ponter le contact le temps du dépannage"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "pressostat-huile-securite-q4",
+  "dc": "Le pressostat d’huile : temporisation et sécurité",
+  "code": "1.05 · 6.03",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "D’où vient le seuil de déclenchement à retenir ?",
+  "choix": [
+   "D’une valeur unique, la même partout",
+   "Du type d’huile utilisée au remplissage",
+   "De la notice du compresseur et du bloc"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "pressostat-huile-securite-q5",
+  "dc": "Le pressostat d’huile : temporisation et sécurité",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quel relevé permet une conclusion professionnelle ?",
+  "choix": [
+   "Une seule pression, sans noter l’heure",
+   "P1, P2, Δp, durée et régime relevés",
+   "Le modèle du boîtier et son année"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "diagnostic-circuit-huile-q1",
+  "dc": "Diagnostic : lire l’architecture et le retour",
+  "code": "1.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que faut-il identifier avant toute mesure ?",
+  "choix": [
+   "L’architecture du circuit d’huile",
+   "Le niveau visible dans le carter",
+   "La référence de l’huile en place"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "diagnostic-circuit-huile-q2",
+  "dc": "Diagnostic : lire l’architecture et le retour",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que peut recouvrir un niveau d’huile bas ?",
+  "choix": [
+   "Un régulateur défaillant, dans tous les cas",
+   "Un séparateur encrassé, dans tous les cas",
+   "Rétention, perte, séparation ou distribution"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "diagnostic-circuit-huile-q3",
+  "dc": "Diagnostic : lire l’architecture et le retour",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que contrôler dans le retour naturel ?",
+  "choix": [
+   "Pentes, siphons, montées et charge minimale",
+   "Diamètre extérieur et isolation des tubes",
+   "Température de condensation et sous-refroidissement"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "diagnostic-circuit-huile-q4",
+  "dc": "Diagnostic : lire l’architecture et le retour",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Réservoir plein et carter bas : où chercher ?",
+  "choix": [
+   "Dans l’évaporateur et son dégivrage",
+   "Dans la distribution vers le carter",
+   "Dans la bouteille liquide du circuit"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "diagnostic-circuit-huile-q5",
+  "dc": "Diagnostic : lire l’architecture et le retour",
+  "code": "6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Réservoir bas et plusieurs carters bas : quel axe ?",
+  "choix": [
+   "Une seule électrovanne restée fermée",
+   "Le réglage du détendeur thermostatique",
+   "Séparation, retour, fuite ou charge globale"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "diagnostic-circuit-huile-conclure-q1",
+  "dc": "Diagnostic : pression, distribution et conclusion",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Comment vérifier le clapet différentiel ?",
+  "choix": [
+   "Comparer réservoir et pression de référence",
+   "Mesurer la pression au carter, seule",
+   "Ouvrir le réglage jusqu’au débit voulu"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "diagnostic-circuit-huile-conclure-q2",
+  "dc": "Diagnostic : pression, distribution et conclusion",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Avant de condamner le régulateur, que vérifier ?",
+  "choix": [
+   "Le voyant du carter et sa propreté",
+   "Vanne, filtre, pression d’arrivée",
+   "Le ventilateur du condenseur à air"
+  ],
+  "bonne": 1
+ },
+ {
+  "id": "diagnostic-circuit-huile-conclure-q3",
+  "dc": "Diagnostic : pression, distribution et conclusion",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Que peut signaler une alarme TraxOil ?",
+  "choix": [
+   "Un défaut extérieur au contrôleur",
+   "Une panne interne du contrôleur seul",
+   "Un réservoir plein, sans autre cause"
+  ],
+  "bonne": 0
+ },
+ {
+  "id": "diagnostic-circuit-huile-conclure-q4",
+  "dc": "Diagnostic : pression, distribution et conclusion",
+  "code": "6.05",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Carter trop haut : quelle hypothèse est cohérente ?",
+  "choix": [
+   "Manque de pression dans la réserve",
+   "Double colonne de section trop petite",
+   "Suralimentation ou pointeau qui ferme mal"
+  ],
+  "bonne": 2
+ },
+ {
+  "id": "diagnostic-circuit-huile-conclure-q5",
+  "dc": "Diagnostic : pression, distribution et conclusion",
+  "code": "1.05 · 6.05 · 9.07",
+  "niveau": "ligne-huile",
+  "type": "qcm",
+  "enonce": "Quelle conclusion est professionnelle ?",
+  "choix": [
+   "Annoncer la panne dès le premier indice",
+   "Mesures, hypothèse et prochain contrôle",
+   "Masquer l’alarme pour finir la journée"
+  ],
+  "bonne": 1
+ }
+]
