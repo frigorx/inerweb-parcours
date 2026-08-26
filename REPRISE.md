@@ -13,6 +13,29 @@
 
 ---
 
+> ## 26/08 — Filet de sécurité et sources Claude Design rapatriées
+>
+> **144 fichiers dormaient sans commit depuis le 23/08** — dont 133 illustrations
+> portant la signature de paternité et la licence CC BY-NC-ND. Tant qu'elles
+> n'étaient pas validées, ces signatures ne prouvaient **aucune antériorité**.
+> Tout est versé (commit `ea33e96`) : illustrations signées, pages de la refonte
+> (parcours, enseignant, paliers), outils de fabrication (bon à tirer, élément
+> vers SVG, paquet tutos, banque huile) et le lot tutos-symboles.
+>
+> **Sources Claude Design rangées** (commit `1604301`) : les exports bruts de
+> « Retour d'huile » et « Séparateur à éclatement » dormaient dans le fourre-tout
+> `CLAUDE-ESPACE-TRAVAIL`. Ils sont désormais en `source-design/` à côté de
+> chaque `PROVENANCE.md`. Ce ne sont **pas** des doublons des modules : ce sont
+> les sources dont les adaptations sont issues, et elles chargent React et Babel
+> depuis `unpkg.com` — inutilisables telles quelles.
+>
+> ⚠️ Contrôle des empreintes du retour d'huile : 4 fichiers sur 5 correspondent à
+> `PROVENANCE.md` ; le `.dc.html` a été réenregistré après import. Écart consigné
+> dans le `LISEZ-MOI.md` du dossier.
+>
+> Deux fichiers de voix en `.tmp` restent volontairement hors du dépôt.
+> Aucun push.
+
 ## 0. Où en est la rame « Le circuit d’huile » — 20 août 2026
 
 **Bon à tirer donné par Franck le 20/08 ; gel de diffusion levé pour cette rame : poussée.**
