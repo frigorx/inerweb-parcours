@@ -125,13 +125,14 @@
 
   /* L'air de la chambre, que lit le bulbe du thermostat B1 (cx = centre du θ). */
   function Air(p) {
-    var cx = p.cx, y = p.y === undefined ? 646 : p.y, ly = p.ly === undefined ? 825 : p.ly;
+    var cx = p.cx, y = p.y === undefined ? 630 : p.y, ly = p.ly === undefined ? 825 : p.ly;
     return (
       <g>
         <rect x={cx - 108} y={y} width="216" height="118" rx="12" fill={C.card} stroke={C.blue} strokeWidth="4" />
         <text x={cx} y={y + 34} textAnchor="middle" fill={C.mute} fontSize="24" fontWeight="800" letterSpacing="2">AIR CHAMBRE</text>
         <text x={cx} y={y + 94} textAnchor="middle" fill={C.blue} fontSize="44" fontWeight="900">{fr(p.temp, 1)} °C</text>
-        <line x1={cx} y1={ly < y ? y : y + 118} x2={cx} y2={ly} stroke={C.mute} strokeWidth="4" strokeDasharray="10 8" />
+        {(ly < y || ly > y + 118) &&
+          <line x1={cx} y1={ly < y ? y : y + 118} x2={cx} y2={ly} stroke={C.mute} strokeWidth="4" strokeDasharray="10 8" />}
       </g>
     );
   }
@@ -148,17 +149,18 @@
     );
   }
 
-  /* La courbe de la BP et la marche de KM1, tracées jusqu'à l'instant présent.
-     p.etat(t) rend { bp, kmLive } ; la carte fait 440 × 410 à partir de (x, y). */
+  /* La courbe de la BP (ou de l'air, p.air) et la marche de KM1, tracées jusqu'à
+     l'instant présent. p.etat(t) rend { bp | temp, kmLive } ; carte 440 × 410 en (x, y). */
   function Courbe(p) {
     var x = p.x, y = p.y, t0 = p.t0, t1 = p.t1, X0 = x + 65, X1 = x + 415;
     function X(t) { return X0 + (X1 - X0) * (t - t0) / (t1 - t0); }
-    function Y(b) { return y + 290 - clamp(b / 3, 0, 1) * 200; }
+    var air = !!p.air;
+    function Y(b) { return y + 290 - clamp(air ? (b + 19) / 6 : b / 3, 0, 1) * 200; }
     var tc = clamp(p.T, t0, t1);
     var d = '', dk = '', prec = null;
     for (var t = t0; t <= tc + 0.0001; t += 0.1) {
       var e = p.etat(t);
-      d += (d ? ' L ' : 'M ') + X(t).toFixed(1) + ' ' + Y(e.bp).toFixed(1);
+      d += (d ? ' L ' : 'M ') + X(t).toFixed(1) + ' ' + Y(air ? e.temp : e.bp).toFixed(1);
       var yk = e.kmLive ? y + 335 : y + 375;
       if (prec === null) dk = 'M ' + X(t).toFixed(1) + ' ' + yk;
       else if (yk !== prec) dk += ' L ' + X(t).toFixed(1) + ' ' + prec + ' L ' + X(t).toFixed(1) + ' ' + yk;
@@ -168,8 +170,8 @@
     return (
       <g>
         <rect x={x} y={y} width="440" height="410" rx="16" fill={C.card} stroke={C.blue} strokeWidth="4" />
-        <text x={x + 23} y={y + 42} fill={C.orangeText} fontSize="26" fontWeight="900" letterSpacing="2">PRESSION BP · KM1</text>
-        {[[1.8, '1,8', C.orangeText], [0.3, '0,3', C.blue]].map(function (l) {
+        <text x={x + 23} y={y + 42} fill={C.orangeText} fontSize="26" fontWeight="900" letterSpacing="2">{air ? 'AIR · KM1' : 'PRESSION BP · KM1'}</text>
+        {(air ? [[-14, '−14', C.orangeText], [-18, '−18', C.blue]] : [[1.8, '1,8', C.orangeText], [0.3, '0,3', C.blue]]).map(function (l) {
           return (
             <g key={l[0]}>
               <line x1={X0} y1={Y(l[0])} x2={X1} y2={Y(l[0])} stroke={l[2]} strokeWidth="3" strokeDasharray="12 10" opacity="0.75" />
@@ -177,7 +179,7 @@
             </g>
           );
         })}
-        <path d={d} fill="none" stroke={C.red} strokeWidth="7" strokeLinejoin="round" />
+        <path d={d} fill="none" stroke={air ? C.blue : C.red} strokeWidth="7" strokeLinejoin="round" />
         <text x={X0 - 10} y={y + 367} textAnchor="end" fill={C.blue} fontSize="24" fontWeight="800">KM1</text>
         <path d={dk} fill="none" stroke={C.orangeText} strokeWidth="7" strokeLinejoin="round" />
         <line x1={X(tc)} y1={y + 65} x2={X(tc)} y2={y + 390} stroke={C.orange} strokeWidth="4" />

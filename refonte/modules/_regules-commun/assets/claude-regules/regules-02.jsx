@@ -829,4 +829,5 @@
   }
 
   window.RegulesProtectionMinimum = RegulesProtectionMinimum;
+  window.RK02 = { Cabinet: Cabinet };   /* l'armoire, pour les planches pas à pas */
 })();

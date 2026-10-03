@@ -2502,8 +2502,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ), /* @__PURE__ */ React.createElement("text", { x: p.x, y: p.y + 104, textAnchor: "middle", fill: on ? C.orangeText : C.mute, fontSize: "28", fontWeight: "900" }, on ? "TOURNE" : "ARR\xCAT\xC9"));
     }
     function Air(p) {
-      var cx = p.cx, y = p.y === void 0 ? 646 : p.y, ly = p.ly === void 0 ? 825 : p.ly;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: cx - 108, y, width: "216", height: "118", rx: "12", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: cx, y: y + 34, textAnchor: "middle", fill: C.mute, fontSize: "24", fontWeight: "800", letterSpacing: "2" }, "AIR CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: cx, y: y + 94, textAnchor: "middle", fill: C.blue, fontSize: "44", fontWeight: "900" }, fr(p.temp, 1), " \xB0C"), /* @__PURE__ */ React.createElement("line", { x1: cx, y1: ly < y ? y : y + 118, x2: cx, y2: ly, stroke: C.mute, strokeWidth: "4", strokeDasharray: "10 8" }));
+      var cx = p.cx, y = p.y === void 0 ? 630 : p.y, ly = p.ly === void 0 ? 825 : p.ly;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: cx - 108, y, width: "216", height: "118", rx: "12", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: cx, y: y + 34, textAnchor: "middle", fill: C.mute, fontSize: "24", fontWeight: "800", letterSpacing: "2" }, "AIR CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: cx, y: y + 94, textAnchor: "middle", fill: C.blue, fontSize: "44", fontWeight: "900" }, fr(p.temp, 1), " \xB0C"), (ly < y || ly > y + 118) && /* @__PURE__ */ React.createElement("line", { x1: cx, y1: ly < y ? y : y + 118, x2: cx, y2: ly, stroke: C.mute, strokeWidth: "4", strokeDasharray: "10 8" }));
     }
     function PriseBP(p) {
       var x = p.x, y = p.y, r = p.r || 120, cx = p.tx - 38;
@@ -2523,23 +2523,24 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       function X(t2) {
         return X0 + (X1 - X0) * (t2 - t0) / (t1 - t0);
       }
+      var air = !!p.air;
       function Y(b) {
-        return y + 290 - clamp(b / 3, 0, 1) * 200;
+        return y + 290 - clamp(air ? (b + 19) / 6 : b / 3, 0, 1) * 200;
       }
       var tc = clamp(p.T, t0, t1);
       var d = "", dk = "", prec = null;
       for (var t = t0; t <= tc + 1e-4; t += 0.1) {
         var e = p.etat(t);
-        d += (d ? " L " : "M ") + X(t).toFixed(1) + " " + Y(e.bp).toFixed(1);
+        d += (d ? " L " : "M ") + X(t).toFixed(1) + " " + Y(air ? e.temp : e.bp).toFixed(1);
         var yk = e.kmLive ? y + 335 : y + 375;
         if (prec === null) dk = "M " + X(t).toFixed(1) + " " + yk;
         else if (yk !== prec) dk += " L " + X(t).toFixed(1) + " " + prec + " L " + X(t).toFixed(1) + " " + yk;
         prec = yk;
       }
       if (prec !== null) dk += " L " + X(tc).toFixed(1) + " " + prec;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x, y, width: "440", height: "410", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: x + 23, y: y + 42, fill: C.orangeText, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "PRESSION BP \xB7 KM1"), [[1.8, "1,8", C.orangeText], [0.3, "0,3", C.blue]].map(function(l) {
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x, y, width: "440", height: "410", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: x + 23, y: y + 42, fill: C.orangeText, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, air ? "AIR \xB7 KM1" : "PRESSION BP \xB7 KM1"), (air ? [[-14, "\u221214", C.orangeText], [-18, "\u221218", C.blue]] : [[1.8, "1,8", C.orangeText], [0.3, "0,3", C.blue]]).map(function(l) {
         return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: X0, y1: Y(l[0]), x2: X1, y2: Y(l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "12 10", opacity: "0.75" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: Y(l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
-      }), /* @__PURE__ */ React.createElement("path", { d, fill: "none", stroke: C.red, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: y + 367, textAnchor: "end", fill: C.blue, fontSize: "24", fontWeight: "800" }, "KM1"), /* @__PURE__ */ React.createElement("path", { d: dk, fill: "none", stroke: C.orangeText, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("line", { x1: X(tc), y1: y + 65, x2: X(tc), y2: y + 390, stroke: C.orange, strokeWidth: "4" }));
+      }), /* @__PURE__ */ React.createElement("path", { d, fill: "none", stroke: air ? C.blue : C.red, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: y + 367, textAnchor: "end", fill: C.blue, fontSize: "24", fontWeight: "800" }, "KM1"), /* @__PURE__ */ React.createElement("path", { d: dk, fill: "none", stroke: C.orangeText, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("line", { x1: X(tc), y1: y + 65, x2: X(tc), y2: y + 390, stroke: C.orange, strokeWidth: "4" }));
     }
     window.PK = {
       fr,

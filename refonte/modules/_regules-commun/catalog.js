@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03d",
+    version: "2026-10-03e",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -81,14 +81,9 @@
               "La température remonte : le thermostat se referme et le compresseur repart."
             ],
             box: { type: "key", label: "La clé", text: "Une seule chaîne : température → thermostat → compresseur." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel de la commande directe du compresseur par thermostat",
-              title: "Commande directe",
-              rungs: [
-                { label: "Production de froid", contacts: [{ code: "B1", label: "Thermostat" }], coil: { code: "KM1", label: "Compresseur" } }
-              ]
-            }
+            /* 03/10/2026 : planches pas à pas sur le schéma du film. */
+            visual: { kind: "planche", fichier: "planche-01a-qui-commande.html",
+                      label: "Planche pas à pas : le thermostat commande seul le compresseur" }
           },
           {
             id: "cycle",
@@ -101,11 +96,8 @@
               "Consigne atteinte : le contact s’ouvre, le compresseur s’arrête."
             ],
             box: { type: "exam", label: "À vérifier", text: "Le différentiel du thermostat évite des marches et arrêts trop rapprochés." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence manuelle de la commande directe",
-              steps: ["La température remonte", "B1 se ferme", "KM1 est alimenté", "Le compresseur produit du froid", "La consigne est atteinte", "B1 ouvre et KM1 retombe"]
-            }
+            visual: { kind: "planche", fichier: "planche-01b-cycle.html",
+                      label: "Planche pas à pas : le cycle suit la température de l’air" }
           },
           {
             id: "limite",
@@ -118,15 +110,8 @@
               "La station suivante ajoute une chaîne minimale et une électrovanne."
             ],
             box: { type: "warning", label: "Le piège", text: "Simple ne veut pas dire acceptable partout : le matériel réel et sa notice imposent les protections." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison entre fonction présente et protections absentes",
-              cards: [
-                { state: "ok", title: "PRÉSENT", text: "Régulation de température" },
-                { state: "danger", title: "ABSENT DU SCHÉMA", text: "Sécurité HP" },
-                { state: "danger", title: "ABSENT DU SCHÉMA", text: "Sécurité BP" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-01c-limite.html",
+                      label: "Planche pas à pas : les sécurités HP et BP absentes de la chaîne" }
           }
         ],
         quiz: [
@@ -160,15 +145,9 @@
               "Un contact auxiliaire de KM1 coupe alors aussi l’électrovanne Y1."
             ],
             box: { type: "key", label: "La clé", text: "Commande ou sécurité : toute ouverture arrête le froid et ferme la ligne liquide." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel de la protection minimum avec contacts en série",
-              title: "Chaîne en série",
-              rungs: [
-                { label: "Compresseur", contacts: [{ code: "HP", label: "Sécurité" }, { code: "BP", label: "Sécurité" }, { code: "B1", label: "Thermostat" }], coil: { code: "KM1", label: "Compresseur" } },
-                { label: "Ligne liquide", contacts: [{ code: "KM1", label: "Auxiliaire" }], coil: { code: "Y1", label: "Électrovanne" } }
-              ]
-            }
+            /* 03/10/2026 : planches pas à pas sur le schéma du film. */
+            visual: { kind: "planche", fichier: "planche-02a-serie.html",
+                      label: "Planche pas à pas : HP, BP et B1 en série, l’auxiliaire de KM1 sur Y1" }
           },
           {
             id: "arret",
@@ -181,11 +160,8 @@
               "Sur défaut de pression, le pressostat ouvre : KM1 et Y1 retombent également."
             ],
             box: { type: "exam", label: "À lire", text: "Le schéma ne distingue pas encore l’arrêt de régulation de l’arrêt de sécurité dans la séquence fluidique." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence d’arrêt commune par thermostat ou pressostat",
-              steps: ["Un contact ouvre", "KM1 n’est plus alimenté", "Le compresseur s’arrête", "Le contact auxiliaire KM1 ouvre", "Y1 ferme la ligne liquide"]
-            }
+            visual: { kind: "planche", fichier: "planche-02b-arret.html",
+                      label: "Planche pas à pas : thermostat ou pressostat, KM1 et Y1 retombent ensemble" }
           },
           {
             id: "pas-pumpdown",
@@ -198,14 +174,8 @@
               "L’évaporateur n’est donc pas vidé par une séquence dédiée."
             ],
             box: { type: "warning", label: "Le piège", text: "La présence d’une électrovanne ne suffit pas à prouver qu’il y a pump-down." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison entre protection minimum et pump-down",
-              cards: [
-                { state: "wait", title: "PROTECTION MINIMUM", text: "Y1 et KM1 s’arrêtent ensemble" },
-                { state: "ok", title: "PUMP-DOWN", text: "Y1 ferme avant l’arrêt de KM1" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-02c-pas-pump-down.html",
+                      label: "Planche pas à pas : l’arrêt simultané laisse l’évaporateur plein" }
           }
         ],
         quiz: [

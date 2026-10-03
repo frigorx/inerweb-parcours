@@ -741,4 +741,5 @@
   }
 
   window.RegulesCommandeDirecteV2 = RegulesCommandeDirecteV2;
+  window.RK01 = { Cabinet: Cabinet };   /* l'armoire, pour les planches pas à pas */
 })();
