@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Régulation 6 · planche observer — inerWeb Édu</title>
+<title>Régulation 7 · planche air — inerWeb Édu</title>
 
 <script>try { localStorage.removeItem("animstage-v3:t"); } catch (err) {}</script>
 </head>
@@ -2111,91 +2111,73 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       return [
         { id: "B1", a: "L", b: "a1", f: c.B1 },
         { id: "BP", a: "a1", b: "a2", f: true },
-        { id: "HP", a: "a2", b: "g", f: true },
+        { id: "HP", a: "a2", b: "a3", f: true },
+        { id: "RD2122", a: "a3", b: "g", f: !c.RD },
         { id: "M1c", a: "g", charge: true },
         { id: "Y1c", a: "g", charge: true },
-        { id: "M2c", a: "L", charge: true }
+        { id: "M2c", a: "L", charge: true },
+        { id: "H34", a: "L", b: "d1", f: c.h1 },
+        { id: "B2nf", a: "d1", b: "d2", f: !c.B2 },
+        { id: "RFD2122", a: "d2", b: "d3", f: !c.RFD },
+        { id: "RDc", a: "d3", charge: true },
+        { id: "B2no", a: "d1", b: "f1", f: c.B2 },
+        { id: "RFD1314", a: "d1", b: "f1", f: c.RFD },
+        { id: "RFDc", a: "f1", charge: true }
       ];
     }
+    var DELAI = 0.15, SEUIL_B2 = 2;
     function evenements(CUES) {
-      var M = CUES.Marche, A = CUES.Arret, L = CUES.Limite;
-      return {
-        tB1: M + 1,
-        tArr: A + 1,
-        tFonte0: A + 3,
-        tFonte1: A + 7,
-        tL: L,
-        on1: [L, L + 3.5],
-        on2: [L + 5, L + 9],
-        on3: [L + 10.3, 1e9],
-        tPrise: L + 12
-      };
+      var M = CUES.Marche, H = CUES.Horloge, F = CUES.Fonte, P = CUES.FinPlage;
+      return { tB1: M + 1, tH: H + 1, tZero: H + 4, tFonte: F + 5, tFin: F + 9, tH2: P + 2 };
     }
     function scenario(t, e, total) {
-      var L = e.tL;
       return {
         air: pw(t, [
           [0, 3.6],
           [e.tB1, 4],
           [e.tB1 + 2, 3.9],
-          [e.tArr, 2],
-          [L, 4],
-          [L + 3.5, 2],
-          [L + 5, 4],
-          [L + 9, 2],
-          [L + 10.3, 4],
-          [L + 13, 2.9],
-          [total, 2.9]
+          [e.tH, 2.6],
+          [e.tFin, 4.3],
+          [e.tFin + 2, 3.9],
+          [e.tH2, 3.3],
+          [e.tH2 + 9, 2.5],
+          [total, 2.4]
         ]),
+        /* sans sonde (2e principe), l'air aurait continué de monter jusqu'à la fin de la plage */
+        airSeul: pw(t, [[e.tFin, 4.3], [e.tH2, 5], [e.tH2 + 9, 3], [total, 2.6]]),
         bat: pw(t, [
           [0, 3],
           [e.tB1, 3],
-          [e.tB1 + 2, -6],
-          [e.tArr, -6.5],
-          [e.tFonte0, 0],
-          [e.tFonte1, 0.3],
-          [L - 2, 2],
-          [L, 2.4],
-          [L + 1.5, -6],
-          [L + 3.5, -6.5],
-          [L + 5, -1],
-          [L + 6.5, -7],
-          [L + 9, -7.5],
-          [L + 10.3, -1.5],
-          [L + 12, -8.5],
-          [L + 15, -9.5],
-          [total, -9.5]
+          [e.tB1 + 2, -7],
+          [e.tH, -7.5],
+          [e.tH + DELAI, -7.5],
+          [e.tZero, 0],
+          [e.tFonte, 0.3],
+          [e.tFin, SEUIL_B2],
+          [e.tFin + DELAI, SEUIL_B2],
+          [e.tFin + 1.5, -5],
+          [e.tFin + 4, -7],
+          [total, -7.5]
         ]),
-        givre: pw(t, [
-          [0, 0],
-          [e.tB1 + 2, 0],
-          [e.tArr, 1],
-          [e.tFonte0, 1],
-          [e.tFonte1, 0],
-          [L, 0],
-          [L + 3.5, 0.45],
-          [L + 5, 0.45],
-          [L + 9, 0.9],
-          [L + 10.3, 0.9],
-          [L + 15, 1.4],
-          [total, 1.4]
-        ]),
-        gouttes: t < e.tFonte0 ? 0 : t < e.tFonte1 ? 1 : clamp(1 - (t - e.tFonte1) / 1.5, 0, 1),
-        porte: t >= L && t < L + 12 ? 1 : 0
+        givre: pw(t, [[0, 0], [e.tB1 + 2, 0], [e.tH, 1], [e.tZero, 1], [e.tFonte, 0], [e.tFin, 0], [total, 0.35]]),
+        gouttes: t < e.tZero ? 0 : t < e.tFonte ? 1 : clamp(1 - (t - e.tFonte) / 2, 0, 1),
+        b1: t >= e.tB1,
+        h1: t >= e.tH && t < e.tH2
       };
     }
     var memo = {}, DT = 0.02;
     function simuler(CUES, total) {
       var cle = JSON.stringify(CUES) + "|" + total;
       if (memo[cle]) return memo[cle];
-      var e = evenements(CUES), pas = [], b1 = false, cum = 0;
+      var e = evenements(CUES), pas = [], b2 = false, cum = 0, retard = Math.round(DELAI / DT);
       for (var i = 0, n = Math.ceil(total / DT) + 1; i < n; i++) {
         var t = i * DT, s = scenario(t, e, total);
-        if (s.air >= 4 - 1e-6) b1 = true;
-        else if (s.air <= 2 + 1e-6) b1 = false;
-        var c = { B1: b1 };
+        if (s.bat >= SEUIL_B2 - 1e-6) b2 = true;
+        else if (s.bat <= 0) b2 = false;
+        var avant = i >= retard ? pas[i - retard].bob : {};
+        var c = { B1: s.b1, h1: s.h1, B2: b2, RD: !!avant.RD, RFD: !!avant.RFD };
         var r = RK.resoudre(reseau(c));
-        var bob = { M1: r.conduit.M1c, Y1: r.conduit.Y1c, M2: r.conduit.M2c };
+        var bob = { M1: r.conduit.M1c, Y1: r.conduit.Y1c, M2: r.conduit.M2c, RD: r.conduit.RDc, RFD: r.conduit.RFDc };
         if (i > 0 && pas[i - 1].bob.M1) cum += DT;
         pas.push({ t, s, c, bob, cum });
       }
@@ -2205,7 +2187,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     function etat(T, CUES, total) {
       var sim = simuler(CUES, total), e = sim.ev;
       var enRejeu = CUES.CycleComplet !== void 0 && T >= CUES.CycleComplet && T < CUES.LaCle;
-      var t0 = e.tB1 - 1, t1 = e.tL + 15;
+      var t0 = e.tB1 - 1, t1 = e.tH2 + 3;
       var Tm = enRejeu ? t0 + (T - CUES.CycleComplet) * (t1 - t0) / (CUES.LaCle - CUES.CycleComplet) : T;
       function a(t) {
         return sim.pas[clamp(Math.round(t / DT), 0, sim.pas.length - 1)];
@@ -2217,9 +2199,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         return m / 5;
       }
       var phase = -1;
-      if (Tm >= e.tB1 && Tm < e.tArr) phase = 0;
-      if (Tm >= e.tArr && Tm < e.tL) phase = 1;
-      if (Tm >= e.tL) phase = Tm < e.tPrise ? 2 : 3;
+      if (p.bob.M1 && Tm < e.tH) phase = 0;
+      if (Tm >= e.tH) phase = 1;
+      if (Tm >= e.tH + 1.5) phase = 2;
+      if (Tm >= e.tFin) phase = 3;
+      if (Tm >= e.tFin + 2.5) phase = 4;
       return {
         Tm,
         enRejeu,
@@ -2229,101 +2213,149 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         s: p.s,
         phase,
         cum: p.cum,
-        ouvB1: lisse(function(q) {
-          return q.c.B1;
-        }),
+        ouv: function(id) {
+          return lisse(function(q) {
+            return reseau(q.c).filter(function(x) {
+              return x.id === id;
+            })[0].f;
+          });
+        },
         flow: 1 - lisse(function(q) {
           return q.bob.M1;
         })
       };
     }
     var FILS = [
-      ["M 330 300 L 330 340", "L", ["B1"]],
-      ["M 330 490 L 330 560", "a1", []],
-      ["M 330 710 L 330 780", "a2", []],
-      ["M 330 930 L 330 960", "g", []],
-      ["M 330 960 L 330 1044", "g", ["M1c"]],
-      ["M 330 960 L 760 960 L 760 1071", "g", ["Y1c"]],
-      ["M 330 1156 L 330 1300", "N", ["M1c"]],
-      ["M 760 1129 L 760 1300", "N", ["Y1c"]],
-      ["M 1180 300 L 1180 1044", "L", ["M2c"]],
-      ["M 1180 1156 L 1180 1300", "N", ["M2c"]]
+      ["M 330 300 L 330 320", "L", ["B1"]],
+      ["M 330 470 L 330 500", "a1", []],
+      ["M 330 650 L 330 680", "a2", []],
+      ["M 330 830 L 330 860", "a3", []],
+      ["M 330 1010 L 330 1030", "g", []],
+      ["M 330 1030 L 330 1094", "g", ["M1c"]],
+      ["M 330 1030 L 760 1030 L 760 1121", "g", ["Y1c"]],
+      ["M 330 1206 L 330 1300", "N", ["M1c"]],
+      ["M 760 1179 L 760 1300", "N", ["Y1c"]],
+      ["M 1150 300 L 1150 1094", "L", ["M2c"]],
+      ["M 1150 1206 L 1150 1300", "N", ["M2c"]],
+      ["M 1560 300 L 1560 320", "L", ["H34"]],
+      ["M 1560 470 L 1560 500", "d1", []],
+      ["M 1560 500 L 1560 540", "d1", ["B2nf"]],
+      ["M 1560 500 L 1900 500", "d1", ["B2no", "RFD1314"]],
+      ["M 1900 500 L 1900 540", "d1", ["B2no"]],
+      ["M 1900 500 L 2200 500 L 2200 540", "d1", ["RFD1314"]],
+      ["M 1560 690 L 1560 760", "d2", []],
+      ["M 1560 910 L 1560 1121", "d3", []],
+      ["M 1560 1179 L 1560 1300", "N", ["RDc"]],
+      ["M 1900 690 L 1900 740 L 2200 740", "f1", ["B2no"]],
+      ["M 2200 690 L 2200 740", "f1", ["RFD1314"]],
+      ["M 2200 740 L 2200 1121", "f1", []],
+      ["M 2200 1179 L 2200 1300", "N", ["RFDc"]]
     ];
     function Cabinet(p) {
       var RK2 = window.RK, e = p.e, t = p.T;
       var r = RK2.resoudre(reseau(e.c));
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "1500", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "ARMOIRE \xB7 COMMANDE DIRECTE"), /* @__PURE__ */ React.createElement("text", { x: "40", y: "108", fill: C.blue, fontSize: "24", fontWeight: "900", letterSpacing: "2" }, "D\u2019APR\xC8S LA FICHE 6.1 \xB7 PREMIER PRINCIPE"), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "128", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK2.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "1400", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "1400", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, FILS.map(function(f, i) {
+      function V(id) {
+        return r.conduit[id];
+      }
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "2480", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "ARMOIRE \xB7 D\xC9GIVRAGE NATUREL COMMAND\xC9"), /* @__PURE__ */ React.createElement("text", { x: "2440", y: "66", textAnchor: "end", fill: C.blue, fontSize: "24", fontWeight: "900", letterSpacing: "2" }, "D\u2019APR\xC8S LA FICHE 6.1 \xB7 3e PRINCIPE"), /* @__PURE__ */ React.createElement("g", { fill: C.mute, fontSize: "26", fontWeight: "900", letterSpacing: "3" }, /* @__PURE__ */ React.createElement("line", { x1: "240", y1: "196", x2: "1340", y2: "196", stroke: C.line, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "790", y: "180", textAnchor: "middle" }, "LE FROID"), /* @__PURE__ */ React.createElement("line", { x1: "1400", y1: "196", x2: "2400", y2: "196", stroke: C.line, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1900", y: "180", textAnchor: "middle" }, "LE D\xC9GIVRAGE")), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "104", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK2.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "2400", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "2400", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, FILS.map(function(f, i) {
         return /* @__PURE__ */ React.createElement("path", { key: i, d: f[0] });
       })), FILS.map(function(f, i) {
         return /* @__PURE__ */ React.createElement(RK2.Potentiel, { key: i, d: f[0], mode: RK2.modeFil(r, f[1], f[2]), t });
-      }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 340, ouv: e.ouvB1, live: r.conduit.B1, glyph: "\u03B8", code: "B1", sub: "thermostat", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 560, ouv: 0, live: r.conduit.BP, glyph: "p", code: "BP", sub: "s\xE9curit\xE9", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 330, y: 780, ouv: 0, live: r.conduit.HP, glyph: "p", code: "HP", sub: "s\xE9curit\xE9", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 330, y: 1100, code: "M1", sub: "GROUPE", live: e.bob.M1 }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 760, y: 1100, code: "Y1", sub: "\xC9LECTROVANNE", live: e.bob.Y1 }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 1180, y: 1100, code: "M2", sub: "VENTILATEUR", live: e.bob.M2 }), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "420", fill: C.green, fontSize: "26", fontWeight: "900" }, "AUCUN CONTACT :"), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "454", fill: C.green, fontSize: "26", fontWeight: "900" }, "IL TOURNE"), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "488", fill: C.green, fontSize: "26", fontWeight: "900" }, "EN PERMANENCE"));
-    }
-    function GrosPlan(p) {
-      var s = p.s, g = s.givre, froid = p.marche;
-      var legende = froid ? g > 0.85 ? "Batterie prise : l\u2019air passe mal." : "Marche : sous 0 \xB0C, le givre se d\xE9pose." : s.gouttes > 0.3 ? "Arr\xEAt : l\u2019air la r\xE9chauffe, le givre fond." : g > 0.3 ? "Arr\xEAt trop court : le givre reste." : "Batterie propre.";
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(4060,100)" }, /* @__PURE__ */ React.createElement(RK.GrosPlan, { T: p.T, s, marche: froid, porte: p.porte, legende }));
+      }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 320, ouv: e.ouv("B1"), live: V("B1"), glyph: "\u03B8", code: "B1", sub: "thermostat", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 500, ouv: 0, live: V("BP"), glyph: "p", code: "BP", sub: "s\xE9curit\xE9", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 330, y: 680, ouv: 0, live: V("HP"), glyph: "p", code: "HP", sub: "s\xE9curit\xE9", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, aux: true, x: 330, y: 860, ouv: e.ouv("RD2122"), live: V("RD2122"), code: "RD", sub: "coupe le froid", b1: "21", b2: "22" }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 330, y: 1150, code: "M1", sub: "GROUPE", live: e.bob.M1 }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 760, y: 1150, code: "Y1", sub: "\xC9LECTROVANNE", live: e.bob.Y1 }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 1150, y: 1150, code: "M2", sub: "VENTILATEUR", live: e.bob.M2 }), /* @__PURE__ */ React.createElement("text", { x: "1126", y: "720", textAnchor: "end", fill: C.green, fontSize: "26", fontWeight: "900" }, "AUCUN CONTACT :"), /* @__PURE__ */ React.createElement("text", { x: "1126", y: "754", textAnchor: "end", fill: C.green, fontSize: "26", fontWeight: "900" }, "M2 TOURNE"), /* @__PURE__ */ React.createElement("text", { x: "1126", y: "788", textAnchor: "end", fill: C.green, fontSize: "26", fontWeight: "900" }, "EN PERMANENCE"), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 1560, y: 320, ouv: e.ouv("H34"), live: V("H34"), glyph: "t", code: "h1", sub: "horloge", b1: "3", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 1560, y: 540, ouv: e.ouv("B2nf"), live: V("B2nf"), glyph: "\u03B8", code: "B2", sub: "fin de d\xE9givrage", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement("line", { x1: "1570", y1: "565", x2: "1890", y2: "565", stroke: C.wire, strokeWidth: "4", strokeDasharray: "12 10" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, aux: true, x: 1560, y: 760, ouv: e.ouv("RFD2122"), live: V("RFD2122"), code: "RFD", sub: "fin m\xE9moris\xE9e", b1: "21", b2: "22" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 1560, y: 1150, code: "RD", sub: "D\xC9GIVRAGE", live: e.bob.RD }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: 1900, y: 540, ouv: e.ouv("B2no"), live: V("B2no"), code: "B2", sub: "fin \xB7 NO", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: 2200, y: 540, ouv: e.ouv("RFD1314"), live: V("RFD1314"), code: "RFD", sub: "maintien" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 2200, y: 1150, code: "RFD", sub: "FIN", live: e.bob.RFD }));
     }
     var PHASES = [
-      ["MARCHE", "B1 alimente M1 et Y1 : sous 0 \xB0C, le givre se d\xE9pose"],
-      ["ARR\xCAT LONG", "M2 tourne toujours : l\u2019air \xE0 +3 \xB0C fait fondre le givre"],
-      ["ARR\xCATS TROP COURTS", "le givre n\u2019a pas le temps de fondre : il s\u2019accumule"],
-      ["BATTERIE PRISE", "l\u2019air passe mal : il faut un d\xE9givrage command\xE9"]
+      ["FROID", "B1 : M1 et Y1, M2 tourne"],
+      ["L\u2019HORLOGE LANCE", "h1 fait coller RD : M1 et Y1 s\u2019arr\xEAtent"],
+      ["L\u2019AIR FAIT FONDRE", "M2 souffle l\u2019air \xE0 +3 \xB0C sur la batterie"],
+      ["FIN SUR B2", "RD retombe ; RFD colle et se tient"],
+      ["FROID RENDU T\xD4T", "M1 repart avant la fin de la plage h1"]
     ];
-    var CH = { x0: 900, x1: 4020, tFin: 53 };
+    var CH = { x0: 900, x1: 3980, tFin: 56 };
     function chx(t) {
       return CH.x0 + (CH.x1 - CH.x0) * clamp(t / CH.tFin, 0, 1);
     }
     function chAir(v) {
-      return 1820 - (v - 1) / 4 * 140;
+      return 1795 - (v - 1) / 4.5 * 120;
     }
     function chBat(v) {
-      return 2140 - (v + 10) / 15 * 150;
+      return 2190 - (v + 9) / 13 * 130;
     }
     function chGivre(v) {
-      return 2330 - clamp(v / 1.4, 0, 1) * 130;
+      return 2320 - clamp(v / 1.2, 0, 1) * 100;
     }
+    var CARRES = [["h1", 1830], ["RD", 1905], ["M1", 1980], ["RFD", 2360]];
     function Chrono(p) {
       var CUES = p.CUES, sim = simuler(CUES, p.total), e = sim.ev;
-      var air = "", bat = "", givre = "", m1 = "", prec = null;
+      var air = "", airSeul = "", bat = "", givre = "", sq = {}, prec = {};
+      CARRES.forEach(function(q2) {
+        sq[q2[0]] = "";
+      });
       for (var t = 0; t <= CH.tFin + 1e-3; t += 0.1) {
         var q = sim.pas[Math.min(Math.round(t / DT), sim.pas.length - 1)], x = chx(t).toFixed(1);
         air += (air ? " L " : "M ") + x + " " + chAir(q.s.air).toFixed(1);
+        if (t >= e.tFin) airSeul += (airSeul ? " L " : "M ") + x + " " + chAir(q.s.airSeul).toFixed(1);
         bat += (bat ? " L " : "M ") + x + " " + chBat(q.s.bat).toFixed(1);
         givre += (givre ? " L " : "M ") + x + " " + chGivre(q.s.givre).toFixed(1);
-        var y = q.bob.M1 ? 1880 : 1930;
-        if (prec === null) m1 = "M " + x + " " + y;
-        else if (prec !== y) m1 += " L " + x + " " + prec + " L " + x + " " + y;
-        prec = y;
+        CARRES.forEach(function(c) {
+          var on = c[0] === "h1" ? q.c.h1 : q.bob[c[0]];
+          var y = on ? c[1] : c[1] + 40;
+          if (prec[c[0]] === void 0) sq[c[0]] = "M " + x + " " + y;
+          else if (prec[c[0]] !== y) sq[c[0]] += " L " + x + " " + prec[c[0]] + " L " + x + " " + y;
+          prec[c[0]] = y;
+        });
       }
-      m1 += " L " + chx(CH.tFin) + " " + prec;
+      CARRES.forEach(function(c) {
+        sq[c[0]] += " L " + chx(CH.tFin) + " " + prec[c[0]];
+      });
       var r = p.T >= CUES.Chronologie ? 1 : clamp(p.T / CH.tFin, 0, 1);
       var xr = CH.x0 + (CH.x1 - CH.x0) * r;
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(270,0)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "1560", width: "4090", height: "960", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "48", y: "1636", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 UN ARR\xCAT LONG, PUIS DES ARR\xCATS TROP COURTS"), /* @__PURE__ */ React.createElement("rect", { x: chx(e.tL), y: "1660", width: chx(CH.tFin) - chx(e.tL), height: "840", fill: C.red, opacity: "0.05" }), [["AIR \xB7 B1", 1770], ["M1 \xB7 Y1", 1915], ["BATTERIE", 2075], ["GIVRE", 2280], ["M2 \xB7 VENTIL.", 2440]].map(function(l) {
-        return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "48", y: l[1], fill: C.blue, fontSize: "36", fontWeight: "800" }, l[0]);
-      }), [[4, "+4 \xB7 enclenche", C.orangeText, chAir], [2, "+2 \xB7 coupe", C.blue, chAir], [0, "0 \xB0C", C.red, chBat]].map(function(l, i) {
-        return /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: l[3](l[0]), x2: CH.x1, y2: l[3](l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "14 12", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0 - 14, y: l[3](l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
-      }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip6" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 20, y: "1650", width: xr - CH.x0 + 20, height: "860" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip6)" }, /* @__PURE__ */ React.createElement("path", { d: air, fill: "none", stroke: C.blue, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: m1, fill: "none", stroke: C.orangeText, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: bat, fill: "none", stroke: C.red, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: givre + " L " + chx(CH.tFin) + " 2330 L " + CH.x0 + " 2330 Z", fill: "#c9e0f2", stroke: "#7fa8cc", strokeWidth: "6" }), /* @__PURE__ */ React.createElement("path", { d: "M " + CH.x0 + " 2420 L " + CH.x1 + " 2420", fill: "none", stroke: C.green, strokeWidth: "9" })), r < 1 && /* @__PURE__ */ React.createElement("line", { x1: xr, y1: "1660", x2: xr, y2: "2490", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), p.replay !== null && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("line", { x1: chx(p.replay), y1: "1660", x2: chx(p.replay), y2: "2490", stroke: C.orange, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: chx(p.replay), cy: "1660", r: "16", fill: C.orange })));
+      var couleurs = { h1: C.green, RD: C.red, M1: C.orangeText, RFD: C.blue };
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(270,0)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "1560", width: "4030", height: "960", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "48", y: "1636", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 L\u2019HORLOGE LANCE, LA SONDE TERMINE"), /* @__PURE__ */ React.createElement("rect", { x: chx(e.tH), y: "1660", width: chx(e.tH2) - chx(e.tH), height: "780", fill: "#e4f2ec", opacity: "0.55" }), [["AIR \xB7 B1", 1745], ["HORLOGE h1", 1862], ["RD", 1937], ["M1 \xB7 Y1", 2012], ["BATTERIE B2", 2135], ["GIVRE", 2285], ["RFD", 2392]].map(function(l) {
+        return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "48", y: l[1], fill: C.blue, fontSize: "34", fontWeight: "800" }, l[0]);
+      }), [[4, "+4", C.orangeText, chAir], [2, "+2", C.blue, chAir], [2, "+2 \xB7 B2", C.red, chBat], [0, "0 \xB0C", C.mute, chBat, true]].map(function(l, i) {
+        return /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: l[3](l[0]), x2: CH.x1, y2: l[3](l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "14 12", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: l[4] ? CH.x1 + 14 : CH.x0 - 14, y: l[3](l[0]) + 9, textAnchor: l[4] ? "start" : "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
+      }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip7" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 20, y: "1650", width: xr - CH.x0 + 20, height: "800" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip7)" }, /* @__PURE__ */ React.createElement("path", { d: air, fill: "none", stroke: C.blue, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: bat, fill: "none", stroke: C.red, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: givre + " L " + chx(CH.tFin) + " 2320 L " + CH.x0 + " 2320 Z", fill: "#c9e0f2", stroke: "#7fa8cc", strokeWidth: "6" }), CARRES.map(function(c) {
+        return /* @__PURE__ */ React.createElement("path", { key: c[0], d: sq[c[0]], fill: "none", stroke: couleurs[c[0]], strokeWidth: "9", strokeLinejoin: "round" });
+      }), /* @__PURE__ */ React.createElement("g", { opacity: "0.85" }, /* @__PURE__ */ React.createElement("path", { d: airSeul, fill: "none", stroke: C.blue, strokeWidth: "6", strokeDasharray: "16 12" }), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M " + chx(e.tFin) + " 2020 L " + chx(e.tH2) + " 2020 L " + chx(e.tH2) + " 1980",
+          fill: "none",
+          stroke: C.orangeText,
+          strokeWidth: "6",
+          strokeDasharray: "16 12"
+        }
+      ), /* @__PURE__ */ React.createElement("text", { x: (chx(e.tFin) + chx(e.tH2)) / 2, y: "2058", textAnchor: "middle", fill: C.orangeText, fontSize: "24", fontWeight: "900" }, "SANS SONDE (2e PRINCIPE)"))), r < 1 && /* @__PURE__ */ React.createElement("line", { x1: xr, y1: "1660", x2: xr, y2: "2440", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), p.replay !== null && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("line", { x1: chx(p.replay), y1: "1660", x2: chx(p.replay), y2: "2440", stroke: C.orange, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: chx(p.replay), cy: "1660", r: "16", fill: C.orange })));
+    }
+    function legende(e) {
+      var s = e.s;
+      if (e.bob.RD) return s.gouttes > 0.3 ? "D\xE9givrage : M2 souffle l\u2019air de la chambre, le givre fond." : "D\xE9givrage : le froid est coup\xE9, l\u2019air r\xE9chauffe la batterie.";
+      if (e.bob.M1) return s.givre > 0.3 ? "Marche : sous 0 \xB0C, le givre se d\xE9pose." : "Marche : batterie propre, l\u2019\xE9change est complet.";
+      return "Arr\xEAt.";
     }
     function zones(CUES) {
-      var grosPlan = [4070, 110, 1840, 1420];
+      var armoire = [2540, 110, 2440, 1420], degiv = [3900, 110, 1080, 1420], gros = [4500, 1560, 1260, 960];
       return [
         { t: 0, r: [930, 470, 1560, 1010] },
-        { t: CUES.Marche, r: [2540, 110, 1480, 1420] },
+        { t: CUES.Marche, r: [2540, 110, 1330, 1420] },
         { t: CUES.Circulation, r: [330, 30, 2150, 1420] },
-        { t: CUES.Arret, r: grosPlan },
-        { t: CUES.Limite, r: grosPlan },
-        { t: CUES.Chronologie, r: [250, 1540, 5690, 1e3] },
+        { t: CUES.Horloge, r: armoire },
+        { t: CUES.Fonte, r: gros },
+        { t: CUES.FonteFin, r: degiv },
+        { t: CUES.FinPlage, r: [250, 1540, 4080, 1e3] },
+        { t: CUES.Chronologie, r: [250, 1540, 4080, 1e3] },
         { t: CUES.CycleComplet, r: null }
       ];
     }
     function Piece(props) {
       var c = useComposition();
       var T = c.T, CUES = c.CUES;
-      var e = etat(T, CUES, c.authoredTotal), ev = e.ev;
+      var e = etat(T, CUES, c.authoredTotal);
       var z = 1920 / (D - 260), cam = { cx: (300 + D) / 2, cy: 1420, z };
       var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
       var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
-      var M = CUES.Marche, A = CUES.Arret, L = CUES.Limite, Ch = CUES.Chronologie, CC = CUES.CycleComplet;
+      var M = CUES.Marche, H = CUES.Horloge, F = CUES.Fonte, P = CUES.FinPlage, Ch = CUES.Chronologie, CC = CUES.CycleComplet;
+      var Z = Object.assign({}, CUES, { FonteFin: F + 8.6 });
       return /* @__PURE__ */ React.createElement(
         "div",
         {
@@ -2337,7 +2369,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             transform: "translate(" + (960 - cam.cx * cam.z) + "," + (540 - cam.cy * cam.z) + ") scale(" + cam.z + ")"
           },
           /* @__PURE__ */ React.createElement(Croix, { T }),
-          /* @__PURE__ */ React.createElement(ChambreFond, { titre: "CHAMBRE POSITIVE \xB7 BOISSONS" }),
+          /* @__PURE__ */ React.createElement(ChambreFond, { titre: "CHAMBRE POSITIVE \xB7 +3 \xB0C" }),
           /* @__PURE__ */ React.createElement(Pipes, { phase: e.cum, flow: e.flow }),
           /* @__PURE__ */ React.createElement(
             Chambre,
@@ -2350,7 +2382,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               energy: e.bob.M1 ? 1 : 0,
               frostU: clamp(e.s.givre, 0, 1),
               liquid: e.bob.M1 ? 0.3 : 0,
-              cid: "s6",
+              cid: "s7",
               seuil: 3.5,
               consigne: "CONSIGNE +2 \xB7 ENCLENCHEMENT +4"
             }
@@ -2359,10 +2391,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           /* @__PURE__ */ React.createElement(PipeChips, { T }),
           /* @__PURE__ */ React.createElement(CroixLabels, { T }),
           /* @__PURE__ */ React.createElement(Cabinet, { T, e }),
-          /* @__PURE__ */ React.createElement(GrosPlan, { T, s: e.s, marche: e.bob.M1, porte: e.s.porte }),
+          /* @__PURE__ */ React.createElement(RK.Etapes, { x: 5040, y: 100, w: 880, h: 1440, titre: "LA S\xC9QUENCE", phases: PHASES, k: e.phase, pas: 250, haut: 220 }),
           /* @__PURE__ */ React.createElement(Chrono, { T, CUES, total: c.authoredTotal, replay: e.enRejeu ? e.Tm : null }),
-          /* @__PURE__ */ React.createElement(RK.Etapes, { x: 4400, y: 1560, titre: "CE QUI D\xC9CIDE", phases: PHASES, k: e.phase, pas: 190, haut: 160 }),
-          /* @__PURE__ */ React.createElement(RK.Surligneur, { T, zones: zones(CUES) })
+          /* @__PURE__ */ React.createElement("g", { transform: "translate(4510,1560) scale(0.6667)" }, /* @__PURE__ */ React.createElement(RK.GrosPlan, { T, s: e.s, marche: e.bob.M1, legende: legende(e), sonde: "BATTERIE \xB7 SONDE B2" })),
+          /* @__PURE__ */ React.createElement(RK.Surligneur, { T, zones: zones(Z) })
         )),
         /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", inset: 0, background: C.paper, opacity: keyIn * 0.58, pointerEvents: "none" } }),
         /* @__PURE__ */ React.createElement("div", { style: {
@@ -2380,7 +2412,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           borderRadius: 18,
           padding: "26px 38px",
           boxShadow: "0 18px 50px rgba(27,58,99,0.18)"
-        } }, /* @__PURE__ */ React.createElement("div", { style: { color: C.orangeText, font: "900 24px " + font, letterSpacing: 3 } }, "STATION 6 \xB7 SANS D\xC9GIVRAGE COMMAND\xC9"), /* @__PURE__ */ React.createElement("div", { style: { color: C.blue, font: "900 52px " + font, lineHeight: 1.1, marginTop: 8 } }, "Pas de d\xE9givrage command\xE9 ne veut pas dire pas de fonte : pendant l\u2019arr\xEAt, l\u2019air de la chambre fait fondre le givre."), /* @__PURE__ */ React.createElement("div", { style: { color: C.ink, font: "700 30px " + font, marginTop: 12 } }, "Si les arr\xEAts sont trop courts, le givre s\u2019accumule : il faut alors un d\xE9givrage command\xE9 (station 7)."))),
+        } }, /* @__PURE__ */ React.createElement("div", { style: { color: C.orangeText, font: "900 24px " + font, letterSpacing: 3 } }, "STATION 7 \xB7 LE D\xC9GIVRAGE NATUREL"), /* @__PURE__ */ React.createElement("div", { style: { color: C.blue, font: "900 52px " + font, lineHeight: 1.1, marginTop: 8 } }, "L\u2019horloge arr\xEAte le froid, le ventilateur continue : c\u2019est l\u2019air de la chambre qui fait fondre le givre."), /* @__PURE__ */ React.createElement("div", { style: { color: C.ink, font: "700 30px " + font, marginTop: 12 } }, "La sonde B2 termine plus t\xF4t et RFD le retient : le froid revient d\xE8s que la batterie est propre."))),
         props.captions && /* @__PURE__ */ React.createElement(
           Captions,
           {
@@ -2396,35 +2428,38 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               borderTop: "3px solid " + C.line
             },
             items: [
-              { at: 0.4, text: "Une chambre froide POSITIVE : boissons emball\xE9es, air \xE0 +3 \xB0C, peu d\u2019humidit\xE9." },
-              { at: 3, text: "Le sch\xE9ma : B1, la BP et la HP commandent le groupe M1 et l\u2019\xE9lectrovanne Y1." },
-              { at: M + 0.4, text: "B1 ferme : le groupe M1 et l\u2019\xE9lectrovanne Y1 sont aliment\xE9s ensemble." },
-              { at: M + 3, text: "Le ventilateur M2 n\u2019a aucun contact : il tourne en permanence." },
-              { at: M + 5.5, text: "Ni horloge, ni r\xE9sistance : rien n\u2019est pr\xE9vu pour le d\xE9givrage." },
+              { at: 0.4, text: "Une chambre froide POSITIVE \xE0 +3 \xB0C : son air peut faire fondre le givre." },
+              { at: 3, text: "Le froid \xE0 gauche ; \xE0 droite l\u2019horloge h1, le relais RD et le relais de fin RFD." },
+              { at: M + 0.4, text: "B1 ferme : M1 et Y1 sont aliment\xE9s \xE0 travers le contact 21-22 de RD." },
+              { at: M + 3, text: "Le ventilateur M2 tourne en permanence." },
+              { at: M + 5.4, text: "La batterie passe sous 0 \xB0C : le givre commence \xE0 se d\xE9poser." },
               { at: CUES.Circulation + 0.5, text: "La croix du frigoriste : BP en bas, HP en haut." },
               { at: CUES.Circulation + 2.6, text: "Bielle et piston : le compresseur aspire en BP et refoule en HP." },
               { at: CUES.Circulation + 5.2, text: "Le condenseur rend la chaleur \xE0 l\u2019ext\xE9rieur : la vapeur redevient liquide." },
-              { at: CUES.Circulation + 7.4, text: "La batterie descend sous 0 \xB0C : l\u2019humidit\xE9 de l\u2019air s\u2019y d\xE9pose en givre." },
-              { at: A + 0.4, text: "L\u2019air atteint la consigne : B1 ouvre, M1 et Y1 s\u2019arr\xEAtent." },
-              { at: A + 2.4, text: "M2 continue : l\u2019air de la chambre, \xE0 +2 \xB0C, passe sur la batterie." },
-              { at: A + 4.6, text: "La batterie remonte \xE0 0 \xB0C : le givre fond, l\u2019eau s\u2019\xE9coule." },
-              { at: A + 8, text: "Arr\xEAt assez long : batterie propre au red\xE9marrage. C\u2019est le d\xE9givrage naturel." },
-              { at: L + 0.4, text: "Une chambre tr\xE8s sollicit\xE9e : portes ouvertes, produits chauds." },
-              { at: L + 3.6, text: "B1 ouvre\u2026 et referme presque aussit\xF4t : l\u2019arr\xEAt est trop court." },
-              { at: L + 6.2, text: "La batterie n\u2019a pas le temps de d\xE9passer 0 \xB0C : le givre reste." },
-              { at: L + 9.4, text: "Le givre s\u2019accumule cycle apr\xE8s cycle : l\u2019air passe mal, l\u2019\xE9change chute." },
-              { at: L + 12.2, text: "La chambre ne descend plus \xE0 la consigne : il faut un d\xE9givrage command\xE9." },
-              { at: Ch + 0.4, text: "Le chronogramme : la courbe du givre retombe pendant l\u2019arr\xEAt long\u2026" },
-              { at: Ch + 4, until: CC, text: "\u2026 et monte en escalier quand les arr\xEAts sont trop courts." },
-              { at: CC + 0.5, text: "Toute l\u2019histoire, d\u2019un seul regard : suivez le curseur orange." },
-              { at: CC + 5, text: "Marche : le givre se d\xE9pose. Arr\xEAt long : l\u2019air le fait fondre." },
-              { at: CC + 10, until: CUES.LaCle, text: "Arr\xEAts trop courts : le givre s\u2019accumule, l\u2019\xE9change s\u2019effondre." }
+              { at: CUES.Circulation + 7.4, text: "Le givre s\u2019\xE9paissit sur la batterie : il faut le faire fondre." },
+              { at: H + 0.4, text: "L\u2019horloge h1 ferme son contact 3-4 : RD colle." },
+              { at: H + 2.2, text: "RD 21-22 s\u2019ouvre : M1 et Y1 s\u2019arr\xEAtent, m\xEAme si B1 demande du froid." },
+              { at: H + 4.4, text: "M2 continue : l\u2019air de la chambre, \xE0 +3 \xB0C, r\xE9chauffe la batterie." },
+              { at: H + 7, text: "Aucune r\xE9sistance : c\u2019est l\u2019air qui apporte la chaleur." },
+              { at: F + 0.4, text: "La batterie est \xE0 0 \xB0C : le givre fond, l\u2019eau s\u2019\xE9coule." },
+              { at: F + 4.4, text: "Pendant la fonte, l\u2019air de la chambre remonte doucement." },
+              { at: F + 9, text: "Batterie \xE0 +2 \xB0C : la sonde B2 bascule, son contact 1-2 fait retomber RD." },
+              { at: F + 10.6, text: "RD 21-22 se referme : M1 et Y1 repartent aussit\xF4t." },
+              { at: F + 12.2, text: "Le contact NO de B2 fait coller RFD, qui se tient par 13-14." },
+              { at: P + 0.4, text: "B2 revient en refroidissant\u2026 RFD garde RD ouvert : pas de second d\xE9givrage." },
+              { at: P + 2.4, text: "Fin de la plage d\u2019horloge : h1 s\u2019ouvre, RFD retombe." },
+              { at: P + 5, text: "Sans sonde (2e principe), le froid restait coup\xE9 jusqu\u2019ici : l\u2019air remonte pour rien." },
+              { at: Ch + 0.4, text: "Le chronogramme : l\u2019horloge lance, la sonde termine." },
+              { at: Ch + 4, until: CC, text: "En pointill\xE9 : ce qu\u2019aurait fait l\u2019horloge seule." },
+              { at: CC + 0.5, text: "Toute la s\xE9quence, d\u2019un seul regard : suivez le curseur orange." },
+              { at: CC + 5, text: "L\u2019horloge coupe le froid, M2 souffle, le givre fond." },
+              { at: CC + 10, until: CUES.LaCle, text: "B2 termine, RFD retient : le froid revient plus t\xF4t." }
             ]
           }
         )
       );
     }
-    function RegulesSansDegivrage() {
+    function RegulesDegivrageNaturel() {
       var tw = window.useTweaks(window.OM_TWEAKS || { motionEditor: true, legendes: true, dys: false });
       var t = tw[0], setTweak = tw[1];
       var TweaksPanel = window.TweaksPanel, TweakToggle = window.TweakToggle, TweakSection = window.TweakSection;
@@ -2446,8 +2481,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         setTweak("motionEditor", v);
       } })));
     }
-    window.RegulesSansDegivrage = RegulesSansDegivrage;
-    window.RK6 = { Cabinet, GrosPlan, etat, PHASES };
+    window.RegulesDegivrageNaturel = RegulesDegivrageNaturel;
+    window.RK7 = { Cabinet, etat, legende, PHASES };
   })();
 })();
 </script>
@@ -2628,193 +2663,202 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </script>
 <script type="text/plain" id="src4">(() => {
   (function() {
-    var PK = window.PK, Pas = PK.Pas;
-    var CUES = { Enceinte: 0, Marche: 5, Circulation: 13, Arret: 23, Limite: 37, Chronologie: 53, CycleComplet: 62, LaCle: 78 };
-    var TOTAL = 88;
-    function etat(t) {
-      return window.RK6.etat(t, CUES, TOTAL);
-    }
-    function Vue(p) {
-      var e = etat(p.T);
-      var Cab = window.RK6.Cabinet, Gros = window.RK6.GrosPlan;
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, e }), /* @__PURE__ */ React.createElement(Gros, { T: p.now, s: e.s, marche: e.bob.M1, porte: e.s.porte }));
-    }
-    var VB = "-20 -10 3440 1460";
-    var Z = {
-      armoire: [10, 10, 1480, 1420],
-      b1: [150, 320, 340, 190],
-      m2: [1080, 380, 380, 900],
-      m1y1: [230, 960, 720, 300],
-      gros: [1550, 10, 1840, 1420],
-      bac: [1820, 1030, 1100, 150],
-      fan: [1580, 560, 180, 340],
-      mesures: [1560, 1150, 1820, 270]
+    var PK = window.PK, RK = window.RK, C = RK.C, clamp = window.clamp, fr = PK.fr;
+    var Pas = PK.Pas, Compresseur = PK.Compresseur;
+    var CUES = {
+      Enceinte: 0,
+      Marche: 7,
+      Circulation: 13,
+      Horloge: 23,
+      Fonte: 35,
+      FinPlage: 49,
+      Chronologie: 59,
+      CycleComplet: 67,
+      LaCle: 83
     };
-    function Planche06Constat() {
+    var TOTAL = 93;
+    function etat(t) {
+      return window.RK7.etat(t, CUES, TOTAL);
+    }
+    function Mesures(p) {
+      var s = p.s, x = 560, y = 330;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x, y, width: "460", height: "250", rx: "14", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: x + 22, y: y + 38, fill: C.mute, fontSize: "22", fontWeight: "900", letterSpacing: "2" }, "AIR \xB7 B1"), /* @__PURE__ */ React.createElement("text", { x: x + 22, y: y + 90, fill: C.blue, fontSize: "44", fontWeight: "900" }, (s.air > 0 ? "+" : "") + fr(s.air, 1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: x + 250, y: y + 38, fill: C.orangeText, fontSize: "22", fontWeight: "900", letterSpacing: "2" }, "BATTERIE \xB7 B2"), /* @__PURE__ */ React.createElement("text", { x: x + 250, y: y + 90, fill: s.bat > 0 ? C.red : C.blue, fontSize: "44", fontWeight: "900" }, (s.bat > 0 ? "+" : "") + fr(s.bat, 1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: x + 22, y: y + 150, fill: C.mute, fontSize: "22", fontWeight: "800" }, "GIVRE"), /* @__PURE__ */ React.createElement("rect", { x: x + 110, y: y + 128, width: "320", height: "30", rx: "8", fill: C.blueSoft, stroke: C.line, strokeWidth: "3" }), /* @__PURE__ */ React.createElement("rect", { x: x + 110, y: y + 128, width: 320 * clamp(s.givre / 1.2, 0, 1), height: "30", rx: "8", fill: "#c9e0f2", stroke: "#8fb8d8", strokeWidth: "3" }), /* @__PURE__ */ React.createElement("text", { x: x + 22, y: y + 222, fill: s.gouttes > 0.3 ? "#2c6390" : C.ink, fontSize: "26", fontWeight: "900" }, s.gouttes > 0.3 ? "LE GIVRE FOND, L\u2019EAU S\u2019\xC9COULE" : s.givre > 0.3 ? "BATTERIE PRISE EN GIVRE" : "BATTERIE PROPRE"));
+    }
+    function Armoire(p) {
+      var e = etat(p.T);
+      var Cab = window.RK7.Cabinet;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, e })), /* @__PURE__ */ React.createElement(Mesures, { s: e.s }), /* @__PURE__ */ React.createElement(Compresseur, { x: 560, y: 1170, tourne: e.bob.M1, now: p.now }));
+    }
+    var VB = "100 150 2400 1175";
+    var Z = {
+      colA: [130, 300, 420, 990],
+      rd2122: [150, 840, 380, 190],
+      m1y1: [230, 1020, 700, 290],
+      m2: [1060, 1060, 360, 220],
+      mesures: [545, 315, 490, 280],
+      h34: [1380, 300, 380, 190],
+      b2nf: [1380, 520, 440, 190],
+      rfd2122: [1480, 740, 300, 190],
+      colRD: [1380, 300, 460, 920],
+      colRFD: [1840, 480, 560, 740]
+    };
+    function Planche07Air() {
       return /* @__PURE__ */ React.createElement(
         Pas,
         {
-          titre: "Rien pour d\xE9givrer\u2026 et pourtant",
+          titre: "L\u2019air fait fondre le givre",
           viewBox: VB,
           vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Vue, { T, now });
+            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
           },
           etapes: [
             {
-              titre: "Aucun organe de d\xE9givrage",
-              de: 4,
-              a: 4,
+              titre: "En froid : M1, Y1 et M2",
+              de: 20,
+              a: 20,
               dur: 0.2,
-              zones: [Z.armoire],
-              texte: "B1, la BP et la HP commandent le groupe M1 et l\u2019\xE9lectrovanne Y1. Ni horloge, ni r\xE9sistance."
+              zones: [Z.colA, Z.m2],
+              texte: "B1 alimente M1 et Y1 \xE0 travers RD 21-22. M2 n\u2019a aucun contact : il tourne toujours."
             },
             {
-              titre: "M2 tourne toujours",
-              de: 4,
-              a: 4,
-              dur: 0.2,
-              zones: [Z.m2, Z.fan],
-              texte: "Le ventilateur M2 n\u2019a aucun contact : il brasse l\u2019air de la chambre en permanence."
+              titre: "h1 lance le d\xE9givrage",
+              de: 23.8,
+              a: 24.1,
+              dur: 1,
+              zones: [Z.h34, Z.colRD],
+              texte: "L\u2019horloge ferme son contact 3-4 : RD colle (B2 et RFD sont ferm\xE9s)."
             },
             {
-              titre: "En marche, le givre se d\xE9pose",
-              de: 5.5,
-              a: 23.5,
+              titre: "Le froid s\u2019arr\xEAte",
+              de: 24.1,
+              a: 24.5,
+              dur: 1,
+              zones: [Z.rd2122, Z.m1y1],
+              texte: "RD 21-22 s\u2019ouvre : M1 et Y1 s\u2019arr\xEAtent, m\xEAme si B1 demande du froid."
+            },
+            {
+              titre: "Le ventilateur continue",
+              de: 24.5,
+              a: 36,
               dur: 3.6,
-              zones: [Z.b1, Z.gros],
-              texte: "B1 ferme : M1 et Y1 d\xE9marrent. La batterie passe sous 0 \xB0C : l\u2019humidit\xE9 de l\u2019air s\u2019y d\xE9pose en givre."
-            },
+              zones: [Z.m2, Z.mesures],
+              texte: "M2 souffle l\u2019air de la chambre, \xE0 +3 \xB0C, sur la batterie : \xE0 0 \xB0C, le givre fond. Aucune r\xE9sistance."
+            }
+          ]
+        }
+      );
+    }
+    function Planche07Horloge() {
+      return /* @__PURE__ */ React.createElement(
+        Pas,
+        {
+          titre: "L\u2019horloge impose le d\xE9but",
+          viewBox: VB,
+          vue: function(T, now) {
+            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
+          },
+          etapes: [
             {
-              titre: "\xC0 l\u2019arr\xEAt, l\u2019air fait fondre",
-              de: 24,
-              a: 31,
-              dur: 3.6,
-              zones: [Z.b1, Z.gros],
-              texte: "B1 ouvre : M1 et Y1 s\u2019arr\xEAtent, M2 continue. L\u2019air \xE0 +2 \xB0C r\xE9chauffe la batterie : le givre fond, l\u2019eau s\u2019\xE9coule."
-            },
-            {
-              titre: "Une fonte sans commande",
-              de: 35,
-              a: 35,
+              titre: "Les arr\xEAts ne suffisent pas",
+              de: 23,
+              a: 23,
               dur: 0.2,
               zones: [Z.mesures],
-              texte: "La batterie est propre au red\xE9marrage. Pas de d\xE9givrage command\xE9 ne veut pas dire : aucune fonte."
-            }
-          ]
-        }
-      );
-    }
-    function Planche06Limites() {
-      return /* @__PURE__ */ React.createElement(
-        Pas,
-        {
-          titre: "Le givre d\xE9cide",
-          viewBox: VB,
-          vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Vue, { T, now });
-          },
-          etapes: [
-            {
-              titre: "Une chambre tr\xE8s sollicit\xE9e",
-              de: 36.8,
-              a: 37.6,
-              dur: 1,
-              zones: [Z.gros],
-              texte: "Portes ouvertes, produits chauds : l\u2019air remonte vite \xE0 +4 \xB0C, B1 relance le froid."
+              texte: "Le givre s\u2019\xE9paissit pendant la marche : les arr\xEAts de B1 sont trop courts pour le faire fondre."
             },
             {
-              titre: "Un arr\xEAt trop court",
-              de: 39.5,
-              a: 42.2,
-              dur: 3,
-              zones: [Z.b1, Z.mesures],
-              texte: "B1 ouvre\u2026 et referme presque aussit\xF4t. La batterie n\u2019a pas le temps de d\xE9passer 0 \xB0C : le givre reste."
+              titre: "\xC0 heure fixe, h1 force l\u2019arr\xEAt",
+              de: 23.8,
+              a: 25,
+              dur: 1.6,
+              zones: [Z.h34, Z.rd2122],
+              texte: "L\u2019horloge fait coller RD, qui coupe le froid. Le ventilateur continue."
             },
             {
-              titre: "Le givre s\u2019accumule",
-              de: 42.2,
-              a: 47.5,
+              titre: "Le givre fond",
+              de: 25,
+              a: 40,
               dur: 3.6,
-              zones: [Z.gros],
-              texte: "Cycle apr\xE8s cycle, la couche \xE9paissit. Les ailettes se bouchent, l\u2019air passe mal."
+              zones: [Z.mesures, Z.m2],
+              texte: "Pendant la plage d\u2019horloge, l\u2019air de la chambre r\xE9chauffe la batterie."
             },
             {
-              titre: "L\u2019\xE9change s\u2019effondre",
-              de: 47.5,
-              a: 52,
-              dur: 3,
-              zones: [Z.mesures, Z.b1],
-              texte: "La chambre ne descend plus \xE0 la consigne : B1 reste ferm\xE9, le groupe tourne sans s\u2019arr\xEAter."
-            },
-            {
-              titre: "Ne pas copier un r\xE9glage",
-              de: 52,
-              a: 52,
+              titre: "Programmer l\u2019horloge",
+              de: 40,
+              a: 40,
               dur: 0.2,
-              zones: [Z.gros],
-              texte: "La fr\xE9quence de d\xE9givrage d\u2019une autre installation ne vaut rien ici : charge, ouvertures et humidit\xE9 changent tout."
+              zones: [Z.h34],
+              texte: "Nombre et dur\xE9e des plages se r\xE8glent sur l\u2019horloge, aux heures o\xF9 la chambre est peu ouverte."
+            },
+            {
+              titre: "L\u2019horloge seule finit au temps",
+              de: 40,
+              a: 40,
+              dur: 0.2,
+              zones: [Z.mesures, Z.rd2122],
+              texte: "Ici le givre est parti, mais avec l\u2019horloge seule (2e principe) le froid attendrait la fin de la plage : l\u2019air remonte pour rien."
             }
           ]
         }
       );
     }
-    function Planche06Decider() {
+    function Planche07Sonde() {
       return /* @__PURE__ */ React.createElement(
         Pas,
         {
-          titre: "Observer avant de d\xE9cider",
+          titre: "La sonde termine",
           viewBox: VB,
           vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Vue, { T, now });
+            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
           },
           etapes: [
             {
-              titre: "Observer le givre",
-              de: 49,
-              a: 49,
-              dur: 0.2,
-              zones: [Z.gros],
-              texte: "O\xF9 est le givre ? Sur toute la batterie ou \xE0 l\u2019entr\xE9e d\u2019air seulement ? Depuis quand ?"
+              titre: "B2 surveille la batterie",
+              de: 40,
+              a: 43.8,
+              dur: 2.4,
+              zones: [Z.b2nf, Z.mesures],
+              texte: "Le givre a fondu : la batterie remonte vers +2 \xB0C."
             },
             {
-              titre: "V\xE9rifier l\u2019air",
-              de: 49,
-              a: 49,
-              dur: 0.2,
-              zones: [Z.fan, Z.m2],
-              texte: "M2 tourne-t-il ? L\u2019air traverse-t-il encore les ailettes ?"
+              titre: "B2 bascule : le froid repart",
+              de: 43.8,
+              a: 44.4,
+              dur: 1.4,
+              zones: [Z.b2nf, Z.rd2122],
+              texte: "\xC0 +2 \xB0C, B2 ouvre 1-2 : RD retombe. RD 21-22 se referme : M1 et Y1 repartent aussit\xF4t."
             },
             {
-              titre: "Contr\xF4ler l\u2019\xE9coulement",
-              de: 26,
-              a: 30.5,
+              titre: "RFD se tient",
+              de: 44.4,
+              a: 45.2,
+              dur: 1.2,
+              zones: [Z.colRFD, Z.rfd2122],
+              texte: "Le contact NO de B2 fait coller RFD, qui se tient par 13-14 : son 21-22 garde RD ouvert."
+            },
+            {
+              titre: "Pas de second d\xE9givrage",
+              de: 45.2,
+              a: 50.5,
               dur: 3,
-              zones: [Z.bac],
-              texte: "Pendant l\u2019arr\xEAt, l\u2019eau de fonte s\u2019\xE9vacue-t-elle ? Un bac ou un tube gel\xE9 fait regeler la batterie."
+              zones: [Z.b2nf, Z.rfd2122],
+              texte: "La batterie refroidit, B2 revient au repos\u2026 mais RD ne recolle pas : RFD veille jusqu\u2019\xE0 la fin de la plage."
             },
             {
-              titre: "Lire les marches et les arr\xEAts",
-              de: 39.5,
-              a: 42.2,
-              dur: 3,
-              zones: [Z.b1, Z.m1y1],
-              texte: "Les arr\xEAts laissent-ils le temps de fondre ? Relever les temps de marche et d\u2019arr\xEAt du groupe."
-            },
-            {
-              titre: "D\xE9cider",
-              de: 52,
-              a: 52,
-              dur: 0.2,
-              zones: [Z.armoire],
-              texte: "Si les arr\xEAts ne suffisent pas : un d\xE9givrage command\xE9, choisi avec la notice et le cahier des charges."
+              titre: "Fin de plage : RFD retombe",
+              de: 50.5,
+              a: 51.6,
+              dur: 1.4,
+              zones: [Z.h34, Z.colRFD],
+              texte: "h1 s\u2019ouvre : RFD retombe. Tout est pr\xEAt pour le prochain d\xE9givrage."
             }
           ]
         }
       );
     }
-    window.Planche06Constat = Planche06Constat;
-    window.Planche06Limites = Planche06Limites;
-    window.Planche06Decider = Planche06Decider;
+    window.Planche07Air = Planche07Air;
+    window.Planche07Horloge = Planche07Horloge;
+    window.Planche07Sonde = Planche07Sonde;
   })();
 })();
 </script>
@@ -2826,9 +2870,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   window.__resourceBlobs = window.__resourceBlobs || {};
   window.__resourceBlobs["./animations-v3.js"] = blob('src0');
   window.__resourceBlobs["./regules-kit.js"] = blob('src1');
-  window.__resourceBlobs["./regules-06.js"] = blob('src2');
+  window.__resourceBlobs["./regules-07.js"] = blob('src2');
   window.__resourceBlobs["./planches-kit.js"] = blob('src3');
-  window.__resourceBlobs["./planches-06.js"] = blob('src4');
+  window.__resourceBlobs["./planches-07.js"] = blob('src4');
   window.__resources = window.__resources || {};
   window.__resources["https://unpkg.com/react@18.3.1/umd/react.production.min.js"] = URL.createObjectURL(blob('vendor0'));
   window.__resources["https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"] = URL.createObjectURL(blob('vendor1'));
@@ -4779,7 +4823,7 @@ html, body { margin: 0; padding: 0; background: #f7f1e7; }
 </style>
 </helmet>
 <div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
-  <x-import component-from-global-scope="Planche06Decider" from="./animations-v3.js ./regules-kit.js ./regules-06.js ./planches-kit.js ./planches-06.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+  <x-import component-from-global-scope="Planche07Air" from="./animations-v3.js ./regules-kit.js ./regules-07.js ./planches-kit.js ./planches-07.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
 </div>
 </x-dc>
 

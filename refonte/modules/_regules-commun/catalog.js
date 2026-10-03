@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03g",
+    version: "2026-10-03h",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -474,6 +474,8 @@
         shortTitle: "Air + arrêt froid",
         promise: "Utiliser l’air d’une enceinte positive pour dégivrer, d’abord naturellement puis avec une commande dédiée.",
         sourceKeys: ["natural", "defrost"],
+        /* 03/10/2026 : film et planches sur la fiche 6.1, deuxième et troisième principes. */
+        films: [{ fichier: "regules-07-degivrage-naturel.html", titre: "Le film" }],
         lessons: [
           {
             id: "air",
@@ -486,15 +488,8 @@
               "Cette technique concerne une application positive prévue pour ce fonctionnement."
             ],
             box: { type: "key", label: "La clé", text: "On coupe la production de froid sans couper nécessairement le brassage d’air." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel du dégivrage naturel avec ventilateur maintenu",
-              title: "Deux commandes",
-              rungs: [
-                { label: "Production de froid", contacts: [{ code: "B1", label: "Thermostat" }, { code: "h1", label: "Autorisation froid" }], coil: { code: "KM1", label: "Compresseur" } },
-                { label: "Circulation d’air", contacts: [{ code: "Q", label: "Marche générale" }], coil: { code: "KM2", label: "Ventilateur" } }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-07a-air.html",
+                      label: "Planche pas à pas : l’horloge coupe le froid par RD, le ventilateur continue, l’air fait fondre le givre" }
           },
           {
             id: "horloge",
@@ -507,11 +502,8 @@
               "Le nombre et la durée se règlent pour l’installation, jamais par une valeur universelle."
             ],
             box: { type: "exam", label: "À vérifier", text: "Programmer tient compte de l’usage de la chambre et de la remontée de température admise." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence du dégivrage naturel commandé par horloge",
-              steps: ["L’horloge lance le dégivrage", "La production de froid s’arrête", "Le ventilateur continue", "L’air réchauffe la batterie", "Le givre fond", "Le froid est de nouveau autorisé"]
-            }
+            visual: { kind: "planche", fichier: "planche-07b-horloge.html",
+                      label: "Planche pas à pas : l’horloge impose le début du dégivrage quand les arrêts ne suffisent pas" }
           },
           {
             id: "fin",
@@ -524,14 +516,8 @@
               "Une durée maximale reste une sécurité, pas la preuve que le givre a réellement fondu."
             ],
             box: { type: "warning", label: "Le piège", text: "Finir seulement au temps peut prolonger inutilement la remontée de température." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison de la fin au temps et de la fin sur température de batterie",
-              cards: [
-                { state: "wait", title: "TEMPS SEUL", text: "Cycle maintenu jusqu’à la durée prévue" },
-                { state: "ok", title: "SONDE DE FIN", text: "Fin quand la batterie est dégivrée, avec sécurité maximale" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-07c-sonde.html",
+                      label: "Planche pas à pas : la sonde B2 rend le froid, RFD empêche un second dégivrage" }
           }
         ],
         quiz: [

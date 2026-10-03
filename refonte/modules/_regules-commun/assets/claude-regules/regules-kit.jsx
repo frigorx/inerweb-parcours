@@ -851,6 +851,73 @@
     );
   }
 
+  /* La batterie en gros plan (stations 6 et 7) : ailettes, tubes, manchons de givre,
+     air soufflé par le ventilateur, gouttes de fonte. Repère local 1860 × 1440 ;
+     `legende` = la phrase sous les mesures, écrite par le film. */
+  function GrosPlan(p) {
+    var s = p.s, T = p.T, g = clamp(s.givre, 0, 1.5);
+    var passe = 1 - 0.6 * clamp(g / 1.4, 0, 1);
+    var echange = Math.round(100 - 42 * clamp(g, 0, 1.4));
+    var tubes = [];
+    for (var i = 0; i < 5; i++) for (var j = 0; j < 4; j++) tubes.push([380 + i * 230, 330 + j * 210]);
+    var fins = [];
+    for (var x = 280; x <= 1360; x += 54) fins.push(x);
+    var fleches = [];
+    for (var k = 0; k < 3; k++) for (var m = 0; m < 4; m++) fleches.push([k, m]);
+    var froid = p.marche, souffle = p.souffle === undefined ? 1 : p.souffle;
+    return (
+      <g>
+        <rect x="0" y="0" width="1860" height="1440" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="40" y="66" fill={C.orangeText} fontSize="32" fontWeight="900" letterSpacing="2">LA BATTERIE EN GROS PLAN</text>
+        <rect x="260" y="200" width="1120" height="900" rx="12" fill="#f4f8fb" stroke={C.line} strokeWidth="4" />
+        {fins.map(function (fx) { return <line key={fx} x1={fx} y1="210" x2={fx} y2="1090" stroke={froid ? '#cfe0ee' : '#dfe6ee'} strokeWidth="6" />; })}
+        {tubes.map(function (q, i) {
+          return (
+            <g key={i}>
+              {g > 0.02 && <circle cx={q[0]} cy={q[1]} r={40 + 44 * clamp(g, 0, 1.4)} fill="#d6eaf8" stroke="#7fb0d6" strokeWidth="5" />}
+              <circle cx={q[0]} cy={q[1]} r="34" fill={froid ? '#dbe9f6' : '#eef2f6'} stroke={C.blue} strokeWidth="6" />
+            </g>
+          );
+        })}
+        {fleches.map(function (f, i) {
+          var y = 435 + f[0] * 210, d = ((T * 220 * passe) + f[1] * 300) % 1200;
+          return (
+            <g key={i} opacity={(0.25 + 0.6 * passe) * souffle}>
+              <line x1={120 + d} y1={y} x2={190 + d} y2={y} stroke={d < 600 ? C.orangeText : C.blue} strokeWidth="9" strokeLinecap="round" />
+              <path d={'M ' + (186 + d) + ' ' + (y - 14) + ' L ' + (212 + d) + ' ' + y + ' L ' + (186 + d) + ' ' + (y + 14) + ' Z'}
+                    fill={d < 600 ? C.orangeText : C.blue} />
+            </g>
+          );
+        })}
+        <Fan x={120} y={660} r={64} spin={T * 300 * souffle} flow={souffle} />
+        <text x="120" y="770" textAnchor="middle" fill={C.green} fontSize="26" fontWeight="900">{p.fan || 'M2'}</text>
+        <text x="50" y="162" fill={C.orangeText} fontSize="28" fontWeight="900">AIR DE LA CHAMBRE →</text>
+        <text x="1820" y="162" textAnchor="end" fill={C.blue} fontSize="28" fontWeight="900">→ AIR REFROIDI</text>
+        <rect x="300" y="1114" width="1040" height="20" rx="6" fill="#dfe6ee" stroke={C.blue} strokeWidth="4" />
+        <g opacity={clamp(s.gouttes, 0, 1)}>
+          {[0, 1, 2, 3, 4, 5, 6, 7].map(function (i) {
+            var ph = (T * 1.4 + i * 0.29) % 1;
+            return <ellipse key={i} cx={360 + i * 130} cy={1050 + ph * 60} rx="9" ry="14" fill="#5d9dcd" opacity={0.35 + 0.5 * (1 - ph)} />;
+          })}
+        </g>
+        <text x="50" y="1210" fill={C.mute} fontSize="26" fontWeight="800">{p.sonde || 'BATTERIE'}</text>
+        <text x="50" y="1284" fill={s.bat > 0 ? C.red : C.blue} fontSize="62" fontWeight="900">
+          {(s.bat > 0 ? '+' : '') + s.bat.toFixed(1).replace('.', ',').replace('-', '−')} °C
+        </text>
+        <text x="500" y="1210" fill={C.mute} fontSize="26" fontWeight="800">GIVRE</text>
+        <rect x="500" y="1236" width="560" height="44" rx="10" fill={C.blueSoft} stroke={C.line} strokeWidth="4" />
+        <rect x="500" y="1236" width={560 * clamp(g / 1.4, 0, 1)} height="44" rx="10" fill="#c9e0f2" stroke="#8fb8d8" strokeWidth="4" />
+        <text x="1820" y="1210" textAnchor="end" fill={C.mute} fontSize="26" fontWeight="800">ÉCHANGE</text>
+        <text x="1820" y="1284" textAnchor="end" fill={echange < 70 ? C.red : C.green} fontSize="62" fontWeight="900">{echange} %</text>
+        <text x="50" y="1370" fill={C.ink} fontSize="30" fontWeight="800">{p.legende}</text>
+        <g opacity={p.porte || 0}>
+          <rect x="1360" y="40" width="460" height="60" rx="10" fill="#fdecea" stroke={C.red} strokeWidth="4" />
+          <text x="1590" y="82" textAnchor="middle" fill={C.red} fontSize="28" fontWeight="900">PORTES OUVERTES</text>
+        </g>
+      </g>
+    );
+  }
+
   window.RK = {
     C: C, MOTION: MOTION, camAt: camAt, camFixed: camFixed, camPaliers: camPaliers, Spot: Spot, Chip: Chip, Coil: Coil, Fan: Fan,
     SymCompresseur: SymCompresseur, SymDetendeur: SymDetendeur, Compresseur: Compresseur,
@@ -858,6 +925,6 @@
     ChambreFond: ChambreFond, Chambre: Chambre, Machine: Machine, PipeChips: PipeChips,
     ContactNO: ContactNO, ContactNF: ContactNF, Disjoncteur: Disjoncteur, Bobine: Bobine, Manometre: Manometre,
     PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, VoyantV: VoyantV, Potentiel: Potentiel,
-    resoudre: resoudre, modeFil: modeFil, MoteurV: MoteurV, Etapes: Etapes, Surligneur: Surligneur
+    resoudre: resoudre, modeFil: modeFil, MoteurV: MoteurV, Etapes: Etapes, Surligneur: Surligneur, GrosPlan: GrosPlan
   };
 })();

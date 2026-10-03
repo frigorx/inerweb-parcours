@@ -12,13 +12,14 @@ sur le MÊME schéma (armoire exposée par le film : RK01, RK02, RK3, RK4, RK5 ;
 | 3 | pump-down automatique | existant | ✅ 03a/b/c | ✅ 03/10 |
 | 4 | pump-down amélioré | ✅ neuf | ✅ 04a/b/c | ✅ 03/10 |
 | 5 | pump-down unique | ✅ refait sur l'annexe 3 EP2 CAP VAF 2016 | ✅ 05a/b/c | ✅ 03/10 |
-| 6 | sans dégivrage commandé | aucun | à faire | — |
+| 6 | sans dégivrage commandé | ✅ neuf, fiche 6.1 1er principe | ✅ 06a/b/c | ✅ 03/10 |
 | 7 | dégivrage naturel | aucun | à faire | — |
-| 8 | dégivrage électrique | 🔴 existant mais FAUX par endroits (voir plus bas) | à faire | film actuel en ligne |
+| 8 | dégivrage électrique | ✅ refait sur la fiche 6.3 (relais calculés) | ✅ 08a/b/c | ✅ 03/10 |
 | 9 | gaz chauds | aucun | à faire | — |
 | 10 | inversion de cycle | aucun | à faire | — |
 
-## Station 8 — défauts constatés le 03/10 dans le film en ligne (à 0:25, pendant le tirage)
+## Station 8 — FAIT le 03/10 (voir le bloc d'en-tête de regules-08.jsx : lectures tranchées de la fiche)
+### Défauts constatés le 03/10 avant réfection dans le film en ligne (à 0:25, pendant le tirage)
 - KM1 est dessiné ALIMENTÉ alors que son contact KT « verrouillage » est OUVERT (le verrouillage s'ouvre à
   tKT, KM1 reste dans `kmIvs` jusqu'à tKMo) : soit KM1 s'arrête tout de suite, soit le verrou n'existe pas.
 - `colonne()` rend 'courant' quand aucun contact n'est ouvert, même bobine au repos (`courant ? 'courant' :
@@ -42,3 +43,12 @@ sur le MÊME schéma (armoire exposée par le film : RK01, RK02, RK3, RK4, RK5 ;
   `node build/animations.mjs`, `node build/retour-accueil.mjs`, commit, push `HEAD:main`.
 - Vérifier : inerweb.fr refuse curl (Cloudflare) → sonde Playwright avec un vrai Chrome hors écran, clé
   aléatoire d'abord, vraie clé une seule fois le déploiement vu.
+
+## Méthode des films 6 à 10 (03/10, à garder)
+- Les relais ne s'écrivent plus à la main : `RK.resoudre(reseau)` (kit) calcule bobines et potentiels
+  à partir des contacts ; le scénario ne fixe que les capteurs (air, batterie, pression, horloge).
+  Chaque film expose `RKn.etat(T, CUES, TOTAL)` ; les planches recopient les CUES du `.dc.html`.
+- Narration : `refonte/voix/narrations-films/regules-0n.js`, puis `node outils/fabriquer-voix-films.mjs 0n`
+  (mesure les MP3 et dit quelles scènes allonger). Enceinte + 1re scène = 13 s (repères du kit à 13 s).
+- Station 8 : « B4 » de la fiche 6.3 = contact NF de l'horloge (fiche 6.1) ; « RD 1-2 colonne 7 » =
+  renvoi recopié de la 6.2, non repris.

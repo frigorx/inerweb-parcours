@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":7,"desc":"Chambre positive a +3 ; armoire : le froid, M2 permanent, h1 RD RFD"},{"name":"Marche","dur":6,"desc":"B1 : M1 et Y1 a travers RD 21-22 ; M2 permanent"},{"name":"Circulation","dur":10,"desc":"Tour de la croix ; le givre s installe"},{"name":"Horloge","dur":12,"desc":"h1 fait coller RD : M1 et Y1 s arretent, M2 continue"},{"name":"Fonte","dur":14,"desc":"L air fait fondre le givre ; B2 a +2 fait retomber RD, le froid repart, RFD se tient"},{"name":"FinPlage","dur":10,"desc":"Fin de plage h1 : RFD retombe ; sans sonde le froid serait reste coupe"},{"name":"Chronologie","dur":8,"desc":"Chronogramme : air, h1, RD, M1, batterie, givre, RFD"},{"name":"CycleComplet","dur":16,"desc":"Plan large : la sequence se rejoue"},{"name":"LaCle","dur":10,"desc":"Carte de synthese de la station 7"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "zooms": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesDegivrageNaturel" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-kit.jsx ./regules-07.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>
