@@ -58,7 +58,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03i",
+    version: "2026-10-03j",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -662,6 +662,9 @@
         shortTitle: "Inversion de cycle",
         promise: "Voir la vanne 4 voies échanger le rôle des deux batteries pendant le dégivrage.",
         sourceKeys: ["defrost", "givre"],
+        /* 03/10/2026 : film et planches sur « Les dégivrages » (fluidique, vanne 4 voies) et la vanne en coupe
+           de CartoClim 2.6 ; pas d'armoire, faute de schéma électrique source. */
+        films: [{ fichier: "regules-10-inversion-de-cycle.html", titre: "Le film" }],
         lessons: [
           {
             id: "roles",
@@ -674,11 +677,8 @@
               "L’autre échangeur devient l’évaporateur du cycle inversé."
             ],
             box: { type: "key", label: "La clé", text: "Inversion de cycle = échange complet des rôles, pas simple piquage de gaz chaud." },
-            visual: {
-              kind: "circuit",
-              mode: "reverse",
-              label: "Comparaison du sens de circulation en froid et en inversion de cycle"
-            }
+            visual: { kind: "planche", fichier: "planche-10a-vanne.html",
+                      label: "Planche pas à pas : la bobine, la vanne pilote, le tiroir — la batterie de la chambre devient condenseur" }
           },
           {
             id: "compatibilite",
@@ -691,15 +691,8 @@
               "Les clapets, accumulateurs et régulation sont choisis pour la séquence réelle du constructeur."
             ],
             box: { type: "warning", label: "Le piège", text: "Ne jamais redessiner une inversion en retournant seulement deux flèches : tous les organes traversés comptent." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel simplifié de l’autorisation de la vanne 4 voies",
-              title: "Commande d’inversion",
-              rungs: [
-                { label: "Demande de dégivrage", contacts: [{ code: "RD", label: "Dégivrage" }, { code: "SFD", label: "Fin non atteinte" }], coil: { code: "Y4V", label: "Vanne 4 voies" } },
-                { label: "Ventilation", contacts: [{ code: "RD", label: "Interverrouillage" }], coil: { code: "KMV", label: "Ventilateurs arrêtés" } }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-10b-detente.html",
+                      label: "Planche pas à pas : deux détendeurs et leurs clapets, le liquide dans les deux sens" }
           },
           {
             id: "retour-froid",
@@ -712,11 +705,8 @@
               "Les ventilateurs redémarrent lorsque la batterie est redevenue suffisamment froide."
             ],
             box: { type: "exam", label: "À réciter", text: "Fin de dégivrage → retour de la vanne → égouttage/stabilisation → froid → ventilateurs différés." },
-            visual: {
-              kind: "timeline",
-              label: "Chronologie du retour au froid après inversion de cycle",
-              phases: ["Fin sur sonde", "Vanne 4 voies au repos froid", "Égouttage", "Stabilisation", "Production de froid", "Ventilateurs différés"]
-            }
+            visual: { kind: "planche", fichier: "planche-10c-retour.html",
+                      label: "Planche pas à pas : fin sur sonde, égouttage, froid sans ventilation, ventilateurs en dernier" }
           }
         ],
         quiz: [

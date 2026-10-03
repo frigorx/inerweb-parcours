@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":8,"desc":"Chambre negative, batterie prise en givre, vanne 4 voies"},{"name":"Froid","dur":10,"desc":"Refoulement au condenseur, clapet du detendeur 2, detente dans le detendeur 1, la batterie evapore"},{"name":"Inversion","dur":15,"desc":"Ventilateurs arretes, bobine alimentee, le tiroir glisse, la batterie devient condenseur"},{"name":"Fonte","dur":10,"desc":"Le gaz chaud fait fondre le givre ; a +10 la sonde coupe la bobine"},{"name":"Retour","dur":12,"desc":"Egouttage compresseur arrete, froid sans ventilation, ventilateurs en dernier"},{"name":"Chronologie","dur":8,"desc":"Chronogramme : air, bobine, compresseur, batterie, ventilateurs"},{"name":"CycleComplet","dur":16,"desc":"Plan large : la sequence se rejoue"},{"name":"LaCle","dur":10,"desc":"Carte de synthese de la station 10"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "zooms": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesInversion" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-kit.jsx ./regules-10.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>
