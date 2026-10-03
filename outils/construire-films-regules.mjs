@@ -258,7 +258,7 @@ function construire(fichierDc) {
      film rouvrait sur sa dernière image au lieu de son début. */
   const nomLisible = planche
     ? titre.replace(/^Planche\s+0?(\d+)\w*\s+(.*)$/i, (m, n, reste) => "Régulation " + n + " · planche " + reste.toLowerCase())
-        .replace(/memoire/g, "mémoire").replace(/sequence/g, "séquence").replace(/defaut/g, "défaut")
+        .replace(/memoire/g, "mémoire").replace(/sequence/g, "séquence").replace(/defaut/g, "défaut").replace(/methode/g, "méthode").replace(/\bbp\b/g, "BP")
     : titre
     .replace(/^Regules\s+0?(\w+)\s+/i, (m, n) => "Régulation " + n + " · ")
     .replace(/\bdegivrage\b/gi, "dégivrage")

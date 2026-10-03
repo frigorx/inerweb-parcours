@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03c",
+    version: "2026-10-03d",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -395,17 +395,9 @@
               "Le BP de sécurité appartient à la chaîne de défaut et peut imposer un arrêt durable avec signalisation."
             ],
             box: { type: "key", label: "La clé", text: "Ne jamais déduire la fonction d’un pressostat de sa seule position : lire repère, contact et réarmement." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel du pump-down unique avec BP de régulation et BP de sécurité distincts",
-              title: "Régulation séparée de la sécurité",
-              rungs: [
-                { label: "Autorisation générale", contacts: [{ code: "HP", label: "Sécurité" }, { code: "BP-S", label: "Sécurité" }, { code: "KA1", label: "Marche maintenue" }], coil: { code: "KA1", label: "Sécurité" } },
-                { label: "Demande de froid", contacts: [{ code: "B1", label: "Thermostat" }, { code: "KA1", label: "Autorisation" }], coil: { code: "KA2", label: "Tirage" } },
-                { label: "Compresseur", contacts: [{ code: "BP-R", label: "Régulation" }, { code: "KA2/KM1", label: "Maintien" }], coil: { code: "KM1", label: "Compresseur" } },
-                { label: "Signal défaut", contacts: [{ code: "BP-S", label: "Contact défaut" }], coil: { code: "H6", label: "Défaut BP" } }
-              ]
-            }
+            /* 03/10/2026 : film 5 refait sur l’annexe 3 EP2 CAP VAF 2016, planches pas à pas. */
+            visual: { kind: "planche", fichier: "planche-05a-deux-bp.html",
+                      label: "Planche pas à pas : la mise en service, la BP de régulation shuntée en marche, la BP de sécurité qui veille" }
           },
           {
             id: "fuite",
@@ -418,11 +410,8 @@
               "La signalisation oriente le diagnostic ; elle ne remplace ni la recherche de fuite ni la remise en service réglementaire."
             ],
             box: { type: "warning", label: "Sécurité", text: "Aucun shunt n’est réalisé en intervention réelle sans procédure, schéma et autorisation adaptés." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence de défaut basse pression sur pump-down unique amélioré",
-              steps: ["La pression devient anormalement basse", "La régulation ne suffit plus à expliquer l’état", "BP-S ouvre la chaîne", "KA1 retombe", "KM1 reste arrêté", "H6 signale le défaut", "Le technicien recherche la cause"]
-            }
+            visual: { kind: "planche", fichier: "planche-05b-fuite.html",
+                      label: "Planche pas à pas : une fuite, la BP de sécurité fait retomber KA1 et allume H6" }
           },
           {
             id: "nom",
@@ -435,14 +424,8 @@
               "La présence d’un BP de sécurité distinct est écrite explicitement pour éviter toute confusion avec la station précédente."
             ],
             box: { type: "exam", label: "Méthode", text: "Nommer les organes, suivre les contacts, puis raconter l’ordre des états." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison des deux niveaux de pump-down à relais",
-              cards: [
-                { state: "wait", title: "RELAIS DE DEMANDE", text: "Bloque le redémarrage parasite" },
-                { state: "ok", title: "+ BP SÉCURITÉ", text: "Traite et signale la basse pression anormale" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-05c-methode.html",
+                      label: "Planche pas à pas : nommer les organes, suivre les contacts, raconter l’arrêt normal" }
           }
         ],
         quiz: [

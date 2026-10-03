@@ -678,11 +678,19 @@
           <line x1={x} y1={y + h} x2={x} y2={p.nf ? y - 8 : y}
                 stroke={vif ? C.orangeText : C.wire} strokeWidth="10" strokeLinecap="round" />
         </g>
-        {!p.aux && (
+        {!p.aux && !p.poussoir && (
           <g>
             <line x1={x - 96} y1={mid} x2={x - 8} y2={mid} stroke={C.wire} strokeWidth="4" strokeDasharray="12 10" />
             <rect x={x - 156} y={mid - 30} width="60" height="60" fill={C.card} stroke={C.wire} strokeWidth="5" />
             <text x={x - 126} y={mid + 16} textAnchor="middle" fill={C.blue} fontSize="42" fontWeight="900">{p.glyph || 'θ'}</text>
+          </g>
+        )}
+        {p.poussoir && (
+          /* commande manuelle par poussoir (EN 60617) : le « E » au bout de la liaison */
+          <g>
+            <line x1={x - 104} y1={mid} x2={x - 8} y2={mid} stroke={C.wire} strokeWidth="4" strokeDasharray="12 10" />
+            <path d={'M ' + (x - 86) + ' ' + (mid - 26) + ' L ' + (x - 104) + ' ' + (mid - 26) + ' L ' + (x - 104) + ' ' + (mid + 26) + ' L ' + (x - 86) + ' ' + (mid + 26)}
+                  fill="none" stroke={C.wire} strokeWidth="6" strokeLinejoin="round" />
           </g>
         )}
         <text x={x - (p.nf ? 42 : 16)} y={y + 6} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">{p.b1 || (p.nf ? '11' : '13')}</text>
@@ -709,6 +717,24 @@
     );
   }
 
+  /* Voyant (EN 60617) : le cercle barré d'une croix, X1 en haut, X2 en bas ;
+     allumé, il se remplit de jaune. */
+  function VoyantV(p) {
+    var x = +p.x, y = +p.y, r = 30, d = r * 0.707;
+    return (
+      <g>
+        {p.live && <circle cx={x} cy={y} r={r + 16} fill="#ffd34d" opacity="0.45" />}
+        <circle cx={x} cy={y} r={r} fill={p.live ? '#ffe27a' : C.card} stroke={p.live ? C.orangeText : C.blue} strokeWidth="6" />
+        <line x1={x - d} y1={y - d} x2={x + d} y2={y + d} stroke={p.live ? C.orangeText : C.blue} strokeWidth="5" />
+        <line x1={x - d} y1={y + d} x2={x + d} y2={y - d} stroke={p.live ? C.orangeText : C.blue} strokeWidth="5" />
+        <text x={x - 42} y={y - 34} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">X1</text>
+        <text x={x - 42} y={y + 52} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">X2</text>
+        <text x={x + 52} y={y + 2} fill={p.live ? C.orangeText : C.blue} fontSize="36" fontWeight="900">{p.code}</text>
+        <text x={x + 52} y={y + 32} fill={C.mute} fontSize="22" fontWeight="700">{p.sub}</text>
+      </g>
+    );
+  }
+
   /* Le potentiel d'un tronçon, par-dessus le fil gris :
      « courant »  rouge animé (le circuit est fermé, le courant circule) ;
      « phase »    rouge statique (tension présente, circuit ouvert en aval) ;
@@ -731,6 +757,6 @@
     Pipes: Pipes, MigrationFlux: MigrationFlux, Croix: Croix, CroixLabels: CroixLabels,
     ChambreFond: ChambreFond, Chambre: Chambre, Machine: Machine, PipeChips: PipeChips,
     ContactNO: ContactNO, ContactNF: ContactNF, Disjoncteur: Disjoncteur, Bobine: Bobine, Manometre: Manometre,
-    PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, Potentiel: Potentiel
+    PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, VoyantV: VoyantV, Potentiel: Potentiel
   };
 })();

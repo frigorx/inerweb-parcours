@@ -125,13 +125,13 @@
 
   /* L'air de la chambre, que lit le bulbe du thermostat B1 (cx = centre du θ). */
   function Air(p) {
-    var cx = p.cx;
+    var cx = p.cx, y = p.y === undefined ? 646 : p.y, ly = p.ly === undefined ? 825 : p.ly;
     return (
       <g>
-        <rect x={cx - 108} y="646" width="216" height="118" rx="12" fill={C.card} stroke={C.blue} strokeWidth="4" />
-        <text x={cx} y="680" textAnchor="middle" fill={C.mute} fontSize="24" fontWeight="800" letterSpacing="2">AIR CHAMBRE</text>
-        <text x={cx} y="740" textAnchor="middle" fill={C.blue} fontSize="44" fontWeight="900">{fr(p.temp, 1)} °C</text>
-        <line x1={cx} y1="764" x2={cx} y2="825" stroke={C.mute} strokeWidth="4" strokeDasharray="10 8" />
+        <rect x={cx - 108} y={y} width="216" height="118" rx="12" fill={C.card} stroke={C.blue} strokeWidth="4" />
+        <text x={cx} y={y + 34} textAnchor="middle" fill={C.mute} fontSize="24" fontWeight="800" letterSpacing="2">AIR CHAMBRE</text>
+        <text x={cx} y={y + 94} textAnchor="middle" fill={C.blue} fontSize="44" fontWeight="900">{fr(p.temp, 1)} °C</text>
+        <line x1={cx} y1={ly < y ? y : y + 118} x2={cx} y2={ly} stroke={C.mute} strokeWidth="4" strokeDasharray="10 8" />
       </g>
     );
   }
