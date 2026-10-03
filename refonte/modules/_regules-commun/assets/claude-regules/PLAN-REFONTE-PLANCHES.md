@@ -62,3 +62,15 @@ sur le MÊME schéma (armoire exposée par le film : RK01, RK02, RK3, RK4, RK5 ;
 - **10 inversion** : aucune source ne donne le schéma électrique ⇒ pas d'armoire (règle : pas de schéma
   inventé). Circuit d'après « Les dégivrages » p. 4, vanne en coupe reprise de CartoClim 2.6. Si Franck a
   un schéma de commande, l'ajouter comme armoire calculée (même méthode que 6 à 9).
+
+## Voix des films 1 à 5 et export vidéo (03/10 soir)
+- Franck : « beaucoup de vidéos n'ont pas de son » → les films 1, 2, 2b, 3, 4, 5 étaient muets. Narrations
+  `refonte/voix/narrations-films/regules-01…05 + 02b` (calées sur les sous-titres), voix Henri, EN LIGNE
+  (site `e5b1a2e9`, vérifié au curl). Durées de scène inchangées : le lecteur retient l'image tant que la
+  phrase court. Le fabricant épelle désormais « KA », « KA2 », « H6 ».
+- ⚠ `construire-films-regules.mjs 03` reconstruit aussi les planches 03a-c (filtre par sous-chaîne) : ne
+  livrer que ce qui est visé.
+- Export MP4 YouTube (voix + filigrane inerWeb Studio) : `outils/exporter-films-video.mjs` ; les 13 films
+  sont sur le Bureau, plan dans `C:\Users\henni\Documents\inerweb-video\studio\REPRISE.md`.
+  **Rien sur YouTube** (Franck : « seulement le site »). Découpage TikTok : plus tard, sur demande.
+- Reste : l'écoute des voix 1 à 5 par Franck (personne ne les a entendues).
