@@ -2112,8 +2112,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var o = clamp((p.T - 13.4) / 1.1, 0, 1);
       return /* @__PURE__ */ React.createElement("g", { opacity: o }, /* @__PURE__ */ React.createElement("text", { x: "1256", y: "1372", textAnchor: "end", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "3" }, "\u2190 C\xD4T\xC9 LIQUIDE"), /* @__PURE__ */ React.createElement("text", { x: "1344", y: "1372", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "3" }, "C\xD4T\xC9 VAPEUR \u2192"));
     }
-    function ChambreFond() {
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1000", y: "760", width: "700", height: "530", rx: "18", fill: "#eaf3f9", stroke: C.blue, strokeWidth: "5", strokeDasharray: "26 18" }), /* @__PURE__ */ React.createElement("text", { x: "1026", y: "814", fill: C.blue, fontSize: "32", fontWeight: "800", letterSpacing: "3" }, "CHAMBRE N\xC9GATIVE"));
+    function ChambreFond(p) {
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1000", y: "760", width: "700", height: "530", rx: "18", fill: "#eaf3f9", stroke: C.blue, strokeWidth: "5", strokeDasharray: "26 18" }), /* @__PURE__ */ React.createElement("text", { x: "1026", y: "814", fill: C.blue, fontSize: "32", fontWeight: "800", letterSpacing: "3" }, p && p.titre || "CHAMBRE N\xC9GATIVE"));
     }
     function Chambre(p) {
       var arrows = [0, 1, 2];
@@ -2121,7 +2121,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         var op = p.flow * (0.35 + 0.5 * (0.5 + 0.5 * Math.sin(p.phase * 3 - i)));
         var d = (p.phase * 70 + i * 30) % 80;
         return /* @__PURE__ */ React.createElement("g", { key: i, opacity: op }, /* @__PURE__ */ React.createElement("line", { x1: 1380 + d + i * 96, y1: "1246", x2: 1430 + d + i * 96, y2: "1246", stroke: C.blue, strokeWidth: "7", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M " + (1424 + d + i * 96) + " 1234 L " + (1446 + d + i * 96) + " 1246 L " + (1424 + d + i * 96) + " 1258 Z", fill: C.blue }));
-      }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1010", y: "1215", width: "96", height: "66", rx: "8", fill: C.card, stroke: C.orangeText, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1058", y: "1261", textAnchor: "middle", fill: C.orangeText, fontSize: "34", fontWeight: "900" }, "B1"), /* @__PURE__ */ React.createElement("path", { d: "M 1058 1281 L 1058 1445 L 2508 1445", fill: "none", stroke: "#93a3b4", strokeWidth: "4", strokeDasharray: "14 12" })), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 22.4, hold: 5, x: "1300", y: "712", text: "\xC9VAPORATEUR", sub: "le liquide s\u2019\xE9vapore, il prend la chaleur", fs: "34" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1800", y: "1030", width: "560", height: "220", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1082", fill: C.orangeText, fontSize: "28", fontWeight: "900", letterSpacing: "2.5" }, "AIR DE LA CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1178", fill: p.temp > -14.6 ? C.red : C.blue, fontSize: "88", fontWeight: "900" }, p.temp.toFixed(1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1226", fill: C.mute, fontSize: "24", fontWeight: "700" }, "CONSIGNE \u221218 \xB7 ENCLENCHEMENT \u221214"), /* @__PURE__ */ React.createElement("circle", { cx: "2326", cy: "1072", r: "14", fill: p.energy > 0.5 ? C.orange : "#d6dde5" })));
+      }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1010", y: "1215", width: "96", height: "66", rx: "8", fill: C.card, stroke: C.orangeText, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1058", y: "1261", textAnchor: "middle", fill: C.orangeText, fontSize: "34", fontWeight: "900" }, "B1"), /* @__PURE__ */ React.createElement("path", { d: "M 1058 1281 L 1058 1445 L 2508 1445", fill: "none", stroke: "#93a3b4", strokeWidth: "4", strokeDasharray: "14 12" })), /* @__PURE__ */ React.createElement(Chip, { T: p.T, at: 22.4, hold: 5, x: "1300", y: "712", text: "\xC9VAPORATEUR", sub: "le liquide s\u2019\xE9vapore, il prend la chaleur", fs: "34" }), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1800", y: "1030", width: "560", height: "220", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1082", fill: C.orangeText, fontSize: "28", fontWeight: "900", letterSpacing: "2.5" }, "AIR DE LA CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1178", fill: p.temp > (p.seuil !== void 0 ? p.seuil : -14.6) ? C.red : C.blue, fontSize: "88", fontWeight: "900" }, (p.temp > 0 ? "+" : "") + p.temp.toFixed(1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "1830", y: "1226", fill: C.mute, fontSize: "24", fontWeight: "700" }, p.consigne || "CONSIGNE \u221218 \xB7 ENCLENCHEMENT \u221214"), /* @__PURE__ */ React.createElement("circle", { cx: "2326", cy: "1072", r: "14", fill: p.energy > 0.5 ? C.orange : "#d6dde5" })));
     }
     function Machine(p) {
       var hot = [0, 1, 2];
@@ -2377,6 +2377,97 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         }
       );
     }
+    function resoudre(el) {
+      function parcours(depart, passe, bloque) {
+        var vu = {};
+        vu[depart] = true;
+        var file = [depart];
+        while (file.length) {
+          var n = file.shift();
+          if (n === bloque) continue;
+          for (var i = 0; i < el.length; i++) {
+            var e = el[i];
+            if (!passe(e)) continue;
+            var b = e.charge ? "N" : e.b;
+            var o = e.a === n ? b : b === n ? e.a : null;
+            if (o !== null && !vu[o]) {
+              vu[o] = true;
+              file.push(o);
+            }
+          }
+        }
+        return vu;
+      }
+      var L = parcours("L", function(e) {
+        return !e.charge && e.f;
+      }, null);
+      var N = parcours("N", function(e) {
+        return e.charge || e.f;
+      }, "L");
+      function vif(n) {
+        return n === "N" || !!L[n] && !!N[n];
+      }
+      var conduit = {};
+      el.forEach(function(e) {
+        conduit[e.id] = e.charge ? vif(e.a) : e.f && vif(e.a) && vif(e.b);
+      });
+      return { L, N, conduit };
+    }
+    function modeFil(r, noeud, organes) {
+      if (noeud === "N") return organes.some(function(o) {
+        return r.conduit[o];
+      }) ? "courant" : "retour";
+      var l = !!r.L[noeud], n = !!r.N[noeud];
+      if (l && n) return !organes.length || organes.some(function(o) {
+        return r.conduit[o];
+      }) ? "courant" : "phase";
+      if (l) return "phase";
+      if (n) return "retour";
+      return "off";
+    }
+    function MoteurV(p) {
+      var x = +p.x, y = +p.y, on = p.live;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("circle", { cx: x, cy: y, r: "56", fill: on ? "#fff0e9" : C.blueSoft, stroke: on ? C.orangeText : C.blue, strokeWidth: "7" }), /* @__PURE__ */ React.createElement("text", { x, y: y + 6, textAnchor: "middle", fill: on ? C.orangeText : C.blue, fontSize: "44", fontWeight: "900" }, "M"), /* @__PURE__ */ React.createElement("text", { x, y: y + 38, textAnchor: "middle", fill: C.mute, fontSize: "22", fontWeight: "800" }, "1~"), /* @__PURE__ */ React.createElement("text", { x: x + 74, y: y + 2, fill: on ? C.orangeText : C.blue, fontSize: "36", fontWeight: "900" }, p.code), /* @__PURE__ */ React.createElement("text", { x: x + 74, y: y + 32, fill: C.mute, fontSize: "22", fontWeight: "700" }, p.sub));
+    }
+    function Etapes(p) {
+      var k = p.k, w = p.w || 1520, pas = p.pas || 140, haut = p.haut || 124;
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(" + p.x + "," + p.y + ")" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: w, height: p.h || 960, rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "44", y: "76", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, p.titre), p.phases.map(function(ph, i) {
+        var y = 112 + i * pas, fait = i < k, ici = i === k;
+        var fond = ici ? "#fff0e9" : fait ? "#e4f2ec" : C.card;
+        var bord = ici ? C.orangeText : fait ? C.green : C.line;
+        return /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("rect", { x: "30", y, width: w - 60, height: haut, rx: "16", fill: fond, stroke: bord, strokeWidth: ici ? 7 : 4 }), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: y + haut / 2, r: "38", fill: ici ? C.orangeText : fait ? C.green : C.card, stroke: bord, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "100", y: y + haut / 2 + 14, textAnchor: "middle", fill: ici || fait ? C.card : C.mute, fontSize: "38", fontWeight: "900" }, fait ? "\u2713" : i + 1), /* @__PURE__ */ React.createElement("text", { x: "166", y: y + haut / 2 - 8, fill: ici ? C.orangeText : fait ? C.green : C.mute, fontSize: "40", fontWeight: "900", letterSpacing: "1" }, ph[0]), /* @__PURE__ */ React.createElement("text", { x: "166", y: y + haut / 2 + 36, fill: ici ? C.ink : C.mute, fontSize: "28", fontWeight: "700" }, ph[1]));
+      }));
+    }
+    function Surligneur(p) {
+      var V = p.zones, T = p.T, k = 0;
+      for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = i;
+      var b = V[k].r, a = k > 0 ? V[k - 1].r : b;
+      var u = Easing.easeInOutCubic(clamp((T - V[k].t) / 0.9, 0, 1));
+      var o = b ? 1 : 1 - u;
+      if (!b) b = a;
+      if (!a) a = b;
+      if (!b || o <= 0.01) return null;
+      var q = [0, 1, 2, 3].map(function(j) {
+        return a[j] + (b[j] - a[j]) * u;
+      });
+      return /* @__PURE__ */ React.createElement(
+        "rect",
+        {
+          x: q[0],
+          y: q[1],
+          width: q[2],
+          height: q[3],
+          rx: "60",
+          fill: "#f5c84c",
+          fillOpacity: "0.08",
+          opacity: o,
+          stroke: "#e6a817",
+          strokeWidth: p.ep || 26,
+          strokeOpacity: 0.78 + 0.17 * Math.sin(T * 2.4),
+          pointerEvents: "none"
+        }
+      );
+    }
     window.RK = {
       C,
       MOTION,
@@ -2407,7 +2498,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ContactV,
       BobineV,
       VoyantV,
-      Potentiel
+      Potentiel,
+      resoudre,
+      modeFil,
+      MoteurV,
+      Etapes,
+      Surligneur
     };
   })();
 })();
@@ -2460,54 +2556,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         { id: "R1c", a: "r1", charge: true }
       ];
     }
-    function resoudre(el) {
-      function parcours(depart, passe, bloque) {
-        var vu = {};
-        vu[depart] = true;
-        var file = [depart];
-        while (file.length) {
-          var n = file.shift();
-          if (n === bloque) continue;
-          for (var i = 0; i < el.length; i++) {
-            var e = el[i];
-            if (!passe(e)) continue;
-            var b = e.charge ? "N" : e.b;
-            var o = e.a === n ? b : b === n ? e.a : null;
-            if (o !== null && !vu[o]) {
-              vu[o] = true;
-              file.push(o);
-            }
-          }
-        }
-        return vu;
-      }
-      var L = parcours("L", function(e) {
-        return !e.charge && e.f;
-      }, null);
-      var N = parcours("N", function(e) {
-        return e.charge || e.f;
-      }, "L");
-      function vif(n) {
-        return n === "N" || !!L[n] && !!N[n];
-      }
-      var conduit = {};
-      el.forEach(function(e) {
-        conduit[e.id] = e.charge ? vif(e.a) : e.f && vif(e.a) && vif(e.b);
-      });
-      return { L, N, conduit };
-    }
-    function mode(r, noeud, organes) {
-      if (noeud === "N") return organes.some(function(o) {
-        return r.conduit[o];
-      }) ? "courant" : "retour";
-      var l = !!r.L[noeud], n = !!r.N[noeud];
-      if (l && n) return !organes.length || organes.some(function(o) {
-        return r.conduit[o];
-      }) ? "courant" : "phase";
-      if (l) return "phase";
-      if (n) return "retour";
-      return "off";
-    }
+    var resoudre = RK.resoudre, mode = RK.modeFil;
     var TEMPO = 4.5;
     var DELAI = 0.15;
     function evenements(CUES) {
@@ -2799,13 +2848,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ["VENTILATEURS", "KM1 67-68 temporis\xE9 : ils repartent en dernier"]
     ];
     function Sequence(p) {
-      var k = p.phase;
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(4400,1560)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "1520", height: "960", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "44", y: "76", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "LA S\xC9QUENCE"), PHASES.map(function(ph, i) {
-        var y = 112 + i * 140, fait = i < k, ici = i === k;
-        var fond = ici ? "#fff0e9" : fait ? "#e4f2ec" : C.card;
-        var bord = ici ? C.orangeText : fait ? C.green : C.line;
-        return /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("rect", { x: "30", y, width: "1460", height: "124", rx: "16", fill: fond, stroke: bord, strokeWidth: ici ? 7 : 4 }), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: y + 62, r: "38", fill: ici ? C.orangeText : fait ? C.green : C.card, stroke: bord, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "100", y: y + 76, textAnchor: "middle", fill: ici || fait ? C.card : C.mute, fontSize: "38", fontWeight: "900" }, fait ? "\u2713" : i + 1), /* @__PURE__ */ React.createElement("text", { x: "166", y: y + 54, fill: ici ? C.orangeText : fait ? C.green : C.mute, fontSize: "40", fontWeight: "900", letterSpacing: "1" }, ph[0]), /* @__PURE__ */ React.createElement("text", { x: "166", y: y + 98, fill: ici ? C.ink : C.mute, fontSize: "28", fontWeight: "700" }, ph[1]));
-      }));
+      return /* @__PURE__ */ React.createElement(RK.Etapes, { x: 4400, y: 1560, titre: "LA S\xC9QUENCE", phases: PHASES, k: p.phase });
     }
     var CH = { x0: 900, x1: 4020, tFin: 61 };
     function chx(t) {
@@ -2866,38 +2909,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ];
     }
     function Surligneur(p) {
-      var V = zones(p.CUES), T = p.T, k = 0;
-      for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = i;
-      var b = V[k].r, a = k > 0 ? V[k - 1].r : b;
-      var u = window.Easing.easeInOutCubic(clamp((T - V[k].t) / 0.9, 0, 1));
-      var o = b ? 1 : 1 - u;
-      if (!b) {
-        b = a;
-      }
-      if (!a) {
-        a = b;
-      }
-      if (!b || o <= 0.01) return null;
-      var q = [0, 1, 2, 3].map(function(j) {
-        return a[j] + (b[j] - a[j]) * u;
-      });
-      return /* @__PURE__ */ React.createElement(
-        "rect",
-        {
-          x: q[0],
-          y: q[1],
-          width: q[2],
-          height: q[3],
-          rx: "60",
-          fill: "#f5c84c",
-          fillOpacity: "0.08",
-          opacity: o,
-          stroke: "#e6a817",
-          strokeWidth: "26",
-          strokeOpacity: 0.78 + 0.17 * Math.sin(T * 2.4),
-          pointerEvents: "none"
-        }
-      );
+      return /* @__PURE__ */ React.createElement(RK.Surligneur, { T: p.T, zones: zones(p.CUES) });
     }
     function Piece(props) {
       var c = useComposition();

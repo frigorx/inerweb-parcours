@@ -63,41 +63,7 @@
       { id: 'RD34', a: 'L', b: 'r1', f: c.RD }, { id: 'R1c', a: 'r1', charge: true }
     ];
   }
-  function resoudre(el) {
-    function parcours(depart, passe, bloque) {
-      var vu = {}; vu[depart] = true;
-      var file = [depart];
-      while (file.length) {
-        var n = file.shift();
-        if (n === bloque) continue;
-        for (var i = 0; i < el.length; i++) {
-          var e = el[i];
-          if (!passe(e)) continue;
-          var b = e.charge ? 'N' : e.b;
-          var o = e.a === n ? b : (b === n ? e.a : null);
-          if (o !== null && !vu[o]) { vu[o] = true; file.push(o); }
-        }
-      }
-      return vu;
-    }
-    var L = parcours('L', function (e) { return !e.charge && e.f; }, null);
-    var N = parcours('N', function (e) { return e.charge || e.f; }, 'L');
-    function vif(n) { return n === 'N' || (!!L[n] && !!N[n]); }
-    var conduit = {};
-    el.forEach(function (e) {
-      conduit[e.id] = e.charge ? vif(e.a) : (e.f && vif(e.a) && vif(e.b));
-    });
-    return { L: L, N: N, conduit: conduit };
-  }
-  /* le potentiel d'un fil : son nœud, et les organes qu'il dessert */
-  function mode(r, noeud, organes) {
-    if (noeud === 'N') return organes.some(function (o) { return r.conduit[o]; }) ? 'courant' : 'retour';
-    var l = !!r.L[noeud], n = !!r.N[noeud];
-    if (l && n) return (!organes.length || organes.some(function (o) { return r.conduit[o]; })) ? 'courant' : 'phase';
-    if (l) return 'phase';
-    if (n) return 'retour';
-    return 'off';
-  }
+  var resoudre = RK.resoudre, mode = RK.modeFil;   /* le solveur du kit commun */
 
   /* ---- le scénario : les capteurs, l'horloge, la physique ---------------- */
   var TEMPO = 4.5;     /* KM1 67-68 : retard à la fermeture (≈ 30 s réelles) */
@@ -365,27 +331,7 @@
     ['VENTILATEURS', 'KM1 67-68 temporisé : ils repartent en dernier']
   ];
   function Sequence(p) {
-    var k = p.phase;
-    return (
-      <g transform="translate(4400,1560)">
-        <rect x="0" y="0" width="1520" height="960" rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
-        <text x="44" y="76" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">LA SÉQUENCE</text>
-        {PHASES.map(function (ph, i) {
-          var y = 112 + i * 140, fait = i < k, ici = i === k;
-          var fond = ici ? '#fff0e9' : (fait ? '#e4f2ec' : C.card);
-          var bord = ici ? C.orangeText : (fait ? C.green : C.line);
-          return (
-            <g key={i}>
-              <rect x="30" y={y} width="1460" height="124" rx="16" fill={fond} stroke={bord} strokeWidth={ici ? 7 : 4} />
-              <circle cx="100" cy={y + 62} r="38" fill={ici ? C.orangeText : (fait ? C.green : C.card)} stroke={bord} strokeWidth="4" />
-              <text x="100" y={y + 76} textAnchor="middle" fill={ici || fait ? C.card : C.mute} fontSize="38" fontWeight="900">{fait ? '✓' : i + 1}</text>
-              <text x="166" y={y + 54} fill={ici ? C.orangeText : (fait ? C.green : C.mute)} fontSize="40" fontWeight="900" letterSpacing="1">{ph[0]}</text>
-              <text x="166" y={y + 98} fill={ici ? C.ink : C.mute} fontSize="28" fontWeight="700">{ph[1]}</text>
-            </g>
-          );
-        })}
-      </g>
-    );
+    return <RK.Etapes x={4400} y={1560} titre="LA SÉQUENCE" phases={PHASES} k={p.phase} />;
   }
 
   /* ---- le chronogramme, tracé au fil du film ---- */
@@ -471,19 +417,7 @@
     ];
   }
   function Surligneur(p) {
-    var V = zones(p.CUES), T = p.T, k = 0;
-    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = i;
-    var b = V[k].r, a = k > 0 ? V[k - 1].r : b;
-    var u = window.Easing.easeInOutCubic(clamp((T - V[k].t) / 0.9, 0, 1));
-    var o = b ? 1 : 1 - u;
-    if (!b) { b = a; }
-    if (!a) { a = b; }
-    if (!b || o <= 0.01) return null;
-    var q = [0, 1, 2, 3].map(function (j) { return a[j] + (b[j] - a[j]) * u; });
-    return (
-      <rect x={q[0]} y={q[1]} width={q[2]} height={q[3]} rx="60" fill="#f5c84c" fillOpacity="0.08" opacity={o}
-            stroke="#e6a817" strokeWidth="26" strokeOpacity={0.78 + 0.17 * Math.sin(T * 2.4)} pointerEvents="none" />
-    );
+    return <RK.Surligneur T={p.T} zones={zones(p.CUES)} />;
   }
 
   function Piece(props) {

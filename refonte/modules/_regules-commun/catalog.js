@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03f",
+    version: "2026-10-03g",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -413,6 +413,8 @@
         shortTitle: "Aucun cycle dédié",
         promise: "Comprendre qu’une installation peut ne pas posséder de cycle de dégivrage dédié, sans conclure qu’elle ne fond jamais de givre.",
         sourceKeys: ["defrost", "natural", "givre"],
+        /* 03/10/2026 : film et planches sur la fiche 6.1, premier principe (dégivrage naturel). */
+        films: [{ fichier: "regules-06-sans-degivrage-commande.html", titre: "Le film" }],
         lessons: [
           {
             id: "constat",
@@ -425,11 +427,8 @@
               "Cette fonte éventuelle dépend du temps d’arrêt, de l’humidité et du régime réel."
             ],
             box: { type: "key", label: "La clé", text: "Pas de dégivrage commandé ne veut pas dire : aucune fonte possible." },
-            visual: {
-              kind: "circuit",
-              mode: "offcycle",
-              label: "Circuit frigorifique arrêté sans cycle de dégivrage commandé"
-            }
+            visual: { kind: "planche", fichier: "planche-06a-constat.html",
+                      label: "Planche pas à pas : aucun organe de dégivrage, et pourtant le givre fond pendant l’arrêt" }
           },
           {
             id: "limites",
@@ -442,14 +441,8 @@
               "Si les arrêts naturels sont trop courts, un cycle commandé devient nécessaire selon le projet."
             ],
             box: { type: "warning", label: "Le piège", text: "Ne pas copier une fréquence de dégivrage d’une autre installation : la charge, les ouvertures et l’humidité changent." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison d’une batterie libre et d’une batterie prise en givre",
-              cards: [
-                { state: "ok", title: "ÉCHANGE LIBRE", text: "Air traversant, écoulement dégagé" },
-                { state: "danger", title: "GIVRE", text: "Air freiné, puissance réduite" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-06b-limites.html",
+                      label: "Planche pas à pas : des arrêts trop courts, le givre s’accumule, l’échange s’effondre" }
           },
           {
             id: "decision",
@@ -462,11 +455,8 @@
               "Comparer ces constats au cahier des charges et à la notice du matériel."
             ],
             box: { type: "exam", label: "Prochain contrôle", text: "Regarder l’évaporateur et le chronogramme réel, pas seulement le paramètre affiché." },
-            visual: {
-              kind: "sequence",
-              label: "Méthode de décision avant ajout d’un dégivrage commandé",
-              steps: ["Observer le givre", "Vérifier le débit d’air", "Contrôler l’écoulement", "Lire les temps de marche et d’arrêt", "Comparer à la notice", "Choisir ou non un cycle dédié"]
-            }
+            visual: { kind: "planche", fichier: "planche-06c-observer.html",
+                      label: "Planche pas à pas : observer le givre, l’air, l’écoulement et les temps avant de décider" }
           }
         ],
         quiz: [

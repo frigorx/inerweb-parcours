@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Régulation 8 · planche prise de main — inerWeb Édu</title>
+<title>Régulation 6 · planche constat — inerWeb Édu</title>
 
 <script>try { localStorage.removeItem("animstage-v3:t"); } catch (err) {}</script>
 </head>
@@ -2065,7 +2065,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     var C = RK.C, MOTION = RK.MOTION;
     var Croix = RK.Croix, CroixLabels = RK.CroixLabels, ChambreFond = RK.ChambreFond;
     var Pipes = RK.Pipes, Chambre = RK.Chambre, Machine = RK.Machine, PipeChips = RK.PipeChips;
-    var Manometre = RK.Manometre, Chip = RK.Chip;
     var D = 5940;
     function pw(T, pts) {
       if (T <= pts[0][0]) return pts[0][1];
@@ -2080,163 +2079,95 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     }
     function reseau(c) {
       return [
-        { id: "BP", a: "L", b: "k1", f: c.BP },
-        { id: "HP", a: "k1", b: "k2", f: true },
-        { id: "KA1_13", a: "k2", b: "k3", f: c.KA1 },
-        { id: "KM1_13", a: "k2", b: "k3", f: c.KM1 },
-        { id: "KM1c", a: "k3", charge: true },
-        { id: "KM1_67", a: "L", b: "m3", f: c.KM1_67 },
-        { id: "KM3c", a: "m3", charge: true },
         { id: "B1", a: "L", b: "a1", f: c.B1 },
-        { id: "H12", a: "a1", b: "a2", f: !c.h1 },
-        { id: "KA1c", a: "a2", charge: true },
-        { id: "KA1_23", a: "L", b: "y1", f: c.KA1 },
-        { id: "Y1c", a: "y1", charge: true },
-        { id: "H34", a: "L", b: "d1", f: c.h1 },
-        { id: "B2nf", a: "d1", b: "d2", f: !c.B2 },
-        { id: "RFD12", a: "d2", b: "d3", f: !c.RFD },
-        { id: "RDc", a: "d3", charge: true },
-        { id: "B2no", a: "d1", b: "f1", f: c.B2 },
-        { id: "KM1_23", a: "d1", b: "f1", f: c.KM1 },
-        { id: "RFDc", a: "f1", charge: true },
-        { id: "RD34", a: "L", b: "r1", f: c.RD },
-        { id: "R1c", a: "r1", charge: true }
+        { id: "BP", a: "a1", b: "a2", f: true },
+        { id: "HP", a: "a2", b: "g", f: true },
+        { id: "M1c", a: "g", charge: true },
+        { id: "Y1c", a: "g", charge: true },
+        { id: "M2c", a: "L", charge: true }
       ];
     }
-    var resoudre = RK.resoudre, mode = RK.modeFil;
-    var TEMPO = 4.5;
-    var DELAI = 0.15;
     function evenements(CUES) {
-      var M = CUES.MiseEnService, H = CUES.Horloge, Dg = CUES.Degivrage, R = CUES.Reprise;
-      var e = {
+      var M = CUES.Marche, A = CUES.Arret, L = CUES.Limite;
+      return {
         tB1: M + 1,
-        tBPc: M + 3,
-        tH: H + 1,
-        tPD: H + 6.5,
-        tFonte: Dg + 5.5,
-        tBPc2: Dg + 6,
-        tFin: Dg + 10,
-        tH2: R + 4
+        tArr: A + 1,
+        tFonte0: A + 3,
+        tFonte1: A + 7,
+        tL: L,
+        on1: [L, L + 3.5],
+        on2: [L + 5, L + 9],
+        on3: [L + 10.3, 1e9],
+        tPrise: L + 12
       };
-      e.tChauffe = e.tPD + 0.3;
-      e.tZero = e.tChauffe + 1.8;
-      return e;
     }
-    function capteurs(t, e, total) {
+    function scenario(t, e, total) {
+      var L = e.tL;
       return {
         air: pw(t, [
-          [0, -15.4],
-          [e.tB1, -14],
-          [e.tBPc + 0.2, -13.9],
-          [e.tH, -16.4],
-          [e.tPD, -16.5],
-          [e.tFin, -14.6],
-          [e.tH2, -14],
-          [e.tH2 + 3.8, -14.2],
-          [e.tH2 + 8.5, -15.2],
-          [total, -17.2]
+          [0, 3.6],
+          [e.tB1, 4],
+          [e.tB1 + 2, 3.9],
+          [e.tArr, 2],
+          [L, 4],
+          [L + 3.5, 2],
+          [L + 5, 4],
+          [L + 9, 2],
+          [L + 10.3, 4],
+          [L + 13, 2.9],
+          [total, 2.9]
         ]),
         bat: pw(t, [
-          [0, -15.6],
-          [e.tBPc, -15.5],
-          [e.tBPc + 3, -24],
-          [e.tH, -25.5],
-          [e.tPD, -27],
-          [e.tChauffe, -27],
-          [e.tZero, 0],
-          [e.tFonte, 0.6],
-          [e.tFin, 10],
-          [e.tFin + 0.5, 10.3],
-          [e.tH2, 7],
-          [e.tH2 + 2.5, -10],
-          [e.tH2 + 5.5, -22],
-          [e.tH2 + 8.5, -25],
-          [total, -26]
+          [0, 3],
+          [e.tB1, 3],
+          [e.tB1 + 2, -6],
+          [e.tArr, -6.5],
+          [e.tFonte0, 0],
+          [e.tFonte1, 0.3],
+          [L - 2, 2],
+          [L, 2.4],
+          [L + 1.5, -6],
+          [L + 3.5, -6.5],
+          [L + 5, -1],
+          [L + 6.5, -7],
+          [L + 9, -7.5],
+          [L + 10.3, -1.5],
+          [L + 12, -8.5],
+          [L + 15, -9.5],
+          [total, -9.5]
         ]),
-        bp: pw(t, [
-          [0, 1.5],
-          [e.tB1 + DELAI, 1.52],
-          [e.tBPc, 1.8],
-          [e.tBPc + 0.8, 2.6],
-          [e.tBPc + 2.5, 2.35],
-          [e.tH + DELAI, 2.3],
-          [e.tPD, 0.3],
-          [e.tChauffe, 0.26],
-          [e.tZero, 0.9],
-          [e.tBPc2, 1.8],
-          [e.tFin, 3],
-          [e.tH2, 2.85],
-          [e.tH2 + 1.5, 2.5],
-          [e.tH2 + 4.5, 2.3],
-          [total, 2.25]
-        ]),
-        givre: pw(t, [[0, 0], [e.tBPc, 0], [e.tH, 1], [e.tZero, 1], [e.tFonte, 0], [total, 0]]),
-        charge: pw(t, [
+        givre: pw(t, [
           [0, 0],
-          [e.tB1 + DELAI, 0],
-          [e.tB1 + 1.4, 0.3],
-          [e.tH + DELAI, 0.3],
-          [e.tPD, 0],
-          [e.tH2 + DELAI, 0],
-          [e.tH2 + 1.5, 0.3],
-          [total, 0.3]
+          [e.tB1 + 2, 0],
+          [e.tArr, 1],
+          [e.tFonte0, 1],
+          [e.tFonte1, 0],
+          [L, 0],
+          [L + 3.5, 0.45],
+          [L + 5, 0.45],
+          [L + 9, 0.9],
+          [L + 10.3, 0.9],
+          [L + 15, 1.4],
+          [total, 1.4]
         ]),
-        gouttes: t < e.tZero ? 0 : t < e.tFin ? 1 : clamp(1 - (t - e.tFin) / (e.tH2 - e.tFin), 0, 1),
-        b1: t >= e.tB1,
-        h1: t >= e.tH && t < e.tH2
+        gouttes: t < e.tFonte0 ? 0 : t < e.tFonte1 ? 1 : clamp(1 - (t - e.tFonte1) / 1.5, 0, 1),
+        porte: t >= L && t < L + 12 ? 1 : 0
       };
     }
-    var memo = {};
-    var DT = 0.02;
+    var memo = {}, DT = 0.02;
     function simuler(CUES, total) {
       var cle = JSON.stringify(CUES) + "|" + total;
       if (memo[cle]) return memo[cle];
-      var e = evenements(CUES);
-      var n = Math.ceil(total / DT) + 1, pas = [], bpF = false, b2 = false, km1Depuis = null;
-      var cumKM = 0, cumV = 0, retard = Math.round(DELAI / DT);
-      for (var i = 0; i < n; i++) {
-        var t = i * DT, s = capteurs(t, e, total);
-        if (s.bp >= 1.8) bpF = true;
-        else if (s.bp <= 0.3) bpF = false;
-        if (s.bat >= 10) b2 = true;
-        else if (s.bat <= -5) b2 = false;
-        var avant = i >= retard ? pas[i - retard].bob : {};
-        var prec = i > 0 ? pas[i - 1].bob : {};
-        var tempo = km1Depuis !== null && t - km1Depuis >= TEMPO - 1e-9;
-        var c = {
-          BP: bpF,
-          B1: s.b1,
-          h1: s.h1,
-          B2: b2,
-          KA1: !!avant.KA1,
-          KM1: !!avant.KM1,
-          RD: !!avant.RD,
-          RFD: !!prec.RFD,
-          KM1_67: tempo
-        };
-        var r, bob;
-        for (var k = 0; k < 4; k++) {
-          r = resoudre(reseau(c));
-          bob = {
-            KA1: r.conduit.KA1c,
-            KM1: r.conduit.KM1c,
-            KM3: r.conduit.KM3c,
-            Y1: r.conduit.Y1c,
-            RD: r.conduit.RDc,
-            RFD: r.conduit.RFDc,
-            R1: r.conduit.R1c
-          };
-          if (c.RFD === bob.RFD) break;
-          c.RFD = bob.RFD;
-        }
-        if (bob.KM1) {
-          if (km1Depuis === null) km1Depuis = t;
-        } else km1Depuis = null;
-        if (i > 0) {
-          cumKM += pas[i - 1].bob.KM1 ? DT : 0;
-          cumV += pas[i - 1].bob.KM3 ? DT : 0;
-        }
-        pas.push({ t, s, c, bob, cumKM, cumV });
+      var e = evenements(CUES), pas = [], b1 = false, cum = 0;
+      for (var i = 0, n = Math.ceil(total / DT) + 1; i < n; i++) {
+        var t = i * DT, s = scenario(t, e, total);
+        if (s.air >= 4 - 1e-6) b1 = true;
+        else if (s.air <= 2 + 1e-6) b1 = false;
+        var c = { B1: b1 };
+        var r = RK.resoudre(reseau(c));
+        var bob = { M1: r.conduit.M1c, Y1: r.conduit.Y1c, M2: r.conduit.M2c };
+        if (i > 0 && pas[i - 1].bob.M1) cum += DT;
+        pas.push({ t, s, c, bob, cum });
       }
       memo[cle] = { pas, ev: e };
       return memo[cle];
@@ -2244,7 +2175,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     function etat(T, CUES, total) {
       var sim = simuler(CUES, total), e = sim.ev;
       var enRejeu = CUES.CycleComplet !== void 0 && T >= CUES.CycleComplet && T < CUES.LaCle;
-      var t0 = e.tB1 - 1, t1 = e.tH2 + TEMPO + 2;
+      var t0 = e.tB1 - 1, t1 = e.tL + 15;
       var Tm = enRejeu ? t0 + (T - CUES.CycleComplet) * (t1 - t0) / (CUES.LaCle - CUES.CycleComplet) : T;
       function a(t) {
         return sim.pas[clamp(Math.round(t / DT), 0, sim.pas.length - 1)];
@@ -2256,11 +2187,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         return m / 5;
       }
       var phase = -1;
-      if (p.bob.KM1 && !p.c.h1 && Tm < e.tH) phase = 0;
-      if (p.c.h1 && Tm < e.tChauffe) phase = 1;
-      if (p.c.h1 && Tm >= e.tChauffe - 0.2 && Tm < e.tFin + 0.2) phase = 2;
-      if (p.c.h1 && Tm >= e.tFin + 0.2) phase = 3;
-      if (!p.c.h1 && Tm >= e.tH2) phase = p.bob.KM3 ? 5 : 4;
+      if (Tm >= e.tB1 && Tm < e.tArr) phase = 0;
+      if (Tm >= e.tArr && Tm < e.tL) phase = 1;
+      if (Tm >= e.tL) phase = Tm < e.tPrise ? 2 : 3;
       return {
         Tm,
         enRejeu,
@@ -2269,194 +2198,117 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         bob: p.bob,
         s: p.s,
         phase,
-        ouv: function(id) {
-          return lisse(function(q) {
-            return reseau(q.c).filter(function(x) {
-              return x.id === id;
-            })[0].f;
-          });
-        },
+        cum: p.cum,
+        ouvB1: lisse(function(q) {
+          return q.c.B1;
+        }),
         flow: 1 - lisse(function(q) {
-          return q.bob.KM1;
-        }),
-        fans: 1 - lisse(function(q) {
-          return q.bob.KM3;
-        }),
-        cumKM: p.cumKM,
-        cumV: p.cumV
+          return q.bob.M1;
+        })
       };
     }
-    var X = { km: 300, kmh: 540, v: 940, a: 1320, y: 1680, rd: 2140, no: 2520, rfd: 2800, r: 3140 };
     var FILS = [
-      ["M 300 300 L 300 340", "L", ["BP"]],
-      ["M 300 490 L 300 540", "k1", []],
-      ["M 300 690 L 300 720", "k2", []],
-      ["M 300 720 L 300 740", "k2", ["KA1_13"]],
-      ["M 300 720 L 540 720 L 540 740", "k2", ["KM1_13"]],
-      ["M 300 890 L 300 925", "k3", ["KA1_13"]],
-      ["M 540 890 L 540 925 L 300 925", "k3", ["KM1_13"]],
-      ["M 300 925 L 300 1041", "k3", []],
-      ["M 300 1099 L 300 1300", "N", ["KM1c"]],
-      ["M 940 300 L 940 340", "L", ["KM1_67"]],
-      ["M 940 490 L 940 1041", "m3", []],
-      ["M 940 1099 L 940 1300", "N", ["KM3c"]],
-      ["M 1320 300 L 1320 340", "L", ["B1"]],
-      ["M 1320 490 L 1320 560", "a1", []],
-      ["M 1320 710 L 1320 1041", "a2", []],
-      ["M 1320 1099 L 1320 1300", "N", ["KA1c"]],
-      ["M 1680 300 L 1680 340", "L", ["KA1_23"]],
-      ["M 1680 490 L 1680 1041", "y1", []],
-      ["M 1680 1099 L 1680 1300", "N", ["Y1c"]],
-      ["M 2140 300 L 2140 340", "L", ["H34"]],
-      ["M 2140 490 L 2140 520", "d1", []],
-      ["M 2140 520 L 2140 560", "d1", ["B2nf"]],
-      ["M 2140 520 L 2520 520", "d1", ["B2no", "KM1_23"]],
-      ["M 2520 520 L 2520 560", "d1", ["B2no"]],
-      ["M 2520 520 L 2800 520 L 2800 560", "d1", ["KM1_23"]],
-      ["M 2140 710 L 2140 780", "d2", []],
-      ["M 2140 930 L 2140 1041", "d3", []],
-      ["M 2140 1099 L 2140 1300", "N", ["RDc"]],
-      ["M 2520 710 L 2520 760 L 2800 760", "f1", ["B2no"]],
-      ["M 2800 710 L 2800 760", "f1", ["KM1_23"]],
-      ["M 2800 760 L 2800 1041", "f1", []],
-      ["M 2800 1099 L 2800 1300", "N", ["RFDc"]],
-      ["M 3140 300 L 3140 340", "L", ["RD34"]],
-      ["M 3140 490 L 3140 1010", "r1", []],
-      ["M 3140 1130 L 3140 1300", "N", ["R1c"]]
+      ["M 330 300 L 330 340", "L", ["B1"]],
+      ["M 330 490 L 330 560", "a1", []],
+      ["M 330 710 L 330 780", "a2", []],
+      ["M 330 930 L 330 960", "g", []],
+      ["M 330 960 L 330 1044", "g", ["M1c"]],
+      ["M 330 960 L 760 960 L 760 1071", "g", ["Y1c"]],
+      ["M 330 1156 L 330 1300", "N", ["M1c"]],
+      ["M 760 1129 L 760 1300", "N", ["Y1c"]],
+      ["M 1180 300 L 1180 1044", "L", ["M2c"]],
+      ["M 1180 1156 L 1180 1300", "N", ["M2c"]]
     ];
-    function Parachute(p) {
-      var x = p.x, m = p.y + 75;
-      return /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "5", fill: "none", strokeLinecap: "round" }, /* @__PURE__ */ React.createElement("line", { x1: x - 10, y1: m - 8, x2: x - 44, y2: m - 8 }), /* @__PURE__ */ React.createElement("line", { x1: x - 10, y1: m + 8, x2: x - 44, y2: m + 8 }), /* @__PURE__ */ React.createElement("path", { d: "M " + (x - 44) + " " + (m - 24) + " A 24 24 0 0 0 " + (x - 44) + " " + (m + 24) }));
-    }
     function Cabinet(p) {
-      var RK2 = window.RK;
-      var e = p.e, t = p.T;
-      var r = resoudre(reseau(e.c));
-      function V(id) {
-        return r.conduit[id];
-      }
-      var chauffe = e.bob.R1;
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "3400", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "ARMOIRE \xB7 PUMP-DOWN ET D\xC9GIVRAGE \xC9LECTRIQUE"), /* @__PURE__ */ React.createElement("text", { x: "3360", y: "66", textAnchor: "end", fill: C.blue, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "D\u2019APR\xC8S LA FICHE 6.3 \xB7 CAP IFCA"), /* @__PURE__ */ React.createElement("g", { fill: C.mute, fontSize: "26", fontWeight: "900", letterSpacing: "3" }, /* @__PURE__ */ React.createElement("line", { x1: "240", y1: "196", x2: "1900", y2: "196", stroke: C.line, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1060", y: "180", textAnchor: "middle" }, "LE FROID"), /* @__PURE__ */ React.createElement("line", { x1: "2020", y1: "196", x2: "3320", y2: "196", stroke: C.line, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "2670", y: "180", textAnchor: "middle" }, "LE D\xC9GIVRAGE")), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "104", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK2.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "3320", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "3320", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, FILS.map(function(f, i) {
+      var RK2 = window.RK, e = p.e, t = p.T;
+      var r = RK2.resoudre(reseau(e.c));
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(2520,100)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "1500", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "40", y: "66", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "ARMOIRE \xB7 COMMANDE DIRECTE"), /* @__PURE__ */ React.createElement("text", { x: "40", y: "108", fill: C.blue, fontSize: "24", fontWeight: "900", letterSpacing: "2" }, "D\u2019APR\xC8S LA FICHE 6.1 \xB7 PREMIER PRINCIPE"), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "128", x2: "170", y2: "150", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement(RK2.PorteFusible, { x: 170, y: 150 }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "246", x2: "170", y2: "300", stroke: C.wire, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "300", x2: "1400", y2: "300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("line", { x1: "170", y1: "1300", x2: "1400", y2: "1300", stroke: C.blue, strokeWidth: "12", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("text", { x: "132", y: "312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "L"), /* @__PURE__ */ React.createElement("text", { x: "132", y: "1312", textAnchor: "end", fill: C.blue, fontSize: "34", fontWeight: "900" }, "N"), /* @__PURE__ */ React.createElement("g", { stroke: C.wire, strokeWidth: "9", fill: "none", strokeLinecap: "round" }, FILS.map(function(f, i) {
         return /* @__PURE__ */ React.createElement("path", { key: i, d: f[0] });
       })), FILS.map(function(f, i) {
-        return /* @__PURE__ */ React.createElement(RK2.Potentiel, { key: i, d: f[0], mode: mode(r, f[1], f[2]), t });
-      }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: X.km, y: 340, ouv: e.ouv("BP"), live: V("BP"), glyph: "p", code: "BP", sub: "r\xE9gulation", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: X.km, y: 540, ouv: 0, live: V("HP"), glyph: "p", code: "HP", sub: "s\xE9curit\xE9", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.km, y: 740, ouv: e.ouv("KA1_13"), live: V("KA1_13"), code: "KA1", sub: "demande" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.kmh, y: 740, ouv: e.ouv("KM1_13"), live: V("KM1_13"), code: "KM1", sub: "maintien" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.km, y: 1070, code: "KM1", sub: "COMPRESSEUR", live: e.bob.KM1 }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.v, y: 340, ouv: e.ouv("KM1_67"), live: V("KM1_67"), code: "KM1", sub: "temporis\xE9", b1: "67", b2: "68" }), /* @__PURE__ */ React.createElement(Parachute, { x: X.v, y: 340 }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.v, y: 1070, code: "KM3", sub: "VENTILATEURS", live: e.bob.KM3 }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: X.a, y: 340, ouv: e.ouv("B1"), live: V("B1"), glyph: "\u03B8", code: "B1", sub: "thermostat", b1: "3", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: X.a, y: 560, ouv: e.ouv("H12"), live: V("H12"), glyph: "t", code: "h1", sub: "horloge", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.a, y: 1070, code: "KA1", sub: "PUMP-DOWN", live: e.bob.KA1 }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.y, y: 340, ouv: e.ouv("KA1_23"), live: V("KA1_23"), code: "KA1", sub: "demande", b1: "23", b2: "24" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.y, y: 1070, code: "Y1", sub: "\xC9LECTROVANNE", live: e.bob.Y1 }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: X.rd, y: 340, ouv: e.ouv("H34"), live: V("H34"), glyph: "t", code: "h1", sub: "horloge", b1: "3", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: X.rd, y: 560, ouv: e.ouv("B2nf"), live: V("B2nf"), glyph: "\u03B8", code: "B2", sub: "fin de d\xE9givrage", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement("line", { x1: X.rd + 10, y1: "585", x2: X.no - 10, y2: "585", stroke: C.wire, strokeWidth: "4", strokeDasharray: "12 10" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, aux: true, x: X.rd, y: 780, ouv: e.ouv("RFD12"), live: V("RFD12"), code: "RFD", sub: "fin m\xE9moris\xE9e", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.rd, y: 1070, code: "RD", sub: "D\xC9GIVRAGE", live: e.bob.RD }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.no, y: 560, ouv: e.ouv("B2no"), live: V("B2no"), code: "B2", sub: "fin \xB7 NO", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.rfd, y: 560, ouv: e.ouv("KM1_23"), live: V("KM1_23"), code: "KM1", sub: "verrouillage", b1: "23", b2: "24" }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: X.rfd, y: 1070, code: "RFD", sub: "M\xC9MOIRE", live: e.bob.RFD }), /* @__PURE__ */ React.createElement(RK2.ContactV, { aux: true, x: X.r, y: 340, ouv: e.ouv("RD34"), live: V("RD34"), code: "RD", sub: "r\xE9sistances", b1: "3", b2: "4" }), /* @__PURE__ */ React.createElement("g", null, chauffe && /* @__PURE__ */ React.createElement("rect", { x: X.r - 40, y: "996", width: "80", height: "148", rx: "10", fill: "#ff8b57", opacity: 0.25 + 0.15 * Math.sin(t * 4) }), /* @__PURE__ */ React.createElement(
-        "rect",
-        {
-          x: X.r - 26,
-          y: "1010",
-          width: "52",
-          height: "120",
-          fill: chauffe ? "#fff0e9" : C.blueSoft,
-          stroke: chauffe ? C.orangeText : C.blue,
-          strokeWidth: "7"
-        }
-      ), /* @__PURE__ */ React.createElement("text", { x: X.r + 50, y: "1072", fill: chauffe ? C.orangeText : C.blue, fontSize: "36", fontWeight: "900" }, "R1"), /* @__PURE__ */ React.createElement("text", { x: X.r + 50, y: "1102", fill: C.mute, fontSize: "22", fontWeight: "700" }, "R\xC9SISTANCES")));
+        return /* @__PURE__ */ React.createElement(RK2.Potentiel, { key: i, d: f[0], mode: RK2.modeFil(r, f[1], f[2]), t });
+      }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 340, ouv: e.ouvB1, live: r.conduit.B1, glyph: "\u03B8", code: "B1", sub: "thermostat", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { x: 330, y: 560, ouv: 0, live: r.conduit.BP, glyph: "p", code: "BP", sub: "s\xE9curit\xE9", b1: "1", b2: "4" }), /* @__PURE__ */ React.createElement(RK2.ContactV, { nf: true, x: 330, y: 780, ouv: 0, live: r.conduit.HP, glyph: "p", code: "HP", sub: "s\xE9curit\xE9", b1: "1", b2: "2" }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 330, y: 1100, code: "M1", sub: "GROUPE", live: e.bob.M1 }), /* @__PURE__ */ React.createElement(RK2.BobineV, { x: 760, y: 1100, code: "Y1", sub: "\xC9LECTROVANNE", live: e.bob.Y1 }), /* @__PURE__ */ React.createElement(RK2.MoteurV, { x: 1180, y: 1100, code: "M2", sub: "VENTILATEUR", live: e.bob.M2 }), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "420", fill: C.green, fontSize: "26", fontWeight: "900" }, "AUCUN CONTACT :"), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "454", fill: C.green, fontSize: "26", fontWeight: "900" }, "IL TOURNE"), /* @__PURE__ */ React.createElement("text", { x: "1214", y: "488", fill: C.green, fontSize: "26", fontWeight: "900" }, "EN PERMANENCE"));
     }
-    function Resistances(p) {
-      var rows = [920, 980, 1040, 1100];
-      function zig(y) {
-        var d = "M 1130 " + y;
-        for (var x = 1130; x < 1530; x += 40) d += " L " + (x + 20) + " " + (y - 14) + " L " + (x + 40) + " " + y;
-        return d;
-      }
-      var glow = clamp(p.heat, 0, 1);
-      var drops = [];
-      for (var i = 0; i < 7; i++) {
-        var ph = (p.T * 1.5 + i * 0.37) % 1;
-        drops.push([1160 + i * 58, 1150 + ph * 34, 1 - ph]);
-      }
-      return /* @__PURE__ */ React.createElement("g", null, rows.map(function(y) {
-        return /* @__PURE__ */ React.createElement("g", { key: y }, /* @__PURE__ */ React.createElement("path", { d: zig(y), fill: "none", stroke: C.red, strokeWidth: "6", strokeLinecap: "round", opacity: 0.3 + 0.7 * glow }), glow > 0.05 && /* @__PURE__ */ React.createElement(
+    function GrosPlan(p) {
+      var s = p.s, T = p.T, g = clamp(s.givre, 0, 1.5);
+      var passe = 1 - 0.6 * clamp(g / 1.4, 0, 1);
+      var echange = Math.round(100 - 42 * clamp(g, 0, 1.4));
+      var tubes = [];
+      for (var i = 0; i < 5; i++) for (var j = 0; j < 4; j++) tubes.push([4440 + i * 230, 430 + j * 210]);
+      var fins = [];
+      for (var x = 4340; x <= 5420; x += 54) fins.push(x);
+      var fleches = [];
+      for (var k = 0; k < 3; k++) for (var m = 0; m < 4; m++) fleches.push([k, m]);
+      var froid = p.marche;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "4060", y: "100", width: "1860", height: "1440", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "4100", y: "166", fill: C.orangeText, fontSize: "32", fontWeight: "900", letterSpacing: "2" }, "LA BATTERIE EN GROS PLAN"), /* @__PURE__ */ React.createElement("rect", { x: "4320", y: "300", width: "1120", height: "900", rx: "12", fill: "#f4f8fb", stroke: C.line, strokeWidth: "4" }), fins.map(function(fx) {
+        return /* @__PURE__ */ React.createElement("line", { key: fx, x1: fx, y1: "310", x2: fx, y2: "1190", stroke: froid ? "#cfe0ee" : "#dfe6ee", strokeWidth: "6" });
+      }), tubes.map(function(q, i2) {
+        return /* @__PURE__ */ React.createElement("g", { key: i2 }, g > 0.02 && /* @__PURE__ */ React.createElement("circle", { cx: q[0], cy: q[1], r: 40 + 44 * clamp(g, 0, 1.4), fill: "#d6eaf8", stroke: "#7fb0d6", strokeWidth: "5" }), /* @__PURE__ */ React.createElement("circle", { cx: q[0], cy: q[1], r: "34", fill: froid ? "#dbe9f6" : "#eef2f6", stroke: C.blue, strokeWidth: "6" }));
+      }), fleches.map(function(f, i2) {
+        var y = 535 + f[0] * 210, d = (T * 220 * passe + f[1] * 300) % 1200;
+        return /* @__PURE__ */ React.createElement("g", { key: i2, opacity: 0.25 + 0.6 * passe }, /* @__PURE__ */ React.createElement("line", { x1: 4180 + d, y1: y, x2: 4250 + d, y2: y, stroke: d < 600 ? C.orangeText : C.blue, strokeWidth: "9", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement(
           "path",
           {
-            d: zig(y),
-            fill: "none",
-            stroke: "#ff8b57",
-            strokeWidth: 15 + 5 * Math.sin(p.T * 4),
-            strokeLinecap: "round",
-            opacity: 0.3 * glow
+            d: "M " + (4246 + d) + " " + (y - 14) + " L " + (4272 + d) + " " + y + " L " + (4246 + d) + " " + (y + 14) + " Z",
+            fill: d < 600 ? C.orangeText : C.blue
           }
         ));
-      }), /* @__PURE__ */ React.createElement("rect", { x: "1110", y: "1186", width: "450", height: "16", rx: "6", fill: "#dfe6ee", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("g", { opacity: clamp(p.melt, 0, 1) }, drops.map(function(d, i2) {
-        return /* @__PURE__ */ React.createElement("ellipse", { key: i2, cx: d[0], cy: d[1], rx: "7", ry: "11", fill: "#5d9dcd", opacity: 0.35 + 0.5 * d[2] });
-      })), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "1566", y: "792", width: "78", height: "52", rx: "8", fill: C.card, stroke: C.orangeText, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "1605", y: "830", textAnchor: "middle", fill: C.orangeText, fontSize: "30", fontWeight: "900" }, "B2")));
-    }
-    function SondeB2(p) {
-      var v = p.val, chaud = v > 0;
-      return /* @__PURE__ */ React.createElement("g", { opacity: p.o }, /* @__PURE__ */ React.createElement("rect", { x: "1800", y: "1268", width: "560", height: "160", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "1828", y: "1308", fill: C.orangeText, fontSize: "24", fontWeight: "900", letterSpacing: "2" }, "SONDE B2 \xB7 BATTERIE"), /* @__PURE__ */ React.createElement("text", { x: "1828", y: "1392", fill: chaud ? C.red : C.blue, fontSize: "66", fontWeight: "900" }, (v >= 0 ? "+" : "\u2212") + Math.abs(v).toFixed(1).replace(".", ","), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "2340", y: "1350", textAnchor: "end", fill: C.mute, fontSize: "22", fontWeight: "800" }, "FIN DE"), /* @__PURE__ */ React.createElement("text", { x: "2340", y: "1378", textAnchor: "end", fill: C.mute, fontSize: "22", fontWeight: "800" }, "D\xC9GIVRAGE"), /* @__PURE__ */ React.createElement("text", { x: "2340", y: "1410", textAnchor: "end", fill: C.red, fontSize: "26", fontWeight: "900" }, "+10 \xB0C"));
+      }), /* @__PURE__ */ React.createElement(RK.Fan, { x: 4180, y: 760, r: 64, spin: T * 300, flow: 1 }), /* @__PURE__ */ React.createElement("text", { x: "4180", y: "870", textAnchor: "middle", fill: C.green, fontSize: "26", fontWeight: "900" }, "M2"), /* @__PURE__ */ React.createElement("text", { x: "4110", y: "262", fill: C.orangeText, fontSize: "28", fontWeight: "900" }, "AIR DE LA CHAMBRE \u2192"), /* @__PURE__ */ React.createElement("text", { x: "5880", y: "262", textAnchor: "end", fill: C.blue, fontSize: "28", fontWeight: "900" }, "\u2192 AIR REFROIDI"), /* @__PURE__ */ React.createElement("rect", { x: "4360", y: "1214", width: "1040", height: "20", rx: "6", fill: "#dfe6ee", stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("g", { opacity: clamp(s.gouttes, 0, 1) }, [0, 1, 2, 3, 4, 5, 6, 7].map(function(i2) {
+        var ph = (T * 1.4 + i2 * 0.29) % 1;
+        return /* @__PURE__ */ React.createElement("ellipse", { key: i2, cx: 4420 + i2 * 130, cy: 1150 + ph * 60, rx: "9", ry: "14", fill: "#5d9dcd", opacity: 0.35 + 0.5 * (1 - ph) });
+      })), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("text", { x: "4110", y: "1310", fill: C.mute, fontSize: "26", fontWeight: "800" }, "BATTERIE"), /* @__PURE__ */ React.createElement("text", { x: "4110", y: "1384", fill: s.bat > 0 ? C.red : C.blue, fontSize: "62", fontWeight: "900" }, (s.bat > 0 ? "+" : "") + s.bat.toFixed(1).replace(".", ",").replace("-", "\u2212"), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: "4560", y: "1310", fill: C.mute, fontSize: "26", fontWeight: "800" }, "GIVRE"), /* @__PURE__ */ React.createElement("rect", { x: "4560", y: "1336", width: "560", height: "44", rx: "10", fill: C.blueSoft, stroke: C.line, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("rect", { x: "4560", y: "1336", width: 560 * clamp(g / 1.4, 0, 1), height: "44", rx: "10", fill: "#c9e0f2", stroke: "#8fb8d8", strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "5880", y: "1310", textAnchor: "end", fill: C.mute, fontSize: "26", fontWeight: "800" }, "\xC9CHANGE"), /* @__PURE__ */ React.createElement("text", { x: "5880", y: "1384", textAnchor: "end", fill: echange < 70 ? C.red : C.green, fontSize: "62", fontWeight: "900" }, echange, " %"), /* @__PURE__ */ React.createElement("text", { x: "4110", y: "1470", fill: C.ink, fontSize: "30", fontWeight: "800" }, froid ? g > 0.85 ? "Batterie prise : l\u2019air passe mal." : "Marche : sous 0 \xB0C, le givre se d\xE9pose." : s.gouttes > 0.3 ? "Arr\xEAt : l\u2019air la r\xE9chauffe, le givre fond." : g > 0.3 ? "Arr\xEAt trop court : le givre reste." : "Batterie propre.")), /* @__PURE__ */ React.createElement("g", { opacity: p.porte }, /* @__PURE__ */ React.createElement("rect", { x: "5420", y: "140", width: "460", height: "60", rx: "10", fill: "#fdecea", stroke: C.red, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "5650", y: "182", textAnchor: "middle", fill: C.red, fontSize: "28", fontWeight: "900" }, "PORTES OUVERTES")));
     }
     var PHASES = [
-      ["FROID", "B1 fait coller KA1 : Y1 s\u2019ouvre, la BP fait coller KM1"],
-      ["TIRAGE AU VIDE", "h1 coupe KA1 : Y1 se ferme, KM1 vide la batterie"],
-      ["R\xC9SISTANCES", "compresseur arr\xEAt\xE9 : RFD retombe, RD colle"],
-      ["\xC9GOUTTAGE", "B2 fait retomber RD, RFD retient la fin"],
-      ["REPRISE DU FROID", "fin de la plage h1 : KA1, Y1, puis KM1"],
-      ["VENTILATEURS", "KM1 67-68 temporis\xE9 : ils repartent en dernier"]
+      ["MARCHE", "B1 alimente M1 et Y1 : sous 0 \xB0C, le givre se d\xE9pose"],
+      ["ARR\xCAT LONG", "M2 tourne toujours : l\u2019air \xE0 +3 \xB0C fait fondre le givre"],
+      ["ARR\xCATS TROP COURTS", "le givre n\u2019a pas le temps de fondre : il s\u2019accumule"],
+      ["BATTERIE PRISE", "l\u2019air passe mal : il faut un d\xE9givrage command\xE9"]
     ];
-    function Sequence(p) {
-      return /* @__PURE__ */ React.createElement(RK.Etapes, { x: 4400, y: 1560, titre: "LA S\xC9QUENCE", phases: PHASES, k: p.phase });
-    }
-    var CH = { x0: 900, x1: 4020, tFin: 61 };
+    var CH = { x0: 900, x1: 4020, tFin: 53 };
     function chx(t) {
       return CH.x0 + (CH.x1 - CH.x0) * clamp(t / CH.tFin, 0, 1);
     }
+    function chAir(v) {
+      return 1820 - (v - 1) / 4 * 140;
+    }
     function chBat(v) {
-      return 1840 - (v + 28) / 40 * 160;
+      return 2140 - (v + 10) / 15 * 150;
     }
-    function chBp(v) {
-      return 2180 - clamp(v / 3.2, 0, 1) * 120;
+    function chGivre(v) {
+      return 2330 - clamp(v / 1.4, 0, 1) * 130;
     }
-    var CARRES = [["h1", 1880], ["KA1", 1975], ["KM1", 2215], ["RD", 2305], ["KM3", 2395]];
     function Chrono(p) {
-      var CUES = p.CUES, total = p.total, sim = simuler(CUES, total), e = sim.ev;
-      var bat = "", bp = "", sq = {}, prec = {};
-      CARRES.forEach(function(q2) {
-        sq[q2[0]] = "";
-      });
+      var CUES = p.CUES, sim = simuler(CUES, p.total), e = sim.ev;
+      var air = "", bat = "", givre = "", m1 = "", prec = null;
       for (var t = 0; t <= CH.tFin + 1e-3; t += 0.1) {
         var q = sim.pas[Math.min(Math.round(t / DT), sim.pas.length - 1)], x = chx(t).toFixed(1);
+        air += (air ? " L " : "M ") + x + " " + chAir(q.s.air).toFixed(1);
         bat += (bat ? " L " : "M ") + x + " " + chBat(q.s.bat).toFixed(1);
-        bp += (bp ? " L " : "M ") + x + " " + chBp(q.s.bp).toFixed(1);
-        CARRES.forEach(function(c) {
-          var on = c[0] === "h1" ? q.c.h1 : q.bob[c[0]];
-          var y = on ? c[1] : c[1] + 50;
-          if (prec[c[0]] === void 0) sq[c[0]] = "M " + x + " " + y;
-          else if (prec[c[0]] !== y) sq[c[0]] += " L " + x + " " + prec[c[0]] + " L " + x + " " + y;
-          prec[c[0]] = y;
-        });
+        givre += (givre ? " L " : "M ") + x + " " + chGivre(q.s.givre).toFixed(1);
+        var y = q.bob.M1 ? 1880 : 1930;
+        if (prec === null) m1 = "M " + x + " " + y;
+        else if (prec !== y) m1 += " L " + x + " " + prec + " L " + x + " " + y;
+        prec = y;
       }
-      CARRES.forEach(function(c) {
-        sq[c[0]] += " L " + chx(CH.tFin) + " " + prec[c[0]];
-      });
+      m1 += " L " + chx(CH.tFin) + " " + prec;
       var r = p.T >= CUES.Chronologie ? 1 : clamp(p.T / CH.tFin, 0, 1);
       var xr = CH.x0 + (CH.x1 - CH.x0) * r;
-      var couleurs = { h1: C.green, KA1: C.green, KM1: C.orangeText, RD: C.red, KM3: C.blue };
-      return /* @__PURE__ */ React.createElement("g", { transform: "translate(270,0)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "1560", width: "4090", height: "960", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "48", y: "1636", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 DU FROID, UN D\xC9GIVRAGE, LA REPRISE"), /* @__PURE__ */ React.createElement("rect", { x: chx(e.tH), y: "1660", width: chx(e.tH2) - chx(e.tH), height: "840", fill: "#e4f2ec", opacity: "0.55" }), /* @__PURE__ */ React.createElement("text", { x: (chx(e.tH) + chx(e.tH2)) / 2, y: "1636", textAnchor: "middle", fill: C.green, fontSize: "30", fontWeight: "900", letterSpacing: "3" }, "PLAGE DE L\u2019HORLOGE h1"), [["BATTERIE B2", 1770], ["HORLOGE h1", 1915], ["KA1 \xB7 Y1", 2010], ["PRESSION BP", 2130], ["KM1", 2250], ["RD \xB7 R1", 2340], ["KM3 \xB7 VENTIL.", 2430]].map(function(l) {
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(270,0)" }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "1560", width: "4090", height: "960", rx: "20", fill: C.card, stroke: C.blue, strokeWidth: "5" }), /* @__PURE__ */ React.createElement("text", { x: "48", y: "1636", fill: C.orangeText, fontSize: "40", fontWeight: "900", letterSpacing: "3" }, "CHRONOLOGIE \xB7 UN ARR\xCAT LONG, PUIS DES ARR\xCATS TROP COURTS"), /* @__PURE__ */ React.createElement("rect", { x: chx(e.tL), y: "1660", width: chx(CH.tFin) - chx(e.tL), height: "840", fill: C.red, opacity: "0.05" }), [["AIR \xB7 B1", 1770], ["M1 \xB7 Y1", 1915], ["BATTERIE", 2075], ["GIVRE", 2280], ["M2 \xB7 VENTIL.", 2440]].map(function(l) {
         return /* @__PURE__ */ React.createElement("text", { key: l[1], x: "48", y: l[1], fill: C.blue, fontSize: "36", fontWeight: "800" }, l[0]);
-      }), [[10, "+10 \xB7 fin", C.red], [0, "0 \xB0C", C.mute]].map(function(l) {
-        return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: chBat(l[0]), x2: CH.x1, y2: chBat(l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "14 12", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0 - 14, y: chBat(l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
-      }), [[1.8, "1,8 bar", C.orangeText], [0.3, "0,3 bar", C.blue]].map(function(l) {
-        return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: chBp(l[0]), x2: CH.x1, y2: chBp(l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "14 12", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0 - 14, y: chBp(l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
-      }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip8" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 20, y: "1650", width: xr - CH.x0 + 20, height: "860" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip8)" }, /* @__PURE__ */ React.createElement("path", { d: bat, fill: "none", stroke: C.blue, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: bp, fill: "none", stroke: C.red, strokeWidth: "9", strokeLinejoin: "round" }), CARRES.map(function(c) {
-        return /* @__PURE__ */ React.createElement("path", { key: c[0], d: sq[c[0]], fill: "none", stroke: couleurs[c[0]], strokeWidth: "9", strokeLinejoin: "round" });
-      })), r < 1 && /* @__PURE__ */ React.createElement("line", { x1: xr, y1: "1660", x2: xr, y2: "2490", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), p.replay !== null && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("line", { x1: chx(p.replay), y1: "1660", x2: chx(p.replay), y2: "2490", stroke: C.orange, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: chx(p.replay), cy: "1660", r: "16", fill: C.orange })));
+      }), [[4, "+4 \xB7 enclenche", C.orangeText, chAir], [2, "+2 \xB7 coupe", C.blue, chAir], [0, "0 \xB0C", C.red, chBat]].map(function(l, i) {
+        return /* @__PURE__ */ React.createElement("g", { key: i }, /* @__PURE__ */ React.createElement("line", { x1: CH.x0, y1: l[3](l[0]), x2: CH.x1, y2: l[3](l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "14 12", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: CH.x0 - 14, y: l[3](l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
+      }), /* @__PURE__ */ React.createElement("clipPath", { id: "chclip6" }, /* @__PURE__ */ React.createElement("rect", { x: CH.x0 - 20, y: "1650", width: xr - CH.x0 + 20, height: "860" })), /* @__PURE__ */ React.createElement("g", { clipPath: "url(#chclip6)" }, /* @__PURE__ */ React.createElement("path", { d: air, fill: "none", stroke: C.blue, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: m1, fill: "none", stroke: C.orangeText, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: bat, fill: "none", stroke: C.red, strokeWidth: "9", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: givre + " L " + chx(CH.tFin) + " 2330 L " + CH.x0 + " 2330 Z", fill: "#c9e0f2", stroke: "#7fa8cc", strokeWidth: "6" }), /* @__PURE__ */ React.createElement("path", { d: "M " + CH.x0 + " 2420 L " + CH.x1 + " 2420", fill: "none", stroke: C.green, strokeWidth: "9" })), r < 1 && /* @__PURE__ */ React.createElement("line", { x1: xr, y1: "1660", x2: xr, y2: "2490", stroke: C.orange, strokeWidth: "6", opacity: "0.85" }), p.replay !== null && /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("line", { x1: chx(p.replay), y1: "1660", x2: chx(p.replay), y2: "2490", stroke: C.orange, strokeWidth: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: chx(p.replay), cy: "1660", r: "16", fill: C.orange })));
     }
     function zones(CUES) {
-      var chambre = [930, 470, 1560, 1010], armoire = [2540, 120, 3360, 1400];
+      var grosPlan = [4070, 110, 1840, 1420];
       return [
-        { t: 0, r: chambre },
-        { t: CUES.MiseEnService, r: [2540, 120, 1940, 1400] },
+        { t: 0, r: [930, 470, 1560, 1010] },
+        { t: CUES.Marche, r: [2540, 110, 1480, 1420] },
         { t: CUES.Circulation, r: [330, 30, 2150, 1420] },
-        { t: CUES.Horloge, r: armoire },
-        { t: CUES.Degivrage, r: chambre },
-        { t: CUES.Reprise, r: armoire },
+        { t: CUES.Arret, r: grosPlan },
+        { t: CUES.Limite, r: grosPlan },
         { t: CUES.Chronologie, r: [250, 1540, 5690, 1e3] },
         { t: CUES.CycleComplet, r: null }
       ];
-    }
-    function Surligneur(p) {
-      return /* @__PURE__ */ React.createElement(RK.Surligneur, { T: p.T, zones: zones(p.CUES) });
     }
     function Piece(props) {
       var c = useComposition();
@@ -2465,7 +2317,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var z = 1920 / (D - 260), cam = { cx: (300 + D) / 2, cy: 1420, z };
       var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
       var keyIn = MOTION.enter(0, 1, CUES.LaCle + 0.3, 0.9)(T);
-      var H = CUES.Horloge, Dg = CUES.Degivrage, R = CUES.Reprise, M = CUES.MiseEnService, Ch = CUES.Chronologie, CC = CUES.CycleComplet;
+      var M = CUES.Marche, A = CUES.Arret, L = CUES.Limite, Ch = CUES.Chronologie, CC = CUES.CycleComplet;
       return /* @__PURE__ */ React.createElement(
         "div",
         {
@@ -2479,61 +2331,32 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             transform: "translate(" + (960 - cam.cx * cam.z) + "," + (540 - cam.cy * cam.z) + ") scale(" + cam.z + ")"
           },
           /* @__PURE__ */ React.createElement(Croix, { T }),
-          /* @__PURE__ */ React.createElement(ChambreFond, null),
-          /* @__PURE__ */ React.createElement(Pipes, { phase: e.cumKM, flow: e.flow }),
+          /* @__PURE__ */ React.createElement(ChambreFond, { titre: "CHAMBRE POSITIVE \xB7 BOISSONS" }),
+          /* @__PURE__ */ React.createElement(Pipes, { phase: e.cum, flow: e.flow }),
           /* @__PURE__ */ React.createElement(
             Chambre,
             {
               T,
               temp: e.s.air,
-              spin: e.cumV * 300,
-              flow: e.fans,
-              phase: e.cumV,
-              energy: e.bob.KM1 ? 1 : 0,
-              frostU: e.s.givre,
-              liquid: e.s.charge,
-              cid: "s8"
+              spin: T * 300,
+              flow: 1,
+              phase: T,
+              energy: e.bob.M1 ? 1 : 0,
+              frostU: clamp(e.s.givre, 0, 1),
+              liquid: e.bob.M1 ? 0.3 : 0,
+              cid: "s6",
+              seuil: 3.5,
+              consigne: "CONSIGNE +2 \xB7 ENCLENCHEMENT +4"
             }
           ),
-          /* @__PURE__ */ React.createElement(Resistances, { T, heat: e.bob.R1 ? 1 : 0, melt: e.s.gouttes }),
-          /* @__PURE__ */ React.createElement(Machine, { T, carter: 0, spin: e.cumKM * 300, flow: e.flow, phase: e.cumKM, live: e.bob.Y1 }),
+          /* @__PURE__ */ React.createElement(Machine, { T, carter: 0, spin: e.cum * 300, flow: e.flow, phase: e.cum, live: e.bob.Y1 }),
           /* @__PURE__ */ React.createElement(PipeChips, { T }),
           /* @__PURE__ */ React.createElement(CroixLabels, { T }),
-          /* @__PURE__ */ React.createElement(Chip, { T, at: ev.tChauffe, hold: 6, x: "700", y: "1060", text: "R\xC9SISTANCES DE BATTERIE", sub: "elles chauffent, compresseur arr\xEAt\xE9", fs: "32", tone: C.red }),
-          /* @__PURE__ */ React.createElement(Manometre, { x: 2320, y: 680, val: e.s.bp, cutOut: 0.3, cutIn: 1.8, label: "BP \xB7 ASPIRATION" }),
-          /* @__PURE__ */ React.createElement(
-            "rect",
-            {
-              x: "2180",
-              y: "860",
-              width: "280",
-              height: "80",
-              rx: "10",
-              fill: e.bob.KM1 ? "#fff0e9" : C.blueSoft,
-              stroke: e.bob.KM1 ? C.orangeText : C.blue,
-              strokeWidth: "6"
-            }
-          ),
-          /* @__PURE__ */ React.createElement("text", { x: "2320", y: "914", textAnchor: "middle", fill: e.bob.KM1 ? C.orangeText : C.blue, fontSize: "32", fontWeight: "900" }, e.bob.KM1 ? "KM1 ALIMENT\xC9" : "KM1 AU REPOS"),
-          /* @__PURE__ */ React.createElement(
-            "rect",
-            {
-              x: "2180",
-              y: "960",
-              width: "280",
-              height: "62",
-              rx: "10",
-              fill: e.bob.R1 ? "#fdecea" : C.card,
-              stroke: e.bob.R1 ? C.red : C.line,
-              strokeWidth: "6"
-            }
-          ),
-          /* @__PURE__ */ React.createElement("text", { x: "2320", y: "1003", textAnchor: "middle", fill: e.bob.R1 ? C.red : C.mute, fontSize: "30", fontWeight: "900" }, e.bob.R1 ? "R1 CHAUFFE" : "R1 \xC0 L\u2019ARR\xCAT"),
-          /* @__PURE__ */ React.createElement(SondeB2, { val: e.s.bat, o: clamp((T - H + 0.4) / 0.8, 0, 1) }),
           /* @__PURE__ */ React.createElement(Cabinet, { T, e }),
+          /* @__PURE__ */ React.createElement(GrosPlan, { T, s: e.s, marche: e.bob.M1, porte: e.s.porte }),
           /* @__PURE__ */ React.createElement(Chrono, { T, CUES, total: c.authoredTotal, replay: e.enRejeu ? e.Tm : null }),
-          /* @__PURE__ */ React.createElement(Sequence, { phase: e.phase }),
-          /* @__PURE__ */ React.createElement(Surligneur, { T, CUES })
+          /* @__PURE__ */ React.createElement(RK.Etapes, { x: 4400, y: 1560, titre: "CE QUI D\xC9CIDE", phases: PHASES, k: e.phase, pas: 190, haut: 160 }),
+          /* @__PURE__ */ React.createElement(RK.Surligneur, { T, zones: zones(CUES) })
         )),
         /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", inset: 0, background: C.paper, opacity: keyIn * 0.58, pointerEvents: "none" } }),
         /* @__PURE__ */ React.createElement("div", { style: {
@@ -2551,7 +2374,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           borderRadius: 18,
           padding: "26px 38px",
           boxShadow: "0 18px 50px rgba(27,58,99,0.18)"
-        } }, /* @__PURE__ */ React.createElement("div", { style: { color: C.orangeText, font: "900 24px " + font, letterSpacing: 3 } }, "STATION 8 \xB7 LE D\xC9GIVRAGE \xC9LECTRIQUE"), /* @__PURE__ */ React.createElement("div", { style: { color: C.blue, font: "900 52px " + font, lineHeight: 1.1, marginTop: 8 } }, "L\u2019horloge coupe la demande : le compresseur tire au vide et s\u2019arr\xEAte, puis seulement les r\xE9sistances chauffent."), /* @__PURE__ */ React.createElement("div", { style: { color: C.ink, font: "700 30px " + font, marginTop: 12 } }, "La sonde B2 termine le d\xE9givrage et RFD le retient ; \xE9gouttage, reprise du froid, ventilateurs en dernier."))),
+        } }, /* @__PURE__ */ React.createElement("div", { style: { color: C.orangeText, font: "900 24px " + font, letterSpacing: 3 } }, "STATION 6 \xB7 SANS D\xC9GIVRAGE COMMAND\xC9"), /* @__PURE__ */ React.createElement("div", { style: { color: C.blue, font: "900 52px " + font, lineHeight: 1.1, marginTop: 8 } }, "Pas de d\xE9givrage command\xE9 ne veut pas dire pas de fonte : pendant l\u2019arr\xEAt, l\u2019air de la chambre fait fondre le givre."), /* @__PURE__ */ React.createElement("div", { style: { color: C.ink, font: "700 30px " + font, marginTop: 12 } }, "Si les arr\xEAts sont trop courts, le givre s\u2019accumule : il faut alors un d\xE9givrage command\xE9 (station 7)."))),
         props.captions && /* @__PURE__ */ React.createElement(
           Captions,
           {
@@ -2567,44 +2390,35 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
               borderTop: "3px solid " + C.line
             },
             items: [
-              { at: 0.4, text: "Une chambre froide N\xC9GATIVE : l\u2019air y est maintenu sous z\xE9ro degr\xE9 \u2014 ici, consigne \u221218 \xB0C." },
-              { at: 3.2, text: "L\u2019armoire : \xE0 gauche le froid, \xE0 droite le d\xE9givrage \u2014 sept colonnes." },
-              { at: M + 0.4, text: "B1 ferme : le relais KA1 colle, son contact 23-24 ouvre l\u2019\xE9lectrovanne Y1." },
-              { at: M + 2.6, text: "La pression monte : \xE0 1,8 bar la BP ferme, KM1 colle et se tient par 13-14." },
-              { at: M + 5.2, text: "KM1 67-68 est temporis\xE9 : les ventilateurs KM3 d\xE9marrent apr\xE8s un d\xE9lai." },
+              { at: 0.4, text: "Une chambre froide POSITIVE : boissons emball\xE9es, air \xE0 +3 \xB0C, peu d\u2019humidit\xE9." },
+              { at: 3, text: "Le sch\xE9ma : B1, la BP et la HP commandent le groupe M1 et l\u2019\xE9lectrovanne Y1." },
+              { at: M + 0.4, text: "B1 ferme : le groupe M1 et l\u2019\xE9lectrovanne Y1 sont aliment\xE9s ensemble." },
+              { at: M + 3, text: "Le ventilateur M2 n\u2019a aucun contact : il tourne en permanence." },
+              { at: M + 5.5, text: "Ni horloge, ni r\xE9sistance : rien n\u2019est pr\xE9vu pour le d\xE9givrage." },
               { at: CUES.Circulation + 0.5, text: "La croix du frigoriste : BP en bas, HP en haut." },
               { at: CUES.Circulation + 2.6, text: "Bielle et piston : le compresseur aspire en BP et refoule en HP." },
               { at: CUES.Circulation + 5.2, text: "Le condenseur rend la chaleur \xE0 l\u2019ext\xE9rieur : la vapeur redevient liquide." },
-              { at: CUES.Circulation + 7.4, text: "Le d\xE9tendeur thermostatique fait tomber la pression." },
-              { at: CUES.Circulation + 9, text: "Dans le serpentin, le liquide s\u2019\xE9vapore : le givre se d\xE9pose." },
-              { at: H + 0.4, text: "L\u2019horloge h1 bascule : son contact 1-2 coupe KA1, son contact 3-4 alimente le d\xE9givrage." },
-              { at: H + 2.2, text: "KA1 retombe : Y1 se ferme. KM1 se tient par 13-14 : c\u2019est le tirage au vide." },
-              { at: H + 3.8, text: "Tant que KM1 tourne, son contact 23-24 tient RFD : RD ne peut pas coller." },
-              { at: H + 6.6, text: "\xC0 0,3 bar la BP ouvre : KM1 tombe, les ventilateurs s\u2019arr\xEAtent avec lui." },
-              { at: H + 8, text: "RFD retombe, RD colle : son contact 3-4 alimente les r\xE9sistances R1." },
-              { at: H + 10, text: "Le compresseur s\u2019est arr\xEAt\xE9 AVANT la chauffe : c\u2019est le verrouillage." },
-              { at: Dg + 0.4, text: "Les r\xE9sistances chauffent la batterie : le givre fond, l\u2019eau tombe dans le bac." },
-              { at: Dg + 3, text: "Tant qu\u2019il reste de la glace, la batterie reste \xE0 0 \xB0C : la chaleur sert \xE0 fondre." },
-              { at: Dg + 6, text: "La pression remonte, la BP se referme\u2026 mais KA1 est coup\xE9 : KM1 ne repart pas." },
-              { at: Dg + 10, text: "\xC0 +10 \xB0C, la sonde B2 bascule : RD retombe, les r\xE9sistances s\u2019arr\xEAtent." },
-              { at: Dg + 11.6, text: "Son contact NO fait coller RFD : le d\xE9givrage reste termin\xE9." },
-              { at: R + 0.4, text: "\xC9gouttage : tout est arr\xEAt\xE9, l\u2019eau finit de s\u2019\xE9couler." },
-              { at: R + 4.1, text: "Fin de la plage d\u2019horloge : KA1 recolle, Y1 s\u2019ouvre, KM1 repart." },
-              { at: R + 6.2, text: "La batterie refroidit, les ventilateurs attendent encore." },
-              { at: R + 8.7, text: "KM1 67-68 ferme enfin : les ventilateurs repartent, sans souffler d\u2019eau." },
-              { at: R + 12, text: "Le froid reprend : la s\xE9quence de d\xE9givrage est boucl\xE9e." },
-              { at: Ch + 0.4, text: "Le chronogramme : froid, tirage au vide, r\xE9sistances, \xE9gouttage, reprise." },
-              { at: Ch + 3.4, until: CC, text: "Les ventilateurs repartent en dernier : regardez la derni\xE8re ligne." },
-              { at: CC + 0.5, text: "La s\xE9quence enti\xE8re, d\u2019un seul regard : suivez le curseur orange." },
-              { at: CC + 4, text: "L\u2019horloge coupe KA1 : tirage au vide, puis arr\xEAt du compresseur." },
-              { at: CC + 8, text: "R\xE9sistances, fonte du givre, fin sur la sonde B2." },
-              { at: CC + 12, until: CUES.LaCle, text: "\xC9gouttage, reprise du froid, et les ventilateurs en dernier." }
+              { at: CUES.Circulation + 7.4, text: "La batterie descend sous 0 \xB0C : l\u2019humidit\xE9 de l\u2019air s\u2019y d\xE9pose en givre." },
+              { at: A + 0.4, text: "L\u2019air atteint la consigne : B1 ouvre, M1 et Y1 s\u2019arr\xEAtent." },
+              { at: A + 2.4, text: "M2 continue : l\u2019air de la chambre, \xE0 +2 \xB0C, passe sur la batterie." },
+              { at: A + 4.6, text: "La batterie remonte \xE0 0 \xB0C : le givre fond, l\u2019eau s\u2019\xE9coule." },
+              { at: A + 8, text: "Arr\xEAt assez long : batterie propre au red\xE9marrage. C\u2019est le d\xE9givrage naturel." },
+              { at: L + 0.4, text: "Une chambre tr\xE8s sollicit\xE9e : portes ouvertes, produits chauds." },
+              { at: L + 3.6, text: "B1 ouvre\u2026 et referme presque aussit\xF4t : l\u2019arr\xEAt est trop court." },
+              { at: L + 6.2, text: "La batterie n\u2019a pas le temps de d\xE9passer 0 \xB0C : le givre reste." },
+              { at: L + 9.4, text: "Le givre s\u2019accumule cycle apr\xE8s cycle : l\u2019air passe mal, l\u2019\xE9change chute." },
+              { at: L + 12.2, text: "La chambre ne descend plus \xE0 la consigne : il faut un d\xE9givrage command\xE9." },
+              { at: Ch + 0.4, text: "Le chronogramme : la courbe du givre retombe pendant l\u2019arr\xEAt long\u2026" },
+              { at: Ch + 4, until: CC, text: "\u2026 et monte en escalier quand les arr\xEAts sont trop courts." },
+              { at: CC + 0.5, text: "Toute l\u2019histoire, d\u2019un seul regard : suivez le curseur orange." },
+              { at: CC + 5, text: "Marche : le givre se d\xE9pose. Arr\xEAt long : l\u2019air le fait fondre." },
+              { at: CC + 10, until: CUES.LaCle, text: "Arr\xEAts trop courts : le givre s\u2019accumule, l\u2019\xE9change s\u2019effondre." }
             ]
           }
         )
       );
     }
-    function RegulesPumpDownDegivrage() {
+    function RegulesSansDegivrage() {
       var tw = window.useTweaks(window.OM_TWEAKS || { motionEditor: true, legendes: true, dys: false });
       var t = tw[0], setTweak = tw[1];
       var TweaksPanel = window.TweaksPanel, TweakToggle = window.TweakToggle, TweakSection = window.TweakSection;
@@ -2626,8 +2440,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         setTweak("motionEditor", v);
       } })));
     }
-    window.RegulesPumpDownDegivrage = RegulesPumpDownDegivrage;
-    window.RK8 = { Cabinet, etat, simuler, PHASES, Sequence };
+    window.RegulesSansDegivrage = RegulesSansDegivrage;
+    window.RK6 = { Cabinet, GrosPlan, etat, PHASES };
   })();
 })();
 </script>
@@ -2808,242 +2622,193 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 </script>
 <script type="text/plain" id="src4">(() => {
   (function() {
-    var PK = window.PK, RK = window.RK, C = RK.C, clamp = window.clamp;
-    var Pas = PK.Pas, Vanne = PK.Vanne, Compresseur = PK.Compresseur, Air = PK.Air, fr = PK.fr;
-    var CUES = {
-      Enceinte: 0,
-      MiseEnService: 5,
-      Circulation: 13,
-      Horloge: 23,
-      Degivrage: 35,
-      Reprise: 50,
-      Chronologie: 66,
-      CycleComplet: 76,
-      LaCle: 92
-    };
-    var TOTAL = 104;
+    var PK = window.PK, Pas = PK.Pas;
+    var CUES = { Enceinte: 0, Marche: 5, Circulation: 13, Arret: 23, Limite: 37, Chronologie: 53, CycleComplet: 62, LaCle: 78 };
+    var TOTAL = 88;
     function etat(t) {
-      return window.RK8.etat(t, CUES, TOTAL);
+      return window.RK6.etat(t, CUES, TOTAL);
     }
-    function Batterie(p) {
-      var v = p.bat, x = 2200, y = 1124;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x, y, width: "370", height: "160", rx: "14", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: x + 20, y: y + 34, fill: C.orangeText, fontSize: "24", fontWeight: "900", letterSpacing: "2" }, "BATTERIE \xB7 SONDE B2"), /* @__PURE__ */ React.createElement("text", { x: x + 20, y: y + 96, fill: v > 0 ? C.red : C.blue, fontSize: "52", fontWeight: "900" }, (v >= 0 ? "+" : "") + fr(v, 1), " \xB0C"), /* @__PURE__ */ React.createElement("text", { x: x + 20, y: y + 140, fill: C.mute, fontSize: "22", fontWeight: "800" }, "GIVRE"), /* @__PURE__ */ React.createElement("rect", { x: x + 100, y: y + 122, width: "250", height: "22", rx: "6", fill: C.blueSoft, stroke: C.line, strokeWidth: "3" }), /* @__PURE__ */ React.createElement("rect", { x: x + 100, y: y + 122, width: 250 * clamp(p.givre, 0, 1), height: "22", rx: "6", fill: "#c9e0f2", stroke: "#8fb8d8", strokeWidth: "3" }), p.gouttes > 0.05 && /* @__PURE__ */ React.createElement("text", { x: x + 350, y: y + 96, textAnchor: "end", fill: "#2c6390", fontSize: "24", fontWeight: "900", opacity: p.gouttes }, "EAU \xB7 BAC"));
-    }
-    function Ventilateurs(p) {
-      var on = p.on;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement(RK.Fan, { x: p.x, y: p.y, r: "44", spin: on ? p.now * 300 : 0, flow: on ? 1 : 0 }), /* @__PURE__ */ React.createElement("text", { x: p.x, y: p.y + 94, textAnchor: "middle", fill: on ? C.orangeText : C.mute, fontSize: "28", fontWeight: "900" }, on ? "TOURNENT" : "ARR\xCAT\xC9S"));
-    }
-    function Armoire(p) {
+    function Vue(p) {
       var e = etat(p.T);
-      var Cab = window.RK8.Cabinet;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, e })), /* @__PURE__ */ React.createElement(RK.Manometre, { x: 740, y: 470, r: 100, val: e.s.bp, cutOut: 0.3, cutIn: 1.8, label: "PRESSION BP" }), /* @__PURE__ */ React.createElement(Air, { cx: 1520, y: 770, ly: 770, temp: e.s.air }), /* @__PURE__ */ React.createElement(Compresseur, { x: 440, y: 1180, tourne: e.bob.KM1, now: p.now }), /* @__PURE__ */ React.createElement(Ventilateurs, { x: 1100, y: 1180, on: e.bob.KM3, now: p.now }), /* @__PURE__ */ React.createElement(Vanne, { x: 1720, y: 1205, ouverte: e.bob.Y1 }), /* @__PURE__ */ React.createElement(Batterie, { bat: e.s.bat, givre: e.s.givre, gouttes: e.s.gouttes }));
+      var Cab = window.RK6.Cabinet, Gros = window.RK6.GrosPlan;
+      return /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, e }), /* @__PURE__ */ React.createElement(Gros, { T: p.now, s: e.s, marche: e.bob.M1, porte: e.s.porte }));
     }
-    var VB = "100 150 3300 1175";
+    var VB = "-20 -10 3440 1460";
     var Z = {
-      colKM: [120, 320, 600, 990],
-      prise: [620, 345, 240, 300],
-      hold: [270, 705, 440, 230],
-      colV: [870, 320, 330, 990],
-      colKA1: [1140, 320, 500, 990],
-      h12: [1140, 540, 340, 190],
-      colY: [1645, 320, 330, 990],
-      h34: [1960, 320, 360, 190],
-      b2nf: [1960, 540, 420, 190],
-      rfd12: [2110, 760, 260, 190],
-      colRD: [1960, 320, 420, 800],
-      colRFD: [2440, 490, 600, 620],
-      colR: [3060, 320, 300, 990],
-      batterie: [2190, 1114, 390, 180]
+      armoire: [10, 10, 1480, 1420],
+      b1: [150, 320, 340, 190],
+      m2: [1080, 380, 380, 900],
+      m1y1: [230, 960, 720, 300],
+      gros: [1550, 10, 1840, 1420],
+      bac: [1820, 1030, 1100, 150],
+      fan: [1580, 560, 180, 340],
+      mesures: [1560, 1150, 1820, 270]
     };
-    function Planche08PriseDeMain() {
+    function Planche06Constat() {
       return /* @__PURE__ */ React.createElement(
         Pas,
         {
-          titre: "L\u2019horloge prend la main",
+          titre: "Rien pour d\xE9givrer\u2026 et pourtant",
           viewBox: VB,
           vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
+            return /* @__PURE__ */ React.createElement(Vue, { T, now });
           },
           etapes: [
             {
-              titre: "En froid : l\u2019horloge au repos",
-              de: 20,
-              a: 20,
+              titre: "Aucun organe de d\xE9givrage",
+              de: 4,
+              a: 4,
               dur: 0.2,
-              zones: [Z.h12, Z.h34],
-              texte: "h1 laisse passer la demande (son contact 1-2 est ferm\xE9) et n\u2019alimente pas le d\xE9givrage (son 3-4 est ouvert). B1 tient KA1, KM1 tourne."
+              zones: [Z.armoire],
+              texte: "B1, la BP et la HP commandent le groupe M1 et l\u2019\xE9lectrovanne Y1. Ni horloge, ni r\xE9sistance."
             },
             {
-              titre: "h1 bascule : KA1 retombe",
-              de: 23.7,
-              a: 24.25,
-              dur: 1.4,
-              zones: [Z.h12, Z.colY],
-              texte: "\xC0 l\u2019heure du d\xE9givrage, h1 ouvre 1-2 et ferme 3-4. KA1 retombe : l\u2019\xE9lectrovanne Y1 se ferme."
+              titre: "M2 tourne toujours",
+              de: 4,
+              a: 4,
+              dur: 0.2,
+              zones: [Z.m2, Z.fan],
+              texte: "Le ventilateur M2 n\u2019a aucun contact : il brasse l\u2019air de la chambre en permanence."
             },
             {
-              titre: "RFD verrouille RD",
-              de: 24.25,
-              a: 26,
-              dur: 1.8,
-              zones: [Z.colRFD, Z.rfd12],
-              texte: "Le compresseur tourne encore : KM1 23-24 fait coller RFD, et le contact 1-2 de RFD emp\xEAche RD de coller."
+              titre: "En marche, le givre se d\xE9pose",
+              de: 5.5,
+              a: 23.5,
+              dur: 3.6,
+              zones: [Z.b1, Z.gros],
+              texte: "B1 ferme : M1 et Y1 d\xE9marrent. La batterie passe sous 0 \xB0C : l\u2019humidit\xE9 de l\u2019air s\u2019y d\xE9pose en givre."
             },
             {
-              titre: "Le tirage au vide",
-              de: 26,
-              a: 29.55,
-              dur: 3.2,
-              zones: [Z.hold, Z.prise],
-              texte: "KM1 se tient par 13-14 et vide l\u2019\xE9vaporateur. \xC0 0,3 bar, la BP ouvre : KM1 tombe, les ventilateurs avec lui."
+              titre: "\xC0 l\u2019arr\xEAt, l\u2019air fait fondre",
+              de: 24,
+              a: 31,
+              dur: 3.6,
+              zones: [Z.b1, Z.gros],
+              texte: "B1 ouvre : M1 et Y1 s\u2019arr\xEAtent, M2 continue. L\u2019air \xE0 +2 \xB0C r\xE9chauffe la batterie : le givre fond, l\u2019eau s\u2019\xE9coule."
             },
             {
-              titre: "RD colle, R1 chauffe",
-              de: 29.55,
-              a: 32.5,
-              dur: 2.4,
-              zones: [Z.colRD, Z.colR, Z.batterie],
-              texte: "KM1 23-24 s\u2019ouvre : RFD retombe, RD colle. Son contact 3-4 alimente les r\xE9sistances R1 : la batterie se r\xE9chauffe."
+              titre: "Une fonte sans commande",
+              de: 35,
+              a: 35,
+              dur: 0.2,
+              zones: [Z.mesures],
+              texte: "La batterie est propre au red\xE9marrage. Pas de d\xE9givrage command\xE9 ne veut pas dire : aucune fonte."
             }
           ]
         }
       );
     }
-    function Planche08Sequence() {
+    function Planche06Limites() {
       return /* @__PURE__ */ React.createElement(
         Pas,
         {
-          titre: "La s\xE9quence du d\xE9givrage",
+          titre: "Le givre d\xE9cide",
           viewBox: VB,
           vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
+            return /* @__PURE__ */ React.createElement(Vue, { T, now });
           },
           etapes: [
             {
-              titre: "1 \xB7 Froid",
-              de: 5.8,
-              a: 9,
-              dur: 2.6,
-              zones: [Z.colKA1, Z.colY, Z.colKM],
-              texte: "B1 ferme : KA1 colle, Y1 s\u2019ouvre. La pression monte, la BP fait coller KM1."
+              titre: "Une chambre tr\xE8s sollicit\xE9e",
+              de: 36.8,
+              a: 37.6,
+              dur: 1,
+              zones: [Z.gros],
+              texte: "Portes ouvertes, produits chauds : l\u2019air remonte vite \xE0 +4 \xB0C, B1 relance le froid."
             },
             {
-              titre: "2 \xB7 Les ventilateurs, temporis\xE9s",
-              de: 9,
-              a: 12.7,
-              dur: 2.4,
-              zones: [Z.colV],
-              texte: "Le contact 67-68 de KM1 se ferme apr\xE8s un d\xE9lai : KM3 lance les ventilateurs."
-            },
-            {
-              titre: "3 \xB7 Tirage au vide",
-              de: 23.8,
-              a: 29.6,
-              dur: 3.4,
-              zones: [Z.colKA1, Z.colKM],
-              texte: "h1 coupe KA1 : Y1 se ferme. KM1 vide l\u2019\xE9vaporateur puis tombe \xE0 0,3 bar. Les ventilateurs s\u2019arr\xEAtent."
-            },
-            {
-              titre: "4 \xB7 R\xE9sistances",
-              de: 29.6,
-              a: 36,
+              titre: "Un arr\xEAt trop court",
+              de: 39.5,
+              a: 42.2,
               dur: 3,
-              zones: [Z.colRD, Z.colR, Z.batterie],
-              texte: "RD colle et alimente R1. La batterie se r\xE9chauffe, le givre fond \xE0 0 \xB0C."
+              zones: [Z.b1, Z.mesures],
+              texte: "B1 ouvre\u2026 et referme presque aussit\xF4t. La batterie n\u2019a pas le temps de d\xE9passer 0 \xB0C : le givre reste."
             },
             {
-              titre: "5 \xB7 Fin sur la sonde B2",
-              de: 44.5,
-              a: 45.4,
-              dur: 1.4,
-              zones: [Z.b2nf, Z.batterie],
-              texte: "\xC0 +10 \xB0C, B2 ouvre son contact 1-2 : RD retombe, les r\xE9sistances s\u2019arr\xEAtent."
+              titre: "Le givre s\u2019accumule",
+              de: 42.2,
+              a: 47.5,
+              dur: 3.6,
+              zones: [Z.gros],
+              texte: "Cycle apr\xE8s cycle, la couche \xE9paissit. Les ailettes se bouchent, l\u2019air passe mal."
             },
             {
-              titre: "6 \xB7 \xC9gouttage",
-              de: 45.4,
-              a: 53.7,
-              dur: 2.6,
-              zones: [Z.colRFD, Z.batterie],
-              texte: "RFD retient la fin. Tout reste arr\xEAt\xE9 jusqu\u2019\xE0 la fin de la plage d\u2019horloge : l\u2019eau s\u2019\xE9coule."
+              titre: "L\u2019\xE9change s\u2019effondre",
+              de: 47.5,
+              a: 52,
+              dur: 3,
+              zones: [Z.mesures, Z.b1],
+              texte: "La chambre ne descend plus \xE0 la consigne : B1 reste ferm\xE9, le groupe tourne sans s\u2019arr\xEAter."
             },
             {
-              titre: "7 \xB7 Reprise, ventilateurs en dernier",
-              de: 53.8,
-              a: 59,
-              dur: 3.4,
-              zones: [Z.colKA1, Z.colKM, Z.colV],
-              texte: "h1 revient : KA1, Y1 puis KM1. Les ventilateurs attendent la temporisation : aucune goutte souffl\xE9e."
+              titre: "Ne pas copier un r\xE9glage",
+              de: 52,
+              a: 52,
+              dur: 0.2,
+              zones: [Z.gros],
+              texte: "La fr\xE9quence de d\xE9givrage d\u2019une autre installation ne vaut rien ici : charge, ouvertures et humidit\xE9 changent tout."
             }
           ]
         }
       );
     }
-    function Planche08DeuxFins() {
+    function Planche06Decider() {
       return /* @__PURE__ */ React.createElement(
         Pas,
         {
-          titre: "Deux fins, un verrou",
+          titre: "Observer avant de d\xE9cider",
           viewBox: VB,
           vue: function(T, now) {
-            return /* @__PURE__ */ React.createElement(Armoire, { T, now });
+            return /* @__PURE__ */ React.createElement(Vue, { T, now });
           },
           etapes: [
             {
-              titre: "La pression remonte pendant la chauffe",
-              de: 36,
-              a: 41.3,
-              dur: 2.8,
-              zones: [Z.prise, Z.colKM],
-              texte: "La batterie se r\xE9chauffe : la pression BP remonte, et la BP se referme \xE0 1,8 bar."
-            },
-            {
-              titre: "Mais KM1 ne repart pas",
-              de: 41.3,
-              a: 41.3,
+              titre: "Observer le givre",
+              de: 49,
+              a: 49,
               dur: 0.2,
-              zones: [Z.hold, Z.h12],
-              texte: "KA1 13-14 et KM1 13-14 sont ouverts : h1 coupe toujours KA1. C\u2019est le verrou : pas de froid pendant la chauffe."
+              zones: [Z.gros],
+              texte: "O\xF9 est le givre ? Sur toute la batterie ou \xE0 l\u2019entr\xE9e d\u2019air seulement ? Depuis quand ?"
             },
             {
-              titre: "Fin normale : la sonde B2",
-              de: 44.4,
-              a: 45.3,
-              dur: 1.6,
-              zones: [Z.b2nf, Z.batterie],
-              texte: "B2 mesure la batterie : \xE0 +10 \xB0C, il coupe RD. Le givre est parti, on ne chauffe pas plus."
-            },
-            {
-              titre: "RFD retient la fin",
-              de: 45.3,
-              a: 46.5,
-              dur: 1.4,
-              zones: [Z.colRFD, Z.rfd12],
-              texte: "Le contact NO de B2 fait coller RFD : son 1-2 garde RD ouvert jusqu\u2019\xE0 la fin de la plage d\u2019horloge."
-            },
-            {
-              titre: "Le garde-fou : la plage d\u2019horloge",
-              de: 53.5,
-              a: 54.4,
-              dur: 1.4,
-              zones: [Z.h34, Z.h12],
-              texte: "Si B2 ne basculait pas, h1 couperait quand m\xEAme RD \xE0 la fin de sa plage : c\u2019est le temps maximal."
-            },
-            {
-              titre: "Contr\xF4ler, pas seulement r\xE9gler",
-              de: 55,
-              a: 55,
+              titre: "V\xE9rifier l\u2019air",
+              de: 49,
+              a: 49,
               dur: 0.2,
-              zones: [Z.b2nf, Z.colR, Z.batterie],
-              texte: "Givre restant ou chauffe trop longue : v\xE9rifier la sonde B2, l\u2019intensit\xE9 de R1 et l\u2019\xE9coulement \u2014 pas seulement la dur\xE9e de la plage."
+              zones: [Z.fan, Z.m2],
+              texte: "M2 tourne-t-il ? L\u2019air traverse-t-il encore les ailettes ?"
+            },
+            {
+              titre: "Contr\xF4ler l\u2019\xE9coulement",
+              de: 26,
+              a: 30.5,
+              dur: 3,
+              zones: [Z.bac],
+              texte: "Pendant l\u2019arr\xEAt, l\u2019eau de fonte s\u2019\xE9vacue-t-elle ? Un bac ou un tube gel\xE9 fait regeler la batterie."
+            },
+            {
+              titre: "Lire les marches et les arr\xEAts",
+              de: 39.5,
+              a: 42.2,
+              dur: 3,
+              zones: [Z.b1, Z.m1y1],
+              texte: "Les arr\xEAts laissent-ils le temps de fondre ? Relever les temps de marche et d\u2019arr\xEAt du groupe."
+            },
+            {
+              titre: "D\xE9cider",
+              de: 52,
+              a: 52,
+              dur: 0.2,
+              zones: [Z.armoire],
+              texte: "Si les arr\xEAts ne suffisent pas : un d\xE9givrage command\xE9, choisi avec la notice et le cahier des charges."
             }
           ]
         }
       );
     }
-    window.Planche08PriseDeMain = Planche08PriseDeMain;
-    window.Planche08Sequence = Planche08Sequence;
-    window.Planche08DeuxFins = Planche08DeuxFins;
+    window.Planche06Constat = Planche06Constat;
+    window.Planche06Limites = Planche06Limites;
+    window.Planche06Decider = Planche06Decider;
   })();
 })();
 </script>
@@ -3055,9 +2820,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   window.__resourceBlobs = window.__resourceBlobs || {};
   window.__resourceBlobs["./animations-v3.js"] = blob('src0');
   window.__resourceBlobs["./regules-kit.js"] = blob('src1');
-  window.__resourceBlobs["./regules-08.js"] = blob('src2');
+  window.__resourceBlobs["./regules-06.js"] = blob('src2');
   window.__resourceBlobs["./planches-kit.js"] = blob('src3');
-  window.__resourceBlobs["./planches-08.js"] = blob('src4');
+  window.__resourceBlobs["./planches-06.js"] = blob('src4');
   window.__resources = window.__resources || {};
   window.__resources["https://unpkg.com/react@18.3.1/umd/react.production.min.js"] = URL.createObjectURL(blob('vendor0'));
   window.__resources["https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"] = URL.createObjectURL(blob('vendor1'));
@@ -5008,7 +4773,7 @@ html, body { margin: 0; padding: 0; background: #f7f1e7; }
 </style>
 </helmet>
 <div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
-  <x-import component-from-global-scope="Planche08PriseDeMain" from="./animations-v3.js ./regules-kit.js ./regules-08.js ./planches-kit.js ./planches-08.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+  <x-import component-from-global-scope="Planche06Constat" from="./animations-v3.js ./regules-kit.js ./regules-06.js ./planches-kit.js ./planches-06.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
 </div>
 </x-dc>
 

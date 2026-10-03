@@ -357,11 +357,11 @@
     );
   }
 
-  function ChambreFond() {
+  function ChambreFond(p) {
     return (
       <g>
         <rect x="1000" y="760" width="700" height="530" rx="18" fill="#eaf3f9" stroke={C.blue} strokeWidth="5" strokeDasharray="26 18" />
-        <text x="1026" y="814" fill={C.blue} fontSize="32" fontWeight="800" letterSpacing="3">CHAMBRE NÉGATIVE</text>
+        <text x="1026" y="814" fill={C.blue} fontSize="32" fontWeight="800" letterSpacing="3">{(p && p.titre) || 'CHAMBRE NÉGATIVE'}</text>
       </g>
     );
   }
@@ -393,8 +393,8 @@
         <g>
           <rect x="1800" y="1030" width="560" height="220" rx="16" fill={C.card} stroke={C.blue} strokeWidth="5" />
           <text x="1830" y="1082" fill={C.orangeText} fontSize="28" fontWeight="900" letterSpacing="2.5">AIR DE LA CHAMBRE</text>
-          <text x="1830" y="1178" fill={p.temp > -14.6 ? C.red : C.blue} fontSize="88" fontWeight="900">{p.temp.toFixed(1)} °C</text>
-          <text x="1830" y="1226" fill={C.mute} fontSize="24" fontWeight="700">CONSIGNE −18 · ENCLENCHEMENT −14</text>
+          <text x="1830" y="1178" fill={p.temp > (p.seuil !== undefined ? p.seuil : -14.6) ? C.red : C.blue} fontSize="88" fontWeight="900">{(p.temp > 0 ? '+' : '') + p.temp.toFixed(1)} °C</text>
+          <text x="1830" y="1226" fill={C.mute} fontSize="24" fontWeight="700">{p.consigne || 'CONSIGNE −18 · ENCLENCHEMENT −14'}</text>
           <circle cx="2326" cy="1072" r="14" fill={p.energy > 0.5 ? C.orange : '#d6dde5'} />
         </g>
       </g>
@@ -751,12 +751,113 @@
     );
   }
 
+  /* ---- le réseau de commande, calculé (03/10/2026, films 6 à 10) ----------
+     Chaque organe est un élément entre deux nœuds ; une charge (bobine, moteur,
+     résistance) relie son nœud au neutre. Potentiel « phase » : relié à L par des
+     contacts fermés ; « neutre » : relié à N par des contacts fermés et des
+     charges, sans repasser par L. Un nœud qui a les deux est parcouru. Plus de
+     potentiel écrit à la main : l'ancien film 8 montrait KM1 alimenté contact
+     ouvert. */
+  function resoudre(el) {
+    function parcours(depart, passe, bloque) {
+      var vu = {}; vu[depart] = true;
+      var file = [depart];
+      while (file.length) {
+        var n = file.shift();
+        if (n === bloque) continue;
+        for (var i = 0; i < el.length; i++) {
+          var e = el[i];
+          if (!passe(e)) continue;
+          var b = e.charge ? 'N' : e.b;
+          var o = e.a === n ? b : (b === n ? e.a : null);
+          if (o !== null && !vu[o]) { vu[o] = true; file.push(o); }
+        }
+      }
+      return vu;
+    }
+    var L = parcours('L', function (e) { return !e.charge && e.f; }, null);
+    var N = parcours('N', function (e) { return e.charge || e.f; }, 'L');
+    function vif(n) { return n === 'N' || (!!L[n] && !!N[n]); }
+    var conduit = {};
+    el.forEach(function (e) {
+      conduit[e.id] = e.charge ? vif(e.a) : (e.f && vif(e.a) && vif(e.b));
+    });
+    return { L: L, N: N, conduit: conduit };
+  }
+  /* le potentiel d'un fil : son nœud, et les organes qu'il dessert */
+  function modeFil(r, noeud, organes) {
+    if (noeud === 'N') return organes.some(function (o) { return r.conduit[o]; }) ? 'courant' : 'retour';
+    var l = !!r.L[noeud], n = !!r.N[noeud];
+    if (l && n) return (!organes.length || organes.some(function (o) { return r.conduit[o]; })) ? 'courant' : 'phase';
+    if (l) return 'phase';
+    if (n) return 'retour';
+    return 'off';
+  }
+
+  /* Moteur (EN 60617) : le cercle et sa lettre M, vertical, bornes en haut et en bas. */
+  function MoteurV(p) {
+    var x = +p.x, y = +p.y, on = p.live;
+    return (
+      <g>
+        <circle cx={x} cy={y} r="56" fill={on ? '#fff0e9' : C.blueSoft} stroke={on ? C.orangeText : C.blue} strokeWidth="7" />
+        <text x={x} y={y + 6} textAnchor="middle" fill={on ? C.orangeText : C.blue} fontSize="44" fontWeight="900">M</text>
+        <text x={x} y={y + 38} textAnchor="middle" fill={C.mute} fontSize="22" fontWeight="800">1~</text>
+        <text x={x + 74} y={y + 2} fill={on ? C.orangeText : C.blue} fontSize="36" fontWeight="900">{p.code}</text>
+        <text x={x + 74} y={y + 32} fill={C.mute} fontSize="22" fontWeight="700">{p.sub}</text>
+      </g>
+    );
+  }
+
+  /* La carte « séquence » : les étapes à réciter, celle en cours s'allume. */
+  function Etapes(p) {
+    var k = p.k, w = p.w || 1520, pas = p.pas || 140, haut = p.haut || 124;
+    return (
+      <g transform={'translate(' + p.x + ',' + p.y + ')'}>
+        <rect x="0" y="0" width={w} height={p.h || 960} rx="20" fill={C.card} stroke={C.blue} strokeWidth="5" />
+        <text x="44" y="76" fill={C.orangeText} fontSize="40" fontWeight="900" letterSpacing="3">{p.titre}</text>
+        {p.phases.map(function (ph, i) {
+          var y = 112 + i * pas, fait = i < k, ici = i === k;
+          var fond = ici ? '#fff0e9' : (fait ? '#e4f2ec' : C.card);
+          var bord = ici ? C.orangeText : (fait ? C.green : C.line);
+          return (
+            <g key={i}>
+              <rect x="30" y={y} width={w - 60} height={haut} rx="16" fill={fond} stroke={bord} strokeWidth={ici ? 7 : 4} />
+              <circle cx="100" cy={y + haut / 2} r="38" fill={ici ? C.orangeText : (fait ? C.green : C.card)} stroke={bord} strokeWidth="4" />
+              <text x="100" y={y + haut / 2 + 14} textAnchor="middle" fill={ici || fait ? C.card : C.mute} fontSize="38" fontWeight="900">{fait ? '✓' : i + 1}</text>
+              <text x="166" y={y + haut / 2 - 8} fill={ici ? C.orangeText : (fait ? C.green : C.mute)} fontSize="40" fontWeight="900" letterSpacing="1">{ph[0]}</text>
+              <text x="166" y={y + haut / 2 + 36} fill={ici ? C.ink : C.mute} fontSize="28" fontWeight="700">{ph[1]}</text>
+            </g>
+          );
+        })}
+      </g>
+    );
+  }
+
+  /* Le surligneur à zones : un cadre ambre sur la zone dont la voix parle,
+     [x, y, largeur, hauteur] par instant ; null = le plan entier, il s'efface. */
+  function Surligneur(p) {
+    var V = p.zones, T = p.T, k = 0;
+    for (var i = 0; i < V.length; i++) if (T >= V[i].t) k = i;
+    var b = V[k].r, a = k > 0 ? V[k - 1].r : b;
+    var u = Easing.easeInOutCubic(clamp((T - V[k].t) / 0.9, 0, 1));
+    var o = b ? 1 : 1 - u;
+    if (!b) b = a;
+    if (!a) a = b;
+    if (!b || o <= 0.01) return null;
+    var q = [0, 1, 2, 3].map(function (j) { return a[j] + (b[j] - a[j]) * u; });
+    return (
+      <rect x={q[0]} y={q[1]} width={q[2]} height={q[3]} rx="60" fill="#f5c84c" fillOpacity="0.08" opacity={o}
+            stroke="#e6a817" strokeWidth={p.ep || 26} strokeOpacity={0.78 + 0.17 * Math.sin(T * 2.4)} pointerEvents="none" />
+    );
+  }
+
   window.RK = {
     C: C, MOTION: MOTION, camAt: camAt, camFixed: camFixed, camPaliers: camPaliers, Spot: Spot, Chip: Chip, Coil: Coil, Fan: Fan,
     SymCompresseur: SymCompresseur, SymDetendeur: SymDetendeur, Compresseur: Compresseur,
     Pipes: Pipes, MigrationFlux: MigrationFlux, Croix: Croix, CroixLabels: CroixLabels,
     ChambreFond: ChambreFond, Chambre: Chambre, Machine: Machine, PipeChips: PipeChips,
     ContactNO: ContactNO, ContactNF: ContactNF, Disjoncteur: Disjoncteur, Bobine: Bobine, Manometre: Manometre,
-    PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, VoyantV: VoyantV, Potentiel: Potentiel
+    PorteFusible: PorteFusible, ContactV: ContactV, BobineV: BobineV, VoyantV: VoyantV, Potentiel: Potentiel,
+    resoudre: resoudre, modeFil: modeFil, MoteurV: MoteurV, Etapes: Etapes, Surligneur: Surligneur
   };
 })();
