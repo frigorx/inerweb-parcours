@@ -13,10 +13,10 @@ sur le MÊME schéma (armoire exposée par le film : RK01, RK02, RK3, RK4, RK5 ;
 | 4 | pump-down amélioré | ✅ neuf | ✅ 04a/b/c | ✅ 03/10 |
 | 5 | pump-down unique | ✅ refait sur l'annexe 3 EP2 CAP VAF 2016 | ✅ 05a/b/c | ✅ 03/10 |
 | 6 | sans dégivrage commandé | ✅ neuf, fiche 6.1 1er principe | ✅ 06a/b/c | ✅ 03/10 |
-| 7 | dégivrage naturel | aucun | à faire | — |
+| 7 | dégivrage naturel | ✅ neuf, fiche 6.1 2e et 3e principes | ✅ 07a/b/c | ✅ 03/10 |
 | 8 | dégivrage électrique | ✅ refait sur la fiche 6.3 (relais calculés) | ✅ 08a/b/c | ✅ 03/10 |
-| 9 | gaz chauds | aucun | à faire | — |
-| 10 | inversion de cycle | aucun | à faire | — |
+| 9 | gaz chauds | ✅ neuf, commande du schéma CAP C4 (voir plus bas) | ✅ 09a/b/c | ✅ 03/10 |
+| 10 | inversion de cycle | ✅ neuf, SANS armoire (voir plus bas) | ✅ 10a/b/c | ✅ 03/10 |
 
 ## Station 8 — FAIT le 03/10 (voir le bloc d'en-tête de regules-08.jsx : lectures tranchées de la fiche)
 ### Défauts constatés le 03/10 avant réfection dans le film en ligne (à 0:25, pendant le tirage)
@@ -52,3 +52,13 @@ sur le MÊME schéma (armoire exposée par le film : RK01, RK02, RK3, RK4, RK5 ;
   (mesure les MP3 et dit quelles scènes allonger). Enceinte + 1re scène = 13 s (repères du kit à 13 s).
 - Station 8 : « B4 » de la fiche 6.3 = contact NF de l'horloge (fiche 6.1) ; « RD 1-2 colonne 7 » =
   renvoi recopié de la 6.2, non repris.
+
+## Stations 9 et 10 — choix à faire valider par Franck (03/10)
+- **9 gaz chauds** : la commande de la fiche « 3 Électricité » ne peut pas dégivrer compresseur en marche
+  (KM1 23-24 tient RFD qui bloque RD) et ne coupe pas les ventilateurs. Le film suit donc le
+  « SCHEMA DE COMMANDE DEGIVRAGE GAZ CHAUDS.doc » (CAP IFCA, C4) — P, B4, KA1 (11-12 sur Y1, 25-26 temporisé
+  sur les ventilateurs, 43-44 sur Y3) — et la fiche 3 pour le fluidique. La vanne Y2 « froid » N.O. du
+  schéma CAP (installation à deux évaporateurs du TP) n'est pas reprise. Nouvelle source `hotgasCap`.
+- **10 inversion** : aucune source ne donne le schéma électrique ⇒ pas d'armoire (règle : pas de schéma
+  inventé). Circuit d'après « Les dégivrages » p. 4, vanne en coupe reprise de CartoClim 2.6. Si Franck a
+  un schéma de commande, l'ajouter comme armoire calculée (même méthode que 6 à 9).
