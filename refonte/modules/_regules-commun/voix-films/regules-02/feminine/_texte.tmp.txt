@@ -1,0 +1,1 @@
+Retenez-le : thermostat et pressostats autorisent ensemble le compresseur et l'électrovanne. Si l'un d'eux s'ouvre, tout s'arrête.

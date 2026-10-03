@@ -1,0 +1,1 @@
+Retenez-le : le thermostat commande l'électrovanne, la basse pression commande le compresseur. L'évaporateur est vidé à chaque arrêt, mais une simple remontée de pression fait recoller le compresseur.

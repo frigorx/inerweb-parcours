@@ -1,0 +1,1 @@
+Retenez-le : la B P de régulation fait le tirage au vide, la B P de sécurité arrête tout et le signale. Une fuite ne devient pas une suite de courts cycles.
