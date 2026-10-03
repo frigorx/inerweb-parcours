@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03b",
+    version: "2026-10-03c",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -270,15 +270,9 @@
               "Le pressostat BP de régulation arrête et redémarre le compresseur selon la pression d’aspiration."
             ],
             box: { type: "key", label: "La clé", text: "Thermostat → Y1 ; pressostat BP de régulation → KM1." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel du pump-down automatique en deux voies",
-              title: "Deux commandes séparées",
-              rungs: [
-                { label: "Ligne liquide", contacts: [{ code: "B1", label: "Thermostat" }], coil: { code: "Y1", label: "Électrovanne" } },
-                { label: "Compresseur", contacts: [{ code: "HP", label: "Sécurité" }, { code: "BP", label: "Régulation" }], coil: { code: "KM1", label: "Compresseur" } }
-              ]
-            }
+            /* 03/10/2026 : planches pas à pas sur le schéma du film 3. */
+            visual: { kind: "planche", fichier: "planche-03a-deux-voies.html",
+                      label: "Planche pas à pas : le thermostat commande Y1, la pression BP commande KM1" }
           },
           {
             id: "tirage",
@@ -291,11 +285,10 @@
               "Au seuil réglé pour l’installation, le pressostat BP ouvre et arrête KM1."
             ],
             box: { type: "exam", label: "À réciter", text: "Consigne → Y1 ferme → KM1 continue → BP baisse → pressostat ouvre → KM1 s’arrête." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence manuelle d’un arrêt par pump-down automatique",
-              steps: ["La consigne est atteinte", "B1 ouvre", "Y1 ferme", "KM1 continue d’aspirer", "La BP diminue", "Le BP de régulation ouvre", "KM1 s’arrête"]
-            }
+            /* `steps` reste : le mini-jeu « La séquence » y pioche ses étapes (jeux.js). */
+            visual: { kind: "planche", fichier: "planche-03b-tirage.html",
+                      label: "Planche pas à pas : Y1 se ferme, le compresseur tire au vide, la BP l’arrête",
+              steps: ["La consigne est atteinte", "B1 ouvre", "Y1 ferme", "KM1 continue d’aspirer", "La BP diminue", "Le BP de régulation ouvre", "KM1 s’arrête"] }
           },
           {
             id: "court-cycle",
@@ -308,14 +301,8 @@
               "Il aspire quelques instants, recoupe en BP, puis peut recommencer : c’est le court cycle à rechercher."
             ],
             box: { type: "warning", label: "Le piège", text: "Le pressostat BP de la boucle est un organe de régulation à réenclenchement automatique, pas la sécurité BP." },
-            visual: {
-              kind: "compare",
-              label: "Différence entre arrêt stable et court cycle du pump-down automatique",
-              cards: [
-                { state: "ok", title: "ARRÊT STABLE", text: "BP reste basse, KM1 reste arrêté" },
-                { state: "danger", title: "COURT CYCLE", text: "BP remonte, KM1 repart sans demande" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-03c-defaut.html",
+                      label: "Planche pas à pas : la BP remonte à l’arrêt et KM1 recolle sans demande" }
           }
         ],
         quiz: [

@@ -184,9 +184,9 @@
     );
   }
 
-  function Piece(props) {
-    var c = useComposition();
-    var T = c.T, CUES = c.CUES;
+  /* Les états de l'installation à l'instant T du film. Exposé (RK3.etat)
+     pour les planches pas à pas des écrans de cours : une seule logique. */
+  function etat(T, CUES, total) {
     var tY1c = CUES.Fermeture + 1.6;
     var tKMc = CUES.Fermeture + 2.4;
     var tY1o = CUES.Consigne + 3.4;
@@ -209,10 +209,10 @@
     var phase = accumIvs(Tm, kmIvs);
     var energy = kmLive ? 1 : 0;
 
-    var temp = pw(Tm, [[0, -15.4], [tY1c, -14.0], [tY1o, -18.0], [c.authoredTotal, -15.4]]);
+    var temp = pw(Tm, [[0, -15.4], [tY1c, -14.0], [tY1o, -18.0], [total, -15.4]]);
     var bp = pw(Tm, [[0, 1.55], [tY1c, 1.72], [tY1c + 0.6, 3.0], [tY1c + 1.8, 2.35], [tY1o, 2.25],
                     [tY1o + 1.1, 1.0], [tKMo, 0.30], [s1[0], 1.80], [s1[1], 0.32],
-                    [s2[0], 1.80], [s2[1], 0.32], [c.authoredTotal, 1.05]]);
+                    [s2[0], 1.80], [s2[1], 0.32], [total, 1.05]]);
 
     var charge = Tm < tY1c ? 0
       : (Tm < tY1o ? clamp((Tm - tY1c) / 1.2, 0, 1) * 0.34
@@ -225,6 +225,17 @@
       : 0;
     var bpArm = kmLive ? 0 : -30;
     var fault = T >= CUES.CourtCycle + 4.0 && T < CUES.Chronologie - 0.4;
+
+    return { Tm: Tm, kmLive: kmLive, y1Live: y1Live, flow: flow, phase: phase, energy: energy, temp: temp,
+             bp: bp, charge: charge, frostU: frostU, arm: arm, replayF: replayF, bpArm: bpArm, fault: fault };
+  }
+
+  function Piece(props) {
+    var c = useComposition();
+    var T = c.T, CUES = c.CUES;
+    var e = etat(T, CUES, c.authoredTotal);
+    var kmLive = e.kmLive, y1Live = e.y1Live, flow = e.flow, phase = e.phase, energy = e.energy, temp = e.temp;
+    var bp = e.bp, charge = e.charge, frostU = e.frostU, arm = e.arm, replayF = e.replayF, bpArm = e.bpArm, fault = e.fault;
 
     var cam = RK.camFixed(T); /* 23/08 : plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
@@ -361,4 +372,5 @@
   }
 
   window.RegulesPumpDownAuto = RegulesPumpDownAuto;
+  window.RK3 = { Cabinet: Cabinet, etat: etat };
 })();

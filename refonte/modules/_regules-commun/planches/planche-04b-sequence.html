@@ -2292,17 +2292,6 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   (function() {
     var clamp = window.clamp, Easing = window.Easing;
     var RK = window.RK, C = RK.C;
-    var CUES = {
-      Enceinte: 0,
-      Fermeture: 6,
-      Circulation: 13,
-      Consigne: 23,
-      SansCourtCycle: 31,
-      Chronologie: 38,
-      CycleComplet: 44,
-      LaCle: 60
-    };
-    var TOTAL = 64;
     var FONT = '"Trebuchet MS", Calibri, sans-serif';
     function fr(v, n) {
       return v.toFixed(n).replace(".", ",").replace("-", "\u2212");
@@ -2367,7 +2356,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var e = p.etapes[k];
       var u = clamp((now - t0 - 0.4) / (e.dur || 1.2), 0, 1);
       var T = e.de + (e.a - e.de) * Easing.easeInOutCubic(u);
-      return /* @__PURE__ */ React.createElement("div", { className: "pl" }, /* @__PURE__ */ React.createElement("header", { className: "pl-texte", "aria-live": "polite" }, /* @__PURE__ */ React.createElement("div", { className: "pl-num" }, p.titre, " \xB7 \xE9tape ", k + 1, " / ", n), /* @__PURE__ */ React.createElement("h3", null, e.titre), /* @__PURE__ */ React.createElement("p", null, e.texte)), /* @__PURE__ */ React.createElement("div", { className: "pl-vue" }, /* @__PURE__ */ React.createElement("svg", { viewBox: p.viewBox, preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": e.titre }, /* @__PURE__ */ React.createElement("g", { fontFamily: FONT }, p.vue(T, now, k), /* @__PURE__ */ React.createElement(Spots, { zones: e.zones, u, now })))), /* @__PURE__ */ React.createElement("nav", { className: "pl-nav", "aria-label": "\xC9tapes" }, /* @__PURE__ */ React.createElement("button", { type: "button", onClick: function() {
+      var vb = p.viewBox.split(/\s+/).map(Number);
+      return /* @__PURE__ */ React.createElement("div", { className: "pl" }, /* @__PURE__ */ React.createElement("header", { className: "pl-texte", "aria-live": "polite" }, /* @__PURE__ */ React.createElement("div", { className: "pl-num" }, p.titre, " \xB7 \xE9tape ", k + 1, " / ", n), /* @__PURE__ */ React.createElement("h3", null, e.titre), /* @__PURE__ */ React.createElement("p", null, e.texte)), /* @__PURE__ */ React.createElement("div", { className: "pl-vue" }, /* @__PURE__ */ React.createElement("svg", { viewBox: p.viewBox, preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": e.titre }, /* @__PURE__ */ React.createElement("clipPath", { id: "pl-cadre" }, /* @__PURE__ */ React.createElement("rect", { x: vb[0], y: vb[1], width: vb[2], height: vb[3] })), /* @__PURE__ */ React.createElement("g", { fontFamily: FONT, clipPath: "url(#pl-cadre)" }, p.vue(T, now, k), /* @__PURE__ */ React.createElement(Spots, { zones: e.zones, u, now })))), /* @__PURE__ */ React.createElement("nav", { className: "pl-nav", "aria-label": "\xC9tapes" }, /* @__PURE__ */ React.createElement("button", { type: "button", onClick: function() {
         aller(k - 1);
       }, disabled: k === 0 }, "\u25C0 Pr\xE9c\xE9dent"), /* @__PURE__ */ React.createElement("div", { className: "pl-points" }, p.etapes.map(function(x, i) {
         return /* @__PURE__ */ React.createElement(
@@ -2419,38 +2409,81 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       ), /* @__PURE__ */ React.createElement("text", { x: p.x, y: p.y + 104, textAnchor: "middle", fill: on ? C.orangeText : C.mute, fontSize: "28", fontWeight: "900" }, on ? "TOURNE" : "ARR\xCAT\xC9"));
     }
     function Air(p) {
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "246", y: "672", width: "216", height: "118", rx: "12", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "354", y: "706", textAnchor: "middle", fill: C.mute, fontSize: "24", fontWeight: "800", letterSpacing: "2" }, "AIR CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: "354", y: "766", textAnchor: "middle", fill: C.blue, fontSize: "44", fontWeight: "900" }, fr(p.temp, 1), " \xB0C"), /* @__PURE__ */ React.createElement("line", { x1: "354", y1: "790", x2: "354", y2: "825", stroke: C.mute, strokeWidth: "4", strokeDasharray: "10 8" }));
+      var cx = p.cx;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: cx - 108, y: "646", width: "216", height: "118", rx: "12", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: cx, y: "680", textAnchor: "middle", fill: C.mute, fontSize: "24", fontWeight: "800", letterSpacing: "2" }, "AIR CHAMBRE"), /* @__PURE__ */ React.createElement("text", { x: cx, y: "740", textAnchor: "middle", fill: C.blue, fontSize: "44", fontWeight: "900" }, fr(p.temp, 1), " \xB0C"), /* @__PURE__ */ React.createElement("line", { x1: cx, y1: "764", x2: cx, y2: "825", stroke: C.mute, strokeWidth: "4", strokeDasharray: "10 8" }));
     }
     function PriseBP(p) {
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement(RK.Manometre, { x: 1290, y: 545, r: 120, val: p.bp, cutOut: 0.3, cutIn: 1.8, label: "PRESSION BP" }), /* @__PURE__ */ React.createElement("path", { d: "M 1410 590 L 1446 590 L 1446 635 L 1484 635", fill: "none", stroke: C.mute, strokeWidth: "4", strokeDasharray: "10 8" }));
+      var x = p.x, y = p.y, r = p.r || 120, cx = p.tx - 38;
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement(RK.Manometre, { x, y, r, val: p.bp, cutOut: 0.3, cutIn: 1.8, label: "PRESSION BP" }), /* @__PURE__ */ React.createElement(
+        "path",
+        {
+          d: "M " + (x + r) + " " + (y + 45) + " L " + cx + " " + (y + 45) + " L " + cx + " " + p.ty + " L " + p.tx + " " + p.ty,
+          fill: "none",
+          stroke: C.mute,
+          strokeWidth: "4",
+          strokeDasharray: "10 8"
+        }
+      ));
     }
     function Courbe(p) {
-      var t0 = 20, t1 = 37, X0 = 610, X1 = 960;
+      var x = p.x, y = p.y, t0 = p.t0, t1 = p.t1, X0 = x + 65, X1 = x + 415;
       function X(t2) {
         return X0 + (X1 - X0) * (t2 - t0) / (t1 - t0);
       }
       function Y(b) {
-        return 620 - clamp(b / 3, 0, 1) * 200;
+        return y + 290 - clamp(b / 3, 0, 1) * 200;
       }
       var tc = clamp(p.T, t0, t1);
       var d = "", dk = "", prec = null;
       for (var t = t0; t <= tc + 1e-4; t += 0.1) {
-        var e = window.RK4.etat(t, CUES, TOTAL);
+        var e = p.etat(t);
         d += (d ? " L " : "M ") + X(t).toFixed(1) + " " + Y(e.bp).toFixed(1);
-        var yk = e.kmLive ? 665 : 705;
+        var yk = e.kmLive ? y + 335 : y + 375;
         if (prec === null) dk = "M " + X(t).toFixed(1) + " " + yk;
         else if (yk !== prec) dk += " L " + X(t).toFixed(1) + " " + prec + " L " + X(t).toFixed(1) + " " + yk;
         prec = yk;
       }
       if (prec !== null) dk += " L " + X(tc).toFixed(1) + " " + prec;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "545", y: "330", width: "440", height: "410", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: "568", y: "372", fill: C.orangeText, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "PRESSION BP \xB7 KM1"), [[1.8, "1,8", C.orangeText], [0.3, "0,3", C.blue]].map(function(l) {
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x, y, width: "440", height: "410", rx: "16", fill: C.card, stroke: C.blue, strokeWidth: "4" }), /* @__PURE__ */ React.createElement("text", { x: x + 23, y: y + 42, fill: C.orangeText, fontSize: "26", fontWeight: "900", letterSpacing: "2" }, "PRESSION BP \xB7 KM1"), [[1.8, "1,8", C.orangeText], [0.3, "0,3", C.blue]].map(function(l) {
         return /* @__PURE__ */ React.createElement("g", { key: l[0] }, /* @__PURE__ */ React.createElement("line", { x1: X0, y1: Y(l[0]), x2: X1, y2: Y(l[0]), stroke: l[2], strokeWidth: "3", strokeDasharray: "12 10", opacity: "0.75" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: Y(l[0]) + 9, textAnchor: "end", fill: l[2], fontSize: "24", fontWeight: "800" }, l[1]));
-      }), /* @__PURE__ */ React.createElement("path", { d, fill: "none", stroke: C.red, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: "697", textAnchor: "end", fill: C.blue, fontSize: "24", fontWeight: "800" }, "KM1"), /* @__PURE__ */ React.createElement("path", { d: dk, fill: "none", stroke: C.orangeText, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("line", { x1: X(tc), y1: "395", x2: X(tc), y2: "720", stroke: C.orange, strokeWidth: "4" }));
+      }), /* @__PURE__ */ React.createElement("path", { d, fill: "none", stroke: C.red, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("text", { x: X0 - 10, y: y + 367, textAnchor: "end", fill: C.blue, fontSize: "24", fontWeight: "800" }, "KM1"), /* @__PURE__ */ React.createElement("path", { d: dk, fill: "none", stroke: C.orangeText, strokeWidth: "7", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("line", { x1: X(tc), y1: y + 65, x2: X(tc), y2: y + 390, stroke: C.orange, strokeWidth: "4" }));
+    }
+    window.PK = {
+      fr,
+      useHorloge,
+      Spots,
+      Pas,
+      Vanne,
+      Compresseur,
+      Air,
+      PriseBP,
+      Courbe
+    };
+  })();
+})();
+</script>
+<script type="text/plain" id="src4">(() => {
+  (function() {
+    var RK = window.RK, C = RK.C, PK = window.PK;
+    var Pas = PK.Pas, Vanne = PK.Vanne, Compresseur = PK.Compresseur, Air = PK.Air, PriseBP = PK.PriseBP, Courbe = PK.Courbe;
+    var CUES = {
+      Enceinte: 0,
+      Fermeture: 6,
+      Circulation: 13,
+      Consigne: 23,
+      SansCourtCycle: 31,
+      Chronologie: 38,
+      CycleComplet: 44,
+      LaCle: 60
+    };
+    var TOTAL = 64;
+    function etat(t) {
+      return window.RK4.etat(t, CUES, TOTAL);
     }
     function Armoire(p) {
-      var e = window.RK4.etat(p.T, CUES, TOTAL);
+      var e = etat(p.T);
       var Cab = window.RK4.Cabinet;
-      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, arm: e.arm, bpC: e.bpC, kaC: e.kaC, kmC: e.kmC, kmLive: e.kmLive, tenue: 0 })), /* @__PURE__ */ React.createElement(Air, { temp: e.temp }), /* @__PURE__ */ React.createElement(PriseBP, { bp: e.bp }), /* @__PURE__ */ React.createElement(Vanne, { x: 1120, y: 1205, ouverte: e.y1Live }), /* @__PURE__ */ React.createElement(Compresseur, { x: 1445, y: 1040, tourne: e.kmLive, now: p.now }), p.courbe && /* @__PURE__ */ React.createElement(Courbe, { T: p.T }));
+      return /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("g", { transform: "translate(-2520,-100)" }, /* @__PURE__ */ React.createElement(Cab, { T: p.now, arm: e.arm, bpC: e.bpC, kaC: e.kaC, kmC: e.kmC, kmLive: e.kmLive, tenue: 0 })), /* @__PURE__ */ React.createElement(Air, { cx: 354, temp: e.temp }), /* @__PURE__ */ React.createElement(PriseBP, { x: 1290, y: 545, tx: 1484, ty: 635, bp: e.bp }), /* @__PURE__ */ React.createElement(Vanne, { x: 1120, y: 1205, ouverte: e.y1Live }), /* @__PURE__ */ React.createElement(Compresseur, { x: 1445, y: 1040, tourne: e.kmLive, now: p.now }), p.courbe && /* @__PURE__ */ React.createElement(Courbe, { x: 545, y: 330, t0: 20, t1: 37, T: p.T, etat }));
     }
     var VB_ARMOIRE = "100 262 2120 1068";
     var Z = {
@@ -2696,7 +2729,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   window.__resourceBlobs["./animations-v3.js"] = blob('src0');
   window.__resourceBlobs["./regules-kit.js"] = blob('src1');
   window.__resourceBlobs["./regules-04.js"] = blob('src2');
-  window.__resourceBlobs["./planches-04.js"] = blob('src3');
+  window.__resourceBlobs["./planches-kit.js"] = blob('src3');
+  window.__resourceBlobs["./planches-04.js"] = blob('src4');
   window.__resources = window.__resources || {};
   window.__resources["https://unpkg.com/react@18.3.1/umd/react.production.min.js"] = URL.createObjectURL(blob('vendor0'));
   window.__resources["https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"] = URL.createObjectURL(blob('vendor1'));
@@ -4647,7 +4681,7 @@ html, body { margin: 0; padding: 0; background: #f7f1e7; }
 </style>
 </helmet>
 <div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
-  <x-import component-from-global-scope="Planche04Sequence" from="./animations-v3.js ./regules-kit.js ./regules-04.js ./planches-04.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+  <x-import component-from-global-scope="Planche04Sequence" from="./animations-v3.js ./regules-kit.js ./regules-04.js ./planches-kit.js ./planches-04.js" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
 </div>
 </x-dc>
 

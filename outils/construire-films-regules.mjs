@@ -257,8 +257,8 @@ function construire(fichierDc) {
      français des commandes), et purge de la position mémorisée — sans elle, le
      film rouvrait sur sa dernière image au lieu de son début. */
   const nomLisible = planche
-    ? titre.replace(/^Planche\s+0?(\d+)\w*\s+/i, (m, n) => "Régulation " + n + " · planche ")
-        .replace(/Memoire/g, "mémoire").replace(/Sequence/g, "séquence")
+    ? titre.replace(/^Planche\s+0?(\d+)\w*\s+(.*)$/i, (m, n, reste) => "Régulation " + n + " · planche " + reste.toLowerCase())
+        .replace(/memoire/g, "mémoire").replace(/sequence/g, "séquence").replace(/defaut/g, "défaut")
     : titre
     .replace(/^Regules\s+0?(\w+)\s+/i, (m, n) => "Régulation " + n + " · ")
     .replace(/\bdegivrage\b/gi, "dégivrage")
