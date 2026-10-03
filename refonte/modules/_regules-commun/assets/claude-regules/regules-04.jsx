@@ -205,9 +205,9 @@
     );
   }
 
-  function Piece(props) {
-    var c = useComposition();
-    var T = c.T, CUES = c.CUES;
+  /* Les états de l'installation à l'instant T du film. Exposé (RK4.etat)
+     pour les planches pas à pas des écrans de cours : une seule logique. */
+  function etat(T, CUES, total) {
     var tB1c = CUES.Fermeture + 1.2;      /* B1 ferme : la bobine KA est alimentée */
     var tKAc = tB1c + 0.4;                /* les contacts de KA se ferment : Y1 s'ouvre */
     var tBPc = CUES.Fermeture + 3.4;      /* 1,8 bar : la BP ferme, KM1 colle */
@@ -231,10 +231,10 @@
     var phase = clamp(Tm, tBPc, tKMo) - tBPc;
     var energy = kmLive ? 1 : 0;
 
-    var temp = pw(Tm, [[0, -15.4], [tB1c, -14.0], [tB1o, -18.0], [c.authoredTotal, -14.8]]);
+    var temp = pw(Tm, [[0, -15.4], [tB1c, -14.0], [tB1o, -18.0], [total, -14.8]]);
     var bp = pw(Tm, [[0, 1.55], [tKAc, 1.58], [tBPc, 1.8], [tBPc + 0.8, 2.6], [tBPc + 2.2, 2.35], [tB1o, 2.25],
                     [tB1o + 1.6, 1.0], [tKMo, 0.30], [CUES.SansCourtCycle + 1.5, 0.5], [tBPr, 1.80],
-                    [CUES.SansCourtCycle + 6.6, 2.05], [c.authoredTotal, 2.15]]);
+                    [CUES.SansCourtCycle + 6.6, 2.05], [total, 2.15]]);
 
     var charge = Tm < tKAc ? 0
       : (Tm < tB1o ? clamp((Tm - tKAc) / 1.2, 0, 1) * 0.34
@@ -245,6 +245,17 @@
     var replayF = enRejeu
       ? pw(Tm, [[tB1c - 1, 0.08], [tB1c, 0.10], [tBPc, 0.14], [tB1o, 0.42], [tKMo, 0.50], [tKMo + 3, 0.52]])
       : 0;
+
+    return { Tm: Tm, kaC: kaC, bpC: bpC, kmC: kmC, kmLive: kmLive, y1Live: y1Live, flow: flow, phase: phase,
+             energy: energy, temp: temp, bp: bp, charge: charge, frostU: frostU, arm: arm, replayF: replayF };
+  }
+
+  function Piece(props) {
+    var c = useComposition();
+    var T = c.T, CUES = c.CUES;
+    var e = etat(T, CUES, c.authoredTotal);
+    var kaC = e.kaC, bpC = e.bpC, kmC = e.kmC, kmLive = e.kmLive, y1Live = e.y1Live, flow = e.flow, phase = e.phase;
+    var energy = e.energy, temp = e.temp, bp = e.bp, charge = e.charge, frostU = e.frostU, arm = e.arm, replayF = e.replayF;
 
     var cam = RK.camFixed(T, 4720); /* plan général permanent, le Spot guide l'œil */
     var font = props.dys ? 'LexendLocal, "Trebuchet MS", sans-serif' : '"Trebuchet MS", Calibri, sans-serif';
@@ -386,4 +397,5 @@
   }
 
   window.RegulesPumpDownAmeliore = RegulesPumpDownAmeliore;
+  window.RK4 = { Cabinet: Cabinet, etat: etat };
 })();

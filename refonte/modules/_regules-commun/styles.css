@@ -336,6 +336,12 @@ select:focus-visible,
 .film-choice.active { border-color: var(--orange-text); background: #fff2ea; }
 .film-stage { min-width: 0; min-height: 0; padding: 8px; background: #0f1e31; }
 .film-stage iframe { display: block; width: 100%; height: 100%; min-height: 0; border: 0; border-radius: 10px; background: #fff; }
+/* Planches pas à pas (03/10/2026) : le visuel prend la largeur du film. */
+.lesson-card.planche-screen { grid-template-columns: minmax(220px, 0.62fr) minmax(480px, 1.9fr); }
+.planche-screen .visual-panel { display: block; padding: 8px; background: #0f1e31; }
+.planche-stage { position: relative; width: 100%; height: 100%; min-height: 0; }
+.planche-stage iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: 10px; background: #f7f1e7; }
+.planche-screen .copy-panel .film-open { margin-top: 12px; }
 
 .rail { stroke: var(--blue); stroke-width: 7; }
 .wire,
@@ -571,6 +577,7 @@ dialog::backdrop { background: rgba(27, 58, 99, 0.28); }
   .compare-card { padding: 11px; }
   .voice-status { display: none; }
   .film-screen { grid-template-columns: minmax(230px, 0.75fr) minmax(400px, 1.45fr); }
+  .lesson-card.planche-screen { grid-template-columns: minmax(220px, 0.7fr) minmax(400px, 1.6fr); }
 }
 
 @media (max-width: 620px) {
@@ -618,6 +625,7 @@ dialog::backdrop { background: rgba(27, 58, 99, 0.28); }
   .function-arrow { font-size: 0.7rem; }
   .functional-figure figcaption { margin-top: 5px; padding: 5px 6px; font-size: 0.54rem; }
   .lesson-card.film-screen { grid-template-rows: auto minmax(0, 1fr); }
+  .lesson-card.planche-screen { grid-template-rows: minmax(0, 0.62fr) minmax(0, 1.38fr); }
   .film-intro { padding: 8px 10px; border-right: 0; border-bottom: 1px solid var(--line); }
   .film-intro h2 { font-size: 1rem; }
   .film-intro .lead { margin-block: 5px; font-size: 0.7rem; }

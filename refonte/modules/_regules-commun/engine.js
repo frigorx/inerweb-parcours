@@ -166,7 +166,15 @@
       '<g class="component small"><rect x="522" y="218" width="86" height="83" rx="15"/><image href="../symboles/compresseur_general.svg" x="539" y="228" width="52" height="52"/><text x="565" y="293" text-anchor="middle" class="svg-mini">COMPRESSEUR</text></g>' + electric + hotgas + reverse + off + '</svg><figcaption>Repérage fonctionnel simplifié — les flèches et les mots indiquent le mode étudié.</figcaption></figure>';
   }
 
+  /* Planche pas à pas (03/10/2026) : une page autonome de planches/, construite
+     comme les films et avec le même schéma ; elle porte ses propres commandes. */
+  function plancheVisual(visual) {
+    var src = "../_regules-commun/planches/" + escapeHtml(visual.fichier) + "?v=" + encodeURIComponent(catalog.version || "");
+    return '<div class="planche-stage"><iframe src="' + src + '" title="' + escapeHtml(visual.label) + '" loading="eager"></iframe></div>';
+  }
+
   function visualMarkup(visual) {
+    if (visual.kind === "planche") { return plancheVisual(visual); }
     if (visual.kind === "ladder") { return ladderVisual(visual); }
     if (visual.kind === "sequence") { return sequenceVisual(visual); }
     if (visual.kind === "compare") { return compareVisual(visual); }
@@ -179,8 +187,8 @@
     var lesson = module.lessons[state.screen - lessonOffset];
     state.sequenceStep = 0;
     var article = document.getElementById("lesson-card");
-    article.className = "lesson-card";
-    article.innerHTML = '<section class="copy-panel"><p class="kicker">' + escapeHtml(lesson.kicker) + '</p><h2>' + escapeHtml(lesson.title) + '</h2><p class="lead">' + escapeHtml(lesson.lead) + '</p><ul class="details">' + lesson.details.map(function (item) { return '<li>' + escapeHtml(item) + '</li>'; }).join("") + '</ul>' + boxMarkup(lesson.box) + '</section><section class="visual-panel" aria-label="Illustration pédagogique">' + visualMarkup(lesson.visual) + '</section>';
+    article.className = "lesson-card" + (lesson.visual.kind === "planche" ? " planche-screen" : "");
+    article.innerHTML = '<section class="copy-panel"><p class="kicker">' + escapeHtml(lesson.kicker) + '</p><h2>' + escapeHtml(lesson.title) + '</h2><p class="lead">' + escapeHtml(lesson.lead) + '</p><ul class="details">' + lesson.details.map(function (item) { return '<li>' + escapeHtml(item) + '</li>'; }).join("") + '</ul>' + boxMarkup(lesson.box) + (lesson.visual.kind === "planche" ? '<a class="film-open" href="../_regules-commun/planches/' + escapeHtml(lesson.visual.fichier) + '?v=' + encodeURIComponent(catalog.version || "") + '" target="_blank" rel="noopener">Ouvrir la planche en grand ↗</a>' : '') + '</section><section class="visual-panel" aria-label="Illustration pédagogique">' + visualMarkup(lesson.visual) + '</section>';
     bindSequence(lesson.visual);
   }
 

@@ -29,6 +29,9 @@ const ICI = dirname(fileURLToPath(import.meta.url));
 const RACINE = resolve(ICI, "..");
 const SOURCES = resolve(RACINE, "refonte/modules/_regules-commun/assets/claude-regules");
 const SORTIE = resolve(RACINE, "refonte/modules/_regules-commun/films");
+/* Les planches pas à pas des écrans de cours (« Planche … .dc.html ») : même
+   chaîne, sans barre de lecture ni voix — elles ont leurs propres commandes. */
+const SORTIE_PLANCHES = resolve(RACINE, "refonte/modules/_regules-commun/planches");
 
 /* React est déjà dans l'écosystème : on ne télécharge rien. */
 const VENDOR = resolve(RACINE, "../pilote-fluides/moteur/vendor");
@@ -244,6 +247,7 @@ function construire(fichierDc) {
 
   const support = readFileSync(join(SOURCES, "support.js"), "utf8");
   const titre = basename(fichierDc, ".dc.html");
+  const planche = /^Planche\s/i.test(titre);
 
   /* 3 bis · la voix, si elle a été fabriquée pour ce film */
   const voix = voixDe(fichierDc, html);
@@ -252,7 +256,10 @@ function construire(fichierDc) {
      écrans à encoche, titre lisible, feuille et script d'accessibilité (libellés
      français des commandes), et purge de la position mémorisée — sans elle, le
      film rouvrait sur sa dernière image au lieu de son début. */
-  const nomLisible = titre
+  const nomLisible = planche
+    ? titre.replace(/^Planche\s+0?(\d+)\w*\s+/i, (m, n) => "Régulation " + n + " · planche ")
+        .replace(/Memoire/g, "mémoire").replace(/Sequence/g, "séquence")
+    : titre
     .replace(/^Regules\s+0?(\w+)\s+/i, (m, n) => "Régulation " + n + " · ")
     .replace(/\bdegivrage\b/gi, "dégivrage")
     .replace(/\belectrique\b/gi, "électrique")
@@ -266,7 +273,7 @@ function construire(fichierDc) {
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
     '<meta name="robots" content="noindex, nofollow">',
     "<title>" + nomLisible + " — inerWeb Édu</title>",
-    '<link rel="stylesheet" href="../film-accessible.css">',
+    planche ? "" : '<link rel="stylesheet" href="../film-accessible.css">',
     '<script>try { localStorage.removeItem("animstage-v3:t"); } catch (err) {}</script>',
     "</head>",
     "<body>",
@@ -277,14 +284,14 @@ function construire(fichierDc) {
     corps,
     voix ? voix.map((p, i) => '<script type="text/plain" id="voix' + i + '">' + p.son + "</script>").join("\n") : "",
     voix ? lecteurVoix(voix) : "",
-    barreLecture(),
-    '<script src="../film-accessible.js"></script>',
+    planche ? "" : barreLecture(),
+    planche ? "" : '<script src="../film-accessible.js"></script>',
     "</body>",
     "</html>",
   ].join("\n");
 
-  mkdirSync(SORTIE, { recursive: true });
-  const cible = join(SORTIE, titre.replace(/\s+/g, "-").toLowerCase() + ".html");
+  mkdirSync(planche ? SORTIE_PLANCHES : SORTIE, { recursive: true });
+  const cible = join(planche ? SORTIE_PLANCHES : SORTIE, titre.replace(/\s+/g, "-").toLowerCase() + ".html");
   writeFileSync(cible, page, "utf8");
 
   /* 4 · contrôle : une page autonome ne garde aucune adresse distante active */

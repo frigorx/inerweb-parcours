@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03a",
+    version: "2026-10-03b",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -346,16 +346,10 @@
               "À la consigne, KA retombe ; KM1 finit le tirage au vide grâce à son maintien, puis s’arrête."
             ],
             box: { type: "key", label: "La clé", text: "Après l’arrêt en BP, une remontée de pression ne suffit plus : la mémoire de demande est tombée." },
-            visual: {
-              kind: "ladder",
-              label: "Schéma fonctionnel du pump-down amélioré avec relais de mémoire",
-              title: "Relais de demande",
-              rungs: [
-                { label: "Mémoire de demande", contacts: [{ code: "B1", label: "Thermostat" }], coil: { code: "KA", label: "Relais" } },
-                { label: "Ligne liquide", contacts: [{ code: "KA", label: "Autorisation" }], coil: { code: "Y1", label: "Électrovanne" } },
-                { label: "Compresseur", contacts: [{ code: "BP", label: "Régulation" }, { code: "KA/KM1", label: "Maintien" }], coil: { code: "KM1", label: "Compresseur" } }
-              ]
-            }
+            /* 03/10/2026 : planches pas à pas sur le schéma du film (retour F. Henninot :
+               « l'infographie n'est pas à la hauteur »). */
+            visual: { kind: "planche", fichier: "planche-04a-memoire.html",
+                      label: "Planche pas à pas : le démarrage, du thermostat au compresseur" }
           },
           {
             id: "un-cycle",
@@ -368,11 +362,8 @@
               "Le BP peut ensuite se refermer : KM1 reste arrêté tant que B1 n’a pas rappelé KA."
             ],
             box: { type: "exam", label: "Vocabulaire local", text: "Les supports locaux nomment aussi cette logique « pump-down unique » ou « single pump-down »." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence du pump-down avec anti-redémarrage parasite",
-              steps: ["B1 demande le froid", "KA autorise Y1", "KM1 démarre sur BP", "B1 atteint la consigne", "KA et Y1 retombent", "KM1 finit le tirage", "BP ouvre, KM1 retombe", "Une BP parasite ne suffit plus à repartir"]
-            }
+            visual: { kind: "planche", fichier: "planche-04b-sequence.html",
+                      label: "Planche pas à pas : l’arrêt, le tirage au vide et la BP qui remonte sans relancer KM1" }
           },
           {
             id: "preuve",
@@ -385,14 +376,8 @@
               "Simuler une remontée de BP après l’arrêt et vérifier que KM1 ne repart pas sans demande."
             ],
             box: { type: "warning", label: "Le piège", text: "Un relais câblé autrement peut assurer une autre fonction : toujours suivre les conducteurs et les repères." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison du résultat attendu avec une erreur de câblage",
-              cards: [
-                { state: "ok", title: "ATTENDU", text: "BP remonte, KM1 reste arrêté" },
-                { state: "danger", title: "À REVOIR", text: "BP remonte, KM1 redémarre hors demande" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-04c-diagnostic.html",
+                      label: "Planche pas à pas : le test, KA 43-44 câblé contre un pont à sa place" }
           }
         ],
         quiz: [
