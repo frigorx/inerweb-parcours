@@ -65,6 +65,12 @@ planche de relecture les nomme et les filtre ; **personne n’a écouté les 94 
 
 ---
 
+## Les régules — 3 octobre 2026 : les 10 stations refaites et EN LIGNE
+Film narré + trois planches pas à pas par station, catalogue `2026-10-03j`. Le point d'entrée est
+`refonte/modules/_regules-commun/assets/claude-regules/PLAN-REFONTE-PLANCHES.md` (méthode, sources,
+choix des stations 9 et 10 à faire valider). Films 6 à 10 : relais calculés par `RK.resoudre` (kit).
+Livraison : `outils/livrer-regules-planches.mjs` dans un worktree détaché de pilote-fluides.
+
 ## Où en est la rame « Les régules » — 22 août 2026
 
 **En ligne sur inerweb.fr depuis le 22/08** : la ligne 🔌 LA RÉGULATION porte les dix
