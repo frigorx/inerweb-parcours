@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"Chambre negative ; armoire : pump-down, ventilateurs, horloge P, KA1, Y3"},{"name":"Marche","dur":7,"desc":"B1 ouvre Y1, la BP fait coller KM1, KM2 tourne"},{"name":"Circulation","dur":10,"desc":"Tour de la croix ; piquage sur le refoulement, vanne Y3 fermee"},{"name":"Horloge","dur":13,"desc":"P fait coller KA1 : Y1 fermee, ventilateurs arretes, Y3 ouverte ; le compresseur continue"},{"name":"Fonte","dur":15,"desc":"Le gaz chaud fait fondre le givre, condensation, reevaporation ; B4 a +10 fait retomber KA1"},{"name":"Reprise","dur":10,"desc":"Froid repris, ventilateurs retardes par KA1 25-26"},{"name":"Chronologie","dur":8,"desc":"Chronogramme : air, P, KA1, Y1, Y3, KM1, batterie, KM2"},{"name":"CycleComplet","dur":16,"desc":"Plan large : la sequence se rejoue"},{"name":"LaCle","dur":10,"desc":"Carte de synthese de la station 9"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "zooms": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesGazChauds" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-kit.jsx ./regules-09.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>

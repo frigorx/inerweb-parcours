@@ -314,7 +314,8 @@
         {lines.map(function (l, i) {
           return (
             <path key={'f' + i} d={l.d} fill="none" stroke={l.col} strokeWidth="11" strokeLinecap="round" strokeLinejoin="round"
-                  strokeDasharray="34 30" strokeDashoffset={-p.phase * 240} opacity={0.18 + 0.82 * p.flow} />
+                  strokeDasharray="34 30" strokeDashoffset={-p.phase * 240}
+                  opacity={0.18 + 0.82 * (i === 2 && p.flowLiquide !== undefined ? p.flowLiquide : p.flow)} />
           );
         })}
       </g>
@@ -875,7 +876,7 @@
           return (
             <g key={i}>
               {g > 0.02 && <circle cx={q[0]} cy={q[1]} r={40 + 44 * clamp(g, 0, 1.4)} fill="#d6eaf8" stroke="#7fb0d6" strokeWidth="5" />}
-              <circle cx={q[0]} cy={q[1]} r="34" fill={froid ? '#dbe9f6' : '#eef2f6'} stroke={C.blue} strokeWidth="6" />
+              <circle cx={q[0]} cy={q[1]} r="34" fill={p.chaud ? '#fbe0d6' : (froid ? '#dbe9f6' : '#eef2f6')} stroke={p.chaud ? C.red : C.blue} strokeWidth="6" />
             </g>
           );
         })}

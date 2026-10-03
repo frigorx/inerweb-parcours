@@ -42,6 +42,11 @@
       location: "03_BAC-MFER/S2-Systemes/3 Electricité (dégivrages par gaz chauds).pdf",
       use: "piquage refoulement, électrovanne, clapet, fin de dégivrage et risque de retour liquide"
     },
+    hotgasCap: {
+      title: "Schéma de commande — dégivrage par gaz chauds",
+      location: "02_CAP-IFCA/C4-MettreEnService/SCHEMA DE COMMANDE DEGIVRAGE GAZ CHAUDS.doc",
+      use: "pump-down, relais de dégivrage KA1 sur horloge et sonde de fin, ventilateurs temporisés, électrovanne gaz chauds"
+    },
     givre: {
       title: "Planche inerWeb — Le givre étouffe l’échange",
       location: "pilote-fluides/packs/fluides/res/svg/givre-degivrage.svg",
@@ -53,7 +58,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03h",
+    version: "2026-10-03i",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -595,7 +600,9 @@
         title: "Le dégivrage par gaz chauds",
         shortTitle: "Gaz chauds",
         promise: "Suivre la dérivation du refoulement vers l’évaporateur sans la confondre avec une inversion de cycle.",
-        sourceKeys: ["defrost", "hotgas", "givre"],
+        sourceKeys: ["defrost", "hotgas", "hotgasCap", "givre"],
+        /* 03/10/2026 : commande d’après le schéma CAP (cohérent), principe fluidique d’après la fiche 3. */
+        films: [{ fichier: "regules-09-gaz-chauds.html", titre: "Le film" }],
         lessons: [
           {
             id: "derive",
@@ -608,11 +615,8 @@
               "Un clapet et le tracé prévu empêchent les migrations vers les mauvaises branches."
             ],
             box: { type: "key", label: "La clé", text: "C’est un by-pass de refoulement : le circuit complet n’est pas inversé." },
-            visual: {
-              kind: "circuit",
-              mode: "hotgas",
-              label: "Circuit frigorifique avec dérivation de gaz chauds du refoulement vers l’évaporateur"
-            }
+            visual: { kind: "planche", fichier: "planche-09a-voie.html",
+                      label: "Planche pas à pas : piquage, électrovanne Y3, clapet et té — une dérivation du refoulement" }
           },
           {
             id: "sequence",
@@ -625,11 +629,8 @@
               "La fin sur sonde, l’égouttage et les temporisations restent nécessaires."
             ],
             box: { type: "warning", label: "Sécurité", text: "Le tracé, les organes de détente et la protection anti-coup de liquide dépendent de l’architecture constructeur." },
-            visual: {
-              kind: "sequence",
-              label: "Séquence générale d’un dégivrage par gaz chauds",
-              steps: ["Début du dégivrage", "Ligne liquide isolée", "Ventilateurs arrêtés", "Voie gaz chauds ouverte", "Le givre fond", "Fin sur sonde", "Voie gaz chauds fermée", "Égouttage", "Retour au froid"]
-            }
+            visual: { kind: "planche", fichier: "planche-09b-sequence.html",
+                      label: "Planche pas à pas : l’horloge, KA1 et ses trois contacts, la fin sur B4, les ventilateurs retardés" }
           },
           {
             id: "diagnostic",
@@ -642,15 +643,8 @@
               "Sur une installation multi-postes, vérifier aussi quelle machine fournit le gaz chaud et l’ordre des dégivrages."
             ],
             box: { type: "exam", label: "Prochain contrôle", text: "Après une batterie qui ne chauffe pas, contrôler d’abord que le gaz chaud atteint réellement la branche visée." },
-            visual: {
-              kind: "compare",
-              label: "Indices croisés du dégivrage par gaz chauds",
-              cards: [
-                { state: "ok", title: "VOIE OUVERTE", text: "Refoulement chaud vers la batterie" },
-                { state: "wait", title: "CLAPETS", text: "Sens et isolement des autres branches" },
-                { state: "danger", title: "RETOUR LIQUIDE", text: "Protection et réévaporation à contrôler" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-09c-diagnostic.html",
+                      label: "Planche pas à pas : contrôler la voie de gaz chauds, le clapet, le retour de liquide et les ventilateurs" }
           }
         ],
         quiz: [
