@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -10 40 20" overflow="visible">
-  <line x1="-5" y1="-4.227" x2="-5" y2="1.227" stroke="#000"/><line x1="6" y1=".495" x2="9.75" y2=".495" stroke="#000"/><line x1="2" y1="-.455" x2="2" y2="4.455" stroke="#000"/><rect x="-15.75" y="-5.011" width="21.75" height="10.011" fill="none" stroke="#000"/><line x1="-19.5" y1=".495" x2="-15.75" y2=".495" stroke="#000"/><line x1="-12" y1="-.415" x2="-12" y2="4.415" stroke="#000"/><circle cx="9.75" cy=".495" r="1.5"/><circle cx="-19.5" cy=".495" r="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25.0 -10.0 40 20" overflow="visible"><!-- Filtre déshydrateur, dessin de la planche Eduscol « le circuit frigorifique » (Franck, 03/10/2026) : trait pointillé de chaque côté, croix pointillée au milieu. Cadre et points de raccordement inchangés. -->
+<rect x="-15.75" y="-5.01058" width="21.75" height="10.0106" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-13.6" y1="-5" x2="-13.6" y2="5" stroke="#000" stroke-width="0.7" stroke-dasharray="1 0.9"/>
+<line x1="3.85" y1="-5" x2="3.85" y2="5" stroke="#000" stroke-width="0.7" stroke-dasharray="1 0.9"/>
+<line x1="-13.6" y1="-5" x2="3.85" y2="5" stroke="#000" stroke-width="0.7" stroke-dasharray="1 0.9"/>
+<line x1="-13.6" y1="5" x2="3.85" y2="-5" stroke="#000" stroke-width="0.7" stroke-dasharray="1 0.9"/>
+<line x1="-19.5" y1="0.494709" x2="-15.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+<line x1="6" y1="0.494709" x2="9.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+<circle cx="9.75" cy="0.494709" r="1.5" fill="#000"/>
+<circle cx="-19.5" cy="0.494709" r="1.5" fill="#000"/>
 </svg>

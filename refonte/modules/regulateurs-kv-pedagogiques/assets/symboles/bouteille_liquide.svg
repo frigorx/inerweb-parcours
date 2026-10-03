@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.0 -14.0 50 30" overflow="visible"><line x1="-17" y1="7" x2="17" y2="7" stroke="#000" stroke-width="1"/>
-<line x1="-17" y1="-7" x2="17" y2="-7" stroke="#000" stroke-width="1"/>
-<path d="M 17.50 -7.00 A 2.50 7.00 0 0 1 17.50 7.00" fill="none" stroke="#000" stroke-width="1"/>
-<path d="M -17.50 7.00 A 2.50 7.00 0 0 1 -17.50 -7.00" fill="none" stroke="#000" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24.0 -14.0 50 30" overflow="visible"><!-- Bouteille de liquide couchée, dessin de la planche Eduscol (Franck, 03/10/2026) : capsule, sortie par le tube plongeur, niveau de liquide en pointillés. Cadre et points de raccordement inchangés ; version debout : bouteille_liquide_verticale.svg. -->
+<rect x="-17.5" y="-7" width="35" height="14" rx="7" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="10" y1="-7" x2="10" y2="4.5" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="1.5" x2="15.5" y2="1.5" stroke="#000" stroke-width="0.7" stroke-dasharray="1.2 0.9"/>
+<line x1="17.5" y1="0" x2="20" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-17.5" y1="0" x2="-20" y2="0" stroke="#000" stroke-width="1"/>
 <circle cx="-10" cy="7" r="1.5" fill="#000"/>
 <circle cx="10" cy="7" r="1.5" fill="#000"/>
 <circle cx="10" cy="-7" r="1.5" fill="#000"/>

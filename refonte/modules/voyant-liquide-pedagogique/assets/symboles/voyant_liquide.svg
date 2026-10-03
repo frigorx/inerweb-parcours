@@ -1,3 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -10 50 20" overflow="visible">
-  <line x1="21.727" y1="-.054" x2="27.65" y2="-.054" stroke="#000"/><rect x="-.7" y="-5.792" width="22.75" height="11.792" fill="none" stroke="#000"/><ellipse cx="10.7" cy=".1" rx="6.1" ry="5.9" fill="none" stroke="#000"/><line x1="-7.7" y1="-.054" x2="-.7" y2="-.054" stroke="#000"/><circle cx="27.3" cy="-.054" r="1.5"/><circle cx="-7.7" cy="-.054" r="1.5"/><text x="8" y="3" font-family="sans-serif" font-size="6" fill="#333">V</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.0 -10.0 50 20" overflow="visible"><!-- Voyant liquide, dessin de la planche Eduscol (Franck, 03/10/2026) : petit carré, cercle pointé. Cadre et points de raccordement inchangés. -->
+<line x1="-7.7" y1="-0.0538826" x2="4.8" y2="-0.0538826" stroke="#000" stroke-width="1"/>
+<line x1="16.6" y1="-0.0538826" x2="27.65" y2="-0.0538826" stroke="#000" stroke-width="1"/>
+<rect x="4.8" y="-5.95" width="11.8" height="11.8" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="10.7" cy="-0.05" r="4" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="10.7" cy="-0.05" r="1.4" fill="#000"/>
+<circle cx="27.3" cy="-0.0538826" r="1.5" fill="#000"/>
+<circle cx="-7.7" cy="-0.0538826" r="1.5" fill="#000"/>
 </svg>
