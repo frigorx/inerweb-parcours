@@ -1,46 +1,41 @@
 /* Narration du film « Pump-down et dégivrage électrique » — station 8 des régules.
-   Une entrée par scène du film, dans l'ordre de la timeline.
-   Règles d'écriture : voir `refonte/voix/narrations/LISEZ-MOI.md`. */
+   Réécrite le 03/10/2026 avec le film, refait sur la fiche 6.3 (h1, RD, RFD, B2,
+   KM1 67-68). Une entrée par scène du film, dans l'ordre de la timeline.
+   Règles d'écriture : voir `refonte/voix/narrations/LISEZ-MOI.md` — jamais un
+   numéro de borne à l'oral, les repères sont à l'écran. */
 NARRATION_FILM("regules-08", {
 
   "Enceinte":
-    "L'installation est à l'arrêt. La batterie est propre, sans givre, et l'air de la chambre " +
-    "remonte doucement. Regardez la sonde : c'est elle qui va demander le froid. Rien n'est " +
-    "encore alimenté.",
+    "Une chambre froide négative, à l'arrêt : la batterie est propre.",
 
-  "Fermeture":
-    "Voici l'armoire. Quatre lignes de commande partent du même rail, protégé par le " +
-    "disjoncteur Q un. Le thermostat B un ferme et ouvre l'électrovanne Y un. La pression " +
-    "remonte à l'aspiration, le pressostat B P se referme, et le contacteur K M un colle. " +
-    "Retenez l'ordre : la ligne liquide d'abord, le compresseur ensuite.",
+  "MiseEnService":
+    "B1 ferme : KA1 ouvre l'électrovanne. La BP ferme : KM1 colle. Les ventilateurs, eux, " +
+    "attendent.",
 
   "Circulation":
-    "Le froid est produit. Le fluide fait le tour complet : compresseur, condenseur, détendeur, " +
-    "évaporateur. Et pendant qu'il travaille, le givre s'installe sur la batterie. C'est normal, " +
-    "c'est même le signe que l'échange se fait. Le problème commence quand cette couche isole " +
-    "la batterie.",
+    "Le froid est produit. Pendant ce temps, le givre s'installe sur la batterie. Il isole les " +
+    "ailettes : il faudra le faire fondre.",
 
-  "Consigne":
-    "L'horloge K T prend la main. Elle ne coupe pas le compresseur : elle ferme l'électrovanne. " +
-    "Le compresseur continue seul et tire au vide l'évaporateur, puis s'arrête sur la basse " +
-    "pression. C'est tout l'intérêt du montage : on vide la batterie avant de la chauffer. Les " +
-    "ventilateurs tombent, et K M deux alimente les résistances.",
+  "Horloge":
+    "L'horloge prend la main : elle coupe KA1. L'électrovanne se ferme, le compresseur tire au " +
+    "vide, puis s'arrête sur la BP. Alors seulement, RD colle et les résistances chauffent.",
 
   "Degivrage":
-    "Le givre fond. Faites attention à un piège : les résistances font remonter la pression, " +
-    "et le pressostat de régulation voudrait faire repartir le compresseur. C'est le contact " +
-    "d'horloge, en série sur la ligne du compresseur, qui l'en empêche. Le dégivrage se termine " +
-    "quand la sonde S un atteint plus dix degrés, pas quand le temps est écoulé.",
+    "Le givre fond, l'eau tombe dans le bac. La pression remonte, mais le compresseur ne repart " +
+    "pas : KA1 est toujours coupé. À plus dix degrés, la sonde B2 arrête les résistances, et RFD " +
+    "le retient.",
+
+  "Reprise":
+    "L'égouttage dure jusqu'à la fin de la plage d'horloge. Puis KA1 recolle, l'électrovanne " +
+    "s'ouvre, le compresseur repart. Les ventilateurs attendent la temporisation : la batterie " +
+    "refroidit, et aucune goutte n'est soufflée dans la chambre.",
 
   "Chronologie":
-    "Relisez la chronologie de haut en bas. La batterie se réchauffe, le thermostat et " +
-    "l'électrovanne suivent, la basse pression descend au tirage au vide. Et regardez la " +
-    "dernière ligne : les ventilateurs repartent après tout le monde. Ce retard, c'est " +
-    "l'égouttage.",
+    "Relisez la chronologie : tirage au vide, résistances, égouttage, reprise. Et les " +
+    "ventilateurs en dernier.",
 
   "LaCle":
-    "Trois choses à retenir. Le dégivrage se termine sur une sonde. L'eau doit s'égoutter avant " +
-    "la reprise. Et les ventilateurs redémarrent en dernier, sinon vous soufflez cette eau dans " +
-    "la chambre."
+    "Trois choses à retenir. Les résistances attendent l'arrêt du compresseur. La sonde termine " +
+    "le dégivrage. Et les ventilateurs repartent en dernier."
 
 });

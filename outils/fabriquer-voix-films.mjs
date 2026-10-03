@@ -75,6 +75,10 @@ function idDe(fichierDc) {
 const ORAL = [
   [/\bKM\s*1\b/g, "K M un"],
   [/\bKM\s*2\b/g, "K M deux"],
+  [/\bKA\s*1\b/g, "K A un"],
+  [/\bRFD\b/g, "R F D"],
+  [/\bRD\b/g, "R D"],
+  [/\bB\s*2\b/g, "B deux"],
   [/\bKT\b/g, "K T"],
   [/\bQ\s*1\b/g, "Q un"],
   [/\bY\s*1\b/g, "Y un"],

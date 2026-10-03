@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-10-03e",
+    version: "2026-10-03f",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -572,11 +572,9 @@
               "La sonde de fin de dégivrage mesure l’état thermique de l’évaporateur."
             ],
             box: { type: "key", label: "La clé", text: "Faire fondre ne suffit pas : il faut aussi évacuer l’eau sans qu’elle regèle." },
-            visual: {
-              kind: "circuit",
-              mode: "electric",
-              label: "Évaporateur avec résistances de batterie, de bac et d’écoulement"
-            }
+            /* 03/10/2026 : film 8 refait sur la fiche 6.3, planches pas à pas sur son schéma. */
+            visual: { kind: "planche", fichier: "planche-08a-prise-de-main.html",
+                      label: "Planche pas à pas : l’horloge coupe la demande, RFD verrouille, puis RD alimente les résistances" }
           },
           {
             id: "chronologie",
@@ -589,11 +587,8 @@
               "Ils redémarrent après la reprise du froid, lorsque la batterie est redevenue suffisamment froide."
             ],
             box: { type: "exam", label: "À réciter", text: "Arrêt froid → arrêt ventilateurs → résistances → fin → égouttage → reprise froid → ventilateurs différés." },
-            visual: {
-              kind: "timeline",
-              label: "Chronogramme sans valeur universelle du dégivrage électrique",
-              phases: ["Arrêt du froid", "Ventilateurs arrêtés", "Résistances actives", "Fin sur sonde", "Égouttage", "Reprise du froid", "Ventilateurs différés"]
-            }
+            visual: { kind: "planche", fichier: "planche-08b-sequence.html",
+                      label: "Planche pas à pas : froid, tirage au vide, résistances, fin sur B2, égouttage, reprise, ventilateurs" }
           },
           {
             id: "securites",
@@ -606,15 +601,8 @@
               "Le contrôle porte aussi sur les contacteurs, l’intensité des résistances et l’écoulement."
             ],
             box: { type: "warning", label: "Le piège", text: "Le paramètre de durée n’est pas un diagnostic : vérifier la sonde et le résultat réel sur la batterie." },
-            visual: {
-              kind: "compare",
-              label: "Comparaison entre fin normale sur sonde et sécurité de temps maximal",
-              cards: [
-                { state: "ok", title: "FIN NORMALE", text: "Sonde de batterie" },
-                { state: "wait", title: "GARDE-FOU", text: "Temps maximal" },
-                { state: "danger", title: "DÉFAUT", text: "Givre restant ou chauffage prolongé" }
-              ]
-            }
+            visual: { kind: "planche", fichier: "planche-08c-deux-fins.html",
+                      label: "Planche pas à pas : la BP remonte sans relancer, B2 termine, RFD retient, l’horloge borne la durée" }
           }
         ],
         quiz: [
