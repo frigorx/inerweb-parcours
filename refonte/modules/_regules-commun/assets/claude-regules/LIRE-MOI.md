@@ -12,6 +12,7 @@ sont chargés par les pages).
 | Regules 02 Protection minimum | 2 · thermostat + HP/BP en série, KM1 et Y1 en parallèle | 47 s |
 | Regules 02b Migration de liquide | 2 · migration comparée, avec et sans électrovanne | 34 s |
 | Regules 03 Pump-down automatique | 3 · deux commandes séparées, tirage au vide, court cycle | 47 s |
+| Regules 04 Pump-down ameliore | 4 · relais de demande KA, auto-maintien KM1 13-14, pas de court cycle (03/10/2026) | 64 s |
 | Regules 05 Pump-down unique | 5 · relais de mémoire, BP de régulation et BP de sécurité | 47 s |
 | Regules 08 Pump-down et dégivrage électrique | pump-down + dégivrage électrique complet | 47 s |
 
@@ -35,4 +36,4 @@ Panneau **Tweaks** de chaque page :
 
 Brouillon local — non validé, non publié, non indexé.
 Schémas fonctionnels simplifiés : à confronter aux notices constructeur avant câblage.
-Restent à produire : station 4 (pump-down amélioré) et stations 6, 7, 9, 10 (dégivrage).
+Restent à produire : stations 6, 7, 9, 10 (dégivrage).

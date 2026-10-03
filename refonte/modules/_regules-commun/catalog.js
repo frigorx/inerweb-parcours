@@ -53,7 +53,7 @@
     id: "les-regules",
     title: "Les régules",
     subtitle: "COMMANDER LE FROID · ORGANISER LE DÉGIVRAGE",
-    version: "2026-08-23c",
+    version: "2026-10-03a",
     status: "Version en ligne — relecture métier en cours",
     /* 110 MP3 masculins fabriqués et copiés le 22/08 : 3 leçons,
        4 questions et 4 corrections dans chacune des 10 stations. */
@@ -333,6 +333,7 @@
         shortTitle: "Anti-court cycle",
         promise: "Ajouter un relais de mémoire pour empêcher un redémarrage parasite hors demande de froid.",
         sourceKeys: ["types", "pumpdown", "single"],
+        films: [{ fichier: "regules-04-pump-down-ameliore.html", titre: "Le film" }],
         lessons: [
           {
             id: "memoire",

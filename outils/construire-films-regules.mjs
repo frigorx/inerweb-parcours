@@ -255,7 +255,8 @@ function construire(fichierDc) {
   const nomLisible = titre
     .replace(/^Regules\s+0?(\w+)\s+/i, (m, n) => "Régulation " + n + " · ")
     .replace(/\bdegivrage\b/gi, "dégivrage")
-    .replace(/\belectrique\b/gi, "électrique");
+    .replace(/\belectrique\b/gi, "électrique")
+    .replace(/\bameliore\b/gi, "amélioré");
 
   const page = [
     "<!DOCTYPE html>",

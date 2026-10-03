@@ -685,8 +685,8 @@
             <text x={x - 126} y={mid + 16} textAnchor="middle" fill={C.blue} fontSize="42" fontWeight="900">{p.glyph || 'θ'}</text>
           </g>
         )}
-        <text x={x - 16} y={y + 6} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">{p.nf ? '11' : '13'}</text>
-        <text x={x + 16} y={y + h + 8} fill={C.mute} fontSize="22" fontWeight="700">{p.nf ? '12' : '14'}</text>
+        <text x={x - 16} y={y + 6} textAnchor="end" fill={C.mute} fontSize="22" fontWeight="700">{p.b1 || (p.nf ? '11' : '13')}</text>
+        <text x={x + 16} y={y + h + 8} fill={C.mute} fontSize="22" fontWeight="700">{p.b2 || (p.nf ? '12' : '14')}</text>
         <text x={x + 34} y={mid - 2} fill={p.fault ? C.red : C.blue} fontSize="34" fontWeight="900">{p.code}</text>
         <text x={x + 34} y={mid + 30} fill={C.mute} fontSize="22" fontWeight="700">{p.sub}</text>
         {p.fault && <circle cx={x} cy={mid} r="96" fill="none" stroke={C.red} strokeWidth="6" strokeDasharray="18 14" opacity="0.85" />}

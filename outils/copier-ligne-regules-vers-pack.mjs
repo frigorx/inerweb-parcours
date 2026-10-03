@@ -83,6 +83,7 @@ const FILMS = [
   "regules-02-protection-minimum.html",
   "regules-02b-migration-de-liquide.html",
   "regules-03-pump-down-automatique.html",
+  "regules-04-pump-down-ameliore.html",
   "regules-05-pump-down-unique.html",
   "regules-08-pump-down-et-degivrage-electrique.html",
 ];

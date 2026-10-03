@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: 'LexendLocal'; src: url('assets/Lexend-variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #f7f1e7; }
+a { color: #c9451a; text-decoration: none; }
+a:hover { color: #1b3a63; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Enceinte","dur":6,"desc":"Installation a l arret, trois colonnes : B1 sur le relais KA, KA sur Y1, la BP et le maintien sur KM1"},{"name":"Fermeture","dur":7,"desc":"B1 ferme : KA colle, Y1 ouvre, la pression monte, la BP ferme et KM1 colle puis se tient par 13-14"},{"name":"Circulation","dur":10,"desc":"Tour de la croix du frigoriste, la prise BP suit l aspiration"},{"name":"Consigne","dur":8,"desc":"B1 ouvre, KA retombe, Y1 ferme ; KM1 tient par son auto-maintien jusqu a 0,3 bar puis tombe"},{"name":"SansCourtCycle","dur":7,"desc":"La pression remonte au-dela de 1,8 bar, la BP referme mais KA et le maintien sont ouverts : KM1 reste au repos"},{"name":"Chronologie","dur":6,"desc":"Chronogramme : air, B1 KA Y1, pression BP, KM1"},{"name":"CycleComplet","dur":16,"desc":"Plan large total : le cycle nominal se rejoue, relais, fluide et chronogramme synchrones, curseur sur le chronogramme"},{"name":"LaCle","dur":4,"desc":"Carte de synthese de la station 4"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.OM_TWEAKS = /*EDITMODE-BEGIN*/{
+  "legendes": true,
+  "dys": false,
+  "zooms": false,
+  "motionEditor": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; background: #f7f1e7; overflow: hidden">
+  <x-import component-from-global-scope="RegulesPumpDownAmeliore" from="./animations-v3.jsx ./tweaks-panel.jsx ./regules-kit.jsx ./regules-04.jsx" style="position: absolute; inset: 0" hint-size="100%,100%"></x-import>
+</div>
+</x-dc>
+</body>
+</html>
